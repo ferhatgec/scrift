@@ -3,8 +3,12 @@
 # Fegeya Scrift
 ScriftLang is simple scripting language for Fegeya Fusion.
 
-#How to building in Linux?
-**make \n
+# How to building in Linux?
+
+
+**make 
+
+
 ** cd build && ./scrift
 
 
