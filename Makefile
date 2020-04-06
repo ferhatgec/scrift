@@ -13,7 +13,8 @@ HECOMP = g++ -c $< -o
 BUILDDIR = ./build/
 # CLEAN
 CLEAN = *.o
-HEADERFILE = Path.o Syntax.o Sync.o File.o
+HEADERFILE = Path.o Syntax.o Sync.o File.o \
+Directory.o DefaultSettings.o
 ifeq ($(OS), Linux)
 	CLEAN := rm -f $(CLEAN)
 	echo Linux
@@ -43,10 +44,17 @@ Sync.o: $(SRCDIREC)Sync.cpp
 
 File.o: $(SRCDIREC)File.cpp
 		$(HECOMP) File.o
-		echo Successfuly creating Sync.o
+		echo Successfuly creating File.o
 
+Directory.o: $(SRCDIREC)Directory.cpp
+		$(HECOMP) Directory.o
+		echo Successfuly creating Directory.o
+
+DefaultSettings.o:$(SRCDIREC)DefaultSettings.cpp
+		$(HECOMP) DefaultSettings.o
+		echo Successfuly creating DefaultSettings.o
 
 main: $(SRCDIREC)main.cpp
 	g++  $< $(HEADERFILE) -o $(BUILDDIR)scrift 
-	echo Scrift building successfuly
+	echo Scrift building successfuly!
 

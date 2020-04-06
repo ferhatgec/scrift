@@ -36,29 +36,27 @@ FMain::~FMain()
     delete[] _help_str;
 }
 
-
+FMain *main_ = new FMain();
+file_sync_t *_dir_main_path;
 int main(int argc, char* argv[], std::string _h_str, help_str* help_str_, int8_t num_str_, char *_str_file_, char *_ech_str,
-uint64_t first_num, uint64_t sec_num)
+uint64_t first_num, uint64_t sec_num, char *_file_def_path, int ram_size, char *cpu_type)
 {
-    argc = atoi(_h_str.c_str());
-    FMain *_main = new FMain();
-    _main->hello();
-    retry:while(argc >= 0)
+    argc = atoi(_h_str.c_str()); // string  to int
+    main_->hello(); // printing hello text
+    while(argc >= 0) 
     {
-    FMain *_str_file = new FMain();
-    _str_file->_term_(_str_file_);
+    main_->_term_(_str_file_); // calling FMain -> _term_(char)
     if(argc >= 0)
     {
-   
+    // input _h_str 
     std::cin >> _h_str;
     argc += 1;
     
-    if(_h_str == "")
+    if(_h_str == "") // NULL 
     {
-       _str_file->_term_(_str_file_);
+        main_->_term_(_str_file_);
         num_str_ += 1;
-        FMain *_err = new FMain();
-        _err->printerror("This is NULL", num_str_);
+        main_->printerror("This is NULL", num_str_);
     }
     else if(_h_str == "help" || _h_str == "-h")
     {
@@ -76,25 +74,28 @@ uint64_t first_num, uint64_t sec_num)
     
     }
 
-    else if(_h_str == "plus")
+    else if(_h_str == "plus") // argument
     {
-       
-        FMain *plus = new FMain();
-        plus->plus_num(first_num, sec_num);
-        
-    
-        
+        main_->plus_num(first_num, sec_num); // FMain -> plus_num (int64_t first_n..
     } 
-    else if(_h_str == "break" || _h_str == "close")
+    else if(_h_str == "brk" || _h_str == "cls") // break or close 
     {
-       return 0;
+       return 0; 
     } 
-    else if(_h_str == "username" || _h_str == "uname")
+    else if(_h_str == "username" || _h_str == "uname") // This code calling Segmentation fault
     {
       const char *f_user_;
       printf("UserName", getenv("USER"));
-    } 
-     
+    } // This code calling Segmentation fault
+    else if(_h_str == "ls" || _h_str == "dir") // list directory
+    {
+       main_->list_dir("/home/");      
+    }
+    else if(_h_str == "fetcheya" || _h_str == "-f")
+    {
+        main_->fetcheya(ram_size, cpu_type);
+       // printf("RAM:", ram_size, "\n", "CPU:", cpu_type);
+    }
    
     } 
 

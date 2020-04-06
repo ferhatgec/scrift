@@ -38,6 +38,9 @@ public:
  char *_func_err_ = "Function calling error";
 }help_str;
 
+
+FSync *fsync__ = new FSync();
+
 class FMain  {
 public:
     FMain();
@@ -48,7 +51,22 @@ public:
     }
     void get_username(char *_your_username)
     {
-        _your_username = std::getenv("USER");
+        _your_username = getenv("USER");
+    }
+    void list_dir(const char *path) 
+    {
+        struct dirent *entry; // #i.. <dirent.h>
+        DIR *dir = opendir(path); // open path dir
+   
+        if (dir == NULL) 
+        {
+            return;
+        }
+        while ((entry = readdir(dir)) != NULL) 
+        {
+            std::cout << entry->d_name << "  ";
+        }
+        closedir(dir);
     }
     void plus_num(uint64_t first_num, uint64_t sec_num)
     {
@@ -58,6 +76,10 @@ public:
         std::cin >> sec_num;
         uint64_t fs_num = sec_num + first_num;
         std::cout << fs_num << "\n";
+    }
+    void fetcheya(int ram_size, char *cpu_type)
+    {
+       // fsync__->CPU(cpu_type);
     }
     void error_undfnd(char *undefined_str)
     {
@@ -69,17 +91,6 @@ public:
         file_str = "$|";
         printf(file_str);
     }
-    void readfunc(char *_cin,  char *argv[])
-    {   
-        // ls func begin
-        if(_cin != "ls")
-        {
-           //I will be adding  
-        }
-    
-        // ls func end
-    }
-    
     void help()
     {
       //  std::cin >> _cin;

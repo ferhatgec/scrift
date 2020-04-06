@@ -15,11 +15,16 @@
 #include "Sync.h"
 #include <cstring>
 #include <string.h>
+
 typedef struct FileSync {
 public:
     char *file_sync_path;
     char *default_file_sync_path = "/home/"; // For Linux and extFS
     char *default_username;
+    char *default_child_file_sync_path = getenv("USER");
+    char *default_lang = "en";
+    char *_cpu_name;
+    int64_t *ram_size_;
     uint64_t file_sync_size_path; 
     uint64_t default_file_sync_size_path = 16;
 

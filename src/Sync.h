@@ -6,10 +6,12 @@
 # */
 #ifndef SYNC_H
 #define SYNC_H
-
+#include <sstream>
+#include <cpuid.h>
 #include "main.h"
 #include "File.h"
 #include <fstream>
+#include <math.h>
 //char *username; 
 
 
@@ -17,9 +19,9 @@ class FSync {
 public:
     FSync();
     ~FSync();
-    virtual void DirSync(char *default_dir);
+    virtual void DirSync(char *default_dir, char *parent_dir);
     virtual void GetUsername(char *uname);
-private:
+private: 
     char *_def_dir;
     uint64_t _def_dir_size;
     char *def_username_;
