@@ -6,7 +6,7 @@
 # */
 
 
-
+#include <stdlib.h>
 #include "Path.h"
 #include "Syntax.h"
 #include <iostream>
@@ -21,6 +21,9 @@
 #include <vector>
 #include <algorithm>
 #include <string.h>
+#include "File.h"
+#include "Sync.h"
+#include <stdio.h>
 
 FMain::FMain()
 {
@@ -34,29 +37,32 @@ FMain::~FMain()
 }
 
 
-int main(int argc, char *argv[], std::string _h_str, help_str* help_str_, int8_t num_str_, char *_str_file_, char *_ech_str,
+int main(int argc, char* argv[], std::string _h_str, help_str* help_str_, int8_t num_str_, char *_str_file_, char *_ech_str,
 uint64_t first_num, uint64_t sec_num)
 {
     argc = atoi(_h_str.c_str());
     FMain *_main = new FMain();
     _main->hello();
-    while(argc >= 0)
+    retry:while(argc >= 0)
     {
     FMain *_str_file = new FMain();
     _str_file->_term_(_str_file_);
     if(argc >= 0)
     {
- std::cin >> _h_str;
+   
+    std::cin >> _h_str;
     argc += 1;
     
     if(_h_str == "")
     {
+       _str_file->_term_(_str_file_);
         num_str_ += 1;
         FMain *_err = new FMain();
         _err->printerror("This is NULL", num_str_);
     }
-    if(_h_str == "help" || _h_str == "-h")
+    else if(_h_str == "help" || _h_str == "-h")
     {
+       
         argc -= 1;
     printf("Scrift \n");
        // printf(help_str_->_help_str_); This code calling Segmentation Fault (core dumped) error!
@@ -68,21 +74,30 @@ uint64_t first_num, uint64_t sec_num)
     "close || break \n"
     "cd <folder>\n \n ");
     
-    } 
-    if(_h_str == "plus")
+    }
+
+    else if(_h_str == "plus")
     {
+       
         FMain *plus = new FMain();
         plus->plus_num(first_num, sec_num);
-    }
-    if(_h_str == "break" || _h_str == "close")
+        
+    
+        
+    } 
+    else if(_h_str == "break" || _h_str == "close")
     {
        return 0;
-    }
-
-
-    }
+    } 
+    else if(_h_str == "username" || _h_str == "uname")
+    {
+      const char *f_user_;
+      printf("UserName", getenv("USER"));
+    } 
+     
    
-    
+    } 
+
     }
 }
 

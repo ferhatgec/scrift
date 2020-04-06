@@ -9,6 +9,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#include <stdlib.h>
 #include "Syntax.h"
 #include "Path.h"
 #include <sys/types.h>
@@ -17,7 +18,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <dirent.h>
-
+#include "Sync.h"
+#include <iomanip>
 
 #define TR_ 1
 #define FL_ 0
@@ -36,13 +38,17 @@ public:
  char *_func_err_ = "Function calling error";
 }help_str;
 
-class FMain : public FSyntax {
+class FMain  {
 public:
     FMain();
     ~FMain();
     void echo_str(char *str_echo)
     {
         printf(str_echo);
+    }
+    void get_username(char *_your_username)
+    {
+        _your_username = std::getenv("USER");
     }
     void plus_num(uint64_t first_num, uint64_t sec_num)
     {
@@ -52,6 +58,11 @@ public:
         std::cin >> sec_num;
         uint64_t fs_num = sec_num + first_num;
         std::cout << fs_num << "\n";
+    }
+    void error_undfnd(char *undefined_str)
+    {
+        undefined_str = "This is Undefined \n";
+        printf(undefined_str);
     }
     void _term_(char *file_str)
     {

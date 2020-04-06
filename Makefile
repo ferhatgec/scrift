@@ -13,11 +13,11 @@ HECOMP = g++ -c $< -o
 BUILDDIR = ./build/
 # CLEAN
 CLEAN = *.o
-HEADERFILE = Path.o Syntax.o
+HEADERFILE = Path.o Syntax.o Sync.o File.o
 ifeq ($(OS), Linux)
 	CLEAN := rm -f $(CLEAN)
 	echo Linux
-endif
+endif 
 
 ifeq ($(OS), Windows_NT)
 	CLEAN := del $(CLEAN)
@@ -37,6 +37,14 @@ Syntax.o: $(SRCDIREC)Syntax.cpp
 		$(HECOMP) Syntax.o
 		echo Successfuly creating Syntax.o 
 	
+Sync.o: $(SRCDIREC)Sync.cpp
+		$(HECOMP) Sync.o
+		echo Successfuly creating Sync.o
+
+File.o: $(SRCDIREC)File.cpp
+		$(HECOMP) File.o
+		echo Successfuly creating Sync.o
+
 
 main: $(SRCDIREC)main.cpp
 	g++  $< $(HEADERFILE) -o $(BUILDDIR)scrift 
