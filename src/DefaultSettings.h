@@ -9,11 +9,9 @@
 #include "Syntax.h"
 #include <fstream>
 
-file_sync_t *__file_sync;
-
 
  typedef struct FDefaultSettings {
-public:
+    file_sync_t *__file_sync;
     char *default_file_path = __file_sync->default_file_sync_path;
     char *default_child_file_path =  __file_sync->default_child_file_sync_path;
     char *_lang_ = __file_sync->default_lang;
@@ -32,26 +30,11 @@ protected:
 
 
 
-
-
-default_setting_t *def;
-fload_t *init;
-
-
-
-
 class FDefaultSettingsClass {
 public:
     FDefaultSettingsClass();
     ~FDefaultSettingsClass();
-    virtual void LoadDefaultSettings(default_setting_t *__def);
-    void LoadSettings(default_setting_t *_def, char *default_username,  char *_default_language); 
-protected:
-    char *default_f_path = def->default_file_path;
-    char *default_child_f_path = def->default_child_file_path;
-    char *_language_ = def->_lang_;
-    char *cpu_name_ = def->cpu_name;
-    int64_t *__ram__size__ = def->_ram_size_;
+    void LoadSettings(char *default_username,  char *_default_language); 
 };
 
 

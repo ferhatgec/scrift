@@ -39,7 +39,8 @@ FMain::~FMain()
 
 file_sync_t *_dir_main_path;
 int main(int argc, char* argv[], std::string _h_str, help_str* help_str_, int8_t num_str_, char *_str_file_, char *_ech_str,
-uint64_t first_num, uint64_t sec_num, char *_file_def_path, int ram_size, char *cpu_type)
+uint64_t first_num, uint64_t sec_num, char *_file_def_path, int ram_size, char *cpu_type, char *_username, char *_hostname,
+char *_os_kernel_)
 {
     FCommand *main_ = new FCommand();
     argc = atoi(_h_str.c_str()); // string  to int
@@ -85,8 +86,8 @@ uint64_t first_num, uint64_t sec_num, char *_file_def_path, int ram_size, char *
     } 
     else if(_h_str == "username" || _h_str == "uname") // This code calling Segmentation fault
     {
-      const char *f_user_;
-      printf("UserName", getenv("USER"));
+        main_->get_username(_username);
+        printf("Your Username:", _username, "\n Your Hostname:");
     } // This code calling Segmentation fault
     else if(_h_str == "ls" || _h_str == "dir") // list directory
     {
@@ -95,16 +96,20 @@ uint64_t first_num, uint64_t sec_num, char *_file_def_path, int ram_size, char *
     }
     else if(_h_str == "fetcheya" || _h_str == "-f")
     {
-        main_->fetcheya(ram_size, cpu_type);
+        main_->_os_kernel_name(_os_kernel_);
+       // main_->fetcheya(ram_size, cpu_type);
        // printf("RAM:", ram_size, "\n", "CPU:", cpu_type);
     }
-   
-    } 
+    else if(_h_str == "ctxt" || _h_str == "createtxt")
+    {
+       // main_->
+    }
+
 
     }
 
 }
-
+}
 
 
 

@@ -1,7 +1,13 @@
 #ifndef COMMAND_FUNC_H
 #define COMMAND_FUNC_H
 
-
+#include "DefaultSettings.h"
+#include "main.h"
+#include <unistd.h>
+#include <limits.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <cstdlib>
 class FCommand {
 public:
     FCommand();
@@ -12,7 +18,26 @@ public:
     }
     void get_username(char *_your_username)
     {
-        _your_username = getenv("USER");
+      
+    }
+    void _os_kernel_name(char *_your_os_kernel)
+    {
+    #ifdef _WIN32
+    _your_os_kernel = "Windows NT 32-bit\n";
+    #elif _WIN64
+    _your_os_kernel "Windows NT 64-bit \n";
+    #elif __APPLE__ || __MACH__
+    _your_os_kernel  = "Darwin \n";
+    #elif __linux__
+    _your_os_kernel = "Linux <3 \n";
+    #elif __FreeBSD__
+    _your_os_kernel = "BSD \n";
+    #elif __unix || __unix__
+    _your_os_kernel = "Unix \n";
+    #else
+    _your_os_kernel = "Other, maybe Fegeya Fusion :) \n";
+    #endif
+    printf(_your_os_kernel);
     }
     void list_dir(const char *path) 
     {
