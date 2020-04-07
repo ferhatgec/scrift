@@ -4,7 +4,7 @@
 # Distributed under the terms of the GPLv3 License.
 # 
 #
-
+COREDIREC = ./core/
 SRCDIREC = ./src/
 FUSION_CONF_DIREC = ./fusion_conf/
 GPP = g++
@@ -12,22 +12,36 @@ COMP = g++ -c
 HECOMP = g++ -c $< -o
 BUILDDIR = ./build/
 # CLEAN
+CLEANALL = scrift
 CLEAN = *.o
 HEADERFILE = Path.o Syntax.o Sync.o File.o \
 Directory.o DefaultSettings.o CommandFunc.o
 
+COREHEADERSFILE = Core.o 
+
 ifeq ($(OS),Windows_NT)
 	CLEAN := del $(CLEAN)
+	CLEANALL := del $(CLEANALL)
 	echo Windows_NT
 else
 	CLEAN := rm -f $(CLEAN)
+	CLEANALL := rm -f $(BUILDDIR)$(CLEANALL)
 endif
 
 
-all: headersfile main clean
+all: headersfile coreheadersfile main clean
+
+nall: cleanall
+
+coreheadersfile: $(COREHEADERSFILE)
+
+Core.o: $(COREDIREC)Core.cpp
+		$(HECOMP) Core.o
+		echo Successfuly creating Core.o
 
 
 headersfile: $(HEADERFILE)
+
 
 Path.o: $(SRCDIREC)Path.cpp
 		$(HECOMP) Path.o
@@ -63,3 +77,7 @@ main: $(SRCDIREC)main.cpp
 
 clean: 
 		$(CLEAN)
+
+cleanall:
+		echo Cleaning build directory! 
+		$(CLEANALL)

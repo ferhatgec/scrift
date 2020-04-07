@@ -5,9 +5,9 @@
 #
 # */
 
-#include "Sync.h"
-#include "main.h"
-#include "File.h"
+#include "../include/src/Sync.h"
+#include "../include/src/main.h"
+#include "../include/src/File.h"
 
 /*
 

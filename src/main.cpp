@@ -7,10 +7,10 @@
 
 
 #include <stdlib.h>
-#include "Path.h"
-#include "Syntax.h"
+#include "../include/src/Path.h"
+#include "../include/src/Syntax.h"
 #include <iostream>
-#include "main.h"
+#include "../include/src/main.h"
 #include <dirent.h>
 #include <sys/types.h>
 #include <dirent.h>
@@ -21,10 +21,10 @@
 #include <vector>
 #include <algorithm>
 #include <string.h>
-#include "File.h"
-#include "Sync.h"
+#include "../include/src/File.h"
+#include "../include/src/Sync.h"
 #include <stdio.h>
-#include "CommandFunc.h"
+#include "../include/src/CommandFunc.h"
 FMain::FMain()
 {
 

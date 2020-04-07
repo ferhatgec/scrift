@@ -1,3 +1,3 @@
-#include "DefaultSettings.h"
-#include "main.h"
+#include "../include/src/DefaultSettings.h"
+#include "../include/src/main.h"
 
