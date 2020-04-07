@@ -20,9 +20,14 @@
 #include <dirent.h>
 #include "File/Sync.h"
 #include <iomanip>
-
+#include <pwd.h>
 #define TR_ 1
 #define FL_ 0
+#define _BUILD_CODE_ ""
+#define _LINE_SPACE_ "\n"
+#define _SPACE_ " "
+#define _SCRIFT_ "Scrift" + _SCRIFT_VERS_
+#define _SCRIFT_VERS_ " "
 
 typedef struct {
 public:

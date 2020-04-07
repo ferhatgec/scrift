@@ -52,7 +52,7 @@ FSync::DirSync(char *default_dir, char *parent_dir)
 void 
 FSync::GetUsername(char *uname)
 {
-   
+ 
 }
 /*
 class FSync : public FFile {

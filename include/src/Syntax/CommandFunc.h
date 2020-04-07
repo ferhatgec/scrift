@@ -18,7 +18,18 @@ public:
     }
     void get_username(char *_your_username)
     {
-      
+      #ifdef __linux__
+       uid_t uid = geteuid();
+    struct passwd *pw = getpwuid(uid);
+    if (pw)
+    {
+      printf(pw->pw_name);
+      _your_username = pw->pw_name;
+     }
+      printf("\n", _your_username, "\n");
+      #else 
+      printf("\nFegeya Fusion Username:", "user", "or ",  _n_supported_(););
+      #endif
     }
     void _os_kernel_name(char *_your_os_kernel)
     {
@@ -35,7 +46,7 @@ public:
     #elif __unix || __unix__
     _your_os_kernel = "Unix \n";
     #else
-    _your_os_kernel = "Other, maybe Fegeya Fusion :) \n";
+    _your_os_kernel = "Fegeya Fusion or not supported operating system :) \n";
     #endif
     printf(_your_os_kernel);
     }
@@ -101,7 +112,10 @@ public:
     {
         printf(err_str, err_number);
     }
-
+    void _n_supported_(char *file = "Your os not supported!", char *_err_code = "1_n_support \n")
+    {
+        printf(file, " ", _err_code);
+    }
     void error_syntax(char *err_str, int8_t err_number)
     {   
       
