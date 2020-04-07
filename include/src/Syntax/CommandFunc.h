@@ -1,3 +1,10 @@
+/* GPLv3 License
+#
+# Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
+# Distributed under the terms of the GPLv3 License.
+#
+# */
+
 #ifndef COMMAND_FUNC_H
 #define COMMAND_FUNC_H
 
@@ -77,6 +84,22 @@ public:
     void fetcheya(int ram_size, char *cpu_type)
     {
        // fsync__->CPU(cpu_type);
+    }
+    void _generated_hash_string(int size)
+    {
+    
+    std::cout << "Enter size : ";
+    std::cin >> size;
+    std::string str;
+    for (int i = 0; i < size; i++)
+    {
+        auto d = rand() % 26 + 'a';
+        str.push_back(d);
+    }
+    for (int i = 0; i < size; i++)
+    {
+        std::cout << str[i];
+    }
     }
     void error_undfnd(char *undefined_str)
     {

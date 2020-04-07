@@ -94,6 +94,11 @@ char *_os_kernel_)
        main_->list_dir("/home/");  
        printf("\n");    
     }
+    else if(_h_str == "randomizestr" || _h_str == "rstr")
+    {
+        int x;
+        main_->_generated_hash_string(x);
+    }
     else if(_h_str == "fetcheya" || _h_str == "-f")
     {
         main_->_os_kernel_name(_os_kernel_);
