@@ -7,19 +7,35 @@
 #include "Path.h"
 #include "Sync.h"
 #include "Syntax.h"
+#include <fstream>
 
 file_sync_t *__file_sync;
-typedef struct FDefaultSettings {
+
+typedef struct FLoad  :  FDefaultSettings {
+public:
+    default_setting_t *def_settings;
+    std::ofstream *setting_init_file;
+protected:
+    file_sync_t *_sync_to_init_file;
+}fload_t;
+
+
+ typedef struct FDefaultSettings {
 public:
     char *default_file_path = __file_sync->default_file_sync_path;
     char *default_child_file_path =  __file_sync->default_child_file_sync_path;
     char *_lang_ = __file_sync->default_lang;
     char *cpu_name = __file_sync->_cpu_name;
     int64_t *_ram_size_ = __file_sync->ram_size_;
-
+protected:
+    fload_t *fload_init;
 }default_setting_t;
 
 default_setting_t *def;
+fload_t *init;
+
+void LoadSettings(default_setting_t *def, char *default_username,  char *_default_language); 
+extern void LoadFrom();
 
 class FDefaultSettingsClass {
 public:
