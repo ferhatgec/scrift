@@ -39,7 +39,7 @@ public:
 }help_str;
 
 
-FSync *fsync__ = new FSync();
+//FSync *fsync__ = new FSync();
 
 class FMain  {
 public:

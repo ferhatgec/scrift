@@ -14,7 +14,7 @@ FDirectory::~FDirectory()
     delete[] _default_dir;
     delete ___file_;
     delete __sync__file;
-    delete[] _default_dir;
+ //   delete[] _default_dir;
 }
 
 
