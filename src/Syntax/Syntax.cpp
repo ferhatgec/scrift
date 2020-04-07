@@ -5,8 +5,8 @@
 #
 # */
 
-#include "../include/src/Syntax.h"
-#include "../include/src/Path.h"
+#include "../../include/src/Syntax/Syntax.h"
+#include "../../include/src/File/Path.h"
 
 FSyntax::FSyntax()
 {

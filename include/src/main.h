@@ -10,15 +10,15 @@
 #define MAIN_H
 
 #include <stdlib.h>
-#include "Syntax.h"
-#include "Path.h"
+#include "Syntax/Syntax.h"
+#include "File/Path.h"
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <dirent.h>
-#include "Sync.h"
+#include "File/Sync.h"
 #include <iomanip>
 
 #define TR_ 1

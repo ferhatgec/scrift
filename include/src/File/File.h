@@ -8,8 +8,8 @@
 #define FILE_H
 
 #include <stdio.h>
-#include "Syntax.h"
-#include "main.h"
+#include "../Syntax/Syntax.h"
+#include "../main.h"
 #include "Path.h"
 #include <fstream>
 #include "Sync.h"

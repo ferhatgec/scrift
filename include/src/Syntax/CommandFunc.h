@@ -1,8 +1,8 @@
 #ifndef COMMAND_FUNC_H
 #define COMMAND_FUNC_H
 
-#include "DefaultSettings.h"
-#include "main.h"
+#include "../Settings/DefaultSettings.h"            
+#include "../main.h"
 #include <unistd.h>
 #include <limits.h>
 #include <stdio.h>

@@ -8,7 +8,7 @@
 #define SYNC_H
 #include <sstream>
 #include <cpuid.h>
-#include "main.h"
+#include "../main.h"
 #include "File.h"
 #include <fstream>
 #include <math.h>

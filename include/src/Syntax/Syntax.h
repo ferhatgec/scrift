@@ -9,7 +9,7 @@
 #ifndef SYNTAX_H
 #define SYNTAX_H
 
-#include "Path.h"
+#include "../File/Path.h"
 #include <cstdint>
 #include <cstdio>
 #include <cstdlib>

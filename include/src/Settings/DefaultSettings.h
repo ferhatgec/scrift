@@ -1,12 +1,12 @@
 #ifndef DEFAULT_SETTINGS_H
 #define DEFAULT_SETTINGS_H
 
-#include "Directory.h"
-#include "File.h"
-#include "main.h"
-#include "Path.h"
-#include "Sync.h"
-#include "Syntax.h"
+#include "../File/Directory.h"
+#include "../File/File.h"
+#include "../main.h"
+#include "../File/Path.h"
+#include "../File/Sync.h"
+#include "../Syntax/Syntax.h"
 #include <fstream>
 
 

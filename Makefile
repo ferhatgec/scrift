@@ -4,6 +4,10 @@
 # Distributed under the terms of the GPLv3 License.
 # 
 #
+SRCFILEDIREC = ./src/File/
+SRCSTTNGSDIREC = ./src/Settings/
+SRCSYNTAXDIREC = ./src/Syntax/
+
 COREDIREC = ./core/
 SRCDIREC = ./src/
 FUSION_CONF_DIREC = ./fusion_conf/
@@ -43,31 +47,31 @@ Core.o: $(COREDIREC)Core.cpp
 headersfile: $(HEADERFILE)
 
 
-Path.o: $(SRCDIREC)Path.cpp
+Path.o: $(SRCFILEDIREC)Path.cpp
 		$(HECOMP) Path.o
 		echo Successfuly creating Path.o
 
-Syntax.o: $(SRCDIREC)Syntax.cpp
+Syntax.o: $(SRCSYNTAXDIREC)Syntax.cpp
 		$(HECOMP) Syntax.o
 		echo Successfuly creating Syntax.o 
 	
-Sync.o: $(SRCDIREC)Sync.cpp
+Sync.o: $(SRCFILEDIREC)Sync.cpp
 		$(HECOMP) Sync.o
 		echo Successfuly creating Sync.o
 
-File.o: $(SRCDIREC)File.cpp
+File.o: $(SRCFILEDIREC)File.cpp
 		$(HECOMP) File.o
 		echo Successfuly creating File.o
 
-Directory.o: $(SRCDIREC)Directory.cpp
+Directory.o: $(SRCFILEDIREC)Directory.cpp
 		$(HECOMP) Directory.o
 		echo Successfuly creating Directory.o
 
-DefaultSettings.o:$(SRCDIREC)DefaultSettings.cpp
+DefaultSettings.o:$(SRCSTTNGSDIREC)DefaultSettings.cpp
 		$(HECOMP) DefaultSettings.o
 		echo Successfuly creating DefaultSettings.o
 
-CommandFunc.o:$(SRCDIREC)CommandFunc.cpp
+CommandFunc.o:$(SRCSYNTAXDIREC)CommandFunc.cpp
 		$(HECOMP) CommandFunc.o
 		echo Successfuly creating CommandFunc.o
 

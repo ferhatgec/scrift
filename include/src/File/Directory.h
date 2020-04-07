@@ -1,11 +1,11 @@
 #ifndef DIRECTORY_H
 #define DIRECTORY_H
 
-#include "main.h"
-#include "File.h"
-#include "Sync.h"
-#include "Syntax.h"
-#include "Path.h"
+#include "../main.h"
+#include "../File/File.h"
+#include "../File/Sync.h"
+#include "../Syntax/Syntax.h"
+#include "../File/Path.h"
 
 
 
