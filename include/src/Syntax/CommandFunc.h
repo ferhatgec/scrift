@@ -28,7 +28,7 @@ public:
      }
       printf("\n", _your_username, "\n");
       #else 
-      printf("\nFegeya Fusion Username:", "user", "or ",  _n_supported_(););
+      printf("\nFegeya Fusion Username:", "user", "or ",  _n_supported_()); // ; deleted
       #endif
     }
     void _os_kernel_name(char *_your_os_kernel)
