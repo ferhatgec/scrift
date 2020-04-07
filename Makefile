@@ -15,17 +15,16 @@ BUILDDIR = ./build/
 CLEAN = *.o
 HEADERFILE = Path.o Syntax.o Sync.o File.o \
 Directory.o DefaultSettings.o CommandFunc.o
-ifeq ($(OS), Linux)
-	CLEAN := rm -f $(CLEAN)
-	echo Linux
-endif 
 
-ifeq ($(OS), Windows_NT)
+ifeq ($(OS),Windows_NT)
 	CLEAN := del $(CLEAN)
 	echo Windows_NT
+else
+	CLEAN := rm -f $(CLEAN)
 endif
 
-all: headersfile main
+
+all: headersfile main clean
 
 
 headersfile: $(HEADERFILE)
@@ -62,3 +61,5 @@ main: $(SRCDIREC)main.cpp
 	g++  $< $(HEADERFILE) -o $(BUILDDIR)scrift 
 	echo Scrift building successfuly!
 
+clean: 
+		$(CLEAN)
