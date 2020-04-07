@@ -14,7 +14,7 @@ BUILDDIR = ./build/
 # CLEAN
 CLEAN = *.o
 HEADERFILE = Path.o Syntax.o Sync.o File.o \
-Directory.o DefaultSettings.o
+Directory.o DefaultSettings.o CommandFunc.o
 ifeq ($(OS), Linux)
 	CLEAN := rm -f $(CLEAN)
 	echo Linux
@@ -53,6 +53,10 @@ Directory.o: $(SRCDIREC)Directory.cpp
 DefaultSettings.o:$(SRCDIREC)DefaultSettings.cpp
 		$(HECOMP) DefaultSettings.o
 		echo Successfuly creating DefaultSettings.o
+
+CommandFunc.o:$(SRCDIREC)CommandFunc.cpp
+		$(HECOMP) CommandFunc.o
+		echo Successfuly creating CommandFunc.o
 
 main: $(SRCDIREC)main.cpp
 	g++  $< $(HEADERFILE) -o $(BUILDDIR)scrift 

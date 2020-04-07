@@ -24,23 +24,24 @@
 #include "File.h"
 #include "Sync.h"
 #include <stdio.h>
-
+#include "CommandFunc.h"
 FMain::FMain()
 {
-    _help_str = _hello_str;
+
 }
 
 
 FMain::~FMain()
 {
-    delete[] _help_str;
+
 }
 
-FMain *main_ = new FMain();
+
 file_sync_t *_dir_main_path;
 int main(int argc, char* argv[], std::string _h_str, help_str* help_str_, int8_t num_str_, char *_str_file_, char *_ech_str,
 uint64_t first_num, uint64_t sec_num, char *_file_def_path, int ram_size, char *cpu_type)
 {
+    FCommand *main_ = new FCommand();
     argc = atoi(_h_str.c_str()); // string  to int
     main_->hello(); // printing hello text
     while(argc >= 0) 
@@ -89,7 +90,8 @@ uint64_t first_num, uint64_t sec_num, char *_file_def_path, int ram_size, char *
     } // This code calling Segmentation fault
     else if(_h_str == "ls" || _h_str == "dir") // list directory
     {
-       main_->list_dir("/home/");      
+       main_->list_dir("/home/");  
+       printf("\n");    
     }
     else if(_h_str == "fetcheya" || _h_str == "-f")
     {
@@ -100,6 +102,7 @@ uint64_t first_num, uint64_t sec_num, char *_file_def_path, int ram_size, char *
     } 
 
     }
+
 }
 
 
