@@ -20,7 +20,6 @@ class FSyntax {
 public:
     FSyntax();
     ~FSyntax();
-    virtual void FSyntaxFile(const char *syntax);
 private:
     char *_syntax;
 };

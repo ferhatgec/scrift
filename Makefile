@@ -4,6 +4,7 @@
 # Distributed under the terms of the GPLv3 License.
 # 
 #
+LANGDIREC = ./Lang/
 SRCFILEDIREC = ./src/File/
 SRCSTTNGSDIREC = ./src/Settings/
 SRCSYNTAXDIREC = ./src/Syntax/
@@ -22,6 +23,8 @@ HEADERFILE = Path.o Syntax.o Sync.o File.o \
 Directory.o DefaultSettings.o CommandFunc.o
 
 COREHEADERSFILE = Core.o 
+LANGHEADERSFILE = Language.o Reader.o
+
 
 ifeq ($(OS),Windows_NT)
 	CLEAN := del $(CLEAN)
@@ -33,7 +36,7 @@ else
 endif
 
 
-all: headersfile coreheadersfile main clean
+all: langheadersfile headersfile coreheadersfile main clean
 
 nall: cleanall
 
@@ -43,6 +46,15 @@ Core.o: $(COREDIREC)Core.cpp
 		$(HECOMP) Core.o
 		echo Successfuly creating Core.o
 
+langheadersfile: $(LANGHEADERSFILE)
+
+Language.o: $(LANGDIREC)Language.cpp
+			$(HECOMP) Language.o
+			echo Successfuly creating Language.o
+
+Reader.o: $(LANGDIREC)Reader.cpp
+			$(HECOMP) Reader.o
+			echo Successfuly creating Reader.o
 
 headersfile: $(HEADERFILE)
 

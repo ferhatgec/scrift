@@ -26,6 +26,18 @@
 #include <stdio.h>
 #include "../include/src/Syntax/CommandFunc.h"
 #include <locale.h>
+
+   static  int argc;
+static char* argv[128];
+
+static std::string _h_str;
+static int8_t num_str_;
+static char *_str_file_, *_ech_str;
+static uint64_t fn, sn;
+static char *_file_def_path;
+static  char *_username, *_os_kernel_,  *_run_file, *_run_file_;
+
+
 FMain::FMain()
 {
 
@@ -38,11 +50,13 @@ FMain::~FMain()
 }
 
 
-int main(int argc, char* argv[], std::string _h_str, help_str* help_str_, int8_t num_str_, char *_str_file_, char *_ech_str,
-uint64_t first_num, uint64_t sec_num, char *_file_def_path, int ram_size, char *cpu_type, char *_username, char *_hostname,
-char *_os_kernel_, char *_run_file, char *_run_file_)
+
+
+
+
+void Shell()
 {
-    FSync *get_username = new FSync();
+
     FCommand *main_ = new FCommand();
     argc = atoi(_h_str.c_str()); // string  to int
     main_->hello(); // printing hello text
@@ -79,11 +93,11 @@ char *_os_kernel_, char *_run_file, char *_run_file_)
 
     else if(_h_str == "plus") // argument
     {
-        main_->plus_num(first_num, sec_num); // FMain -> plus_num (int64_t first_n..
+        main_->plus_num(fn, sn); // FMain -> plus_num (int64_t first_n..
     } 
     else if(_h_str == "brk" || _h_str == "cls") // break or close 
     {
-       return 0; 
+       return; 
     } 
     else if(_h_str == "username" || _h_str == "uname") // This code calling Segmentation fault
     {
@@ -103,8 +117,6 @@ char *_os_kernel_, char *_run_file, char *_run_file_)
     else if(_h_str == "fetcheya" || _h_str == "-f")
     {
         main_->_os_kernel_name(_os_kernel_);
-       // main_->fetcheya(ram_size, cpu_type);
-       // printf("RAM:", ram_size, "\n", "CPU:", cpu_type);
     }
     else if(_h_str == "ctxt" || _h_str == "createtxt")
     {
@@ -131,10 +143,16 @@ char *_os_kernel_, char *_run_file, char *_run_file_)
     {
         main_->_your_ip();
     }
-
-    }
-
 }
+}
+}
+
+int main()
+{
+    Shell();
+    
+
+
 }
 
 

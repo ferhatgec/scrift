@@ -25,18 +25,9 @@ class FPath {
 public:
     FPath();
     ~FPath();
-    virtual void FPathDir(const char *_dir);
-    virtual void FSetPath(std::string& dirname, vec& vdir);
-    void read_dir(const std::string& dirname, vec& v_dir)
-    {
-        DIR* directory = opendir(dirname.c_str());
-        struct dirent *dp;
-        while((dp = readdir(directory)) != NULL)
-        {
-            v_dir.push_back(dp->d_name);
-        } 
-        closedir(directory);
-    }
+    virtual void FPathDir(const char *);
+    virtual void FSetPath(std::string&, vec&);
+    void read_dir(const std::string&, vec&);
 private:
     char *_path;
 };

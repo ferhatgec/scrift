@@ -9,22 +9,10 @@
 #ifndef DEFAULT_SETTINGS_H
 #define DEFAULT_SETTINGS_H
 
-#include "../File/Directory.h"
 #include "../File/File.h"
-#include "../main.h"
-#include "../File/Path.h"
-#include "../File/Sync.h"
-#include "../Syntax/Syntax.h"
-#include <fstream>
 
 
 
-class FDefaultSettingsClass {
-public:
-    FDefaultSettingsClass();
-    ~FDefaultSettingsClass();
-    void LoadSettings(char *default_username,  char *_default_language); 
-};
 
 
 

@@ -21,8 +21,6 @@ class FDirectory {
 public:
     FDirectory();
     ~FDirectory();
-    void SetDir(char *_dir, char *_child_dir) {}
-
 protected:
     bool listed_ = true;
 };

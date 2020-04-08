@@ -40,6 +40,17 @@ FPath::FSetPath(std::string& dirname, vec& vdir)
     file_path->read_dir(dirname, vdir);
 }
 
+void
+FPath::read_dir(const std::string& dirname, vec& v_dir)
+{
+        DIR* directory = opendir(dirname.c_str());
+        struct dirent *dp;
+        while((dp = readdir(directory)) != NULL)
+        {
+            v_dir.push_back(dp->d_name);
+        } 
+        closedir(directory);
+}
 
 /*
 

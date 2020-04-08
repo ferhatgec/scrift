@@ -18,25 +18,4 @@ FSyntax::~FSyntax()
     delete[] _syntax;   
 }
 
-void
-FSyntax::FSyntaxFile(const char *syntax)
-{
 
-
-
-}
-/*
-
-
-class FSyntax {
-public:
-    FSyntax();
-    ~FSyntax();
-    virtual void FSyntaxFile(const char *syntax);
-private:
-    char *_syntax;
-};
-
-
-
-*/

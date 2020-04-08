@@ -20,29 +20,5 @@ FFile::~FFile()
     delete[] _path;
 }
 
-void
-FFile::FileSync(char *path, uint64_t _size)
-{
- 
-}
-
-
-
-void
-FFile::FFileRead(char *path, char* name)
-{
-
-}
-
-void
-FFile::FFileWrite(char *path, char *name)
-{
-
-
-
-}
-
-
-
 
 
