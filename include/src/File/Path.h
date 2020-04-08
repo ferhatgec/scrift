@@ -9,7 +9,6 @@
 
 #ifndef PATH_H
 #define PATH_H
-#include <filesystem>
 #include <cstdint>
 #include <cstdio>
 #include <cstdlib>

@@ -27,17 +27,12 @@ public:
 
 FSync::FSync()
 {
-    file_sync_t *__file__sync;
-    def_username_ =  __file__sync->default_username;
-    _def_dir_size = __file__sync->default_file_sync_size_path;
-    _def_dir = __file__sync->default_file_sync_path;
+ 
 }
 
 
 FSync::~FSync()
 {
-    delete[] def_username_;
-    delete[] _def_dir;
 }
 
 void
