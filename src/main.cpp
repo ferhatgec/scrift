@@ -25,6 +25,7 @@
 #include "../include/src/File/Sync.h"
 #include <stdio.h>
 #include "../include/src/Syntax/CommandFunc.h"
+#include <locale.h>
 FMain::FMain()
 {
 
@@ -39,7 +40,7 @@ FMain::~FMain()
 
 int main(int argc, char* argv[], std::string _h_str, help_str* help_str_, int8_t num_str_, char *_str_file_, char *_ech_str,
 uint64_t first_num, uint64_t sec_num, char *_file_def_path, int ram_size, char *cpu_type, char *_username, char *_hostname,
-char *_os_kernel_)
+char *_os_kernel_, char *_locale_, char *_get_locale_)
 {
     FSync *get_username = new FSync();
     FCommand *main_ = new FCommand();
@@ -109,6 +110,10 @@ char *_os_kernel_)
     {
        // main_->
     }
+    else if(_h_str  == "setlocale_system" || _h_str == "slcl_sys")
+   {
+	    main_->_set_locale();
+   } 
 
 
     }

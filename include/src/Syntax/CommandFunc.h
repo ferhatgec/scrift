@@ -14,8 +14,10 @@
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h>
+#include <stddef.h>
 #include <cstdlib>
-
+#define MAIN_ALL 6
 
 
 class FCommand {
@@ -60,6 +62,12 @@ public:
     #endif
     printf(_your_os_kernel);
     }
+   void _set_locale()
+{
+        printf("Set up -> Your system language");// setlocale(LC_CTYPE, NULL);
+        setlocale(LC_CTYPE, NULL); // FOR UNIX AND FUSION
+        printf(" \n"); 
+}
     void list_dir(const char *path) 
     {
         struct dirent *entry; // #i.. <dirent.h>

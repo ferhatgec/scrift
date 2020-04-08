@@ -22,6 +22,8 @@
 #include "File/Sync.h"
 #include <iomanip>
 #include <pwd.h>
+#include <locale.h>
+
 #define TR_ 1
 #define FL_ 0
 #define _BUILD_CODE_ ""
