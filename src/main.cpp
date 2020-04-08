@@ -40,7 +40,7 @@ FMain::~FMain()
 
 int main(int argc, char* argv[], std::string _h_str, help_str* help_str_, int8_t num_str_, char *_str_file_, char *_ech_str,
 uint64_t first_num, uint64_t sec_num, char *_file_def_path, int ram_size, char *cpu_type, char *_username, char *_hostname,
-char *_os_kernel_, char *_locale_, char *_get_locale_)
+char *_os_kernel_, char *_run_file, char *_run_file_)
 {
     FSync *get_username = new FSync();
     FCommand *main_ = new FCommand();
@@ -113,8 +113,24 @@ char *_os_kernel_, char *_locale_, char *_get_locale_)
     else if(_h_str  == "setlocale_system" || _h_str == "slcl_sys")
    {
 	    main_->_set_locale();
-   } 
-
+   }  
+    else if(_h_str == "run" || _h_str == "#/")
+    {
+        //scanf("%s", _run_file_);
+        #ifdef __linux__
+      
+        #elif _WIN32
+        printf("Sorry, Fegeya Scrift not supporting Windows NT");
+        #elif _WIN64
+        printf("Sorry, Fegeya Scrift not supporting Windows NT");
+        #else
+       
+        #endif
+    }
+    else if(_h_str == "ip" || _h_str == "myip")
+    {
+        main_->_your_ip();
+    }
 
     }
 
