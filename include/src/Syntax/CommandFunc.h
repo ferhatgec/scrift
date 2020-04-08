@@ -103,7 +103,9 @@ public:
     {
         std::cout << str[i];
     }
+    printf("\n");
     }
+
     void error_undfnd(char *undefined_str)
     {
         undefined_str = "This is Undefined \n";
