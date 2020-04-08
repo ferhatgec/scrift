@@ -36,7 +36,7 @@ FMain::~FMain()
 
 }
 
-file_sync_t *_dir_main_path;
+
 int main(int argc, char* argv[], std::string _h_str, help_str* help_str_, int8_t num_str_, char *_str_file_, char *_ech_str,
 uint64_t first_num, uint64_t sec_num, char *_file_def_path, int ram_size, char *cpu_type, char *_username, char *_hostname,
 char *_os_kernel_)

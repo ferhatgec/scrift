@@ -9,9 +9,7 @@
 
 FFile::FFile()
 {
-    file_sync_t *file_sync;
-    _path = file_sync->default_file_sync_path;
-    _size = file_sync->default_file_sync_size_path;   
+  
    // FFile *file = new FFile();
    // file->Sync(_path, _size);
     

@@ -9,6 +9,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#include "Settings/DefaultSettings.h"
 #include <stdlib.h>
 #include "Syntax/Syntax.h"
 #include "File/Path.h"
