@@ -26,18 +26,19 @@
 #include <stdio.h>
 #include "../include/src/Syntax/CommandFunc.h"
 #include <locale.h>
+#include "../include/src/synflang.hpp"
 
-   static  int argc;
-static char* argv[128];
+static  integer argc;
+static fchar* argv[128];
 
 static std::string _h_str;
-static int8_t num_str_;
-static char *_str_file_, *_ech_str;
-static uint64_t fn, sn;
-static char *_file_def_path;
-static  char *_username, *_os_kernel_,  *_run_file, *_run_file_;
+static integer8 num_str_;
+static fchar *_str_file_, *_ech_str;
+static uinteger64 fn, sn;
+static fchar *_file_def_path;
+static  fchar *_username, *_os_kernel_,  *_run_file, *_run_file_;
 
-
+#define OK 0
 FMain::FMain()
 {
 
@@ -51,7 +52,12 @@ FMain::~FMain()
 
 
 
-
+void usage()
+{
+    printf("Usage-> ./scrift <arguments>\n"
+       "<arguments> -> fprintln\n"
+       "<arguments> -> var");
+}
 
 
 void Shell()
@@ -111,7 +117,7 @@ void Shell()
     }
     else if(_h_str == "randomizestr" || _h_str == "rstr")
     {
-        int x;
+        integer x;
         main_->_generated_hash_string(x);
     }
     else if(_h_str == "fetcheya" || _h_str == "-f")
@@ -142,16 +148,29 @@ void Shell()
     else if(_h_str == "ip" || _h_str == "myip")
     {
         main_->_your_ip();
-    }
+    } 
+
 }
 }
 }
 
-int main()
+
+int main(integer argc, fchar* argv[])
 {
-    Shell();
-    
+    if(argc < 2)
+        usage();
 
+  
+    if (argc >= 2) {
+     for(integer i = 0; i < argc; i++)
+     {
+        std::string param = argv[i];
+        printf("This command is not for Fegeya Scrift \n -> ");
+        std::cout << param << "\n";
+     }
+    }
+
+    Shell();
 
 }
 

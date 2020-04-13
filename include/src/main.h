@@ -17,7 +17,7 @@
 #include <fstream>
 #include <cstring>
 #include <string.h>
-
+#include "synflang.hpp"
 
 #define TR_ 1
 #define FL_ 0
@@ -29,16 +29,16 @@
 
 typedef struct {
 public:
- char* err_str = "ERROR - string is not declared";
- char* err_syn = "ERROR - syntax is undefined";
- char* err_ls  = "There is no such directory";
- char* _help_str_ = "help arguments: "
+ fchar* err_str = "ERROR - string is not declared";
+ fchar* err_syn = "ERROR - syntax is undefined";
+ fchar* err_ls  = "There is no such directory";
+ fchar* _help_str_ = "help arguments: "
     "echo <arg>"
     "<intnumber> plus <intnumber>"
     "./<file>"
     "exit"
     "cd <folder>";
- char* _func_err_ = "Function calling error";
+ fchar* _func_err_ = "Function calling error";
 }help_str;
 
 

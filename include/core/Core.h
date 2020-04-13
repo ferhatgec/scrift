@@ -21,10 +21,10 @@ public:
     virtual void RunGCC();
     virtual void RunGPP();
 protected:
-    char* _ip_;
-    char* _shell_;
-    char* _core_init;
-    char* _run_;
+    fchar* _ip_;
+    fchar* _shell_;
+    fchar* _core_init;
+    fchar* _run_;
 };
 
 class FLanguageCore {
@@ -37,8 +37,8 @@ public:
     virtual void GetVersionGCC();
     virtual void GetVersionScrift();
 protected:
-    char* _lang_;
-    char* _version_;
+    fchar* _lang_;
+    fchar* _version_;
 };
 
 class FMainCore {
@@ -50,8 +50,8 @@ public:
     float SizeF();
     struct size_main;
 protected:
-    char* _size_;
-    char* _init;
+    fchar* _size_;
+    fchar* _init;
     FReadCore *_read ;
 };
 
@@ -61,20 +61,20 @@ public:
     ~FDirectoryCore();
     virtual void DirectorySync();
     virtual void PathChar();
-    virtual int Return();
+    virtual integer Return();
 protected:
-    char* _path;
+    fchar* _path;
 };
 
 class FSyncCore {
 public:
     FSyncCore();
     ~FSyncCore();
-    virtual int ReturnSync();
-    virtual uint64_t _ReturnUnsignedSync();
+    virtual integer ReturnSync();
+    virtual uinteger64 _ReturnUnsignedSync();
 protected:
     FSync *_sync;
-    char* _sync_file;
+    fchar* _sync_file;
 };
 };
 #endif // CORE_H

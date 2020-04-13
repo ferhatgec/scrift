@@ -21,7 +21,7 @@ public:
     FSyntax();
     ~FSyntax();
 private:
-    char *_syntax;
+    fchar *_syntax;
 };
 
 #endif //SYNTAX_H

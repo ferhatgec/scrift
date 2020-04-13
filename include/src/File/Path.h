@@ -19,17 +19,18 @@
 #include <vector>
 #include <sys/types.h>
 #include <dirent.h>
+#include "../synflang.hpp"
 typedef std::vector<std::string> vec;
 
 class FPath {
 public:
     FPath();
     ~FPath();
-    virtual void FPathDir(const char *);
+    virtual void FPathDir(const fchar *);
     virtual void FSetPath(std::string&, vec&);
     void read_dir(const std::string&, vec&);
 private:
-    char *_path;
+    fchar *_path;
 };
 
 #endif //PATH_H

@@ -25,14 +25,14 @@ FCommand::~FCommand()
 }
 
 void
-FCommand::echo_str(char *str_echo)
+FCommand::echo_str(fchar *str_echo)
 {
         printf(str_echo);
 }
 
 
 void
-FCommand::get_username(char *_your_username)
+FCommand::get_username(fchar *_your_username)
 {
       #ifdef __linux__
        uid_t uid = geteuid();
@@ -48,7 +48,7 @@ FCommand::get_username(char *_your_username)
       #endif
 }
 void
-FCommand::_os_kernel_name(char *_your_os_kernel)
+FCommand::_os_kernel_name(fchar *_your_os_kernel)
 {
     #ifdef _WIN32
     _your_os_kernel = "Windows NT 32-bit\n";
@@ -77,7 +77,7 @@ FCommand::_set_locale()
 }
 
 void
-FCommand::list_dir(const char *path) 
+FCommand::list_dir(const fchar *path) 
 {
         struct dirent *entry; // #i.. <dirent.h>
         DIR *dir = opendir(path); // open path dir
@@ -94,13 +94,13 @@ FCommand::list_dir(const char *path)
 }
 
 void
-FCommand::plus_num(uint64_t first_num, uint64_t sec_num)
+FCommand::plus_num(uinteger64 first_num, uinteger64 sec_num)
 {
         printf("First number: ");
         std::cin >> first_num;
         printf("Second number ");
         std::cin >> sec_num;
-        uint64_t fs_num = sec_num + first_num;
+        uinteger64 fs_num = sec_num + first_num;
         std::cout << fs_num << "\n";
 }
 
@@ -112,12 +112,12 @@ FCommand::_generated_hash_string(int size)
     std::cout << "Enter size : ";
     std::cin >> size;
     std::string str;
-    for (int i = 0; i < size; i++)
+    for (integer i = 0; i < size; i++)
     {
         auto d = rand() % 26 + 'a';
         str.push_back(d);
     }
-    for (int i = 0; i < size; i++)
+    for (integer i = 0; i < size; i++)
     {
         std::cout << str[i];
     }
@@ -140,13 +140,13 @@ FCommand::_your_ip()
         if (ifa->ifa_addr->sa_family == AF_INET) { // check it is IP4
             // is a valid IP4 Address
             tmpAddrPtr=&((struct sockaddr_in *)ifa->ifa_addr)->sin_addr;
-            char addressBuffer[INET_ADDRSTRLEN];
+            fchar addressBuffer[INET_ADDRSTRLEN];
             inet_ntop(AF_INET, tmpAddrPtr, addressBuffer, INET_ADDRSTRLEN);
             printf("%s IP Address %s\n", ifa->ifa_name, addressBuffer); 
         } else if (ifa->ifa_addr->sa_family == AF_INET6) { // check it is IP6
             // is a valid IP6 Address
             tmpAddrPtr=&((struct sockaddr_in6 *)ifa->ifa_addr)->sin6_addr;
-            char addressBuffer[INET6_ADDRSTRLEN];
+            fchar addressBuffer[INET6_ADDRSTRLEN];
             inet_ntop(AF_INET6, tmpAddrPtr, addressBuffer, INET6_ADDRSTRLEN);
             printf("%s IP Address %s\n", ifa->ifa_name, addressBuffer); 
         } 
@@ -156,19 +156,19 @@ FCommand::_your_ip()
 } 
 
 void
-FCommand::error_undfnd(char *undefined_str)
+FCommand::error_undfnd(fchar *undefined_str)
 {
         undefined_str = "This is Undefined \n";
         printf(undefined_str);
 }
 void
-FCommand::_file_path(char *list_path_def_name)
+FCommand::_file_path(fchar *list_path_def_name)
 {
          list_dir("/home/"); 
 }
 
 void
-FCommand::_term_(char *file_str)
+FCommand::_term_(fchar *file_str)
 {
         file_str = "$|";
         printf(file_str);
@@ -183,7 +183,7 @@ FCommand::help()
 }
 
 void
-FCommand::cd_func(char *new_path)
+FCommand::cd_func(fchar *new_path)
 {
         
 }
@@ -196,7 +196,7 @@ FCommand::hello()
 }
 
 void
-FCommand::printerror(char *err_str, int8_t err_number)
+FCommand::printerror(fchar *err_str, integer8 err_number)
 {
         printf(err_str, err_number);
 }
@@ -204,13 +204,13 @@ FCommand::printerror(char *err_str, int8_t err_number)
 void
 FCommand::_n_supported_()
 {
-    char *file = "Your os not supported!";
-     char *_err_code = "1_n_support \n";
+    fchar *file = "Your os not supported!";
+     fchar *_err_code = "1_n_support \n";
     printf(file, " ", _err_code);
 }
 
 void
-FCommand::error_syntax(char *err_str, int8_t err_number)
+FCommand::error_syntax(fchar *err_str, integer8 err_number)
 {   
       
         printerror(err_str, err_number);

@@ -27,7 +27,7 @@ FPath::~FPath()
 
 
 void
-FPath::FPathDir(const char *_dir)
+FPath::FPathDir(const fchar *_dir)
 {
     _dir = _path; 
 }

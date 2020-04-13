@@ -33,25 +33,25 @@ class FCommand {
 public:
     FCommand();
     ~FCommand();
-    void echo_str(char *);
-    void get_username(char *);
-    void _os_kernel_name(char *);
+    void echo_str(fchar *);
+    void get_username(fchar *);
+    void _os_kernel_name(fchar *);
     void _set_locale();
-    void list_dir(const char *);
-    void plus_num(uint64_t, uint64_t);
-    void _generated_hash_string(int);
+    void list_dir(const fchar *);
+    void plus_num(uinteger64, uinteger64);
+    void _generated_hash_string(integer);
     void _your_ip();
-    void error_undfnd(char *);
-    void _file_path(char *);
-    void _term_(char *);
+    void error_undfnd(fchar *);
+    void _file_path(fchar *);
+    void _term_(fchar *);
     void help();
-    void cd_func(char *);
+    void cd_func(fchar *);
     void hello();
-    void printerror(char *err_str, int8_t);
+    void printerror(fchar *err_str, integer8);
     void _n_supported_();
-    void error_syntax(char *, int8_t);
+    void error_syntax(fchar *, integer8);
 private:
-    char *_hello_str = "help arguments:\n"
+    fchar *_hello_str = "help arguments:\n"
     "echo <arg>\n"
     "intnumber plus intnumber\n"
     "./<file>\n"
@@ -59,7 +59,7 @@ private:
     "cd <folder> \n"
     "ls -> List\n"
     "-f || fetcheya -> System info ";
-    char *_help_str = "Welcome ScriftLang Terminal\n"
+    fchar *_help_str = "Welcome ScriftLang Terminal\n"
     "ScriftLang licensed with GPLv3'\n"
     "Copyright (c) 2020 Ferhat Gecdogan\n";
 };

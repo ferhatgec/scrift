@@ -19,10 +19,10 @@ class FSync {
 public:
     FSync();
     ~FSync();
-    virtual void DirSync(char *, char *);
-    char *_def_dir;
-    uint64_t _def_dir_size;
-    char *def_username_;
+    virtual void DirSync(fchar *, fchar *);
+    fchar *_def_dir;
+    uinteger64 _def_dir_size;
+    fchar *def_username_;
 };
 
 #endif //SYNC_H

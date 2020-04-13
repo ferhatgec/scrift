@@ -11,15 +11,15 @@
 #include <fstream>
 #include <cstring>
 #include <string.h>
-
+#include "../synflang.hpp"
 class FFile  {
 public:
     FFile();
     ~FFile(); 
 
 private:
-    char *_path;
-    uint64_t _size;
+    fchar *_path;
+    uinteger64 _size;
 };
 
 

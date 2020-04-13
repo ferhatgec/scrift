@@ -35,7 +35,7 @@ FSync::~FSync()
 }
 
 void
-FSync::DirSync(char *default_dir, char *parent_dir)
+FSync::DirSync(fchar *default_dir, fchar *parent_dir)
 {
   //  parent_dir = getenv("USER");
     default_dir = "/home/", parent_dir;

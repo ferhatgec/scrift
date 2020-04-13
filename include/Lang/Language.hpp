@@ -6,15 +6,15 @@ class FLanguage {
 public:
     FLanguage();
     ~FLanguage();
-    char *_file_;
-    char *_pr_key;
-    char *_func_key;
-    virtual void var(int,char *,char *);
-    virtual void Init(char *);
-    virtual void String(char *);
-    virtual void Print(char *,char *);
-    virtual void Func(char *, char *, char *, char *);
-    void CreateScriftFile(char *, char *, char *);
+    fchar *_file_;
+    fchar *_pr_key;
+    fchar *_func_key;
+    virtual void var(integer,fchar *,fchar *);
+    virtual void Init(fchar *);
+    virtual void String(fchar *);
+    virtual void Print(fchar *,fchar *);
+    virtual void Func(fchar *, fchar *, fchar *, fchar *);
+    void CreateScriftFile(fchar *, fchar *, fchar *);
 
 };
 
