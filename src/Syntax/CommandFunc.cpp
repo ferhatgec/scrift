@@ -11,6 +11,7 @@
 #include "../../include/src/File/File.h"
 #include "../../include/src/File/Directory.h"
 #include <pwd.h>
+#include "../../include/src/synflang.hpp"
 FCommand::FCommand()
 {
 
@@ -27,7 +28,7 @@ FCommand::~FCommand()
 void
 FCommand::echo_str(fchar *str_echo)
 {
-        printf(str_echo);
+        printlnf(str_echo);
 }
 
 
@@ -39,12 +40,12 @@ FCommand::get_username(fchar *_your_username)
     struct passwd *pw = getpwuid(uid);
     if (pw)
     {
-      printf(pw->pw_name);
+      printlnf(pw->pw_name);
       _your_username = pw->pw_name;
      }
-      printf("\n", _your_username, "\n");
+      printlnf("\n", _your_username, "\n");
       #else 
-      printf("\nFegeya Fusion Username:", "user", "or ",  _n_supported_()); // ; deleted
+      printlnf("\nFegeya Fusion Username:", "user", "or ",  _n_supported_()); // ; deleted
       #endif
 }
 void
@@ -65,15 +66,15 @@ FCommand::_os_kernel_name(fchar *_your_os_kernel)
     #else
     _your_os_kernel = "Fegeya Fusion or not supported operating system :) \n";
     #endif
-    printf(_your_os_kernel);
+    printlnf(_your_os_kernel);
 }
 
 void
 FCommand::_set_locale()
 {
-        printf("Set up -> Your system language");// setlocale(LC_CTYPE, NULL);
+        printlnf("Set up -> Your system language");// setlocale(LC_CTYPE, NULL);
         setlocale(LC_CTYPE, NULL); // FOR UNIX AND FUSION
-        printf(" \n"); 
+        printlnf(" \n"); 
 }
 
 void
@@ -96,9 +97,9 @@ FCommand::list_dir(const fchar *path)
 void
 FCommand::plus_num(uinteger64 first_num, uinteger64 sec_num)
 {
-        printf("First number: ");
+        printlnf("First number: ");
         std::cin >> first_num;
-        printf("Second number ");
+        printlnf("Second number ");
         std::cin >> sec_num;
         uinteger64 fs_num = sec_num + first_num;
         std::cout << fs_num << "\n";
@@ -121,7 +122,7 @@ FCommand::_generated_hash_string(int size)
     {
         std::cout << str[i];
     }
-    printf("\n");
+    printlnf("\n");
 }
 
 void
@@ -142,13 +143,13 @@ FCommand::_your_ip()
             tmpAddrPtr=&((struct sockaddr_in *)ifa->ifa_addr)->sin_addr;
             fchar addressBuffer[INET_ADDRSTRLEN];
             inet_ntop(AF_INET, tmpAddrPtr, addressBuffer, INET_ADDRSTRLEN);
-            printf("%s IP Address %s\n", ifa->ifa_name, addressBuffer); 
+            printlnf("%s IP Address %s\n", ifa->ifa_name, addressBuffer); 
         } else if (ifa->ifa_addr->sa_family == AF_INET6) { // check it is IP6
             // is a valid IP6 Address
             tmpAddrPtr=&((struct sockaddr_in6 *)ifa->ifa_addr)->sin6_addr;
             fchar addressBuffer[INET6_ADDRSTRLEN];
             inet_ntop(AF_INET6, tmpAddrPtr, addressBuffer, INET6_ADDRSTRLEN);
-            printf("%s IP Address %s\n", ifa->ifa_name, addressBuffer); 
+            printlnf("%s IP Address %s\n", ifa->ifa_name, addressBuffer); 
         } 
  }
     if (ifAddrStruct!=NULL) freeifaddrs(ifAddrStruct);
@@ -159,7 +160,7 @@ void
 FCommand::error_undfnd(fchar *undefined_str)
 {
         undefined_str = "This is Undefined \n";
-        printf(undefined_str);
+        printlnf(undefined_str);
 }
 void
 FCommand::_file_path(fchar *list_path_def_name)
@@ -171,14 +172,14 @@ void
 FCommand::_term_(fchar *file_str)
 {
         file_str = "$|";
-        printf(file_str);
+        printlnf(file_str);
 }
 void
 FCommand::help()
 {
       //  std::cin >> _cin;
    
-     printf(_help_str);
+     printlnf(_help_str);
         
 }
 
@@ -192,13 +193,13 @@ void
 FCommand::hello()
 {
       //  *_h_str = *_hello_str; -> This code calling Segmentation Fault error. 
-        printf(_help_str);
+        printlnf(_help_str);
 }
 
 void
 FCommand::printerror(fchar *err_str, integer8 err_number)
 {
-        printf(err_str, err_number);
+        printlnf(err_str, err_number);
 }
 
 void
@@ -206,7 +207,7 @@ FCommand::_n_supported_()
 {
     fchar *file = "Your os not supported!";
      fchar *_err_code = "1_n_support \n";
-    printf(file, " ", _err_code);
+    printlnf(file, " ", _err_code);
 }
 
 void

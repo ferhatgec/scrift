@@ -32,6 +32,8 @@
 #include <algorithm>
 #include <string.h>
 #include <stdio.h>
+#include <stdarg.h>
+#include <stdio.h>
 
 #include <locale.h>
 	typedef uint8_t     uinteger8;
@@ -45,6 +47,19 @@
 
 typedef int integer;
 typedef char fchar;
+
+#undef printlnf
+static int
+printlnf (const char *format, ...) 
+{
+  va_list arg;
+  int done;
+
+  va_start (arg, format);
+  done = vfprintf (stdout, format, arg);
+  va_end (arg);
+  return done;
+}
 
 
 

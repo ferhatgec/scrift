@@ -28,6 +28,7 @@
 #include <locale.h>
 #include "../include/src/synflang.hpp"
 
+
 static  integer argc;
 static fchar* argv[128];
 
@@ -54,7 +55,7 @@ FMain::~FMain()
 
 void usage()
 {
-    printf("Usage-> ./scrift <arguments>\n"
+    printlnf("Usage-> ./scrift <arguments>\n"
        "<arguments> -> fprintln\n"
        "<arguments> -> var");
 }
@@ -85,10 +86,10 @@ void Shell()
     {
        
         argc -= 1;
-    printf("Scrift \n");
-       // printf(help_str_->_help_str_); This code calling Segmentation Fault (core dumped) error!
+    printlnf("Scrift \n");
+       // printlnf(help_str_->_help_str_); This code calling Segmentation Fault (core dumped) error!
     //char *scr_help_str = help_str_->_help_str_; This code calling same error.
-    printf("help arguments: \n "
+    printlnf("help arguments: \n "
     "echo <arg> \n"
     "plus"
     "./<file> \n"
@@ -113,7 +114,7 @@ void Shell()
     else if(_h_str == "ls" || _h_str == "dir") // list directory
     {
        main_->list_dir("/home/");  
-       printf("\n");    
+       printlnf("\n");    
     }
     else if(_h_str == "randomizestr" || _h_str == "rstr")
     {
@@ -138,9 +139,9 @@ void Shell()
         #ifdef __linux__
       
         #elif _WIN32
-        printf("Sorry, Fegeya Scrift not supporting Windows NT");
+        printlnf("Sorry, Fegeya Scrift not supporting Windows NT");
         #elif _WIN64
-        printf("Sorry, Fegeya Scrift not supporting Windows NT");
+        printlnf("Sorry, Fegeya Scrift not supporting Windows NT");
         #else
        
         #endif
@@ -165,7 +166,7 @@ int main(integer argc, fchar* argv[])
      for(integer i = 0; i < argc; i++)
      {
         std::string param = argv[i];
-        printf("This command is not for Fegeya Scrift \n -> ");
+        printlnf("This command is not for Fegeya Scrift \n -> ");
         std::cout << param << "\n";
      }
     }
