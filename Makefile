@@ -36,7 +36,7 @@ else
 endif
 
 
-all: langheadersfile headersfile coreheadersfile main clean
+all: langheadersfile headersfile coreheadersfile main run clean
 
 nall: cleanall
 
@@ -92,6 +92,8 @@ main: $(SRCDIREC)main.cpp
 	g++  $< $(HEADERFILE) -o $(BUILDDIR)scrift 
 	echo Scrift building successfuly!
 
+run: 
+	cd build && ./scrift
 clean: 
 		$(CLEAN)
 
