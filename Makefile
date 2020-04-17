@@ -36,7 +36,7 @@ else
 endif
 
 
-all: langheadersfile headersfile coreheadersfile main run clean
+all: langheadersfile headersfile coreheadersfile main clean
 
 nall: cleanall
 
