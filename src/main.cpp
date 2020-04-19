@@ -27,8 +27,6 @@
 #include "../include/src/Syntax/CommandFunc.h"
 #include <locale.h>
 #include "../include/src/synflang.hpp"
-
-
 static  integer argc;
 static fchar* argv[128];
 
@@ -57,7 +55,7 @@ void usage()
 {
     printlnf("Usage-> ./scrift <arguments>\n"
        "<arguments> -> fprintln\n"
-       "<arguments> -> var");
+       "<arguments> -> var\n");
 }
 
 
@@ -69,13 +67,14 @@ void Shell()
     main_->hello(); // printing hello text
     while(argc >= 0) 
     {
-    main_->_term_(_str_file_); // calling FMain -> _term_(char)
+    // calling FMain -> _term_(char)
     if(argc >= 0)
     {
+    main_->_term_(_str_file_); 
     // input _h_str 
     std::cin >> _h_str;
     argc += 1;
-    
+
     if(_h_str == "") // NULL 
     {
         main_->_term_(_str_file_);
@@ -93,8 +92,14 @@ void Shell()
     "echo <arg> \n"
     "plus"
     "./<file> \n"
-    "close || break \n"
-    "cd <folder>\n \n ");
+    "cls || brk \n"
+    "cd <folder>\n \n "
+    "randomize || rstr\n"
+    "username\n"
+    "ls\n"
+    "fetcheya\n"
+    "set_locale_system || slcl_sys\n"
+    "ip || myip\n");
     
     }
 
@@ -130,9 +135,11 @@ void Shell()
        // main_->
     }
     else if(_h_str  == "setlocale_system" || _h_str == "slcl_sys")
-   {
+    {
 	    main_->_set_locale();
-   }  
+     
+    }  
+
     else if(_h_str == "run" || _h_str == "#/")
     {
         //scanf("%s", _run_file_);

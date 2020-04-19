@@ -6,7 +6,11 @@
 
 # How to building in Linux?
 
+# Install packages
 
+###### For Ubuntu and Debian ~@ **sudo apt-get install libncurses5-dev libncursesw5-dev**
+
+###### For Fedora ~@ **sudo yum install ncurses-devel ncurses**
 
 ###### ~@ **make** 
 
