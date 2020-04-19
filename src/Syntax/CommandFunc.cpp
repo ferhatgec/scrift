@@ -43,7 +43,7 @@ FCommand::get_username(fchar *_your_username)
       printlnf(pw->pw_name);
       _your_username = pw->pw_name;
      }
-      printlnf("\n", _your_username, "\n");
+     // printlnf("\n", _your_username, "\n");
       #else 
       printlnf("\nFegeya Fusion Username:", "user", "or ",  _n_supported_()); // ; deleted
       #endif
@@ -171,8 +171,10 @@ FCommand::_file_path(fchar *list_path_def_name)
 void
 FCommand::_term_(fchar *file_str)
 {
-        file_str = "$|";
-        printlnf(file_str);
+    fchar *_uname;
+    get_username(_uname);
+    file_str = "@$|";
+    printlnf(file_str, _uname);
 }
 void
 FCommand::help()
