@@ -50,6 +50,7 @@ public:
     void printerror(fchar *err_str, integer8);
     void _n_supported_();
     void error_syntax(fchar *, integer8);
+    void get_hostname();
 private:
     fchar *_hello_str = "help arguments:\n"
     "echo <arg>\n"
