@@ -5,7 +5,8 @@
 #
 # */
 
-
+#include <unistd.h>
+#include <limits.h>
 #include "../../include/src/main.h"
 #include "../../include/src/Syntax/CommandFunc.h"
 #include "../../include/src/File/File.h"
@@ -169,12 +170,25 @@ FCommand::_file_path(fchar *list_path_def_name)
 }
 
 void
+FCommand::get_hostname(fchar* _hostname) // username@hostname$|
+{
+    char hostbuffer[256];  
+    struct hostent *host_entry; 
+    int hostname; 
+    hostname = gethostname(hostbuffer, sizeof(hostbuffer)); 
+    printf("%s\n", hostbuffer); 
+}
+
+
+void
 FCommand::_term_(fchar *file_str)
 {
+    fchar* _hostname;
+    get_hostname(_hostname);
     fchar *_uname;
     get_username(_uname);
     file_str = "@$|";
-    printlnf(file_str, _uname);
+    printlnf(file_str, _uname, _hostname);
 }
 void
 FCommand::help()
@@ -218,3 +232,4 @@ FCommand::error_syntax(fchar *err_str, integer8 err_number)
       
         printerror(err_str, err_number);
 }
+
