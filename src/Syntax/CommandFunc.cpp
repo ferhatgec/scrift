@@ -172,11 +172,11 @@ FCommand::_file_path(fchar *list_path_def_name)
 void
 FCommand::get_hostname() // username@hostname$|
 {
-    char hostbuffer[256];  
+    fchar hostbuffer[256];  
     struct hostent *host_entry; 
-    int hostname; 
+    integer hostname; 
     hostname = gethostname(hostbuffer, sizeof(hostbuffer)); 
-    printf("%s", hostbuffer); 
+    printlnf("%s", hostbuffer); 
 }
 
 
