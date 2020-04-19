@@ -170,25 +170,25 @@ FCommand::_file_path(fchar *list_path_def_name)
 }
 
 void
-FCommand::get_hostname(fchar* _hostname) // username@hostname$|
+FCommand::get_hostname() // username@hostname$|
 {
     char hostbuffer[256];  
     struct hostent *host_entry; 
     int hostname; 
     hostname = gethostname(hostbuffer, sizeof(hostbuffer)); 
-    printf("%s\n", hostbuffer); 
+    printf("%s", hostbuffer); 
 }
 
 
 void
 FCommand::_term_(fchar *file_str)
 {
-    fchar* _hostname;
-    get_hostname(_hostname);
     fchar *_uname;
     get_username(_uname);
-    file_str = "@$|";
-    printlnf(file_str, _uname, _hostname);
+    file_str = " $# ";
+    printlnf("@");
+    get_hostname();
+    printlnf(file_str);
 }
 void
 FCommand::help()
