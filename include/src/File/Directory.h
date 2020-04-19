@@ -21,8 +21,6 @@ class FDirectory {
 public:
     FDirectory();
     ~FDirectory();
-protected:
-    bool listed_ = true;
 };
 
 

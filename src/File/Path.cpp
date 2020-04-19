@@ -17,19 +17,19 @@
 
 FPath::FPath()
 {
-    _path = "";
+   // _path = "";
 }
 
 FPath::~FPath()
 {
-    delete[] _path;
+   // delete[] _path;
 }
 
 
 void
 FPath::FPathDir(const fchar *_dir)
 {
-    _dir = _path; 
+    //_dir = _path; 
 }
 
 void

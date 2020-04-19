@@ -17,7 +17,7 @@ FFile::FFile()
 
 FFile::~FFile()
 {
-    delete[] _path;
+   // delete[] _path;
 }
 
 

@@ -12,14 +12,11 @@
 #include <cstring>
 #include <string.h>
 #include "../synflang.hpp"
+
 class FFile  {
 public:
     FFile();
     ~FFile(); 
-
-private:
-    fchar *_path;
-    uinteger64 _size;
 };
 
 
