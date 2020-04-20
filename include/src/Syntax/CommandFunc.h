@@ -37,7 +37,7 @@ public:
     void get_username(fchar *);
     void _os_kernel_name(fchar *);
     void _set_locale();
-    void list_dir(const fchar *);
+    void list_dir();
     void plus_num(uinteger64, uinteger64);
     void _generated_hash_string(integer);
     void _your_ip();

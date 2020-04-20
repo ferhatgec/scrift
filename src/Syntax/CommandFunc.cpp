@@ -14,6 +14,9 @@
 #include <pwd.h>
 #include "../../include/src/synflang.hpp"
 
+
+static const char *_uname;
+
 FCommand::FCommand()
 {
 
@@ -97,11 +100,11 @@ FCommand::_set_locale()
 }
 
 void
-FCommand::list_dir(const fchar *path) 
+FCommand::list_dir() 
 {
-        struct dirent *entry; // #i.. <dirent.h>
-        DIR *dir = opendir(path); // open path dir
-   
+        struct dirent *entry;
+        DIR *dir = opendir(getenv("HOME")); 
+    
         if (dir == NULL) 
         {
             return;
@@ -112,7 +115,7 @@ FCommand::list_dir(const fchar *path)
             remove_character(_str, '.');
             remove_character(_str, '..');
             std::cout << _str << "  ";
-            
+                       
         }
         closedir(dir);
 }
@@ -189,7 +192,7 @@ FCommand::error_undfnd(fchar *undefined_str)
 void
 FCommand::_file_path(fchar *list_path_def_name)
 {
-         list_dir("/home/ferhatgec"); 
+         list_dir(); 
 }
 
 void

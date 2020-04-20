@@ -118,7 +118,7 @@ void Shell()
     } // This code calling Segmentation fault
     else if(_h_str == "ls" || _h_str == "dir") // list directory
     {
-       main_->list_dir("/home/ferhatgec");  
+       main_->list_dir();
        printlnf("\n");    
     }
     else if(_h_str == "randomizestr" || _h_str == "rstr")
