@@ -26,6 +26,22 @@ FCommand::~FCommand()
     
 }
 
+void 
+FCommand::remove_character(char * _str, char ptr)
+{
+    if(_str == NULL)
+        return;
+
+    char * _pstr = _str;
+    while(*_str)
+    {
+        if(*_str != ptr)
+            *_pstr++ = *_str;
+    _str++;
+    }
+    *_pstr = '\0';    
+}
+
 void
 FCommand::echo_str(fchar *str_echo)
 {
@@ -90,7 +106,11 @@ FCommand::list_dir(const fchar *path)
         }
         while ((entry = readdir(dir)) != NULL) 
         {
-            std::cout << entry->d_name << "  ";
+            char * _str = entry->d_name;
+            remove_character(_str, '.');
+            remove_character(_str, '..');
+            std::cout << _str << "  ";
+            
         }
         closedir(dir);
 }
@@ -166,7 +186,7 @@ FCommand::error_undfnd(fchar *undefined_str)
 void
 FCommand::_file_path(fchar *list_path_def_name)
 {
-         list_dir("/home/"); 
+         list_dir("/home/ferhatgec"); 
 }
 
 void
