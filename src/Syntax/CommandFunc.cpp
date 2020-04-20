@@ -4,7 +4,9 @@
 # Distributed under the terms of the GPLv3 License.
 #
 # */
-
+#include <stdio.h>
+#include <dirent.h>
+#include <sys/stat.h>
 #include <unistd.h>
 #include <limits.h>
 #include "../../include/src/main.h"
@@ -13,7 +15,8 @@
 #include "../../include/src/File/Directory.h"
 #include <pwd.h>
 #include "../../include/src/synflang.hpp"
-
+#include <experimental/filesystem>
+namespace filesys = std::experimental::filesystem;
 
 static const char *_uname;
 
@@ -102,20 +105,31 @@ FCommand::_set_locale()
 void
 FCommand::list_dir() 
 {
+     int files = 0;
+      struct stat filestat;
         struct dirent *entry;
-        DIR *dir = opendir(getenv("HOME")); 
+        DIR *dir = opendir(getenv("HOME")); // For Linux and *nix
     
         if (dir == NULL) 
         {
             return;
         }
-        while ((entry = readdir(dir)) != NULL) 
+        while ((entry = readdir(dir))) 
         {
+            files++;
             char * _str = entry->d_name;
             remove_character(_str, '.');
             remove_character(_str, '..');
-            std::cout << _str << "  ";
-                       
+            //printf("%d", entry->d_type, "\n");
+            //printf("%d");
+            printf("\033[0;34m");
+            stat(entry->d_name,&filestat);
+            if(entry->d_type == DT_DIR) {
+                printf("%4s: %s\n","Dir",entry->d_name);
+            } else{
+            printf("%4s: %s\n"," File",entry->d_name);
+            printf("\033[0m");
+            }
         }
         closedir(dir);
 }
