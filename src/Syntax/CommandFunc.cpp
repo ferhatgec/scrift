@@ -13,6 +13,7 @@
 #include "../../include/src/File/Directory.h"
 #include <pwd.h>
 #include "../../include/src/synflang.hpp"
+
 FCommand::FCommand()
 {
 
@@ -45,6 +46,7 @@ FCommand::remove_character(char * _str, char ptr)
 void
 FCommand::echo_str(fchar *str_echo)
 {
+        std::cin >> str_echo;
         printlnf(str_echo);
 }
 
@@ -114,6 +116,7 @@ FCommand::list_dir(const fchar *path)
         }
         closedir(dir);
 }
+
 
 void
 FCommand::plus_num(uinteger64 first_num, uinteger64 sec_num)

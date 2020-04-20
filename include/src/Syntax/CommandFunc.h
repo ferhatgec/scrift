@@ -51,6 +51,7 @@ public:
     void _n_supported_();
     void error_syntax(fchar *, integer8);
     void get_hostname();
+    void list_folder(const fchar *);
     void remove_character(char * , char );
 private:
     fchar *_hello_str = "help arguments:\n"
