@@ -246,14 +246,18 @@ void
 FCommand::_term_(fchar *file_str)
 {
     fchar *_uname;
+    printlnf("\033[1;36m");
     get_username(_uname);
     file_str = " $# ";
     printlnf("@");
+    printlnf("\033[1;35m");
     get_hostname();
     printlnf(":~");
+    printlnf("\033[01;33m");
     printlnf(_file_path_cd_function);
+    printlnf("\033[1;31m");
     printlnf(file_str);
-
+    printf("\033[0m");
 }
 void
 FCommand::help()
