@@ -122,14 +122,16 @@ FCommand::list_dir()
             remove_character(_str, '..');
             //printf("%d", entry->d_type, "\n");
             //printf("%d");
-            printf("\033[0;34m");
+          //  printf("\033[0;34m");
             stat(entry->d_name,&filestat);
             if(entry->d_type == DT_DIR) {
+                printf("\033[1;31m");
                 printf("%4s: %s\n","Dir",entry->d_name);
             } else{
+            printf("\033[1;33m");
             printf("%4s: %s\n"," File",entry->d_name);
-            printf("\033[0m");
             }
+            printf("\033[0m");
         }
         closedir(dir);
 }
