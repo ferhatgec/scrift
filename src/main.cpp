@@ -38,7 +38,7 @@ static fchar *_str_file_, *_ech_str;
 static uinteger64 fn, sn;
 static fchar *_file_def_path;
 static  fchar *_username, *_os_kernel_,  *_run_file, *_run_file_;
- 
+FCommand *main_ = new FCommand();
 
 
 #define OK 0
@@ -52,6 +52,7 @@ FMain::~FMain()
 {
     delete[] _username, _os_kernel_, _run_file, _run_file_, _file_def_path,
     _ech_str, _str_file_, _h_str, argv; // Deleting chars
+    delete main_;
 }   
 
 
@@ -68,7 +69,7 @@ FMain::usage()
 void
 FMain::Shell()
 {
-    FCommand *main_ = new FCommand();
+  
     argc = atoi(_h_str.c_str()); // string  to int
     main_->hello(); // printing hello text
     while(argc >= 0) 
@@ -137,7 +138,7 @@ int main(integer argc, fchar* argv[])
     
 
     fmain->Shell();
-
+    
 }
 
 

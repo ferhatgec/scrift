@@ -103,13 +103,21 @@ FCommand::_set_locale()
 }
 
 void
+FCommand::cd_func(fchar *new_path)
+{
+    std::cin >> *new_path;
+    slashn
+
+}
+
+void
 FCommand::list_dir() 
 {
      int files = 0;
       struct stat filestat;
         struct dirent *entry;
         DIR *dir = opendir(getenv("HOME")); // For Linux and *nix
-    
+
         if (dir == NULL) 
         {
             return;
@@ -230,7 +238,10 @@ FCommand::_term_(fchar *file_str)
     file_str = " $# ";
     printlnf("@");
     get_hostname();
+    printlnf(":~");
+    printlnf(getenv("HOME"));
     printlnf(file_str);
+
 }
 void
 FCommand::help()
@@ -241,11 +252,6 @@ FCommand::help()
         
 }
 
-void
-FCommand::cd_func(fchar *new_path)
-{
-        
-}
 
 void
 FCommand::hello()

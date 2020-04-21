@@ -63,6 +63,7 @@ private:
     fchar *_help_str = "Welcome ScriftLang Terminal\n"
     "ScriftLang licensed with GPLv3\n"
     "Copyright (c) 2020 Ferhat Gecdogan\n";
+
 };
 
 
