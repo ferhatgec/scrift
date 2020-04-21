@@ -49,7 +49,6 @@ public:
     void hello();
     void printerror(fchar *, integer8);
     void _n_supported_();
-    void error_syntax(fchar *, integer8);
     void get_hostname();
     void remove_character(char * , char );
 private:

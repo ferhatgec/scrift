@@ -267,11 +267,3 @@ FCommand::_n_supported_()
      fchar *_err_code = "1_n_support \n";
     printlnf(file, " ", _err_code);
 }
-
-void
-FCommand::error_syntax(fchar *err_str, integer8 err_number)
-{   
-      
-        printerror(err_str, err_number);
-}
-
