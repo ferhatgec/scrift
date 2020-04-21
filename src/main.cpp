@@ -27,9 +27,9 @@
 #include "../include/src/Syntax/CommandFunc.h"
 #include <locale.h>
 #include "../include/src/synflang.hpp"
-static  integer argc;
+static integer argc;
 static fchar* argv[128];
-
+integer x;
 static std::string _h_str;
 static integer8 num_str_;
 static fchar *_str_file_, *_ech_str;
@@ -46,8 +46,9 @@ FMain::FMain()
 
 FMain::~FMain()
 {
-
-}
+    delete[] _username, _os_kernel_, _run_file, _run_file_, _file_def_path,
+    _ech_str, _str_file_, _h_str, argv;
+}   
 
 
 
@@ -61,7 +62,6 @@ void usage()
 
 void Shell()
 {
-
     FCommand *main_ = new FCommand();
     argc = atoi(_h_str.c_str()); // string  to int
     main_->hello(); // printing hello text
@@ -70,11 +70,9 @@ void Shell()
     // calling FMain -> _term_(char)
     if(argc >= 0)
     {
-    main_->_term_(_str_file_); 
-    // input _h_str 
+    main_->_term_(_str_file_);  
     std::cin >> _h_str;
     argc += 1;
-
     if(_h_str == "") // NULL 
     {
         main_->_term_(_str_file_);
@@ -83,61 +81,45 @@ void Shell()
     }
     else if(_h_str == "help" || _h_str == "-h")
     {
-       
         argc -= 1;
-    printlnf("Scrift \n");
-       // printlnf(help_str_->_help_str_); This code calling Segmentation Fault (core dumped) error!
-    //char *scr_help_str = help_str_->_help_str_; This code calling same error.
-    printlnf("help arguments: \n "
-    "echo <arg> \n"
-    "plus"
-    "./<file> \n"
-    "cls || brk \n"
-    "cd <folder>\n \n "
-    "randomize || rstr\n"
-    "username\n"
-    "ls\n"
-    "fetcheya\n"
-    "set_locale_system || slcl_sys\n"
-    "ip || myip\n");
+        printlnf("Scrift \n"
+        "help arguments: \n "
+        "echo <arg> \n"
+        "plus"
+        "./<file> \n"
+        "cls || brk \n"
+        "cd <folder>\n \n "
+        "randomize || rstr\n"
+        "username\n"
+        "ls\n"
+        "fetcheya\n"
+        "set_locale_system || slcl_sys\n"
+        "ip || myip\n");
     
     }
 
     else if(_h_str == "plus") {main_->plus_num(fn, sn);} 
     else if(_h_str == "brk" || _h_str == "cls")  {return;} 
-
-    else if(_h_str == "username" || _h_str == "uname") { 
-        main_->get_username(_username);
-    } 
+    else if(_h_str == "username" || _h_str == "uname") {main_->get_username(_username); printf("\n");} 
     else if(_h_str == "ls" || _h_str == "dir") // list directory
     {
        main_->list_dir();
        printlnf("\n");    
     }
-    else if(_h_str == "randomizestr" || _h_str == "rstr")
-    {
-        integer x;
-        main_->_generated_hash_string(x);
-    }
+    else if(_h_str == "randomizestr" || _h_str == "rstr"){main_->_generated_hash_string(x);}
     else if(_h_str == "fetcheya" || _h_str == "-f"){main_->_os_kernel_name(_os_kernel_);}
-
-    else if(_h_str == "ctxt" || _h_str == "createtxt")
-    {
-       // main_->
-    }
+    else if(_h_str == "ctxt" || _h_str == "createtxt"){/* main_->*/}
     else if(_h_str  == "setlocale_system" || _h_str == "slcl_sys"){main_->_set_locale();}  
     
     else if(_h_str == "run" || _h_str == "#/")
     {
         //scanf("%s", _run_file_);
         #ifdef __linux__
-      
         #elif _WIN32
         printlnf("Sorry, Fegeya Scrift not supporting Windows NT");
         #elif _WIN64
         printlnf("Sorry, Fegeya Scrift not supporting Windows NT");
         #else
-       
         #endif
     }
     else if(_h_str == "ip" || _h_str == "myip"){main_->_your_ip();} 
