@@ -165,7 +165,7 @@ FCommand::_generated_hash_string(int size)
     {
         std::cout << str[i];
     }
-    printlnf("\n");
+    slashn
 }
 
 void

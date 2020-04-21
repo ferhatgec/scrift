@@ -27,6 +27,8 @@
 #include "../include/src/Syntax/CommandFunc.h"
 #include <locale.h>
 #include "../include/src/synflang.hpp"
+
+// Variables 
 static integer argc;
 static fchar* argv[128];
 integer x;
@@ -36,6 +38,8 @@ static fchar *_str_file_, *_ech_str;
 static uinteger64 fn, sn;
 static fchar *_file_def_path;
 static  fchar *_username, *_os_kernel_,  *_run_file, *_run_file_;
+ 
+
 
 #define OK 0
 FMain::FMain()
@@ -47,14 +51,14 @@ FMain::FMain()
 FMain::~FMain()
 {
     delete[] _username, _os_kernel_, _run_file, _run_file_, _file_def_path,
-    _ech_str, _str_file_, _h_str, argv;
+    _ech_str, _str_file_, _h_str, argv; // Deleting chars
 }   
 
 
 
-void usage()
+void usage() 
 {
-    printlnf("Usage-> ./scrift <arguments>\n"
+    printlnf("Usage-> ./scrift <arguments>\n" 
        "<arguments> -> fprintln\n"
        "<arguments> -> var\n");
 }
@@ -73,15 +77,9 @@ void Shell()
     main_->_term_(_str_file_);  
     std::cin >> _h_str;
     argc += 1;
-    if(_h_str == "") // NULL 
+    if(_h_str == "help" || _h_str == "-h")
     {
-        main_->_term_(_str_file_);
-        num_str_ += 1;
-        main_->printerror("This is NULL", num_str_, "ERR_NULL_CHAR");
-    }
-    else if(_h_str == "help" || _h_str == "-h")
-    {
-        argc -= 1;
+       // argc -= 1;
         printlnf("Scrift \n"
         "help arguments: \n "
         "echo <arg> \n"
@@ -103,8 +101,8 @@ void Shell()
     else if(_h_str == "username" || _h_str == "uname") {main_->get_username(_username); printf("\n");} 
     else if(_h_str == "ls" || _h_str == "dir") // list directory
     {
-       main_->list_dir();
-       printlnf("\n");    
+       main_->list_dir(); 
+       slashn    
     }
     else if(_h_str == "randomizestr" || _h_str == "rstr"){main_->_generated_hash_string(x);}
     else if(_h_str == "fetcheya" || _h_str == "-f"){main_->_os_kernel_name(_os_kernel_);}
@@ -132,16 +130,7 @@ int main(integer argc, fchar* argv[])
 {
     if(argc < 2)
         usage();
-
-  
-    if (argc >= 2) {
-     for(integer i = 0; i < argc; i++)
-     {
-        std::string param = argv[i];
-        printlnf("This command is not for Fegeya Scrift \n -> ");
-        std::cout << param << "\n";
-     }
-    }
+    
 
     Shell();
 
