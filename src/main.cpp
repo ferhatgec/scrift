@@ -79,7 +79,7 @@ void Shell()
     {
         main_->_term_(_str_file_);
         num_str_ += 1;
-        main_->printerror("This is NULL", num_str_);
+        main_->printerror("This is NULL", num_str_, "ERR_NULL_CHAR");
     }
     else if(_h_str == "help" || _h_str == "-h")
     {
@@ -103,19 +103,12 @@ void Shell()
     
     }
 
-    else if(_h_str == "plus") // argument
-    {
-        main_->plus_num(fn, sn); // FMain -> plus_num (int64_t first_n..
-    } 
-    else if(_h_str == "brk" || _h_str == "cls") // break or close 
-    {
-       return; 
-    } 
-    else if(_h_str == "username" || _h_str == "uname") // This code calling Segmentation fault
-    {
-        //main_->get_username(_username);
+    else if(_h_str == "plus") {main_->plus_num(fn, sn);} 
+    else if(_h_str == "brk" || _h_str == "cls")  {return;} 
+
+    else if(_h_str == "username" || _h_str == "uname") { 
         main_->get_username(_username);
-    } // This code calling Segmentation fault
+    } 
     else if(_h_str == "ls" || _h_str == "dir") // list directory
     {
        main_->list_dir();
@@ -126,20 +119,14 @@ void Shell()
         integer x;
         main_->_generated_hash_string(x);
     }
-    else if(_h_str == "fetcheya" || _h_str == "-f")
-    {
-        main_->_os_kernel_name(_os_kernel_);
-    }
+    else if(_h_str == "fetcheya" || _h_str == "-f"){main_->_os_kernel_name(_os_kernel_);}
+
     else if(_h_str == "ctxt" || _h_str == "createtxt")
     {
        // main_->
     }
-    else if(_h_str  == "setlocale_system" || _h_str == "slcl_sys")
-    {
-	    main_->_set_locale();
-     
-    }  
-
+    else if(_h_str  == "setlocale_system" || _h_str == "slcl_sys"){main_->_set_locale();}  
+    
     else if(_h_str == "run" || _h_str == "#/")
     {
         //scanf("%s", _run_file_);
@@ -153,11 +140,7 @@ void Shell()
        
         #endif
     }
-    else if(_h_str == "ip" || _h_str == "myip")
-    {
-        main_->_your_ip();
-    } 
-
+    else if(_h_str == "ip" || _h_str == "myip"){main_->_your_ip();} 
 }
 }
 }

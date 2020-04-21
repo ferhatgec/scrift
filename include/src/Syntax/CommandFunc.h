@@ -47,7 +47,7 @@ public:
     void help();
     void cd_func(fchar *);
     void hello();
-    void printerror(fchar *, integer8);
+    void printerror(fchar *, integer8, fchar * );
     void _n_supported_();
     void get_hostname();
     void remove_character(char * , char );

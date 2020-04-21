@@ -255,7 +255,7 @@ FCommand::hello()
 }
 
 void
-FCommand::printerror(fchar *err_str, integer8 err_number)
+FCommand::printerror(fchar *err_str, integer8 err_number, fchar * _error_code)
 {
         printlnf(err_str, err_number);
 }
@@ -263,7 +263,7 @@ FCommand::printerror(fchar *err_str, integer8 err_number)
 void
 FCommand::_n_supported_()
 {
-    fchar *file = "Your os not supported!";
-     fchar *_err_code = "1_n_support \n";
-    printlnf(file, " ", _err_code);
+    fchar * file = "Your os not supported!";
+     fchar * _err_code = "1_n_support \n";
+    printerror(file, 10, _err_code);
 }
