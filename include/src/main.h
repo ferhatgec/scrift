@@ -21,27 +21,14 @@
 
 #define slashn printlnf("\n");
 
-typedef struct {
-public:
- fchar* err_str = "ERROR - string is not declared";
- fchar* err_syn = "ERROR - syntax is undefined";
- fchar* err_ls  = "There is no such directory";
- fchar* _help_str_ = "help arguments: "
-    "echo <arg>"
-    "<intnumber> plus <intnumber>"
-    "./<file>"
-    "exit"
-    "cd <folder>";
- fchar* _func_err_ = "Function calling error";
-}help_str;
-
-
 //FSync *fsync__ = new FSync();
 
 class FMain  {
 public:
     FMain();
     ~FMain();
+    virtual void usage(); 
+    virtual void Shell();
 };
 
 

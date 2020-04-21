@@ -5,7 +5,7 @@
 #
 # */
 
-
+#include <memory>
 #include <stdlib.h>
 #include "../include/src/File/Path.h"
 #include "../include/src/Syntax/Syntax.h"
@@ -56,7 +56,8 @@ FMain::~FMain()
 
 
 
-void usage() 
+void
+FMain::usage() 
 {
     printlnf("Usage-> ./scrift <arguments>\n" 
        "<arguments> -> fprintln\n"
@@ -64,7 +65,8 @@ void usage()
 }
 
 
-void Shell()
+void
+FMain::Shell()
 {
     FCommand *main_ = new FCommand();
     argc = atoi(_h_str.c_str()); // string  to int
@@ -126,13 +128,15 @@ void Shell()
 }
 
 
+
 int main(integer argc, fchar* argv[])
 {
+    std::shared_ptr<FMain> fmain = std::make_shared<FMain>(); 
     if(argc < 2)
-        usage();
+        fmain->usage();
     
 
-    Shell();
+    fmain->Shell();
 
 }
 
