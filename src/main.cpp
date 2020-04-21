@@ -69,7 +69,7 @@ FMain::usage()
 void
 FMain::Shell()
 {
-  
+    FCommand *_user_path_cd = new FCommand();
     argc = atoi(_h_str.c_str()); // string  to int
     main_->hello(); // printing hello text
     while(argc >= 0) 
@@ -98,7 +98,7 @@ FMain::Shell()
         "ip || myip\n");
     
     }
-
+    else if(_h_str == "cd" || _h_str == "open") {main_->cd_func(_ndef_directory);}
     else if(_h_str == "plus") {main_->plus_num(fn, sn);} 
     else if(_h_str == "brk" || _h_str == "cls")  {return;} 
     else if(_h_str == "username" || _h_str == "uname") {main_->get_username(_username); printf("\n");} 

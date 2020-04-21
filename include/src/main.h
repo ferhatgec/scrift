@@ -18,17 +18,18 @@
 #include <cstring>
 #include <string.h>
 #include "synflang.hpp"
-
+#include "Syntax/CommandFunc.h"
 #define slashn printlnf("\n");
 
 //FSync *fsync__ = new FSync();
 
-class FMain  {
+class FMain : public FCommand  {
 public:
     FMain();
     ~FMain();
     virtual void usage(); 
     virtual void Shell();
+    fchar *_ndef_directory = _file_path_cd_function;
 };
 
 

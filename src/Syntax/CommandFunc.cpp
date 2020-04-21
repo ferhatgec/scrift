@@ -103,23 +103,35 @@ FCommand::_set_locale()
 }
 
 void
-FCommand::cd_func(fchar *new_path)
+FCommand::cd_func(fchar *_new_dir)
 {
-    std::cin >> *new_path;
-    slashn
-
+    _new_dir = new fchar;
+    std::cin >> _new_dir;
+    // printlnf(_new_dir); for testing.
+    
+    if(_new_dir != nullptr)
+    {
+        std::strcat(_file_path_cd_function, "/");
+        std::strcat(_file_path_cd_function, _new_dir);
+        
+    } else {
+        printerror("ERR:DIRECTORY IS NULL", 12, "ERR:DIRISNULL");
+        return; 
+    }
 }
 
 void
 FCommand::list_dir() 
 {
-     int files = 0;
-      struct stat filestat;
+        int files = 0;
+        struct stat filestat;
         struct dirent *entry;
-        DIR *dir = opendir(getenv("HOME")); // For Linux and *nix
+
+        DIR *dir = opendir((getenv("HOME"), "/", _file_path_cd_function)); // For Linux and *nix
 
         if (dir == NULL) 
         {
+            printerror("ERR:DIRECTORY NOT FOUND", 12, "ERR:DIRNFND");
             return;
         }
         while ((entry = readdir(dir))) 
@@ -239,7 +251,7 @@ FCommand::_term_(fchar *file_str)
     printlnf("@");
     get_hostname();
     printlnf(":~");
-    printlnf(getenv("HOME"));
+    printlnf(_file_path_cd_function);
     printlnf(file_str);
 
 }

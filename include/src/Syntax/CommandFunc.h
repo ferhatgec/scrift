@@ -22,14 +22,10 @@
 #include <string.h> 
 #include <arpa/inet.h>
 
-
-
-
-
 #define MAIN_ALL 6
 
 
-class FCommand {
+class FCommand { /* getting public variables and functions*/
 public:
     FCommand();
     ~FCommand();
@@ -45,12 +41,13 @@ public:
     void _file_path(fchar *);
     void _term_(fchar *);
     void help();
-    void cd_func(fchar *);
+    virtual void cd_func(fchar *);
     void hello();
     void printerror(fchar *, integer8, fchar * );
     void _n_supported_();
     void get_hostname();
     void remove_character(char * , char );
+    fchar *_file_path_cd_function = getenv("HOME");
 private:
     fchar *_hello_str = "help arguments:\n"
     "echo <arg>\n"
@@ -63,7 +60,6 @@ private:
     fchar *_help_str = "Welcome ScriftLang Terminal\n"
     "ScriftLang licensed with GPLv3\n"
     "Copyright (c) 2020 Ferhat Gecdogan\n";
-
 };
 
 
