@@ -50,6 +50,25 @@ FCommand::remove_character(char * _str, char ptr)
 }
 
 void
+FCommand::echo_printlnf()
+{
+    fchar* _character = new fchar;
+    std::cin >> _character; 
+    slashn
+    if(_character != nullptr)
+    {
+    printlnf(_character);
+    slashn
+    } else  {
+        printerror("ERR: CHAR IS NULL", 13, "ERR:CHISNULL");
+        return;
+    }
+}
+
+
+
+
+void
 FCommand::echo_str(fchar *str_echo)
 {
         std::cin >> str_echo;

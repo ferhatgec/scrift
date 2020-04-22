@@ -46,6 +46,7 @@ public:
     void printerror(fchar *, integer8, fchar * );
     void _n_supported_();
     void get_hostname();
+    void echo_printlnf();
     void remove_character(char * , char );
     fchar *_file_path_cd_function = getenv("HOME");
 private:

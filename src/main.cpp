@@ -98,6 +98,7 @@ FMain::Shell()
         "ip || myip\n");
     
     }
+    else if(_h_str == "echo" || _h_str == "printlnf"){main_->echo_printlnf();}
     else if(_h_str == "cd" || _h_str == "open") {main_->cd_func(_ndef_directory);}
     else if(_h_str == "plus") {main_->plus_num(fn, sn);} 
     else if(_h_str == "brk" || _h_str == "cls")  {return;} 
