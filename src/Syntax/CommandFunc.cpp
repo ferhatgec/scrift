@@ -54,7 +54,6 @@ FCommand::echo_printlnf()
 {
     fchar* _character = new fchar;
     std::cin >> _character; 
-    slashn
     if(_character != nullptr)
     {
     printlnf(_character);
