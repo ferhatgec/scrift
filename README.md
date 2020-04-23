@@ -1,6 +1,8 @@
 # Fegeya Scrift
 ## ScriftLang is simple shell and scripting language for Fegeya Fusion.
 
+![Scrift](Scrift.png)
+
 [![Build Status](https://dev.azure.com/ferhatgectao/scrift-lang/_apis/build/status/FerhatGec.scrift-lang?branchName=master)](https://dev.azure.com/ferhatgectao/scrift-lang/_build/latest?definitionId=1&branchName=master)
 
 
@@ -14,7 +16,6 @@
  $ cd build && ./scrift 
 ```
 
-![scrift](https://user-images.githubusercontent.com/54369961/78505829-b2594180-777e-11ea-83e6-fbeaa2383d43.png)
 
 
 
