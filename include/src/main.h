@@ -23,13 +23,14 @@
 
 //FSync *fsync__ = new FSync();
 
+
 class FMain : public FCommand  {
 public:
     FMain();
     ~FMain();
     virtual void usage(); 
     virtual void Shell();
-    fchar *_ndef_directory = _file_path_cd_function;
+    bool    _home;
 };
 
 

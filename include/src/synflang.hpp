@@ -48,9 +48,11 @@
 typedef int integer;
 typedef char fchar;
 
+template<typename Str>
+
 #undef printlnf
 static int
-printlnf (const char *format, ...) 
+printlnf (Str *format, ...) 
 {
   va_list arg;
   int done;
@@ -60,7 +62,6 @@ printlnf (const char *format, ...)
   va_end (arg);
   return done;
 }
-
 
 
 #endif // SYNFLANG_HPP

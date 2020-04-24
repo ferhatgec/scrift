@@ -32,19 +32,18 @@
 static integer argc;
 static fchar* argv[128];
 integer x;
-static std::string _h_str;
 static integer8 num_str_;
 static fchar *_str_file_, *_ech_str;
 static uinteger64 fn, sn;
 static fchar *_file_def_path;
 static  fchar *_username, *_os_kernel_,  *_run_file, *_run_file_;
 FCommand *main_ = new FCommand();
+std::string _h_str;
 
 
 #define OK 0
 FMain::FMain()
 {
-
 }
 
 
@@ -69,7 +68,6 @@ FMain::usage()
 void
 FMain::Shell()
 {
-    FCommand *_user_path_cd = new FCommand();
     argc = atoi(_h_str.c_str()); // string  to int
     main_->hello(); // printing hello text
     while(argc >= 0) 
@@ -84,28 +82,31 @@ FMain::Shell()
     {
        // argc -= 1;
         printlnf("Scrift \n"
-        "help arguments: \n "
+        "help arguments: \n"
         "echo <arg> \n"
-        "plus"
+        "plus\n"
         "./<file> \n"
         "cls || brk \n"
-        "cd <folder>\n \n "
+        "cd <folder>\n"
         "randomize || rstr\n"
         "username\n"
         "ls\n"
         "fetcheya\n"
+        "clear || clear!!!\n"
         "set_locale_system || slcl_sys\n"
         "ip || myip\n");
     
     }
+    else if(_h_str == "clear" || _h_str == "clear!!!") {main_->clear_shell();}
+    else if (_h_str == "home" || _h_str == "default") {main_->cd_func(getenv("HOME"), true); }
     else if(_h_str == "echo" || _h_str == "printlnf"){main_->echo_printlnf();}
-    else if(_h_str == "cd" || _h_str == "open") {main_->cd_func(_ndef_directory);}
+    else if(_h_str == "cd" || _h_str == "open") {main_->cd_func(main_->_file_path_cd_function, false);}
     else if(_h_str == "plus") {main_->plus_num(fn, sn);} 
     else if(_h_str == "brk" || _h_str == "cls")  {return;} 
     else if(_h_str == "username" || _h_str == "uname") {main_->get_username(_username); printf("\n");} 
     else if(_h_str == "ls" || _h_str == "dir") // list directory
     {
-       main_->list_dir(); 
+       main_->list_dir(true); 
        slashn    
     }
     else if(_h_str == "randomizestr" || _h_str == "rstr"){main_->_generated_hash_string(x);}
@@ -136,7 +137,7 @@ int main(integer argc, fchar* argv[])
     std::shared_ptr<FMain> fmain = std::make_shared<FMain>(); 
     if(argc < 2)
         fmain->usage();
-    
+
 
     fmain->Shell();
     

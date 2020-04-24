@@ -4,7 +4,11 @@
 # Distributed under the terms of the GPLv3 License.
 #
 # */
+
+#include <sys/utsname.h>
+#include <stdlib.h>
 #include <stdio.h>
+
 #include <dirent.h>
 #include <sys/stat.h>
 #include <unistd.h>
@@ -14,6 +18,7 @@
 #include "../../include/src/File/File.h"
 #include "../../include/src/File/Directory.h"
 #include <pwd.h>
+#include <string.h>
 #include "../../include/src/synflang.hpp"
 #include <experimental/filesystem>
 namespace filesys = std::experimental::filesystem;
@@ -35,8 +40,11 @@ FCommand::~FCommand()
 
 
 
+void
+FCommand::find_term(fchar* _term)
+{
 
-
+}
 void 
 FCommand::remove_character(char * _str, char ptr)
 {
@@ -100,8 +108,13 @@ FCommand::_os_kernel_name(fchar *_your_os_kernel)
 {
     #ifdef _WIN32
     _your_os_kernel = "Windows NT 32-bit\n";
+    printlnf("Windows NT is not supported for Fegeya Scrift!\n");
+    return 1;
     #elif _WIN64
     _your_os_kernel "Windows NT 64-bit \n";
+    printlnf("Windows NT is not supported for Fegeya Scrift!\n");
+    return 1;
+    printlnf("Win")
     #elif __APPLE__ || __MACH__
     _your_os_kernel  = "Darwin \n";
     #elif __linux__
@@ -116,6 +129,7 @@ FCommand::_os_kernel_name(fchar *_your_os_kernel)
     printlnf(_your_os_kernel);
 }
 
+
 void
 FCommand::_set_locale()
 {
@@ -124,33 +138,60 @@ FCommand::_set_locale()
         printlnf(" \n"); 
 }
 
-void
-FCommand::cd_func(fchar *_new_dir)
+void 
+FCommand::clear_shell()
 {
+   std::cout << "\033[2J\033[1;1H"; 
+}
+int _two = 0;
+int _cd_func_name;
+void
+FCommand::cd_func(fchar *_new_dir, bool _t)
+{
+    FMain * _main_ = new FMain();
     _new_dir = new fchar;
-    std::cin >> _new_dir;
-    // printlnf(_new_dir); for testing.
     
-    if(_new_dir != nullptr)
+    // printlnf(_new_dir); for testing.
+    _cd_func_name = strlen(_new_dir);
+    if(_t == true)
     {
-        std::strcat(_file_path_cd_function, "/");
-        std::strcat(_file_path_cd_function, _new_dir);
-        
+        std::strcpy(_file_path_cd_function, (getenv("HOME"), "/"));
+        return;
     } else {
+        std::cin >> _new_dir;
+        if(_new_dir != nullptr)
+        {
+        if(_main_->_home != true)
+        {
+            std::strcat(_file_path_cd_function, "/");
+            std::strcat(_file_path_cd_function, _new_dir);
+            _two += 2;
+        } else {
+            _file_path_cd_function = "";
+        }  
+        } else {
         printerror("ERR:DIRECTORY IS NULL", 12, "ERR:DIRISNULL");
         return; 
+        }
     }
+
 }
 
+
 void
-FCommand::list_dir() 
+FCommand::list_dir(bool _home = false) // default value
 {
         int files = 0;
         struct stat filestat;
         struct dirent *entry;
-
-        DIR *dir = opendir((getenv("HOME"), "/", _file_path_cd_function)); // For Linux and *nix
-
+        DIR *dir;
+        if(_home != false) {dir = opendir((getenv("HOME"), "/", _file_path_cd_function)); /*For Linux and *nix*/
+        } else if(_home == false || _home == NULL)
+        {
+            dir = opendir(getenv("HOME"));
+        }
+        
+    
         if (dir == NULL) 
         {
             printerror("ERR:DIRECTORY NOT FOUND", 12, "ERR:DIRNFND");
@@ -177,6 +218,22 @@ FCommand::list_dir()
         }
         closedir(dir);
 }
+
+void
+FCommand::_home_func()
+{
+
+    std::strcat(_file_path_cd_function, _home_dir);
+   // printlnf(_cd_func_name);
+    /*int _last_dir = strlen(getenv("HOME"));
+    int _cd_func_int = (_last_dir + _cd_func_name); 
+    std::string _erase = _file_path_cd_function; 
+    std::string _test =  _erase.erase(_last_dir, _cd_func_int);
+    const char *_file_path_cd_ = _erase.c_str();
+    //_file_path_cd_function = strdup(_file_path_cd_);
+    _file_path_cd_function = strdup(_file_path_cd_);
+    printlnf(_file_path_cd_function);*/
+}   
 
 
 void

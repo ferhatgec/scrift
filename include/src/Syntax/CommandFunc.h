@@ -52,10 +52,11 @@ public:
     FCommand();
     ~FCommand();
     void echo_str(fchar *);
+    void clear_shell();
     void get_username(fchar *);
     void _os_kernel_name(fchar *);
     void _set_locale();
-    void list_dir();
+    void list_dir(bool);
     void plus_num(uinteger64, uinteger64);
     void _generated_hash_string(integer);
     void _your_ip();
@@ -63,7 +64,9 @@ public:
     void _file_path(fchar *);
     void _term_(fchar *);
     void help();
-    virtual void cd_func(fchar *);
+    virtual void find_term(fchar*);
+    void   _home_func();
+    virtual void cd_func(fchar *, bool);
     void hello();
     void printerror(fchar *, integer8, fchar * );
     void _n_supported_();
@@ -71,8 +74,9 @@ public:
     void echo_printlnf();
     void remove_character(char * , char );
     fchar *_file_path_cd_function = getenv("HOME");
+    fchar *_home_dir = getenv("HOME");
 private:
-    fchar *_hello_str = "help arguments:\n"
+    fchar* _hello_str = "help arguments:\n"
     "echo <arg>\n"
     "intnumber plus intnumber\n"
     "./<file>\n"
@@ -80,7 +84,7 @@ private:
     "cd <folder> \n"
     "ls -> List\n"
     "-f || fetcheya -> System info ";
-    fchar *_help_str = "Welcome ScriftLang Terminal\n"
+    fchar* _help_str = "Welcome ScriftLang Terminal\n"
     "ScriftLang licensed with GPLv3\n"
     "Copyright (c) 2020 Ferhat Gecdogan\n";
 };
