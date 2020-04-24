@@ -33,6 +33,10 @@ FCommand::~FCommand()
     
 }
 
+
+
+
+
 void 
 FCommand::remove_character(char * _str, char ptr)
 {
@@ -264,18 +268,18 @@ void
 FCommand::_term_(fchar *file_str)
 {
     fchar *_uname;
-    printlnf("\033[1;36m");
+    BOLD_CYAN_COLOR // Color code
     get_username(_uname);
     file_str = " $# ";
     printlnf("@");
-    printlnf("\033[1;35m");
+    BOLD_MAGENTA_COLOR // Color code
     get_hostname();
     printlnf(":~");
-    printlnf("\033[01;33m");
+    BOLD_YELLOW_COLOR  // Color code 
     printlnf(_file_path_cd_function);
-    printlnf("\033[1;31m");
+    BOLD_RED_COLOR // Color code 
     printlnf(file_str);
-    printf("\033[0m");
+    BLACK_COLOR //Reset (BLACK)
 }
 void
 FCommand::help()
