@@ -106,8 +106,19 @@ FMain::Shell()
     else if(_h_str == "username" || _h_str == "uname") {main_->get_username(_username); printf("\n");} 
     else if(_h_str == "ls" || _h_str == "dir") // list directory
     {
-       main_->list_dir(true); 
+       fchar *_char_cin;
+       main_->list_dir(true, true, true); 
        slashn    
+    }
+    else if(_h_str == "lsf" || _h_str == "lsfile")
+    {   
+        main_->list_file(true);
+        slashn
+    }
+    else if(_h_str == "lsd" || _h_str == "lsdir")
+    {
+        main_->list_direc(true);
+        slashn
     }
     else if(_h_str == "randomizestr" || _h_str == "rstr"){main_->_generated_hash_string(x);}
     else if(_h_str == "fetcheya" || _h_str == "-f"){main_->_os_kernel_name(_os_kernel_);}

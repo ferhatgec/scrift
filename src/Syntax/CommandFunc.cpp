@@ -177,21 +177,20 @@ FCommand::cd_func(fchar *_new_dir, bool _t)
 
 }
 
-
 void
-FCommand::list_dir(bool _home = false) // default value
+FCommand::list_direc(bool _home)
 {
-        int files = 0;
+               int files = 0;
         struct stat filestat;
         struct dirent *entry;
         DIR *dir;
+
         if(_home != false) {dir = opendir((getenv("HOME"), "/", _file_path_cd_function)); /*For Linux and *nix*/
         } else if(_home == false || _home == NULL)
         {
             dir = opendir(getenv("HOME"));
         }
         
-    
         if (dir == NULL) 
         {
             printerror("ERR:DIRECTORY NOT FOUND", 12, "ERR:DIRNFND");
@@ -209,11 +208,88 @@ FCommand::list_dir(bool _home = false) // default value
             stat(entry->d_name,&filestat);
             if(entry->d_type == DT_DIR) {
                 printf("\033[1;31m");
-                printf("%4s: %s\n","Dir",entry->d_name);
-            } else{
-            printf("\033[1;33m");
-            printf("%4s: %s\n"," File",entry->d_name);
+                printf("%4s: %s\n","Dir",entry->d_name); 
             }
+            printf("\033[0m");
+        }
+        closedir(dir);
+}
+
+void 
+FCommand::list_file(bool _home)
+{
+        int files = 0;
+        struct stat filestat;
+        struct dirent *entry;
+        DIR *dir;
+
+        if(_home != false) {dir = opendir((getenv("HOME"), "/", _file_path_cd_function)); /*For Linux and *nix*/
+        } else if(_home == false || _home == NULL)
+        {
+            dir = opendir(getenv("HOME"));
+        }
+        
+        if (dir == NULL) 
+        {
+            printerror("ERR:DIRECTORY NOT FOUND", 12, "ERR:DIRNFND");
+            return;
+        }
+        while ((entry = readdir(dir))) 
+        {
+            files++;
+            char * _str = entry->d_name;
+            remove_character(_str, '.');
+            remove_character(_str, '..');
+            //printf("%d", entry->d_type, "\n");
+            //printf("%d");
+          //  printf("\033[0;34m");
+            stat(entry->d_name,&filestat);
+            if(entry->d_type == DT_DIR) {
+            } else{
+                printf("\033[1;33m");
+                printf("%4s: %s\n"," File",entry->d_name);
+            } 
+            printf("\033[0m");
+        }
+        closedir(dir);
+}
+void
+FCommand::list_dir(bool _home, bool _file, bool _dir) // default value
+{
+        int files = 0;
+        struct stat filestat;
+        struct dirent *entry;
+        DIR *dir;
+
+        if(_home != false) {dir = opendir((getenv("HOME"), "/", _file_path_cd_function)); /*For Linux and *nix*/
+        } else if(_home == false || _home == NULL)
+        {
+            dir = opendir(getenv("HOME"));
+        }
+        
+        if (dir == NULL) 
+        {
+            printerror("ERR:DIRECTORY NOT FOUND", 12, "ERR:DIRNFND");
+            return;
+        }
+        while ((entry = readdir(dir))) 
+        {
+            files++;
+            char * _str = entry->d_name;
+            remove_character(_str, '.');
+            remove_character(_str, '..');
+            //printf("%d", entry->d_type, "\n");
+            //printf("%d");
+          //  printf("\033[0;34m");
+            stat(entry->d_name,&filestat);
+            if(entry->d_type == DT_DIR) {
+                printf("\033[1;31m");
+                printf("%4s: %s\n","Dir",entry->d_name); 
+            
+            } else{
+                printf("\033[1;33m");
+                printf("%4s: %s\n"," File",entry->d_name);
+            } 
             printf("\033[0m");
         }
         closedir(dir);
@@ -307,7 +383,7 @@ FCommand::error_undfnd(fchar *undefined_str)
 void
 FCommand::_file_path(fchar *list_path_def_name)
 {
-         list_dir(); 
+         //(); 
 }
 
 void

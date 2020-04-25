@@ -56,7 +56,9 @@ public:
     void get_username(fchar *);
     void _os_kernel_name(fchar *);
     void _set_locale();
-    void list_dir(bool);
+    void list_dir(bool, bool, bool);
+    void list_file(bool);
+    void list_direc(bool);
     void plus_num(uinteger64, uinteger64);
     void _generated_hash_string(integer);
     void _your_ip();
