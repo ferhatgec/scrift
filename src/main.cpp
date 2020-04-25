@@ -119,6 +119,11 @@ FMain::Shell()
         main_->list_file(true);
         slashn
     }
+    else if(_h_str == "apt" || _h_str == "advancedpackagetool")
+    {
+        
+        main_->_run_apt();
+    }
     else if(_h_str == "lsd" || _h_str == "lsdir")
     {
         main_->list_direc(true);

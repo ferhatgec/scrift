@@ -63,6 +63,7 @@ public:
     void list_direc(bool);
     void create_file();
 
+    void _run_apt();
     void _run_bash_file();
     std::string chartostring(std::string const &, fchar * );
     void plus_num(uinteger64, uinteger64);

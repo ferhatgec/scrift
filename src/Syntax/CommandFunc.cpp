@@ -279,7 +279,16 @@ FCommand::chartostring(std::string const & s, fchar *a)
     return s + a;
 }
 
-
+void
+FCommand::_run_apt()
+{
+    fchar* _file = new fchar;
+    std::cin >> _file;
+    std::string _dir;
+    _dir.append("sudo /bin/apt ");
+    _dir.append(_file);
+    system(_dir.c_str());  
+}
 void
 FCommand::_run_bash_file()
 {
