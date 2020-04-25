@@ -207,10 +207,10 @@ FCommand::list_direc(bool _home)
           //  printf("\033[0;34m");
             stat(entry->d_name,&filestat);
             if(entry->d_type == DT_DIR) {
-                printf("\033[1;31m");
+                BOLD_RED_COLOR
                 printf("%4s: %s\n","Dir",entry->d_name); 
             }
-            printf("\033[0m");
+            BLACK_COLOR
         }
         closedir(dir);
 }
@@ -246,10 +246,10 @@ FCommand::list_file(bool _home)
             stat(entry->d_name,&filestat);
             if(entry->d_type == DT_DIR) {
             } else{
-                printf("\033[1;33m");
+                BOLD_YELLOW_COLOR
                 printf("%4s: %s\n"," File",entry->d_name);
             } 
-            printf("\033[0m");
+            BLACK_COLOR
         }
         closedir(dir);
 }
@@ -283,14 +283,14 @@ FCommand::list_dir(bool _home, bool _file, bool _dir) // default value
           //  printf("\033[0;34m");
             stat(entry->d_name,&filestat);
             if(entry->d_type == DT_DIR) {
-                printf("\033[1;31m");
+                BOLD_RED_COLOR
                 printf("%4s: %s\n","Dir",entry->d_name); 
             
             } else{
-                printf("\033[1;33m");
+                BOLD_YELLOW_COLOR
                 printf("%4s: %s\n"," File",entry->d_name);
             } 
-            printf("\033[0m");
+            BLACK_COLOR
         }
         closedir(dir);
 }
