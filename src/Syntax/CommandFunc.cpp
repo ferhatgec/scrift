@@ -22,7 +22,8 @@
 #include "../../include/src/synflang.hpp"
 #include <experimental/filesystem>
 namespace filesys = std::experimental::filesystem;
-
+#define slash "/"
+#define txt ".txt"
 static const char *_uname;
 
 FCommand::FCommand()
@@ -272,11 +273,11 @@ FCommand::list_dir(bool _home, bool _file, bool _dir) // default value
         }
         closedir(dir);
 }
-std::string chartostring(std::string const & s, char a)
+
+std::string chartostring(std::string const & s, fchar *a)
 {
     return s + a;
 }
-
 
 void
 FCommand::create_file()
@@ -285,9 +286,14 @@ FCommand::create_file()
     std::cin >> _file_name;
     slashn
     fchar *_file_dir = new fchar;
-    _file_dir = std::strcat(_file_dir, (_file_path_cd_function, "/", _file_name, ".txt"));
-    std::ofstream _file(_file_dir, std::ios::app);
-    _file << (_file_name, ".txt", "is created by Scrift.\n");
+    std::string _file_dir_string;
+    _file_dir_string.append(_file_path_cd_function);
+    _file_dir_string.append(slash);
+    _file_dir_string.append(_file_name);
+    _file_dir_string.append(".txt");
+    chartostring(_file_dir_string, _file_dir);
+    std::ofstream _file(_file_dir_string, std::ios::app);
+    _file << ("This file is created by Scrift.\n");
     _file.close();
 }
 

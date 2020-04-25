@@ -50,6 +50,7 @@
         "ratio": "cpp",
         "iomanip": "cpp",
         "cstring": "cpp",
-        "cinttypes": "cpp"
+        "cinttypes": "cpp",
+        "filesystem": "cpp"
     }
 }
