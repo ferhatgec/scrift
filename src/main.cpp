@@ -97,6 +97,10 @@ FMain::Shell()
         "ip || myip\n");
     
     }
+    else if(_h_str == "run" || _h_str == "./" || _h_str == "bash" || _h_str == "sh")
+    {
+        main_->_run_bash_file();
+    }
     else if(_h_str == "clear" || _h_str == "clear!!!") {main_->clear_shell();}
     else if (_h_str == "home" || _h_str == "default") {main_->cd_func(getenv("HOME"), true); }
     else if(_h_str == "echo" || _h_str == "printlnf"){main_->echo_printlnf();}

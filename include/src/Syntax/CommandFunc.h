@@ -62,6 +62,8 @@ public:
     void list_file(bool);
     void list_direc(bool);
     void create_file();
+
+    void _run_bash_file();
     std::string chartostring(std::string const &, fchar * );
     void plus_num(uinteger64, uinteger64);
     void _generated_hash_string(integer);

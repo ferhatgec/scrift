@@ -279,6 +279,24 @@ FCommand::chartostring(std::string const & s, fchar *a)
     return s + a;
 }
 
+
+void
+FCommand::_run_bash_file()
+{
+    fchar* _file = new fchar;
+    std::cin >> _file;
+    std::string _dir;
+    _dir.append("/bin/bash ");
+    _dir.append(_file_path_cd_function);
+    _dir.append("/");
+    _dir.append(_file);
+    system(_dir.c_str());
+}
+
+
+
+
+
 void
 FCommand::create_file()
 {
