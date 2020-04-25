@@ -37,6 +37,7 @@ FCommand::~FCommand()
 }
 
 
+
 void 
 FCommand::remove_character(char * _str, char ptr)
 {
@@ -271,6 +272,25 @@ FCommand::list_dir(bool _home, bool _file, bool _dir) // default value
         }
         closedir(dir);
 }
+std::string chartostring(std::string const & s, char a)
+{
+    return s + a;
+}
+
+
+void
+FCommand::create_file()
+{
+    fchar* _file_name = new fchar;
+    std::cin >> _file_name;
+    slashn
+    fchar *_file_dir = new fchar;
+    _file_dir = std::strcat(_file_dir, (_file_path_cd_function, "/", _file_name, ".txt"));
+    std::ofstream _file(_file_dir, std::ios::app);
+    _file << (_file_name, ".txt", "is created by Scrift.\n");
+    _file.close();
+}
+
 
 void
 FCommand::plus_num(uinteger64 first_num, uinteger64 sec_num)

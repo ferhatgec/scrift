@@ -4,7 +4,7 @@
 # Distributed under the terms of the GPLv3 License.
 #
 # */
-
+#include <fstream>
 #include <memory>
 #include <stdlib.h>
 #include "../include/src/File/Path.h"
@@ -122,7 +122,9 @@ FMain::Shell()
     }
     else if(_h_str == "randomizestr" || _h_str == "rstr"){main_->_generated_hash_string(x);}
     else if(_h_str == "fetcheya" || _h_str == "-f"){main_->_os_kernel_name(_os_kernel_);}
-    else if(_h_str == "ctxt" || _h_str == "createtxt"){/* main_->*/}
+    else if(_h_str == "ctxt" || _h_str == "createtxt"){
+        main_->create_file();
+    }
     else if(_h_str  == "setlocale_system" || _h_str == "slcl_sys"){main_->_set_locale();}  
     
     else if(_h_str == "run" || _h_str == "#/")
