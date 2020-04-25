@@ -51,7 +51,6 @@ class FCommand { /* getting public variables and functions*/
 public:
     FCommand();
     ~FCommand();
-    void echo_str(fchar *);
     void clear_shell();
     void get_username(fchar *);
     void _os_kernel_name(fchar *);

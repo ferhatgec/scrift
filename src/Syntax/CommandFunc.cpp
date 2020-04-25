@@ -76,17 +76,6 @@ FCommand::echo_printlnf()
     }
 }
 
-
-
-
-void
-FCommand::echo_str(fchar *str_echo)
-{
-        std::cin >> str_echo;
-        printlnf(str_echo);
-}
-
-
 void
 FCommand::get_username(fchar *_your_username)
 {
@@ -143,7 +132,7 @@ FCommand::clear_shell()
 {
    std::cout << "\033[2J\033[1;1H"; 
 }
-int _two = 0;
+
 int _cd_func_name;
 void
 FCommand::cd_func(fchar *_new_dir, bool _t)
@@ -165,7 +154,6 @@ FCommand::cd_func(fchar *_new_dir, bool _t)
         {
             std::strcat(_file_path_cd_function, "/");
             std::strcat(_file_path_cd_function, _new_dir);
-            _two += 2;
         } else {
             _file_path_cd_function = "";
         }  
@@ -180,7 +168,7 @@ FCommand::cd_func(fchar *_new_dir, bool _t)
 void
 FCommand::list_direc(bool _home)
 {
-               int files = 0;
+        int files = 0;
         struct stat filestat;
         struct dirent *entry;
         DIR *dir;
@@ -202,9 +190,6 @@ FCommand::list_direc(bool _home)
             char * _str = entry->d_name;
             remove_character(_str, '.');
             remove_character(_str, '..');
-            //printf("%d", entry->d_type, "\n");
-            //printf("%d");
-          //  printf("\033[0;34m");
             stat(entry->d_name,&filestat);
             if(entry->d_type == DT_DIR) {
                 BOLD_RED_COLOR
@@ -298,17 +283,7 @@ FCommand::list_dir(bool _home, bool _file, bool _dir) // default value
 void
 FCommand::_home_func()
 {
-
     std::strcat(_file_path_cd_function, _home_dir);
-   // printlnf(_cd_func_name);
-    /*int _last_dir = strlen(getenv("HOME"));
-    int _cd_func_int = (_last_dir + _cd_func_name); 
-    std::string _erase = _file_path_cd_function; 
-    std::string _test =  _erase.erase(_last_dir, _cd_func_int);
-    const char *_file_path_cd_ = _erase.c_str();
-    //_file_path_cd_function = strdup(_file_path_cd_);
-    _file_path_cd_function = strdup(_file_path_cd_);
-    printlnf(_file_path_cd_function);*/
 }   
 
 
