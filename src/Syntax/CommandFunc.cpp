@@ -27,24 +27,16 @@ static const char *_uname;
 
 FCommand::FCommand()
 {
-
+    
 
 }
 
 FCommand::~FCommand()
 {
-
-
-    
+    delete[] _home_dir, _hello_str, _file_path_cd_function, _help_str, _uname;   
 }
 
 
-
-void
-FCommand::find_term(fchar* _term)
-{
-
-}
 void 
 FCommand::remove_character(char * _str, char ptr)
 {
@@ -281,13 +273,6 @@ FCommand::list_dir(bool _home, bool _file, bool _dir) // default value
 }
 
 void
-FCommand::_home_func()
-{
-    std::strcat(_file_path_cd_function, _home_dir);
-}   
-
-
-void
 FCommand::plus_num(uinteger64 first_num, uinteger64 sec_num)
 {
         printlnf("First number: ");
@@ -302,9 +287,9 @@ FCommand::plus_num(uinteger64 first_num, uinteger64 sec_num)
 void
 FCommand::_generated_hash_string(int size)
 {
-    
     std::cout << "Enter size : ";
     std::cin >> size;
+    slashn
     std::string str;
     for (integer i = 0; i < size; i++)
     {
@@ -350,18 +335,6 @@ FCommand::_your_ip()
 } 
 
 void
-FCommand::error_undfnd(fchar *undefined_str)
-{
-        undefined_str = "This is Undefined \n";
-        printlnf(undefined_str);
-}
-void
-FCommand::_file_path(fchar *list_path_def_name)
-{
-         //(); 
-}
-
-void
 FCommand::get_hostname() // username@hostname$|
 {
     fchar hostbuffer[256];  
@@ -392,18 +365,14 @@ FCommand::_term_(fchar *file_str)
 void
 FCommand::help()
 {
-      //  std::cin >> _cin;
-   
-     printlnf(_help_str);
-        
+     printlnf(_help_str);    
 }
 
 
 void
 FCommand::hello()
-{
-      //  *_h_str = *_hello_str; -> This code calling Segmentation Fault error. 
-        printlnf(_help_str);
+{ 
+        printlnf(_help_str); // Fixed
 }
 
 void
@@ -415,7 +384,5 @@ FCommand::printerror(fchar *err_str, integer8 err_number, fchar * _error_code)
 void
 FCommand::_n_supported_()
 {
-    fchar * file = "Your os not supported!";
-     fchar * _err_code = "1_n_support \n";
-    printerror(file, 10, _err_code);
+    printerror("Your os not supported!", 10, "1_n_support \n");
 }

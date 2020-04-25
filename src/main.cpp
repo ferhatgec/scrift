@@ -102,7 +102,7 @@ FMain::Shell()
     else if(_h_str == "echo" || _h_str == "printlnf"){main_->echo_printlnf();}
     else if(_h_str == "cd" || _h_str == "open") {main_->cd_func(main_->_file_path_cd_function, false);}
     else if(_h_str == "plus") {main_->plus_num(fn, sn);} 
-    else if(_h_str == "brk" || _h_str == "cls")  {return;} 
+    else if(_h_str == "brk" || _h_str == "cls")  {exit(EXIT_SUCCESS);} 
     else if(_h_str == "username" || _h_str == "uname") {main_->get_username(_username); printf("\n");} 
     else if(_h_str == "ls" || _h_str == "dir") // list directory
     {

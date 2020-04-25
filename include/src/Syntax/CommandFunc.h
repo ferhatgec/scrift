@@ -61,12 +61,8 @@ public:
     void plus_num(uinteger64, uinteger64);
     void _generated_hash_string(integer);
     void _your_ip();
-    void error_undfnd(fchar *);
-    void _file_path(fchar *);
     void _term_(fchar *);
     void help();
-    virtual void find_term(fchar*);
-    void   _home_func();
     virtual void cd_func(fchar *, bool);
     void hello();
     void printerror(fchar *, integer8, fchar * );
