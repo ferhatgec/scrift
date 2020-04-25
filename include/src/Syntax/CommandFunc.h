@@ -23,7 +23,8 @@
 #include <arpa/inet.h>
 
 #define MAIN_ALL 6
-
+#define slash "/"
+#define txt ".txt"
 
 // Default color definitions
 #define RED_COLOR printlnf("\033[0;31m");
