@@ -273,7 +273,8 @@ FCommand::list_dir(bool _home, bool _file, bool _dir) // default value
         closedir(dir);
 }
 
-std::string chartostring(std::string const & s, fchar *a)
+std::string 
+FCommand::chartostring(std::string const & s, fchar *a)
 {
     return s + a;
 }
