@@ -121,8 +121,17 @@ FMain::Shell()
     }
     else if(_h_str == "apt" || _h_str == "advancedpackagetool")
     {
-        
         main_->_run_apt();
+        slashn
+    }
+    else if(_h_str == "drun" || _h_str == "scriftrun")
+    {
+        main_->_run_all_func();
+    }
+    else if(_h_str == "make" || _h_str == "Make")
+    {
+        main_->_run_gnu_make();
+        slashn;
     }
     else if(_h_str == "lsd" || _h_str == "lsdir")
     {

@@ -279,6 +279,29 @@ FCommand::chartostring(std::string const & s, fchar *a)
     return s + a;
 }
 
+void 
+FCommand::_run_all_func()
+{
+    fchar* _file = new fchar;
+    std::cin >> _file;
+    std::string _dir;
+    _dir.append("/bin/");
+    _dir.append(_file);
+    system(_dir.c_str());
+}
+
+void 
+FCommand::_run_gnu_make()
+{
+    fchar* _file = new fchar;
+    std::cin >> _file;
+    std::string _dir;
+    _dir.append("/bin/make ");
+    _dir.append(_file_path_cd_function);
+    _dir.append("/");
+    system(_dir.c_str());
+}
+
 void
 FCommand::_run_apt()
 {
@@ -289,6 +312,8 @@ FCommand::_run_apt()
     _dir.append(_file);
     system(_dir.c_str());  
 }
+
+
 void
 FCommand::_run_bash_file()
 {

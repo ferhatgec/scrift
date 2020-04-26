@@ -58,11 +58,13 @@ public:
     void _set_locale();
 
     // Directory
+    void _run_all_func();
     void list_dir(bool, bool, bool);
     void list_file(bool);
     void list_direc(bool);
     void create_file();
 
+    void _run_gnu_make();
     void _run_apt();
     void _run_bash_file();
     std::string chartostring(std::string const &, fchar * );
