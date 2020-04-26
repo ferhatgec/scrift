@@ -51,7 +51,7 @@ typedef char fchar;
 template<typename Str>
 
 #undef printlnf
-static int
+static integer
 printlnf (Str *format, ...) 
 {
   va_list arg;

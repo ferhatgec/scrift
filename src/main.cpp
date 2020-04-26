@@ -150,7 +150,7 @@ FMain::Shell()
 
 
 
-int main(integer argc, fchar* argv[])
+integer main(integer argc, fchar* argv[])
 {
     std::shared_ptr<FMain> fmain = std::make_shared<FMain>(); 
     if(argc < 2)

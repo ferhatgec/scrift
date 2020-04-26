@@ -126,7 +126,7 @@ FCommand::clear_shell()
    std::cout << "\033[2J\033[1;1H"; 
 }
 
-int _cd_func_name;
+integer _cd_func_name;
 void
 FCommand::cd_func(fchar *_new_dir, bool _t)
 {
@@ -161,7 +161,7 @@ FCommand::cd_func(fchar *_new_dir, bool _t)
 void
 FCommand::list_direc(bool _home)
 {
-        int files = 0;
+        integer files = 0;
         struct stat filestat;
         struct dirent *entry;
         DIR *dir;
@@ -196,7 +196,7 @@ FCommand::list_direc(bool _home)
 void 
 FCommand::list_file(bool _home)
 {
-        int files = 0;
+        integer files = 0;
         struct stat filestat;
         struct dirent *entry;
         DIR *dir;
@@ -234,7 +234,7 @@ FCommand::list_file(bool _home)
 void
 FCommand::list_dir(bool _home, bool _file, bool _dir) // default value
 {
-        int files = 0;
+        integer files = 0;
         struct stat filestat;
         struct dirent *entry;
         DIR *dir;
@@ -322,7 +322,7 @@ FCommand::plus_num(uinteger64 first_num, uinteger64 sec_num)
 
 
 void
-FCommand::_generated_hash_string(int size)
+FCommand::_generated_hash_string(integer size)
 {
     std::cout << "Enter size : ";
     std::cin >> size;
