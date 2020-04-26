@@ -9,7 +9,6 @@ SRCFILEDIREC = ./src/File/
 SRCSTTNGSDIREC = ./src/Settings/
 SRCSYNTAXDIREC = ./src/Syntax/
 
-COREDIREC = ./core/
 SRCDIREC = ./src/
 #FUSION_CONF_DIREC = ./fusion_conf/
 GPP = g++
@@ -22,7 +21,7 @@ CLEAN = *.o
 HEADERFILE = Path.o Sync.o File.o \
 Directory.o DefaultSettings.o CommandFunc.o
 
-COREHEADERSFILE = Core.o 
+
 LANGHEADERSFILE = Language.o Reader.o
 
 
@@ -36,17 +35,12 @@ else
 endif
 
 
-all: langheadersfile headersfile coreheadersfile main clean
+all: langheadersfile headersfile headersfile main clean
 
-allrun: langheadersfile headersfile coreheadersfile main run clean
+allrun: langheadersfile headersfile headersfile main run clean
 
 nall: cleanall
 
-coreheadersfile: $(COREHEADERSFILE)
-
-Core.o: $(COREDIREC)Core.cpp
-		$(HECOMP) Core.o
-		echo Successfuly creating Core.o
 
 langheadersfile: $(LANGHEADERSFILE)
 
