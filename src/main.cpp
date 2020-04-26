@@ -83,6 +83,11 @@ FMain::Shell()
         "echo <arg> \n"
         "plus\n"
         "./<file> \n"
+        "scr\n"
+        "scr mkdir\n"
+        "scr ls\n"
+        "scr apt\n"
+        "scr make\n"
         "cls || brk \n"
         "cd <folder>\n"
         "randomize || rstr\n"
@@ -93,10 +98,6 @@ FMain::Shell()
         "set_locale_system || slcl_sys\n"
         "ip || myip\n");
     
-    }
-    else if(_h_str == "run" || _h_str == "./" || _h_str == "bash" || _h_str == "sh")
-    {
-        main_->_run_bash_file();
     }
     else if(_h_str == "clear" || _h_str == "clear!!!") {main_->clear_shell();}
     else if (_h_str == "home" || _h_str == "default") {main_->cd_func(getenv("HOME"), true); }
@@ -116,19 +117,9 @@ FMain::Shell()
         main_->list_file(true);
         slashn
     }
-    else if(_h_str == "apt" || _h_str == "advancedpackagetool")
-    {
-        main_->_run_apt();
-        slashn
-    }
     else if(_h_str == "scr" || _h_str == "scriftrun")
     {
         main_->_run_all_func();
-    }
-    else if(_h_str == "make" || _h_str == "Make")
-    {
-        main_->_run_gnu_make();
-        slashn;
     }
     else if(_h_str == "lsd" || _h_str == "lsdir")
     {
