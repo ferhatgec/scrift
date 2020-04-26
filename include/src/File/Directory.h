@@ -12,7 +12,6 @@
 #include "../main.h"
 #include "../File/File.h"
 #include "../File/Sync.h"
-#include "../Syntax/Syntax.h"
 #include "../File/Path.h"
 
 

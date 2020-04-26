@@ -19,7 +19,7 @@ BUILDDIR = ./build/
 # CLEAN
 CLEANALL = scrift
 CLEAN = *.o
-HEADERFILE = Path.o Syntax.o Sync.o File.o \
+HEADERFILE = Path.o Sync.o File.o \
 Directory.o DefaultSettings.o CommandFunc.o
 
 COREHEADERSFILE = Core.o 
@@ -64,10 +64,6 @@ headersfile: $(HEADERFILE)
 Path.o: $(SRCFILEDIREC)Path.cpp
 		$(HECOMP) Path.o
 		echo Successfuly creating Path.o
-
-Syntax.o: $(SRCSYNTAXDIREC)Syntax.cpp
-		$(HECOMP) Syntax.o
-		echo Successfuly creating Syntax.o 
 	
 Sync.o: $(SRCFILEDIREC)Sync.cpp
 		$(HECOMP) Sync.o

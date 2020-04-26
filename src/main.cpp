@@ -8,7 +8,6 @@
 #include <memory>
 #include <stdlib.h>
 #include "../include/src/File/Path.h"
-#include "../include/src/Syntax/Syntax.h"
 #include <iostream>
 #include "../include/src/main.h"
 #include <dirent.h>
