@@ -38,6 +38,8 @@ endif
 
 all: langheadersfile headersfile coreheadersfile main clean
 
+allrun: langheadersfile headersfile coreheadersfile main run clean
+
 nall: cleanall
 
 coreheadersfile: $(COREHEADERSFILE)
