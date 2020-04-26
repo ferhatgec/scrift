@@ -282,8 +282,8 @@ FCommand::chartostring(std::string const & s, fchar *a)
 void 
 FCommand::_run_all_func()
 {
-    fchar* _file = new fchar;
-    std::cin >> _file;
+    std::string _file;
+    std::getline(std::cin >> std::ws, _file);
     std::string _dir;
     _dir.append("/bin/");
     _dir.append(_file);

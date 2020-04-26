@@ -26,7 +26,6 @@
 #include "../include/src/Syntax/CommandFunc.h"
 #include <locale.h>
 #include "../include/src/synflang.hpp"
-
 // Variables 
 static integer argc;
 static fchar* argv[128];
@@ -69,13 +68,12 @@ FMain::Shell()
 {
     argc = atoi(_h_str.c_str()); // string  to int
     main_->hello(); // printing hello text
-    while(argc >= 0) 
+    while(argc >= 0)
     {
-    // calling FMain -> _term_(char)
-    if(argc >= 0)
-    {
-    main_->_term_(_str_file_);  
+    main_->_term_(_str_file_); 
     std::cin >> _h_str;
+    //std::getline(std::cin >> std::ws, _h_str);
+   // std::cin >> _h_str;
     argc += 1;
     if(_h_str == "help" || _h_str == "-h")
     {
@@ -123,7 +121,7 @@ FMain::Shell()
         main_->_run_apt();
         slashn
     }
-    else if(_h_str == "drun" || _h_str == "scriftrun")
+    else if(_h_str == "scr" || _h_str == "scriftrun")
     {
         main_->_run_all_func();
     }
@@ -156,8 +154,7 @@ FMain::Shell()
         #endif
     }
     else if(_h_str == "ip" || _h_str == "myip"){main_->_your_ip();} 
-}
-}
+    }
 }
 
 
