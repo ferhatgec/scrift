@@ -26,9 +26,9 @@ LANGHEADERSFILE = Language.o Reader.o
 
 
 ifeq ($(OS),Windows_NT)
+	echo Windows_NT is not supported!
 	CLEAN := del $(CLEAN)
 	CLEANALL := del $(CLEANALL)
-	echo Windows_NT
 else
 	CLEAN := rm -f $(CLEAN)
 	CLEANALL := rm -f $(BUILDDIR)$(CLEANALL)
