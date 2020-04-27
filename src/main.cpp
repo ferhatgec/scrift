@@ -68,18 +68,20 @@ void
 FMain::Shell()
 {
    // _h_str = new fchar;
-    argc = atoi(_h_str.c_str()); // string  to int
+  //  argc = atoi(_h_str.c_str()); // string  to int
     main_->hello(); // printing hello text
-    while(argc >= 0)
+    while(argc == 0)
     {
+    argc = 0;
     main_->_term_(_str_file_); 
    // std::cin >> _h_str;
-    std::getline(std::cin, _h_str);
+    std::cin >> _h_str;
     //std::getline(std::cin >> std::ws, _h_str);
    // std::cin >> _h_str;
-    argc += 1;
+    //argc += 1;
     if(_h_str == "help" || _h_str == "-h")
     {
+        argc = 1;
        // argc -= 1;
         printlnf("Scrift \n"
         "help arguments: \n"
@@ -100,41 +102,51 @@ FMain::Shell()
         "clear || clear!!!\n"
         "set_locale_system || slcl_sys\n"
         "ip || myip\n");
-    
+        argc = 0;
     }
-    else if(_h_str == "clear" || _h_str == "clear!!!") {main_->clear_shell();}
-    else if (_h_str == "home" || _h_str == "default") {main_->cd_func(getenv("HOME"), true); }
-    else if(_h_str == "echo" || _h_str == "printlnf"){main_->echo_printlnf();}
-    else if(_h_str == "cd" || _h_str == "opendir") {main_->cd_func(main_->_file_path_cd_function, false);}
-    else if(_h_str == "plus") {main_->plus_num(fn, sn);} 
+    else if(_h_str == "clear" || _h_str == "clear!!!") {argc = 1; main_->clear_shell(); argc = 0;}
+    else if (_h_str == "home" || _h_str == "default") {argc = 1; main_->cd_func(getenv("HOME"), true); argc = 0; }
+    else if(_h_str == "echo" || _h_str == "printlnf"){argc = 1; main_->echo_printlnf(); argc = 0;}
+    else if(_h_str == "cd" || _h_str == "opendir") {argc = 1; main_->cd_func(main_->_file_path_cd_function, false); argc = 0;}
+    else if(_h_str == "plus") {argc = 1; main_->plus_num(fn, sn); argc = 0;} 
     else if(_h_str == "brk" || _h_str == "cls")  {exit(EXIT_SUCCESS);} 
-    else if(_h_str == "username" || _h_str == "uname") {main_->get_username(_username); printf("\n");} 
+    else if(_h_str == "username" || _h_str == "uname") {argc = 1; main_->get_username(_username); printf("\n"); argc = 0;} 
     else if(_h_str == "ls" || _h_str == "dir") // list directory
     {
+       argc = 1;
        fchar *_char_cin;
        main_->list_dir(true, true, true); 
-       slashn    
+       slashn
+       argc = 0;    
     }
     else if(_h_str == "lsf" || _h_str == "lsfile")
     {   
+        argc = 1;
         main_->list_file(true);
         slashn
+        argc = 0;
     }
     else if(_h_str == "scr" || _h_str == "scriftrun")
     {
+        argc = 1;
         main_->_run_all_func();
+        argc = 0;
     }
     else if(_h_str == "lsd" || _h_str == "lsdir")
     {
+        argc = 1;
         main_->list_direc(true);
         slashn
+        argc = 0;
     }
-    else if(_h_str == "randomizestr" || _h_str == "rstr"){main_->_generated_hash_string(x);}
-    else if(_h_str == "fetcheya" || _h_str == "-f"){main_->_os_kernel_name(_os_kernel_);}
+    else if(_h_str == "randomizestr" || _h_str == "rstr"){argc = 1; main_->_generated_hash_string(x); argc = 0;}
+    else if(_h_str == "fetcheya" || _h_str == "-f"){argc = 1; main_->_os_kernel_name(_os_kernel_); argc = 0;}
     else if(_h_str == "ctxt" || _h_str == "createtxt"){
+        argc = 1;
         main_->create_file();
+        argc = 0;
     }
-    else if(_h_str  == "setlocale_system" || _h_str == "slcl_sys"){main_->_set_locale();}  
+    else if(_h_str  == "setlocale_system" || _h_str == "slcl_sys"){argc = 1; main_->_set_locale(); argc = 0;}  
     
     else if(_h_str == "run" || _h_str == "#/")
     {
@@ -147,7 +159,7 @@ FMain::Shell()
         #else
         #endif
     }
-    else if(_h_str == "ip" || _h_str == "myip"){main_->_your_ip();} 
+    else if(_h_str == "ip" || _h_str == "myip"){argc = 1; main_->_your_ip(); argc = 0;} 
     }
 }
 

@@ -13,7 +13,7 @@ SRCDIREC = ./src/
 #FUSION_CONF_DIREC = ./fusion_conf/
 GPP = g++
 COMP = g++ -c
-HECOMP = g++ -c $< -std=gnu++17 -o
+HECOMP = g++ -c $< -std=gnu++2a -o
 BUILDDIR = ./build/
 # CLEAN
 CLEANALL = scrift
