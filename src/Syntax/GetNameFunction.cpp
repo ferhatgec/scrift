@@ -28,7 +28,6 @@ FGetUsername::InitUsername()
     struct passwd *password = getpwuid(uid);
     if(password) {
         printlnf(password->pw_name);
-        slashn
     }
     #else 
     slashn 
