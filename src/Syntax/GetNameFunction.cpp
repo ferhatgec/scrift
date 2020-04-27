@@ -42,13 +42,6 @@ FGetUsername::GetUsername()
 }
 
 void 
-FGetUsername::PrintUsername()
-{
-
-}
-
-
-void 
 FGetUsername::InitHostname()
 {
     fchar hostname_buffer[256];

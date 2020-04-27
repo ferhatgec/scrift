@@ -6,7 +6,6 @@ class FGetUsername {
 public:
     virtual void InitUsername();
     virtual void GetUsername();
-    virtual void PrintUsername();
     virtual void InitHostname();
 private:
     fchar* username;
