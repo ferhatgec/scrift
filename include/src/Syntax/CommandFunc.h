@@ -52,7 +52,6 @@ public:
     FCommand();
     ~FCommand();
     void clear_shell();
-    void get_username(fchar *);
     void _os_kernel_name(fchar *);
     void _set_locale();
 
@@ -66,11 +65,9 @@ public:
     void plus_num(uinteger64, uinteger64);
     void _generated_hash_string(integer);
     void _your_ip();
-    void _term_(fchar *);
     virtual void cd_func(fchar *, bool);
     void printerror(fchar *, integer8, fchar * );
     void _n_supported_();
-    void get_hostname();
     void echo_printlnf();
     void remove_character(char * , char );
     fchar *_file_path_cd_function = getenv("HOME");

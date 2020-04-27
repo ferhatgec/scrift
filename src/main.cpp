@@ -25,22 +25,22 @@
 #include <locale.h>
 #include "../include/src/synflang.hpp"
 #include "../include/src/Syntax/HelpFunction.hpp"
-
+#include "../include/src/Syntax/GetNameFunction.hpp"
 // Variables 
 static integer argc;
 static fchar* argv[128];
 integer x;
 static integer8 num_str_;
-static fchar *_str_file_, *_ech_str;
+static fchar *_ech_str;
 static uinteger64 fn, sn;
 static fchar *_file_def_path;
 static  fchar *_username, *_os_kernel_,  *_run_file, *_run_file_;
 FCommand *main_ = new FCommand();
 fhelp *helpstr = new fhelp;
 std::string _h_str;
+FStructure *terminalstr = new FStructure();
 
 
-#define OK 0
 FMain::FMain()
 {
 
@@ -49,9 +49,10 @@ FMain::FMain()
 
 FMain::~FMain()
 {
+    delete terminalstr;
     delete helpstr;
     delete[] _username, _os_kernel_, _run_file, _run_file_, _file_def_path,
-    _ech_str, _str_file_, _h_str, argv; // Deleting chars
+    _ech_str, _h_str, argv; // Deleting chars
     delete main_;
 }   
 
@@ -65,7 +66,6 @@ FMain::usage()
        "<arguments> -> var\n");
 }
 
-
 void
 FMain::Shell()
 {
@@ -73,7 +73,7 @@ FMain::Shell()
     while(argc == 0)
     {
     argc = 0;
-    main_->_term_(_str_file_); 
+    terminalstr->Terminal();
     std::cin >> _h_str;
     if(_h_str == "help" || _h_str == "-h")
     {
@@ -87,7 +87,7 @@ FMain::Shell()
     else if(_h_str == "cd" || _h_str == "opendir") {argc = 1; main_->cd_func(main_->_file_path_cd_function, false); argc = 0;}
     else if(_h_str == "plus") {argc = 1; main_->plus_num(fn, sn); argc = 0;} 
     else if(_h_str == "brk" || _h_str == "cls")  {exit(EXIT_SUCCESS);} 
-    else if(_h_str == "username" || _h_str == "uname") {argc = 1; main_->get_username(_username); printf("\n"); argc = 0;} 
+    else if(_h_str == "username" || _h_str == "uname") {argc = 1;  printf("\n"); argc = 0;} 
     else if(_h_str == "ls" || _h_str == "dir") // list directory
     {
        argc = 1;

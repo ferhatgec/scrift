@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "../../include/src/Syntax/GetNameFunction.hpp"
 #include <dirent.h>
 #include <sys/stat.h>
 #include <unistd.h>
@@ -67,22 +68,6 @@ FCommand::echo_printlnf()
     }
 }
 
-void
-FCommand::get_username(fchar *_your_username)
-{
-      #ifdef __linux__
-       uid_t uid = geteuid();
-    struct passwd *pw = getpwuid(uid);
-    if (pw)
-    {
-      printlnf(pw->pw_name);
-      _your_username = pw->pw_name;
-     }
-     // printlnf("\n", _your_username, "\n");
-      #else 
-      printlnf("\nFegeya Fusion Username:", "user", "or ",  _n_supported_()); // ; deleted
-      #endif
-}
 void
 FCommand::_os_kernel_name(fchar *_your_os_kernel)
 {
@@ -369,34 +354,6 @@ FCommand::_your_ip()
     return;
 } 
 
-void
-FCommand::get_hostname() // username@hostname$|
-{
-    fchar hostbuffer[256];  
-    struct hostent *host_entry; 
-    integer hostname; 
-    hostname = gethostname(hostbuffer, sizeof(hostbuffer)); 
-    printlnf("%s", hostbuffer); 
-}
-
-
-void
-FCommand::_term_(fchar *file_str)
-{
-    fchar *_uname;
-    BOLD_CYAN_COLOR // Color code
-    get_username(_uname);
-    file_str = " $# ";
-    printlnf("@");
-    BOLD_MAGENTA_COLOR // Color code
-    get_hostname();
-    printlnf(":~");
-    BOLD_YELLOW_COLOR  // Color code 
-    printlnf(_file_path_cd_function);
-    BOLD_RED_COLOR // Color code 
-    printlnf(file_str);
-    BLACK_COLOR //Reset (BLACK)
-}
 
 void
 FCommand::printerror(fchar *err_str, integer8 err_number, fchar * _error_code)

@@ -21,7 +21,7 @@
 #include "Syntax/CommandFunc.h"
 #define slashn printlnf("\n");
 
-class FMain : public FCommand  {
+class FMain {
 public:
     FMain();
     ~FMain();
