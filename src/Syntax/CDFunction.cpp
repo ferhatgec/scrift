@@ -11,11 +11,11 @@
 #include "../../include/src/Syntax/MkdirFunction.hpp"
 #include <iostream>
 #include <unistd.h>
+
 FCommand *command = new FCommand();
 FMain *fmain = new FMain();
 fprinterror *printerror = new fprinterror;
 std::string str;
-struct stat sb;
 fchar *file_path = new fchar;
 
 
