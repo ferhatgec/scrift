@@ -4,8 +4,6 @@
 # Distributed under the terms of the GPLv3 License.
 # 
 #
-LANGDIREC = ./Lang/
-SRCSTTNGSDIREC = ./src/Settings/
 SRCSYNTAXDIREC = ./src/Syntax/
 
 SRCDIREC = ./src/
@@ -16,10 +14,8 @@ BUILDDIR = ./build/
 # CLEAN
 CLEANALL = scrift
 CLEAN = *.o
-HEADERFILE = DefaultSettings.o CommandFunc.o
+HEADERFILE = CommandFunc.o
 
-
-LANGHEADERSFILE = Language.o Reader.o
 
 
 ifeq ($(OS),Windows_NT)
@@ -32,29 +28,13 @@ else
 endif
 
 
-all: langheadersfile headersfile headersfile main clean
+all: headersfile headersfile main clean
 
-allrun: langheadersfile headersfile headersfile main run clean
+allrun: headersfile headersfile main run clean
 
 nall: cleanall
 
-
-langheadersfile: $(LANGHEADERSFILE)
-
-Language.o: $(LANGDIREC)Language.cpp
-			$(HECOMP) Language.o
-			echo Successfuly creating Language.o
-
-Reader.o: $(LANGDIREC)Reader.cpp
-			$(HECOMP) Reader.o
-			echo Successfuly creating Reader.o
-
 headersfile: $(HEADERFILE)
-
-
-DefaultSettings.o:$(SRCSTTNGSDIREC)DefaultSettings.cpp
-		$(HECOMP) DefaultSettings.o
-		echo Successfuly creating DefaultSettings.o
 
 CommandFunc.o:$(SRCSYNTAXDIREC)CommandFunc.cpp
 		$(HECOMP) CommandFunc.o

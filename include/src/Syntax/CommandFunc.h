@@ -7,8 +7,7 @@
 
 #ifndef COMMAND_FUNC_H
 #define COMMAND_FUNC_H
-
-#include "../Settings/DefaultSettings.h"            
+        
 #include "../main.h"
 #include <unistd.h>
 #include <limits.h>
