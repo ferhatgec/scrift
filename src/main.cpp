@@ -24,6 +24,7 @@
 #include "../include/src/Syntax/CommandFunc.h"
 #include <locale.h>
 #include "../include/src/synflang.hpp"
+#include "../include/src/Syntax/KernelName.hpp"
 #include "../include/src/Syntax/HelpFunction.hpp"
 #include "../include/src/Syntax/GetNameFunction.hpp"
 // Variables 
@@ -39,7 +40,7 @@ FCommand *main_ = new FCommand();
 fhelp *helpstr = new fhelp;
 std::string _h_str;
 FStructure *terminalstr = new FStructure();
-
+fkernel *kernel = new fkernel;
 
 FMain::FMain()
 {
@@ -51,6 +52,7 @@ FMain::~FMain()
 {
     delete terminalstr;
     delete helpstr;
+    delete kernel;
     delete[] _username, _os_kernel_, _run_file, _run_file_, _file_def_path,
     _ech_str, _h_str, argv; // Deleting chars
     delete main_;
@@ -117,7 +119,7 @@ FMain::Shell()
         argc = 0;
     }
     else if(_h_str == "randomizestr" || _h_str == "rstr"){argc = 1; main_->_generated_hash_string(x); argc = 0;}
-    else if(_h_str == "fetcheya" || _h_str == "-f"){argc = 1; main_->_os_kernel_name(_os_kernel_); argc = 0;}
+    else if(_h_str == "fetcheya" || _h_str == "-f"){argc = 1; kernel->KernelName(); argc = 0;}
     else if(_h_str == "ctxt" || _h_str == "createtxt"){
         argc = 1;
         main_->create_file();

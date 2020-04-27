@@ -19,4 +19,4 @@ public:
     virtual void Terminal();
     virtual void FuncKill();
 };
-#endif 
+#endif // GET_NAME_FUNCTION_HPP

@@ -69,33 +69,6 @@ FCommand::echo_printlnf()
 }
 
 void
-FCommand::_os_kernel_name(fchar *_your_os_kernel)
-{
-    #ifdef _WIN32
-    _your_os_kernel = "Windows NT 32-bit\n";
-    printlnf("Windows NT is not supported for Fegeya Scrift!\n");
-    return 1;
-    #elif _WIN64
-    _your_os_kernel "Windows NT 64-bit \n";
-    printlnf("Windows NT is not supported for Fegeya Scrift!\n");
-    return 1;
-    printlnf("Win")
-    #elif __APPLE__ || __MACH__
-    _your_os_kernel  = "Darwin \n";
-    #elif __linux__
-    _your_os_kernel = "Linux <3 \n";
-    #elif __FreeBSD__
-    _your_os_kernel = "BSD \n";
-    #elif __unix || __unix__
-    _your_os_kernel = "Unix \n";
-    #else
-    _your_os_kernel = "Fegeya Fusion or not supported operating system :) \n";
-    #endif
-    printlnf(_your_os_kernel);
-}
-
-
-void
 FCommand::_set_locale()
 {
         printlnf("Set up -> Your system language");// setlocale(LC_CTYPE, NULL);

@@ -52,7 +52,6 @@ public:
     FCommand();
     ~FCommand();
     void clear_shell();
-    void _os_kernel_name(fchar *);
     void _set_locale();
 
     // Directory
