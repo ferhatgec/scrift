@@ -39,26 +39,26 @@
 #define F_NO 1
 
 #include <locale.h>
-	typedef uint8_t     uinteger8;
-	typedef  int8_t     integer8;
-	typedef uint16_t    uinteger16;
-	typedef  int16_t    integer16;
-	typedef uint32_t    unsigned32;
-	typedef  int32_t    integer32;
-	typedef uint64_t    uinteger64;
-	typedef  int64_t    integer64;
+typedef uint8_t     uinteger8;
+typedef  int8_t     integer8;
+typedef uint16_t    uinteger16;
+typedef  int16_t    integer16;
+typedef uint32_t    unsigned32;
+typedef  int32_t    integer32;
+typedef uint64_t    uinteger64;
+typedef  int64_t    integer64;
 
 typedef int integer;
 typedef char fchar;
-
+typedef va_list vlist;
 template<typename Str>
 
 #undef printlnf
 static integer
 printlnf (Str *format, ...) 
 {
-  va_list arg;
-  int done;
+  vlist arg;
+  integer done;
 
   va_start (arg, format);
   done = vfprintf (stdout, format, arg);
