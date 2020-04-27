@@ -31,7 +31,7 @@ FCommand::FCommand()
 
 FCommand::~FCommand()
 {
-    delete[] _home_dir, _hello_str, _file_path_cd_function, _help_str, _uname;   
+    delete[] _home_dir, _file_path_cd_function, _uname;   
 }
 
 
@@ -396,18 +396,6 @@ FCommand::_term_(fchar *file_str)
     BOLD_RED_COLOR // Color code 
     printlnf(file_str);
     BLACK_COLOR //Reset (BLACK)
-}
-void
-FCommand::help()
-{
-     printlnf(_help_str);    
-}
-
-
-void
-FCommand::hello()
-{ 
-        printlnf(_help_str); // Fixed
 }
 
 void

@@ -67,9 +67,7 @@ public:
     void _generated_hash_string(integer);
     void _your_ip();
     void _term_(fchar *);
-    void help();
     virtual void cd_func(fchar *, bool);
-    void hello();
     void printerror(fchar *, integer8, fchar * );
     void _n_supported_();
     void get_hostname();
@@ -77,18 +75,6 @@ public:
     void remove_character(char * , char );
     fchar *_file_path_cd_function = getenv("HOME");
     fchar *_home_dir = getenv("HOME");
-private:
-    fchar* _hello_str = "help arguments:\n"
-    "echo <arg>\n"
-    "intnumber plus intnumber\n"
-    "./<file>\n"
-    "brk || cls -> Close Scrift Shell \n"
-    "cd <folder> \n"
-    "ls -> List\n"
-    "-f || fetcheya -> System info ";
-    fchar* _help_str = "Welcome ScriftLang Terminal\n"
-    "ScriftLang licensed with GPLv3\n"
-    "Copyright (c) 2020 Ferhat Gecdogan\n";
 };
 
 

@@ -13,7 +13,7 @@
 #include <sys/types.h>
 #include <dirent.h>
 #include <sys/stat.h>
-#include <unistd.h>
+#include <unistd.h> 
 #include <time.h>
 #include <cstdio>
 #include <iostream>
@@ -24,6 +24,8 @@
 #include "../include/src/Syntax/CommandFunc.h"
 #include <locale.h>
 #include "../include/src/synflang.hpp"
+#include "../include/src/Syntax/HelpFunction.hpp"
+
 // Variables 
 static integer argc;
 static fchar* argv[128];
@@ -34,17 +36,20 @@ static uinteger64 fn, sn;
 static fchar *_file_def_path;
 static  fchar *_username, *_os_kernel_,  *_run_file, *_run_file_;
 FCommand *main_ = new FCommand();
+fhelp *helpstr = new fhelp;
 std::string _h_str;
 
 
 #define OK 0
 FMain::FMain()
 {
+
 }
 
 
 FMain::~FMain()
 {
+    delete helpstr;
     delete[] _username, _os_kernel_, _run_file, _run_file_, _file_def_path,
     _ech_str, _str_file_, _h_str, argv; // Deleting chars
     delete main_;
@@ -64,7 +69,7 @@ FMain::usage()
 void
 FMain::Shell()
 {
-    main_->hello(); // printing hello text
+    helpstr->hello();
     while(argc == 0)
     {
     argc = 0;
@@ -73,25 +78,7 @@ FMain::Shell()
     if(_h_str == "help" || _h_str == "-h")
     {
         argc = 1;
-        printlnf("Scrift \n"
-        "help arguments: \n"
-        "echo <arg> \n"
-        "plus\n"
-        "./<file> \n"
-        "scr\n"
-        "scr mkdir\n"
-        "scr ls\n"
-        "scr apt\n"
-        "scr make\n"
-        "cls || brk \n"
-        "cd <folder>\n"
-        "randomize || rstr\n"
-        "username\n"
-        "ls\n"
-        "fetcheya\n"
-        "clear || clear!!!\n"
-        "set_locale_system || slcl_sys\n"
-        "ip || myip\n");
+        helpstr->help();
         argc = 0;
     }
     else if(_h_str == "clear" || _h_str == "clear!!!") {argc = 1; main_->clear_shell(); argc = 0;}
