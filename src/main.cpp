@@ -16,6 +16,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <time.h>
+#include <cstdio>
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -66,12 +67,14 @@ FMain::usage()
 void
 FMain::Shell()
 {
+   // _h_str = new fchar;
     argc = atoi(_h_str.c_str()); // string  to int
     main_->hello(); // printing hello text
     while(argc >= 0)
     {
     main_->_term_(_str_file_); 
-    std::cin >> _h_str;
+   // std::cin >> _h_str;
+    std::getline(std::cin, _h_str);
     //std::getline(std::cin >> std::ws, _h_str);
    // std::cin >> _h_str;
     argc += 1;
