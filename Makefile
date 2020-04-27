@@ -14,8 +14,7 @@ BUILDDIR = ./build/
 # CLEAN
 CLEANALL = scrift
 CLEAN = *.o
-HEADERFILE = CommandFunc.o GetNameFunction.o \
-CDFunction.o
+HEADERFILE = CommandFunc.o GetNameFunction.o CDFunction.o
 
 
 
