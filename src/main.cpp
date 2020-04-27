@@ -150,7 +150,7 @@ integer main(integer argc, fchar* argv[])
 
 
     fmain->Shell();
-    
+    return F_OK;
 }
 
 
