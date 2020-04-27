@@ -10,7 +10,6 @@
 #include "../../include/src/Syntax/PrintErrorFunction.hpp"
 #include "../../include/src/Syntax/MkdirFunction.hpp"
 #include <iostream>
-#include <filesystem>
 #include <unistd.h>
 FCommand *command = new FCommand();
 FMain *fmain = new FMain();
