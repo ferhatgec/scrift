@@ -47,7 +47,7 @@ typedef uint32_t    unsigned32;
 typedef  int32_t    integer32;
 typedef uint64_t    uinteger64;
 typedef  int64_t    integer64;
-
+typedef bool boolean;
 typedef int integer;
 typedef char fchar;
 typedef va_list vlist;

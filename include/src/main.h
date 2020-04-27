@@ -27,7 +27,7 @@ public:
     ~FMain();
     virtual void usage(); 
     virtual void Shell();
-    bool    _home;
+    boolean    _home;
     std::string str;
 };
 

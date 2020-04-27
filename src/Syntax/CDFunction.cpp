@@ -32,7 +32,7 @@ FCDFunction::~FCDFunction()
 }
 
 
-bool 
+boolean
 FCDFunction::FileExists(const std::string &Filename)
 {
     return access(Filename.c_str(), 0 ) == 0;

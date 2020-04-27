@@ -83,7 +83,7 @@ FCommand::clear_shell()
 }
 
 void
-FCommand::list_direc(bool _home)
+FCommand::list_direc(boolean _home)
 {
         integer files = 0;
         struct stat filestat;
@@ -118,7 +118,7 @@ FCommand::list_direc(bool _home)
 }
 
 void 
-FCommand::list_file(bool _home)
+FCommand::list_file(boolean _home)
 {
         integer files = 0;
         struct stat filestat;
@@ -156,7 +156,7 @@ FCommand::list_file(bool _home)
         closedir(dir);
 }
 void
-FCommand::list_dir(bool _home, bool _file, bool _dir) // default value
+FCommand::list_dir(boolean _home, boolean _file, boolean _dir) // default value
 {
         integer files = 0;
         struct stat filestat;
