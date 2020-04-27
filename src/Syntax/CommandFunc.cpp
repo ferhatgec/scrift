@@ -82,38 +82,6 @@ FCommand::clear_shell()
    std::cout << "\033[2J\033[1;1H"; 
 }
 
-integer _cd_func_name;
-void
-FCommand::cd_func(fchar *_new_dir, bool _t)
-{
-    FMain * _main_ = new FMain();
-    _new_dir = new fchar;
-    
-    // printlnf(_new_dir); for testing.
-    _cd_func_name = strlen(_new_dir);
-    if(_t == true)
-    {
-        std::strcpy(_file_path_cd_function, (getenv("HOME"), "/"));
-        return;
-    } else {
-        std::cin >> _new_dir;
-        if(_new_dir != nullptr)
-        {
-        if(_main_->_home != true)
-        {
-            std::strcat(_file_path_cd_function, "/");
-            std::strcat(_file_path_cd_function, _new_dir);
-        } else {
-            _file_path_cd_function = "";
-        }  
-        } else {
-        printerror("ERR:DIRECTORY IS NULL", 12, "ERR:DIRISNULL");
-        return; 
-        }
-    }
-
-}
-
 void
 FCommand::list_direc(bool _home)
 {

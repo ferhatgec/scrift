@@ -82,7 +82,7 @@ FMain::Shell()
         argc = 0;
     }
     else if(_h_str == "clear" || _h_str == "clear!!!") {argc = 1; main_->clear_shell(); argc = 0;}
-    else if (_h_str == "home" || _h_str == "default") {argc = 1; main_->cd_func(getenv("HOME"), true); argc = 0; }
+    else if (_h_str == "home" || _h_str == "default") {argc = 1;  argc = 0; }
     else if(_h_str == "echo" || _h_str == "printlnf"){argc = 1; main_->echo_printlnf(); argc = 0;}
     else if(_h_str == "cd" || _h_str == "opendir") {argc = 1; cdfunction->CDFunctionInit(); argc = 0;}
     else if(_h_str == "plus") {argc = 1; main_->plus_num(fn, sn); argc = 0;} 

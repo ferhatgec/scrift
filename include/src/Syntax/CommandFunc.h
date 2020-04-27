@@ -64,7 +64,6 @@ public:
     void plus_num(uinteger64, uinteger64);
     void _generated_hash_string(integer);
     void _your_ip();
-    virtual void cd_func(fchar *, bool);
     void printerror(fchar *, integer8, fchar * );
     void _n_supported_();
     void echo_printlnf();
