@@ -5,12 +5,10 @@
 # 
 #
 LANGDIREC = ./Lang/
-SRCFILEDIREC = ./src/File/
 SRCSTTNGSDIREC = ./src/Settings/
 SRCSYNTAXDIREC = ./src/Syntax/
 
 SRCDIREC = ./src/
-#FUSION_CONF_DIREC = ./fusion_conf/
 GPP = g++
 COMP = g++ -c
 HECOMP = g++ -c $< -std=gnu++2a -o
@@ -18,8 +16,7 @@ BUILDDIR = ./build/
 # CLEAN
 CLEANALL = scrift
 CLEAN = *.o
-HEADERFILE = Path.o Sync.o File.o \
-Directory.o DefaultSettings.o CommandFunc.o
+HEADERFILE = DefaultSettings.o CommandFunc.o
 
 
 LANGHEADERSFILE = Language.o Reader.o
@@ -54,23 +51,6 @@ Reader.o: $(LANGDIREC)Reader.cpp
 
 headersfile: $(HEADERFILE)
 
-
-Path.o: $(SRCFILEDIREC)Path.cpp
-		$(HECOMP) Path.o
-		echo Successfuly creating Path.o
-	
-Sync.o: $(SRCFILEDIREC)Sync.cpp
-		$(HECOMP) Sync.o
-		echo Successfuly creating Sync.o
-
-File.o: $(SRCFILEDIREC)File.cpp
-		$(HECOMP) File.o
-		echo Successfuly creating File.o
-
-
-Directory.o: $(SRCFILEDIREC)Directory.cpp
-		$(HECOMP) Directory.o
-		echo Successfuly creating Directory.o
 
 DefaultSettings.o:$(SRCSTTNGSDIREC)DefaultSettings.cpp
 		$(HECOMP) DefaultSettings.o

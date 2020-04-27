@@ -7,7 +7,6 @@
 #include <fstream>
 #include <memory>
 #include <stdlib.h>
-#include "../include/src/File/Path.h"
 #include <iostream>
 #include "../include/src/main.h"
 #include <dirent.h>
@@ -21,8 +20,6 @@
 #include <vector>
 #include <algorithm>
 #include <string.h>
-#include "../include/src/File/File.h"
-#include "../include/src/File/Sync.h"
 #include <stdio.h>
 #include "../include/src/Syntax/CommandFunc.h"
 #include <locale.h>
@@ -67,22 +64,15 @@ FMain::usage()
 void
 FMain::Shell()
 {
-   // _h_str = new fchar;
-  //  argc = atoi(_h_str.c_str()); // string  to int
     main_->hello(); // printing hello text
     while(argc == 0)
     {
     argc = 0;
     main_->_term_(_str_file_); 
-   // std::cin >> _h_str;
     std::cin >> _h_str;
-    //std::getline(std::cin >> std::ws, _h_str);
-   // std::cin >> _h_str;
-    //argc += 1;
     if(_h_str == "help" || _h_str == "-h")
     {
         argc = 1;
-       // argc -= 1;
         printlnf("Scrift \n"
         "help arguments: \n"
         "echo <arg> \n"

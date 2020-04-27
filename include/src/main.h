@@ -21,9 +21,6 @@
 #include "Syntax/CommandFunc.h"
 #define slashn printlnf("\n");
 
-//FSync *fsync__ = new FSync();
-
-
 class FMain : public FCommand  {
 public:
     FMain();
