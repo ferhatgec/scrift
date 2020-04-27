@@ -1,14 +1,13 @@
-#include "../main.h"
 #ifndef GET_NAME_FUNCTION_HPP
 #define GET_NAME_FUNCTION_HPP
+
+#include "../main.h"
 
 class FGetUsername {
 public:
     virtual void InitUsername();
     virtual void GetUsername();
     virtual void InitHostname();
-private:
-    fchar* username;
 };
 
 

@@ -28,6 +28,7 @@ public:
     virtual void usage(); 
     virtual void Shell();
     bool    _home;
+    std::string str;
 };
 
 

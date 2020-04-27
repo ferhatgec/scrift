@@ -69,6 +69,7 @@ public:
     void _n_supported_();
     void echo_printlnf();
     void remove_character(char * , char );
+    struct dirent *direntfunction;
     fchar *_file_path_cd_function = getenv("HOME");
     fchar *_home_dir = getenv("HOME");
 };

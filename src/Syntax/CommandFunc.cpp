@@ -192,7 +192,7 @@ FCommand::list_dir(bool _home, bool _file, bool _dir) // default value
 {
         integer files = 0;
         struct stat filestat;
-        struct dirent *entry;
+        struct dirent *entry = direntfunction;
         DIR *dir;
 
         if(_home != false) {dir = opendir((getenv("HOME"), "/", _file_path_cd_function)); /*For Linux and *nix*/

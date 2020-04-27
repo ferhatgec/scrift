@@ -24,6 +24,7 @@
 #include "../include/src/Syntax/CommandFunc.h"
 #include <locale.h>
 #include "../include/src/synflang.hpp"
+#include "../include/src/Syntax/CDFunction.hpp"
 #include "../include/src/Syntax/KernelName.hpp"
 #include "../include/src/Syntax/HelpFunction.hpp"
 #include "../include/src/Syntax/GetNameFunction.hpp"
@@ -41,7 +42,7 @@ fhelp *helpstr = new fhelp;
 std::string _h_str;
 FStructure *terminalstr = new FStructure();
 fkernel *kernel = new fkernel;
-
+FCDFunction *cdfunction = new FCDFunction();
 FMain::FMain()
 {
 
@@ -50,12 +51,8 @@ FMain::FMain()
 
 FMain::~FMain()
 {
-    delete terminalstr;
-    delete helpstr;
-    delete kernel;
-    delete[] _username, _os_kernel_, _run_file, _run_file_, _file_def_path,
-    _ech_str, _h_str, argv; // Deleting chars
-    delete main_;
+    delete terminalstr,  helpstr, kernel,  _username, _os_kernel_, _run_file, _run_file_, _file_def_path,
+    _ech_str, _h_str, argv, main_;
 }   
 
 
@@ -76,6 +73,7 @@ FMain::Shell()
     {
     argc = 0;
     terminalstr->Terminal();
+    str = _h_str;
     std::cin >> _h_str;
     if(_h_str == "help" || _h_str == "-h")
     {
@@ -86,7 +84,7 @@ FMain::Shell()
     else if(_h_str == "clear" || _h_str == "clear!!!") {argc = 1; main_->clear_shell(); argc = 0;}
     else if (_h_str == "home" || _h_str == "default") {argc = 1; main_->cd_func(getenv("HOME"), true); argc = 0; }
     else if(_h_str == "echo" || _h_str == "printlnf"){argc = 1; main_->echo_printlnf(); argc = 0;}
-    else if(_h_str == "cd" || _h_str == "opendir") {argc = 1; main_->cd_func(main_->_file_path_cd_function, false); argc = 0;}
+    else if(_h_str == "cd" || _h_str == "opendir") {argc = 1; cdfunction->CDFunctionInit(); argc = 0;}
     else if(_h_str == "plus") {argc = 1; main_->plus_num(fn, sn); argc = 0;} 
     else if(_h_str == "brk" || _h_str == "cls")  {exit(EXIT_SUCCESS);} 
     else if(_h_str == "username" || _h_str == "uname") {argc = 1;  printf("\n"); argc = 0;} 
