@@ -9,7 +9,7 @@ SRCSYNTAXDIREC = ./src/Syntax/
 SRCDIREC = ./src/
 GPP = g++
 COMP = g++ -c
-HECOMP = g++ -c $< -std=gnu++2a -o
+HECOMP = g++ -c $< -std=gnu++17 -o
 BUILDDIR = ./build/
 # CLEAN
 CLEANALL = scrift
