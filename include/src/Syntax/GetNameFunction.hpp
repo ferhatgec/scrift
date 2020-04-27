@@ -19,6 +19,4 @@ public:
     virtual void Terminal();
     virtual void FuncKill();
 };
-
-
 #endif 

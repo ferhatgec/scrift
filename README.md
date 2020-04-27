@@ -13,7 +13,7 @@
 
 ```
  $ make 
- $ cd build && ./scrift 
+ $ make runall 
 ```
 
 

@@ -30,7 +30,7 @@ endif
 
 all: headersfile headersfile main clean
 
-allrun: headersfile headersfile main run clean
+runall: headersfile headersfile main run clean
 
 nall: cleanall
 
