@@ -8,6 +8,7 @@ public:
     FCDFunction();
     ~FCDFunction();
     virtual void CDFunctionInit();
+    virtual bool FileExists(const std::string &);
 };
 
 #endif // CD_FUNCTION_HPP

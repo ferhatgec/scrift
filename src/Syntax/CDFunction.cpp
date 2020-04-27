@@ -32,7 +32,8 @@ FCDFunction::~FCDFunction()
 }
 
 
-bool FileExists(const std::string &Filename)
+bool 
+FCDFunction::FileExists(const std::string &Filename)
 {
     return access(Filename.c_str(), 0 ) == 0;
 }
@@ -60,13 +61,7 @@ FCDFunction::CDFunctionInit()
                 slashn
                 return;
             }
-            slashn
         }
     } 
-    else 
-    {
-        printerror->PrintError("This directory is null");
-        slashn 
-    }  
     return;         
 }
