@@ -8,15 +8,9 @@
 
 # How to build in Linux?
 
-# Install packages
-
-
 ```
- $ make 
  $ make runall 
 ```
-
-
 
 
 Scrift licensed with GPLv3.

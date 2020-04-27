@@ -28,9 +28,9 @@ else
 endif
 
 
-all: headersfile headersfile main clean
+all: headersfile main clean
 
-runall: headersfile headersfile main run clean
+runall: headersfile main run clean
 
 nall: cleanall
 
