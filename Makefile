@@ -27,10 +27,9 @@ else
 	CLEANALL := rm -f $(BUILDDIR)$(CLEANALL)
 endif
 
+runall: all run
 
 all: headersfile main clean
-
-runall: headersfile main run clean
 
 nall: cleanall
 
