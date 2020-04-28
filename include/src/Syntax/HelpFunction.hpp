@@ -16,6 +16,7 @@ public:
             "scr ls\n"
             "scr apt\n"
             "scr make\n"
+            "pause || stop\n"
             "cls || brk \n"
             "cd <folder>\n"
             "rstr <number>\n"

@@ -4,6 +4,7 @@
 # Distributed under the terms of the GPLv3 License.
 #
 # */
+
 #include <fstream>
 #include <memory>
 #include <stdlib.h>
@@ -148,6 +149,14 @@ FMain::Shell()
         strfor_h_str = _h_str.erase(0, 5);
         int atest = atoi(strfor_h_str.c_str());
         main_->_generated_hash_string(atest); 
+    }
+    else if(_h_str == "pause" || _h_str == "stop") {
+        printlnf("Enter the continue...");
+        returni: if(std::cin.get() == '\n') {
+                printlnf("Access\n");
+            } else {
+                goto returni;
+        }
     }
     else if(_h_str == "fetcheya" || _h_str == "-f"){argc = 1; kernel->KernelName(); argc = 0;  test = 1; }
     else if(_h_str.rfind("ctxt", 0) == 0){
