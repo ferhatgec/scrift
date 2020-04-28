@@ -24,7 +24,7 @@
 #include "../include/src/Syntax/CommandFunc.h"
 #include <locale.h>
 #include "../include/src/synflang.hpp"
-#include "../include/src/Syntax/CDFunction.hpp"
+#include "../include/src/Syntax/FileFunction.hpp"
 #include "../include/src/Syntax/KernelName.hpp"
 #include "../include/src/Syntax/HelpFunction.hpp"
 #include "../include/src/Syntax/GetNameFunction.hpp"

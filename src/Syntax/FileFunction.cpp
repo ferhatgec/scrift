@@ -6,7 +6,7 @@
 #include "../../include/src/Syntax/CommandFunc.h"
 #include "../../include/src/main.h"
 #include "../../include/src/Syntax/GetNameFunction.hpp"
-#include "../../include/src/Syntax/CDFunction.hpp"
+#include "../../include/src/Syntax/FileFunction.hpp"
 #include "../../include/src/Syntax/PrintErrorFunction.hpp"
 #include "../../include/src/Syntax/MkdirFunction.hpp"
 #include <iostream>

@@ -1,5 +1,5 @@
-#ifndef CD_FUNCTION_HPP
-#define CD_FUNCTION_HPP
+#ifndef FILE_FUNCTION_HPP
+#define FILE_FUNCTION_HPP
 
 #include "GetNameFunction.hpp"
 
@@ -26,4 +26,4 @@ public:
     virtual void CreateFileFunctionInit();
 };
 
-#endif // CD_FUNCTION_HPP
+#endif // FILE_FUNCTION_HPP

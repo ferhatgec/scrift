@@ -14,7 +14,7 @@ BUILDDIR = ./build/
 # CLEAN
 CLEANALL = scrift
 CLEAN = *.o
-HEADERFILE = CommandFunc.o GetNameFunction.o CDFunction.o
+HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o
 
 
 
@@ -44,9 +44,9 @@ GetNameFunction.o:$(SRCSYNTAXDIREC)GetNameFunction.cpp
 		$(HECOMP) GetNameFunction.o
 		echo Successfuly creating GetNameFunction.o
 
-CDFunction.o:$(SRCSYNTAXDIREC)CDFunction.cpp
-		$(HECOMP) CDFunction.o
-		echo Successfuly creating CDFunction.o
+FileFunction.o:$(SRCSYNTAXDIREC)FileFunction.cpp
+		$(HECOMP) FileFunction.o
+		echo Successfuly creating FileFunction.o
 
 main: $(SRCDIREC)main.cpp
 	g++  $< $(HEADERFILE) -o $(BUILDDIR)scrift 
