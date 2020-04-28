@@ -29,6 +29,7 @@ public:
     virtual void Shell();
     boolean    _home;
     std::string str;
+    std::string strfor_h_str;
 };
 
 

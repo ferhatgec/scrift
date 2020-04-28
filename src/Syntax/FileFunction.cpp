@@ -44,23 +44,22 @@ FCDFunction::FileExists(const std::string &Filename)
 }
 
 void
-FCDFunction::CDFunctionInit()
+FCDFunction::CDFunctionInit(std::string name)
 {
     command = new FCommand();
     fmain = new FMain();
-    std::cin >> str;
     // or std::getline
-    if(str != "") 
+    if(name != "") 
     {
         if(fmain->_home != true) 
         {
             std::string path;
             path.append(command->_file_path_cd_function);
             path.append("/");
-            path.append(str);
+            path.append(name);
             if(FileExists(path) == true) {
                 std::strcat(command->_file_path_cd_function, "/");
-                std::strcat(command->_file_path_cd_function, str.c_str()); 
+                std::strcat(command->_file_path_cd_function, name.c_str()); 
             } else {
                 printerror->PrintError("This directory is not exist!");
                 slashn
@@ -86,12 +85,12 @@ FMKDirFunction::~FMKDirFunction()
 
 
 void
-FMKDirFunction::MKDirFunctionInit()
+FMKDirFunction::MKDirFunctionInit(std::string name)
 {
-    std::cin >> input_char; // I will use std::getline.
+    // I will use std::getline.
     path_directory.append(command->_file_path_cd_function); // default getenv("HOME")
     path_directory.append("/"); // ex: /home/username -> getenv("HOME") -> /home/username'/'
-    path_directory.append(input_char); // maybe directory is exist or directory is not exist.
+    path_directory.append(name); // maybe directory is exist or directory is not exist.
     if(mkdir(path_directory.c_str(), 0777) == -1 ) {// 0777 is user permission number.
         printerror->PrintError("Directory is exist or you're not root");
         slashn
@@ -113,12 +112,11 @@ FCreateFileFunction::~FCreateFileFunction()
 }
 
 void
-FCreateFileFunction::CreateFileFunctionInit()
+FCreateFileFunction::CreateFileFunctionInit(std::string name)
 {
-    std::cin >> file_name;
     file_directory_string.append(command->_file_path_cd_function);
     file_directory_string.append(slash);
-    file_directory_string.append(file_name);
+    file_directory_string.append(name.c_str());
     file_directory_string.append(txt); 
     command->chartostring(file_directory_string, file_directory);
     std::ofstream file(file_directory_string, std::ios::app);

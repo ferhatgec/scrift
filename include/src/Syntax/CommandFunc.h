@@ -55,7 +55,7 @@ public:
     void _set_locale();
 
     // Directory
-    void _run_all_func();
+    void _run_all_func(std::string);
     void list_dir(boolean, boolean, boolean);
     void list_file(boolean);
     void list_direc(boolean);
@@ -65,7 +65,7 @@ public:
     void _your_ip();
     void printerror(fchar *, integer8, fchar * );
     void _n_supported_();
-    void echo_printlnf();
+    void echo_printlnf(std::string);
     void remove_character(char * , char );
     struct dirent *direntfunction;
     fchar *_file_path_cd_function = getenv("HOME");

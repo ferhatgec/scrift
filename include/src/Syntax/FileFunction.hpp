@@ -7,7 +7,7 @@ class FCDFunction : public FGetUsername {
 public:
     FCDFunction();
     ~FCDFunction();
-    virtual void CDFunctionInit();
+    virtual void CDFunctionInit(std::string);
     virtual boolean FileExists(const std::string &);
 };
 
@@ -16,14 +16,14 @@ class FMKDirFunction : public FCDFunction {
 public:
     FMKDirFunction();
     ~FMKDirFunction();
-    virtual void MKDirFunctionInit();
+    virtual void MKDirFunctionInit(std::string);
 };
 
 class FCreateFileFunction : public FMKDirFunction {
 public:
     FCreateFileFunction();
     ~FCreateFileFunction();
-    virtual void CreateFileFunctionInit();
+    virtual void CreateFileFunctionInit(std::string);
 };
 
 #endif // FILE_FUNCTION_HPP

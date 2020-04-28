@@ -54,13 +54,11 @@ FCommand::remove_character(char * _str, char ptr)
 }
 
 void
-FCommand::echo_printlnf()
-{
-    fchar* _character = new fchar;
-    std::cin >> _character; 
-    if(_character != nullptr)
+FCommand::echo_printlnf(std::string name)
+{ 
+    if(name != "")
     {
-    printlnf(_character);
+    printlnf(name.c_str());
     slashn
     } else  {
         printerror("ERR: CHAR IS NULL", 13, "ERR:CHISNULL");
@@ -204,13 +202,11 @@ FCommand::chartostring(std::string const & s, fchar *a)
 }
 
 void 
-FCommand::_run_all_func()
+FCommand::_run_all_func(std::string name)
 {
-    std::string _file;
-    std::getline(std::cin >> std::ws, _file);
     std::string _dir;
     _dir.append("/usr/bin/");
-    _dir.append(_file);
+    _dir.append(name);
     system(_dir.c_str());
 }
 
@@ -229,8 +225,6 @@ FCommand::plus_num(uinteger64 first_num, uinteger64 sec_num)
 void
 FCommand::_generated_hash_string(integer size)
 {
-    std::cout << "Enter size : ";
-    std::cin >> size;
     slashn
     std::string str;
     for (integer i = 0; i < size; i++)
