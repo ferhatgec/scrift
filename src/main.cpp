@@ -30,6 +30,7 @@
 #include "../include/src/Syntax/GetNameFunction.hpp"
 
 // Variables 
+FMain *main_function = new FMain();
 static integer argc;
 static fchar* argv[128];
 integer x;
@@ -61,7 +62,7 @@ FMain::FMain()
 FMain::~FMain()
 {
     delete terminalstr,  helpstr, kernel,  _username, _os_kernel_, _run_file, _run_file_, _file_def_path,
-    _ech_str, _h_str, argv, main_, mkdirfunction, filefunction, userhostname;
+    _ech_str, _h_str, argv, main_, mkdirfunction, filefunction, userhostname, main_function;
 }   
 
 
@@ -78,13 +79,9 @@ FMain::usage()
 void
 FMain::Shell()
 {
-    testa:test = 1;
-    argc = 0;
 
-    
     terminalstr->Terminal();
     std::cin >> _h_str; // ws -> whitespace
-    test = 2;
     slashn
     if(_h_str == "help" || _h_str == "-h")
     {
@@ -151,7 +148,6 @@ FMain::Shell()
     else {
         printlnf("This command is not found!");
         slashn 
-        test = 3;
     }
 }
 
@@ -159,10 +155,9 @@ FMain::Shell()
 
 integer main(integer argc, fchar* argv[])
 {
-    std::shared_ptr<FMain> fmain = std::make_shared<FMain>(); 
     helpstr->hello();
     while(argc = 2) {    
-        fmain->Shell();
+        main_function->Shell();
     }
     return 0;
 }
