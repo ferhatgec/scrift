@@ -59,7 +59,6 @@ public:
     void list_dir(boolean, boolean, boolean);
     void list_file(boolean);
     void list_direc(boolean);
-    void create_file();
     std::string chartostring(std::string const &, fchar * );
     void plus_num(uinteger64, uinteger64);
     void _generated_hash_string(integer);

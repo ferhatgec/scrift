@@ -215,25 +215,6 @@ FCommand::_run_all_func()
 }
 
 void
-FCommand::create_file()
-{
-    fchar* _file_name = new fchar;
-    std::cin >> _file_name;
-    slashn
-    fchar *_file_dir = new fchar;
-    std::string _file_dir_string;
-    _file_dir_string.append(_file_path_cd_function);
-    _file_dir_string.append(slash);
-    _file_dir_string.append(_file_name);
-    _file_dir_string.append(txt);
-    chartostring(_file_dir_string, _file_dir);
-    std::ofstream _file(_file_dir_string, std::ios::app);
-    _file << ("This file is created by Scrift.\n");
-    _file.close();
-}
-
-
-void
 FCommand::plus_num(uinteger64 first_num, uinteger64 sec_num)
 {
         printlnf("First number: ");
