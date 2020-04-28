@@ -131,18 +131,6 @@ FMain::Shell()
         argc = 0;
     }
     else if(_h_str  == "setlocale_system" || _h_str == "slcl_sys"){argc = 1; main_->_set_locale(); argc = 0;}  
-    
-    else if(_h_str == "run" || _h_str == "#/")
-    {
-        //scanf("%s", _run_file_);
-        #ifdef __linux__
-        #elif _WIN32
-        printlnf("Sorry, Fegeya Scrift not supporting Windows NT");
-        #elif _WIN64
-        printlnf("Sorry, Fegeya Scrift not supporting Windows NT");
-        #else
-        #endif
-    }
     else if(_h_str == "ip" || _h_str == "myip"){argc = 1; main_->_your_ip(); argc = 0;} 
     }
 }

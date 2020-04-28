@@ -75,20 +75,19 @@ FCDFunction::CDFunctionInit()
 
 FMKDirFunction::FMKDirFunction()
 {
-
+    input_char = new fchar;
 }
 
 
 FMKDirFunction::~FMKDirFunction()
 {
-
+    delete input_char;
 }
 
 
 void
 FMKDirFunction::MKDirFunctionInit()
 {
-    input_char = new fchar;
     std::cin >> input_char; // I will use std::getline.
     path_directory.append(command->_file_path_cd_function); // default getenv("HOME")
     path_directory.append("/"); // ex: /home/username -> getenv("HOME") -> /home/username'/'
@@ -104,28 +103,26 @@ FMKDirFunction::MKDirFunctionInit()
 }
 FCreateFileFunction::FCreateFileFunction() 
 {
-
+    file_name = new fchar;
+    file_directory = new fchar;
 }
 
 FCreateFileFunction::~FCreateFileFunction()
 {
-    
+     delete file_path, file_name, file_directory_string, file_directory;
 }
 
 void
 FCreateFileFunction::CreateFileFunctionInit()
 {
-    file_name = new fchar;
     std::cin >> file_name;
-    
-    file_directory = new fchar;
     file_directory_string.append(command->_file_path_cd_function);
     file_directory_string.append(slash);
     file_directory_string.append(file_name);
     file_directory_string.append(txt); 
     command->chartostring(file_directory_string, file_directory);
     std::ofstream file(file_directory_string, std::ios::app);
-    file << "This file is created in Scrift";
+    file << "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n Eleifend mi in nulla posuere sollicitudin aliquam.";
     slashn
     file.close();
 }
