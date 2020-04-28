@@ -43,6 +43,7 @@ std::string _h_str;
 FStructure *terminalstr = new FStructure();
 fkernel *kernel = new fkernel;
 FCDFunction *cdfunction = new FCDFunction();
+FMKDirFunction *mkdirfunction = new FMKDirFunction();
 FMain::FMain()
 {
 
@@ -52,7 +53,7 @@ FMain::FMain()
 FMain::~FMain()
 {
     delete terminalstr,  helpstr, kernel,  _username, _os_kernel_, _run_file, _run_file_, _file_def_path,
-    _ech_str, _h_str, argv, main_;
+    _ech_str, _h_str, argv, main_, mkdirfunction;
 }   
 
 
@@ -79,6 +80,11 @@ FMain::Shell()
     {
         argc = 1;
         helpstr->help();
+        argc = 0;
+    }
+    else if(_h_str == "mkdir" || _h_str == "createdir") {
+        argc = 1;
+        mkdirfunction->MKDirFunctionInit();
         argc = 0;
     }
     else if(_h_str == "clear" || _h_str == "clear!!!") {argc = 1; main_->clear_shell(); argc = 0;}

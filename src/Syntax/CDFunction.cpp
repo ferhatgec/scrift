@@ -17,6 +17,8 @@ FMain *fmain = new FMain();
 fprinterror *printerror = new fprinterror;
 std::string str;
 fchar *file_path = new fchar;
+fchar* input_char;
+std::string path_directory;
 
 
 FCDFunction::FCDFunction()
@@ -64,4 +66,36 @@ FCDFunction::CDFunctionInit()
         }
     } 
     return;         
+}
+
+
+
+FMKDirFunction::FMKDirFunction()
+{
+
+}
+
+
+FMKDirFunction::~FMKDirFunction()
+{
+
+}
+
+
+void
+FMKDirFunction::MKDirFunctionInit()
+{
+    input_char = new fchar;
+    std::cin >> input_char; // I will use std::getline.
+    path_directory.append(command->_file_path_cd_function); // default getenv("HOME")
+    path_directory.append("/"); // ex: /home/username -> getenv("HOME") -> /home/username'/'
+    path_directory.append(input_char); // maybe directory is exist or directory is not exist.
+    if(mkdir(path_directory.c_str(), 0777) == -1 ) {// 0777 is user permission number.
+        printerror->PrintError("Directory is exist or you're not root");
+        slashn
+    } else {
+            printlnf("Success");
+            slashn
+    }
+    return;
 }

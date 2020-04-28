@@ -11,4 +11,14 @@ public:
     virtual boolean FileExists(const std::string &);
 };
 
+
+class FMKDirFunction : public FCDFunction {
+public:
+    FMKDirFunction();
+    ~FMKDirFunction();
+    virtual void MKDirFunctionInit();
+};
+
+
+
 #endif // CD_FUNCTION_HPP
