@@ -20,6 +20,9 @@ fchar *file_path = new fchar;
 fchar* input_char;
 std::string path_directory;
 
+fchar* file_name;
+fchar* file_directory;
+std::string file_directory_string;
 
 FCDFunction::FCDFunction()
 {
@@ -98,4 +101,29 @@ FMKDirFunction::MKDirFunctionInit()
             slashn
     }
     return;
+}
+FCreateFileFunction::FCreateFileFunction() 
+{
+
+}
+
+FCreateFileFunction::~FCreateFileFunction()
+{
+}
+void
+FCreateFileFunction::CreateFileFunctionInit()
+{
+    file_name = new fchar;
+    std::cin >> file_name;
+    
+    file_directory = new fchar;
+    file_directory_string.append(command->_file_path_cd_function);
+    file_directory_string.append(slash);
+    file_directory_string.append(file_name);
+    file_directory_string.append(txt); 
+    command->chartostring(file_directory_string, file_directory);
+    std::ofstream file(file_directory_string, std::ios::app);
+    file << "This file is created in Scrift";
+    slashn
+    file.close();
 }

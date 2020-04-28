@@ -19,6 +19,11 @@ public:
     virtual void MKDirFunctionInit();
 };
 
-
+class FCreateFileFunction : public FMKDirFunction {
+public:
+    FCreateFileFunction();
+    ~FCreateFileFunction();
+    virtual void CreateFileFunctionInit();
+};
 
 #endif // CD_FUNCTION_HPP

@@ -44,6 +44,7 @@ FStructure *terminalstr = new FStructure();
 fkernel *kernel = new fkernel;
 FCDFunction *cdfunction = new FCDFunction();
 FMKDirFunction *mkdirfunction = new FMKDirFunction();
+FCreateFileFunction *filefunction = new FCreateFileFunction();
 FMain::FMain()
 {
 
@@ -53,7 +54,7 @@ FMain::FMain()
 FMain::~FMain()
 {
     delete terminalstr,  helpstr, kernel,  _username, _os_kernel_, _run_file, _run_file_, _file_def_path,
-    _ech_str, _h_str, argv, main_, mkdirfunction;
+    _ech_str, _h_str, argv, main_, mkdirfunction, filefunction;
 }   
 
 
@@ -126,7 +127,7 @@ FMain::Shell()
     else if(_h_str == "fetcheya" || _h_str == "-f"){argc = 1; kernel->KernelName(); argc = 0;}
     else if(_h_str == "ctxt" || _h_str == "createtxt"){
         argc = 1;
-        main_->create_file();
+        filefunction->CreateFileFunctionInit();
         argc = 0;
     }
     else if(_h_str  == "setlocale_system" || _h_str == "slcl_sys"){argc = 1; main_->_set_locale(); argc = 0;}  
