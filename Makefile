@@ -5,7 +5,8 @@
 # 
 #
 SRCSYNTAXDIREC = ./src/Syntax/
-
+INCLUDEDIR = ./include/src/
+CFLAGS = -c -Wall -I$(INCLUDEDIR)
 SRCDIREC = ./src/
 GPP = g++
 COMP = g++ -c
@@ -14,9 +15,7 @@ BUILDDIR = ./build/
 # CLEAN
 CLEANALL = scrift
 CLEAN = *.o
-HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o
-
-
+HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o RunFunction.o
 
 ifeq ($(OS),Windows_NT)
 	echo Windows_NT is not supported!
@@ -46,20 +45,11 @@ nall: cleanall
 
 headersfile: $(HEADERFILE)
 
-CommandFunc.o:$(SRCSYNTAXDIREC)CommandFunc.cpp
-		$(HECOMP) CommandFunc.o
-		echo Successfuly creating CommandFunc.o
-
-GetNameFunction.o:$(SRCSYNTAXDIREC)GetNameFunction.cpp
-		$(HECOMP) GetNameFunction.o
-		echo Successfuly creating GetNameFunction.o
-
-FileFunction.o:$(SRCSYNTAXDIREC)FileFunction.cpp
-		$(HECOMP) FileFunction.o
-		echo Successfuly creating FileFunction.o
+%.o: $(SRCSYNTAXDIREC)%.cpp
+	$(GPP) $(CFLAGS) -c $< -o $@
 
 main: $(SRCDIREC)main.cpp
-	g++  $< $(HEADERFILE) -o $(BUILDDIR)scrift 
+	$(GPP)  $< $(HEADERFILE) -o $(BUILDDIR)scrift 
 	echo Scrift building successfuly!
 
 run: 

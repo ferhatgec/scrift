@@ -51,6 +51,7 @@ typedef bool boolean;
 typedef int integer;
 typedef char fchar;
 typedef va_list vlist;
+
 template<typename Str>
 
 #undef printlnf

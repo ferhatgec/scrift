@@ -153,47 +153,7 @@ FCommand::list_file(boolean _home)
         }
         closedir(dir);
 }
-void
-FCommand::list_dir(boolean _home, boolean _file, boolean _dir) // default value
-{
-        integer files = 0;
-        struct stat filestat;
-        struct dirent *entry = direntfunction;
-        DIR *dir;
 
-        if(_home != false) {dir = opendir((getenv("HOME"), "/", _file_path_cd_function)); /*For Linux and *nix*/
-        } else if(_home == false || _home == NULL)
-        {
-            dir = opendir(getenv("HOME"));
-        }
-        
-        if (dir == NULL) 
-        {
-            printerror("ERR:DIRECTORY NOT FOUND", 12, "ERR:DIRNFND");
-            return;
-        }
-        while ((entry = readdir(dir))) 
-        {
-            files++;
-            char * _str = entry->d_name;
-            remove_character(_str, '.');
-            remove_character(_str, '..');
-            //printf("%d", entry->d_type, "\n");
-            //printf("%d");
-          //  printf("\033[0;34m");
-            stat(entry->d_name,&filestat);
-            if(entry->d_type == DT_DIR) {
-                BOLD_RED_COLOR
-                printf("%4s: %s\n","Dir",entry->d_name); 
-            
-            } else{
-                BOLD_YELLOW_COLOR
-                printf("%4s: %s\n"," File",entry->d_name);
-            } 
-            BLACK_COLOR
-        }
-        closedir(dir);
-}
 
 std::string 
 FCommand::chartostring(std::string const & s, fchar *a)
