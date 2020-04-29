@@ -121,7 +121,7 @@ FCreateFileFunction::CreateFileFunctionInit(std::string name)
     command->chartostring(file_directory_string, file_directory);
     std::ofstream file(file_directory_string, std::ios::app);
     file << "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n Eleifend mi in nulla posuere sollicitudin aliquam.";
-    slashn
+    printlnf("File created successfuly\n");
     file.close();
 }
 
