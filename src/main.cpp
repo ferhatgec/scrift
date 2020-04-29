@@ -29,7 +29,7 @@
 #include "../include/src/Syntax/KernelName.hpp"
 #include "../include/src/Syntax/HelpFunction.hpp"
 #include "../include/src/Syntax/GetNameFunction.hpp"
-
+#include "../include/src/Syntax/RunFunction.hpp"
 // Variables 
 FMain *main_function = new FMain();
 
@@ -51,8 +51,9 @@ FCreateFileFunction *filefunction = new FCreateFileFunction();
 FGetUsername *userhostname = new FGetUsername(); 
 fhomefunction *homefunction = new fhomefunction;
 FLSFunction *listdirectoryfunction = new FLSFunction();
+FRunFunction *runfunction = new FRunFunction();
 
-// TEST VARIABLES 
+// TEST VARIABLES (I will delete)
 fchar* testcharacter = new fchar;
 integer test;
 bool tesssst;
@@ -66,7 +67,7 @@ FMain::~FMain()
 {
     delete terminalstr,  helpstr, kernel,  _username, _os_kernel_, _run_file, _run_file_, _file_def_path,
     _ech_str, _h_str, argv, main_, mkdirfunction, filefunction, userhostname, main_function,
-    homefunction, listdirectoryfunction;
+    homefunction, listdirectoryfunction, runfunction;
 }   
 
 
@@ -119,7 +120,7 @@ FMain::Shell()
     else if(_h_str.rfind("scr", 0) == 0)
     {
         strfor_h_str = _h_str.erase(0,4);
-        main_->_run_all_func(strfor_h_str);
+        runfunction->RunFunction(strfor_h_str);
     }
     else if(_h_str == "lsd" || _h_str == "lsdir")
     {

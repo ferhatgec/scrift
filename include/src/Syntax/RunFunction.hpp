@@ -9,7 +9,7 @@ public:
     ~FRunFunction();
     virtual void RunFunctionInit();
     virtual boolean RunFunctionExists();
-    virtual void RunFunction();
+    virtual void RunFunction(std::string);
 };
 
 #endif // RUN_FUNCTION_HPP_
