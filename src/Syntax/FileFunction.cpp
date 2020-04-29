@@ -12,6 +12,9 @@
 #include <iostream>
 #include <unistd.h>
 #include <pwd.h>
+#include <sys/stat.h>
+#include <dirent.h>
+
 FCommand *command = new FCommand();
 FMain *fmain = new FMain();
 fprinterror *printerror = new fprinterror;
@@ -24,6 +27,9 @@ fchar* file_name;
 fchar* file_directory;
 std::string file_directory_string;
 std::string homedirectory;
+struct stat filestat;
+struct dirent *entryname;
+fchar *string;
 FCDFunction::FCDFunction()
 {
     
@@ -133,4 +139,52 @@ fhomefunction::GetHome()
     homedirectory.append("/home/");
     homedirectory.append(password->pw_name);
     std::strcpy(command->_file_path_cd_function, homedirectory.c_str());
+}
+
+
+FLSFunction::FLSFunction()
+{
+    string = new fchar;
+}
+
+FLSFunction::~FLSFunction()
+{
+}
+
+void
+FLSFunction::InitLSFunction()
+{
+
+}
+
+boolean
+FLSFunction::DirectoryExists()
+{
+
+}
+
+
+void
+FLSFunction::LSFunction()
+{
+
+    DIR *directory;
+    directory = opendir((getenv("HOME"), "/", command->_file_path_cd_function));
+    if(directory == NULL) {
+        printerror->PrintError("ERR: DIRECTORY NOT FOUND OR NULL");
+        return;
+    }
+    while ((entryname = readdir(directory))) 
+    {
+        stat(entryname->d_name, &filestat);
+        if(entryname->d_type == DT_DIR) {// DT_DIR -> directory
+            BOLD_RED_COLOR
+            printlnf("%4s: %s\n", "[Dir]", entryname->d_name);
+        } else {
+            BOLD_YELLOW_COLOR
+            printlnf("%4s: %s\n", "[File]", entryname->d_name);
+        }
+        BLACK_COLOR // Reset
+    }
+    closedir(directory);
 }

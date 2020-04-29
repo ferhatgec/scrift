@@ -50,6 +50,7 @@ FMKDirFunction *mkdirfunction = new FMKDirFunction();
 FCreateFileFunction *filefunction = new FCreateFileFunction();
 FGetUsername *userhostname = new FGetUsername(); 
 fhomefunction *homefunction = new fhomefunction;
+FLSFunction *listdirectoryfunction = new FLSFunction();
 
 // TEST VARIABLES 
 fchar* testcharacter = new fchar;
@@ -65,7 +66,7 @@ FMain::~FMain()
 {
     delete terminalstr,  helpstr, kernel,  _username, _os_kernel_, _run_file, _run_file_, _file_def_path,
     _ech_str, _h_str, argv, main_, mkdirfunction, filefunction, userhostname, main_function,
-    homefunction;
+    homefunction, listdirectoryfunction;
 }   
 
 
@@ -107,8 +108,7 @@ FMain::Shell()
     else if(_h_str == "username" || _h_str == "uname") {userhostname->InitUsername();} 
     else if(_h_str == "ls" || _h_str == "dir") // list directory
     {
-       fchar *_char_cin;
-       main_->list_dir(true, true, true); 
+       listdirectoryfunction->LSFunction();
        slashn   
     }
     else if(_h_str == "lsf" || _h_str == "lsfile")

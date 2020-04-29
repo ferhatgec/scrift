@@ -26,6 +26,16 @@ public:
     virtual void CreateFileFunctionInit(std::string);
 };
 
+class FLSFunction : public FCDFunction {
+public:
+    FLSFunction();
+    ~FLSFunction();
+    void InitLSFunction();
+    virtual boolean DirectoryExists();
+    virtual void LSFunction();
+};
+
+
 typedef struct {
 public:
     virtual void GetHome();
