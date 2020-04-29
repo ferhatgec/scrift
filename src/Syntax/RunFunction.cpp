@@ -1,3 +1,3 @@
-#include "../../include/src/main.h"
-#include "../../include/src/Syntax/RunFunction.hpp"
+#include <main.h>
+#include <Syntax/RunFunction.hpp>
 

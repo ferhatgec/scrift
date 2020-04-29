@@ -1,5 +1,5 @@
-#include "../../include/src/Syntax/CommandFunc.h"
-#include "../../include/src/Syntax/GetNameFunction.hpp"
+#include <Syntax/CommandFunc.h>
+#include <Syntax/GetNameFunction.hpp>
 #include <pwd.h>
 
 FCommand *terminal = new FCommand();

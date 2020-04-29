@@ -9,16 +9,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "../../include/src/Syntax/GetNameFunction.hpp"
+#include <Syntax/GetNameFunction.hpp>
 #include <dirent.h>
 #include <sys/stat.h>
 #include <unistd.h>
 #include <limits.h>
-#include "../../include/src/main.h"
-#include "../../include/src/Syntax/CommandFunc.h"
+#include <main.h>
+#include <Syntax/CommandFunc.h>
 #include <pwd.h>
 #include <string.h>
-#include "../../include/src/synflang.hpp"
+#include <synflang.hpp>
 #include <experimental/filesystem>
 namespace filesys = std::experimental::filesystem;
 
