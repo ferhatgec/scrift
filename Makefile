@@ -39,6 +39,8 @@ git:
 	git commit -a 
 	git push origin master
 
+push:
+	git push origin master
 
 nall: cleanall
 
