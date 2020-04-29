@@ -32,6 +32,14 @@ all: headersfile main clean
 
 runall: all run
 
+gra: all run git 
+
+git: 
+	git add .
+	git commit -a 
+	git push origin master
+
+
 nall: cleanall
 
 headersfile: $(HEADERFILE)
