@@ -11,7 +11,7 @@
 #include "../../include/src/Syntax/MkdirFunction.hpp"
 #include <iostream>
 #include <unistd.h>
-
+#include <pwd.h>
 FCommand *command = new FCommand();
 FMain *fmain = new FMain();
 fprinterror *printerror = new fprinterror;
@@ -123,4 +123,15 @@ FCreateFileFunction::CreateFileFunctionInit(std::string name)
     file << "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n Eleifend mi in nulla posuere sollicitudin aliquam.";
     slashn
     file.close();
+}
+
+void
+fhomefunction::GetHome() 
+{
+    uid_t uid = geteuid();
+    struct passwd *password = getpwuid(uid);
+    std::string homedirectory;
+    homedirectory.append("/home/");
+    homedirectory.append(password->pw_name);
+    std::strcpy(command->_file_path_cd_function, homedirectory.c_str());
 }

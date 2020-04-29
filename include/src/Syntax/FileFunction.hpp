@@ -26,4 +26,10 @@ public:
     virtual void CreateFileFunctionInit(std::string);
 };
 
+typedef struct {
+public:
+    virtual void GetHome();
+} fhomefunction;
+
+
 #endif // FILE_FUNCTION_HPP

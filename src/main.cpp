@@ -49,6 +49,7 @@ FCDFunction *cdfunction = new FCDFunction();
 FMKDirFunction *mkdirfunction = new FMKDirFunction();
 FCreateFileFunction *filefunction = new FCreateFileFunction();
 FGetUsername *userhostname = new FGetUsername(); 
+fhomefunction *homefunction = new fhomefunction;
 
 // TEST VARIABLES 
 fchar* testcharacter = new fchar;
@@ -63,7 +64,8 @@ FMain::FMain()
 FMain::~FMain()
 {
     delete terminalstr,  helpstr, kernel,  _username, _os_kernel_, _run_file, _run_file_, _file_def_path,
-    _ech_str, _h_str, argv, main_, mkdirfunction, filefunction, userhostname, main_function;
+    _ech_str, _h_str, argv, main_, mkdirfunction, filefunction, userhostname, main_function,
+    homefunction;
 }   
 
 
@@ -92,7 +94,7 @@ FMain::Shell()
         mkdirfunction->MKDirFunctionInit(strfor_h_str);
     }
     else if(_h_str == "clear" || _h_str == "clear!!!") {main_->clear_shell();}
-    else if (_h_str == "home" || _h_str == "default") {}
+    else if (_h_str == "home" || _h_str == "default") {homefunction->GetHome();}
     else if(_h_str.rfind("printlnf") == 0){
         strfor_h_str = _h_str.erase(0, 9);
         main_->echo_printlnf(strfor_h_str); 
