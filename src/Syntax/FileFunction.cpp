@@ -23,7 +23,7 @@ std::string path_directory;
 fchar* file_name;
 fchar* file_directory;
 std::string file_directory_string;
-
+std::string homedirectory;
 FCDFunction::FCDFunction()
 {
     
@@ -33,7 +33,7 @@ FCDFunction::FCDFunction()
 
 FCDFunction::~FCDFunction()
 {
-    delete fmain, printerror, command, str;
+    delete fmain, printerror, command, str, homedirectory;
 }
 
 
@@ -130,7 +130,6 @@ fhomefunction::GetHome()
 {
     uid_t uid = geteuid();
     struct passwd *password = getpwuid(uid);
-    std::string homedirectory;
     homedirectory.append("/home/");
     homedirectory.append(password->pw_name);
     std::strcpy(command->_file_path_cd_function, homedirectory.c_str());
