@@ -32,7 +32,7 @@ all: headersfile main clean
 
 runall: all run
 
-gra: all run git 
+gra: runall git 
 
 git: 
 	git add .
