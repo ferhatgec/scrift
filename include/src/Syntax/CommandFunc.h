@@ -55,7 +55,6 @@ public:
     void _set_locale();
 
     // Directory
-    void _run_all_func(std::string);
     void list_file(boolean);
     void list_direc(boolean);
     std::string chartostring(std::string const &, fchar * );

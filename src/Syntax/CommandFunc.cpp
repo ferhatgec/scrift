@@ -161,14 +161,6 @@ FCommand::chartostring(std::string const & s, fchar *a)
     return s + a;
 }
 
-void 
-FCommand::_run_all_func(std::string name)
-{
-    std::string _dir;
-    _dir.append("/usr/bin/");
-    _dir.append(name);
-    system(_dir.c_str());
-}
 
 void
 FCommand::plus_num(uinteger64 first_num, uinteger64 sec_num)
