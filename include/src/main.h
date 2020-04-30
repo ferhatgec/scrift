@@ -26,7 +26,6 @@ public:
     FMain();
     ~FMain();
     virtual void Shell();
-   // virtual void Log();
     boolean    _home;
     std::string header_string;
     std::string str;
