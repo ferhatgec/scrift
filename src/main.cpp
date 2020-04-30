@@ -55,10 +55,8 @@ FLSFunction *listdirectoryfunction = new FLSFunction();
 FRunFunction *runfunction = new FRunFunction();
 FReadFileFunction *readfilefunction = new FReadFileFunction();
 faddtextfunction *fileaddtextfunction = new faddtextfunction;
-// TEST VARIABLES (I will delete)
-fchar* testcharacter = new fchar;
-integer test;
-bool tesssst;
+
+
 FMain::FMain()
 {
 
@@ -71,8 +69,6 @@ FMain::~FMain()
     _ech_str, _h_str, argv, main_, mkdirfunction, filefunction, userhostname, main_function,
     homefunction, listdirectoryfunction, runfunction, readfilefunction, fileaddtextfunction;
 }   
-
-
 
 void
 FMain::Shell()
