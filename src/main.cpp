@@ -24,6 +24,7 @@
 #include <stdio.h>
 #include "../include/src/Syntax/CommandFunc.h"
 #include <locale.h>
+#include "../include/src/Syntax/Linker.hpp"
 #include "../include/src/synflang.hpp"
 #include "../include/src/Syntax/FileFunction.hpp"
 #include "../include/src/Syntax/KernelName.hpp"
@@ -31,7 +32,9 @@
 #include "../include/src/Syntax/GetNameFunction.hpp"
 #include "../include/src/Syntax/RunFunction.hpp"
 // Variables 
+
 using namespace FileFunction;
+using namespace FLinker;
 FMain *main_function = new FMain();
 
 static fchar* argv[128];
@@ -43,7 +46,6 @@ static fchar *_file_def_path;
 static  fchar *_username, *_os_kernel_,  *_run_file, *_run_file_;
 FCommand *main_ = new FCommand();
 fhelp *helpstr = new fhelp;
-std::string _h_str;
 FStructure *terminalstr = new FStructure();
 fkernel *kernel = new fkernel;
 FCDFunction *cdfunction = new FCDFunction();
@@ -55,7 +57,7 @@ FLSFunction *listdirectoryfunction = new FLSFunction();
 FRunFunction *runfunction = new FRunFunction();
 FReadFileFunction *readfilefunction = new FReadFileFunction();
 faddtextfunction *fileaddtextfunction = new faddtextfunction;
-
+FLinkerAndSign *linkersign = new FLinkerAndSign();
 
 FMain::FMain()
 {
@@ -67,19 +69,26 @@ FMain::~FMain()
 {
     delete terminalstr,  helpstr, kernel,  _username, _os_kernel_, _run_file, _run_file_, _file_def_path,
     _ech_str, _h_str, argv, main_, mkdirfunction, filefunction, userhostname, main_function,
-    homefunction, listdirectoryfunction, runfunction, readfilefunction, fileaddtextfunction;
+    homefunction, listdirectoryfunction, runfunction, readfilefunction, fileaddtextfunction,
+    linkersign;
 }   
+
 
 void
 FMain::Shell()
 {
     terminalstr->Terminal(); 
     std::getline(std::cin, _h_str); // ws -> whitespace
+    
     if (_h_str != "") { //NULL
     // HELP FUNCTION
     if(_h_str == "help" || _h_str == "-h")
     {
         helpstr->help();
+    }
+    if(_h_str.find("&&", 0) == 0)
+    {
+        printlnf("Found!\n");
     }
     // ADD TEXT FUNCTION
     else if(_h_str.rfind("addtext", 0) == 0) {
@@ -179,7 +188,7 @@ FMain::Shell()
     else if(_h_str  == "setlocale_system" || _h_str == "slcl_sys"){main_->_set_locale();}  
     // IP FUNCTION
     else if(_h_str == "ip" || _h_str == "myip"){main_->_your_ip();} 
-    else {
+    else { 
         printlnf("This command is not found!");
         slashn 
     }
@@ -190,6 +199,7 @@ FMain::Shell()
 
 integer main(integer argc, fchar* argv[])
 {
+
     helpstr->hello();
     while(argc = 2) {    
         main_function->Shell();

@@ -15,7 +15,7 @@ BUILDDIR = ./build/
 # CLEAN
 CLEANALL = scrift
 CLEAN = *.o
-HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o RunFunction.o
+HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o RunFunction.o Linker.o
 
 ifeq ($(OS),Windows_NT)
 	echo Windows_NT is not supported!
@@ -49,7 +49,7 @@ headersfile: $(HEADERFILE)
 	$(GPP) $(CFLAGS) -c $< -o $@
 
 main: $(SRCDIREC)main.cpp
-	$(GPP)  $< $(HEADERFILE) -o $(BUILDDIR)scrift 
+	$(GPP) $< $(HEADERFILE) -o $(BUILDDIR)scrift 
 	echo Scrift building successfuly!
 
 run: 
