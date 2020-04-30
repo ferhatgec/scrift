@@ -22,6 +22,18 @@ typedef struct {
     #endif
     slashn
     }
+    fchar CPUInfo() {
+        printlnf("CPU Core: ");
+        std::cout << sysconf(_SC_NPROCESSORS_ONLN) << std::endl;
+    }
+    fchar RAMInfo() {
+        printlnf("(Long) RAM: ");
+        std::cout << sysconf(_SC_PHYS_PAGES) * sysconf(_SC_PAGE_SIZE) << std::endl;
+        printlnf("(Long) Available: ");
+        std::cout << sysconf(_SC_AVPHYS_PAGES) << std::endl;
+        printlnf("(Long) Available Page Size: ");
+        std::cout << sysconf(_SC_PAGE_SIZE) << std::endl;
+    }
 
 } fkernel;
 

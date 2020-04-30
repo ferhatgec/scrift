@@ -81,14 +81,17 @@ FMain::Shell()
     {
         helpstr->help();
     }
+    // ADD TEXT FUNCTION
     else if(_h_str.rfind("addtext", 0) == 0) {
         strfor_h_str = _h_str.erase(0, 8);
         fileaddtextfunction->AppendLine(strfor_h_str);
     }
+    // NANO ADD TEXT FUNCTION
     else if(_h_str.rfind("nanoaddtext", 0) == 0) {
         strfor_h_str = _h_str.erase(0, 12);
         fileaddtextfunction->DeleteLine(strfor_h_str);
     }
+    // DELETE TEXT FUNCTION
     else if(_h_str.rfind("deletetext", 0) == 0) {
         strfor_h_str = _h_str.erase(0,11);
         fileaddtextfunction->DeleteLine(strfor_h_str);
@@ -145,7 +148,6 @@ FMain::Shell()
     else if(_h_str == "brk" || _h_str == "cls")  {exit(EXIT_SUCCESS);} 
     // USERNAME FUNCTION
     else if(_h_str == "username" || _h_str == "uname") {userhostname->InitUsername();} 
-
     // RUN FUNCTION
     else if(_h_str.rfind("scr", 0) == 0)
     {
@@ -168,7 +170,11 @@ FMain::Shell()
         }
     }
     // SYSTEM INFO FUNCTION
-    else if(_h_str == "fetcheya" || _h_str == "-f"){kernel->KernelName();}
+    else if(_h_str == "fetcheya" || _h_str == "-f"){
+        kernel->KernelName();
+        kernel->CPUInfo();
+        kernel->RAMInfo();
+    }
     // LOCALE FUNCTION
     else if(_h_str  == "setlocale_system" || _h_str == "slcl_sys"){main_->_set_locale();}  
     // IP FUNCTION
