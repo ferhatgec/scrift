@@ -31,6 +31,7 @@
 #include "../include/src/Syntax/GetNameFunction.hpp"
 #include "../include/src/Syntax/RunFunction.hpp"
 // Variables 
+using namespace FileFunction;
 FMain *main_function = new FMain();
 
 static fchar* argv[128];
@@ -53,6 +54,7 @@ fhomefunction *homefunction = new fhomefunction;
 FLSFunction *listdirectoryfunction = new FLSFunction();
 FRunFunction *runfunction = new FRunFunction();
 FReadFileFunction *readfilefunction = new FReadFileFunction();
+faddtextfunction *fileaddtextfunction = new faddtextfunction;
 // TEST VARIABLES (I will delete)
 fchar* testcharacter = new fchar;
 integer test;
@@ -67,7 +69,7 @@ FMain::~FMain()
 {
     delete terminalstr,  helpstr, kernel,  _username, _os_kernel_, _run_file, _run_file_, _file_def_path,
     _ech_str, _h_str, argv, main_, mkdirfunction, filefunction, userhostname, main_function,
-    homefunction, listdirectoryfunction, runfunction, readfilefunction;
+    homefunction, listdirectoryfunction, runfunction, readfilefunction, fileaddtextfunction;
 }   
 
 
@@ -91,6 +93,10 @@ FMain::Shell()
     if(_h_str == "help" || _h_str == "-h")
     {
         helpstr->help();
+    }
+    else if(_h_str.rfind("addtext", 0) == 0) {
+        strfor_h_str = _h_str.erase(0, 8);
+        fileaddtextfunction->AppendLine(strfor_h_str);
     }
     // CREATE FOLDER FUNCTION
     else if(_h_str.rfind("mkdir", 0) == 0) {

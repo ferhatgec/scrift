@@ -3,6 +3,9 @@
 
 #include "GetNameFunction.hpp"
 
+
+namespace FileFunction {
+// CD Function
 class FCDFunction : public FGetUsername {
 public:
     FCDFunction();
@@ -11,7 +14,7 @@ public:
     virtual boolean FileExists(const std::string &);
 };
 
-
+// MKDir Function
 class FMKDirFunction : public FCDFunction {
 public:
     FMKDirFunction();
@@ -19,6 +22,8 @@ public:
     virtual void MKDirFunctionInit(std::string);
 };
 
+
+// Create File Function
 class FCreateFileFunction : public FMKDirFunction {
 public:
     FCreateFileFunction();
@@ -26,6 +31,7 @@ public:
     virtual void CreateFileFunctionInit(std::string);
 };
 
+// ReadFile Function
 class FReadFileFunction : public FCreateFileFunction {
 public:
     FReadFileFunction();
@@ -35,7 +41,7 @@ public:
     virtual void ReadFileFunction(std::string);
 };
 
-
+// List Function
 class FLSFunction : public FCDFunction {
 public:
     FLSFunction();
@@ -45,13 +51,19 @@ public:
     virtual void LSFunction();
 };
 
+typedef struct {
+public:
+    boolean FileExist(const std::string);
+    static void AppendLine(std::string);
+} faddtextfunction;
 
+
+// Home Directory Function
 typedef struct {
 public:
     virtual void GetHome();
 } fhomefunction;
-
-
+};
 
 
 #endif // FILE_FUNCTION_HPP

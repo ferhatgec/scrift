@@ -15,6 +15,9 @@
 #include <sys/stat.h>
 #include <dirent.h>
 #include <fstream>
+
+using namespace FileFunction;
+
 FCommand *command = new FCommand();
 FMain *fmain = new FMain();
 fprinterror *printerror = new fprinterror;
@@ -22,7 +25,7 @@ std::string str;
 fchar *file_path = new fchar;
 fchar* input_char;
 std::string path_directory;
-
+FCDFunction *fcdfunction = new FCDFunction;
 fchar* file_name;
 fchar* file_directory;
 std::string file_directory_string;
@@ -30,6 +33,7 @@ std::string homedirectory;
 struct stat filestat;
 struct dirent *entryname;
 fchar *string;
+
 
 // FCDFUNCTION
 FCDFunction::FCDFunction()
@@ -50,6 +54,15 @@ FCDFunction::FileExists(const std::string &Filename)
 {
     return access(Filename.c_str(), 0 ) == 0;
 }
+
+
+boolean
+faddtextfunction::FileExist(const std::string filename)
+{
+    fcdfunction->FileExists(filename);
+}
+
+
 
 void
 FCDFunction::CDFunctionInit(std::string name)
@@ -130,10 +143,36 @@ FCreateFileFunction::CreateFileFunctionInit(std::string name)
     file_directory_string.append(txt); 
     command->chartostring(file_directory_string, file_directory);
     std::ofstream file(file_directory_string, std::ios::app);
-    file << "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n Eleifend mi in nulla posuere sollicitudin aliquam.";
+    file << "This file created in Scrift";
     printlnf("File created successfuly\n");
     file.close();
 }
+
+
+void
+faddtextfunction::AppendLine(std::string filepathw)
+{
+    std::string line;
+    std::string filepath_with_path;
+    filepath_with_path.append(command->_file_path_cd_function);
+    filepath_with_path.append("/");
+    filepath_with_path.append(filepathw);
+    filepath_with_path.append(txt);
+
+    printlnf("Text : ");
+    std::getline(std::cin, line);
+    std::ofstream file;
+    file.open(filepath_with_path, std::ios::out | std::ios::app);
+    if(file.fail()) {
+        printerror->PrintError("FAIL");
+    }
+
+    file.exceptions(file.exceptions() | std::ios::failbit | std::ifstream::badbit);
+
+    file << line << slashn;
+}
+
+
 
 // READFILEFUNCTION
 FReadFileFunction::FReadFileFunction()
