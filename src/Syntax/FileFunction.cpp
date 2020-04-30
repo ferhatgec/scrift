@@ -14,7 +14,7 @@
 #include <pwd.h>
 #include <sys/stat.h>
 #include <dirent.h>
-
+#include <fstream>
 FCommand *command = new FCommand();
 FMain *fmain = new FMain();
 fprinterror *printerror = new fprinterror;
@@ -30,6 +30,8 @@ std::string homedirectory;
 struct stat filestat;
 struct dirent *entryname;
 fchar *string;
+
+// FCDFUNCTION
 FCDFunction::FCDFunction()
 {
     
@@ -77,7 +79,7 @@ FCDFunction::CDFunctionInit(std::string name)
 }
 
 
-
+// FMKDIRFUNCTION
 FMKDirFunction::FMKDirFunction()
 {
     input_char = new fchar;
@@ -106,6 +108,8 @@ FMKDirFunction::MKDirFunctionInit(std::string name)
     }
     return;
 }
+
+// FCREATEFILEFUNCTION
 FCreateFileFunction::FCreateFileFunction() 
 {
     file_name = new fchar;
@@ -131,6 +135,53 @@ FCreateFileFunction::CreateFileFunctionInit(std::string name)
     file.close();
 }
 
+// READFILEFUNCTION
+FReadFileFunction::FReadFileFunction()
+{
+
+}
+
+FReadFileFunction::~FReadFileFunction() 
+{
+  
+}
+
+void
+FReadFileFunction::ReadFileInit()
+{
+
+}
+
+
+boolean
+FReadFileFunction::ReadFileExists()
+{
+    
+}
+
+void 
+FReadFileFunction::ReadFileFunction(std::string filename)
+{
+    std::string line;
+    std::string path;
+    path.append(command->_file_path_cd_function);
+    path.append("/");
+    path.append(filename);
+    path.append(txt);
+    std::ifstream readfile (path);
+    if (readfile.is_open()) {
+        while (getline(readfile, line))
+        {
+            printlnf(line.c_str());
+            slashn
+        }
+        readfile.close();
+    } else {
+        printerror->PrintError("Unable to open file");
+    }
+}
+
+// FHOMEFUNCTION
 void
 fhomefunction::GetHome() 
 {
@@ -141,7 +192,7 @@ fhomefunction::GetHome()
     std::strcpy(command->_file_path_cd_function, homedirectory.c_str());
 }
 
-
+// FILELSFUNCTION
 FLSFunction::FLSFunction()
 {
     string = new fchar;

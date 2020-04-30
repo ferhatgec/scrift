@@ -26,6 +26,16 @@ public:
     virtual void CreateFileFunctionInit(std::string);
 };
 
+class FReadFileFunction : public FCreateFileFunction {
+public:
+    FReadFileFunction();
+    ~FReadFileFunction();
+    virtual void ReadFileInit();
+    boolean ReadFileExists();
+    virtual void ReadFileFunction(std::string);
+};
+
+
 class FLSFunction : public FCDFunction {
 public:
     FLSFunction();
@@ -40,6 +50,8 @@ typedef struct {
 public:
     virtual void GetHome();
 } fhomefunction;
+
+
 
 
 #endif // FILE_FUNCTION_HPP
