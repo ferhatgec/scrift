@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <Syntax/CommandFunc.h>
 #include <main.h>
+#include <Syntax/RunFunction.hpp>
 #include <Syntax/GetNameFunction.hpp>
 #include <Syntax/FileFunction.hpp>
 #include <Syntax/PrintErrorFunction.hpp>
@@ -33,7 +34,7 @@ std::string homedirectory;
 struct stat filestat;
 struct dirent *entryname;
 fchar *string;
-
+FRunFunction *filerunfunction = new FRunFunction();
 
 // FCDFUNCTION
 FCDFunction::FCDFunction()
@@ -148,6 +149,17 @@ FCreateFileFunction::CreateFileFunctionInit(std::string name)
     file.close();
 }
 
+void
+faddtextfunction::DeleteLine(std::string filename)
+{
+    std::string file_string_path;
+    file_string_path.append("nano ");
+    file_string_path.append(command->_file_path_cd_function);
+    file_string_path.append("/");
+    file_string_path.append(filename);
+    file_string_path.append(txt);
+    filerunfunction->RunFunction(file_string_path); // I will write Scrift based text editor and run in Scrift.
+}
 
 void
 faddtextfunction::AppendLine(std::string filepathw)
@@ -169,7 +181,7 @@ faddtextfunction::AppendLine(std::string filepathw)
 
     file.exceptions(file.exceptions() | std::ios::failbit | std::ifstream::badbit);
 
-    file << line << slashn;
+    file << line << std::endl;
 }
 
 

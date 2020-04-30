@@ -55,6 +55,7 @@ typedef struct {
 public:
     boolean FileExist(const std::string);
     static void AppendLine(std::string);
+    static void DeleteLine(std::string);
 } faddtextfunction;
 
 
