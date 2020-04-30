@@ -25,7 +25,6 @@ class FMain {
 public:
     FMain();
     ~FMain();
-    virtual void usage(); 
     virtual void Shell();
     boolean    _home;
     std::string str;

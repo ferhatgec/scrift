@@ -75,15 +75,6 @@ FMain::~FMain()
 
 
 void
-FMain::usage() 
-{
-    printlnf("Usage-> ./scrift <arguments>\n" 
-       "<arguments> -> fprintln\n"
-       "<arguments> -> var\n");
-}
-
-
-void
 FMain::Shell()
 {
     terminalstr->Terminal(); 
