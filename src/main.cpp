@@ -99,8 +99,8 @@ FMain::Shell()
         mkdirfunction->MKDirFunctionInit(strfor_h_str);
     }
     // READ TEXT FUNCTION
-    else if (_h_str.find("readtxt", 0) == 0) {
-        strfor_h_str = _h_str.erase(0,8);
+    else if (_h_str.find("readtext", 0) == 0) {
+        strfor_h_str = _h_str.erase(0,9);
         readfilefunction->ReadFileFunction(strfor_h_str);
     }
     // CD FUNCTION

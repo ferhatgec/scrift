@@ -182,6 +182,7 @@ faddtextfunction::AppendLine(std::string filepathw)
     file.exceptions(file.exceptions() | std::ios::failbit | std::ifstream::badbit);
 
     file << line << std::endl;
+    printlnf("Done\n");
 }
 
 
