@@ -229,7 +229,7 @@ FReadFileFunction::ReadFileFunction(std::string filename)
         }
         readfile.close();
     } else {
-        printerror->PrintError("Unable to open file");
+        printerror->PrintError("Unable to open file\n");
     }
 }
 
