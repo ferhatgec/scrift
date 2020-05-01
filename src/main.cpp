@@ -36,15 +36,8 @@
 
 using namespace FileFunction;
 using namespace FLinker;
-FMain *main_function = new FMain();
 
-static fchar* argv[128];
-integer x;
-static integer8 num_str_;
-static fchar *_ech_str;
-static uinteger64 fn, sn;
-static fchar *_file_def_path;
-static  fchar *_username, *_os_kernel_,  *_run_file, *_run_file_;
+FMain *main_function = new FMain();
 FCommand *main_ = new FCommand();
 fhelp *helpstr = new fhelp;
 FStructure *terminalstr = new FStructure();
@@ -61,8 +54,6 @@ faddtextfunction *fileaddtextfunction = new faddtextfunction;
 FLinkerAndSign *linkersign = new FLinkerAndSign();
 FeLog *logsystem = new FeLog();
 
-
-
 FMain::FMain()
 {
     
@@ -71,8 +62,7 @@ FMain::FMain()
 
 FMain::~FMain()
 {
-    delete terminalstr,  helpstr, kernel,  _username, _os_kernel_, _run_file, _run_file_, _file_def_path,
-    _ech_str, _h_str, argv, main_, mkdirfunction, filefunction, userhostname, main_function,
+    delete terminalstr,  helpstr, kernel, _h_str, main_, mkdirfunction, filefunction, userhostname, main_function,
     homefunction, listdirectoryfunction, runfunction, readfilefunction, fileaddtextfunction,
     linkersign;
 }   
