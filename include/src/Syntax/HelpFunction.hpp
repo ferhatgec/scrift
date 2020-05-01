@@ -5,6 +5,7 @@
 typest {
 public:
     virtual func help() {
+        BOLD_GREEN_COLOR
         printlnf("Scrift \n"
             "help arguments: \n"
             "printlnf <arg> \n"
@@ -30,6 +31,7 @@ public:
             "clear || clear!!!\n"
             "set_locale_system || slcl_sys\n"
             "ip || myip\n");
+        BLACK_COLOR
     }
     virtual func hello() {
         BOLD_BLUE_COLOR

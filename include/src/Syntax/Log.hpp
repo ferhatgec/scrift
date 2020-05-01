@@ -10,7 +10,9 @@ public:
     ~FeLog();
     virtual func CreateFile();
     virtual func InitFile();
+    virtual func WriteLog(fstr);
     virtual boolean IsExist();
+    virtual func AllofThem();
 };
 
 

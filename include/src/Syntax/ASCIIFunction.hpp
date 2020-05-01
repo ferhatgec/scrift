@@ -26,7 +26,7 @@ public:
     {
         if(InitFile() == true)
         {
-            printlnf("File exists, nice!\n");
+            printlnf("ASCII file exists, nice!\n");
         }
         else {
             createfilefunc->CreateASCIIFileFunction();

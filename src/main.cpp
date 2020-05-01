@@ -187,7 +187,9 @@ FMain::Shell()
     // IP FUNCTION
     else if(_h_str == "ip" || _h_str == "myip"){main_->_your_ip();} 
     else { 
+        RED_COLOR
         printlnf("This command is not found!");
+        BLACK_COLOR
         slashn 
     }
     }
@@ -196,11 +198,14 @@ FMain::Shell()
 
 
 
-integer main(integer argc, fchar* argv[])
+integer main(integer argc)
 {
+    logsystem->AllofThem();
     asciifunction *ascii = new asciifunction;
     ascii->Allofthem();
+
     helpstr->hello();
+
     while(argc = 2) {    
         main_function->Shell();
     }

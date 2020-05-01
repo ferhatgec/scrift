@@ -190,7 +190,6 @@ faddtextfunction::DeleteLine(std::string filename)
     file_string_path.append(command->_file_path_cd_function);
     file_string_path.append("/");
     file_string_path.append(filename);
-    file_string_path.append(txt);
     filerunfunction->RunFunction(file_string_path); // I will write Scrift based text editor and run in Scrift.
 }
 
