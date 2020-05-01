@@ -57,7 +57,7 @@ FGetUsername::InitHostname()
 void
 FStructure::Terminal()
 {
-    fchar* _username;
+    fchar* _username = new fchar;
     BOLD_CYAN_COLOR
     InitUsername();
     printlnf("@");
@@ -69,4 +69,5 @@ FStructure::Terminal()
     BOLD_RED_COLOR
     printlnf(" $# ");
     BLACK_COLOR
+    delete _username;
 }

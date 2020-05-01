@@ -8,6 +8,7 @@ namespace FileFunction {
 // CD Function
 class FCDFunction : public FGetUsername {
 public:
+
     FCDFunction();
     destructor FCDFunction();
     virtual func CDFunctionInit(fstr);
@@ -28,6 +29,7 @@ class FCreateFileFunction : public FMKDirFunction {
 public:
     FCreateFileFunction();
     destructor FCreateFileFunction();
+    virtual func CreateASCIIFileFunction();
     virtual func CreateFileFunctionInit(fstr);
 };
 
@@ -38,6 +40,7 @@ public:
     destructor FReadFileFunction();
     virtual func ReadFileInit();
     boolean ReadFileExists();
+    virtual func ReadASCIIFunction();
     virtual func ReadFileFunction(fstr);
 };
 

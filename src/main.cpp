@@ -30,7 +30,7 @@
 #include "../include/src/Syntax/HelpFunction.hpp"
 #include "../include/src/Syntax/GetNameFunction.hpp"
 #include "../include/src/Syntax/RunFunction.hpp"
-
+#include "../include/src/Syntax/ASCIIFunction.hpp"
 // Variables 
 
 using namespace FileFunction;
@@ -58,7 +58,6 @@ FRunFunction *runfunction = new FRunFunction();
 FReadFileFunction *readfilefunction = new FReadFileFunction();
 faddtextfunction *fileaddtextfunction = new faddtextfunction;
 FLinkerAndSign *linkersign = new FLinkerAndSign();
-
 
 FMain::FMain()
 {
@@ -198,17 +197,20 @@ FMain::Shell()
         slashn 
     }
     }
+    
 }
 
 
 
 integer main(integer argc, fchar* argv[])
 {
-
+    asciifunction *ascii = new asciifunction;
+    ascii->Allofthem();
     helpstr->hello();
     while(argc = 2) {    
         main_function->Shell();
     }
+    
     return 0;
 }
 

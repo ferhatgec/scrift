@@ -6,7 +6,7 @@
 #
 SRCSYNTAXDIREC = ./src/Syntax/
 INCLUDEDIR = ./include/src/
-CFLAGS = -c -Wall -I$(INCLUDEDIR)
+CFLAGS = -c -Wall  -I$(INCLUDEDIR)
 SRCDIREC = ./src/
 GPP = g++
 COMP = g++ -c

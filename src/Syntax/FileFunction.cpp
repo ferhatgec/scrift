@@ -1,4 +1,4 @@
-
+#include "Syntax/ASCIIFunction.hpp"
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -19,6 +19,7 @@
 
 using namespace FileFunction;
 
+
 FCommand *command = new FCommand();
 FMain *fmain = new FMain();
 fprinterror *printerror = new fprinterror;
@@ -35,7 +36,7 @@ struct stat filestat;
 struct dirent *entryname;
 fchar *string;
 FRunFunction *filerunfunction = new FRunFunction();
-
+asciifunction *ascii = new asciifunction;
 // FCDFUNCTION
 FCDFunction::FCDFunction()
 {
@@ -46,7 +47,7 @@ FCDFunction::FCDFunction()
 
 FCDFunction::~FCDFunction()
 {
-    delete fmain, printerror, command, str, homedirectory;
+    delete fmain, printerror, command, str, homedirectory, ascii;
 }
 
 
@@ -136,7 +137,7 @@ FCreateFileFunction::~FCreateFileFunction()
 }
 
 void
-FCreateFileFunction::CreateFileFunctionInit(std::string name)
+FCreateFileFunction::CreateFileFunctionInit(fstr name)
 {
     file_directory_string.append(command->_file_path_cd_function);
     file_directory_string.append(slash);
@@ -147,6 +148,28 @@ FCreateFileFunction::CreateFileFunctionInit(std::string name)
     file << "This file created in Scrift";
     printlnf("File created successfuly\n");
     file.close();
+}
+
+void
+FCreateFileFunction::CreateASCIIFileFunction()
+{
+    if(ascii->InitFile() != true) {
+    file_directory_string.append(command->_file_path_cd_function);
+    file_directory_string.append(slash);
+    file_directory_string.append(".scrift_ascii");
+    command->chartostring(file_directory_string, file_directory);
+    std::ofstream file(file_directory_string, std::ios::app);
+    file << "  _____           _  __ _  \n";
+    file << " / ____|         (_)/ _| | \n";
+    file << "| (___   ___ _ __ _| |_| |_ \n";
+    file << " \\___ \\ / __| '__| |  _| __|\n";
+    file << " ____) | (__| |  | | | | |_ \n";
+    file << "|_____/ \\___|_|  |_|_|  \\__|\n";
+    file.close();
+    }
+    else {
+        printlnf("Good luck!\n");
+    } 
 }
 
 void
@@ -212,27 +235,52 @@ FReadFileFunction::ReadFileExists()
 }
 
 void 
-FReadFileFunction::ReadFileFunction(std::string filename)
+FReadFileFunction::ReadFileFunction(fstr filename)
 {
     std::string line;
     std::string path;
     path.append(command->_file_path_cd_function);
     path.append("/");
     path.append(filename);
-    path.append(txt);
-    std::ifstream readfile (path);
-    if (readfile.is_open()) {
-        while (getline(readfile, line))
+    //path.append(txt);
+    std::ifstream readfile(path);
+    if(readfile.is_open())
+    {
+        while (std::getline(readfile, line))
         {
             printlnf(line.c_str());
             slashn
         }
+        
         readfile.close();
     } else {
         printerror->PrintError("Unable to open file\n");
-    }
+    } 
 }
 
+void 
+FReadFileFunction::ReadASCIIFunction()
+{
+    std::string line;
+    std::string path;
+    path.append(command->_file_path_cd_function);
+    path.append("/");
+    path.append(".scrift_ascii");
+    //path.append(txt);
+    std::ifstream readfile(path);
+    if(readfile.is_open())
+    {
+        while (std::getline(readfile, line))
+        {
+            printlnf(line.c_str());
+            slashn
+        }
+        
+        readfile.close();
+    } else {
+        printerror->PrintError("Unable to open file\n");
+    } 
+}
 // FHOMEFUNCTION
 void
 fhomefunction::GetHome() 

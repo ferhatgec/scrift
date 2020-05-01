@@ -21,8 +21,7 @@
 #include "Syntax/CommandFunc.h"
 #define slashn printlnf("\n");
 
-#define typest typedef struct
-#define virtual virtual 
+#define typest typedef struct 
 #define func void 
 #define fstr std::string
 #define destructor ~
