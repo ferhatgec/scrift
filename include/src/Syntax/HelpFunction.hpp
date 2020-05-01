@@ -4,7 +4,7 @@
 
 typedef struct {
 public:
-    virtual void help() {
+    fvirt func help() {
         printlnf("Scrift \n"
             "help arguments: \n"
             "printlnf <arg> \n"
@@ -31,7 +31,7 @@ public:
             "set_locale_system || slcl_sys\n"
             "ip || myip\n");
     }
-    virtual void hello() {
+    fvirt func hello() {
         printlnf("Welcome ScriftLang Terminal\n"
             "ScriftLang licensed with GPLv3\n"
             "Copyright (c) 2020 Ferhat Gecdogan\n");

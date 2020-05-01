@@ -6,63 +6,63 @@
 
 namespace FileFunction {
 // CD Function
-class FCDFunction : public FGetUsername {
+fclass FCDFunction : public FGetUsername {
 public:
     FCDFunction();
-    ~FCDFunction();
-    virtual void CDFunctionInit(std::string);
-    virtual boolean FileExists(const std::string &);
+    destructor FCDFunction();
+    fvirt func CDFunctionInit(fstr);
+    fvirt boolean FileExists(const fstr &);
 };
 
 // MKDir Function
-class FMKDirFunction : public FCDFunction {
+fclass FMKDirFunction : public FCDFunction {
 public:
     FMKDirFunction();
-    ~FMKDirFunction();
-    virtual void MKDirFunctionInit(std::string);
+    destructor FMKDirFunction();
+    fvirt func MKDirFunctionInit(fstr);
 };
 
 
 // Create File Function
-class FCreateFileFunction : public FMKDirFunction {
+fclass FCreateFileFunction : public FMKDirFunction {
 public:
     FCreateFileFunction();
-    ~FCreateFileFunction();
-    virtual void CreateFileFunctionInit(std::string);
+    destructor FCreateFileFunction();
+    fvirt func CreateFileFunctionInit(fstr);
 };
 
 // ReadFile Function
-class FReadFileFunction : public FCreateFileFunction {
+fclass FReadFileFunction : public FCreateFileFunction {
 public:
     FReadFileFunction();
-    ~FReadFileFunction();
-    virtual void ReadFileInit();
+    destructor FReadFileFunction();
+    fvirt func ReadFileInit();
     boolean ReadFileExists();
-    virtual void ReadFileFunction(std::string);
+    fvirt func ReadFileFunction(fstr);
 };
 
 // List Function
-class FLSFunction : public FCDFunction {
+fclass FLSFunction : public FCDFunction {
 public:
     FLSFunction();
-    ~FLSFunction();
-    void InitLSFunction();
-    virtual boolean DirectoryExists();
-    virtual void LSFunction();
+    destructor FLSFunction();
+    func InitLSFunction();
+    fvirt boolean DirectoryExists();
+    fvirt func LSFunction();
 };
 
 typedef struct {
 public:
-    boolean FileExist(const std::string);
-    static void AppendLine(std::string);
-    static void DeleteLine(std::string);
+    boolean FileExist(const fstr);
+    static func AppendLine(fstr);
+    static func DeleteLine(fstr);
 } faddtextfunction;
 
 
 // Home Directory Function
 typedef struct {
 public:
-    virtual void GetHome();
+    fvirt func GetHome();
 } fhomefunction;
 };
 

@@ -74,7 +74,7 @@ FMain::~FMain()
 }   
 
 
-void
+func
 FMain::Shell()
 {
     terminalstr->Terminal(); 

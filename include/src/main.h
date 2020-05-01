@@ -21,16 +21,21 @@
 #include "Syntax/CommandFunc.h"
 #define slashn printlnf("\n");
 
-class FMain {
+#define fclass class
+#define fvirt virtual 
+#define func void 
+#define fstr std::string
+#define destructor ~
+fclass FMain {
 public:
     FMain();
-    ~FMain();
-    virtual void Shell();
+    destructor FMain();
+    fvirt func Shell();
     boolean    _home;
-    std::string header_string;
-    std::string str;
-    std::string _h_str;
-    std::string strfor_h_str;
+    fstr header_string;
+    fstr str;
+    fstr _h_str;
+    fstr strfor_h_str;
 };
 
 

@@ -8,16 +8,16 @@ FMain *mainfunc = new FMain();
 
 typedef struct {
 public:
-    void PrintError(fchar* error_name) {
+    func PrintError(fchar* error_name) {
         printlnf(error_name, sizeof(error_name));
     }
-    void PrintCriticalError(fchar* error_name) {
+    func PrintCriticalError(fchar* error_name) {
         printlnf(error_name, sizeof(error_name));
         slashn
         printlnf("Critical Error there is ->", mainfunc->str);
         exit(-1);
     }
-    void PrintBugError(fchar* error_name) {
+    func PrintBugError(fchar* error_name) {
         printlnf(error_name, sizeof(error_name));
         slashn
         printlnf("Bug there is ->", mainfunc->str);
