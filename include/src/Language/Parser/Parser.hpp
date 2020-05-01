@@ -13,6 +13,20 @@
 #include <cstring>
 #include "../Lexer/Tokenizer.hpp"
 
+enum class ParserONConf {
+    DEFAULT,
+    MATH_CONTINUATION,
+    MATH_NEG, 
+    PUSH_CLASS,
+    FUNCTION_PARAMETER_LIST,
+};
+
+class Parser {
+public:
+    std::vector<lexer::TokenizerType*> token;
+    integer index, length;
+    boolean advance;
+};
 
 
 
