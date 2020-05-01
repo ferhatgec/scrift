@@ -32,7 +32,7 @@ else
 endif
 
 
-all: headersfile  main clean
+all: headersfile  languagefile main clean
 
 runall: all run
 
@@ -49,6 +49,7 @@ push:
 nall: cleanall
 
 headersfile: $(HEADERFILE)
+languagefile: $(LANGUAGEFILE)
 
 %.o: $(SRCLANGUAGEDIREC)%.cpp
 	$(GPP) $(CFLAGS) -c $< -o $@
