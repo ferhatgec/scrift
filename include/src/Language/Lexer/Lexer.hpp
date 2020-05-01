@@ -10,12 +10,25 @@
 #include <unordered_map>
 #include <vector>
 #include "../../main.h"
+#include "Tokenizer.hpp"
+
 class FLexer {
-public:
     std::unordered_map<std::string, boolean> keyword;
     std::string row;
     size_t index;
     fchar current_index;
+    TokenizerType next(void);
+    fchar charatpos(size_t);
+
+    TokenizerType* Comment(void);
+    TokenizerType* Name(void);
+    TokenizerType* Number(void);
+    TokenizerType* String(void);
+    TokenizerType* Open(void);
+    public:
+        FLexer();
+        std::vector<Token*> parsefile(std::string);
+        static void Print(std::vector<Token*>);
 };
 
 

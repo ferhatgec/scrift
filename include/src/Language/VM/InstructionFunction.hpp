@@ -64,5 +64,14 @@ enum class EInstruction {
 	RETURN,
 };
 
+class Instruction {
+public:
+    EInstruction instruction;
+    std::string name;
+    Value* valueİ
+    
 
+
+
+};
 #endif //  INSTRUCTION_FUNCTION_HPP
