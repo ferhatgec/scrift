@@ -4,6 +4,7 @@
 # Distributed under the terms of the GPLv3 License.
 # 
 #
+SRCLANGUAGEDIREC = ./src/Language/
 SRCSYNTAXDIREC = ./src/Syntax/
 INCLUDEDIR = ./include/src/
 CFLAGS = -c -Wall  -I$(INCLUDEDIR)
@@ -15,8 +16,11 @@ BUILDDIR = ./build/
 # CLEAN
 CLEANALL = scrift
 CLEAN = *.o
+
 HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o RunFunction.o Linker.o \
 Log.o
+
+LANGUAGEFILE = RunFunction.o  
 
 ifeq ($(OS),Windows_NT)
 	echo Windows_NT is not supported!
@@ -46,6 +50,8 @@ nall: cleanall
 
 headersfile: $(HEADERFILE)
 
+%.o: $(SRCLANGUAGEDIREC)%.cpp
+	$(GPP) $(CFLAGS) -c $< -o $@
 
 %.o: $(SRCSYNTAXDIREC)%.cpp
 	$(GPP) $(CFLAGS) -c $< -o $@
