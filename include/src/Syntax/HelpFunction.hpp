@@ -2,7 +2,7 @@
 #ifndef HELP_FUNCTION_HPP
 #define HELP_FUNCTION_HPP
 
-typedef struct {
+typest {
 public:
     fvirt func help() {
         printlnf("Scrift \n"

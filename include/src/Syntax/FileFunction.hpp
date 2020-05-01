@@ -51,7 +51,7 @@ public:
     fvirt func LSFunction();
 };
 
-typedef struct {
+typest {
 public:
     boolean FileExist(const fstr);
     static func AppendLine(fstr);
@@ -60,7 +60,7 @@ public:
 
 
 // Home Directory Function
-typedef struct {
+typest {
 public:
     fvirt func GetHome();
 } fhomefunction;

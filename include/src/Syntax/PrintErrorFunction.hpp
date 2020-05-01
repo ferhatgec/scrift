@@ -6,7 +6,7 @@
 
 FMain *mainfunc = new FMain();              
 
-typedef struct {
+typest {
 public:
     func PrintError(fchar* error_name) {
         printlnf(error_name, sizeof(error_name));

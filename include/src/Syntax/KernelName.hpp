@@ -3,7 +3,7 @@
 
 #include "GetNameFunction.hpp"
 
-typedef struct {
+typest {
     fchar KernelName() {
     #ifdef _WIN32 // Windows NT IA-32
     printlnf("Windows NT (IA-32) is not supported for Fegeya Scrift");

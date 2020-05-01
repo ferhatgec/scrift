@@ -5,8 +5,6 @@
 #include "PrintErrorFunction.hpp"
 
 fprinterror *error = new fprinterror;
-typedef struct {
 
-} fmkdir;
 
 #endif // MKDIR_FUNCTION_HPP
