@@ -10,6 +10,7 @@ public:
     ~FeLog();
     virtual func CreateFile();
     virtual func InitFile();
+    const std::string TimeFunction();
     virtual func WriteLog(fstr);
     virtual boolean IsExist();
     virtual func AllofThem();

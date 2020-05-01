@@ -80,13 +80,13 @@ FMain::Shell()
     {
         helpstr->help();
     }
-    if(_h_str.find("&&", 0) == 0)
+    else if(_h_str.find("&&", 0) == 0)
     {
         printlnf("Found!\n");
     }
-    if(_h_str == "edifor" || _h_str == "scrifteditor")
+    else if(_h_str == "felog" || _h_str == "show_log")
     {
-     
+        readfilefunction->ReadFeLogFunction();
     }
     // ADD TEXT FUNCTION
     else if(_h_str.rfind("addtext", 0) == 0) {

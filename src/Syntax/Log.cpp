@@ -3,6 +3,8 @@
 #include <main.h>
 #include <Syntax/CommandFunc.h>
 #include <sys/stat.h>
+#include <ctime>
+#include <cstdio>
 // #include <Syntax/PrintErrorFunction.hpp>
 
 FCommand *commandlog = new FCommand();
@@ -16,6 +18,18 @@ FeLog::~FeLog()
 {
     delete commandlog;
 }
+const std::string
+FeLog::TimeFunction()
+{
+    time_t nowtime = time(0);
+    struct tm tstruct;
+    char    buff[80];
+    tstruct = *localtime(&nowtime);
+    std::strftime(buff, sizeof(buff), "%Y-%M-%d.%X", &tstruct);
+    return buff;
+}
+
+
 func
 FeLog::WriteLog(fstr filepathw)
 {
@@ -47,7 +61,8 @@ FeLog::CreateFile()
     path.append(".scrift_log");
     std::ofstream file;
     file.open(path, std::ios::app);
-    file << "FeLog Started.\n";
+    file << "FeLog Started. ";
+    file << TimeFunction() << "\n";
     file.close();
 }   
 

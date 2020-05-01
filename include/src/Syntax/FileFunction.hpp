@@ -43,6 +43,7 @@ public:
     boolean ReadFileExists();
     // virtual func CreateFeLog....
     virtual func ReadASCIIFunction();
+    virtual func ReadFeLogFunction();
     virtual func ReadFileFunction(fstr);
 };
 

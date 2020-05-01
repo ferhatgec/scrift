@@ -16,6 +16,7 @@
 #include <sys/stat.h>
 #include <dirent.h>
 #include <fstream>
+#include <Syntax/Log.hpp>
 
 using namespace FileFunction;
 
@@ -37,7 +38,7 @@ struct dirent *entryname;
 fchar *string;
 FRunFunction *filerunfunction = new FRunFunction();
 asciifunction *ascii = new asciifunction;
-
+FeLog *filelog = new FeLog();
 // FCDFUNCTION
 FCDFunction::FCDFunction()
 {
@@ -48,7 +49,7 @@ FCDFunction::FCDFunction()
 
 FCDFunction::~FCDFunction()
 {
-    delete fmain, printerror, command, str, homedirectory, ascii;
+    delete fmain, printerror, command, str, homedirectory, ascii, filelog;
 }
 
 
@@ -241,6 +242,29 @@ boolean
 FReadFileFunction::ReadFileExists()
 {
     
+}
+
+func
+FReadFileFunction::ReadFeLogFunction() 
+{
+    std::string line;
+    std::string path;
+    path.append(getenv("HOME"));
+    path.append("/");
+    path.append(".scrift_log");
+    std::ifstream readfile(path);
+    if(readfile.is_open()) 
+    {
+        while(std::getline(readfile, line))
+        {
+            printlnf(line.c_str());
+            slashn
+        }
+        readfile.close();
+    } 
+    else {
+        filelog->AllofThem();
+    }
 }
 
 void 
