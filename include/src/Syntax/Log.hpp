@@ -6,12 +6,12 @@
 
 
 
-fclass FeLog {
+class FeLog {
 public:
     FeLog();
     ~FeLog();
-    fvirt func CreateFile();
-    fvirt func InitFile();
+    virtual func CreateFile();
+    virtual func InitFile();
     virtual boolean IsExist();
 };
 

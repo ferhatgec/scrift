@@ -6,49 +6,49 @@
 
 namespace FileFunction {
 // CD Function
-fclass FCDFunction : public FGetUsername {
+class FCDFunction : public FGetUsername {
 public:
     FCDFunction();
     destructor FCDFunction();
-    fvirt func CDFunctionInit(fstr);
-    fvirt boolean FileExists(const fstr &);
+    virtual func CDFunctionInit(fstr);
+    virtual boolean FileExists(const fstr &);
 };
 
 // MKDir Function
-fclass FMKDirFunction : public FCDFunction {
+class FMKDirFunction : public FCDFunction {
 public:
     FMKDirFunction();
     destructor FMKDirFunction();
-    fvirt func MKDirFunctionInit(fstr);
+    virtual func MKDirFunctionInit(fstr);
 };
 
 
 // Create File Function
-fclass FCreateFileFunction : public FMKDirFunction {
+class FCreateFileFunction : public FMKDirFunction {
 public:
     FCreateFileFunction();
     destructor FCreateFileFunction();
-    fvirt func CreateFileFunctionInit(fstr);
+    virtual func CreateFileFunctionInit(fstr);
 };
 
 // ReadFile Function
-fclass FReadFileFunction : public FCreateFileFunction {
+class FReadFileFunction : public FCreateFileFunction {
 public:
     FReadFileFunction();
     destructor FReadFileFunction();
-    fvirt func ReadFileInit();
+    virtual func ReadFileInit();
     boolean ReadFileExists();
-    fvirt func ReadFileFunction(fstr);
+    virtual func ReadFileFunction(fstr);
 };
 
 // List Function
-fclass FLSFunction : public FCDFunction {
+class FLSFunction : public FCDFunction {
 public:
     FLSFunction();
     destructor FLSFunction();
     func InitLSFunction();
-    fvirt boolean DirectoryExists();
-    fvirt func LSFunction();
+    virtual boolean DirectoryExists();
+    virtual func LSFunction();
 };
 
 typest {
@@ -62,7 +62,7 @@ public:
 // Home Directory Function
 typest {
 public:
-    fvirt func GetHome();
+    virtual func GetHome();
 } fhomefunction;
 };
 

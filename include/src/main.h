@@ -22,17 +22,16 @@
 #define slashn printlnf("\n");
 
 #define typest typedef struct
-#define fclass class
-#define fvirt virtual 
+#define virtual virtual 
 #define func void 
 #define fstr std::string
 #define destructor ~
 
-fclass FMain {
+class FMain {
 public:
     FMain();
     destructor FMain();
-    fvirt func Shell();
+    virtual func Shell();
     boolean    _home;
     fstr header_string;
     fstr str;

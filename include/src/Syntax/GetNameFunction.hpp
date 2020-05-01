@@ -3,19 +3,19 @@
 
 #include "../main.h"
 
-fclass FGetUsername {
+class FGetUsername {
 public:
-    fvirt func InitUsername();
-    fvirt func GetUsername();
-    fvirt func InitHostname();
+    virtual func InitUsername();
+    virtual func GetUsername();
+    virtual func InitHostname();
 };
 
 
-fclass FStructure : public FGetUsername {
+class FStructure : public FGetUsername {
 public:
     FStructure();
     ~FStructure();
-    fvirt func Terminal();
-    fvirt func FuncKill();
+    virtual func Terminal();
+    virtual func FuncKill();
 };
 #endif // GET_NAME_FUNCTION_HPP

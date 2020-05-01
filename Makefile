@@ -27,7 +27,7 @@ else
 endif
 
 
-all: headersfile main clean
+all: headersfile  main clean
 
 runall: all run
 
@@ -44,6 +44,7 @@ push:
 nall: cleanall
 
 headersfile: $(HEADERFILE)
+
 
 %.o: $(SRCSYNTAXDIREC)%.cpp
 	$(GPP) $(CFLAGS) -c $< -o $@

@@ -4,7 +4,7 @@
 
 typest {
 public:
-    fvirt func help() {
+    virtual func help() {
         printlnf("Scrift \n"
             "help arguments: \n"
             "printlnf <arg> \n"
@@ -31,10 +31,24 @@ public:
             "set_locale_system || slcl_sys\n"
             "ip || myip\n");
     }
-    fvirt func hello() {
-        printlnf("Welcome ScriftLang Terminal\n"
-            "ScriftLang licensed with GPLv3\n"
-            "Copyright (c) 2020 Ferhat Gecdogan\n");
+    virtual func hello() {
+        BOLD_BLUE_COLOR
+        printlnf("Welcome to ");
+        BOLD_GREEN_COLOR
+        printlnf("ScriftLang");
+        BOLD_BLUE_COLOR
+        printlnf(" Terminal\n");
+        BOLD_GREEN_COLOR
+        printlnf("ScriftLang "); 
+        BOLD_YELLOW_COLOR
+        printlnf("licensed with");
+        BOLD_RED_COLOR
+        printlnf(" GPLv3\n");
+        BOLD_MAGENTA_COLOR
+        printlnf("Copyright (c) 2020");
+        BOLD_CYAN_COLOR
+        printlnf(" Ferhat Gecdogan\n");
+        BLACK_COLOR
     } 
 } fhelp;
 

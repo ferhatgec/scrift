@@ -4,7 +4,6 @@
 # Distributed under the terms of the GPLv3 License.
 #
 # */
-
 #include <fstream>
 #include <memory>
 #include <stdlib.h>
@@ -31,6 +30,7 @@
 #include "../include/src/Syntax/HelpFunction.hpp"
 #include "../include/src/Syntax/GetNameFunction.hpp"
 #include "../include/src/Syntax/RunFunction.hpp"
+
 // Variables 
 
 using namespace FileFunction;
@@ -58,6 +58,7 @@ FRunFunction *runfunction = new FRunFunction();
 FReadFileFunction *readfilefunction = new FReadFileFunction();
 faddtextfunction *fileaddtextfunction = new faddtextfunction;
 FLinkerAndSign *linkersign = new FLinkerAndSign();
+
 
 FMain::FMain()
 {
@@ -89,6 +90,10 @@ FMain::Shell()
     if(_h_str.find("&&", 0) == 0)
     {
         printlnf("Found!\n");
+    }
+    if(_h_str == "edifor" || _h_str == "scrifteditor")
+    {
+     
     }
     // ADD TEXT FUNCTION
     else if(_h_str.rfind("addtext", 0) == 0) {
