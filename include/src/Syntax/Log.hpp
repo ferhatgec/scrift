@@ -4,8 +4,6 @@
 
 #include "../main.h"
 
-
-
 class FeLog {
 public:
     FeLog();

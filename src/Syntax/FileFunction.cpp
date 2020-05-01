@@ -37,6 +37,7 @@ struct dirent *entryname;
 fchar *string;
 FRunFunction *filerunfunction = new FRunFunction();
 asciifunction *ascii = new asciifunction;
+
 // FCDFUNCTION
 FCDFunction::FCDFunction()
 {
@@ -171,6 +172,15 @@ FCreateFileFunction::CreateASCIIFileFunction()
         printlnf("Good luck!\n");
     } 
 }
+
+
+func 
+FCreateFileFunction::CreateFeLogFileFunction()
+{
+
+}
+
+
 
 void
 faddtextfunction::DeleteLine(std::string filename)

@@ -15,7 +15,8 @@ BUILDDIR = ./build/
 # CLEAN
 CLEANALL = scrift
 CLEAN = *.o
-HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o RunFunction.o Linker.o
+HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o RunFunction.o Linker.o \
+Log.o
 
 ifeq ($(OS),Windows_NT)
 	echo Windows_NT is not supported!

@@ -25,6 +25,7 @@
 #include <locale.h>
 #include "../include/src/Syntax/Linker.hpp"
 #include "../include/src/synflang.hpp"
+#include "../include/src/Syntax/Log.hpp"
 #include "../include/src/Syntax/FileFunction.hpp"
 #include "../include/src/Syntax/KernelName.hpp"
 #include "../include/src/Syntax/HelpFunction.hpp"
@@ -58,10 +59,13 @@ FRunFunction *runfunction = new FRunFunction();
 FReadFileFunction *readfilefunction = new FReadFileFunction();
 faddtextfunction *fileaddtextfunction = new faddtextfunction;
 FLinkerAndSign *linkersign = new FLinkerAndSign();
+FeLog *logsystem = new FeLog();
+
+
 
 FMain::FMain()
 {
-
+    
 }
 
 

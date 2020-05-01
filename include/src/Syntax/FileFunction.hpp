@@ -30,6 +30,7 @@ public:
     FCreateFileFunction();
     destructor FCreateFileFunction();
     virtual func CreateASCIIFileFunction();
+    virtual func CreateFeLogFileFunction();
     virtual func CreateFileFunctionInit(fstr);
 };
 
@@ -40,6 +41,7 @@ public:
     destructor FReadFileFunction();
     virtual func ReadFileInit();
     boolean ReadFileExists();
+    // virtual func CreateFeLog....
     virtual func ReadASCIIFunction();
     virtual func ReadFileFunction(fstr);
 };
