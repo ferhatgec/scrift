@@ -57,6 +57,13 @@ public:
     virtual func LSFunction();
 };
 
+class FRemoveFileFunction : public FCDFunction {
+public:
+    virtual func DeleteFile(std::string);
+    // DeleteMultipleFiles coming soon.
+};
+
+
 typest {
 public:
     boolean FileExist(const fstr);

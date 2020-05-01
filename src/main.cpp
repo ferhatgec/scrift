@@ -53,7 +53,7 @@ FReadFileFunction *readfilefunction = new FReadFileFunction();
 faddtextfunction *fileaddtextfunction = new faddtextfunction;
 FLinkerAndSign *linkersign = new FLinkerAndSign();
 FeLog *logsystem = new FeLog();
-
+FRemoveFileFunction *removefile = new FRemoveFileFunction();
 FMain::FMain()
 {
     
@@ -64,7 +64,7 @@ FMain::~FMain()
 {
     delete terminalstr,  helpstr, kernel, _h_str, main_, mkdirfunction, filefunction, userhostname, main_function,
     homefunction, listdirectoryfunction, runfunction, readfilefunction, fileaddtextfunction,
-    linkersign;
+    linkersign, removefile;
 }   
 
 
@@ -97,6 +97,10 @@ FMain::Shell()
     else if(_h_str.rfind("nanoaddtext", 0) == 0) {
         strfor_h_str = _h_str.erase(0, 12);
         fileaddtextfunction->DeleteLine(strfor_h_str);
+    }
+    else if(_h_str.rfind("rmvfile", 0) == 0) {
+        strfor_h_str = _h_str.erase(0, 8);
+        removefile->DeleteFile(strfor_h_str);
     }
     // DELETE TEXT FUNCTION
     else if(_h_str.rfind("deletetext", 0) == 0) {

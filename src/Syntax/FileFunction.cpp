@@ -372,3 +372,20 @@ FLSFunction::LSFunction()
     }
     closedir(directory);
 }
+
+
+func
+FRemoveFileFunction::DeleteFile(std::string file)
+{
+    std::string path;
+    path.append(command->_file_path_cd_function);
+    path.append("/");
+    path.append(file);
+    const integer filedeletestage = std::remove(path.c_str());
+    if(filedeletestage == 0) {
+        printlnf("Succesfully deleted\n");
+    } 
+    else {
+        printlnf("Error: bla bla\n");
+    }
+}
