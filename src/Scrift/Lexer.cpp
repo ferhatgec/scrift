@@ -137,3 +137,24 @@ Token FLexer::comment() { // Comment Line
 	return Token::T_EOL(); 
 }
 
+Token FLexer::name() {  // Will support UTF-8 
+	std::string s = &this->current;
+
+	while (true) {
+		fchar c = this->char_at_pos(this->index + 1);
+
+		if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') || c == '_') {
+			s += c;
+			this->index += 1;
+		} else {
+			break;
+		}
+	}
+
+	if (s == "true" || s == "false") { // True and False boolean
+		return Token::BOOL(s);
+	}
+
+	return Token::NAME(s);
+}
+
