@@ -4,8 +4,6 @@
 # Distributed under the terms of the GPLv3 License.
 # 
 #
-		
-SRCLANGUAGEDIREC = ./src/Scrift/
 SRCSYNTAXDIREC = ./src/Syntax/
 INCLUDEDIR = ./include/src/
 CFLAGS = -c -Wall  -I$(INCLUDEDIR)
@@ -17,11 +15,8 @@ BUILDDIR = ./build/
 # CLEAN
 CLEANALL = scrift
 CLEAN = *.o
-
 HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o RunFunction.o Linker.o \
 Log.o
-
-LANGUAGEFILE = Tokenizer.o Lexer.o
 
 ifeq ($(OS),Windows_NT)
 	echo Windows_NT is not supported!
@@ -33,7 +28,7 @@ else
 endif
 
 
-all: headersfile  languagefile main clean
+all: headersfile  main clean
 
 runall: all run
 
@@ -49,14 +44,8 @@ push:
 
 nall: cleanall
 
-
 headersfile: $(HEADERFILE)
 
-languagefile: $(LANGUAGEFILE)
- 
-
-%.o: $(SRCLANGUAGEDIREC)%.cpp
-	$(GPP) $(CFLAGS) -c $< -o $@
 
 %.o: $(SRCSYNTAXDIREC)%.cpp
 	$(GPP) $(CFLAGS) -c $< -o $@
