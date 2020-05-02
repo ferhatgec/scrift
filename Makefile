@@ -21,7 +21,7 @@ CLEAN = *.o
 HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o RunFunction.o Linker.o \
 Log.o
 
-LANGUAGEFILE =
+LANGUAGEFILE = Tokenizer.o
 
 ifeq ($(OS),Windows_NT)
 	echo Windows_NT is not supported!
@@ -52,8 +52,8 @@ nall: cleanall
 
 headersfile: $(HEADERFILE)
 
-languagefile:
-
+languagefile: $(LANGUAGEFILE)
+ 
 
 %.o: $(SRCLANGUAGEDIREC)%.cpp
 	$(GPP) $(CFLAGS) -c $< -o $@

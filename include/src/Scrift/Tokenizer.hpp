@@ -8,7 +8,7 @@
 #ifndef TOKENIZER_HPP
 #define TOKENIZER_HPP
 
-#include <cstring>
+#include <string>
 
 enum class FType {
 	T_EOF, // eof

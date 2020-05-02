@@ -29,7 +29,7 @@ class FLexer {
 	Token oper(void);
 
 	public:
-		Lexer();
+		FLexer();
 		std::vector<Token> parse_file(void);
 };
 
