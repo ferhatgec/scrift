@@ -9,11 +9,11 @@
 
 #include "../synflang.hpp"
 #include "../main.h"
-
-FMain *mainfunc = new FMain();              
+          
 
 typest {
 public:
+    FMain *mainfunc = new FMain();    
     func PrintError(fchar* error_name) {
         printlnf(error_name, sizeof(error_name));
     }

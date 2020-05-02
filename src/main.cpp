@@ -27,6 +27,7 @@
 #include "../include/src/synflang.hpp"
 #include "../include/src/Syntax/Log.hpp"
 #include "../include/src/Syntax/FileFunction.hpp"
+#include "../include/src/Syntax/PrintErrorFunction.hpp"
 #include "../include/src/Syntax/KernelName.hpp"
 #include "../include/src/Syntax/HelpFunction.hpp"
 #include "../include/src/Syntax/GetNameFunction.hpp"
@@ -36,7 +37,6 @@
 
 using namespace FileFunction;
 using namespace FLinker;
-
 FMain *main_function = new FMain();
 FCommand *main_ = new FCommand();
 fhelp *helpstr = new fhelp;
@@ -204,6 +204,8 @@ FMain::Shell()
 
 integer main(integer argc)
 {
+    //fprinterror *error = new fprinterror;
+    //error->PrintBugError("Test!\n");
     logsystem->AllofThem();
     asciifunction *ascii = new asciifunction;
     ascii->Allofthem();
