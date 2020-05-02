@@ -11,3 +11,38 @@
 #include <Scrift/Lexer.hpp>
 
 
+FLexer::FLexer() {
+	// Initialize all operators and keywords
+	operators["+"] = true;
+	operators["-"] = true;
+	operators["*"] = true;
+	operators["/"] = true;
+	operators["%"] = true;
+	operators["**"] = true;
+	operators["="] = true;
+	operators["=="] = true;
+	operators[">"] = true;
+	operators[">="] = true;
+	operators["<"] = true;
+	operators["<="] = true;
+	operators["&&"] = true;
+	operators["|"] = true;
+	operators["||"] = true;
+	operators["..."] = true;
+	operators[".."] = true;
+	operators["."] = true;
+	operators["{"] = true;
+	operators["}"] = true;
+	operators[":"] = true;
+	operators["++"] = true;
+	operators["--"] = true;
+
+	keywords["if"] = true;
+	keywords["else"] = true;
+	keywords["var"] = true;
+	keywords["class"] = true;
+	keywords["static"] = true;
+	keywords["return"] = true;
+	keywords["for"] = true;
+	keywords["in"] = true;
+}
