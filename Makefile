@@ -21,7 +21,7 @@ CLEAN = *.o
 HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o RunFunction.o Linker.o \
 Log.o
 
-LANGUAGEFILE = Tokenizer.o
+LANGUAGEFILE = Tokenizer.o Lexer.o
 
 ifeq ($(OS),Windows_NT)
 	echo Windows_NT is not supported!
