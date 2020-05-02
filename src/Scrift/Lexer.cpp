@@ -158,3 +158,76 @@ Token FLexer::name() {  // Will support UTF-8
 	return Token::NAME(s);
 }
 
+
+Token FLexer::number() { // Number Function
+	std::string s = &this->current;
+
+	while(true) {
+		fchar c = this->char_at_pos(this->index + 1);
+
+		if ((c < '0' || c > '9') && c != '.') {
+			break;
+		}
+
+
+		if (c == '.') {
+			char cc = this->char_at_pos(this->index + 2);
+
+			if (cc < '0' || cc > '9') {
+				break;
+			}
+		}
+
+		this->index += 1;
+		s += c;
+	}
+
+    // TODO: Decimals
+
+	return Token::NUMBER(s);
+}
+
+Token FLexer::string() {
+	std::string s = &this->current;
+
+	this->index += 1;
+
+	while(true) {
+
+		// End of string
+		if (this->char_at_pos(this->index) == '"') {
+			break;
+		}
+
+		// Escaping function variable
+		if (this->char_at_pos(this->index) == '\\') {
+			this->index += 1;
+		}
+        // CharAtPos
+		s += this->char_at_pos(this->index);
+		this->index += 1;
+	}
+
+	return Token::STRING(s);
+}
+
+Token FLexer::oper() {
+	std::string s = &this->current;
+
+	while(true) {
+
+		fchar next = this->char_at_pos(this->index + 1);
+
+		// EOF
+		if (next == '\0') {
+			break;
+		}
+
+		std::string combined = s + next;
+
+		s += next;
+		this->index += 1;
+	}
+
+	return Token::OPERATOR(s);
+}
