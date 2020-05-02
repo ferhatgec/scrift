@@ -4,7 +4,8 @@
 # Distributed under the terms of the GPLv3 License.
 # 
 #
-SRCLANGUAGEDIREC = ./src/Language/
+		
+SRCLANGUAGEDIREC = ./src/Scrift/
 SRCSYNTAXDIREC = ./src/Syntax/
 INCLUDEDIR = ./include/src/
 CFLAGS = -c -Wall  -I$(INCLUDEDIR)
@@ -48,8 +49,11 @@ push:
 
 nall: cleanall
 
+
 headersfile: $(HEADERFILE)
-languagefile: $(LANGUAGEFILE)
+
+languagefile:
+
 
 %.o: $(SRCLANGUAGEDIREC)%.cpp
 	$(GPP) $(CFLAGS) -c $< -o $@
