@@ -1,3 +1,9 @@
+/* GPLv3 License
+#
+# Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
+# Distributed under the terms of the GPLv3 License.
+#
+# */
 #ifndef ASCII_FUNCTION_HPP
 #define ASCII_FUNCTION_HPP
 

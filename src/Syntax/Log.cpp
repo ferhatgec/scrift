@@ -1,3 +1,9 @@
+/* GPLv3 License
+#
+# Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
+# Distributed under the terms of the GPLv3 License.
+#
+# */
 #include <Syntax/Log.hpp> // Get Log Header
 #include <Syntax/FileFunction.hpp> // For  create file and folder 
 #include <main.h>
