@@ -85,7 +85,7 @@ Token FLexer::next() {
 
 	std::cout << "next(): " << this->current;
     slashn
-    
+
 	if (this->current == '\0') {
 		return Token::T_EOF();
 	}
@@ -122,5 +122,18 @@ Token FLexer::next() {
 	}
 
 	return Token::IGNORE();
+}
+
+Token FLexer::comment() { // Comment Line
+	while(true) {
+		this->index += 1;
+		fchar current = this->char_at_pos(this->index + 1);
+
+		if (current == '\n' || current == '\r') {
+			break; // or exit
+		}
+	}
+
+	return Token::T_EOL(); 
 }
 
