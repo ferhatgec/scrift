@@ -32,6 +32,7 @@
 #include "../include/src/Syntax/HelpFunction.hpp"
 #include "../include/src/Syntax/GetNameFunction.hpp"
 #include "../include/src/Syntax/RunFunction.hpp"
+#include "../include/src/Syntax/Test.hpp"
 #include "../include/src/Syntax/ASCIIFunction.hpp"
 // Variables 
 
@@ -201,12 +202,23 @@ FMain::Shell()
 }
 
 
-
 integer main(integer argc)
 {
-    //fprinterror *error = new fprinterror;
-    //error->PrintBugError("Test!\n");
+    // ONLY DEVELOPER
+    FTest *testsystem = new FTest();
+    testsystem->LogSystem();
+    printlnf("FeLog System Logs\n");
+    testsystem->CDSystem();
+    printlnf("CDSystem Logs\n");
+    testsystem->MKDirSystem();
+    printlnf("MKDirSystem Logs\n");
+    printlnf("Good luck ");
+    userhostname->GetUsername();
+    slashn
+    fprinterror *error = new fprinterror;
+    error->PrintBugError("Test!\n");
     logsystem->AllofThem();
+    // ONLY DEVELOPER
     asciifunction *ascii = new asciifunction;
     ascii->Allofthem();
 

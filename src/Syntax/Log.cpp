@@ -51,7 +51,9 @@ FeLog::WriteLog(fstr filepathw)
 
     file.exceptions(file.exceptions() | std::ios::failbit | std::ifstream::badbit);
 
-    file << filepathw << std::endl;
+    file << filepathw << " ";
+    file << TimeFunction() << std::endl;
+
     printlnf("Done\n");
 }
 

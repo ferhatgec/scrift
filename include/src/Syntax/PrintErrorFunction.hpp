@@ -30,7 +30,7 @@ public:
         slashn
         printlnf("Please report.");
         slashn
-        system("<mybrowser> https://github.com/FerhatGec/scrift-lang");
+        printlnf("https://github.com/FerhatGec/scrift-lang");
         slashn
     }
 } fprinterror;
