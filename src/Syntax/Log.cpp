@@ -69,7 +69,7 @@ FeLog::WriteLog(fstr filepathw)
     file << filepathw << " ";
     file << TimeFunction() << std::endl;
 
-    printlnf("Done\n");
+   // printlnf("Done\n");
 }
 
 
