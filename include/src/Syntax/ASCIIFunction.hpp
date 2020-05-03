@@ -32,7 +32,9 @@ public:
     {
         if(InitFile() == true)
         {
+            YELLOW_COLOR
             printlnf("ASCII file exists, nice!\n");
+            BLACK_COLOR // reset
         }
         else {
             createfilefunc->CreateASCIIFileFunction();

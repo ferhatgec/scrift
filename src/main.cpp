@@ -35,10 +35,12 @@
 #include "../include/src/Syntax/Test.hpp"
 #include "../include/src/Syntax/ASCIIFunction.hpp"
 #include "../include/src/Syntax/DeveloperMode.hpp"
+#include "../include/src/Syntax/Contributors.hpp"
 // Variables 
 
 using namespace FileFunction;
 using namespace FLinker;
+FContributors *contributors_lists = new FContributors();
 FDeveloperMode *developermode = new FDeveloperMode();
 FMain *main_function = new FMain();
 FCommand *main_ = new FCommand();
@@ -67,7 +69,7 @@ FMain::~FMain()
 {
     delete terminalstr,  helpstr, kernel, _h_str, main_, mkdirfunction, filefunction, userhostname, main_function,
     homefunction, listdirectoryfunction, runfunction, readfilefunction, fileaddtextfunction,
-    linkersign, removefile, developermode;
+    linkersign, removefile, developermode, contributors_lists;
 }   
 
 
@@ -84,6 +86,16 @@ FMain::Shell()
         logsystem->WriteLog("Launching help function..\n");
         helpstr->help();
         logsystem->WriteLog("Launched..\n");
+    }
+    else if(_h_str == "gitlink" || _h_str == "scrift_link" || _h_str == "fusionlink")
+    {
+        printlnf("https://github.com/FerhatGec\n");
+        printlnf("https://github.com/FerhatGec/scrift-lang\n");
+        printlnf("https://github.com/FerhatGec/fusion-os\n");
+    }
+    else if(_h_str == "cont" || _h_str == "contr" || _h_str == "contributors")
+    {
+        contributors_lists->AllOfThem();
     }
     else if(_h_str.find("&&", 0) == 0)
     {

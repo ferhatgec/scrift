@@ -61,7 +61,9 @@ FCommand::echo_printlnf(std::string name)
     printlnf(name.c_str());
     slashn
     } else  {
+        RED_COLOR
         printerror("ERR: CHAR IS NULL", 13, "ERR:CHISNULL");
+        BLACK_COLOR
         return;
     }
 }
@@ -69,7 +71,9 @@ FCommand::echo_printlnf(std::string name)
 void
 FCommand::_set_locale()
 {
+        BOLD_MAGENTA_COLOR
         printlnf("Set up -> Your system language");// setlocale(LC_CTYPE, NULL);
+        BLACK_COLOR // reset
         setlocale(LC_CTYPE, NULL); // FOR UNIX AND FUSION
         printlnf(" \n"); 
 }
@@ -131,7 +135,9 @@ FCommand::list_file(boolean _home)
         
         if (dir == NULL) 
         {
+            RED_COLOR
             printerror("ERR:DIRECTORY NOT FOUND", 12, "ERR:DIRNFND");
+            BLACK_COLOR
             return;
         }
         while ((entry = readdir(dir))) 
@@ -226,11 +232,19 @@ FCommand::_your_ip()
 void
 FCommand::printerror(fchar *err_str, integer8 err_number, fchar * _error_code)
 {
-        printlnf(err_str, err_number);
+        RED_COLOR
+        printlnf(err_str);
+        slashn 
+        std::cout << err_number;
+        slashn
+        printlnf(_error_code);
+        BLACK_COLOR // reset
 }
 
 void
 FCommand::_n_supported_()
 {
+    RED_COLOR
     printerror("Your os not supported!", 10, "1_n_support \n");
+    BLACK_COLOR // reset
 }
