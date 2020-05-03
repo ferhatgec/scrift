@@ -34,10 +34,12 @@
 #include "../include/src/Syntax/RunFunction.hpp"
 #include "../include/src/Syntax/Test.hpp"
 #include "../include/src/Syntax/ASCIIFunction.hpp"
+#include "../include/src/Syntax/DeveloperMode.hpp"
 // Variables 
 
 using namespace FileFunction;
 using namespace FLinker;
+FDeveloperMode *developermode = new FDeveloperMode();
 FMain *main_function = new FMain();
 FCommand *main_ = new FCommand();
 fhelp *helpstr = new fhelp;
@@ -65,7 +67,7 @@ FMain::~FMain()
 {
     delete terminalstr,  helpstr, kernel, _h_str, main_, mkdirfunction, filefunction, userhostname, main_function,
     homefunction, listdirectoryfunction, runfunction, readfilefunction, fileaddtextfunction,
-    linkersign, removefile;
+    linkersign, removefile, developermode;
 }   
 
 
@@ -88,6 +90,16 @@ FMain::Shell()
     else if(_h_str == "felog" || _h_str == "show_log")
     {
         readfilefunction->ReadFeLogFunction();
+    }
+    
+    else if(_h_str.rfind("getdev", 0) == 0)
+    {
+        strfor_h_str = _h_str.erase(0, 7);
+        if(strfor_h_str == "true" || strfor_h_str == "-t") 
+            developermode->AllOfThem(true);
+        else 
+            developermode->AllOfThem(false);
+        
     }
     // ADD TEXT FUNCTION
     else if(_h_str.rfind("addtext", 0) == 0) {
@@ -157,7 +169,10 @@ FMain::Shell()
     else if(_h_str == "clear" || _h_str == "clear!!!") {main_->clear_shell();}
 
     // CLOSE FUNCTION
-    else if(_h_str == "brk" || _h_str == "cls")  {exit(EXIT_SUCCESS);} 
+    else if(_h_str == "brk" || _h_str == "cls")  {
+        logsystem->WriteLog("Exit signal..\n");
+        exit(EXIT_SUCCESS);
+    } 
     // USERNAME FUNCTION
     else if(_h_str == "username" || _h_str == "uname") {userhostname->InitUsername();} 
     // RUN FUNCTION
@@ -204,21 +219,7 @@ FMain::Shell()
 
 integer main(integer argc)
 {
-    // ONLY DEVELOPER
-    FTest *testsystem = new FTest();
-    testsystem->LogSystem();
-    printlnf("FeLog System Logs\n");
-    testsystem->CDSystem();
-    printlnf("CDSystem Logs\n");
-    testsystem->MKDirSystem();
-    printlnf("MKDirSystem Logs\n");
-    printlnf("Good luck ");
-    userhostname->GetUsername();
-    slashn
-    fprinterror *error = new fprinterror;
-    error->PrintBugError("Test!\n");
     logsystem->AllofThem();
-    // ONLY DEVELOPER
     asciifunction *ascii = new asciifunction;
     ascii->Allofthem();
 

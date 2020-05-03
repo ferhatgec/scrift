@@ -21,7 +21,7 @@ public:
         printlnf(error_name, sizeof(error_name));
         slashn
         printlnf("Critical Error there is ->", mainfunc->str);
-        exit(-1);
+        //exit(-1);
     }
     func PrintBugError(fchar* error_name) {
         printlnf(error_name, sizeof(error_name));
