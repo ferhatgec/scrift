@@ -91,7 +91,12 @@ FMain::Shell()
     {
         readfilefunction->ReadFeLogFunction();
     }
-    
+    else if(_h_str == "clear_log" || _h_str == "felog --clear")
+    {
+        printlnf("Clearing...\n");
+        logsystem->ClearLog();
+        printlnf("Done.\n");
+    }
     else if(_h_str.rfind("getdev", 0) == 0)
     {
         strfor_h_str = _h_str.erase(0, 7);

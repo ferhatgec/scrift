@@ -12,7 +12,7 @@
 #include <ctime>
 #include <cstdio>
 // #include <Syntax/PrintErrorFunction.hpp>
-
+std::ofstream file;
 FCommand *commandlog = new FCommand();
 std::string filepath_with_path;
 FeLog::FeLog()
@@ -24,6 +24,21 @@ FeLog::~FeLog()
 {
     delete commandlog;
 }
+
+func
+FeLog::ClearLog()
+{
+    std::string path;
+    path.append(commandlog->_file_path_cd_function);
+    path.append(slash);
+    path.append(".scrift_log");
+    file.open(path); // append
+    file << "FeLog Cleared.. \n";
+    file << TimeFunction() << "\n";
+    file.close();
+}
+
+
 const std::string
 FeLog::TimeFunction()
 {
@@ -67,7 +82,7 @@ FeLog::CreateFile()
     path.append(commandlog->_file_path_cd_function);
     path.append(slash);
     path.append(".scrift_log");
-    std::ofstream file;
+
     file.open(path, std::ios::app);
     file << "FeLog Started. ";
     file << TimeFunction() << "\n";

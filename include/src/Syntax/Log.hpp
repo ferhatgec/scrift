@@ -19,6 +19,7 @@ public:
     const std::string TimeFunction();
     virtual func WriteLog(fstr);
     virtual boolean IsExist();
+    virtual func ClearLog();
     virtual func AllofThem();
 };
 
