@@ -18,6 +18,7 @@ public:
     FCDFunction();
     destructor FCDFunction();
     virtual func CDFunctionInit(fstr);
+    //virtual func CDFunctionBack();
     virtual boolean FileExists(const fstr &);
 };
 

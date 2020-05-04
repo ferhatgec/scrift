@@ -19,6 +19,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <pwd.h>
+#include <unistd.h>
 #include <sys/stat.h>
 #include <dirent.h>
 #include <fstream>
@@ -72,13 +73,13 @@ faddtextfunction::FileExist(const std::string filename)
     fcdfunction->FileExists(filename);
 }
 
-
-
+std::string pathnamef;
 void
 FCDFunction::CDFunctionInit(std::string name)
 {
     command = new FCommand();
     fmain = new FMain();
+   
     // or std::getline
     if(name != "") 
     {
@@ -91,6 +92,7 @@ FCDFunction::CDFunctionInit(std::string name)
             if(FileExists(path) == true) {
                 std::strcat(command->_file_path_cd_function, "/");
                 std::strcat(command->_file_path_cd_function, name.c_str()); 
+                pathnamef = name;
             } else {
                 printerror->PrintError("This directory is not exist!");
                 slashn
@@ -100,7 +102,6 @@ FCDFunction::CDFunctionInit(std::string name)
     } 
     return;         
 }
-
 
 // FMKDIRFUNCTION
 FMKDirFunction::FMKDirFunction()

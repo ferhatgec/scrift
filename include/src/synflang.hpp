@@ -37,7 +37,6 @@
 
 #define F_OK 0
 #define F_NO 1
-
 #include <locale.h>
 typedef uint8_t     uinteger8;
 typedef  int8_t     integer8;

@@ -82,24 +82,37 @@ FMain::Shell()
     
     if (_h_str != "") { //NULL
     // HELP FUNCTION
+
     if(_h_str == "help" || _h_str == "-h" || _h_str == "Help" || _h_str == "HELP" || _h_str == "-H")
     {
         logsystem->WriteLog("Launching help function.. - ");
         helpstr->help();
         logsystem->WriteLog("Launched.. - ");
     }
+
+
     else if(_h_str == "gitlink" || _h_str == "scrift_link" || _h_str == "fusionlink" || _h_str == "GitLink" || _h_str == "Fusion" || _h_str == "Scrift")
     {
         helpstr->GitLink();
     }
+
+
+
     else if(_h_str == "cont" || _h_str == "contr" || _h_str == "contributors" || _h_str == "Contributors" || _h_str == "Cont")
     {
         contributors_lists->AllOfThem();
     }
+
+
+
+
     else if(_h_str.find("&&", 0) == 0)
     {
         printlnf("Found!\n");
     }
+
+
+
     else if(_h_str == "felog" || _h_str == "show_log" || _h_str == "FeLog" || _h_str == "Felog" || _h_str == "FELOG" || _h_str == "Show_Log" ||
     _h_str == "SHOW_LOG")
     {
@@ -107,6 +120,9 @@ FMain::Shell()
         readfilefunction->ReadFeLogFunction();
         logsystem->WriteLog("Launched.. - ");
     }
+
+
+
     else if(_h_str == "clear_log" || _h_str == "felog --clear" || _h_str == "Clear_Log" || _h_str == "CLEAR_LOG" || _h_str == "FeLog --Clear" || _h_str == "FELOG --CLEAR")
     {
         logsystem->WriteLog("Launching ClearLog function.. - ");
@@ -115,6 +131,9 @@ FMain::Shell()
         logsystem->WriteLog("Launched.. - ");
         printlnf("Done.\n");
     }
+
+
+
     else if(_h_str.rfind("getdev", 0) == 0)
     {
         logsystem->WriteLog("Launching getdev function.. - ");
@@ -128,6 +147,9 @@ FMain::Shell()
             logsystem->WriteLog("Launched with false boolean - ");
         }
     }
+
+
+
     // ADD TEXT FUNCTION
     else if(_h_str.rfind("addtext", 0) == 0) {
         logsystem->WriteLog("Launching addtext function.. - ");
@@ -136,6 +158,9 @@ FMain::Shell()
         fileaddtextfunction->AppendLine(strfor_h_str);
         logsystem->WriteLog("Launched\n");
     }
+
+
+
     // NANO ADD TEXT FUNCTION
     else if(_h_str.rfind("nanoaddtext", 0) == 0) {
         logsystem->WriteLog("Launching nanoaddtext function.. - ");
@@ -144,6 +169,9 @@ FMain::Shell()
         fileaddtextfunction->DeleteLine(strfor_h_str);
         logsystem->WriteLog("Launched\n");
     }
+
+
+
     else if(_h_str.rfind("rmvfile", 0) == 0) {
         logsystem->WriteLog("Launching rmvfile function.. -");
         strfor_h_str = _h_str.erase(0, 8);
@@ -151,6 +179,8 @@ FMain::Shell()
         removefile->DeleteFile(strfor_h_str);
         logsystem->WriteLog("Launched.. - ");
     }
+
+
     // DELETE TEXT FUNCTION
     else if(_h_str.rfind("deletetext", 0) == 0) {
         logsystem->WriteLog("Launching deletetext function.. - ");
@@ -159,6 +189,9 @@ FMain::Shell()
         fileaddtextfunction->DeleteLine(strfor_h_str);
         logsystem->WriteLog("Launched.. -");
     }
+
+
+
     // CREATE FOLDER FUNCTION
     else if(_h_str.rfind("mkdir", 0) == 0) {
         logsystem->WriteLog("Launching mkdir function.. - ");
@@ -167,6 +200,9 @@ FMain::Shell()
         mkdirfunction->MKDirFunctionInit(strfor_h_str);
         logsystem->WriteLog("Launched.. - "); 
     }
+
+
+
     // READ TEXT FUNCTION
     else if (_h_str.find("readtext", 0) == 0) {
         logsystem->WriteLog("Launching readtext function.. - ");
@@ -175,6 +211,8 @@ FMain::Shell()
         readfilefunction->ReadFileFunction(strfor_h_str);
         logsystem->WriteLog("Launched.. -");  
     }
+
+ 
     // CD FUNCTION
     else if(_h_str.rfind("cd", 0) == 0) {
         logsystem->WriteLog("Launching cd function.. -");
@@ -183,12 +221,18 @@ FMain::Shell()
         cdfunction->CDFunctionInit(strfor_h_str);
         logsystem->WriteLog("Launched.. - ");
     }
+
+
+
     // HOME FUNCTION
     else if (_h_str == "home" || _h_str == "default" || _h_str == "Home" || _h_str == "HOME" || _h_str == "Default" || _h_str == "DEFAULT") {
         logsystem->WriteLog("Launching home function.. - ");
         homefunction->GetHome();
         logsystem->WriteLog("Launched.. - ");
     }
+
+
+
     // LIST DIRECTORY FUNCTION
     else if(_h_str == "lsd" || _h_str == "lsdir" || _h_str == "ls -d" || _h_str == "LSD" || _h_str == "LSDIR" || _h_str == "Ls Dir")
     {
@@ -196,6 +240,9 @@ FMain::Shell()
         logsystem->WriteLog("Launched.. - "); 
         slashn
     }
+
+
+
     // LIST FUNCTION
     else if(_h_str == "ls" || _h_str == "dir" ||_h_str == "LS" || _h_str == "DIR" || _h_str == "Ls" || _h_str == "Dir") // list directory
     {
@@ -203,6 +250,9 @@ FMain::Shell()
        logsystem->WriteLog("Launched.. - ");
        slashn   
     }
+
+
+
     // LIST FILE FUNCTION
     else if(_h_str == "lsf" || _h_str == "lsfile" || _h_str == "ls -f" || _h_str == "LSF" || _h_str == "LSFILE" || _h_str == "Ls File")
     {   
@@ -210,6 +260,9 @@ FMain::Shell()
         logsystem->WriteLog("Launched.. - "); 
         slashn
     }
+
+
+
     // CREATE TEXT FUNCTION
     else if(_h_str.rfind("ctxt", 0) == 0){
         logsystem->WriteLog("Launching ctxt function..\n");
@@ -218,6 +271,9 @@ FMain::Shell()
         filefunction->CreateFileFunctionInit(strfor_h_str);
         logsystem->WriteLog("Launched.. -"); 
     }
+
+
+
     // PRINT FUNCTION
     else if(_h_str.rfind("printlnf") == 0){
         logsystem->WriteLog("Launching printlnf function.. - ");
@@ -226,6 +282,9 @@ FMain::Shell()
         main_->echo_printlnf(strfor_h_str); 
         logsystem->WriteLog("Launched.. - "); 
     }
+
+
+
     // CLEAR FUNCTION
     else if(_h_str == "clear" || _h_str == "clear!!!") {
         logsystem->WriteLog("Launching clear function.. - ");
@@ -233,12 +292,17 @@ FMain::Shell()
         logsystem->WriteLog("Launched.. - "); 
     }
 
+
+
     // CLOSE FUNCTION
     else if(_h_str == "brk" || _h_str == "cls")  {
         logsystem->WriteLog("Exit signal.. - ");
         logsystem->WriteLog("Launched.. - "); 
         exit(EXIT_SUCCESS);
     } 
+
+
+
     // USERNAME FUNCTION
     else if(_h_str == "username" || _h_str == "uname") {
         logsystem->WriteLog("Launching username function.. - ");
@@ -246,6 +310,9 @@ FMain::Shell()
         logsystem->WriteLog("Launched.. - ");
         slashn
     } 
+
+
+
     // RUN FUNCTION
     else if(_h_str.rfind("scr", 0) == 0)
     {
@@ -255,6 +322,9 @@ FMain::Shell()
         runfunction->RunFunction(strfor_h_str);
         logsystem->WriteLog("Launched.. - ");
     }
+
+
+
     // RANDOMIZE STRING FUNCTION
     else if(_h_str.rfind("rstr", 0) == 0) {
         logsystem->WriteLog("Launching rstr function.. - ");
@@ -265,6 +335,9 @@ FMain::Shell()
         main_->_generated_hash_string(atest);
         logsystem->WriteLog("Launched.. - "); 
     }
+
+
+
     // PAUSE FUNCTION
     else if(_h_str == "pause" || _h_str == "stop") {
         logsystem->WriteLog("Launching pause function.. - ");
@@ -279,6 +352,9 @@ FMain::Shell()
         }
         logsystem->WriteLog("Launched.. - ");
     }
+
+
+
     // SYSTEM INFO FUNCTION
     else if(_h_str == "fetcheya" || _h_str == "-f"){
         logsystem->WriteLog("Launching fetcheya function.. - ");
@@ -295,12 +371,17 @@ FMain::Shell()
         main_->_set_locale();
         logsystem->WriteLog("Launched.. - ");
     }  
+
+
+
     // IP FUNCTION
     else if(_h_str == "ip" || _h_str == "myip"){
         logsystem->WriteLog("Launching ip function.. - ");
         main_->_your_ip();
         logsystem->WriteLog("Launched.. - ");
     } 
+
+
     else { 
         RED_COLOR
         logsystem->WriteLog("Launching printlnf(This Command is not found)  function.. - ");
@@ -310,6 +391,8 @@ FMain::Shell()
         slashn 
     }
     }
+
+    
     
 }
 
