@@ -63,6 +63,16 @@ public:
         printlnf(" Ferhat Gecdogan\n");
         BLACK_COLOR
     } 
+
+    virtual func GitLink() {
+        YELLOW_COLOR
+        printlnf("https://github.com/FerhatGec\n");
+        BOLD_BLUE_COLOR
+        printlnf("https://github.com/FerhatGec/scrift-lang\n");
+        GREEN_COLOR
+        printlnf("https://github.com/FerhatGec/fusion-os\n");
+        BLACK_COLOR // reset
+    }
 } fhelp;
 
 #endif // HELP_FUNCTION_HPP

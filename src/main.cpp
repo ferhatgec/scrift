@@ -89,9 +89,7 @@ FMain::Shell()
     }
     else if(_h_str == "gitlink" || _h_str == "scrift_link" || _h_str == "fusionlink")
     {
-        printlnf("https://github.com/FerhatGec\n");
-        printlnf("https://github.com/FerhatGec/scrift-lang\n");
-        printlnf("https://github.com/FerhatGec/fusion-os\n");
+        helpstr->GitLink();
     }
     else if(_h_str == "cont" || _h_str == "contr" || _h_str == "contributors")
     {
