@@ -245,6 +245,7 @@ FMain::Shell()
         logsystem->WriteLog("Launching username function..\n");
         userhostname->InitUsername();
         logsystem->WriteLog("Launched..\n");
+        slashn
     } 
     // RUN FUNCTION
     else if(_h_str.rfind("scr", 0) == 0)
