@@ -154,7 +154,7 @@ FCreateFileFunction::CreateScriftFile(std::string pathname)
     path.append(pathname);
     path.append(scrift); 
     std::ofstream file(path, std::ios::app);
-    file << "printlnf This Scrift file created by Scrift, Hahaha!";
+    file << "printlnf  This Scrift file created by Scrift, Hahaha!";
     printlnf("File created successfuly\n");
     file.close();
 }
