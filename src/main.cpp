@@ -37,6 +37,7 @@
 #include "../include/src/Syntax/DeveloperMode.hpp"
 #include "../include/src/Syntax/Contributors.hpp"
 #include "../include/src/Syntax/Colors.hpp"
+#include "../include/src/Syntax/Settings.hpp"
 // Variables 
 
 using namespace FileFunction;
@@ -63,7 +64,7 @@ FLinkerAndSign *linkersign = new FLinkerAndSign();
 FeLog *logsystem = new FeLog();
 FRemoveFileFunction *removefile = new FRemoveFileFunction();
 FClearFileFunction *clearfile = new FClearFileFunction();
-
+FRunFunctionSyntax *runsyntax = new FRunFunctionSyntax();
 
 FMain::FMain()
 {
@@ -75,7 +76,7 @@ FMain::~FMain()
 {
     delete terminalstr,  helpstr, kernel, _h_str, main_, mkdirfunction, filefunction, userhostname, main_function,
     homefunction, listdirectoryfunction, runfunction, readfilefunction, fileaddtextfunction,
-    linkersign, removefile, developermode, contributors_lists, clearfile;
+    linkersign, removefile, developermode, contributors_lists, clearfile, runsyntax;
 }   
 
 
@@ -219,7 +220,8 @@ FMain::Shell()
 
  
     // CD FUNCTION
-    else if(_h_str.rfind("cd", 0) == 0) {
+    else if(_h_str.rfind("cd", 0) == 0) 
+    {
         logsystem->WriteLog("Launching cd function.. -");
         strfor_h_str = _h_str.erase(0,3);
         logsystem->WriteLog("Erasing _h_str string.. -");
@@ -237,13 +239,20 @@ FMain::Shell()
  
 
     // HOME FUNCTION
-    else if (_h_str == "home" || _h_str == "default" || _h_str == "Home" || _h_str == "HOME" || _h_str == "Default" || _h_str == "DEFAULT") {
+    else if (_h_str == "home" || _h_str == "default" || _h_str == "Home" || _h_str == "HOME" || _h_str == "Default" || _h_str == "DEFAULT") 
+    {
         logsystem->WriteLog("Launching home function.. - ");
         homefunction->GetHome();
         logsystem->WriteLog("Launched.. - ");
     }
 
 
+    else if(_h_str == "testsettings" || _h_str == "scrlang")
+    {
+        logsystem->WriteLog("Calling ReadSettings... - ");
+        runsyntax->ReadFile();
+        logsystem->WriteLog("Launched... - ");
+    }
 
     // LIST DIRECTORY FUNCTION
     else if(_h_str == "lsd" || _h_str == "lsdir" || _h_str == "ls -d" || _h_str == "LSD" || _h_str == "LSDIR" || _h_str == "Ls Dir")

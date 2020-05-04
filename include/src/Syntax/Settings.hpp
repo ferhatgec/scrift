@@ -10,31 +10,53 @@
 #include "FileFunction.hpp"
 #include "Log.hpp"
 #include "../main.h"
+#include <pwd.h>
 
-class FRunFunction {
-    fchar* printtext;
+class FRunFunctionSyntax {
     FeLog *logsystem = new FeLog();
     FileFunction::FCreateFileFunction *createfile = new FileFunction::FCreateFileFunction();
     FileFunction::FReadFileFunction *readfile = new FileFunction::FReadFileFunction();
 public:
+    fchar* fprinttext = "printtext";
+    fchar* fname;
     virtual func CreateSettingsFile();
     virtual func KeyWords();
     virtual func ReadFile();
-private:
-    virtual boolean SetPermission();
 };
 
 func 
-FRunFunction::CreateSettingsFile()
+FRunFunctionSyntax::CreateSettingsFile()
 {
     logsystem->WriteLog("Creating Settings File \n");
 }
 
 func 
-FRunFunction::KeyWords()
+FRunFunctionSyntax::KeyWords()
 {
-    printtext = "printtext";
-    
+ 
 }
+
+func 
+FRunFunctionSyntax::ReadFile()
+{
+    std::string line;
+    std::string ftest;
+    uid_t fuid = geteuid();
+    struct passwd *password = getpwuid(fuid);
+    std::string fpath;
+    fpath.append("/home/");
+    fpath.append(password->pw_name);
+    fpath.append("/");
+    fpath.append(".scrift_settings");
+    std::ifstream readfile(fpath);
+    if(readfile.is_open()) {
+    while (std::getline(readfile, line))
+    {
+        if(line.find(fprinttext, 0) == 0)
+        std::cout << line.erase(0, 10) << "\n";
+    }
+    }
+}
+
 
 #endif // RUN_FUNCTION_HPP_
