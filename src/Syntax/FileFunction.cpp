@@ -159,6 +159,76 @@ FCreateFileFunction::CreateFileFunctionInit(fstr name)
     file.close();
 }
 
+boolean 
+FCreateFileFunction::IsExistFile()
+{
+    uid_t fuid = geteuid();
+    struct passwd *password = getpwuid(fuid);
+    filelog->WriteLog("Appended passwd structure - ");
+    std::string path;
+    path.append("/home/");
+    path.append(password->pw_name);
+    path.append("/");
+    path.append(".scrift_settings");
+    struct stat buffer;
+    return (stat(path.c_str(), &buffer) == 0);
+}
+
+
+
+func 
+FCreateFileFunction::CreateSettingsFileFunction()
+{
+    if(IsExistFile() != true) {
+    FeLog *logsystem = new FeLog();
+    logsystem->WriteLog("Calling getuid from CreateSettingsFileFunction - ");
+    uid_t fuid = geteuid();
+    logsystem->WriteLog("Calling getpwuid from CreateSettingsFileFunction - "); 
+    struct passwd *password = getpwuid(fuid);   
+    logsystem->WriteLog("Creating pathfile from CreateSettingsFileFunction - ");
+    std::string pathfile;   
+    logsystem->WriteLog("Appending password->pw_name in pathfile - ");
+    pathfile.append("/home/");
+    pathfile.append(password->pw_name);
+    logsystem->WriteLog("Appending slash in pathfile - ");
+    pathfile.append("/");
+    logsystem->WriteLog("Appending ScriftSettings file in pathfile - ");
+    pathfile.append(".scrift_settings");
+    logsystem->WriteLog("Creating ofstream from CreateSettingsFileFunction - ");
+    std::ofstream file(pathfile, std::ios::app);
+    file << "Test";
+    //file <<  Settings variables begin.
+    // Settings variables end.
+    logsystem->WriteLog("Calling file<dot>close from CreateSettingsFileFunction - ");
+    file.close();
+    } else {
+        filelog->WriteLog("Settings file is exists! Nice. - ");
+    }
+}
+
+func 
+FClearFileFunction::ClearSettingsFunction()
+{
+    if(IsExistFile() == true)
+    {
+        filelog->WriteLog("Clearing Settings File - ");
+        uid_t fuid = getuid(); 
+        struct passwd *password = getpwuid(fuid);
+        std::string path;
+        path.append("/home/");
+        path.append(password->pw_name);
+        path.append("/");
+        path.append(".scrift_settings");
+        std::ofstream file(path); // App = Append
+        file << " ";
+        filelog->WriteLog("Cleared.. - ");
+    } 
+    else {
+        CreateSettingsFileFunction();
+    }
+}
+
+
 void
 FCreateFileFunction::CreateASCIIFileFunction()
 {
@@ -187,6 +257,7 @@ FCreateFileFunction::CreateFeLogFileFunction()
 {
 
 }
+
 
 
 
@@ -300,6 +371,28 @@ FReadFileFunction::ReadFileFunction(fstr filename)
         printerror->PrintError("Unable to open file\n");
     } 
 }
+
+func 
+FReadFileFunction::ReadSettingsFunction()
+{
+    std::string line;
+    std::string fpath;
+    uid_t fuid = geteuid();
+    struct passwd *pass = getpwuid(fuid);
+    fpath.append("/home/");
+    fpath.append(pass->pw_name); // Your username 
+    fpath.append("/"); // slash
+    fpath.append(".scrift_settings");
+    std::ifstream readfile(fpath);
+    if(readfile.is_open()) {
+    while (std::getline(readfile, line))
+    {
+        printlnf(line.c_str());
+        slashn
+    }
+    }
+}
+
 
 void 
 FReadFileFunction::ReadASCIIFunction()

@@ -11,7 +11,7 @@
 #include "../main.h"
 #include "FileFunction.hpp"
 #include "Log.hpp"
-
+#include <pwd.h>
 using namespace FileFunction;
 
 typedef struct {
@@ -22,12 +22,15 @@ public:
     FReadFileFunction *readfilefunc = new FReadFileFunction();
     inline boolean InitFile()
     {
-         struct stat buffer;
-         std::string path;
-         path.append(fegeyacommand->_file_path_cd_function);
-         path.append("/");
-         path.append(".scrift_ascii");   
-         return (stat (path.c_str(), &buffer) == 0); 
+        struct stat buffer;
+        std::string path;
+        uid_t uid = geteuid();
+        struct passwd *password = getpwuid(uid);
+        path.append("/home/");
+        path.append(password->pw_name);
+        path.append("/");
+        path.append(".scrift_ascii");   
+        return (stat (path.c_str(), &buffer) == 0); 
     }
 
     virtual void GenerateString() 

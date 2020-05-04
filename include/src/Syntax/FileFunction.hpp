@@ -36,9 +36,11 @@ class FCreateFileFunction : public FMKDirFunction {
 public:
     FCreateFileFunction();
     destructor FCreateFileFunction();
+    virtual boolean IsExistFile();
     virtual func CreateASCIIFileFunction();
     virtual func CreateFeLogFileFunction();
     virtual func CreateFileFunctionInit(fstr);
+    virtual func CreateSettingsFileFunction();
 };
 
 // ReadFile Function
@@ -49,9 +51,15 @@ public:
     virtual func ReadFileInit();
     boolean ReadFileExists();
     // virtual func CreateFeLog....
+    virtual func ReadSettingsFunction();
     virtual func ReadASCIIFunction();
     virtual func ReadFeLogFunction();
     virtual func ReadFileFunction(fstr);
+};
+
+class FClearFileFunction : public FReadFileFunction {
+public:
+    virtual func ClearSettingsFunction(); 
 };
 
 // List Function

@@ -41,6 +41,8 @@
 
 using namespace FileFunction;
 using namespace FLinker;
+
+
 FContributors *contributors_lists = new FContributors();
 FDeveloperMode *developermode = new FDeveloperMode();
 FMain *main_function = new FMain();
@@ -60,6 +62,9 @@ faddtextfunction *fileaddtextfunction = new faddtextfunction;
 FLinkerAndSign *linkersign = new FLinkerAndSign();
 FeLog *logsystem = new FeLog();
 FRemoveFileFunction *removefile = new FRemoveFileFunction();
+FClearFileFunction *clearfile = new FClearFileFunction();
+
+
 FMain::FMain()
 {
     
@@ -70,7 +75,7 @@ FMain::~FMain()
 {
     delete terminalstr,  helpstr, kernel, _h_str, main_, mkdirfunction, filefunction, userhostname, main_function,
     homefunction, listdirectoryfunction, runfunction, readfilefunction, fileaddtextfunction,
-    linkersign, removefile, developermode, contributors_lists;
+    linkersign, removefile, developermode, contributors_lists, clearfile;
 }   
 
 
@@ -245,10 +250,23 @@ FMain::Shell()
     {
         main_->list_direc(true);
         logsystem->WriteLog("Launched.. - "); 
+    }
+
+    else if(_h_str == "show_settings" || _h_str == "settings") 
+    {
+        logsystem->WriteLog("Calling ReadSettingsFunction.. - ");
+        readfilefunction->ReadSettingsFunction();
         slashn
     }
 
 
+    else if(_h_str == "clear_settings" ||
+    _h_str == "deletesettings") 
+    {
+        logsystem->WriteLog("Calling DeleteSettingsFunction .. -  ");
+        clearfile->ClearSettingsFunction();
+        logsystem->WriteLog("Cleared Settings - ");
+    }
 
     // LIST FUNCTION
     else if(_h_str == "ls" || _h_str == "dir" ||_h_str == "LS" || _h_str == "DIR" || _h_str == "Ls" || _h_str == "Dir") // list directory
@@ -405,7 +423,9 @@ integer main(integer argc)
     logsystem->AllofThem();
     asciifunction *ascii = new asciifunction;
     ascii->Allofthem();
-
+    filefunction->CreateSettingsFileFunction(); // Directory is "/home/<username>/<dot>scrift_settings"
+    // TODO: Add Initialize Settings File Function.
+    // TODO: Support Read Text.
     logsystem->WriteLog("Launching hello function.. - ");
     helpstr->hello();
     logsystem->WriteLog("Launched.. - ");
