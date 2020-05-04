@@ -7,7 +7,7 @@
 #include <Syntax/CommandFunc.h>
 #include <Syntax/GetNameFunction.hpp>
 #include <pwd.h>
-
+#include <Syntax/Colors.hpp>
 FCommand *terminal = new FCommand();
 
 FStructure::FStructure()

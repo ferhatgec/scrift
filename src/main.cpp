@@ -36,6 +36,7 @@
 #include "../include/src/Syntax/ASCIIFunction.hpp"
 #include "../include/src/Syntax/DeveloperMode.hpp"
 #include "../include/src/Syntax/Contributors.hpp"
+#include "../include/src/Syntax/Colors.hpp"
 // Variables 
 
 using namespace FileFunction;

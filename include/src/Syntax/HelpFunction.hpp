@@ -4,10 +4,11 @@
 # Distributed under the terms of the GPLv3 License.
 #
 # */
-#include "CommandFunc.h"
+
 #ifndef HELP_FUNCTION_HPP
 #define HELP_FUNCTION_HPP
-
+#include "CommandFunc.h"
+#include "Colors.hpp"
 typest {
 public:
     virtual func help() {

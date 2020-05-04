@@ -6,7 +6,7 @@
 # */
 #ifndef ASCII_FUNCTION_HPP
 #define ASCII_FUNCTION_HPP
-
+#include "Colors.hpp"
 #include "../synflang.hpp"
 #include "../main.h"
 #include "FileFunction.hpp"

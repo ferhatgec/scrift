@@ -8,7 +8,7 @@
 #include <sys/utsname.h>
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <Syntax/Colors.hpp>
 #include <Syntax/GetNameFunction.hpp>
 #include <dirent.h>
 #include <sys/stat.h>

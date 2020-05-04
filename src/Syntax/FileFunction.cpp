@@ -23,7 +23,7 @@
 #include <dirent.h>
 #include <fstream>
 #include <Syntax/Log.hpp>
-
+#include <Syntax/Colors.hpp>
 using namespace FileFunction;
 
 
