@@ -82,17 +82,17 @@ FMain::Shell()
     
     if (_h_str != "") { //NULL
     // HELP FUNCTION
-    if(_h_str == "help" || _h_str == "-h")
+    if(_h_str == "help" || _h_str == "-h" || _h_str == "Help" || _h_str == "HELP" || _h_str == "-H")
     {
         logsystem->WriteLog("Launching help function.. - ");
         helpstr->help();
         logsystem->WriteLog("Launched.. - ");
     }
-    else if(_h_str == "gitlink" || _h_str == "scrift_link" || _h_str == "fusionlink")
+    else if(_h_str == "gitlink" || _h_str == "scrift_link" || _h_str == "fusionlink" || _h_str == "GitLink" || _h_str == "Fusion" || _h_str == "Scrift")
     {
         helpstr->GitLink();
     }
-    else if(_h_str == "cont" || _h_str == "contr" || _h_str == "contributors")
+    else if(_h_str == "cont" || _h_str == "contr" || _h_str == "contributors" || _h_str == "Contributors" || _h_str == "Cont")
     {
         contributors_lists->AllOfThem();
     }
@@ -100,13 +100,14 @@ FMain::Shell()
     {
         printlnf("Found!\n");
     }
-    else if(_h_str == "felog" || _h_str == "show_log")
+    else if(_h_str == "felog" || _h_str == "show_log" || _h_str == "FeLog" || _h_str == "Felog" || _h_str == "FELOG" || _h_str == "Show_Log" ||
+    _h_str == "SHOW_LOG")
     {
         logsystem->WriteLog("Launching felog function.. - ");
         readfilefunction->ReadFeLogFunction();
         logsystem->WriteLog("Launched.. - ");
     }
-    else if(_h_str == "clear_log" || _h_str == "felog --clear")
+    else if(_h_str == "clear_log" || _h_str == "felog --clear" || _h_str == "Clear_Log" || _h_str == "CLEAR_LOG" || _h_str == "FeLog --Clear" || _h_str == "FELOG --CLEAR")
     {
         logsystem->WriteLog("Launching ClearLog function.. - ");
         printlnf("Clearing... - ");
@@ -183,28 +184,27 @@ FMain::Shell()
         logsystem->WriteLog("Launched.. - ");
     }
     // HOME FUNCTION
-    else if (_h_str == "home" || _h_str == "default") {
+    else if (_h_str == "home" || _h_str == "default" || _h_str == "Home" || _h_str == "HOME" || _h_str == "Default" || _h_str == "DEFAULT") {
         logsystem->WriteLog("Launching home function.. - ");
         homefunction->GetHome();
         logsystem->WriteLog("Launched.. - ");
     }
     // LIST DIRECTORY FUNCTION
-    else if(_h_str == "lsd" || _h_str == "lsdir")
+    else if(_h_str == "lsd" || _h_str == "lsdir" || _h_str == "ls -d" || _h_str == "LSD" || _h_str == "LSDIR" || _h_str == "Ls Dir")
     {
-
         main_->list_direc(true);
         logsystem->WriteLog("Launched.. - "); 
         slashn
     }
     // LIST FUNCTION
-    else if(_h_str == "ls" || _h_str == "dir") // list directory
+    else if(_h_str == "ls" || _h_str == "dir" ||_h_str == "LS" || _h_str == "DIR" || _h_str == "Ls" || _h_str == "Dir") // list directory
     {
        listdirectoryfunction->LSFunction();
        logsystem->WriteLog("Launched.. - ");
        slashn   
     }
     // LIST FILE FUNCTION
-    else if(_h_str == "lsf" || _h_str == "lsfile")
+    else if(_h_str == "lsf" || _h_str == "lsfile" || _h_str == "ls -f" || _h_str == "LSF" || _h_str == "LSFILE" || _h_str == "Ls File")
     {   
         main_->list_file(true);
         logsystem->WriteLog("Launched.. - "); 

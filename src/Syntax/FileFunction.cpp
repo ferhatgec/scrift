@@ -38,7 +38,7 @@ FCDFunction *fcdfunction = new FCDFunction;
 fchar* file_name;
 fchar* file_directory;
 std::string file_directory_string;
-std::string homedirectory;
+
 struct stat filestat;
 struct dirent *entryname;
 fchar *string;
@@ -55,7 +55,7 @@ FCDFunction::FCDFunction()
 
 FCDFunction::~FCDFunction()
 {
-    delete fmain, printerror, command, str, homedirectory, ascii, filelog;
+    delete fmain, printerror, command, ascii, filelog;
 }
 
 
@@ -327,11 +327,12 @@ FReadFileFunction::ReadASCIIFunction()
 void
 fhomefunction::GetHome() 
 {
+    std::string path;
     uid_t uid = geteuid();
     struct passwd *password = getpwuid(uid);
-    homedirectory.append("/home/");
-    homedirectory.append(password->pw_name);
-    std::strcpy(command->_file_path_cd_function, homedirectory.c_str());
+    path.append("/home/");
+    path.append(password->pw_name);
+    std::strcpy(command->_file_path_cd_function, path.c_str());
 }
 
 // FILELSFUNCTION
