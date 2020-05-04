@@ -224,6 +224,13 @@ FMain::Shell()
 
 
 
+    else if(_h_str == "back" || _h_str == "cddot")
+    {
+        printlnf("%s", system("cd .."));
+    }
+
+ 
+
     // HOME FUNCTION
     else if (_h_str == "home" || _h_str == "default" || _h_str == "Home" || _h_str == "HOME" || _h_str == "Default" || _h_str == "DEFAULT") {
         logsystem->WriteLog("Launching home function.. - ");
@@ -383,11 +390,7 @@ FMain::Shell()
 
 
     else { 
-        RED_COLOR
-        logsystem->WriteLog("Launching printlnf(This Command is not found)  function.. - ");
-        printlnf("This command is not found!");
-        logsystem->WriteLog("Launched.. - ");
-        BLACK_COLOR
+        runfunction->RunFunction(_h_str);
         slashn 
     }
     }

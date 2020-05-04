@@ -38,8 +38,7 @@ FRunFunction::RunFunctionExists()
 void
 FRunFunction::RunFunction(std::string name)
 {
-    directory.append("/usr/bin/");
-    directory.append(name);
+    directory = "/usr/bin/" + name;
     system(directory.c_str());
 }
 
