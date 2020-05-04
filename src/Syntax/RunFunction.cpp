@@ -6,10 +6,11 @@
 # */
 #include <main.h>
 #include <Syntax/RunFunction.hpp>
+#include <Syntax/Language.hpp>
+#include <pwd.h>
+#include <Syntax/CommandFunc.h>
 
 std::string directory;
-
-
 FRunFunction::FRunFunction()
 {
 
@@ -18,22 +19,9 @@ FRunFunction::FRunFunction()
 
 FRunFunction::~FRunFunction()
 {
-
+    
 }
 
-
-void
-FRunFunction::RunFunctionInit()
-{
-
-}   
-
-
-boolean
-FRunFunction::RunFunctionExists()
-{
-
-}
 
 void
 FRunFunction::RunFunction(std::string name)
@@ -41,4 +29,3 @@ FRunFunction::RunFunction(std::string name)
     directory = "/usr/bin/" + name;
     system(directory.c_str());
 }
-

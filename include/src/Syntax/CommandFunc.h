@@ -24,7 +24,7 @@
 #define MAIN_ALL 6
 #define slash "/"
 #define txt ".txt"
-
+#define scrift ".scr"
 
 
 

@@ -39,6 +39,7 @@ public:
     virtual boolean IsExistFile();
     virtual func CreateASCIIFileFunction();
     virtual func CreateFeLogFileFunction();
+    virtual func CreateScriftFile(std::string);
     virtual func CreateFileFunctionInit(fstr);
     virtual func CreateSettingsFileFunction();
 };

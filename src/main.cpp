@@ -38,6 +38,8 @@
 #include "../include/src/Syntax/Contributors.hpp"
 #include "../include/src/Syntax/Colors.hpp"
 #include "../include/src/Syntax/Settings.hpp"
+#include "../include/src/Syntax/Language.hpp"
+
 // Variables 
 
 using namespace FileFunction;
@@ -65,6 +67,7 @@ FeLog *logsystem = new FeLog();
 FRemoveFileFunction *removefile = new FRemoveFileFunction();
 FClearFileFunction *clearfile = new FClearFileFunction();
 FRunFunctionSyntax *runsyntax = new FRunFunctionSyntax();
+FLanguage *scriftlang = new FLanguage();
 
 FMain::FMain()
 {
@@ -76,7 +79,7 @@ FMain::~FMain()
 {
     delete terminalstr,  helpstr, kernel, _h_str, main_, mkdirfunction, filefunction, userhostname, main_function,
     homefunction, listdirectoryfunction, runfunction, readfilefunction, fileaddtextfunction,
-    linkersign, removefile, developermode, contributors_lists, clearfile, runsyntax;
+    linkersign, removefile, developermode, contributors_lists, clearfile, runsyntax, scriftlang;
 }   
 
 
@@ -97,7 +100,7 @@ FMain::Shell()
     }
 
 
-    else if(_h_str == "gitlink" || _h_str == "scrift_link" || _h_str == "fusionlink" || _h_str == "GitLink" || _h_str == "Fusion" || _h_str == "Scrift")
+    else if(_h_str == "gitlink" || _h_str == "scrift_link" || _h_str == "fusionlink" || _h_str == "GitLink" || _h_str == "Fusion")
     {
         helpstr->GitLink();
     }
@@ -108,8 +111,6 @@ FMain::Shell()
     {
         contributors_lists->AllOfThem();
     }
-
-
 
 
     else if(_h_str.find("&&", 0) == 0)
@@ -246,7 +247,21 @@ FMain::Shell()
         logsystem->WriteLog("Launched.. - ");
     }
 
+    else if(_h_str.rfind("scrift", 0) == 0)
+    {
+        logsystem->WriteLog("Deleting _h_str - ");
+        strfor_h_str = _h_str.erase(0, 7);
+        scriftlang->ReadFunc(strfor_h_str);
+    }
 
+    else if(_h_str.rfind("create_scrift_project", 0) == 0)
+    {
+        logsystem->WriteLog("Deleting _h_str - ");
+        strfor_h_str = _h_str.erase(0, 22);        
+        logsystem->WriteLog("Launching CreateScriftFile - ");
+        filefunction->CreateScriftFile(strfor_h_str);
+        logsystem->WriteLog("Launched.. - ");
+    }
     else if(_h_str == "testsettings" || _h_str == "scrlang")
     {
         logsystem->WriteLog("Calling ReadSettings... - ");
@@ -267,7 +282,6 @@ FMain::Shell()
         readfilefunction->ReadSettingsFunction();
         slashn
     }
-
 
     else if(_h_str == "clear_settings" ||
     _h_str == "deletesettings") 

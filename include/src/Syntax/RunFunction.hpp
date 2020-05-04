@@ -13,8 +13,6 @@ class FRunFunction {
 public:
     FRunFunction();
     ~FRunFunction();
-    virtual void RunFunctionInit();
-    virtual boolean RunFunctionExists();
     virtual void RunFunction(std::string);
 };
 

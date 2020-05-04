@@ -145,6 +145,20 @@ FCreateFileFunction::~FCreateFileFunction()
      delete file_path, file_name, file_directory_string, file_directory;
 }
 
+func 
+FCreateFileFunction::CreateScriftFile(std::string pathname)
+{
+    std::string path;
+    path.append(command->_file_path_cd_function);
+    path.append(slash);
+    path.append(pathname);
+    path.append(scrift); 
+    std::ofstream file(path, std::ios::app);
+    file << "printlnf This Scrift file created by Scrift, Hahaha!";
+    printlnf("File created successfuly\n");
+    file.close();
+}
+
 void
 FCreateFileFunction::CreateFileFunctionInit(fstr name)
 {

@@ -5,12 +5,13 @@
 #
 # */
 #ifndef SETTINGS_HPP
-#define SETTIGNS_HPP
+#define SETTINGS_HPP
 
 #include "FileFunction.hpp"
 #include "Log.hpp"
 #include "../main.h"
 #include <pwd.h>
+
 
 class FRunFunctionSyntax {
     FeLog *logsystem = new FeLog();
@@ -19,26 +20,8 @@ class FRunFunctionSyntax {
 public:
     fchar* fprinttext = "printtext";
     fchar* fname;
-    virtual func CreateSettingsFile();
-    virtual func KeyWords();
-    virtual func ReadFile();
-};
-
-func 
-FRunFunctionSyntax::CreateSettingsFile()
-{
-    logsystem->WriteLog("Creating Settings File \n");
-}
-
-func 
-FRunFunctionSyntax::KeyWords()
-{
- 
-}
-
-func 
-FRunFunctionSyntax::ReadFile()
-{
+    virtual func ReadFile()
+    {
     std::string line;
     std::string ftest;
     uid_t fuid = geteuid();
@@ -57,6 +40,6 @@ FRunFunctionSyntax::ReadFile()
     }
     }
 }
-
+};
 
 #endif // RUN_FUNCTION_HPP_

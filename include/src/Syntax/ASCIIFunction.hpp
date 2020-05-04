@@ -12,6 +12,7 @@
 #include "FileFunction.hpp"
 #include "Log.hpp"
 #include <pwd.h>
+
 using namespace FileFunction;
 
 typedef struct {
@@ -46,14 +47,14 @@ public:
         }
     }  
 
-    virtual void ReadFile() 
+    virtual void FReadFile() 
     {
         readfilefunc->ReadASCIIFunction();
     }
     virtual void Allofthem() 
     {
         GenerateString();
-        ReadFile();
+        FReadFile();
         //delete createfilefunc, readfilefunc;
     }
 
