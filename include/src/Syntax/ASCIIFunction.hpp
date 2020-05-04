@@ -10,11 +10,13 @@
 #include "../synflang.hpp"
 #include "../main.h"
 #include "FileFunction.hpp"
+#include "Log.hpp"
 
 using namespace FileFunction;
 
 typedef struct {
 public:
+    FeLog *logfunc = new FeLog();
     FCommand *fegeyacommand = new FCommand();
     FCreateFileFunction *createfilefunc = new FCreateFileFunction();
     FReadFileFunction *readfilefunc = new FReadFileFunction();
@@ -33,7 +35,7 @@ public:
         if(InitFile() == true)
         {
             YELLOW_COLOR
-            printlnf("ASCII file exists, nice!\n");
+            logfunc->WriteLog("ASCIIFile is exists! Nice - ");
             BLACK_COLOR // reset
         }
         else {

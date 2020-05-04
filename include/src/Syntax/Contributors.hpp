@@ -22,53 +22,53 @@ public:
 func
 FContributors::ShellContributors()
 {
-    log->WriteLog("Printing..\n");
+    log->WriteLog("Printing.. - ");
     printlnf("I don't know but If you're supported Scrift with Shell codes, please add your name.\n");
-    log->WriteLog("Launched..\n");
+    log->WriteLog("Launched.. - ");
 }
 
 func 
 FContributors::FeedbackContributors()
 {
-    log->WriteLog("Printing..\n");
+    log->WriteLog("Printing.. - ");
     printlnf("I don't know but If you're supported Scrift with Feedback, please add your name.\n");
-    log->WriteLog("Launched..\n");
+    log->WriteLog("Launched.. - ");
 }
 
 func 
 FContributors::TestingContributors()
 {
-    log->WriteLog("Printing..\n");
+    log->WriteLog("Printing.. - ");
     printlnf("I don't know but If you're supported Scrift with Testing, please add your name.\n");
-    log->WriteLog("Launched..\n");
+    log->WriteLog("Launched.. - ");
 }
 
 func 
 FContributors::DonateContributors()
 {
-    log->WriteLog("Printing..\n");
+    log->WriteLog("Printing.. -");
     printlnf("I don't know but If you're supported Scrift with Donate, please add your name.\n");
-    log->WriteLog("Launched..\n");
+    log->WriteLog("Launched.. - ");
 }
 
 func
 FContributors::Sponsors()
 {
-    log->WriteLog("Printing..\n");
+    log->WriteLog("Printing.. - ");
     printlnf("I don't know but If you're supported Scrift with Sponsors, please add your name.\n");
-    log->WriteLog("Launched..\n");
+    log->WriteLog("Launched.. - ");
 }
 
 func 
 FContributors::AllOfThem()
 {
-    log->WriteLog("Printing..\n");
+    log->WriteLog("Printing.. -");
     ShellContributors();
     FeedbackContributors();
     TestingContributors();
     DonateContributors();
     Sponsors();
-    log->WriteLog("Launched..\n");
+    log->WriteLog("Launched.. - ");
 }
 
 #endif // CONTRIBUTORS_HPP

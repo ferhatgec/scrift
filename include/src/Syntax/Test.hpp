@@ -31,28 +31,28 @@ func
 FTest::LogSystem() 
 {
     if(!logsystem) 
-        logsystem->WriteLog("Bad Working LogSystem\n");
+        logsystem->WriteLog("Bad Working LogSystem - ");
         // TODO: Add create <dot>scrift_log file
     else 
-        logsystem->WriteLog("Good Working LogSystem\n"); 
+        logsystem->WriteLog("Good Working LogSystem - "); 
 }
 
 func 
 FTest::MKDirSystem()
 {
     if(!mkdirsystem)
-        logsystem->WriteLog("Bad Working MKDir System\n");
+        logsystem->WriteLog("Bad Working MKDir System - ");
     else 
-        logsystem->WriteLog("Good Working MKDir System\n");
+        logsystem->WriteLog("Good Working MKDir System - ");
 }
 
 func
 FTest::CDSystem()
 {
     if(!cdsystem)
-        logsystem->WriteLog("Bad Working CD System\n");
+        logsystem->WriteLog("Bad Working CD System - ");
     else 
-        logsystem->WriteLog("Good Working CD System\n");
+        logsystem->WriteLog("Good Working CD System - ");
 }
 
 #endif // TEST_HPP

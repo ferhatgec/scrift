@@ -255,8 +255,11 @@ FReadFileFunction::ReadFeLogFunction()
 {
     std::string line;
     std::string path;
-    path.append(getenv("HOME"));
-    path.append("/");
+    uid_t uid = geteuid();
+    struct passwd *password = getpwuid(uid);
+    path.append("/home/");
+    path.append(password->pw_name);
+    path.append(slash);
     path.append(".scrift_log");
     std::ifstream readfile(path);
     if(readfile.is_open()) 

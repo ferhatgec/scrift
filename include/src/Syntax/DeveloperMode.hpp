@@ -43,10 +43,10 @@ class FDeveloperMode {
         virtual boolean SetDeveloperMode(boolean devmode)
         {
             developermode = devmode;
-            logsystem->WriteLog("Developer Mode equal is devmode\n");
+            logsystem->WriteLog("Developer Mode equal is devmode - ");
             username->GetUsername();
-            logsystem->WriteLog("GetUsername is called\n");
-            logsystem->WriteLog("Going to GetUsername\n");
+            logsystem->WriteLog("GetUsername is called - ");
+            logsystem->WriteLog("Going to GetUsername - ");
             GetUsername();
         }
 };
@@ -55,29 +55,29 @@ boolean
 FDeveloperMode::GetUsername()
 {
     // Default: 
-    logsystem->WriteLog("Default Scrift Shell Running\n");
-    logsystem->WriteLog("Waiting...\n");
+    logsystem->WriteLog("Default Scrift Shell Running - ");
+    logsystem->WriteLog("Waiting... - ");
     ASCIIFunc();
-    logsystem->WriteLog("Going to ASCIIFunction\n");
+    logsystem->WriteLog("Going to ASCIIFunction - ");
 }
 
 boolean
 FDeveloperMode::ASCIIFunc()
 {
-    logsystem->WriteLog("Calling InitFile from ASCIIFunction\n");
+    logsystem->WriteLog("Calling InitFile from ASCIIFunction - ");
     asciisystem->InitFile();
-    logsystem->WriteLog("Going to ErrorSystem\n");
+    logsystem->WriteLog("Going to ErrorSystem - ");
 }
 
 boolean
 FDeveloperMode::ErrorSystem()
 {
-    errorsystem->PrintBugError("DeveloperMode PrintBugError\n");
-    errorsystem->PrintError("Developer Mode PrintError\n");
-    errorsystem->PrintCriticalError("DeveloperMode PrintCriticalError\n");
-    logsystem->WriteLog("Calling CDFunction from ErrorSystem\n");
+    errorsystem->PrintBugError("DeveloperMode PrintBugError - ");
+    errorsystem->PrintError("Developer Mode PrintError - ");
+    errorsystem->PrintCriticalError("DeveloperMode PrintCriticalError - ");
+    logsystem->WriteLog("Calling CDFunction from ErrorSystem - ");
     CDFunction();
-    logsystem->WriteLog("Going to CDFunction\n");
+    logsystem->WriteLog("Going to CDFunction - ");
 }
 
 boolean 
@@ -89,16 +89,16 @@ FDeveloperMode::RunSystem()
 boolean
 FDeveloperMode::CDFunction()
 {
-    logsystem->WriteLog("Searching scrift_log\n");
+    logsystem->WriteLog("Searching scrift_log - ");
     cdsystem->FileExists(".scrift_log\n");
-    logsystem->WriteLog("Exists!\n");
-    logsystem->WriteLog("Calling CDFunctionInit from CDFunction\n");
+    logsystem->WriteLog("Exists! - ");
+    logsystem->WriteLog("Calling CDFunctionInit from CDFunction - ");
     cdsystem->CDFunctionInit(".scrift_dev");
-    logsystem->WriteLog("Going to CDFunctionInit\n");
+    logsystem->WriteLog("Going to CDFunctionInit - ");
 
-    logsystem->WriteLog("Calling CreateFileFunc from CDFunction\n");
+    logsystem->WriteLog("Calling CreateFileFunc from CDFunction - ");
     CreateFileFunc();
-    logsystem->WriteLog("Going to CreateFileFunc\n");
+    logsystem->WriteLog("Going to CreateFileFunc - ");
 }
 
 boolean

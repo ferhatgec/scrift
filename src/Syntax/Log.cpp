@@ -11,6 +11,7 @@
 #include <sys/stat.h>
 #include <ctime>
 #include <cstdio>
+#include <pwd.h>
 // #include <Syntax/PrintErrorFunction.hpp>
 std::ofstream file;
 FCommand *commandlog = new FCommand();
@@ -29,7 +30,10 @@ func
 FeLog::ClearLog()
 {
     std::string path;
-    path.append(commandlog->_file_path_cd_function);
+    uid_t uid = geteuid();
+    struct passwd *password = getpwuid(uid);
+    path.append("/home/");
+    path.append(password->pw_name);
     path.append(slash);
     path.append(".scrift_log");
     file.open(path); // append
@@ -55,8 +59,11 @@ func
 FeLog::WriteLog(fstr filepathw)
 {
     std::string filepath_with_path;
-    filepath_with_path.append(commandlog->_file_path_cd_function);
-    filepath_with_path.append("/");
+    uid_t uid = geteuid();
+    struct passwd *password = getpwuid(uid);
+    filepath_with_path.append("/home/");
+    filepath_with_path.append(password->pw_name);
+    filepath_with_path.append(slash);
     filepath_with_path.append(".scrift_log");
     std::ofstream file;
     file.open(filepath_with_path, std::ios::out | std::ios::app);
@@ -79,7 +86,10 @@ func
 FeLog::CreateFile()
 {   
     std::string path;
-    path.append(commandlog->_file_path_cd_function);
+    uid_t uid = geteuid();
+    struct passwd *password = getpwuid(uid);
+    path.append("/home/");
+    path.append(password->pw_name);
     path.append(slash);
     path.append(".scrift_log");
 
@@ -111,6 +121,6 @@ FeLog::AllofThem()
     }
     else {
         printlnf("FeLog file is exists\n");
-        WriteLog("Test\n");
+        WriteLog("FeLog file is exists! - ");
     }
 }
