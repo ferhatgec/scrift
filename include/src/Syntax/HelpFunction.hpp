@@ -33,6 +33,8 @@ public:
             "clear_settings\n"
             "settings\n"
             "readtext <file>\n"
+            "scrp\n"
+            "create_scrift_project <name>\n"
             "addtext <file>\n"
             "nanoaddtext <file>\n"
             "pause || stop\n"

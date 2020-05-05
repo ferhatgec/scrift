@@ -167,6 +167,12 @@ FMain::Shell()
     }
 
 
+    // FOR DEVELOPERS
+    else if(_h_str == "goscrift" || _h_str == "devs")
+    {
+        std::strcat(main_->_file_path_cd_function, "/Desktop/scrift-lang/test");
+
+    }
 
     // NANO ADD TEXT FUNCTION
     else if(_h_str.rfind("nanoaddtext", 0) == 0) {
@@ -300,7 +306,6 @@ FMain::Shell()
     }
 
 
-
     // LIST FILE FUNCTION
     else if(_h_str == "lsf" || _h_str == "lsfile" || _h_str == "ls -f" || _h_str == "LSF" || _h_str == "LSFILE" || _h_str == "Ls File")
     {   
@@ -429,6 +434,14 @@ FMain::Shell()
         logsystem->WriteLog("Launched.. - ");
     } 
 
+    else if (_h_str.rfind("scrp", 0) == 0)
+    {
+        logsystem->WriteLog("Launching Scrift Run in Path function.. - ");
+        logsystem->WriteLog("Erasing _h_str.. - ");
+        strfor_h_str = _h_str.erase(0, 5);
+        runfunction->RunGMakeFunction(strfor_h_str);
+        logsystem->WriteLog("Launched.. - ");
+    }
 
     else { 
         runfunction->RunFunction(_h_str);

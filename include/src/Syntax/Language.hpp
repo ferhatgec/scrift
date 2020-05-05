@@ -12,12 +12,36 @@
 #include "../main.h"
 #include "CommandFunc.h"
 #include <pwd.h>
+#include <vector>
+
+
+
+
 
 class FLanguage {
 public:
     // Keywords
-    fchar* sprintlnf = "printlnf";
+    std::string name;
+    fchar* commentBegin = "#*";
+    fchar* commentEnd = "*#";
+    fchar* make = "make";
+    fchar* printstring = "strprintlnf";
+
     fchar* string = "string";
+
+
+    // Test
+    fchar* red = "red";
+
+    std::string EraseAllSubString(std::string & mainString, const std::string & erase)
+    {
+    size_t pos = std::string::npos;
+    while((pos = mainString.find(erase)) != std::string::npos)
+    {
+        mainString.erase(pos, erase.length());
+    }
+    return mainString;
+    }
     virtual func ReadFunc(std::string filename)
     {
     std::string line;
@@ -28,11 +52,35 @@ public:
     path.append(filename);
     path.append(scrift);
     std::ifstream readfile(path);
+    fchar* printstr;
+    std::string sfname;
+    fchar* sprintlnf = "printlnf(";
     if(readfile.is_open()) {
+    
     while (std::getline(readfile, line))
     {
-        if(line.find(sprintlnf, 0) == 0)
-            std::cout << line.erase(0, 10) << "\n";
+        
+        if(line.find("slashn", 0) == 0) {
+            slashn
+        }
+        
+        if(line.find(commentBegin, 0) == 0) {
+            if(line.find(commentEnd, 0) == 0) {
+                printlnf("Found..\n");
+            }
+        }
+
+        if(line.find(string, 0) == 0) {
+            name = line.erase(0, 7);
+        }
+        if(line.find(sprintlnf, 0) == 0) {
+           std::string test = EraseAllSubString(line, "printlnf(\"");
+           std::cout << EraseAllSubString(test, "\");");
+        }
+
+        if(line.find(printstring, 0) == 0)
+            std::cout << name << "\n";
+        
     }
     }
 

@@ -1,0 +1,26 @@
+#*  GPLv3 License
+*   Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
+*   Distributed under the terms of the GPLv3 License.
+*#     
+# Default Print String
+printlnf("This Scrift file created by Scrift, Hahaha!");
+slashn
+
+printlnf("Hello Scrift!");
+slashn
+
+# String 
+string testteadasd
+# PrintString
+strprintlnf
+slashn
+
+# Hello Scrift added 
+string Hello Scrift!
+strprintlnf
+
+red 
+printlnf  test
+slashn
+
+

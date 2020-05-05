@@ -10,6 +10,7 @@
 #include <pwd.h>
 #include <Syntax/CommandFunc.h>
 
+
 std::string directory;
 FRunFunction::FRunFunction()
 {
@@ -27,5 +28,14 @@ void
 FRunFunction::RunFunction(std::string name)
 {
     directory = "/usr/bin/" + name;
+    system(directory.c_str());
+}
+
+void 
+FRunFunction::RunGMakeFunction(std::string name)
+{
+    FCommand *command = new FCommand();
+    directory = "/usr/bin" + name;
+    directory.append(command->_file_path_cd_function);
     system(directory.c_str());
 }
