@@ -13,7 +13,7 @@
 #include "CommandFunc.h"
 #include <pwd.h>
 #include <vector>
-
+#include "../synflang.hpp"
 
 
 
@@ -22,13 +22,6 @@ class FLanguage {
 public:
     // Keywords
     std::string name;
-    fchar* commentBegin = "#*";
-    fchar* commentEnd = "*#";
-    fchar* make = "make";
-    fchar* printstring = "strprintlnf";
-
-    fchar* string = "string";
-
 
     // Test
     fchar* red = "red";
@@ -54,6 +47,7 @@ public:
     std::ifstream readfile(path);
     fchar* printstr;
     std::string sfname;
+    integer finteger = 0;
     fchar* sprintlnf = "printlnf(";
     if(readfile.is_open()) {
     
@@ -64,21 +58,30 @@ public:
             slashn
         }
         
-        if(line.find(commentBegin, 0) == 0) {
-            if(line.find(commentEnd, 0) == 0) {
+        if(line.find("integer", 0) == 0) {
+            finteger = std::atoi(line.erase(0, 8).c_str());    
+        }
+        if(line.find("#*", 0) == 0) {
+            if(line.find("*#", 0) == 0) {
                 printlnf("Found..\n");
             }
         }
 
-        if(line.find(string, 0) == 0) {
+        if(line.find("string", 0) == 0) {
             name = line.erase(0, 7);
         }
-        if(line.find(sprintlnf, 0) == 0) {
+        if(line.find("printlnf", 0) == 0) 
+        {
            std::string test = EraseAllSubString(line, "printlnf(\"");
            std::cout << EraseAllSubString(test, "\");");
         }
 
-        if(line.find(printstring, 0) == 0)
+        if (line.find("intprintlnf", 0) == 0) 
+        {
+            std::cout << finteger;
+        }
+
+        if(line.find("strprintlnf", 0) == 0)
             std::cout << name << "\n";
         
     }

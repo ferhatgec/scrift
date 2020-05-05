@@ -10,17 +10,19 @@ printlnf("Hello Scrift!");
 slashn
 
 # String 
-string testteadasd
+string TestString
+
 # PrintString
 strprintlnf
+
+# Slashn = "\n"
 slashn
 
-# Hello Scrift added 
-string Hello Scrift!
-strprintlnf
+# integer
+integer 5
 
-red 
-printlnf  test
+# Print integer
+intprintlnf integer
+
 slashn
-
 
