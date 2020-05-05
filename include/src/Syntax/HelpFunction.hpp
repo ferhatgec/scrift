@@ -13,38 +13,43 @@ typest {
 public:
     virtual func help() {
         BOLD_GREEN_COLOR
-        printlnf("Scrift \n"
-            "help arguments: \n"
-            "printlnf <arg> \n"
-            "scr <argument>\n"
-            "home || default\n"
-            "lsf || lsfile\n"
-            "lsd || lsdir\n"
-            "getdev <boolean>\n"
-            "felog\n"
-            "gitlink || scrift_link || fusionlink\n"
-            "contr || cont || contributors\n"
-            "clear_log || felog_clear\n"
+        printlnf("Scrift Functions && Arguments\n");
+            GREEN_COLOR
+            printlnf("printlnf <arg> \n");
+            BOLD_RED_COLOR
+            printlnf("scr <argument>\n"
             "scr mkdir\n"
             "scr ls\n"
             "scr apt\n"
             "scr make\n"
             "scrlang\n"
+            "scrp\n"
+            "create_scrift_project <name>\n");
+            YELLOW_COLOR
+            printlnf("home || default\n"
+            "lsf || lsfile\n"
+            "lsd || lsdir\n"
+            "ls\n"
+            "cd <folder>\n");
+            BOLD_MAGENTA_COLOR
+            printlnf("getdev <boolean>\n"
+            "felog\n"
+            "gitlink || scrift_link || fusionlink\n"
+            "contr || cont || contributors\n"
+            "clear_log || felog_clear\n"
             "clear_settings\n"
             "settings\n"
-            "readtext <file>\n"
-            "scrp\n"
-            "create_scrift_project <name>\n"
-            "addtext <file>\n"
-            "nanoaddtext <file>\n"
-            "pause || stop\n"
-            "cls || brk \n"
-            "cd <folder>\n"
-            "rstr <number>\n"
-            "username\n"
-            "ls\n"
-            "ctxt <name>\n"
             "fetcheya\n"
+            "readtext <file>\n"
+            "username\n");
+            BOLD_GREEN_COLOR
+            printlnf("addtext <file>\n"
+            "nanoaddtext <file>\n"
+            "ctxt <name>\n");
+            BOLD_BLUE_COLOR
+            printlnf("pause || stop\n"
+            "cls || brk \n"
+            "rstr <number>\n"
             "clear || clear!!!\n"
             "set_locale_system || slcl_sys\n"
             "ip || myip\n");

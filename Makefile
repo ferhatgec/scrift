@@ -31,6 +31,9 @@ endif
 
 all: headersfile  main clean
 
+
+uni: uninstall
+
 runall: all run
 
 gra: runall git 
@@ -52,14 +55,13 @@ headersfile: $(HEADERFILE)
 	$(GPP) $(CFLAGS) -c $< -o $@
 
 main: $(SRCDIREC)main.cpp
-	$(GPP) $< $(HEADERFILE) -o $(BUILDDIR)scrift
+	$(GPP) $< $(HEADERFILE) -o /bin/scrift
 	echo Scrift building successfuly!
 
-.PHONY: install
-install: headersfile 
-	$(SRCDIREC)main.cpp
-	$(GPP) $< $(HEADERFILE) -o $(PREFIX)scrift
-	echo Scrift building successfuly!
+
+.PHONY: uninstall
+uninstall:
+	rm -f /bin/scrift
 
 run: 
 	cd build && ./scrift
