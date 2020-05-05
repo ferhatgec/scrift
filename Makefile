@@ -4,6 +4,7 @@
 # Distributed under the terms of the GPLv3 License.
 # 
 #
+PREFIX = /bin/
 SRCSYNTAXDIREC = ./src/Syntax/
 INCLUDEDIR = ./include/src/
 CFLAGS = -c -Wall  -I$(INCLUDEDIR)
@@ -51,7 +52,13 @@ headersfile: $(HEADERFILE)
 	$(GPP) $(CFLAGS) -c $< -o $@
 
 main: $(SRCDIREC)main.cpp
-	$(GPP) $< $(HEADERFILE) -o $(BUILDDIR)scrift 
+	$(GPP) $< $(HEADERFILE) -o $(BUILDDIR)scrift
+	echo Scrift building successfuly!
+
+.PHONY: install
+install: headersfile 
+	$(SRCDIREC)main.cpp
+	$(GPP) $< $(HEADERFILE) -o $(PREFIX)scrift
 	echo Scrift building successfuly!
 
 run: 

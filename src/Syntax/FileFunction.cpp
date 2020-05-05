@@ -445,6 +445,15 @@ fhomefunction::GetHome()
     std::strcpy(command->_file_path_cd_function, path.c_str());
 }
 
+
+std::string 
+fhomefunction::CurrentDirectory(void)
+{
+  char buff[FILENAME_MAX];
+  getcwd( buff, FILENAME_MAX );
+  std::string current_working_dir(buff);
+  return current_working_dir;
+}
 // FILELSFUNCTION
 FLSFunction::FLSFunction()
 {

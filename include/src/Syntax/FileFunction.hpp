@@ -91,6 +91,7 @@ public:
 // Home Directory Function
 typest {
 public:
+    virtual std::string CurrentDirectory(void);
     virtual func GetHome();
 } fhomefunction;
 };

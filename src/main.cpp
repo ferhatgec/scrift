@@ -155,7 +155,10 @@ FMain::Shell()
         }
     }
 
-
+    else if(_h_str == "test")
+    {
+        
+    }
 
     // ADD TEXT FUNCTION
     else if(_h_str.rfind("addtext", 0) == 0) {

@@ -6,8 +6,6 @@
 printlnf("This Scrift file created by Scrift, Hahaha!");
 slashn
 
-printlnf("Hello Scrift!");
-slashn
 
 # String 
 string TestString
