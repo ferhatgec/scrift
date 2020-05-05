@@ -31,8 +31,8 @@ endif
 
 all: headersfile  main clean
 
+allp: headersfile mainc clean
 
-uni: uninstall
 
 runall: all run
 
@@ -55,9 +55,12 @@ headersfile: $(HEADERFILE)
 	$(GPP) $(CFLAGS) -c $< -o $@
 
 main: $(SRCDIREC)main.cpp
-	$(GPP) $< $(HEADERFILE) -o /bin/scrift
+	$(GPP) $< $(HEADERFILE) -o $(BUILDDIR)scrift
 	echo Scrift building successfuly!
 
+mainc: $(SRCDIREC)main.cpp
+	$(GPP) $< $(HEADERFILE) -o /bin/scrift
+	echo Scrift building successfuly in Bin Directory!
 
 .PHONY: uninstall
 uninstall:
