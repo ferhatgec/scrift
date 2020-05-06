@@ -1,0 +1,15 @@
+#*  GPLv3 License
+*   Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
+*   Distributed under the terms of the GPLv3 License.
+*#    
+
+printlnf("Calling system function");
+slashn
+
+# This is a example...
+
+printlnf("Calling git function");
+system("git");
+
+return
+# This command looks like C/C++ return <var>; function..

@@ -1,11 +1,10 @@
 #*  GPLv3 License
 *   Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
 *   Distributed under the terms of the GPLv3 License.
-*#     
+*#    
 
-function() 
-{
-    printlnf("Bu bir test");
-}
+# Printing..
 
+printlnf("This is a test");
+slashn
 return

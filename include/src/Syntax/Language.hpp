@@ -68,17 +68,24 @@ public:
             }
         }
 
-        if(line == "input") {
+        if(line.rfind("# ", 0) == 0)
+        {
+           line.erase(line.begin(), line.end());
+           std::cout << line;
+        }
+        if(line.rfind("input", 0) == 0) {
             std::cin >> inputcommand;
         }
 
-        if(line == "inputpr") {
-            std::cout << inputcommand;
-        }
 
-        if(line == "wsinput") 
+
+        if(line.find("wsinput", 0) == 0) 
         {
             std::getline(std::cin, inputcommand);
+        }
+
+        if(line == "inputpr") {
+            printlnf(inputcommand.c_str());
         }
 
         if(line == "return") 
@@ -111,7 +118,7 @@ public:
             std::cout << floatvar;
         }
 
-        if (line == "intpr") 
+        if (line.rfind("intpr", 0) == 0) 
         {
             std::cout << finteger;
         }
@@ -124,7 +131,7 @@ public:
             std::cout << "RunFunction calling " + test;
             slashn 
         }
-        if(line == "strpr")
+        if(line.rfind("strpr", 0) == 0)
             std::cout << name << "\n";
         }
     }
