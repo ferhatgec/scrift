@@ -12,7 +12,6 @@ SRCDIREC = ./src/
 GPP = g++
 COMP = g++ -c
 HECOMP = g++ -c $< -std=gnu++17 -o
-BUILDDIR = ./build/
 # CLEAN
 CLEANALL = scrift
 CLEAN = *.o
@@ -25,7 +24,7 @@ ifeq ($(OS),Windows_NT)
 	#CLEANALL := del $(CLEANALL)
 else
 	CLEAN := rm -f $(CLEAN)
-	CLEANALL := rm -f $(BUILDDIR)$(CLEANALL)
+	CLEANALL := rm -f $(CLEANALL)
 endif
 
 
@@ -55,7 +54,7 @@ headersfile: $(HEADERFILE)
 	$(GPP) $(CFLAGS) -c $< -o $@
 
 main: $(SRCDIREC)main.cpp
-	$(GPP) $< $(HEADERFILE) -o $(BUILDDIR)scrift
+	$(GPP) $< $(HEADERFILE) -o scrift
 	echo Scrift building successfuly!
 
 mainc: $(SRCDIREC)main.cpp
@@ -67,7 +66,7 @@ uninstall:
 	rm -f /bin/scrift
 
 run: 
-	cd build && ./scrift
+	./scrift
 clean: 
 		$(CLEAN)
 

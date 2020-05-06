@@ -82,7 +82,7 @@ FMain::~FMain()
     linkersign, removefile, developermode, contributors_lists, clearfile, runsyntax, scriftlang;
 }   
 
-
+    
 func
 FMain::Shell()
 {
@@ -230,7 +230,7 @@ FMain::Shell()
 
  
     // CD FUNCTION
-    else if(_h_str.rfind("cd", 0) == 0) 
+    else if(_h_str.rfind("fr", 0) == 0) 
     {
         logsystem->WriteLog("Launching cd function.. -");
         strfor_h_str = _h_str.erase(0,3);
@@ -240,13 +240,19 @@ FMain::Shell()
     }
 
 
-
     else if(_h_str == "back" || _h_str == "cddot")
     {
-        printlnf("%s", system("cd .."));
+        logsystem->WriteLog("path string = filepathcdfunc - ");
+        std::string path_string(main_->_file_path_cd_function);
+        logsystem->WriteLog("finding last folder.... - ");
+        std::size_t test = path_string.find_last_of("/\\");
+        std::string test_string = path_string.substr(0, test);
+        int convertdata = static_cast<int>(test);
+        std::strcpy(main_->_file_path_cd_function, test_string.c_str());
+        logsystem->WriteLog(main_->_file_path_cd_function);
     }
 
- 
+
 
     // HOME FUNCTION
     else if (_h_str == "home" || _h_str == "default" || _h_str == "Home" || _h_str == "HOME" || _h_str == "Default" || _h_str == "DEFAULT") 

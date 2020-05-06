@@ -11,7 +11,7 @@ slashn
 string TestString
 
 # PrintString
-strprintlnf
+strpr
 
 # Slashn = "\n"
 slashn
@@ -19,8 +19,27 @@ slashn
 # integer
 integer 5
 
+
 # Print integer
-intprintlnf integer
+intpr
 
 slashn
 
+#*
+*Call System Argument
+*system("make runall");
+
+*Get Input 
+*input
+
+*Waiting...
+
+*inputpr
+
+*slashn
+
+*Get WSInput (WS -> WhiteSpace)
+*wsinput 
+
+*PrintWSInput (PrintInput is supported WSInput)
+*inputpr*# 
