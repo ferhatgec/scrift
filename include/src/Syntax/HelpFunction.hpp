@@ -19,6 +19,9 @@ public:
             BOLD_RED_COLOR
             printlnf("scr <argument>\n"
             "scr mkdir\n"
+            "[For Scrift Developers] lmake\n"
+            "[For Scrift Developers] lgit\n"
+            "[For Scrift Developers] devs\n"
             "scr ls\n"
             "scr apt\n"
             "scr make\n"
@@ -30,15 +33,16 @@ public:
             "lsf || lsfile\n"
             "lsd || lsdir\n"
             "ls\n"
-            "cd <folder>\n");
+            "fr <folder>\n"
+            "back\n");
             BOLD_MAGENTA_COLOR
-            printlnf("getdev <boolean>\n"
-            "felog\n"
+            printlnf("[For Scrift Developers] getdev <boolean>\n"
+            "[For Scrift Developers] felog\n"
             "gitlink || scrift_link || fusionlink\n"
             "contr || cont || contributors\n"
-            "clear_log || felog_clear\n"
-            "clear_settings\n"
-            "settings\n"
+            "[For Scrift Developers] clear_log || felog_clear\n"
+            "[In Development Status] clear_settings\n"
+            "[In Development Status] settings\n"
             "fetcheya\n"
             "readtext <file>\n"
             "username\n");
@@ -51,7 +55,7 @@ public:
             "cls || brk \n"
             "rstr <number>\n"
             "clear || clear!!!\n"
-            "set_locale_system || slcl_sys\n"
+            "[For Development Status] set_locale_system || slcl_sys\n"
             "ip || myip\n");
         BLACK_COLOR
     }

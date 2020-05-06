@@ -1,0 +1,17 @@
+#*  GPLv3 License
+*   Customizable ScriftLang Git File.
+*   Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
+*   Distributed under the terms of the GPLv3 License.
+*# 
+
+printlnf("Calling Git, wait....");
+slashn
+printlnf("Calling git");
+slashn
+# For Fegeya Scrift Developers!
+system("git add .");
+system("git commit -a");
+system("git push origin master");
+return
+
+

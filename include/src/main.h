@@ -27,17 +27,14 @@
 #define destructor ~
 
 
-#define ARROW_UP    0x48
+#define ARROW_UP    72
 
-#define ARROW_LEFT  0x4B
+#define ARROW_LEFT  75
 
-#define ARROW_RIGHT 0x4D
+#define ARROW_RIGHT  77
 
-#define ARROW_DOWN  0x50
+#define ARROW_DOWN  80
 
-#define ARROW_NONE  0x00
-
-#define ESC_KEY     0x1B
 
 
 class FMain {

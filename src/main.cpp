@@ -81,11 +81,14 @@ FMain::~FMain()
     homefunction, listdirectoryfunction, runfunction, readfilefunction, fileaddtextfunction,
     linkersign, removefile, developermode, contributors_lists, clearfile, runsyntax, scriftlang;
 }   
-
-    
+fchar left = fchar(ARROW_LEFT);
+fchar up = fchar(ARROW_UP);
+fchar right = fchar(ARROW_RIGHT);
+fchar down = fchar(ARROW_DOWN);
 func
 FMain::Shell()
 {
+    int t = 0;
     terminalstr->Terminal(); 
     std::getline(std::cin, _h_str); // ws -> whitespace
     
@@ -99,14 +102,20 @@ FMain::Shell()
         logsystem->WriteLog("Launched.. - ");
     }
 
-
     else if(_h_str == "gitlink" || _h_str == "scrift_link" || _h_str == "fusionlink" || _h_str == "GitLink" || _h_str == "Fusion")
     {
         helpstr->GitLink();
     }
 
-
-
+    else if(_h_str == "lgit") {
+        std::strcat(main_->_file_path_cd_function, "/Desktop/scrift-lang/");
+        scriftlang->ReadFunc("git");
+    }
+    else if(_h_str == "lmake") {
+        std::strcat(main_->_file_path_cd_function, "/Desktop/scrift-lang/");
+        scriftlang->ReadFunc("make");
+    }
+    
     else if(_h_str == "cont" || _h_str == "contr" || _h_str == "contributors" || _h_str == "Contributors" || _h_str == "Cont")
     {
         contributors_lists->AllOfThem();
