@@ -1,7 +1,7 @@
 # Fegeya Scrift
 ## ScriftLang is simple shell and scripting language for Fegeya Fusion.
 
-## ScriftLang is new generation shell project.
+## ScriftLang is new generation shell and scripting language project.
 
 ![Scrift](docs/resource/Scrift.png)
 
@@ -13,6 +13,12 @@
 ```
  $ make runall 
 ```
+# How to build and run in Scrift?
+## If you are already using Scrift, use the following commands:
 
+###### You should going to scrift-lang directory, and run.
+```
+ $ scrift make
+```
 
 Scrift licensed with GPLv3.
