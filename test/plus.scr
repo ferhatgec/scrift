@@ -1,0 +1,21 @@
+#*  GPLv3 License
+*   Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
+*   Distributed under the terms of the GPLv3 License.
+*#   
+
+fplus(100);
+splus(52);
+
+printlnf("First Equal is = ");
+plpr
+slashn
+
+# Adding new var
+
+fplus(12);
+splus(1);
+
+printlnf("Second Equal is = ");
+plpr
+slashn
+return

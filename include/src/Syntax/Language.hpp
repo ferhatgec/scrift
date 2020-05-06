@@ -51,6 +51,7 @@ public:
     std::string inputcommand;
     integer finteger = 0;
     fchar* sprintlnf = "printlnf(";
+    integer f;
     if(readfile.is_open()) {
     
     while (std::getline(readfile, line))
@@ -86,6 +87,25 @@ public:
 
         if(line == "inputpr") {
             printlnf(inputcommand.c_str());
+        }
+
+        if(line.find("fplus(", 0) == 0)
+        {
+            std::string test = EraseAllSubString(line, "fplus(");
+            test = EraseAllSubString(test, ");");
+            f = std::atoi(test.c_str());
+        }
+
+        if(line.find("splus(", 0) == 0) 
+        {
+            std::string test = EraseAllSubString(line, "splus(");
+            test = EraseAllSubString(test, ");");
+            f = f + std::atoi(test.c_str());
+        }
+
+        if(line == "plpr")
+        {
+            std::cout << f;
         }
 
         if(line == "return") 
