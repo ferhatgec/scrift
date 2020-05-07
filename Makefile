@@ -28,9 +28,9 @@ else
 endif
 
 
-all: headersfile  main clean
+all: headersfile main clean
 
-allp: headersfile mainc clean
+allp: headersfile mainc buildc clean
 
 
 runall: all run
@@ -53,13 +53,19 @@ headersfile: $(HEADERFILE)
 %.o: $(SRCSYNTAXDIREC)%.cpp
 	$(GPP) $(CFLAGS) -c $< -o $@
 
+
 main: $(SRCDIREC)Scrift.cpp
 	$(GPP) $< $(HEADERFILE) -o scrift
-	echo Scrift building successfuly!
+	echo Scrift building successfully!
 
 mainc: $(SRCDIREC)Scrift.cpp
 	$(GPP) $< $(HEADERFILE) -o /bin/scrift
-	echo Scrift building successfuly in Bin Directory!
+	echo Scrift building successfully in Bin Directory!
+
+buildc: 
+	$(GPP) $(SRCDIREC)Edifor.cpp -o /bin/edifor
+	echo Edifor building successfully in Bin Directory!
+
 
 .PHONY: uninstall
 uninstall:

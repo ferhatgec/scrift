@@ -45,6 +45,8 @@ public:
             "[In Development Status] settings\n"
             "fetcheya\n"
             "readtext <file>\n"
+            "[If your default shell is Scrift] edifor\n"
+            "[If your default shell is Scrift] edifor <filename>\n"
             "username\n");
             BOLD_GREEN_COLOR
             printlnf("addtext <file>\n"

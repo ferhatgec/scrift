@@ -39,7 +39,6 @@
 #include "../include/src/Syntax/Colors.hpp"
 #include "../include/src/Syntax/Settings.hpp"
 #include "../include/src/Syntax/Language.hpp"
-
 // Variables 
 
 using namespace FileFunction;
@@ -107,6 +106,17 @@ FMain::Shell()
         helpstr->GitLink();
     }
 
+
+    else if(_h_str.rfind("edifor", 0) == 0) 
+    {
+    	logsystem->WriteLog("Deleting _h_str - ");
+    	strfor_h_str = _h_str.erase(0, 7);
+    	logsystem->WriteLog("RunFunction is running Fegeya Edifor - ");
+ 	runfunction->RunFunction("edifor " + strfor_h_str);
+ 	logsystem->WriteLog("Successfully! - ");
+    }	
+	
+	
     else if(_h_str == "lgit") {
         std::strcat(main_->_file_path_cd_function, "/Desktop/scrift-lang/");
         scriftlang->ReadFunc("git");
