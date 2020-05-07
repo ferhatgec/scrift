@@ -258,6 +258,7 @@ FMain::Shell()
         std::string test_string = path_string.substr(0, test);
         int convertdata = static_cast<int>(test);
         std::strcpy(main_->_file_path_cd_function, test_string.c_str());
+        chdir(test_string.c_str());
         logsystem->WriteLog(main_->_file_path_cd_function);
     }
 
