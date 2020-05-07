@@ -21,4 +21,29 @@
  $ scrift make
 ```
 
-Scrift licensed with GPLv3.
+# How to install?
+## If you are already using Scrift, use the following commands:
+
+```
+ $ sudo make allp
+```
+
+# How to set default shell (For Fegeya Scrift users)
+## Going to scrift-lang directory, and run:
+
+```
+ $ scrift install
+```
+
+
+
+## If you are using Bash or etc, use the following commands:
+
+```
+ $ sudo chsh -s /bin/scrift <username>
+```
+
+
+###### Fegeya Edifor, only runs if you're use default shell is Scrift.
+
+###### Scrift licensed with GPLv3.
