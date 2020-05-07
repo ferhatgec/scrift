@@ -44,6 +44,14 @@
 ```
 
 
+# Use Edifor with Git and etc.
+## If you are already using Scrift, use the following commands:
+## Going to scrift-lang directory, and run:
+```
+ $ scrift default_git_editor
+```
+
+
 ###### Fegeya Edifor, only runs if you're use default shell is Scrift.
 
 ###### Scrift licensed with GPLv3.
