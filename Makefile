@@ -53,11 +53,11 @@ headersfile: $(HEADERFILE)
 %.o: $(SRCSYNTAXDIREC)%.cpp
 	$(GPP) $(CFLAGS) -c $< -o $@
 
-main: $(SRCDIREC)main.cpp
+main: $(SRCDIREC)Scrift.cpp
 	$(GPP) $< $(HEADERFILE) -o scrift
 	echo Scrift building successfuly!
 
-mainc: $(SRCDIREC)main.cpp
+mainc: $(SRCDIREC)Scrift.cpp
 	$(GPP) $< $(HEADERFILE) -o /bin/scrift
 	echo Scrift building successfuly in Bin Directory!
 

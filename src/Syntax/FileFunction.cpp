@@ -92,6 +92,7 @@ FCDFunction::CDFunctionInit(std::string name)
             if(FileExists(path) == true) {
                 std::strcat(command->_file_path_cd_function, "/");
                 std::strcat(command->_file_path_cd_function, name.c_str()); 
+                chdir(name.c_str());
                 pathnamef = name;
             } else {
                 printerror->PrintError("This directory is not exist!");
