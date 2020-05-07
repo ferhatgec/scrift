@@ -8,7 +8,7 @@
 #ifndef COMMAND_FUNC_H
 #define COMMAND_FUNC_H
         
-#include "../main.h"
+#include "../Scrift.hpp"
 #include <unistd.h>
 #include <limits.h>
 #include <stdio.h>

@@ -10,7 +10,7 @@
 #include <sys/stat.h>
 #include <stdio.h>
 #include <Syntax/CommandFunc.h>
-#include <main.h>
+#include <Scrift.hpp>
 #include <Syntax/RunFunction.hpp>
 #include <Syntax/GetNameFunction.hpp>
 #include <Syntax/FileFunction.hpp>

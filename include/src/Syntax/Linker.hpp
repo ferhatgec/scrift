@@ -8,7 +8,7 @@
 #ifndef LINKER_HPP
 #define LINKER_HPP
 #include "../synflang.hpp"
-#include "../main.h"
+#include "../Scrift.hpp"
 
 namespace FLinker {
 class FLinkerAndSign {

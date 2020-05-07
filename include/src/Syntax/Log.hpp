@@ -8,7 +8,7 @@
 #ifndef LOG_HPP
 #define LOG_HPP
 
-#include "../main.h"
+#include "../Scrift.hpp"
 
 class FeLog {
 public:

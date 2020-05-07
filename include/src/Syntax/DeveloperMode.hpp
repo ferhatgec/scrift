@@ -10,7 +10,7 @@
 
 #pragma once
 #include "Log.hpp"
-#include "../main.h"
+#include "../Scrift.hpp"
 #include "GetNameFunction.hpp"
 #include "CommandFunc.h"
 #include "ASCIIFunction.hpp"

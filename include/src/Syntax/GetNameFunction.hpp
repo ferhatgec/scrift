@@ -7,7 +7,7 @@
 #ifndef GET_NAME_FUNCTION_HPP
 #define GET_NAME_FUNCTION_HPP
 
-#include "../main.h"
+#include "../Scrift.hpp"
 
 class FGetUsername {
 public:

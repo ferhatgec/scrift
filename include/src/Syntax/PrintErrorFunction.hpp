@@ -8,7 +8,7 @@
 #define PRINT_ERROR_FUNCTION_HPP
 
 #include "../synflang.hpp"
-#include "../main.h"
+#include "../Scrift.hpp"
           
 
 typest {

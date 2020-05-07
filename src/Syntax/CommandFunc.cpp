@@ -14,7 +14,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <limits.h>
-#include <main.h>
+#include <Scrift.hpp>
 #include <Syntax/CommandFunc.h>
 #include <pwd.h>
 #include <string.h>

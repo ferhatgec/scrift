@@ -9,7 +9,7 @@
 #include "Colors.hpp"
 #include "Log.hpp"
 #include "Settings.hpp"
-#include "../main.h"
+#include "../Scrift.hpp"
 #include "CommandFunc.h"
 #include <pwd.h>
 #include <vector>

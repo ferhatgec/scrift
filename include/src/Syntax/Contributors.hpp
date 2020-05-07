@@ -7,7 +7,7 @@
 #ifndef CONTRIBUTORS_HPP
 #define CONTRIBUTORS_HPP
 #include "Log.hpp"
-#include "../main.h"
+#include "../Scrift.hpp"
 FeLog *log = new FeLog();
 class FContributors {
 public:

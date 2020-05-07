@@ -6,8 +6,8 @@
 # */
 
 
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef SCRIFT_HPP
+#define SCRIFT_HPP
 
 #include <stdlib.h>
 #include <sys/types.h>
@@ -53,4 +53,4 @@ public:
 
 
 
-#endif // MAIN_H
+#endif // SCRIFT_HPP

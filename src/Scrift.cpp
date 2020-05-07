@@ -8,7 +8,7 @@
 #include <memory>
 #include <stdlib.h>
 #include <iostream>
-#include "../include/src/main.h"
+#include "../include/src/Scrift.hpp"
 #include <dirent.h>
 #include <sys/types.h>
 #include <dirent.h>

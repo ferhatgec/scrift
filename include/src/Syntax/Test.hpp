@@ -10,7 +10,7 @@
 #define TEST_HPP
 
 #include "Log.hpp"
-#include "../main.h"
+#include "../Scrift.hpp"
 #include "ASCIIFunction.hpp"
 #include "FileFunction.hpp"
 #include "MkdirFunction.hpp"

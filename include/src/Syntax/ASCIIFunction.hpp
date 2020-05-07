@@ -8,7 +8,7 @@
 #define ASCII_FUNCTION_HPP
 #include "Colors.hpp"
 #include "../synflang.hpp"
-#include "../main.h"
+#include "../Scrift.hpp"
 #include "FileFunction.hpp"
 #include "Log.hpp"
 #include <pwd.h>

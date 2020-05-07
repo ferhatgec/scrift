@@ -4,7 +4,7 @@
 # Distributed under the terms of the GPLv3 License.
 #
 # */
-#include <main.h>
+#include <Scrift.hpp>
 #include <Syntax/RunFunction.hpp>
 #include <Syntax/Language.hpp>
 #include <pwd.h>

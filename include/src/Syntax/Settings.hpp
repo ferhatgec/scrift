@@ -9,7 +9,7 @@
 
 #include "FileFunction.hpp"
 #include "Log.hpp"
-#include "../main.h"
+#include "../Scrift.hpp"
 #include <pwd.h>
 
 

@@ -6,7 +6,7 @@
 # */
 #include <Syntax/Log.hpp> // Get Log Header
 #include <Syntax/FileFunction.hpp> // For  create file and folder 
-#include <main.h>
+#include <Scrift.hpp>
 #include <Syntax/CommandFunc.h>
 #include <sys/stat.h>
 #include <ctime>

@@ -7,7 +7,7 @@
 #ifndef COLORS_HPP
 #define COLORS_HPP
 
-#include "../main.h"
+#include "../Scrift.hpp"
 
 // Default color definitions
 #define RED_COLOR printlnf("\033[0;31m");
