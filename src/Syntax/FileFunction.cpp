@@ -269,12 +269,38 @@ FCreateFileFunction::CreateASCIIFileFunction()
 }
 
 
+
 func 
 FCreateFileFunction::CreateFeLogFileFunction()
 {
 
 }
 
+func 
+FReadFileFunction::ReadHistoryFileFunction()
+{
+    std::string line;
+    std::string path;
+    uid_t uid = geteuid();
+    struct passwd *password = getpwuid(uid);
+    path.append("/home/");
+    path.append(password->pw_name);
+    path.append(slash);
+    path.append(".scrift_history");
+    std::ifstream readfile(path);
+    if(readfile.is_open()) 
+    {
+        while(std::getline(readfile, line))
+        {
+            printlnf(line.c_str());
+            slashn
+        }
+        readfile.close();
+    } 
+    else {
+        filelog->AllofThem();
+    }
+}
 
 
 

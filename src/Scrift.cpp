@@ -39,6 +39,7 @@
 #include "../include/src/Syntax/Colors.hpp"
 #include "../include/src/Syntax/Settings.hpp"
 #include "../include/src/Syntax/Language.hpp"
+#include "../include/src/Syntax/History.hpp"
 // Variables 
 
 using namespace FileFunction;
@@ -67,7 +68,7 @@ FRemoveFileFunction *removefile = new FRemoveFileFunction();
 FClearFileFunction *clearfile = new FClearFileFunction();
 FRunFunctionSyntax *runsyntax = new FRunFunctionSyntax();
 FLanguage *scriftlang = new FLanguage();
-
+FHistory *history = new FHistory();
 FMain::FMain()
 {
     
@@ -78,7 +79,7 @@ FMain::~FMain()
 {
     delete terminalstr,  helpstr, kernel, _h_str, main_, mkdirfunction, filefunction, userhostname, main_function,
     homefunction, listdirectoryfunction, runfunction, readfilefunction, fileaddtextfunction,
-    linkersign, removefile, developermode, contributors_lists, clearfile, runsyntax, scriftlang;
+    linkersign, removefile, developermode, contributors_lists, clearfile, runsyntax, scriftlang, history;
 }   
 fchar left = fchar(ARROW_LEFT);
 fchar up = fchar(ARROW_UP);
@@ -90,7 +91,7 @@ FMain::Shell()
     int t = 0;
     terminalstr->Terminal(); 
     std::getline(std::cin, _h_str); // ws -> whitespace
-    
+   // history->WriteHistory(_h_str);
     if (_h_str != "") { //NULL
     // HELP FUNCTION
 
@@ -106,6 +107,8 @@ FMain::Shell()
         helpstr->GitLink();
     }
 
+    
+        
 
     else if(_h_str.rfind("edifor", 0) == 0) 
     {
@@ -393,8 +396,22 @@ FMain::Shell()
         slashn
     } 
 
-
-
+    // READ HISTORY 
+    else if(_h_str == "history" || _h_str == "fhist") {
+        logsystem->WriteLog("Calling ReadHistoryFileFunction - ");
+        readfilefunction->ReadHistoryFileFunction();
+        logsystem->WriteLog("Called - ");
+    }
+    
+    
+    // CLEAR HISTORY 
+    else if (_h_str == "clear_history" || _h_str == "history_cleaner") {
+         logsystem->WriteLog("Calling ClearHistory - ");
+         history->ClearHistory();
+         logsystem->WriteLog("Called - ");
+    }
+    
+    
     // RUN FUNCTION
     else if(_h_str.rfind("scr", 0) == 0)
     {
@@ -476,9 +493,10 @@ FMain::Shell()
         runfunction->RunFunction(_h_str);
         slashn 
     }
+    history->WriteHistory(_h_str);
     }
 
-    
+    //history->WriteHistory(_h_str); -> gets error
     
 }
 
@@ -488,6 +506,7 @@ integer main(integer argc)
     logsystem->AllofThem();
     asciifunction *ascii = new asciifunction;
     ascii->Allofthem();
+    history->AllofThem();
     filefunction->CreateSettingsFileFunction(); // Directory is "/home/<username>/<dot>scrift_settings"
     // TODO: Add Initialize Settings File Function.
     // TODO: Support Read Text.
@@ -499,6 +518,7 @@ integer main(integer argc)
         logsystem->WriteLog("Launching ScriftShell function.. Good luck bro! - ");  
         main_function->Shell();
         logsystem->WriteLog("Launched.. - ");
+       // history->WriteHistory(main_function->_h_str);
     }
     
     return 0;

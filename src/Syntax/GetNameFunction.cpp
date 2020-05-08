@@ -25,7 +25,7 @@ FStructure::FuncKill()
 {
 
 }
-
+ 
 void
 FGetUsername::InitUsername()
 {

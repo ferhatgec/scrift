@@ -4,6 +4,7 @@
 # Distributed under the terms of the GPLv3 License.
 #
 # */
+#include <Syntax/History.hpp>
 #include <Syntax/Log.hpp> // Get Log Header
 #include <Syntax/FileFunction.hpp> // For  create file and folder 
 #include <Scrift.hpp>
@@ -13,21 +14,23 @@
 #include <cstdio>
 #include <pwd.h>
 // #include <Syntax/PrintErrorFunction.hpp>
-std::ofstream file;
-FCommand *commandlog = new FCommand();
-std::string filepath_with_path;
-FeLog::FeLog()
+
+FeLog *loghistory = new FeLog();
+std::ofstream historyfile;
+std::string filepath_history;
+
+FHistory::FHistory()
 {
 
 }
 
-FeLog::~FeLog()
+FHistory::~FHistory()
 {
-    delete commandlog;
+    delete loghistory, historyfile, filepath_history;
 }
 
 func
-FeLog::ClearLog()
+FHistory::ClearHistory()
 {
     std::string path;
     uid_t uid = geteuid();
@@ -35,16 +38,15 @@ FeLog::ClearLog()
     path.append("/home/");
     path.append(password->pw_name);
     path.append(slash);
-    path.append(".scrift_log");
-    file.open(path); // append
-    file << "FeLog Cleared.. \n";
-    file << TimeFunction() << "\n";
-    file.close();
+    path.append(".scrift_history");
+    historyfile.open(path); // append
+    historyfile << "clear_history \n";
+    historyfile.close();
 }
 
 
 const std::string
-FeLog::TimeFunction()
+FHistory::TimeFunction()
 {
     time_t nowtime = time(0);
     struct tm tstruct;
@@ -56,7 +58,7 @@ FeLog::TimeFunction()
 
 
 func
-FeLog::WriteLog(fstr filepathw)
+FHistory::WriteHistory(fstr filepathw)
 {
     std::string filepath_with_path;
     uid_t uid = geteuid();
@@ -64,7 +66,7 @@ FeLog::WriteLog(fstr filepathw)
     filepath_with_path.append("/home/");
     filepath_with_path.append(password->pw_name);
     filepath_with_path.append(slash);
-    filepath_with_path.append(".scrift_log");
+    filepath_with_path.append(".scrift_history");
     std::ofstream file;
     file.open(filepath_with_path, std::ios::out | std::ios::app);
     if(file.fail()) {
@@ -73,8 +75,7 @@ FeLog::WriteLog(fstr filepathw)
 
     file.exceptions(file.exceptions() | std::ios::failbit | std::ifstream::badbit);
 
-    file << filepathw << " ";
-    file << TimeFunction() << std::endl;
+    file << filepathw << "\n";
 
    // printlnf("Done\n");
 }
@@ -83,7 +84,7 @@ FeLog::WriteLog(fstr filepathw)
 
 
 func
-FeLog::CreateFile()
+FHistory::CreateFile()
 {   
     std::string path;
     uid_t uid = geteuid();
@@ -91,36 +92,36 @@ FeLog::CreateFile()
     path.append("/home/");
     path.append(password->pw_name);
     path.append(slash);
-    path.append(".scrift_log");
+    path.append(".scrift_history");
 
-    file.open(path, std::ios::app);
-    file << "FeLog Started. ";
-    file << TimeFunction() << "\n";
-    file.close();
+    historyfile.open(path, std::ios::app);
+    historyfile << " ";
+    historyfile << TimeFunction() << "\n";
+    historyfile.close();
 }   
 
 func 
-FeLog::InitFile() 
+FHistory::InitFile() 
 {
 
 }
 
 boolean
-FeLog::IsExist()
+FHistory::IsExist()
 {
     struct stat buffer;
-    return (stat(filepath_with_path.c_str(), &buffer) == 0);
+    return (stat(filepath_history.c_str(), &buffer) == 0);
 }
 
 
 func 
-FeLog::AllofThem()
+FHistory::AllofThem()
 {
     if(IsExist() != true) {
     CreateFile();
     }
     else {
-        printlnf("FeLog file is exists\n");
-        WriteLog("FeLog file is exists! - ");
+        printlnf("FHistory file is exists\n");
+        loghistory->WriteLog("FHistory file is exists! - ");
     }
 }

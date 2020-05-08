@@ -37,6 +37,7 @@ public:
     FCreateFileFunction();
     destructor FCreateFileFunction();
     virtual boolean IsExistFile();
+    //virtual func CreateHistoryFileFunction();
     virtual func CreateASCIIFileFunction();
     virtual func CreateFeLogFileFunction();
     virtual func CreateScriftFile(std::string);
@@ -51,7 +52,8 @@ public:
     destructor FReadFileFunction();
     virtual func ReadFileInit();
     boolean ReadFileExists();
-    // virtual func CreateFeLog....
+    // virtual func CreateFeLog..
+    virtual func ReadHistoryFileFunction();
     virtual func ReadSettingsFunction();
     virtual func ReadASCIIFunction();
     virtual func ReadFeLogFunction();

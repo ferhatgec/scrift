@@ -16,7 +16,7 @@ HECOMP = g++ -c $< -std=gnu++17 -o
 CLEANALL = scrift
 CLEAN = *.o
 HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o RunFunction.o Linker.o \
-Log.o
+Log.o History.o
 
 ifeq ($(OS),Windows_NT)
 	echo Windows_NT is not supported!
