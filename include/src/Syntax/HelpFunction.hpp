@@ -34,6 +34,7 @@ public:
             "lsd || lsdir\n"
             "ls\n"
             "fr <folder>\n"
+            "pwd\n"
             "back\n");
             BOLD_MAGENTA_COLOR
             printlnf("[For Scrift Developers] getdev <boolean>\n"
@@ -41,6 +42,8 @@ public:
             "gitlink || scrift_link || fusionlink\n"
             "contr || cont || contributors\n"
             "[For Scrift Developers] clear_log || felog_clear\n"
+            "history\n"
+            "clear_history\n"
             "[In Development Status] clear_settings\n"
             "[In Development Status] settings\n"
             "fetcheya\n"
