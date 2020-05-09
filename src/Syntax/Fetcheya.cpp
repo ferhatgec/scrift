@@ -181,7 +181,7 @@ int main() {
 	cout << Colours.getTextColourBlue() << systemInfo.getUsername() << Colours.getTextColourNeutral() <<"@" << Colours.getTextColourGreen() << systemInfo.getHostname() << " " << endl;
 	cout << Colours.getTextColourBlue() << underline << " " <<  endl;
 	cout << "\033[1;31m" << "OS Name:" << "\033[1;36m" << " " << systemInfo.getOS() << endl;
-	cout << "\033[1;32m" << "Hostname:" << "\033[1;35m" << " " << systemInfo.getDevice() << endl;
+	cout << "\033[1;32m" << "Hostname:" << "\033[1;35m" << " " << systemInfo.getHostname() << endl;
 	cout << "\033[01;33m" << "Kernel Name:" << "\033[1;34m" << " "  << systemInfo.getKernel() << endl;
 	cout << "\033[1;34m" << "Uptime:" << "\033[01;33m" << " "  <<  systemInfo.getUptime() << endl;
 	cout << "\033[1;35m" << "Terminal:" << "\033[1;32m" << " "  << systemInfo.getTerm() << endl;
