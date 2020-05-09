@@ -26,6 +26,7 @@
 #define fstr std::string
 #define destructor ~
 
+#define SCRIFT_VERSION "0.1"
 
 #define ARROW_UP    72
 
