@@ -14,7 +14,7 @@
 #include <pwd.h>
 #include <vector>
 #include "../synflang.hpp"
-
+#include "FileFunction.hpp"
 
 class FLanguage {
 public:
@@ -36,6 +36,7 @@ public:
     
     virtual func ReadFunc(std::string filename)
     {
+    FileFunction::FCDFunction *cdfunc = new FileFunction::FCDFunction();
     FRunFunction *run = new FRunFunction();
     std::string line;
     float floatvar;
@@ -147,6 +148,13 @@ public:
         {
             std::string test = EraseAllSubString(line, "system(\"");
             test = EraseAllSubString(test, "\");");
+            if(test.rfind("fr", 0) == 0)
+            {
+            	test = EraseAllSubString(line, "fr ");
+            	std::string path = "cd ";
+            	path.append(test);
+            	system(path.c_str());
+            }
             run->RunFunction(test);
             std::cout << "RunFunction calling " + test;
             slashn 

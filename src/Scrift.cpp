@@ -255,7 +255,7 @@ FMain::Shell()
     }
 
     // CD FUNCTION
-    else if(_h_str.rfind("fr", 0) == 0)
+    else if(_h_str.rfind("fr", 0) == 0 || _h_str.rfind("cd", 0) == 0)
     {
         logsystem->WriteLog("Launching cd function.. -");
         strfor_h_str = _h_str.erase(0,3);
