@@ -1,6 +1,6 @@
 # Fetcheya Command
 
-fetcheya command is add text in file.
+fetcheya command is shows your system's info.
 
 # Examples 
 
@@ -8,6 +8,13 @@ fetcheya command is add text in file.
 input:
     <username>@<hostname>:~/home/<username> $# fetcheya
 output:
-    Linux <OS Kernel Name>
+    <username>@<hostname> 
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+    OS Name: Ubuntu 20.04 LTS
+    Hostname: To be filled by O.E.M.
+    Kernel Name: 5.4.0-29-generic
+    Uptime: 1h 52m
+    Terminal: xterm-256color
+    Shell: scrift
     <username>@<hostname>:~/home/<username> $#
 ```

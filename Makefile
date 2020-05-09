@@ -34,7 +34,7 @@ endif
 
 all: headersfile main clean
 
-allp: headersfile mainc castle buildc clean
+allp: headersfile mainc castle buildc fetcheya clean
 
 removeall: uninstall cleanall
 
@@ -75,22 +75,21 @@ buildc:
 castle: $(GAMESDIREC)/Castle/Castle.hpp
 	g++ $(GCFLAGS) $(GAMESDIREC)/Castle/Castle.cpp -o /bin/castle $(GLDFLAGS)
 
+fetcheya: $(SRCSYNTAXDIREC)Fetcheya.cpp
+	$(GPP) $(SRCSYNTAXDIREC)Fetcheya.cpp -o $(PREFIX)fetcheya
+	echo Fetcheya building successfully in Bin Directory!
+
+
 clean:
-	rm  castle
-
-install:
-	cp castle /bin/castle
-
-uninstall:
-	rm /bin/castle
-	
+	rm -f castle
+	rm -f fetcheya 
 
 uninstall:
 	rm -f /bin/scrift
 	rm -f /bin/edifor
 	rm -f /bin/castle
 	rm -f /src/Games/Castle/castle
-
+	//rm -f /bin/fetcheya
 run:
 	./scrift
 clean:

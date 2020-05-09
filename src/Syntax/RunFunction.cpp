@@ -31,6 +31,14 @@ FRunFunction::RunFunction(std::string name)
     system(directory.c_str());
 }
 
+
+void 
+FRunFunction::RunBinFunction(std::string name)
+{
+    directory = "/bin/";
+    system(directory.c_str());
+}
+
 void 
 FRunFunction::RunGMakeFunction(std::string name)
 {

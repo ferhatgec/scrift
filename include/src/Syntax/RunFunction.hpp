@@ -14,6 +14,7 @@ public:
     FRunFunction();
     ~FRunFunction();
     virtual void RunGMakeFunction(std::string);
+    virtual void RunBinFunction(std::string);
     virtual void RunFunction(std::string);
 };
 

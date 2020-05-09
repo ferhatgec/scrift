@@ -247,11 +247,13 @@ FMain::Shell()
     }
 
     // Run ./
-    else if(_h_str.rfind("./", 0) == 0)
+    else if(_h_str.rfind("./", 0) == 0 || _h_str.rfind("st", 0) == 0)
     {
+      std::string pathrun = "./";
       logsystem->WriteLog("Deleting _h_str - ");
       strfor_h_str = _h_str.erase(0, 2);
-      runfunction->RunFunction("./" + strfor_h_str);
+      pathrun.append(strfor_h_str);
+      system(pathrun.c_str());
     }
 
     // CD FUNCTION
@@ -460,11 +462,7 @@ FMain::Shell()
     // SYSTEM INFO FUNCTION
     else if(_h_str == "fetcheya" || _h_str == "-f"){
         logsystem->WriteLog("Launching fetcheya function.. - ");
-        kernel->KernelName();
-        logsystem->WriteLog("Running KernelName function.. - ");
-        kernel->CPUInfo();
-        logsystem->WriteLog("Running CPUInfo function.. - ");
-        kernel->RAMInfo();
+	runfunction->RunFunction("fetcheya");
         logsystem->WriteLog("Erasing RAMInfo function.. - ");
     }
     // LOCALE FUNCTION
