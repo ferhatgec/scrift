@@ -457,7 +457,25 @@ FMain::Shell()
         logsystem->WriteLog("Launched.. - ");
     }
 
-
+    // PRINT VERSION
+    else if(_h_str == "--version" || _h_str == "-v")
+    {
+    	BOLD_MAGENTA_COLOR
+    	printlnf("Fegeya Scrift Version: ");
+    	BOLD_GREEN_COLOR
+    	printlnf(SCRIFT_VERSION);
+    	slashn
+    	BOLD_RED_COLOR
+    	printlnf("Copyright (c) 2020 ");
+    	BOLD_BLUE_COLOR
+    	printlnf("Ferhat Gecdogan \n");
+    	BOLD_YELLOW_COLOR
+    	printlnf("All Rights Reserved. \n");
+    	BOLD_CYAN_COLOR
+	printlnf("Distributed under the terms of the GPLv3 License.");
+	BLACK_COLOR
+    	slashn
+    }
 
     // SYSTEM INFO FUNCTION
     else if(_h_str == "fetcheya" || _h_str == "-f"){
