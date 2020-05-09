@@ -2,18 +2,22 @@
 #
 # Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
 # Distributed under the terms of the GPLv3 License.
-# 
 #
+#
+GCFLAGS=-std=c++11 -O2 -g -Wall $(shell pkg-config --cflags ncursesw)
+GLDFLAGS=$(shell pkg-config --libs ncursesw)
+
 PREFIX = /bin/
 SRCSYNTAXDIREC = ./src/Syntax/
 INCLUDEDIR = ./include/src/
 CFLAGS = -c -Wall  -I$(INCLUDEDIR)
+GAMESDIREC = ./src/Games/
 SRCDIREC = ./src/
 GPP = g++
 COMP = g++ -c
 HECOMP = g++ -c $< -std=gnu++17 -o
 # CLEAN
-CLEANALL = scrift
+CLEANALL = scrift /src/Games/Castle/castle
 CLEAN = *.o
 HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o RunFunction.o Linker.o \
 Log.o History.o
@@ -30,16 +34,18 @@ endif
 
 all: headersfile main clean
 
-allp: headersfile mainc buildc clean
+allp: headersfile mainc castle buildc clean
+
+removeall: uninstall cleanall
 
 
 runall: all run
 
-gra: runall git 
+gra: runall git
 
-git: 
+git:
 	git add .
-	git commit -a 
+	git commit -a
 	git push origin master
 
 push:
@@ -62,20 +68,34 @@ mainc: $(SRCDIREC)Scrift.cpp
 	$(GPP) $< $(HEADERFILE) -o /bin/scrift
 	echo Scrift building successfully in Bin Directory!
 
-buildc: 
+buildc:
 	$(GPP) $(SRCDIREC)Edifor.cpp -o /bin/edifor
 	echo Edifor building successfully in Bin Directory!
 
+castle: $(GAMESDIREC)/Castle/Castle.hpp
+	g++ $(GCFLAGS) $(GAMESDIREC)/Castle/Castle.cpp -o /bin/castle $(GLDFLAGS)
 
-.PHONY: uninstall
+clean:
+	rm  castle
+
+install:
+	cp castle /bin/castle
+
+uninstall:
+	rm /bin/castle
+	
+
 uninstall:
 	rm -f /bin/scrift
+	rm -f /bin/edifor
+	rm -f /bin/castle
+	rm -f /src/Games/Castle/castle
 
-run: 
+run:
 	./scrift
-clean: 
+clean:
 		$(CLEAN)
 
 cleanall:
-		echo Cleaning build directory! 
+		echo Cleaning build directory!
 		$(CLEANALL)

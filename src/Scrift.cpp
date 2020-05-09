@@ -13,7 +13,7 @@
 #include <sys/types.h>
 #include <dirent.h>
 #include <sys/stat.h>
-#include <unistd.h> 
+#include <unistd.h>
 #include <time.h>
 #include <cstdio>
 #include <iostream>
@@ -40,7 +40,7 @@
 #include "../include/src/Syntax/Settings.hpp"
 #include "../include/src/Syntax/Language.hpp"
 #include "../include/src/Syntax/History.hpp"
-// Variables 
+// Variables
 
 using namespace FileFunction;
 using namespace FLinker;
@@ -56,7 +56,7 @@ fkernel *kernel = new fkernel;
 FCDFunction *cdfunction = new FCDFunction();
 FMKDirFunction *mkdirfunction = new FMKDirFunction();
 FCreateFileFunction *filefunction = new FCreateFileFunction();
-FGetUsername *userhostname = new FGetUsername(); 
+FGetUsername *userhostname = new FGetUsername();
 fhomefunction *homefunction = new fhomefunction;
 FLSFunction *listdirectoryfunction = new FLSFunction();
 FRunFunction *runfunction = new FRunFunction();
@@ -71,7 +71,7 @@ FLanguage *scriftlang = new FLanguage();
 FHistory *history = new FHistory();
 FMain::FMain()
 {
-    
+
 }
 
 
@@ -80,7 +80,7 @@ FMain::~FMain()
     delete terminalstr,  helpstr, kernel, _h_str, main_, mkdirfunction, filefunction, userhostname, main_function,
     homefunction, listdirectoryfunction, runfunction, readfilefunction, fileaddtextfunction,
     linkersign, removefile, developermode, contributors_lists, clearfile, runsyntax, scriftlang, history;
-}   
+}
 fchar left = fchar(ARROW_LEFT);
 fchar up = fchar(ARROW_UP);
 fchar right = fchar(ARROW_RIGHT);
@@ -89,12 +89,14 @@ func
 FMain::Shell()
 {
     int t = 0;
-    terminalstr->Terminal(); 
+    terminalstr->Terminal();
     std::getline(std::cin, _h_str); // ws -> whitespace
    // history->WriteHistory(_h_str);
     if (_h_str != "") { //NULL
     // HELP FUNCTION
 
+
+    // Help
     if(_h_str == "help" || _h_str == "-h" || _h_str == "Help" || _h_str == "HELP" || _h_str == "-H")
     {
         logsystem->WriteLog("Launching help function.. - ");
@@ -102,46 +104,50 @@ FMain::Shell()
         logsystem->WriteLog("Launched.. - ");
     }
 
+
+    // GitHub link
     else if(_h_str == "gitlink" || _h_str == "scrift_link" || _h_str == "fusionlink" || _h_str == "GitLink" || _h_str == "Fusion")
     {
         helpstr->GitLink();
     }
 
-    
-        
 
-    else if(_h_str.rfind("edifor", 0) == 0) 
+    // Edifor Scrift-Based Text Editor
+    else if(_h_str.rfind("edifor", 0) == 0)
     {
     	logsystem->WriteLog("Deleting _h_str - ");
     	strfor_h_str = _h_str.erase(0, 7);
     	logsystem->WriteLog("RunFunction is running Fegeya Edifor - ");
  	runfunction->RunFunction("edifor " + strfor_h_str);
  	logsystem->WriteLog("Successfully! - ");
-    }	
-	
-	
+    }
+
+    // git<dot>scr
     else if(_h_str == "lgit") {
         std::strcat(main_->_file_path_cd_function, "/Desktop/scrift-lang/");
         scriftlang->ReadFunc("git");
     }
+
+    // make<dot>scr
     else if(_h_str == "lmake") {
         std::strcat(main_->_file_path_cd_function, "/Desktop/scrift-lang/");
         scriftlang->ReadFunc("make");
     }
-    
+
+    // Contributors
     else if(_h_str == "cont" || _h_str == "contr" || _h_str == "contributors" || _h_str == "Contributors" || _h_str == "Cont")
     {
         contributors_lists->AllOfThem();
     }
 
-
+    // Linker but not ended
     else if(_h_str.find("&&", 0) == 0)
     {
         printlnf("Found!\n");
     }
 
 
-
+    // Show FeLog file.
     else if(_h_str == "felog" || _h_str == "show_log" || _h_str == "FeLog" || _h_str == "Felog" || _h_str == "FELOG" || _h_str == "Show_Log" ||
     _h_str == "SHOW_LOG")
     {
@@ -151,7 +157,7 @@ FMain::Shell()
     }
 
 
-
+    // Clear FeLog file.
     else if(_h_str == "clear_log" || _h_str == "felog --clear" || _h_str == "Clear_Log" || _h_str == "CLEAR_LOG" || _h_str == "FeLog --Clear" || _h_str == "FELOG --CLEAR")
     {
         logsystem->WriteLog("Launching ClearLog function.. - ");
@@ -161,8 +167,7 @@ FMain::Shell()
         printlnf("Done.\n");
     }
 
-
-
+    // Developer Mode but this is not ended.
     else if(_h_str.rfind("getdev", 0) == 0)
     {
         logsystem->WriteLog("Launching getdev function.. - ");
@@ -175,11 +180,6 @@ FMain::Shell()
             developermode->AllOfThem(false);
             logsystem->WriteLog("Launched with false boolean - ");
         }
-    }
-
-    else if(_h_str == "test")
-    {
-        
     }
 
     // ADD TEXT FUNCTION
@@ -195,20 +195,16 @@ FMain::Shell()
     // FOR DEVELOPERS
     else if(_h_str == "goscrift" || _h_str == "devs")
     {
-        std::strcat(main_->_file_path_cd_function, "/Desktop/scrift-lang/test");
+        std::strcat(main_->_file_path_cd_function, "/Desktop/scrift-lang/");
 
     }
 
-    // NANO ADD TEXT FUNCTION
-    else if(_h_str.rfind("nanoaddtext", 0) == 0) {
-        logsystem->WriteLog("Launching nanoaddtext function.. - ");
-        strfor_h_str = _h_str.erase(0, 12);
-        logsystem->WriteLog("Erasing _h_str string.. - ");
-        fileaddtextfunction->DeleteLine(strfor_h_str);
-        logsystem->WriteLog("Launched\n");
+    // Castle Game
+    else if(_h_str == "castle" || _h_str == "fcastle") {
+          logsystem->WriteLog("Launching castle - ");
+          runfunction->RunFunction("castle");
+          logsystem->WriteLog("Launched - ");
     }
-
-
 
     else if(_h_str.rfind("rmvfile", 0) == 0) {
         logsystem->WriteLog("Launching rmvfile function.. -");
@@ -236,7 +232,7 @@ FMain::Shell()
         strfor_h_str = _h_str.erase(0, 6);
         logsystem->WriteLog("Erasing _h_str string.. -");
         mkdirfunction->MKDirFunctionInit(strfor_h_str);
-        logsystem->WriteLog("Launched.. - "); 
+        logsystem->WriteLog("Launched.. - ");
     }
 
 
@@ -247,12 +243,19 @@ FMain::Shell()
         strfor_h_str = _h_str.erase(0,9);
         logsystem->WriteLog("Erasing _h_str string.. - ");
         readfilefunction->ReadFileFunction(strfor_h_str);
-        logsystem->WriteLog("Launched.. -");  
+        logsystem->WriteLog("Launched.. -");
     }
 
- 
+    // Run ./
+    else if(_h_str.rfind("./", 0) == 0)
+    {
+      logsystem->WriteLog("Deleting _h_str - ");
+      strfor_h_str = _h_str.erase(0, 2);
+      runfunction->RunFunction("./" + strfor_h_str);
+    }
+
     // CD FUNCTION
-    else if(_h_str.rfind("fr", 0) == 0) 
+    else if(_h_str.rfind("fr", 0) == 0)
     {
         logsystem->WriteLog("Launching cd function.. -");
         strfor_h_str = _h_str.erase(0,3);
@@ -278,7 +281,7 @@ FMain::Shell()
 
 
     // HOME FUNCTION
-    else if (_h_str == "home" || _h_str == "default" || _h_str == "Home" || _h_str == "HOME" || _h_str == "Default" || _h_str == "DEFAULT") 
+    else if (_h_str == "home" || _h_str == "default" || _h_str == "Home" || _h_str == "HOME" || _h_str == "Default" || _h_str == "DEFAULT")
     {
         logsystem->WriteLog("Launching home function.. - ");
         homefunction->GetHome();
@@ -295,7 +298,7 @@ FMain::Shell()
     else if(_h_str.rfind("create_scrift_project", 0) == 0)
     {
         logsystem->WriteLog("Deleting _h_str - ");
-        strfor_h_str = _h_str.erase(0, 22);        
+        strfor_h_str = _h_str.erase(0, 22);
         logsystem->WriteLog("Launching CreateScriftFile - ");
         filefunction->CreateScriftFile(strfor_h_str);
         logsystem->WriteLog("Launched.. - ");
@@ -311,10 +314,10 @@ FMain::Shell()
     else if(_h_str == "lsd" || _h_str == "lsdir" || _h_str == "ls -d" || _h_str == "LSD" || _h_str == "LSDIR" || _h_str == "Ls Dir")
     {
         main_->list_direc(true);
-        logsystem->WriteLog("Launched.. - "); 
+        logsystem->WriteLog("Launched.. - ");
     }
 
-    else if(_h_str == "show_settings" || _h_str == "settings") 
+    else if(_h_str == "show_settings" || _h_str == "settings")
     {
         logsystem->WriteLog("Calling ReadSettingsFunction.. - ");
         readfilefunction->ReadSettingsFunction();
@@ -322,7 +325,7 @@ FMain::Shell()
     }
 
     else if(_h_str == "clear_settings" ||
-    _h_str == "deletesettings") 
+    _h_str == "deletesettings")
     {
         logsystem->WriteLog("Calling DeleteSettingsFunction .. -  ");
         clearfile->ClearSettingsFunction();
@@ -334,15 +337,15 @@ FMain::Shell()
     {
        listdirectoryfunction->LSFunction();
        logsystem->WriteLog("Launched.. - ");
-       slashn   
+       slashn
     }
 
 
     // LIST FILE FUNCTION
     else if(_h_str == "lsf" || _h_str == "lsfile" || _h_str == "ls -f" || _h_str == "LSF" || _h_str == "LSFILE" || _h_str == "Ls File")
-    {   
+    {
         main_->list_file(true);
-        logsystem->WriteLog("Launched.. - "); 
+        logsystem->WriteLog("Launched.. - ");
         slashn
     }
 
@@ -354,7 +357,7 @@ FMain::Shell()
         strfor_h_str = _h_str.erase(0,5);
         logsystem->WriteLog("Erasing _h_str function..\n");
         filefunction->CreateFileFunctionInit(strfor_h_str);
-        logsystem->WriteLog("Launched.. -"); 
+        logsystem->WriteLog("Launched.. -");
     }
 
 
@@ -364,8 +367,8 @@ FMain::Shell()
         logsystem->WriteLog("Launching printlnf function.. - ");
         strfor_h_str = _h_str.erase(0, 9);
         logsystem->WriteLog("Erasing _h_str function.. - ");
-        main_->echo_printlnf(strfor_h_str); 
-        logsystem->WriteLog("Launched.. - "); 
+        main_->echo_printlnf(strfor_h_str);
+        logsystem->WriteLog("Launched.. - ");
     }
 
 
@@ -374,7 +377,7 @@ FMain::Shell()
     else if(_h_str == "clear" || _h_str == "clear!!!") {
         logsystem->WriteLog("Launching clear function.. - ");
         main_->clear_shell();
-        logsystem->WriteLog("Launched.. - "); 
+        logsystem->WriteLog("Launched.. - ");
     }
 
 
@@ -382,9 +385,9 @@ FMain::Shell()
     // CLOSE FUNCTION
     else if(_h_str == "brk" || _h_str == "cls")  {
         logsystem->WriteLog("Exit signal.. - ");
-        logsystem->WriteLog("Launched.. - "); 
+        logsystem->WriteLog("Launched.. - ");
         exit(EXIT_SUCCESS);
-    } 
+    }
 
 
 
@@ -394,24 +397,24 @@ FMain::Shell()
         userhostname->InitUsername();
         logsystem->WriteLog("Launched.. - ");
         slashn
-    } 
+    }
 
-    // READ HISTORY 
+    // READ HISTORY
     else if(_h_str == "history" || _h_str == "fhist") {
         logsystem->WriteLog("Calling ReadHistoryFileFunction - ");
         readfilefunction->ReadHistoryFileFunction();
         logsystem->WriteLog("Called - ");
     }
-    
-    
-    // CLEAR HISTORY 
+
+
+    // CLEAR HISTORY
     else if (_h_str == "clear_history" || _h_str == "history_cleaner") {
          logsystem->WriteLog("Calling ClearHistory - ");
          history->ClearHistory();
          logsystem->WriteLog("Called - ");
     }
-    
-    
+
+
     // RUN FUNCTION
     else if(_h_str.rfind("scr", 0) == 0)
     {
@@ -432,7 +435,7 @@ FMain::Shell()
         int atest = atoi(strfor_h_str.c_str());
         logsystem->WriteLog("Append integer.. - ");
         main_->_generated_hash_string(atest);
-        logsystem->WriteLog("Launched.. - "); 
+        logsystem->WriteLog("Launched.. - ");
     }
 
 
@@ -469,7 +472,7 @@ FMain::Shell()
         logsystem->WriteLog("Launching setlocale_system function.. - ");
         main_->_set_locale();
         logsystem->WriteLog("Launched.. - ");
-    }  
+    }
 
 
 
@@ -478,7 +481,7 @@ FMain::Shell()
         logsystem->WriteLog("Launching ip function.. - ");
         main_->_your_ip();
         logsystem->WriteLog("Launched.. - ");
-    } 
+    }
 
     else if (_h_str.rfind("scrp", 0) == 0)
     {
@@ -489,15 +492,15 @@ FMain::Shell()
         logsystem->WriteLog("Launched.. - ");
     }
 
-    else { 
+    else {
         runfunction->RunFunction(_h_str);
-        slashn 
+        slashn
     }
     history->WriteHistory(_h_str);
     }
 
     //history->WriteHistory(_h_str); -> gets error
-    
+
 }
 
 
@@ -514,16 +517,12 @@ integer main(integer argc)
     helpstr->hello();
     logsystem->WriteLog("Launched.. - ");
 
-    while(argc = 2) {  
-        logsystem->WriteLog("Launching ScriftShell function.. Good luck bro! - ");  
+    while(argc = 2) {
+        logsystem->WriteLog("Launching ScriftShell function.. Good luck bro! - ");
         main_function->Shell();
         logsystem->WriteLog("Launched.. - ");
        // history->WriteHistory(main_function->_h_str);
     }
-    
-    return 0;
+
+    return F_OK;
 }
-
-
-
-
