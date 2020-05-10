@@ -27,7 +27,7 @@ FContributors::ShellContributors()
     log->WriteLog("Launched.. - ");
 }
 
-func 
+func
 FContributors::FeedbackContributors()
 {
     log->WriteLog("Printing.. - ");
@@ -35,7 +35,7 @@ FContributors::FeedbackContributors()
     log->WriteLog("Launched.. - ");
 }
 
-func 
+func
 FContributors::TestingContributors()
 {
     log->WriteLog("Printing.. - ");
@@ -43,7 +43,7 @@ FContributors::TestingContributors()
     log->WriteLog("Launched.. - ");
 }
 
-func 
+func
 FContributors::DonateContributors()
 {
     log->WriteLog("Printing.. -");
@@ -59,7 +59,7 @@ FContributors::Sponsors()
     log->WriteLog("Launched.. - ");
 }
 
-func 
+func
 FContributors::AllOfThem()
 {
     log->WriteLog("Printing.. -");

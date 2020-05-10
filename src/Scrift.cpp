@@ -208,9 +208,9 @@ FMain::Shell()
     // FOR DEVELOPERS
     else if(_h_str == "goscrift" || _h_str == "devs")
     {
-        std::strcat(main_->_file_path_cd_function, "/Desktop/scrift-lang/");
-
+        std::strcat(main_->_file_path_cd_function, "/Desktop/scrift-lang");
     }
+    // ONLY DEVELOPERS
 
     // Castle Game
     else if(_h_str == "castle" || _h_str == "fcastle") {
@@ -391,7 +391,7 @@ FMain::Shell()
     // CLEAR FUNCTION
     else if(_h_str == "clear" || _h_str == "clear!!!") {
         logsystem->WriteLog("Launching clear function.. - ");
-        main_->clear_shell();
+        printf("\033c");
         logsystem->WriteLog("Launched.. - ");
     }
 

@@ -15,7 +15,7 @@ FConfiguration::FConfiguration()
 
 FConfiguration::~FConfiguration()
 {
-
+    
 }
 
 boolean
