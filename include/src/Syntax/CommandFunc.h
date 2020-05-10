@@ -7,7 +7,8 @@
 
 #ifndef COMMAND_FUNC_H
 #define COMMAND_FUNC_H
-        
+
+
 #include "../Scrift.hpp"
 #include <unistd.h>
 #include <limits.h>
@@ -17,16 +18,14 @@
 #include <stddef.h>
 #include <cstdlib>
 #include <ifaddrs.h>
-#include <netinet/in.h> 
-#include <string.h> 
+#include <netinet/in.h>
+#include <string.h>
 #include <arpa/inet.h>
 
 #define MAIN_ALL 6
 #define slash "/"
 #define txt ".txt"
 #define scrift ".scr"
-
-
 
 class FCommand { /* getting public variables and functions*/
 public:
@@ -47,7 +46,7 @@ public:
     void echo_printlnf(std::string);
     void remove_character(char * , char );
     struct dirent *direntfunction;
-    fchar *_file_path_cd_function = getenv("HOME");
+    fchar *_file_path_cd_function = getenv("PWD");
     fchar *_home_dir = getenv("HOME");
 };
 

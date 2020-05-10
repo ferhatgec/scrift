@@ -13,6 +13,7 @@ class FRunFunction {
 public:
     FRunFunction();
     ~FRunFunction();
+    virtual void RunJamFunction(std::string); // For Fusion
     virtual void RunGMakeFunction(std::string);
     virtual void RunBinFunction(std::string);
     virtual void RunFunction(std::string);

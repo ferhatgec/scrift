@@ -40,6 +40,8 @@
 #include "../include/src/Syntax/Settings.hpp"
 #include "../include/src/Syntax/Language.hpp"
 #include "../include/src/Syntax/History.hpp"
+#include "../include/src/Syntax/Configuration.hpp"
+
 // Variables
 
 using namespace FileFunction;
@@ -69,6 +71,8 @@ FClearFileFunction *clearfile = new FClearFileFunction();
 FRunFunctionSyntax *runsyntax = new FRunFunctionSyntax();
 FLanguage *scriftlang = new FLanguage();
 FHistory *history = new FHistory();
+FConfiguration *conf = new FConfiguration();
+
 FMain::FMain()
 {
 
@@ -79,7 +83,8 @@ FMain::~FMain()
 {
     delete terminalstr,  helpstr, kernel, _h_str, main_, mkdirfunction, filefunction, userhostname, main_function,
     homefunction, listdirectoryfunction, runfunction, readfilefunction, fileaddtextfunction,
-    linkersign, removefile, developermode, contributors_lists, clearfile, runsyntax, scriftlang, history;
+    linkersign, removefile, developermode, contributors_lists, clearfile, runsyntax, scriftlang, history,
+    conf;
 }
 fchar left = fchar(ARROW_LEFT);
 fchar up = fchar(ARROW_UP);
@@ -88,9 +93,9 @@ fchar down = fchar(ARROW_DOWN);
 func
 FMain::Shell()
 {
-    int t = 0;
     terminalstr->Terminal();
     std::getline(std::cin, _h_str); // ws -> whitespace
+    int t = 0;
    // history->WriteHistory(_h_str);
     if (_h_str != "") { //NULL
     // HELP FUNCTION
@@ -103,7 +108,15 @@ FMain::Shell()
         helpstr->help();
         logsystem->WriteLog("Launched.. - ");
     }
-
+    // Jam configuration
+    else if(_h_str.rfind("jam", 0) == 0)
+    {
+      logsystem->WriteLog("Deleting _h_str - ");
+      strfor_h_str = _h_str.erase(0,4);
+      logsystem->WriteLog("Calling JamConfiguration For Fegeya Fusion - ");
+      conf->JamConfiguration(strfor_h_str);
+      logsystem->WriteLog("Called - ");
+    }
 
     // GitHub link
     else if(_h_str == "gitlink" || _h_str == "scrift_link" || _h_str == "fusionlink" || _h_str == "GitLink" || _h_str == "Fusion")

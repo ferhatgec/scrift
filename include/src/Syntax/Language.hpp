@@ -33,7 +33,7 @@ public:
     }
     return mainString;
     }
-    
+
     virtual func ReadFunc(std::string filename)
     {
     FileFunction::FCDFunction *cdfunc = new FileFunction::FCDFunction();
@@ -54,15 +54,15 @@ public:
     fchar* sprintlnf = "printlnf(";
     integer f;
     if(readfile.is_open()) {
-    
+
     while (std::getline(readfile, line))
     {
         if(line.find("slashn", 0) == 0) {
             slashn
         }
-        
+
         if(line.find("integer", 0) == 0) {
-            finteger = std::atoi(line.erase(0, 8).c_str());    
+            finteger = std::atoi(line.erase(0, 8).c_str());
         }
         if(line.find("#*", 0) == 0) {
             if(line.find("*#", 0) == 0) {
@@ -81,7 +81,7 @@ public:
 
 
 
-        if(line.find("wsinput", 0) == 0) 
+        if(line.find("wsinput", 0) == 0)
         {
             std::getline(std::cin, inputcommand);
         }
@@ -97,7 +97,7 @@ public:
             f = std::atoi(test.c_str());
         }
 
-        if(line.find("splus(", 0) == 0) 
+        if(line.find("splus(", 0) == 0)
         {
             std::string test = EraseAllSubString(line, "splus(");
             test = EraseAllSubString(test, ");");
@@ -109,7 +109,7 @@ public:
             std::cout << f;
         }
 
-        if(line == "return") 
+        if(line == "return")
         {
             return;
         }
@@ -128,7 +128,7 @@ public:
             name = line.erase(0, 7);
         }
 
-        if(line.find("printlnf", 0) == 0) 
+        if(line.find("printlnf", 0) == 0)
         {
            std::string test = EraseAllSubString(line, "printlnf(\"");
            std::cout << EraseAllSubString(test, "\");");
@@ -139,12 +139,21 @@ public:
             std::cout << floatvar;
         }
 
-        if (line.rfind("intpr", 0) == 0) 
+        if (line.rfind("intpr", 0) == 0)
         {
             std::cout << finteger;
         }
 
-        if(line.find("system", 0) == 0)
+        if (line.find("sysjam", 0) == 0)
+        {
+          std::string jamfile = EraseAllSubString(line, "sysjam(\"");
+          jamfile = EraseAllSubString(jamfile, "\");");
+          run->RunJamFunction(jamfile);
+          std::cout << "RunFunction calling" + jamfile;
+          slashn
+        }
+
+        if (line.find("system", 0) == 0)
         {
             std::string test = EraseAllSubString(line, "system(\"");
             test = EraseAllSubString(test, "\");");
@@ -157,7 +166,7 @@ public:
             }
             run->RunFunction(test);
             std::cout << "RunFunction calling " + test;
-            slashn 
+            slashn
         }
         if(line.rfind("strpr", 0) == 0)
             std::cout << name << "\n";

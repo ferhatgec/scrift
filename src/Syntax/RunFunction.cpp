@@ -20,7 +20,7 @@ FRunFunction::FRunFunction()
 
 FRunFunction::~FRunFunction()
 {
-    
+
 }
 
 
@@ -32,14 +32,14 @@ FRunFunction::RunFunction(std::string name)
 }
 
 
-void 
+void
 FRunFunction::RunBinFunction(std::string name)
 {
     directory = "/bin/";
     system(directory.c_str());
 }
 
-void 
+void
 FRunFunction::RunGMakeFunction(std::string name)
 {
     FCommand *command = new FCommand();
@@ -47,3 +47,13 @@ FRunFunction::RunGMakeFunction(std::string name)
     directory.append(command->_file_path_cd_function);
     system(directory.c_str());
 }
+
+// For Fegeya Fusion and *nix
+void
+FRunFunction::RunJamFunction(std::string name)
+{
+    directory = "/usr/local/bin/jam " + name; // read-only!
+    system(directory.c_str()); // jam + function
+}
+
+// For Fegeya Fusion and *nix

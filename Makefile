@@ -20,7 +20,7 @@ HECOMP = g++ -c $< -std=gnu++17 -o
 CLEANALL = scrift /src/Games/Castle/castle
 CLEAN = *.o
 HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o RunFunction.o Linker.o \
-Log.o History.o
+Log.o History.o Configuration.o
 
 ifeq ($(OS),Windows_NT)
 	echo Windows_NT is not supported!
@@ -82,14 +82,14 @@ fetcheya: $(SRCSYNTAXDIREC)Fetcheya.cpp
 
 clean:
 	rm -f castle
-	rm -f fetcheya 
+	rm -f fetcheya
 
 uninstall:
 	rm -f /bin/scrift
 	rm -f /bin/edifor
 	rm -f /bin/castle
 	rm -f /src/Games/Castle/castle
-	//rm -f /bin/fetcheya
+	#rm -f /bin/fetcheya
 run:
 	./scrift
 clean:
