@@ -363,9 +363,27 @@ FReadFileFunction::ReadFileExists()
 
 }
 
+
+func 
+FClearFileFunction::ClearFeLogFunction()
+{
+    std::ofstream file;
+    std::string path;
+    uid_t uid = geteuid();
+    struct passwd *password = getpwuid(uid);
+    path.append("/home/");
+    path.append(password->pw_name);
+    path.append(slash);
+    path.append(".scrift_log");
+    file.open(path); // append
+    file << "FeLog Cleared.. \n";
+    file.close();
+}
+
 func
 FReadFileFunction::ReadFeLogFunction()
 {
+    int a = 0;
     std::string line;
     std::string path;
     uid_t uid = geteuid();
@@ -380,6 +398,16 @@ FReadFileFunction::ReadFeLogFunction()
         while(std::getline(readfile, line))
         {
             printlnf(line.c_str());
+            a++;
+            slashn
+        }
+        std::cout << a << "\n";
+        if(a >= 100)
+        {
+            FClearFileFunction *clearlog = new FClearFileFunction();
+            clearlog->ClearFeLogFunction();
+        } else {
+            printlnf("Cool");
             slashn
         }
         readfile.close();

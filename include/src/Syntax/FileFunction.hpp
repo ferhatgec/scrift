@@ -63,6 +63,7 @@ public:
 class FClearFileFunction : public FReadFileFunction {
 public:
     virtual func ClearSettingsFunction(); 
+    virtual func ClearFeLogFunction();
 };
 
 // List Function

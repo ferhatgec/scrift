@@ -5,7 +5,6 @@
 #
 # */
 
-
 #ifndef SCRIFT_HPP
 #define SCRIFT_HPP
 
@@ -21,8 +20,8 @@
 #include "Syntax/CommandFunc.h"
 #define slashn printlnf("\n");
 
-#define typest typedef struct 
-#define func void 
+#define typest typedef struct
+#define func void
 #define fstr std::string
 #define destructor ~
 
