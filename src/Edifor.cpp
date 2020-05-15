@@ -470,7 +470,8 @@ void editorMoveCursor(int key) {
 
 }
 
-void editorProcessKeypress(){
+void 
+editorProcessKeypress(){
     static int quit_times = QUIT_TIMES;
 
     int c = editorReadKey();

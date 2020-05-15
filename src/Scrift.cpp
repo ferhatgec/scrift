@@ -4,6 +4,12 @@
 # Distributed under the terms of the GPLv3 License.
 #
 # */
+
+#define _DEFAULT_SOURCE
+#define _BSD_SOURCE
+#define _GNU_SOURCE
+
+
 #include <fstream>
 #include <memory>
 #include <stdlib.h>
@@ -41,6 +47,12 @@
 #include "../include/src/Syntax/Language.hpp"
 #include "../include/src/Syntax/History.hpp"
 #include "../include/src/Syntax/Configuration.hpp"
+#include <ctype.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <stdarg.h>
+#include <termios.h>
+#include <sys/ioctl.h>
 
 // Variables
 
@@ -73,6 +85,7 @@ FLanguage *scriftlang = new FLanguage();
 FHistory *history = new FHistory();
 FConfiguration *conf = new FConfiguration();
 
+
 FMain::FMain()
 {
 
@@ -81,23 +94,40 @@ FMain::FMain()
 
 FMain::~FMain()
 {
-    delete terminalstr,  helpstr, kernel, _h_str, main_, mkdirfunction, filefunction, userhostname, main_function,
-    homefunction, listdirectoryfunction, runfunction, readfilefunction, fileaddtextfunction,
-    linkersign, removefile, developermode, contributors_lists, clearfile, runsyntax, scriftlang, history,
-    conf;
+    delete terminalstr;
+    delete  helpstr;
+    delete kernel;
+    delete main_;
+    delete mkdirfunction;
+    delete filefunction; 
+    delete userhostname;
+    delete main_function;
+    delete homefunction;
+    delete listdirectoryfunction;
+    delete runfunction;
+    delete readfilefunction;
+    delete fileaddtextfunction;
+    delete linkersign;
+    delete removefile;
+    delete developermode;
+    delete contributors_lists;
+    delete clearfile;
+    delete runsyntax;
+    delete scriftlang;
+    delete history;
+    delete conf;
 }
 
 
 func
 FMain::Shell()
 {
-    terminalstr->Terminal();
+    terminalstr->Terminal(); 
     std::getline(std::cin, _h_str); // ws -> whitespace
     int t = 0;
    // history->WriteHistory(_h_str);
     if (_h_str != "") { //NULL
     // HELP FUNCTION
-
 
     // Help
     if(_h_str == "help" || _h_str == "-h" || _h_str == "Help" || _h_str == "HELP" || _h_str == "-H")
@@ -277,7 +307,7 @@ FMain::Shell()
         logsystem->WriteLog("Launched.. - ");
     }
 
-
+    // Back Function
     else if(_h_str == "back" || _h_str == "cddot")
     {
         logsystem->WriteLog("path string = filepathcdfunc - ");
@@ -301,6 +331,7 @@ FMain::Shell()
         logsystem->WriteLog("Launched.. - ");
     }
 
+    // Scrift Scripting Language Calls
     else if(_h_str.rfind("scrift", 0) == 0)
     {
         logsystem->WriteLog("Deleting _h_str - ");
@@ -330,6 +361,7 @@ FMain::Shell()
         logsystem->WriteLog("Launched.. - ");
     }
 
+    // Settings 
     else if(_h_str == "show_settings" || _h_str == "settings")
     {
         logsystem->WriteLog("Calling ReadSettingsFunction.. - ");
@@ -337,6 +369,7 @@ FMain::Shell()
         slashn
     }
 
+    // Clear Settings
     else if(_h_str == "clear_settings" ||
     _h_str == "deletesettings")
     {
@@ -543,13 +576,12 @@ integer main(integer argc)
     logsystem->WriteLog("Launching hello function.. - ");
     helpstr->hello();
     logsystem->WriteLog("Launched.. - ");
-
+    
     while(argc = 2) {
         logsystem->WriteLog("Launching ScriftShell function.. Good luck bro! - ");
         main_function->Shell();
         logsystem->WriteLog("Launched.. - ");
        // history->WriteHistory(main_function->_h_str);
     }
-
     return F_OK;
 }
