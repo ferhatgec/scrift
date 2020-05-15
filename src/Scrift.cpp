@@ -86,10 +86,8 @@ FMain::~FMain()
     linkersign, removefile, developermode, contributors_lists, clearfile, runsyntax, scriftlang, history,
     conf;
 }
-fchar left = fchar(ARROW_LEFT);
-fchar up = fchar(ARROW_UP);
-fchar right = fchar(ARROW_RIGHT);
-fchar down = fchar(ARROW_DOWN);
+
+
 func
 FMain::Shell()
 {
