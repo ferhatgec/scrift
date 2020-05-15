@@ -11,15 +11,24 @@
 #include "Log.hpp"
 #include "../Scrift.hpp"
 #include <pwd.h>
+#include "../synflang.hpp"
 
-
-class FRunFunctionSyntax {
+class FSettings {
+public:
     FeLog *logsystem = new FeLog();
     FileFunction::FCreateFileFunction *createfile = new FileFunction::FCreateFileFunction();
-    FileFunction::FReadFileFunction *readfile = new FileFunction::FReadFileFunction();
-public:
-    fchar* fprinttext = "printtext";
+    FileFunction::FReadFileFunction *readfile = new FileFunction::FReadFileFunction();	
     fchar* fname;
+    integer linenumber;
+    std::string EraseAllSubString(std::string & mainString, const std::string & erase)
+    {
+    size_t pos = std::string::npos;
+    while((pos = mainString.find(erase)) != std::string::npos)
+    {
+        mainString.erase(pos, erase.length());
+    }
+    return mainString;
+    }
     virtual func ReadFile()
     {
     std::string line;
@@ -35,8 +44,14 @@ public:
     if(readfile.is_open()) {
     while (std::getline(readfile, line))
     {
-        if(line.find(fprinttext, 0) == 0)
-        std::cout << line.erase(0, 10) << "\n";
+        if(line.find("felog_cleaner", 0) == 0)
+        {
+        	std::string fsettings = EraseAllSubString(line, "felog_cleaner ");
+        	linenumber = atoi(fsettings.c_str());
+        } else {
+        	createfile->CreateSettingsFileFunction();
+        	return;
+        }
     }
     }
 }

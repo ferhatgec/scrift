@@ -25,9 +25,10 @@
 #include <fstream>
 #include <Syntax/Log.hpp>
 #include <Syntax/Colors.hpp>
+#include <Syntax/Settings.hpp>
+
 using namespace FileFunction;
-
-
+FSettings *settings = new FSettings();
 FCommand *command = new FCommand();
 FMain *fmain = new FMain();
 fprinterror *printerror = new fprinterror;
@@ -56,7 +57,7 @@ FCDFunction::FCDFunction()
 
 FCDFunction::~FCDFunction()
 {
-    delete fmain, printerror, command, ascii, filelog;
+    delete fmain, printerror, command, ascii, filelog, settings;
 }
 
 
@@ -211,7 +212,7 @@ FCreateFileFunction::CreateSettingsFileFunction()
     pathfile.append(".scrift_settings");
     logsystem->WriteLog("Creating ofstream from CreateSettingsFileFunction - ");
     std::ofstream file(pathfile, std::ios::app);
-    file << "Test";
+    file << "felog_cleaner 100";
     //file <<  Settings variables begin.
     // Settings variables end.
     logsystem->WriteLog("Calling file<dot>close from CreateSettingsFileFunction - ");
@@ -402,7 +403,7 @@ FReadFileFunction::ReadFeLogFunction()
             slashn
         }
         std::cout << a << "\n";
-        if(a >= 100)
+        if(a >= settings->linenumber)
         {
             FClearFileFunction *clearlog = new FClearFileFunction();
             clearlog->ClearFeLogFunction();

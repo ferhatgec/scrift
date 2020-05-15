@@ -4,6 +4,7 @@
 # Distributed under the terms of the GPLv3 License.
 #
 # */
+
 #include <Syntax/Log.hpp> // Get Log Header
 #include <Syntax/FileFunction.hpp> // For  create file and folder 
 #include <Scrift.hpp>
@@ -12,7 +13,9 @@
 #include <ctime>
 #include <cstdio>
 #include <pwd.h>
+
 // #include <Syntax/PrintErrorFunction.hpp>
+
 std::ofstream file;
 FCommand *commandlog = new FCommand();
 std::string filepath_with_path;
