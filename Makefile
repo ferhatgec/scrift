@@ -77,8 +77,8 @@ buildc:
 castle: $(GAMESDIREC)/Castle/Castle.hpp
 	g++ $(GCFLAGS) $(GAMESDIREC)/Castle/Castle.cpp -o /bin/castle $(GLDFLAGS)
 
-date: $(SRCAPPSDIREC)/Date/Date.cpp
-	g++  $(SRCAPPSDIREC)/Date/Date.cpp -o $(PREFIX)fdate 
+date: $(SRCAPPSDIREC)/FDate/FDate.cpp
+	g++  $(SRCAPPSDIREC)/FDate/FDate.cpp -o $(PREFIX)fdate 
 
 
 fetcheya: $(SRCSYNTAXDIREC)Fetcheya.cpp
