@@ -27,8 +27,8 @@ FRunFunction::~FRunFunction()
 void
 FRunFunction::RunFunction(std::string name)
 {
-    directory = "/usr/bin/" + name;
-    system(directory.c_str());
+    //directory = "/usr/bin/" + name;
+    system(name.c_str());
 }
 
 
