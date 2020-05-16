@@ -75,14 +75,15 @@ buildc:
 
 castle: $(GAMESDIREC)/Castle/Castle.hpp
 	$(GPP) $(GCFLAGS) $(GAMESDIREC)/Castle/Castle.cpp -o $(PREFIX)castle $(GLDFLAGS)
+	echo Castle building successfully in Bin Directory
 
 pong: $(GAMESDIREC)/Pong/Pong.cpp
 	$(GPP) -Wall $(GAMESDIREC)/Pong/Pong.cpp -o $(PREFIX)pong -lncurses
-
+	echo Pong building successfully in Bin Directory!
 
 date: $(SRCAPPSDIREC)/FDate/FDate.cpp
 	$(GPP)  $(SRCAPPSDIREC)/FDate/FDate.cpp -o $(PREFIX)fdate 
-
+	echo FDate building successfully in Bin Directory!
 
 fetcheya: $(SRCSYNTAXDIREC)Fetcheya.cpp
 	$(GPP) $(SRCSYNTAXDIREC)Fetcheya.cpp -o $(PREFIX)fetcheya
