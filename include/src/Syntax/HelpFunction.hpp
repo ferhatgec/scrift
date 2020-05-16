@@ -49,6 +49,7 @@ public:
             "[In Development Status] settings : Shows your Settings\n"
             "fetcheya : Shows your system\n"
             "-v : Shows version and license\n"
+            "[If your default shell is Scrift] fdate : Shows calendar\n"
             "readtext <file> : Reads <file>\n"
             "[If your default shell is Scrift] edifor : Open Edifor\n"
             "[If your default shell is Scrift] edifor <filename> : Open Edifor with File\n"
