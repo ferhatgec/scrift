@@ -7,6 +7,8 @@
 
 #include <iostream>
 #include <iomanip>
+#include "../../../include/src/Scrift.hpp"
+#include "../../../include/src/Syntax/Colors.hpp"
 
 using namespace std;
 
@@ -18,7 +20,7 @@ int getMonth()
 
    while (month < 1 || month > 12)
    {
-      cout << "Month must be between 1 and 12.\n"
+      cout << WBOLD_RED_COLOR << "Month must be between 1 and 12.\n"
            << "Enter a month number: ";
       cin >> month;
    }
@@ -35,7 +37,7 @@ int getYear()
 
    while (year < 1758)
    {
-      cout << "Year must be 1758 or later.\n"
+      cout << WBOLD_RED_COLOR << "Year must be 1758 or later.\n"
            << "Enter year: ";
       cin >> year;
    }
@@ -112,43 +114,43 @@ void displayHeader(int year, int month)
 {
    cout << endl;
    if (month == 1)
-      cout << "January " << year << endl;
+      cout << WBOLD_YELLOW_COLOR << "January " << year << endl;
    else if (month == 2)
-      cout << "February " << year << endl;
+      cout << WBOLD_RED_COLOR << "February " << year << endl;
    else if (month == 3)
-      cout << "March " << year << endl;
+      cout << WBOLD_GREEN_COLOR << "March " << year << endl;
    else if (month == 4)
-      cout << "April " << year << endl;
+      cout << WBOLD_BLUE_COLOR << "April " << year << endl;
    else if (month == 5)
-      cout << "May " << year << endl;
+      cout << WBOLD_GREEN_COLOR << "May " << year << endl;
    else if (month == 6)
-      cout << "June " << year << endl;
+      cout << WBOLD_YELLOW_COLOR << "June " << year << endl;
    else if (month == 7)
-      cout << "July " << year << endl;
+      cout << WBOLD_YELLOW_COLOR << "July " << year << endl;
    else if (month == 8)
-      cout << "August " << year << endl;
+      cout << WBOLD_BLUE_COLOR <<  "August " << year << endl;
    else if (month == 9)
-      cout << "September " << year << endl;
+      cout << WBOLD_MAGENTA_COLOR << "September " << year << endl;
    else if (month == 10)
-      cout << "October " << year << endl;
+      cout << WBOLD_CYAN_COLOR << "October " << year << endl;
    else if (month == 11)
-      cout << "November " << year << endl;
+      cout << WBOLD_RED_COLOR << "November " << year << endl;
    else
-      cout << "December " << year << endl;
+      cout << WBOLD_GREEN_COLOR << "December " << year << endl;
    return;
 }
 
 void displayTable(int numDays, int offset, int year, int month)
 {
    int day = 0;
-   cout << "  Su  Mo  Tu  We  Th  Fr  Sa\n";
+   cout << WBOLD_GREEN_COLOR  << "  Su  Mo  Tu  We  Th  Fr  Sa\n";
 
    day = ((offset + 1) % 6);
    cout << setw((day - 2) * 4 + 6);
 
    for (int dayOfWeek = 1; dayOfWeek <= numDaysMonth(year, month); dayOfWeek++)
    {
-      cout << "  " << setw(2) << dayOfWeek;
+      cout << "  " << WBOLD_MAGENTA_COLOR << setw(2) << dayOfWeek;
       ++day;
       if (day == 8)
       {

@@ -125,7 +125,6 @@ FMain::Shell()
     terminalstr->Terminal(); 
     std::getline(std::cin, _h_str); // ws -> whitespace
     int t = 0;
-   // history->WriteHistory(_h_str);
     if (_h_str != "") { //NULL
     // HELP FUNCTION
 
