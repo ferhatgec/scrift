@@ -534,7 +534,7 @@ FLSFunction::DirectoryExists()
 void
 FLSFunction::LSFunction()
 {
-
+    char *output = NULL;
     DIR *directory;
     directory = opendir((getenv("HOME"), "/", command->_file_path_cd_function));
     if(directory == NULL) {
@@ -544,10 +544,17 @@ FLSFunction::LSFunction()
     while ((entryname = readdir(directory)))
     {
         stat(entryname->d_name, &filestat);
+        output = strstr(entryname->d_name, ".scr");
         if(entryname->d_type == DT_DIR) {// DT_DIR -> directory
             BOLD_RED_COLOR
             printlnf("%4s: %s\n", "[Dir]", entryname->d_name);
-        } else {
+        } 
+        else if(output)
+        {
+            BOLD_BLUE_COLOR
+            printlnf("%4s: %s\n", "[Scrift]", entryname->d_name);
+        }        
+         else {
             BOLD_YELLOW_COLOR
             printlnf("%4s: %s\n", "[File]", entryname->d_name);
         }

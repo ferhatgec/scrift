@@ -180,13 +180,6 @@ FMain::Shell()
         contributors_lists->AllOfThem();
     }
 
-    // Linker but not ended
-    else if(_h_str.find("&&", 0) == 0)
-    {
-        printlnf("Found!\n");
-    }
-
-
     // Show FeLog file.
     else if(_h_str == "felog" || _h_str == "show_log" || _h_str == "FeLog" || _h_str == "Felog" || _h_str == "FELOG" || _h_str == "Show_Log" ||
     _h_str == "SHOW_LOG")
