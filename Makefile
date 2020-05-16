@@ -34,7 +34,8 @@ endif
 
 all: headersfile main clean
 
-allp: headersfile mainc castle buildc fetcheya date clean 
+allp: headersfile mainc castle buildc fetcheya date \
+	 pong clean 
 
 removeall: uninstall cleanall
 
@@ -72,13 +73,15 @@ buildc:
 	$(GPP) $(SRCDIREC)Edifor.cpp -o /bin/edifor
 	echo Edifor building successfully in Bin Directory!
 
-
-
 castle: $(GAMESDIREC)/Castle/Castle.hpp
-	g++ $(GCFLAGS) $(GAMESDIREC)/Castle/Castle.cpp -o /bin/castle $(GLDFLAGS)
+	$(GPP) $(GCFLAGS) $(GAMESDIREC)/Castle/Castle.cpp -o $(PREFIX)castle $(GLDFLAGS)
+
+pong: $(GAMESDIREC)/Pong/Pong.cpp
+	$(GPP) -Wall $(GAMESDIREC)/Pong/Pong.cpp -o $(PREFIX)pong -lncurses
+
 
 date: $(SRCAPPSDIREC)/FDate/FDate.cpp
-	g++  $(SRCAPPSDIREC)/FDate/FDate.cpp -o $(PREFIX)fdate 
+	$(GPP)  $(SRCAPPSDIREC)/FDate/FDate.cpp -o $(PREFIX)fdate 
 
 
 fetcheya: $(SRCSYNTAXDIREC)Fetcheya.cpp
@@ -96,7 +99,7 @@ uninstall:
 	rm -f /bin/castle
 	rm -f /src/Games/Castle/castle
 	rm -f /bin/fdate
-	
+	rm -f /bin/pong
 run:
 	./scrift
 clean:
