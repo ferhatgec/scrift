@@ -6,7 +6,7 @@
 #
 GCFLAGS=-std=c++11 -O2 -g -Wall $(shell pkg-config --cflags ncursesw)
 GLDFLAGS=$(shell pkg-config --libs ncursesw)
-
+SRCAPPSDIREC = ./src/Apps/
 PREFIX = /bin/
 SRCSYNTAXDIREC = ./src/Syntax/
 INCLUDEDIR = ./include/src/
@@ -34,7 +34,7 @@ endif
 
 all: headersfile main clean
 
-allp: headersfile mainc castle buildc fetcheya clean
+allp: headersfile mainc castle buildc fetcheya date clean 
 
 removeall: uninstall cleanall
 
@@ -72,8 +72,14 @@ buildc:
 	$(GPP) $(SRCDIREC)Edifor.cpp -o /bin/edifor
 	echo Edifor building successfully in Bin Directory!
 
+
+
 castle: $(GAMESDIREC)/Castle/Castle.hpp
 	g++ $(GCFLAGS) $(GAMESDIREC)/Castle/Castle.cpp -o /bin/castle $(GLDFLAGS)
+
+date: $(SRCAPPSDIREC)/Date/Date.cpp
+	g++  $(SRCAPPSDIREC)/Date/Date.cpp -o $(PREFIX)fdate 
+
 
 fetcheya: $(SRCSYNTAXDIREC)Fetcheya.cpp
 	$(GPP) $(SRCSYNTAXDIREC)Fetcheya.cpp -o $(PREFIX)fetcheya
@@ -89,7 +95,8 @@ uninstall:
 	rm -f /bin/edifor
 	rm -f /bin/castle
 	rm -f /src/Games/Castle/castle
-	#rm -f /bin/fetcheya
+	rm -f /bin/fdate
+	
 run:
 	./scrift
 clean:
