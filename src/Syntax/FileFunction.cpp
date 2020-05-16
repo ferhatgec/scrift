@@ -554,7 +554,7 @@ FLSFunction::LSFunction()
             BOLD_BLUE_COLOR
             printlnf("%4s: %s\n", "[Scrift]", entryname->d_name);
         }        
-         else {
+        else {
             BOLD_YELLOW_COLOR
             printlnf("%4s: %s\n", "[File]", entryname->d_name);
         }
@@ -576,6 +576,6 @@ FRemoveFileFunction::DeleteFile(std::string file)
         printlnf("Succesfully deleted\n");
     }
     else {
-        printlnf("Error: bla bla\n");
+        printlnf("Error: Unable to delete file.\n");
     }
 }
