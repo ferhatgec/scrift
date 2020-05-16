@@ -35,7 +35,7 @@ endif
 all: headersfile main clean
 
 allp: headersfile mainc castle buildc fetcheya date \
-	 pong clean 
+	 pong tictactoe clean 
 
 removeall: uninstall cleanall
 
@@ -77,6 +77,10 @@ castle: $(GAMESDIREC)/Castle/Castle.hpp
 	$(GPP) $(GCFLAGS) $(GAMESDIREC)/Castle/Castle.cpp -o $(PREFIX)castle $(GLDFLAGS)
 	echo Castle building successfully in Bin Directory
 
+tictactoe: $(GAMESDIREC)/TicTacToe/TicTacToeMain.cpp
+	$(GPP) -Wall $(GAMESDIREC)/TicTacToe/TicTacToeMain.cpp $(GAMESDIREC)/TicTacToe/tictactoe.cpp -o $(PREFIX)tictactoe 
+	echo TicTacToe building successfully in Bin Directory!
+	
 pong: $(GAMESDIREC)/Pong/Pong.cpp
 	$(GPP) -Wall $(GAMESDIREC)/Pong/Pong.cpp -o $(PREFIX)pong -lncurses
 	echo Pong building successfully in Bin Directory!
@@ -101,6 +105,8 @@ uninstall:
 	rm -f /src/Games/Castle/castle
 	rm -f /bin/fdate
 	rm -f /bin/pong
+	rm -f /bin/tictactoe
+	
 run:
 	./scrift
 clean:
