@@ -34,7 +34,7 @@ endif
 
 all: headersfile main clean
 
-allp: headersfile mainc castle buildc fetcheya date \
+allp: headersfile mainc castle edifor fetcheya date \
 	 pong tictactoe clean 
 
 removeall: uninstall cleanall
@@ -70,7 +70,7 @@ mainc: $(SRCDIREC)Scrift.cpp
 	echo Scrift building successfully in Bin Directory!
 
 # Edifor
-buildc:
+edifor:
 	$(GPP) $(SRCDIREC)Edifor.cpp -o /bin/edifor
 	echo Edifor building successfully in Bin Directory!
 
