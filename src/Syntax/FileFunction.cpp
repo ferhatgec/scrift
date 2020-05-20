@@ -4,6 +4,7 @@
 # Distributed under the terms of the GPLv3 License.
 #
 # */
+
 #include "Syntax/ASCIIFunction.hpp"
 #include <stdlib.h>
 #include <sys/types.h>
@@ -26,6 +27,7 @@
 #include <Syntax/Log.hpp>
 #include <Syntax/Colors.hpp>
 #include <Syntax/Settings.hpp>
+#include <vector>
 
 using namespace FileFunction;
 FSettings *settings = new FSettings();
@@ -463,7 +465,6 @@ FReadFileFunction::ReadSettingsFunction()
     }
 }
 
-
 void
 FReadFileFunction::ReadASCIIFunction()
 {
@@ -478,8 +479,10 @@ FReadFileFunction::ReadASCIIFunction()
     {
         while (std::getline(readfile, line))
         {
+      	    BOLD_BLUE_COLOR  
             printlnf(line.c_str());
             slashn
+            BLACK_COLOR
         }
 
         readfile.close();
@@ -529,7 +532,6 @@ FLSFunction::DirectoryExists()
 {
 
 }
-
 
 void
 FLSFunction::LSFunction()

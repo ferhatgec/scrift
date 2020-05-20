@@ -127,7 +127,7 @@ FMain::Shell()
     int t = 0;
     if (_h_str != "") { //NULL
     // HELP FUNCTION
-
+	
     // Help
     if(_h_str == "help" || _h_str == "-h" || _h_str == "Help" || _h_str == "HELP" || _h_str == "-H")
     {
@@ -561,6 +561,11 @@ integer main(integer argc)
     logsystem->AllofThem();
     asciifunction *ascii = new asciifunction;
     ascii->Allofthem();
+    BOLD_MAGENTA_COLOR
+    printlnf("Welcome ");
+    printlnf(getenv("USER"));
+    printlnf(" ^-^\n");
+    BLACK_COLOR
     history->AllofThem();
     filefunction->CreateSettingsFileFunction(); // Directory is "/home/<username>/<dot>scrift_settings"
     // TODO: Add Initialize Settings File Function.
@@ -568,7 +573,6 @@ integer main(integer argc)
     logsystem->WriteLog("Launching hello function.. - ");
     helpstr->hello();
     logsystem->WriteLog("Launched.. - ");
-    
     while(argc = 2) {
         logsystem->WriteLog("Launching ScriftShell function.. Good luck bro! - ");
         main_function->Shell();
