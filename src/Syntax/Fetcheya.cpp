@@ -179,6 +179,7 @@ int main() {
 	Colours Colours;
 	string underline((systemInfo.getUserHostLength()+1),'~');
 	cout << Colours.getTextColourBlue() << systemInfo.getUsername() << Colours.getTextColourNeutral() <<"@" << Colours.getTextColourGreen() << systemInfo.getHostname() << " " << endl;
+                                                                     
 	cout << Colours.getTextColourBlue() << underline << " " <<  endl;
 	cout << "\033[1;36m" << "Scrift Version: " << "\033[01;33m" <<  SCRIFT_VERSION << endl;
 	cout << "\033[1;31m" << "OS Name:" << "\033[1;36m" << " " << systemInfo.getOS() << endl;

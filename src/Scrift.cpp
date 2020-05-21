@@ -137,6 +137,14 @@ FMain::Shell()
     // Help
     if(_h_str == "help" || _h_str == "-h" || _h_str == "Help" || _h_str == "HELP" || _h_str == "-H")
     {
+    	BOLD_RED_COLOR
+	std::cout << "██╗  ██╗███████╗██╗     ██████╗ ME\n";
+	std::cout << "██║  ██║██╔════╝██║     ██╔══██╗LEAVE\n";
+	std::cout << "███████║█████╗  ██║     ██████╔╝BE\n";
+	std::cout << "██╔══██║██╔══╝  ██║     ██╔═══╝ HIND\n";
+	std::cout << "██║  ██║███████╗███████╗██║     ...\n";
+	std::cout << "╚═╝  ╚═╝╚══════╝╚══════╝╚═╝     ...\n";
+        BLACK_COLOR              	
         logsystem->WriteLog("Launching help function.. - ");
         helpstr->help();
         logsystem->WriteLog("Launched.. - ");
@@ -417,7 +425,7 @@ FMain::Shell()
 
 
     // CLEAR FUNCTION
-    else if(_h_str == "clear" || _h_str == "clear!!!") {
+    else if(_h_str == "clear" || _h_str == "clear!!!") {                                     
         logsystem->WriteLog("Launching clear function.. - ");
         printf("\033c");
         logsystem->WriteLog("Launched.. - ");
@@ -427,6 +435,14 @@ FMain::Shell()
 
     // CLOSE FUNCTION
     else if(_h_str == "brk" || _h_str == "cls")  {
+        BOLD_RED_COLOR
+	std::cout << "██████╗ ██████╗ ███████╗ █████╗ ██╗  ██╗ING  \n";	
+	std::cout << "██╔══██╗██╔══██╗██╔════╝██╔══██╗██║ ██╔╝THE  \n";
+	std::cout << "██████╔╝██████╔╝█████╗  ███████║█████╔╝ HABIT\n";
+	std::cout << "██╔══██╗██╔══██╗██╔══╝  ██╔══██║██╔═██╗ TO   \n";	
+	std::cout << "██████╔╝██║  ██║███████╗██║  ██║██║  ██╗NIGHT\n";
+	std::cout << "╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝.....\n";
+        BLACK_COLOR                                        
         logsystem->WriteLog("Exit signal.. - ");
         logsystem->WriteLog("Launched.. - ");
         exit(EXIT_SUCCESS);
@@ -436,14 +452,32 @@ FMain::Shell()
 
     // USERNAME FUNCTION
     else if(_h_str == "username" || _h_str == "uname") {
+        BOLD_YELLOW_COLOR
+	std::cout << "██╗   ██╗███████╗███████╗██████╗ ███╗   ██╗ █████╗ ███╗   ███╗███████╗\n";
+	std::cout << "██║   ██║██╔════╝██╔════╝██╔══██╗████╗  ██║██╔══██╗████╗ ████║██╔════╝\n";
+	std::cout << "██║   ██║███████╗█████╗  ██████╔╝██╔██╗ ██║███████║██╔████╔██║█████╗  \n";
+	std::cout << "██║   ██║╚════██║██╔══╝  ██╔══██╗██║╚██╗██║██╔══██║██║╚██╔╝██║██╔══╝  \n";
+	std::cout << "╚██████╔╝███████║███████╗██║  ██║██║ ╚████║██║  ██║██║ ╚═╝ ██║███████╗\n";
+	std::cout << " ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝\n";
+        BLACK_COLOR                                                     
         logsystem->WriteLog("Launching username function.. - ");
+        BOLD_BLUE_COLOR
         userhostname->InitUsername();
+        BLACK_COLOR
         logsystem->WriteLog("Launched.. - ");
         slashn
     }
 
     // READ HISTORY
     else if(_h_str == "history" || _h_str == "fhist") {
+        BOLD_CYAN_COLOR
+	std::cout << "██╗  ██╗██╗███████╗████████╗ ██████╗ ██████╗ ██╗   ██╗\n";
+	std::cout << "██║  ██║██║██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗╚██╗ ██╔╝\n";
+	std::cout << "███████║██║███████╗   ██║   ██║   ██║██████╔╝ ╚████╔╝ \n";
+	std::cout << "██╔══██║██║╚════██║   ██║   ██║   ██║██╔══██╗  ╚██╔╝  \n";
+	std::cout << "██║  ██║██║███████║   ██║   ╚██████╔╝██║  ██║   ██║   \n";
+	std::cout << "╚═╝  ╚═╝╚═╝╚══════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝   ╚═╝   \n";  
+        BLACK_COLOR                                        
         logsystem->WriteLog("Calling ReadHistoryFileFunction - ");
         readfilefunction->ReadHistoryFileFunction();
         logsystem->WriteLog("Called - ");
@@ -472,6 +506,14 @@ FMain::Shell()
 
     // RANDOMIZE STRING FUNCTION
     else if(_h_str.rfind("rstr", 0) == 0) {
+        BOLD_MAGENTA_COLOR
+    	std::cout << "██████╗ ███████╗████████╗██████╗\n";                                 
+	std::cout << "██╔══██╗██╔════╝╚══██╔══╝██╔══██╗\n";
+  	std::cout << "██████╔╝███████╗   ██║   ██████╔╝\n";
+   	std::cout << "██╔══██╗╚════██║   ██║   ██╔══██╗\n";
+    	std::cout << "██║  ██║███████║   ██║   ██║  ██║\n";  
+    	std::cout << "╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝\n";
+    	BLACK_COLOR
         logsystem->WriteLog("Launching rstr function.. - ");
         strfor_h_str = _h_str.erase(0, 5);
         logsystem->WriteLog("Erasing _h_str function.. - ");
@@ -484,13 +526,25 @@ FMain::Shell()
 
 
     // PAUSE FUNCTION
-    else if(_h_str == "pause" || _h_str == "stop") {
+    else if(_h_str == "pause") {
+    	BOLD_RED_COLOR
+	std::cout << "██████╗  █████╗ ██╗   ██╗███████╗███████╗\n";
+	std::cout << "██╔══██╗██╔══██╗██║   ██║██╔════╝██╔════╝\n";
+	std::cout << "██████╔╝███████║██║   ██║███████╗█████╗  \n";
+	std::cout << "██╔═══╝ ██╔══██║██║   ██║╚════██║██╔══╝  \n";
+	std::cout << "██║     ██║  ██║╚██████╔╝███████║███████╗\n";
+	std::cout << "╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝\n";
+	BLACK_COLOR                     	          
         logsystem->WriteLog("Launching pause function.. - ");
+        BOLD_BLUE_COLOR
         printlnf("Enter the continue...");
+        BLACK_COLOR
         logsystem->WriteLog("Printing Enter the continue.. - ");
         returni: if(std::cin.get() == '\n') {
                 logsystem->WriteLog("Input.. - ");
-                printlnf("Access - ");
+                BOLD_GREEN_COLOR
+                printlnf("Access - \n");
+                BLACK_COLOR
                 logsystem->WriteLog("Accessing returni function.. - ");
             } else {
                 goto returni;
@@ -501,6 +555,14 @@ FMain::Shell()
     // PRINT VERSION
     else if(_h_str == "--version" || _h_str == "-v")
     {
+    	BOLD_YELLOW_COLOR
+    	std::cout << "██╗   ██╗███████╗██████╗ ███████╗██╗ ██████╗ ███╗   ██╗\n";
+	std::cout << "██║   ██║██╔════╝██╔══██╗██╔════╝██║██╔═══██╗████╗  ██║\n";
+  	std::cout << "██║   ██║█████╗  ██████╔╝███████╗██║██║   ██║██╔██╗ ██║\n";
+  	std::cout << "╚██╗ ██╔╝██╔══╝  ██╔══██╗╚════██║██║██║   ██║██║╚██╗██║\n";
+   	std::cout << " ╚████╔╝ ███████╗██║  ██║███████║██║╚██████╔╝██║ ╚████║\n";
+    	std::cout << "  ╚═══╝  ╚══════╝╚═╝  ╚═╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝\n";
+        BLACK_COLOR                                
     	BOLD_MAGENTA_COLOR
     	printlnf("Fegeya Scrift Version: ");
     	BOLD_GREEN_COLOR
@@ -520,6 +582,14 @@ FMain::Shell()
 
     // SYSTEM INFO FUNCTION
     else if(_h_str == "fetcheya" || _h_str == "-f"){
+        BOLD_GREEN_COLOR
+    	std::cout << "███████╗███████╗████████╗ ██████╗██╗  ██╗███████╗██╗   ██╗ █████╗\n"; 
+	std::cout << "██╔════╝██╔════╝╚══██╔══╝██╔════╝██║  ██║██╔════╝╚██╗ ██╔╝██╔══██╗\n";
+  	std::cout << "█████╗  █████╗     ██║   ██║     ███████║█████╗   ╚████╔╝ ███████║\n";
+ 	std::cout << "██╔══╝  ██╔══╝     ██║   ██║     ██╔══██║██╔══╝    ╚██╔╝  ██╔══██║\n";
+  	std::cout << "██║     ███████╗   ██║   ╚██████╗██║  ██║███████╗   ██║   ██║  ██║\n";
+  	std::cout << "╚═╝     ╚══════╝   ╚═╝    ╚═════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝\n";
+  	BLACK_COLOR
         logsystem->WriteLog("Launching fetcheya function.. - ");
 	runfunction->RunFunction("fetcheya");
         logsystem->WriteLog("Erasing RAMInfo function.. - ");
