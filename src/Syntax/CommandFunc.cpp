@@ -178,16 +178,17 @@ FCommand::plus_num(uinteger64 first_num, uinteger64 sec_num)
 void
 FCommand::_generated_hash_string(integer size)
 {
-    slashn
     std::string str;
     for (integer i = 0; i < size; i++)
     {
-        auto d = rand() % 26 + 'a';
+        auto d = rand() % 40 + '0';
         str.push_back(d);
     }
     for (integer i = 0; i < size; i++)
     {
+    	BOLD_CYAN_COLOR
         std::cout << str[i];
+        BLACK_COLOR
     }
     slashn
 }
