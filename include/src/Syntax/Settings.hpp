@@ -29,6 +29,7 @@ public:
     }
     return mainString;
     }
+    std::string fsettings_username; 
     virtual func ReadFile()
     {
     std::string line;
@@ -44,8 +45,9 @@ public:
     if(readfile.is_open()) {
     while (std::getline(readfile, line))
     {
-        if(line.find("felog_cleaner", 0) == 0)
+        if(line.rfind("felog_cleaner", 0) == 0)
         {
+      	
         	std::string fsettings = EraseAllSubString(line, "felog_cleaner ");
         	linenumber = atoi(fsettings.c_str());
         } else {

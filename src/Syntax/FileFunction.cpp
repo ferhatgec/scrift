@@ -222,7 +222,7 @@ FCreateFileFunction::CreateSettingsFileFunction()
     pathfile.append(".scrift_settings");
     logsystem->WriteLog("Creating ofstream from CreateSettingsFileFunction - ");
     std::ofstream file(pathfile, std::ios::app);
-    file << "felog_cleaner 100";
+    file << "felog_cleaner 100\n";
     //file <<  Settings variables begin.
     // Settings variables end.
     logsystem->WriteLog("Calling file<dot>close from CreateSettingsFileFunction - ");
@@ -264,12 +264,17 @@ FCreateFileFunction::CreateASCIIFileFunction()
     file_directory_string.append(".scrift_ascii");
     command->chartostring(file_directory_string, file_directory);
     std::ofstream file(file_directory_string, std::ios::app);
-    file << "  _____           _  __ _  \n";
-    file << " / ____|         (_)/ _| | \n";
-    file << "| (___   ___ _ __ _| |_| |_ \n";
-    file << " \\___ \\ / __| '__| |  _| __|\n";
-    file << " ____) | (__| |  | | | | |_ \n";
-    file << "|_____/ \\___|_|  |_|_|  \\__|\n";
+    
+    file << " ███████╗ ██████╗██████╗ ██╗███████╗████████╗ 	\n";
+    file << " ██╔════╝██╔════╝██╔══██╗██║██╔════╝╚══██╔══╝ 	\n";
+    file << " ███████╗██║     ██████╔╝██║█████╗     ██║	\n";   
+    file << " ╚════██║██║     ██╔══██╗██║██╔══╝     ██║	\n";   
+    file << " ███████║╚██████╗██║  ██║██║██║        ██║	\n";   
+    file << " ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝	\n";   
+                                            
+    
+    
+    
     file.close();
     }
     else {

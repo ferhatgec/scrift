@@ -8,8 +8,10 @@
 #include <Syntax/GetNameFunction.hpp>
 #include <pwd.h>
 #include <Syntax/Colors.hpp>
-FCommand *terminal = new FCommand();
+#include <Syntax/Settings.hpp>
 
+FCommand *terminal = new FCommand();
+FSettings *fsettings = new FSettings();
 FStructure::FStructure()
 {
 
@@ -64,7 +66,7 @@ void
 FStructure::Terminal()
 {
     fchar* _username = new fchar;
-    BOLD_CYAN_COLOR
+    BOLD_BLUE_COLOR
     InitUsername();
     printlnf("@");
     BOLD_MAGENTA_COLOR
