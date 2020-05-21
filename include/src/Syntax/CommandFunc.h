@@ -31,7 +31,6 @@ class FCommand { /* getting public variables and functions*/
 public:
     FCommand();
     ~FCommand();
-    void clear_shell();
     void _set_locale();
 
     // Directory
