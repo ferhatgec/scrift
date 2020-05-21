@@ -9,7 +9,7 @@
 #define _BSD_SOURCE
 #define _GNU_SOURCE
 
-
+#include <ctype.h>
 #include <fstream>
 #include <memory>
 #include <stdlib.h>
@@ -85,6 +85,7 @@ FLanguage *scriftlang = new FLanguage();
 FHistory *history = new FHistory();
 FConfiguration *conf = new FConfiguration();
 
+integer limit;
 
 FMain::FMain()
 {
@@ -127,7 +128,7 @@ FMain::Shell()
     int t = 0;
     if (_h_str != "") { //NULL
     // HELP FUNCTION
-	
+ 	
     // Help
     if(_h_str == "help" || _h_str == "-h" || _h_str == "Help" || _h_str == "HELP" || _h_str == "-H")
     {
@@ -549,6 +550,16 @@ FMain::Shell()
         slashn
     }
     history->WriteHistory(_h_str);
+    } else {
+    	if(limit >= 50)
+    	{
+    			BOLD_RED_COLOR
+    			printlnf("Please don't spamming :)\n");
+    			BLACK_COLOR
+    			limit = 0;
+    	}
+    	limit++;
+        return;
     }
 
     //history->WriteHistory(_h_str); -> gets error
