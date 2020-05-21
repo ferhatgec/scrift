@@ -58,7 +58,7 @@ public:
             printlnf("addtext <file> : Add text in <file>\n"
             "ctxt <name> : Creates Text file\n");
             BOLD_BLUE_COLOR
-            printlnf("pause || stop : Stops your Scrift shell\n"
+            printlnf("pause : Stops your Scrift shell\n"
             "cls || brk : Close Scrift (with Terminal)\n"
             "rstr <number> : Generated random string\n"
             "clear || clear!!! : Clear Scrift inputs\n"
