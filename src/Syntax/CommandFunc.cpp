@@ -78,11 +78,6 @@ FCommand::_set_locale()
         printlnf(" \n"); 
 }
 
-void 
-FCommand::clear_shell()
-{
-   std::cout << "\033[2J\033[1;1H"; 
-}
 
 void
 FCommand::list_direc(boolean _home)
