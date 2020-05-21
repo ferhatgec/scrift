@@ -97,28 +97,28 @@ FMain::FMain()
 
 FMain::~FMain()
 {
-    delete terminalstr;
-    delete  helpstr;
-    delete kernel;
-    delete main_;
-    delete mkdirfunction;
-    delete filefunction; 
-    delete userhostname;
-    delete main_function;
-    delete homefunction;
-    delete listdirectoryfunction;
-    delete runfunction;
-    delete readfilefunction;
-    delete fileaddtextfunction;
-    delete linkersign;
-    delete removefile;
-    delete developermode;
-    delete contributors_lists;
-    delete clearfile;
-    delete runsyntax;
-    delete scriftlang;
-    delete history;
-    delete conf;
+    delete terminalstr,
+    helpstr,
+    kernel,
+    main_,
+    mkdirfunction,
+    filefunction, 
+    userhostname,
+    main_function,
+    homefunction,
+    listdirectoryfunction,
+    runfunction,
+    readfilefunction,
+    fileaddtextfunction,
+    linkersign,
+    removefile,
+    developermode,
+    contributors_lists,
+    clearfile,
+    runsyntax,
+    scriftlang,
+    history,
+    conf;
 }
 
 

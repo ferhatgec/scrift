@@ -59,7 +59,12 @@ FCDFunction::FCDFunction()
 
 FCDFunction::~FCDFunction()
 {
-    delete fmain, printerror, command, ascii, filelog, settings;
+    delete fmain, 
+    printerror,
+    command,
+    ascii, 
+    filelog, 
+    settings;
 }
 
 
@@ -146,7 +151,10 @@ FCreateFileFunction::FCreateFileFunction()
 
 FCreateFileFunction::~FCreateFileFunction()
 {
-     delete file_path, file_name, file_directory_string, file_directory;
+     delete file_path, 
+     file_name, 
+     file_directory_string, 
+     file_directory;
 }
 
 func
