@@ -28,7 +28,7 @@
 
 // Reset (BLACK)
 #define BLACK_COLOR printlnf("\033[0m");
-
+#define WHITE_COLOR printlnf("\033[1;37m");
 
 // Default color definitions without printlnf
 #define WRED_COLOR "\033[0;31m"

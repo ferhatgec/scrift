@@ -53,7 +53,9 @@
 #include <stdarg.h>
 #include <termios.h>
 #include <sys/ioctl.h>
-
+#include <sys/ioctl.h> // For FIONREAD
+#include <termios.h>
+#include <stdbool.h>
 // Variables
 
 using namespace FileFunction;
@@ -123,12 +125,15 @@ FMain::~FMain()
 func
 FMain::Shell()
 {
+    char output;
     terminalstr->Terminal(); 
+    WHITE_COLOR
     std::getline(std::cin, _h_str); // ws -> whitespace
+    BLACK_COLOR
     int t = 0;
     if (_h_str != "") { //NULL
     // HELP FUNCTION
- 	
+    
     // Help
     if(_h_str == "help" || _h_str == "-h" || _h_str == "Help" || _h_str == "HELP" || _h_str == "-H")
     {
@@ -136,6 +141,7 @@ FMain::Shell()
         helpstr->help();
         logsystem->WriteLog("Launched.. - ");
     }
+    
     // Jam configuration
     else if(_h_str.rfind("jam", 0) == 0)
     {
@@ -145,7 +151,7 @@ FMain::Shell()
       conf->JamConfiguration(strfor_h_str);
       logsystem->WriteLog("Called - ");
     }
-
+    
     // GitHub link
     else if(_h_str == "gitlink" || _h_str == "scrift_link" || _h_str == "fusionlink" || _h_str == "GitLink" || _h_str == "Fusion")
     {
@@ -376,7 +382,6 @@ FMain::Shell()
     {
        listdirectoryfunction->LSFunction();
        logsystem->WriteLog("Launched.. - ");
-       slashn
     }
 
 
@@ -385,7 +390,6 @@ FMain::Shell()
     {
         main_->list_file(true);
         logsystem->WriteLog("Launched.. - ");
-        slashn
     }
 
 
