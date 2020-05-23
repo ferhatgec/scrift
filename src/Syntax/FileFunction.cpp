@@ -20,6 +20,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <pwd.h>
+#include <Syntax/Colors.hpp>
 #include <unistd.h>
 #include <sys/stat.h>
 #include <dirent.h>
@@ -136,7 +137,9 @@ FMKDirFunction::MKDirFunctionInit(std::string name)
         printerror->PrintError("Directory is exist or you're not root");
         slashn
     } else {
+            BOLD_GREEN_COLOR
             printlnf("Success");
+            BLACK_COLOR
             slashn
     }
     return;
@@ -167,7 +170,9 @@ FCreateFileFunction::CreateScriftFile(std::string pathname)
     path.append(scrift);
     std::ofstream file(path, std::ios::app);
     file << "printlnf(\"This Scrift file created by Scrift, Hahaha!\");\n";
+    BOLD_GREEN_COLOR
     printlnf("File created successfuly\n");
+    BLACK_COLOR
     file.close();
 }
 
@@ -181,7 +186,9 @@ FCreateFileFunction::CreateFileFunctionInit(fstr name)
     command->chartostring(file_directory_string, file_directory);
     std::ofstream file(file_directory_string, std::ios::app);
     file << "This file created in Scrift";
+    BOLD_GREEN_COLOR
     printlnf("File created successfuly\n");
+    BLACK_COLOR
     file.close();
 }
 
@@ -472,7 +479,9 @@ FReadFileFunction::ReadSettingsFunction()
     if(readfile.is_open()) {
     while (std::getline(readfile, line))
     {
+        BOLD_BLUE_COLOR
         printlnf(line.c_str());
+        BLACK_COLOR
         slashn
     }
     }
@@ -596,9 +605,13 @@ FRemoveFileFunction::DeleteFile(std::string file)
     path.append(file);
     const integer filedeletestage = std::remove(path.c_str());
     if(filedeletestage == 0) {
+    	BOLD_GREEN_COLOR
         printlnf("Succesfully deleted\n");
+        BLACK_COLOR
     }
     else {
+        BOLD_RED_COLOR
         printlnf("Error: Unable to delete file.\n");
+        BLACK_COLOR
     }
 }
