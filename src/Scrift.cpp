@@ -542,7 +542,7 @@ FMain::Shell()
     // IP FUNCTION
     else if(_h_str == "ip" || _h_str == "myip"){
         logsystem->WriteLog("Launching ip function.. - ");
-        main_->_your_ip();
+        main_->getIPAddress();
         logsystem->WriteLog("Launched.. - ");
     }
 

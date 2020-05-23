@@ -20,6 +20,12 @@
 #include <string.h>
 #include <synflang.hpp>
 #include <experimental/filesystem>
+#include <sys/socket.h>
+#include <sys/ioctl.h>
+#include <netinet/in.h>
+#include <net/if.h>
+#include <arpa/inet.h>
+ 
 namespace filesys = std::experimental::filesystem;
 
 static const char *_uname;
@@ -194,36 +200,40 @@ FCommand::_generated_hash_string(integer size)
 }
 
 void
-FCommand::_your_ip()
-{
-    struct ifaddrs * ifAddrStruct=NULL;
-    struct ifaddrs * ifa=NULL;
-    void * tmpAddrPtr=NULL;
+FCommand::getIPAddress(){
+   int sock = socket(PF_INET, SOCK_DGRAM, 0);
+    sockaddr_in loopback;
 
-    getifaddrs(&ifAddrStruct);
+    if (sock == -1) {
+        std::cerr << "Could not socket\n";
+    }
 
-    for (ifa = ifAddrStruct; ifa != NULL; ifa = ifa->ifa_next) {
-        if (!ifa->ifa_addr) {
-            continue;
-        }
-        if (ifa->ifa_addr->sa_family == AF_INET) { // check it is IP4
-            // is a valid IP4 Address
-            tmpAddrPtr=&((struct sockaddr_in *)ifa->ifa_addr)->sin_addr;
-            fchar addressBuffer[INET_ADDRSTRLEN];
-            inet_ntop(AF_INET, tmpAddrPtr, addressBuffer, INET_ADDRSTRLEN);
-            printlnf("%s IP Address %s\n", ifa->ifa_name, addressBuffer); 
-        } else if (ifa->ifa_addr->sa_family == AF_INET6) { // check it is IP6
-            // is a valid IP6 Address
-            tmpAddrPtr=&((struct sockaddr_in6 *)ifa->ifa_addr)->sin6_addr;
-            fchar addressBuffer[INET6_ADDRSTRLEN];
-            inet_ntop(AF_INET6, tmpAddrPtr, addressBuffer, INET6_ADDRSTRLEN);
-            printlnf("%s IP Address %s\n", ifa->ifa_name, addressBuffer); 
-        } 
- }
-    if (ifAddrStruct!=NULL) freeifaddrs(ifAddrStruct);
-    return;
-} 
+    std::memset(&loopback, 0, sizeof(loopback));
+    loopback.sin_family = AF_INET;
+    loopback.sin_addr.s_addr = INADDR_LOOPBACK;   // using loopback ip address
+    loopback.sin_port = htons(9);                 // using debug port
 
+    if (connect(sock, reinterpret_cast<sockaddr*>(&loopback), sizeof(loopback)) == -1) {
+        close(sock);
+        std::cerr << "Could not connect\n";
+    }
+
+    socklen_t addrlen = sizeof(loopback);
+    if (getsockname(sock, reinterpret_cast<sockaddr*>(&loopback), &addrlen) == -1) {
+        close(sock);
+        std::cerr << "Could not getsockname\n";
+    }
+
+    close(sock);
+
+    char buf[INET_ADDRSTRLEN];
+    if (inet_ntop(AF_INET, &loopback.sin_addr, buf, INET_ADDRSTRLEN) == 0x0) {
+        std::cerr << "Could not inet_ntop\n";
+    } else {
+        std::cout << WBOLD_GREEN_COLOR <<"Local ip address: ";
+        std::cout << WBOLD_YELLOW_COLOR << buf << "\n";
+    }
+}
 
 void
 FCommand::printerror(fchar *err_str, integer8 err_number, fchar * _error_code)
