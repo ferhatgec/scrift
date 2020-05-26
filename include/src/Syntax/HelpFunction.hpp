@@ -13,9 +13,9 @@ typest {
 public:
     virtual func help() {
         BOLD_GREEN_COLOR
-        printlnf("Scrift Functions && Arguments\n");
+        printlnf("Scrift Functions && Arguments\n\n");
             GREEN_COLOR
-            printlnf("printlnf <arg> : Shows <arg> \n");
+            printlnf("printlnf <arg> (e.g. : #USER) : Shows <arg> \n");
             BOLD_RED_COLOR
             printlnf("scr <argument> : Launch /bin/<argument>\n"
             "scr mkdir : Launch Bash's mkdir\n"
@@ -25,7 +25,7 @@ public:
             "scr make\n"
             "scrlang\n"
             "scrp\n"
-            "create_scrift_project <name> : Creates <name><dot>scr file\n");
+            "create_scrift_project <name> : Creates <name><dot>scr file\n\n");
             YELLOW_COLOR
             printlnf("home || default : Going to /home/<username>\n"
             "lsf || lsfile : List only files\n"
@@ -33,7 +33,7 @@ public:
             "ls : List folders and files\n"
             "fr <folder> : Going to <folder>\n"
             "pwd\n"
-            "back : Going to back directory\n");
+            "back : Going to back directory\n\n");
             BOLD_MAGENTA_COLOR
             printlnf("[For Scrift Developers] getdev <boolean> : Get Developer Permissions\n"
             "castle : Play Scrift's Castle Game!\n"
@@ -51,10 +51,10 @@ public:
             "readtext <file> : Reads <file>\n"
             "[If your default shell is Scrift] edifor : Open Edifor\n"
             "[If your default shell is Scrift] edifor <filename> : Open Edifor with File\n"
-            "username : Shows your username\n");
+            "username : Shows your username\n\n");
             BOLD_GREEN_COLOR
             printlnf("addtext <file> : Add text in <file>\n"
-            "ctxt <name> : Creates Text file\n");
+            "ctxt <name> : Creates Text file\n\n");
             BOLD_BLUE_COLOR
             printlnf("pause : Stops your Scrift shell\n"
             "cls || brk : Close Scrift (with Terminal)\n"
