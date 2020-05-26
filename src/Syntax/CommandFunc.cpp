@@ -25,9 +25,10 @@
 #include <netinet/in.h>
 #include <net/if.h>
 #include <arpa/inet.h>
- 
-namespace filesys = std::experimental::filesystem;
+#include <Library/Keywords.hpp>
 
+namespace filesys = std::experimental::filesystem;
+FKeyword keyword;
 static const char *_uname;
 
 FCommand::FCommand()
@@ -64,13 +65,15 @@ FCommand::echo_printlnf(std::string name)
 { 
     if(name != "")
     {
-    printlnf(name.c_str());
-    slashn
-    } else  {
-        RED_COLOR
-        printerror("ERR: CHAR IS NULL", 13, "ERR:CHISNULL");
+        WHITE_COLOR
+        if(name.rfind("#USER", 0) == 0)
+        {        
+            keyword.EndWithUser();
+        } else {
+        printlnf(name.c_str());
+        }
         BLACK_COLOR
-        return;
+        slashn
     }
 }
 
