@@ -169,18 +169,6 @@ FMain::Shell()
  	logsystem->WriteLog("Successfully! - ");
     }
 
-    // git<dot>scr
-    else if(_h_str == "lgit") {
-        std::strcat(main_->_file_path_cd_function, "/Desktop/scrift-lang/");
-        scriftlang->ReadFunc("git");
-    }
-
-    // make<dot>scr
-    else if(_h_str == "lmake") {
-        std::strcat(main_->_file_path_cd_function, "/Desktop/scrift-lang/");
-        scriftlang->ReadFunc("make");
-    }
-
     // Contributors
     else if(_h_str == "cont" || _h_str == "contr" || _h_str == "contributors" || _h_str == "Contributors" || _h_str == "Cont")
     {

@@ -19,8 +19,6 @@ public:
             BOLD_RED_COLOR
             printlnf("scr <argument> : Launch /bin/<argument>\n"
             "scr mkdir : Launch Bash's mkdir\n"
-            "[For Scrift Developers] lmake : Launch make<dot>scr\n"
-            "[For Scrift Developers] lgit : Launch git<dot>scr\n"
             "[For Scrift Developers] devs : Not for you.\n"
             "scr ls\n"
             "scr apt\n"
