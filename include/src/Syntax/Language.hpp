@@ -22,7 +22,7 @@ public:
     std::string name;
 
     // Test
-    fchar* red = "red";
+    fchar* red = "(red)";
 
     std::string EraseAllSubString(std::string & mainString, const std::string & erase)
     {
@@ -127,13 +127,19 @@ public:
         if(line.find("string", 0) == 0) {
             name = line.erase(0, 7);
         }
-
+	
+	if(line.find("(red)printlnf", 0) == 0)
+	{
+           std::string test = EraseAllSubString(line, "(red)printlnf(\"");
+           std::cout << WBOLD_RED_COLOR << EraseAllSubString(test, "\");");
+	}
+		
         if(line.find("printlnf", 0) == 0)
         {
            std::string test = EraseAllSubString(line, "printlnf(\"");
            std::cout << EraseAllSubString(test, "\");");
         }
-
+							
         if (line == "floatpr")
         {
             std::cout << floatvar;
