@@ -25,7 +25,7 @@
 #define fstr std::string
 #define destructor ~
 
-#define SCRIFT_VERSION "0.1.3"
+#define SCRIFT_VERSION "0.1.4"
 
 #define ARROW_UP    72
 
@@ -48,9 +48,5 @@ public:
     fstr _h_str;
     fstr strfor_h_str;
 };
-
-
-
-
 
 #endif // SCRIFT_HPP
