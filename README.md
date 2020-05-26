@@ -22,8 +22,12 @@
 ```
 
 # How to install?
-## If you are already using Scrift, use the following commands:
+## Install Packages
 
+```
+ $ sudo apt-get install libncurses-dev 
+```
+## Run
 ```
  $ sudo make allp
 ```
