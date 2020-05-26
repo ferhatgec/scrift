@@ -561,7 +561,7 @@ FLSFunction::LSFunction()
     DIR *directory;
     directory = opendir((getenv("HOME"), "/", command->_file_path_cd_function));
     if(directory == NULL) {
-        printerror->PrintError("ERR: DIRECTORY NOT FOUND OR NULL");
+        printerror->PrintError("ERR: DIRECTORY NOT FOUND OR NULL\n");
         return;
     }
     while ((entryname = readdir(directory)))
