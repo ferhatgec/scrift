@@ -18,6 +18,7 @@
 #include <string.h>
 #include "synflang.hpp"
 #include "Syntax/CommandFunc.h"
+
 #define slashn printlnf("\n");
 
 #define typest typedef struct
@@ -34,7 +35,6 @@
 #define ARROW_RIGHT  77
 
 #define ARROW_DOWN  80
-
 
 
 class FMain {

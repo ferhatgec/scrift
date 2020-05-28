@@ -142,15 +142,6 @@ FMain::Shell()
         logsystem->WriteLog("Launched.. - ");
     }
     
-    // Jam configuration
-    else if(_h_str.rfind("jam", 0) == 0)
-    {
-      logsystem->WriteLog("Deleting _h_str - ");
-      strfor_h_str = _h_str.erase(0,4);
-      logsystem->WriteLog("Calling JamConfiguration For Fegeya Fusion - ");
-      conf->JamConfiguration(strfor_h_str);
-      logsystem->WriteLog("Called - ");
-    }
     
     // GitHub link
     else if(_h_str == "gitlink" || _h_str == "scrift_link" || _h_str == "fusionlink" || _h_str == "GitLink" || _h_str == "Fusion")
