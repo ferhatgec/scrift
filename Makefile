@@ -8,11 +8,13 @@ GCFLAGS=-std=c++11 -O2 -g -Wall $(shell pkg-config --cflags ncursesw)
 GLDFLAGS=$(shell pkg-config --libs ncursesw)
 SRCAPPSDIREC = ./src/Apps/
 PREFIX = /bin/
+SRCLIBDIREC = ./src/Library/
 SRCSYNTAXDIREC = ./src/Syntax/
 INCLUDEDIR = ./include/src/
 CFLAGS = -c -Wall -I$(INCLUDEDIR)
 GAMESDIREC = ./src/Games/
 SRCDIREC = ./src/
+GCC = gcc
 GPP = g++
 COMP = g++ -c
 HECOMP = g++ -c $< -std=gnu++17 -o
@@ -32,9 +34,9 @@ else
 endif
 
 
-all: headersfile main clean
+all: conio headersfile main clean
 
-allp: headersfile mainc castle edifor fetcheya date \
+allp: conio headersfile mainc castle edifor fetcheya date \
 	 pong tictactoe clean 
 
 removeall: uninstall cleanall
@@ -56,6 +58,9 @@ nall: cleanall
 
 headersfile: $(HEADERFILE)
 
+
+conio: $(SRCLIBDIREC)FConio.c
+	$(GCC) -c $(SRCLIBDIREC)FConio.c -o fconio.o
 
 %.o: $(SRCSYNTAXDIREC)%.cpp
 	$(GPP) $(CFLAGS) -c $< -o $@
