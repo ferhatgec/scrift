@@ -596,7 +596,12 @@ FLSFunction::LSFunction()
 	{
 	    BOLD_BLUE_COLOR
             printlnf("%4s: %s\n", "[Python]", entryname->d_name);
-	}  
+	}
+	else if(strstr(entryname->d_name, ".md")) 
+	{
+	    BOLD_YELLOW_COLOR
+            printlnf("%4s: %s\n", "[Markdown]", entryname->d_name);
+	}	
         else {
             BOLD_YELLOW_COLOR
             printlnf("%4s: %s\n", "[File]", entryname->d_name);
