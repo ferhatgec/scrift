@@ -583,10 +583,21 @@ FLSFunction::LSFunction()
 	}  
 	else if(strstr(entryname->d_name, ".c"))
 	{
-	     BOLD_BLUE_COLOR
+	    BOLD_BLUE_COLOR
             printlnf("%4s: %s\n", "[C]", entryname->d_name);		
-	} 
-       else {
+	}
+	else if(strstr(entryname->d_name, ".sh"))
+	{
+	    BOLD_GREEN_COLOR
+            printlnf("%4s: %s\n", "[Bash]", entryname->d_name);	
+	
+	}
+	else if(strstr(entryname->d_name, ".py")) 
+	{
+	    BOLD_BLUE_COLOR
+            printlnf("%4s: %s\n", "[Python]", entryname->d_name);
+	}  
+        else {
             BOLD_YELLOW_COLOR
             printlnf("%4s: %s\n", "[File]", entryname->d_name);
         }
