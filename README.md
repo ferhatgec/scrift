@@ -1,7 +1,6 @@
 # Fegeya Scrift
-## ScriftLang is simple shell and scripting language for Fegeya Fusion.
 
-## ScriftLang is new generation shell and scripting language project.
+## Scrift is new generation shell and scripting language project.
 
 ![Scrift](docs/resource/Scrift.png)
 
