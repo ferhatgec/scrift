@@ -7,4 +7,6 @@
 
 (red)printlnf("This is a red color test");
 slashn
+(green)printlnf("This is a green color test");
+slashn
 return

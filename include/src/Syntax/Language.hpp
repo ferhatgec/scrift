@@ -128,6 +128,13 @@ public:
             name = line.erase(0, 7);
         }
 	
+	if(line.find("(green)printlnf", 0) == 0)
+	{
+           std::string test = EraseAllSubString(line, "(green)printlnf(\"");
+           std::cout << WBOLD_GREEN_COLOR << EraseAllSubString(test, "\");");
+	}
+	
+	
 	if(line.find("(red)printlnf", 0) == 0)
 	{
            std::string test = EraseAllSubString(line, "(red)printlnf(\"");

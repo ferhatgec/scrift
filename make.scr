@@ -4,9 +4,9 @@
 *   Distributed under the terms of the GPLv3 License.
 *# 
 
-printlnf("Building, wait...");
+(green)printlnf("Building, wait...");
 slashn
-printlnf("Calling make");
+(green)printlnf("Calling make");
 slashn
 system("make runall");
 return
