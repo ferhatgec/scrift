@@ -13,7 +13,6 @@
 #include <fstream>
 #include <memory>
 #include <stdlib.h>
-#include <iostream>
 #include "../include/src/Scrift.hpp"
 #include <dirent.h>
 #include <sys/types.h>
@@ -54,7 +53,6 @@
 #include <stdarg.h>
 #include <termios.h>
 #include <sys/ioctl.h>
-#include <sys/ioctl.h> // For FIONREAD
 #include <termios.h>
 #include <stdbool.h>
 // Variables
