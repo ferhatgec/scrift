@@ -68,14 +68,18 @@ FStructure::Terminal()
     fchar* _username = new fchar;
     BOLD_BLUE_COLOR
     InitUsername();
+    BOLD_CYAN_COLOR
     printlnf("@");
     BOLD_MAGENTA_COLOR
     InitHostname();
+    BOLD_CYAN_COLOR
     printlnf(":~");
     BOLD_YELLOW_COLOR
     printlnf(terminal->_file_path_cd_function);
+    printlnf(" ");
     BOLD_RED_COLOR
-    printlnf(" $# ");
+    printlnf("$#");
+    printlnf(" ");
     BLACK_COLOR
     delete _username;
 }
