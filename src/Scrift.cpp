@@ -490,6 +490,10 @@ FMain::Shell()
     	printlnf("Fegeya Scrift Version: ");
     	BOLD_GREEN_COLOR
     	printlnf(SCRIFT_VERSION);
+    	BOLD_YELLOW_COLOR
+    	printlnf(hyphen);
+    	BOLD_CYAN_COLOR
+    	printlnf(SCRIFT_STATUS);
     	slashn
     	BOLD_RED_COLOR
     	printlnf("Copyright (c) 2020 ");
