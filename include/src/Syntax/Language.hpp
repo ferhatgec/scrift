@@ -131,14 +131,14 @@ public:
 	if(line.find("(green)printlnf", 0) == 0)
 	{
            std::string test = EraseAllSubString(line, "(green)printlnf(\"");
-           std::cout << WBOLD_GREEN_COLOR << EraseAllSubString(test, "\");");
+           std::cout << WBOLD_GREEN_COLOR << EraseAllSubString(test, "\");") << WBLACK_COLOR;
 	}
 	
 	
 	if(line.find("(red)printlnf", 0) == 0)
 	{
            std::string test = EraseAllSubString(line, "(red)printlnf(\"");
-           std::cout << WBOLD_RED_COLOR << EraseAllSubString(test, "\");");
+           std::cout << WBOLD_RED_COLOR << EraseAllSubString(test, "\");") << WBLACK_COLOR;
 	}
 		
         if(line.find("printlnf", 0) == 0)
