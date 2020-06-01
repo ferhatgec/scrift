@@ -21,9 +21,6 @@ public:
     // Keywords
     std::string name;
 
-    // Test
-    fchar* red = "(red)";
-
     std::string EraseAllSubString(std::string & mainString, const std::string & erase)
     {
     size_t pos = std::string::npos;
@@ -36,7 +33,6 @@ public:
 
     virtual func ReadFunc(std::string filename)
     {
-    FileFunction::FCDFunction *cdfunc = new FileFunction::FCDFunction();
     FRunFunction *run = new FRunFunction();
     std::string line;
     float floatvar;
@@ -51,7 +47,6 @@ public:
     std::string sfname;
     std::string inputcommand;
     integer finteger = 0;
-    fchar* sprintlnf = "printlnf(";
     integer f;
     if(readfile.is_open()) {
 
