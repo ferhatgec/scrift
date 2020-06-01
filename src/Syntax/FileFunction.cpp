@@ -329,7 +329,7 @@ void
 faddtextfunction::DeleteLine(std::string filename)
 {
     std::string file_string_path;
-    file_string_path.append("nano ");
+    file_string_path.append("edifor ");
     file_string_path.append(command->_file_path_cd_function);
     file_string_path.append("/");
     file_string_path.append(filename);

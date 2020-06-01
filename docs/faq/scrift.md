@@ -1,7 +1,7 @@
 # What is the Scrift?
 
-* Scrift is simple and fast shell project. This shell project is only supporting 
-Fegeya Fusion, Linux, BSD and Darwin.
+* Scrift is new generation simple and fast shell project. This shell project is only supporting 
+Fegeya Fusion, Linux, BSD, Darwin and *nix.
 
 * Scrift is not only a shell. This is Fusion's gate. This is future.
 
