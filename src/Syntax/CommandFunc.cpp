@@ -69,7 +69,12 @@ FCommand::echo_printlnf(std::string name)
         if(name.rfind("#USER", 0) == 0)
         {        
             keyword.EndWithUser();
-        } else {
+        } 
+        else if(name.rfind("#PATH", 0) == 0)
+        {
+            keyword.EndWithPath();
+        }
+        else {
         printlnf(name.c_str());
         }
         BLACK_COLOR

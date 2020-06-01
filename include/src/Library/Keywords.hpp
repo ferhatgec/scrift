@@ -18,6 +18,10 @@ public:
     {
         printlnf(getenv("USER")); // This is not portable!
     }
+    virtual void EndWithPath()
+    {
+    	printlnf(getenv("PWD")); // This is not portable!
+    }
 };
 
 #endif // KEYWORDS_HPP
