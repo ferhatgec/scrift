@@ -15,7 +15,7 @@ public:
         BOLD_GREEN_COLOR
         printlnf("Scrift Functions && Arguments\n\n");
             GREEN_COLOR
-            printlnf("printlnf <arg> (e.g. : #USER) : Shows <arg> \n");
+            printlnf("printlnf <arg> (e.g. : #USER, #PATH) : Shows <arg> \n");
             BOLD_RED_COLOR
             printlnf("scr <argument> : Launch /bin/<argument>\n"
             "scr mkdir : Launch Bash's mkdir\n"
