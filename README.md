@@ -30,9 +30,8 @@
  $ make runall 
 ```
 # How to build and run in Scrift?
-## If you are already using Scrift, use the following commands:
+## If you are already using Scrift, use the following commands (You should going to scrift-lang directory, and run)
 
-###### You should going to scrift-lang directory, and run.
 ```
  $ scrift make
 ```
@@ -43,19 +42,17 @@
 ```
  $ sudo apt-get install libncurses-dev 
 ```
+
 ## Run
 ```
  $ sudo make allp
 ```
 
 # How to set default shell (For Fegeya Scrift users)
-## Going to scrift-lang directory, and run:
 
 ```
  $ scrift install
 ```
-
-
 
 ## If you are using Bash or etc, use the following commands:
 
@@ -64,13 +61,10 @@
 ```
 
 
-# Use Edifor with Git and etc.
-## If you are already using Scrift, use the following commands:
-## Going to scrift-lang directory, and run:
+# Use Edifor with Git and etc (If you are already using Scrift, use the following commands)
 ```
  $ scrift default_git_editor
 ```
-
 
 ###### Fegeya Edifor, only runs if you're use default shell is Scrift.
 
