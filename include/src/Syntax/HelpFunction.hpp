@@ -85,12 +85,14 @@ public:
     }
 
     virtual func GitLink() {
-        YELLOW_COLOR
+        BOLD_YELLOW_COLOR
         printlnf("https://github.com/FerhatGec\n");
         BOLD_BLUE_COLOR
         printlnf("https://github.com/FerhatGec/scrift-lang\n");
-        GREEN_COLOR
-        printlnf("https://github.com/FerhatGec/fusion-os\n");
+        BOLD_GREEN_COLOR
+        printlnf("https://github.com/FerhatGec/elite-build\n");
+        BOLD_CYAN_COLOR
+        printlnf("https://github.com/FerhatGec/fresh-gui\n");
         BLACK_COLOR // reset
     }
 } fhelp;
