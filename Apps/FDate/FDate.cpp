@@ -7,8 +7,8 @@
 
 #include <iostream>
 #include <iomanip>
-#include "../../../include/src/Scrift.hpp"
-#include "../../../include/src/Syntax/Colors.hpp"
+#include "../../include/src/Scrift.hpp"
+#include "../../include/src/Syntax/Colors.hpp"
 
 using namespace std;
 

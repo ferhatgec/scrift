@@ -6,20 +6,25 @@
 #
 GCFLAGS=-std=c++11 -O2 -g -Wall $(shell pkg-config --cflags ncursesw)
 GLDFLAGS=$(shell pkg-config --libs ncursesw)
-SRCAPPSDIREC = ./src/Apps/
-PREFIX = /bin/
-SRCLIBDIREC = ./src/Library/
+
+# PATHS 
+SRCAPPSDIREC = ./Apps/
+SRCLIBDIREC = ./Library/
 SRCSYNTAXDIREC = ./src/Syntax/
+GAMESDIREC = ./Games/
+SRCDIREC = ./src/
+PREFIX = /bin/
+
 INCLUDEDIR = ./include/src/
 CFLAGS = -c -Wall -I$(INCLUDEDIR)
-GAMESDIREC = ./src/Games/
-SRCDIREC = ./src/
+
 GCC = gcc
 GPP = g++
 COMP = g++ -c
 HECOMP = g++ -c $< -std=gnu++17 -o
+
 # CLEAN
-CLEANALL = scrift /src/Games/Castle/castle
+CLEANALL = scrift /Games/Castle/castle
 CLEAN = *.o
 HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o RunFunction.o Linker.o \
 Log.o History.o Configuration.o

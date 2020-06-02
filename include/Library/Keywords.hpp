@@ -8,8 +8,8 @@
 #ifndef KEYWORDS_HPP
 #define KEYWORDS_HPP
 
-#include "../Scrift.hpp"
-#include "../synflang.hpp"
+#include "../src/Scrift.hpp"
+#include "../src/synflang.hpp"
 
 struct FKeyword {
     FMain *main_input = new FMain();

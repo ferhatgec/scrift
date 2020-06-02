@@ -7,9 +7,9 @@
 #include <climits>
 #include <iostream>
 #include "tictactoe.h"
-#include "../../../include/src/Scrift.hpp"
-#include "../../../include/src/Syntax/Colors.hpp"
-#include "../../../include/src/synflang.hpp"
+#include "../../include/src/Scrift.hpp"
+#include "../../include/src/Syntax/Colors.hpp"
+#include "../../include/src/synflang.hpp"
 
 using namespace std;
 

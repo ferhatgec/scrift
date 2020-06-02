@@ -7,7 +7,7 @@
 # 
 *****************************************************/
 
-#include "../../include/src/Library/FConio.h"
+#include "../include/Library/FConio.h"
 
 struct textinfo text={0, 0};
 

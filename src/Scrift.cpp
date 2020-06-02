@@ -46,7 +46,7 @@
 #include "../include/src/Syntax/Language.hpp"
 #include "../include/src/Syntax/History.hpp"
 #include "../include/src/Syntax/Configuration.hpp"
-#include "../include/src/Library/Keywords.hpp"
+#include "../include/Library/Keywords.hpp"
 #include <ctype.h>
 #include <errno.h>
 #include <fcntl.h>
