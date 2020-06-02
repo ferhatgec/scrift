@@ -17,7 +17,7 @@
 - History 
 - Welcome message 
 - Scripting language 
-- Calender
+- Calendar
 - Castle (looks like Chrome's Dinosaur game)
 - XOX 
 - Pong
