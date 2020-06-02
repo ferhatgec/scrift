@@ -6,6 +6,23 @@
 
 [![Build Status](https://dev.azure.com/ferhatgectao/scrift-lang/_apis/build/status/FerhatGec.scrift-lang?branchName=master)](https://dev.azure.com/ferhatgectao/scrift-lang/_build/latest?definitionId=1&branchName=master)
 
+# Features 
+- User-friendly shell interface.
+- Customizable
+- Faster than other shell (e.g. Bash)
+- Colorized!
+- Log system (FeLog)
+- Scrift based Text Editor (Edifor)
+- ASCII Art
+- History 
+- Welcome message 
+- Scripting language 
+- Calender
+- Castle (looks like Chrome's Dinosaur game)
+- XOX 
+- Pong
+- Auto-clear
+- Randomize String generator (rstr)
 
 # How to build and run in Linux?
 
