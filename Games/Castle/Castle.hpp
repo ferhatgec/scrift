@@ -5,8 +5,8 @@
 #
 # */
 
-#ifndef CASTLE_H
-#define CASTLE_H
+#ifndef CASTLE_HPP
+#define CASTLE_HPP
 
 #define FPS_TIMEOUT 60
 #define TIMER_RANGE 4
@@ -61,4 +61,4 @@ class FCastle {
     void jump();
 };
 
-#endif
+#endif // CASTLE_HPP
