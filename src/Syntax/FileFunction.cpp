@@ -586,6 +586,11 @@ FLSFunction::LSFunction()
 	    BOLD_BLUE_COLOR
             printlnf("%4s: %s\n", "[C]", entryname->d_name);		
 	}
+	else if(strstr(entryname->d_name, "CMakeLists.txt"))
+	{
+	    BOLD_MAGENTA_COLOR
+            printlnf("%4s: %s\n", "[CMake]", entryname->d_name);	
+	}
 	else if(strstr(entryname->d_name, ".sh"))
 	{
 	    BOLD_GREEN_COLOR
