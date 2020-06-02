@@ -578,7 +578,7 @@ FLSFunction::LSFunction()
         }     
 	else if(strstr(entryname->d_name, ".cpp")) 
 	{
-	     BOLD_CYAN_COLOR
+	    BOLD_CYAN_COLOR
             printlnf("%4s: %s\n", "[C++]", entryname->d_name);
 	}  
 	else if(strstr(entryname->d_name, ".c"))

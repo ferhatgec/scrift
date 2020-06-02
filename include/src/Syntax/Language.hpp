@@ -15,14 +15,17 @@
 #include <vector>
 #include "../synflang.hpp"
 #include "FileFunction.hpp"
+#include "../Lexer/Lexer.hpp"
 
 class FLanguage {
+	FCommand *command = new FCommand();
+        FRunFunction *run = new FRunFunction();  
+        LexerKeywords keyword;
 public:
     // Keywords
     std::string name;
 
-    std::string EraseAllSubString(std::string & mainString, const std::string & erase)
-    {
+    std::string EraseAllSubString(std::string & mainString, const std::string & erase) {
     size_t pos = std::string::npos;
     while((pos = mainString.find(erase)) != std::string::npos)
     {
@@ -33,150 +36,107 @@ public:
 
     virtual func ReadFunc(std::string filename)
     {
-    FRunFunction *run = new FRunFunction();
     std::string line;
+    
+    // For Float function
     float floatvar;
-    FCommand *command = new FCommand();
+
+    // Path
     std::string path;
     path.append(command->_file_path_cd_function);
     path.append("/");
     path.append(filename);
     path.append(scrift);
+    
+    
     std::ifstream readfile(path);
-    fchar* printstr;
-    std::string sfname;
+    
+    // For Input function
     std::string inputcommand;
+    
     integer finteger = 0;
     integer f;
+    
     if(readfile.is_open()) {
 
     while (std::getline(readfile, line))
     {
-        if(line.find("slashn", 0) == 0) {
+        if(line.find(keyword.PrintSlashn, 0) == 0) {
             slashn
         }
 
-        if(line.find("integer", 0) == 0) {
+        if(line.find(keyword.Integer, 0) == 0) {
             finteger = std::atoi(line.erase(0, 8).c_str());
         }
-        if(line.find("#*", 0) == 0) {
-            if(line.find("*#", 0) == 0) {
-                printlnf("Found..\n");
-            }
-        }
-
-        if(line.rfind("# ", 0) == 0)
-        {
-           line.erase(line.begin(), line.end());
-           std::cout << line;
-        }
-        if(line.rfind("input", 0) == 0) {
+        
+        if(line.rfind(keyword.Input, 0) == 0) {
             std::cin >> inputcommand;
         }
 
-
-
-        if(line.find("wsinput", 0) == 0)
-        {
+        if(line.find(keyword.WhitespaceInput, 0) == 0) {
             std::getline(std::cin, inputcommand);
         }
 
-        if(line == "inputpr") {
+        if(line == keyword.PrintInput) {
             printlnf(inputcommand.c_str());
         }
 
-        if(line.find("fplus(", 0) == 0)
-        {
-            std::string test = EraseAllSubString(line, "fplus(");
-            test = EraseAllSubString(test, ");");
+        if(line.find(keyword.FirstPlus + keyword.BracketsBegin, 0) == 0) {
+            std::string test = EraseAllSubString(line, keyword.FirstPlus + keyword.BracketsBegin);
+            test = EraseAllSubString(test, keyword.BracketsEnd + keyword.Semicolon);
             f = std::atoi(test.c_str());
         }
 
-        if(line.find("splus(", 0) == 0)
-        {
-            std::string test = EraseAllSubString(line, "splus(");
-            test = EraseAllSubString(test, ");");
+        if(line.find(keyword.SecondPlus + keyword.BracketsBegin, 0) == 0) {
+            std::string test = EraseAllSubString(line, keyword.SecondPlus + keyword.BracketsBegin);
+            test = EraseAllSubString(test, keyword.BracketsEnd + keyword.Semicolon);
             f = f + std::atoi(test.c_str());
         }
 
-        if(line == "plpr")
-        {
+        if(line == keyword.PrintPl) {
             std::cout << f;
         }
 
-        if(line == "return")
-        {
+        if(line == keyword.Return) {
             return;
         }
 
-        if(line.find("function()",0) == 0) {
-            std::string voidf = EraseAllSubString(line, "function()");
-        }
-
-        if(line.find("{", 0) == 0  && line.find("}", 4) == 0) {
-            std::string voids = EraseAllSubString(voids, "{");
-            voids = EraseAllSubString(voids, "}");
-            line = voids;
-        }
-
-        if(line.find("string", 0) == 0) {
-            name = line.erase(0, 7);
+        if(line.find(keyword.String, 0) == 0) {
+            name = line.erase(0, keyword.String.length());
         }
 	
-	if(line.find("(green)printlnf", 0) == 0)
-	{
-           std::string test = EraseAllSubString(line, "(green)printlnf(\"");
-           std::cout << WBOLD_GREEN_COLOR << EraseAllSubString(test, "\");") << WBLACK_COLOR;
+	if(line.find(keyword.BracketsBegin + keyword.GreenColor + keyword.BracketsEnd + keyword.Printlnf, 0) == 0) {
+           std::string test = EraseAllSubString(line, keyword.BracketsBegin + keyword.GreenColor + keyword.BracketsEnd + keyword.Printlnf + keyword.BracketsBegin + keyword.QuotationMarks);
+           std::cout << WBOLD_GREEN_COLOR << EraseAllSubString(test, keyword.QuotationMarks + keyword.BracketsEnd + keyword.Semicolon) << WBLACK_COLOR;
 	}
 	
 	
-	if(line.find("(red)printlnf", 0) == 0)
-	{
-           std::string test = EraseAllSubString(line, "(red)printlnf(\"");
-           std::cout << WBOLD_RED_COLOR << EraseAllSubString(test, "\");") << WBLACK_COLOR;
+	if(line.find(keyword.BracketsBegin + keyword.RedColor + keyword.BracketsEnd + keyword.Printlnf, 0) == 0) {
+           std::string test = EraseAllSubString(line, keyword.BracketsBegin + keyword.RedColor + keyword.BracketsEnd + keyword.Printlnf + keyword.BracketsBegin + keyword.QuotationMarks);
+           std::cout << WBOLD_RED_COLOR << EraseAllSubString(test, keyword.QuotationMarks + keyword.BracketsEnd + keyword.Semicolon) << WBLACK_COLOR;
 	}
 		
-        if(line.find("printlnf", 0) == 0)
-        {
-           std::string test = EraseAllSubString(line, "printlnf(\"");
-           std::cout << EraseAllSubString(test, "\");");
+        if(line.find(keyword.Printlnf, 0) == 0) {
+           std::string test = EraseAllSubString(line, keyword.Printlnf + keyword.BracketsBegin + keyword.QuotationMarks);
+           std::cout << EraseAllSubString(test, keyword.QuotationMarks + keyword.BracketsEnd + keyword.Semicolon);
         }
 							
-        if (line == "floatpr")
-        {
+        if (line == keyword.PrintFloat) {
             std::cout << floatvar;
         }
 
-        if (line.rfind("intpr", 0) == 0)
-        {
+        if (line.rfind(keyword.PrintInteger, 0) == 0) {
             std::cout << finteger;
         }
 
-        if (line.find("sysjam", 0) == 0)
-        {
-          std::string jamfile = EraseAllSubString(line, "sysjam(\"");
-          jamfile = EraseAllSubString(jamfile, "\");");
-          run->RunJamFunction(jamfile);
-          std::cout << "RunFunction calling" + jamfile;
-          slashn
-        }
-
-        if (line.find("system", 0) == 0)
-        {
-            std::string test = EraseAllSubString(line, "system(\"");
-            test = EraseAllSubString(test, "\");");
-            if(test.rfind("fr", 0) == 0)
-            {
-            	test = EraseAllSubString(line, "fr ");
-            	std::string path = "cd ";
-            	path.append(test);
-            	system(path.c_str());
-            }
+        if (line.find(keyword.System, 0) == 0) {
+            std::string test = EraseAllSubString(line, keyword.System + keyword.BracketsBegin + keyword.QuotationMarks);
+            test = EraseAllSubString(test, keyword.QuotationMarks + keyword.BracketsEnd + keyword.Semicolon);
             run->RunFunction(test);
             std::cout << "RunFunction calling " + test;
             slashn
         }
-        if(line.rfind("strpr", 0) == 0)
+        if(line.rfind(keyword.PrintString, 0) == 0)
             std::cout << name << "\n";
         }
     }
@@ -186,3 +146,4 @@ public:
 };
 
 #endif // LANGUAGE_HPP
+
