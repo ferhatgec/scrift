@@ -1,0 +1,197 @@
+/*# MIT License
+#
+# Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
+# Distributed under the terms of the MIT License.
+#*/
+
+#ifndef SCRIFT_KEYWORDS_HPP
+#define SCRIFT_KEYWORDS_HPP
+
+#include "../Scrift.hpp"
+#include "../Syntax/Colors.hpp"
+#include "../synflang.hpp"
+
+struct ScriftKeywords {
+public:
+	// Commands
+	
+	// Help
+	std::string Help = "help";
+	std::string Help_Short = "-h";
+	std::string Help_Short_Biggest = "-H";
+	std::string Help_Big = "Help";
+	std::string Help_Biggest = "HELP";
+	 
+	// GitLink
+	std::string GitLink = "gitlink";
+	std::string GitLink_Big = "GitLink";
+	
+	// Edifor
+	std::string Edifor = "edifor";
+	
+	// Contributors
+	std::string Cont = "cont";
+	std::string Cont_Big = "Cont";
+	std::string Contr = "contr";
+	std::string Contributors = "contributors";
+	std::string Contributors_Big = "Contributors";
+	
+	// Quotation Marks
+	std::string FeLog = "felog";
+	std::string Show_Log = "show_log";
+	std::string FeLog_Big = "FeLog";
+	std::string FeLog_F_Big = "Felog";
+	std::string FeLog_Biggest = "FELOG";
+	std::string Show_Log_Big = "Show_Log";
+	
+	// Clear Log
+	std::string ClearLog = "clear_log";
+	std::string FeLogClear = "felog --clear";
+	std::string Clear_Log_Big = "Clear_Log";
+	std::string Clear_Log_Biggest = "CLEAR_LOG";
+	std::string FeLogClearBig = "FeLog --Clear";
+	std::string FeLogClearBiggest = "FELOG --CLEAR";
+	
+	// GetDev
+	std::string GetDev = "getdev";
+	
+	// Add Text
+	std::string AddText = "addtext";
+	
+	// Castle
+	std::string Castle = "castle";
+	std::string FCastle = "fcastle";
+	
+	// Remove File
+	std::string RemoveFile = "rmvfile";
+	
+	// Delete Text
+	std::string DeleteText = "deletetext";
+	
+	// MKDir 
+	std::string MKDir = "mkdir";
+	
+	// ReadText 
+	std::string ReadText = "readtext";
+	
+	// Run
+	std::string RunDotSlash = "./";
+	std::string RunST = "st";
+	
+	// Fr
+	std::string Fr = "fr";
+	std::string Cd = "cd";
+	
+	// Back
+ 	std::string Back = "back";
+ 	
+ 	// Home
+ 	std::string Home = "home";
+ 	std::string Default = "default";
+ 	std::string Home_Big = "Home";
+ 	std::string Home_Biggest = "HOME";
+ 	std::string Default_Big = "Default";
+ 	std::string Default_Biggest = "DEFAULT";
+ 	
+ 	// Scrift
+ 	std::string Scrift = "scrift";
+ 	
+ 	// Create Scrift Project 
+ 	std::string CreateScriftProject = "create_scrift_project";
+ 	
+ 	
+ 	// Test Settings
+ 	std::string TestSettings = "testsettings";
+ 	std::string ScrLang = "scrlang";
+ 	
+ 	// List Dir
+ 	std::string Lsd = "lsd";
+ 	std::string Lsdir = "lsdir";
+ 	std::string ls_d = "ls -d";
+ 	std::string Lsd_Biggest = "LSD";
+ 	std::string Lsdir_Biggest = "LSDIR";
+ 	std::string Lsdir_Big = "Ls_Dir";
+	
+	// Show Settings 
+	std::string ShowSettings = "show_settings";
+	std::string Settings = "settings";
+	
+	// Clear Settings 
+	std::string Clear_Settings = "clear_settings";
+	std::string DeleteSettings = "deletesettings";
+	
+	
+	// List
+	std::string Ls = "ls";
+	std::string Dir = "dir";
+	std::string Ls_Biggest = "LS";
+	std::string Dir_Biggest = "DIR";
+	std::string Ls_Big = "Ls";
+	std::string Dir_Big = "Dir";
+	
+	// List File 
+	std::string Lsf = "lsf";
+	std::string Lsfile = "lsfile";
+	std::string Ls_f = "ls -f";
+	std::string Lsf_Biggest = "LSF";
+	std::string Lsfile_Biggest = "LSFILE";
+	std::string Ls_File = "Ls File";
+	
+	// Create Text 
+	std::string CreateText = "ctxt";
+	
+	// Printlnf
+	std::string Printlnf = "printlnf";
+	
+	// Clear
+	std::string Clear = "clear";
+	std::string Clear___ = "clear!!!";
+	
+	// Break && Close
+	std::string Break = "brk";
+	std::string Close = "cls";
+	
+	// Username 
+	std::string Username = "username";
+	std::string UName = "uname";
+	
+	// History
+	std::string History = "history";
+	std::string FHist = "fhist";
+	
+	// Clear History
+	std::string Clear_History = "clear_history";
+	std::string History_Cleaner = "history_cleaner";
+	
+	// Scr
+	std::string Scr = "scr";
+	
+	// Randomize String
+	std::string RandomizeString = "rstr";
+	
+	// Pause
+	std::string Pause = "pause";
+	
+	// Version
+	std::string Version = "--version";
+	std::string _V = "-v";
+	
+	// Fetcheya
+	std::string Fetcheya = "fetcheya";
+	std::string _f = "-f";
+	
+	// Set Locale System
+	std::string SetLocaleSystem = "setlocale_system";
+	
+	// IP
+	std::string IP = "ip";
+	std::string MyIP = "myip";
+	
+	// Scrift Run In Path 
+	std::string Scrp = "scrp";
+	
+	// Whitespace
+	std::string Whitespace = " ";
+};
+
+#endif // SCRIFT_KEYWORDS_HPP
