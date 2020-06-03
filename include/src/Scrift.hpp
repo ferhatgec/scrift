@@ -28,7 +28,7 @@
 
 #define hyphen "-"
 #define SCRIFT_VERSION "0.1.4"
-#define SCRIFT_STATUS "beta"
+#define SCRIFT_STATUS "beta-2"
 
 #define ARROW_UP    72
 
