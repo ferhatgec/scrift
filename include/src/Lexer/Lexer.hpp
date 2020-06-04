@@ -50,7 +50,7 @@ public:
 	// Return
 	std::string Return = "return";
 	
-	// System 
+	// System Integration
 	std::string System = "system";
 	
 	
