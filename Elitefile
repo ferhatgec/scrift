@@ -3,9 +3,11 @@
 - MIT License
 -
 - Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
-- Distributed under the terms of the MIT License.
--	
+- Distributed under the terms of the MIT License.	
 -/
 
-printlnf Hello Elite!
+setname Allofthem
+setto g++ -s -Wall -I./include/src/ ./src/Scrift.cpp ./src/Syntax/CommandFunc.cpp ./src/Syntax/Configuration.cpp ./src/Syntax/FileFunction.cpp ./src/Syntax/GetNameFunction.cpp ./src/Syntax/History.cpp ./src/Syntax/Linker.cpp ./src/Syntax/Log.cpp ./src/Syntax/RunFunction.cpp ./Library/FConio.c -o scrift
+
+system #Allofthem
 
