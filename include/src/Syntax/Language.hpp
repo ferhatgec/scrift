@@ -8,6 +8,7 @@
 #define LANGUAGE_HPP
 #include "Colors.hpp"
 #include "Log.hpp"
+#include "RunFunction.hpp"
 #include "Settings.hpp"
 #include "../Scrift.hpp"
 #include "CommandFunc.h"
