@@ -66,6 +66,10 @@ public:
             slashn
         }
 
+	if(line == keyword.Printlnf + keyword.Whitespace + keyword.ArrowType + keyword.Date) {
+		printlnf(__DATE__);	
+	} 
+	
         if(line.find(keyword.Integer, 0) == 0) {
             finteger = std::atoi(line.erase(0, 8).c_str());
         }
@@ -106,18 +110,18 @@ public:
             name = line.erase(0, keyword.String.length());
         }
 	
-	if(line.find(keyword.BracketsBegin + keyword.GreenColor + keyword.BracketsEnd + keyword.Printlnf, 0) == 0) {
+	if(line.find(keyword.BracketsBegin + keyword.GreenColor + keyword.BracketsEnd + keyword.Printlnf + keyword.BracketsBegin, 0) == 0) {
            std::string test = EraseAllSubString(line, keyword.BracketsBegin + keyword.GreenColor + keyword.BracketsEnd + keyword.Printlnf + keyword.BracketsBegin + keyword.QuotationMarks);
            std::cout << WBOLD_GREEN_COLOR << EraseAllSubString(test, keyword.QuotationMarks + keyword.BracketsEnd + keyword.Semicolon) << WBLACK_COLOR;
 	}
 	
 	
-	if(line.find(keyword.BracketsBegin + keyword.RedColor + keyword.BracketsEnd + keyword.Printlnf, 0) == 0) {
+	if(line.find(keyword.BracketsBegin + keyword.RedColor + keyword.BracketsEnd + keyword.Printlnf + keyword.BracketsBegin, 0) == 0) {
            std::string test = EraseAllSubString(line, keyword.BracketsBegin + keyword.RedColor + keyword.BracketsEnd + keyword.Printlnf + keyword.BracketsBegin + keyword.QuotationMarks);
            std::cout << WBOLD_RED_COLOR << EraseAllSubString(test, keyword.QuotationMarks + keyword.BracketsEnd + keyword.Semicolon) << WBLACK_COLOR;
 	}
 		
-        if(line.find(keyword.Printlnf, 0) == 0) {
+        if(line.find(keyword.Printlnf + keyword.BracketsBegin + keyword.QuotationMarks, 0) == 0) {
            std::string test = EraseAllSubString(line, keyword.Printlnf + keyword.BracketsBegin + keyword.QuotationMarks);
            std::cout << EraseAllSubString(test, keyword.QuotationMarks + keyword.BracketsEnd + keyword.Semicolon);
         }

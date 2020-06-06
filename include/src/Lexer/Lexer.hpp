@@ -32,6 +32,13 @@ public:
 	// Variable
 	std::string Integer = "integer";
 	
+	// Arrow Type
+	std::string ArrowType = "->";
+	
+	
+	// Date
+	std::string Date = "DATE";
+	
 	// Print Input
 	std::string PrintInput = "inputpr";
 	std::string PrintPl = "plpr";
