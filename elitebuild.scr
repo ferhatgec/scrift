@@ -1,0 +1,12 @@
+#*  GPLv3 License
+*   Customizable ScriftLang Build File
+*   Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
+*   Distributed under the terms of the GPLv3 License.
+*# 
+
+(green)printlnf("Building, wait...");
+slashn
+(green)printlnf("Calling elitebuild");
+slashn
+system("./elitebuild --build");
+return
