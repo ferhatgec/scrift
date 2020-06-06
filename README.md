@@ -22,6 +22,7 @@
 - XOX 
 - Pong
 - Auto-clear
+- Own Interpreter.
 - Randomize String generator (rstr)
 
 # How to build and run in Linux?
