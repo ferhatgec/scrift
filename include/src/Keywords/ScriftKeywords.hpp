@@ -193,6 +193,10 @@ public:
 	// Scrift Run In Path 
 	std::string Scrp = "scrp";
 	
+	// Now
+	std::string Now = "now";
+	std::string DateNow = "datenow";
+	
 	// Whitespace
 	std::string Whitespace = " ";
 };

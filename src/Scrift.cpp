@@ -132,6 +132,16 @@ VersionGenerator() {
 	return "scriftv" + scriftlang->EraseAllSubString(ftime, ":");
 }
 
+std::string currentDateTime() {
+    time_t     now = time(0);
+    struct tm  tstruct;
+    char       buf[80];
+    tstruct = *localtime(&now);
+    strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct);
+    return buf;
+}
+
+
 
 func
 FMain::Shell()
@@ -490,6 +500,15 @@ FMain::Shell()
                 goto returni;
         }
         logsystem->WriteLog("Launched.. - ");
+    }
+
+    // Date Now Function
+    else if(_h_str == keywords.Now || _h_str == keywords.DateNow) 
+    {
+    	WHITE_COLOR
+    	printlnf(currentDateTime().c_str());
+    	slashn
+    	BLACK_COLOR
     }
 
     // PRINT VERSION
