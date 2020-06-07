@@ -129,6 +129,9 @@ public:
 	std::string Ls_Big = "Ls";
 	std::string Dir_Big = "Dir";
 	
+	// List Objects
+	std::string LsObject = "lsobj";
+	
 	// List File 
 	std::string Lsf = "lsf";
 	std::string Lsfile = "lsfile";

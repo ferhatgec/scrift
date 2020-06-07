@@ -72,6 +72,7 @@ public:
     FLSFunction();
     destructor FLSFunction();
     func InitLSFunction();
+    virtual void ListObjectFunction();
     virtual boolean DirectoryExists();
     virtual func LSFunction();
 };

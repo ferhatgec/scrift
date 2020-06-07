@@ -323,7 +323,13 @@ FMain::Shell()
         logsystem->WriteLog("Launched... - ");
     }
 
-    // LIST DIRECTORY FUNCTION
+    // List Objects Function
+    else if(_h_str == keywords.LsObject) {
+    	listdirectoryfunction->ListObjectFunction();
+    }
+
+
+    // List Directory Function
     else if(_h_str == keywords.Lsd || _h_str == keywords.Lsdir || _h_str == keywords.ls_d || _h_str == keywords.Lsd_Biggest || _h_str == keywords.Lsdir_Biggest || _h_str == keywords.Lsdir_Big)
     {
         main_->list_direc(true);
