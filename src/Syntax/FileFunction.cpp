@@ -595,7 +595,13 @@ FLSFunction::LSFunction()
         stat(entryname->d_name, &filestat);
         if(entryname->d_type == DT_DIR) {// DT_DIR -> directory
             BOLD_RED_COLOR
-            printlnf("%4s: %s\n", "[Dir]", entryname->d_name);
+            if(strstr(entryname->d_name, ".")) {
+            // Null
+            } else if(strstr(entryname->d_name, "..")){
+	    // Null
+	    } else {  
+            	printlnf("%4s: %s\n", "[Dir]", entryname->d_name);
+            }
         } 
         else if(strstr(entryname->d_name, ".scr"))
         {
