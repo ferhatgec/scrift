@@ -181,7 +181,7 @@ int main() {
 	cout << Colours.getTextColourBlue() << systemInfo.getUsername() << Colours.getTextColourNeutral() <<"@" << Colours.getTextColourGreen() << systemInfo.getHostname() << " " << endl;
                                                                      
 	cout << Colours.getTextColourBlue() << underline << " " <<  endl;
-	cout << "\033[1;36m" << "Scrift Version: " << "\033[01;33m" <<  SCRIFT_VERSION << endl;
+	cout << "\033[1;36m" << "Scrift Version: " << "\033[01;33m" <<  SCRIFT_VERSION << WBOLD_YELLOW_COLOR << hyphen << WBOLD_CYAN_COLOR << SCRIFT_STATUS << endl;
 	cout << "\033[1;31m" << "OS Name:" << "\033[1;36m" << " " << systemInfo.getOS() << endl;
 	cout << "\033[1;32m" << "Hostname:" << "\033[1;35m" << " " << systemInfo.getHostname() << endl;
 	cout << "\033[01;33m" << "Kernel Name:" << "\033[1;34m" << " "  << systemInfo.getKernel() << endl;
