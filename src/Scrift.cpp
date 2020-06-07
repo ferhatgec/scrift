@@ -61,6 +61,8 @@
 using namespace FileFunction;
 using namespace FLinker;
 
+const std::string compilation_date = __DATE__;
+const std::string compilation_time = __TIME__;
 
 FContributors *contributors_lists = new FContributors();
 FDeveloperMode *developermode = new FDeveloperMode();
@@ -120,6 +122,16 @@ FMain::~FMain()
     history,
     conf;
 }
+
+
+
+std::string ftime(compilation_time); // Convert
+
+std::string 
+VersionGenerator() {
+	return "scriftv" + scriftlang->EraseAllSubString(ftime, ":");
+}
+
 
 func
 FMain::Shell()
@@ -491,6 +503,10 @@ FMain::Shell()
     	printlnf(hyphen);
     	BOLD_CYAN_COLOR
     	printlnf(SCRIFT_STATUS);
+    	BOLD_BLUE_COLOR
+    	printlnf(hyphen);
+    	BOLD_MAGENTA_COLOR
+    	printlnf(VersionGenerator().c_str());
     	slashn
     	BOLD_RED_COLOR
     	printlnf("Copyright (c) 2020 ");
