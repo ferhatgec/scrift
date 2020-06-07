@@ -500,11 +500,11 @@ FMain::Shell()
     	BOLD_GREEN_COLOR
     	printlnf(SCRIFT_VERSION);
     	BOLD_YELLOW_COLOR
-    	printlnf(hyphen);
+    	printhyphen // printlnf("-");
     	BOLD_CYAN_COLOR
     	printlnf(SCRIFT_STATUS);
     	BOLD_BLUE_COLOR
-    	printlnf(hyphen);
+    	printhyphen // printlnf("-");
     	BOLD_MAGENTA_COLOR
     	printlnf(VersionGenerator().c_str());
     	slashn
