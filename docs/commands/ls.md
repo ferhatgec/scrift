@@ -76,3 +76,21 @@ output:
     Dir: local
     <username>@<hostname>:~/home/<username> $#
 ```
+
+## List Object Function
+
+* lsobj
+
+This command is shows /bin/ directory.
+
+```
+input:
+     <username>@<hostname>:~/home/<username> $# lsobj
+
+output:
+    [Object]: scrift
+    [Object]: scriftip
+    [Object]: castle
+    [Object]: fdate
+    [Object]: elitebuild
+```
