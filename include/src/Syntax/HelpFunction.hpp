@@ -14,7 +14,7 @@ public:
     virtual func help() {
         BOLD_GREEN_COLOR
         printlnf("Scrift Functions && Arguments\n\n");
-            GREEN_COLOR
+            BOLD_GREEN_COLOR
             printlnf("printlnf <arg> (e.g. : #USER, #PATH) : Shows <arg> \n");
             BOLD_RED_COLOR
             printlnf("scr <argument> : Launch /bin/<argument>\n"
@@ -36,23 +36,23 @@ public:
             "back : Going to back directory\n\n");
             BOLD_MAGENTA_COLOR
             printlnf("[For Scrift Developers] getdev <boolean> : Get Developer Permissions\n"
+            "username : Shows your username\n"
             "castle : Play Scrift's Castle Game!\n"
-            "[For Scrift Developers] felog : Shows your FeLog.\n"
             "gitlink || scrift_link || fusionlink : Shows GitHub link.\n"
             "contr || cont || contributors : Shows contributors\n"
             "[For Scrift Developers] clear_log || felog_clear : Clear your FeLog\n"
             "history : Shows your Scrift History.\n"
             "clear_history : Clear your Scrift History\n"
-            "[In Development Status] clear_settings : Clear your Settings\n"
-            "[In Development Status] settings : Shows your Settings\n"
+            "clear_settings : Clear your Settings\n"
+            "settings : Shows your Settings\n"
             "fetcheya : Shows your system\n"
             "-v : Shows version and license\n"
             "datenow (or now) : Shows time.\n"
             "[If your default shell is Scrift] fdate : Shows calendar\n"
             "readtext <file> : Reads <file>\n"
+     	    "[For Scrift Developers] felog : Shows your FeLog.\n"
             "[If your default shell is Scrift] edifor : Open Edifor\n"
-            "[If your default shell is Scrift] edifor <filename> : Open Edifor with File\n"
-            "username : Shows your username\n\n");
+            "[If your default shell is Scrift] edifor <filename> : Open Edifor with File\n\n");
             BOLD_GREEN_COLOR
             printlnf("addtext <file> : Add text in <file>\n"
             "ctxt <name> : Creates Text file\n\n");
