@@ -608,9 +608,6 @@ FMain::Shell()
     	limit++;
         return;
     }
-
-    //history->WriteHistory(_h_str); -> gets error
-
 }
 
 
@@ -628,8 +625,6 @@ integer main(integer argc)
     BLACK_COLOR
     history->AllofThem();
     filefunction->CreateSettingsFileFunction(); // Directory is "/home/<username>/<dot>scrift_settings"
-    // TODO: Add Initialize Settings File Function.
-    // TODO: Support Read Text.
     logsystem->WriteLog("Launching hello function.. - ");
     helpstr->hello();
     logsystem->WriteLog("Launched.. - ");
@@ -637,7 +632,6 @@ integer main(integer argc)
         logsystem->WriteLog("Launching ScriftShell function.. Good luck bro! - ");
         main_function->Shell();
         logsystem->WriteLog("Launched.. - ");
-       // history->WriteHistory(main_function->_h_str);
     }
     return F_OK;
 }
