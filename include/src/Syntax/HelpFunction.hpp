@@ -84,7 +84,7 @@ public:
         BOLD_YELLOW_COLOR
         printlnf("licensed with");
         BOLD_RED_COLOR
-        printlnf(" GPLv3\n");
+        printlnf(" MIT License\n");
         BOLD_MAGENTA_COLOR
         printlnf("Copyright (c) 2020");
         BOLD_CYAN_COLOR

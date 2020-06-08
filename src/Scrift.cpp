@@ -556,7 +556,7 @@ FMain::Shell()
     	BOLD_YELLOW_COLOR
     	printlnf("All Rights Reserved. \n");
     	BOLD_CYAN_COLOR
-	printlnf("Distributed under the terms of the GPLv3 License.");
+	printlnf("Distributed under the terms of the MIT License.");
 	BLACK_COLOR
     	slashn
     }
