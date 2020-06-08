@@ -27,7 +27,7 @@ public:
             "scrlang\n"
             "scrp\n"
             "create_scrift_project <name> : Creates <name><dot>scr file\n\n");
-            YELLOW_COLOR
+            BOLD_YELLOW_COLOR
             printlnf("home || default : Going to /home/<username>\n"
             "lsf || lsfile : List only files\n"
             "lsd || lsdir : List only folders\n"
