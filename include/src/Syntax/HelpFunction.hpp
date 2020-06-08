@@ -15,7 +15,8 @@ public:
         BOLD_GREEN_COLOR
         printlnf("Scrift Functions && Arguments\n\n");
             BOLD_GREEN_COLOR
-            printlnf("printlnf <arg> (e.g. : #USER, #PATH) : Shows <arg> \n");
+            printlnf("printlnf <arg> (e.g. : #USER, #PATH) : Shows <arg> \n"
+            "printlnf -><setname <value>>\n");
             BOLD_RED_COLOR
             printlnf("scr <argument> : Launch /bin/<argument>\n"
             "scr mkdir : Launch Bash's mkdir\n"
@@ -33,6 +34,8 @@ public:
             "ls : List folders and files\n"
             "fr <folder> : Going to <folder>\n"
             "pwd\n"
+            "setname <name> : sets Environment's name\n"
+            "setto <value> : sets Environment's value.\n"
             "back : Going to back directory\n\n");
             BOLD_MAGENTA_COLOR
             printlnf("[For Scrift Developers] getdev <boolean> : Get Developer Permissions\n"
