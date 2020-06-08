@@ -10,15 +10,15 @@
 - User-friendly shell interface.
 - Customizable
 - Faster than other shell (e.g. Bash)
-- Colorized!
-- Log system (FeLog)
-- Scrift based Text Editor (Edifor)
-- ASCII Art
+- Colorized! :satisfied:
+- Log system (FeLog) :open_mouth:
+- Scrift based Text Editor (Edifor) :open_mouth:
+- ASCII Art :open_mouth:
 - History 
 - Welcome message 
-- Scripting language 
-- Calendar
-- Castle (looks like Chrome's Dinosaur game)
+- Scripting language :open_mouth:
+- Calendar 
+- Castle (looks like Chrome's Dinosaur game) :open_mouth:
 - XOX 
 - Pong
 - Auto-clear
