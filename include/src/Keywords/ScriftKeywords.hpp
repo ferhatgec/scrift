@@ -188,7 +188,7 @@ public:
 	
 	// Environment
 	std::string SetName = "setname";
-	std::string SetTo = "to";
+	std::string SetTo = "setto";
 	
 	// Arrow Sign
 	std::string ArrowSign = "->";	

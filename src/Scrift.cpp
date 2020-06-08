@@ -64,6 +64,10 @@ using namespace FLinker;
 const std::string compilation_date = __DATE__;
 const std::string compilation_time = __TIME__;
 
+// For Environment
+static std::string SetNameToString;
+static std::string SetNameString;
+
 FContributors *contributors_lists = new FContributors();
 FDeveloperMode *developermode = new FDeveloperMode();
 FMain *main_function = new FMain();
@@ -163,6 +167,24 @@ FMain::Shell()
         logsystem->WriteLog("Launched.. - ");
     }
     
+    // Setname Function
+    else if(_h_str.find(keywords.SetName + keywords.Whitespace, 0) == 0) 
+    {
+    	SetNameString = scriftlang->EraseAllSubString(_h_str, keywords.SetName + keywords.Whitespace );
+    }
+    
+    // Setname To Function
+    else if(_h_str.find(keywords.SetTo + keywords.Whitespace, 0) == 0) 
+    {
+    	SetNameToString = scriftlang->EraseAllSubString(_h_str, keywords.SetTo + keywords.Whitespace);
+    	setenv(SetNameString.c_str(), SetNameToString.c_str(), true);
+    }
+
+    else if(_h_str.find(keywords.Printlnf + keywords.Whitespace + keywords.ArrowSign, 0) == 0)
+    {
+    	printlnf(getenv(scriftlang->EraseAllSubString(_h_str, keywords.Printlnf + keywords.Whitespace + keywords.ArrowSign).c_str()));
+    	slashn
+    }
     
     // GitHub link
     else if(_h_str == keywords.GitLink || _h_str == keywords.GitLink_Big)
@@ -404,7 +426,7 @@ FMain::Shell()
 
 
     // PRINT FUNCTION
-    else if(_h_str.rfind(keywords.Printlnf) == 0){
+    else if(_h_str.rfind(keywords.Printlnf, 0) == 0){
         logsystem->WriteLog("Launching printlnf function.. - ");
         strfor_h_str = _h_str.erase(0, 9);
         logsystem->WriteLog("Erasing _h_str function.. - ");
