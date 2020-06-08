@@ -1,9 +1,10 @@
-/* GPLv3 License
+/* MIT License
 #
 # Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
-# Distributed under the terms of the GPLv3 License.
+# Distributed under the terms of the MIT License.
 #
 # */
+
 #ifndef PRINT_ERROR_FUNCTION_HPP
 #define PRINT_ERROR_FUNCTION_HPP
 
