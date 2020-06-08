@@ -5,7 +5,6 @@
 #
 # */
 
-#pragma once
 #ifndef LINKER_HPP
 #define LINKER_HPP
 #include "../synflang.hpp"
