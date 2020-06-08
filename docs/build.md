@@ -1,13 +1,9 @@
 # How to build in Fegeya Fusion or Linux?
 
-* First, run 'make' command.
-* Second, run 'make run' command.
+* For Scrift Users (scrift make)
+* For Other Shell Users (make runall)
 
-# or 
+# How to install in Linux or BSD?
 
-* Run 'make runall' command.
-
-# or 
-
-* Run 'make all' command.
-
+* For Scrift Users (Update) -> (scrift install)
+* For Other Shell Users (make allp) -> (sudo chsh -s /bin/scrift <username>)
