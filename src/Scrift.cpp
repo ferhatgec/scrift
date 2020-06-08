@@ -621,7 +621,9 @@ integer main(integer argc)
     ascii->Allofthem();
     BOLD_MAGENTA_COLOR
     printlnf("Welcome ");
+    BOLD_CYAN_COLOR
     printlnf(getenv("USER"));
+    BOLD_BLUE_COLOR
     printlnf(" ^-^\n");
     BLACK_COLOR
     history->AllofThem();
