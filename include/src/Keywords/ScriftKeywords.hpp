@@ -186,6 +186,13 @@ public:
 	// Set Locale System
 	std::string SetLocaleSystem = "setlocale_system";
 	
+	// Environment
+	std::string SetName = "setname";
+	std::string SetTo = "to";
+	
+	// Arrow Sign
+	std::string ArrowSign = "->";	
+	
 	// IP
 	std::string IP = "ip";
 	std::string MyIP = "myip";
