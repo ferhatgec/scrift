@@ -72,11 +72,15 @@ public:
         BOLD_BLUE_COLOR
         printlnf("Welcome to ");
         BOLD_GREEN_COLOR
-        printlnf("Fegeya Scrift");
+        printlnf("Fegeya ");
         BOLD_BLUE_COLOR
+        printlnf("Scrift");
+        BOLD_CYAN_COLOR
         printlnf(" Terminal\n");
         BOLD_GREEN_COLOR
-        printlnf("Fegeya Scrift ");
+        printlnf("Fegeya ");
+        BOLD_BLUE_COLOR
+        printlnf("Scrift ");
         BOLD_YELLOW_COLOR
         printlnf("licensed with");
         BOLD_RED_COLOR
