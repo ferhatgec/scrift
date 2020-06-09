@@ -24,6 +24,7 @@
 - Pong
 - Auto-clear
 - Own Interpreter.
+- Own Emoji Library :thinking:
 - Randomize String generator (rstr)
 
 # How to build and run in Linux?
