@@ -28,6 +28,7 @@
 #include <stdio.h>
 #include "../include/src/Syntax/CommandFunc.h"
 #include <locale.h>
+#include "../Library/EmojiPlusPlus.h"
 #include "../include/src/Keywords/ScriftKeywords.hpp"
 #include "../include/src/Syntax/Linker.hpp"
 #include "../include/src/synflang.hpp"
@@ -150,6 +151,7 @@ std::string currentDateTime() {
 func
 FMain::Shell()
 {
+    std::cout << emojiplusplus::EmojiString("What's up? :atm: :atm:");
     char output;
     terminalstr->Terminal(); 
     WHITE_COLOR
