@@ -230,6 +230,7 @@ FCreateFileFunction::CreateSettingsFileFunction()
     logsystem->WriteLog("Creating ofstream from CreateSettingsFileFunction - ");
     std::ofstream file(pathfile, std::ios::app);
     file << "felog_cleaner 100\n";
+    file << "welcome_emoji :thinking_face:\n";
     //file <<  Settings variables begin.
     // Settings variables end.
     logsystem->WriteLog("Calling file<dot>close from CreateSettingsFileFunction - ");

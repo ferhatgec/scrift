@@ -21,6 +21,7 @@ public:
     FileFunction::FReadFileFunction *readfile = new FileFunction::FReadFileFunction();	
     fchar* fname;
     integer linenumber;
+    std::string WelcomeEmoji = ":thinking_face:";
     std::string EraseAllSubString(std::string & mainString, const std::string & erase)
     {
     size_t pos = std::string::npos;
@@ -48,9 +49,15 @@ public:
     {
         if(line.rfind("felog_cleaner", 0) == 0)
         {
-      	
         	std::string fsettings = EraseAllSubString(line, "felog_cleaner ");
         	linenumber = atoi(fsettings.c_str());
+        } else {
+        	createfile->CreateSettingsFileFunction();
+        	return;
+        }
+        
+        if(line.rfind("welcome_emoji", 0) == 0) {
+        	WelcomeEmoji = EraseAllSubString(line, "welcome_emoji ");
         } else {
         	createfile->CreateSettingsFileFunction();
         	return;

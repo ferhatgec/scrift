@@ -151,7 +151,6 @@ std::string currentDateTime() {
 func
 FMain::Shell()
 {
-    //std::cout << emojiplusplus::EmojiString("What's up? :atm: :atm:"); For testing
     char output;
     terminalstr->Terminal(); 
     WHITE_COLOR
@@ -623,7 +622,7 @@ integer main(integer argc)
     BOLD_CYAN_COLOR
     printlnf(getenv("USER"));
     BOLD_BLUE_COLOR
-    printlnf(" ^-^\n");
+    std::cout << " " << emojiplusplus::EmojiString(runsyntax->WelcomeEmoji) << "\n";
     BLACK_COLOR
     history->AllofThem();
     filefunction->CreateSettingsFileFunction(); // Directory is "/home/<username>/<dot>scrift_settings"
