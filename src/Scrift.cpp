@@ -151,7 +151,7 @@ std::string currentDateTime() {
 func
 FMain::Shell()
 {
-    std::cout << emojiplusplus::EmojiString("What's up? :atm: :atm:");
+    //std::cout << emojiplusplus::EmojiString("What's up? :atm: :atm:"); For testing
     char output;
     terminalstr->Terminal(); 
     WHITE_COLOR
