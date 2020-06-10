@@ -22,8 +22,7 @@ public:
     integer linenumber;
     std::string WelcomeEmoji = ":thinking_face:";
     
-    std::string EraseAllSubString(std::string & mainString, const std::string & erase)
-    {
+    std::string EraseAllSubString(std::string & mainString, const std::string & erase) {
     	size_t pos = std::string::npos;
    	while((pos = mainString.find(erase)) != std::string::npos)
     	{
@@ -42,8 +41,23 @@ public:
     	return Path.append(".scrift_settings");
     }
     
-    virtual func ReadFile()
-    {
+   std::string FWelcomeEmoji() {
+    	std::string line;
+    	std::string ftest;
+    	std::ifstream readfile(Path());
+    	if(readfile.is_open()) {
+    		while(std::getline(readfile, line)) {
+    			if(line.rfind("welcome_emoji", 0) == 0) {
+    				return EraseAllSubString(line, "welcome_emoji ");
+    			} else {
+    				createfile->CreateSettingsFileFunction();
+    			} 
+    		}
+    	}
+    	//return EraseAllSubString(line, "welcome_emoji ");
+    }
+    
+    virtual func ReadFile() {
     	std::string line;
     	std::string ftest;
     	std::ifstream readfile(Path());

@@ -622,7 +622,7 @@ integer main(integer argc)
     BOLD_CYAN_COLOR
     printlnf(getenv("USER"));
     BOLD_BLUE_COLOR
-    std::cout << " " << emojiplusplus::EmojiString(runsyntax->WelcomeEmoji) << "\n";
+    std::cout << " " << emojiplusplus::EmojiString(runsyntax->FWelcomeEmoji()) << "\n";
     BLACK_COLOR
     history->AllofThem();
     filefunction->CreateSettingsFileFunction(); // Directory is "/home/<username>/<dot>scrift_settings"
