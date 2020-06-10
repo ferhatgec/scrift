@@ -151,6 +151,7 @@ std::string currentDateTime() {
 func
 FMain::Shell()
 {
+    readfilefunction->ReadFeLogFunctionWithoutPrint();
     char output;
     terminalstr->Terminal(); 
     WHITE_COLOR
@@ -610,7 +611,6 @@ FMain::Shell()
         return;
     }
 }
-
 
 integer main(integer argc)
 {

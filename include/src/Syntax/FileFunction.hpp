@@ -54,6 +54,7 @@ public:
     virtual func ReadFileInit();
     boolean ReadFileExists();
     // virtual func CreateFeLog..
+    virtual void ReadFeLogFunctionWithoutPrint();
     virtual func ReadHistoryFileFunction();
     virtual func ReadSettingsFunction();
     virtual func ReadASCIIFunction();

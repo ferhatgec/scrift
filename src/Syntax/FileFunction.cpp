@@ -404,6 +404,25 @@ FClearFileFunction::ClearFeLogFunction()
     file.close();
 }
 
+void 
+FReadFileFunction::ReadFeLogFunctionWithoutPrint() {
+	int a = 0;
+	std::string line;
+	std::ifstream readfile(settings->Path());
+	if(readfile.is_open()) {
+		while(std::getline(readfile, line)) {
+			a++;
+		}
+		if(a >= settings->FeLogCleaner()) {
+			FClearFileFunction clearlog;
+			clearlog.ClearFeLogFunction();
+		} 
+		readfile.close();
+	} else { 
+		filelog->AllofThem();
+	}
+}
+
 func
 FReadFileFunction::ReadFeLogFunction()
 {
