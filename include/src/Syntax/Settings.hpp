@@ -19,19 +19,18 @@ public:
     FeLog *logsystem = new FeLog();
     FileFunction::FCreateFileFunction *createfile = new FileFunction::FCreateFileFunction();
     FileFunction::FReadFileFunction *readfile = new FileFunction::FReadFileFunction();	
-    fchar* fname;
     integer linenumber;
     std::string WelcomeEmoji = ":thinking_face:";
+    
     std::string EraseAllSubString(std::string & mainString, const std::string & erase)
     {
-    size_t pos = std::string::npos;
-    while((pos = mainString.find(erase)) != std::string::npos)
-    {
-        mainString.erase(pos, erase.length());
+    	size_t pos = std::string::npos;
+   	while((pos = mainString.find(erase)) != std::string::npos)
+    	{
+      	mainString.erase(pos, erase.length());
+    	}
+    	return mainString;
     }
-    return mainString;
-    }
-    std::string fsettings_username; 
     
     std::string Path() {
     	uid_t fuid = geteuid();
