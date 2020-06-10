@@ -426,7 +426,7 @@ FReadFileFunction::ReadFeLogFunction()
             slashn
         }
         std::cout << a << "\n";
-        if(a >= settings->linenumber)
+        if(a >= settings->FeLogCleaner())
         {
             FClearFileFunction *clearlog = new FClearFileFunction();
             clearlog->ClearFeLogFunction();

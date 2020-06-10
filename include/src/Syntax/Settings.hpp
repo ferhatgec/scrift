@@ -57,6 +57,21 @@ public:
     	//return EraseAllSubString(line, "welcome_emoji ");
     }
     
+    int FeLogCleaner() {
+    	std::string line;
+    	std::string ftest;
+    	std::ifstream readfile(Path());
+    	if(readfile.is_open()) {
+    		while(std::getline(readfile, line)) {
+    			if(line.rfind("felog_cleaner", 0) == 0) {
+    				return atoi(EraseAllSubString(line, "felog_cleaner ").c_str());
+    			} else {
+    				createfile->CreateSettingsFileFunction();
+    			} 
+    		}
+    	}
+    }
+    
     virtual func ReadFile() {
     	std::string line;
     	std::string ftest;
