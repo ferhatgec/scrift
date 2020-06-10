@@ -623,17 +623,22 @@ FLSFunction::LSFunction()
             	printlnf("%4s: %s\n", "[Dir]", entryname->d_name);
             }
         } 
+        else if(strstr(entryname->d_name, "Elitefile")) 
+        {
+            BOLD_BLUE_COLOR
+            printlnf("%4s: %s\n", "[Elitebuild]", entryname->d_name);
+        }
         else if(strstr(entryname->d_name, ".scr"))
         {
             BOLD_GREEN_COLOR
             printlnf("%4s: %s\n", "[Scrift]", entryname->d_name);
         }     
-	else if(strstr(entryname->d_name, ".cpp")) 
+	else if(strstr(entryname->d_name, ".cpp") || strstr(entryname->d_name, ".hpp") || strstr(entryname->d_name, ".cxx") || strstr(entryname->d_name, ".hxx") || strstr(entryname->d_name, ".cc") || strstr(entryname->d_name, ".hh")) 
 	{
 	    BOLD_CYAN_COLOR
             printlnf("%4s: %s\n", "[C++]", entryname->d_name);
 	}  
-	else if(strstr(entryname->d_name, ".c"))
+	else if(strstr(entryname->d_name, ".c") || strstr(entryname->d_name, ".h"))
 	{
 	    BOLD_BLUE_COLOR
             printlnf("%4s: %s\n", "[C]", entryname->d_name);		
