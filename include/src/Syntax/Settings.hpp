@@ -32,21 +32,25 @@ public:
     return mainString;
     }
     std::string fsettings_username; 
+    
+    std::string Path() {
+    	uid_t fuid = geteuid();
+    	struct passwd *password = getpwuid(fuid);
+    	std::string Path;
+    	Path.append("/home/");
+    	Path.append(password->pw_name);
+    	Path.append("/");
+    	return Path.append(".scrift_settings");
+    }
+    
     virtual func ReadFile()
     {
-    std::string line;
-    std::string ftest;
-    uid_t fuid = geteuid();
-    struct passwd *password = getpwuid(fuid);
-    std::string fpath;
-    fpath.append("/home/");
-    fpath.append(password->pw_name);
-    fpath.append("/");
-    fpath.append(".scrift_settings");
-    std::ifstream readfile(fpath);
-    if(readfile.is_open()) {
-    while (std::getline(readfile, line))
-    {
+    	std::string line;
+    	std::string ftest;
+    	std::ifstream readfile(Path());
+    	if(readfile.is_open()) {
+    	while (std::getline(readfile, line))
+    	{
         if(line.rfind("felog_cleaner", 0) == 0)
         {
         	std::string fsettings = EraseAllSubString(line, "felog_cleaner ");
@@ -62,7 +66,7 @@ public:
         	createfile->CreateSettingsFileFunction();
         	return;
         }
-    }
+    	}
     }
 }
 };
