@@ -64,7 +64,14 @@ public:
     	if(readfile.is_open()) {
     		while(std::getline(readfile, line)) {
     			if(line.rfind("felog_cleaner", 0) == 0) {
-    				return atoi(EraseAllSubString(line, "felog_cleaner ").c_str());
+    				if(atoi(EraseAllSubString(line, "felog_cleaner ").c_str()) <= 5) {
+    					BOLD_RED_COLOR
+    					printlnf("Please give 5 or higher value for felog_cleaner.\n");
+    					BLACK_COLOR
+    					return 20;
+    				} else {
+    					return atoi(EraseAllSubString(line, "felog_cleaner ").c_str());
+    				}
     			} else {
     				createfile->CreateSettingsFileFunction();
     			} 
