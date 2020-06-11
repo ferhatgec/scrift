@@ -36,7 +36,6 @@ public:
 	// Arrow Type
 	std::string ArrowType = "->";
 	
-	
 	// Date
 	std::string Date = "DATE";
 	
@@ -60,7 +59,7 @@ public:
 	
 	// System Integration
 	std::string System = "system";
-	
+	std::string ChangeShell = "changesh";
 	
 	// Brackets
 	std::string BracketsBegin = "(";

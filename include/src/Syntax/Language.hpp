@@ -122,6 +122,13 @@ public:
            std::cout << WBOLD_RED_COLOR << EraseAllSubString(test, keyword.QuotationMarks + keyword.BracketsEnd + keyword.Semicolon) << WBLACK_COLOR;
 	}
 		
+		
+	if(line.find(keyword.ChangeShell, 0) == 0) {
+		std::string chsh = "sudo chsh -s /bin/scrift ";
+		chsh.append(getenv("USER"));
+		system(chsh.c_str());
+	}	
+		
         if(line.find(keyword.Printlnf + keyword.BracketsBegin + keyword.QuotationMarks, 0) == 0) {
            std::string test = EraseAllSubString(line, keyword.Printlnf + keyword.BracketsBegin + keyword.QuotationMarks);
            std::cout << EraseAllSubString(test, keyword.QuotationMarks + keyword.BracketsEnd + keyword.Semicolon);

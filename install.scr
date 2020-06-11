@@ -9,4 +9,6 @@ slashn
 (green)printlnf("Calling make");
 slashn
 system("sudo make allp");
+slashn
+changesh
 return
