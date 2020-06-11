@@ -33,6 +33,9 @@ public:
     ~FCommand();
     void _set_locale();
 
+    // FName
+    std::string FName();
+
     // Directory
     void list_file(boolean);
     void list_direc(boolean);

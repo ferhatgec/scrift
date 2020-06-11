@@ -211,6 +211,12 @@ FMain::Shell()
  	logsystem->WriteLog("Successfully! - ");
     }
 
+    else if(_h_str == keywords.KName) 
+    {
+    	printlnf(main_->FName().c_str());
+    	slashn
+    }
+
     // Contributors
     else if(_h_str == keywords.Cont || _h_str == keywords.Contr || _h_str == keywords.Contributors || _h_str == keywords.Contributors_Big || _h_str == keywords.Cont_Big)
     {

@@ -42,8 +42,6 @@ FCommand::~FCommand()
     delete[] _home_dir, _file_path_cd_function, _uname;   
 }
 
-
-
 void 
 FCommand::remove_character(char * _str, char ptr)
 {
@@ -59,6 +57,25 @@ FCommand::remove_character(char * _str, char ptr)
     }
     *_pstr = '\0';    
 }
+
+
+std::string
+FCommand::FName()
+{
+	struct utsname buf;
+
+	if(!uname(&buf)) { //Get name and information about current kernel.
+		WHITE_COLOR
+		//printf("%s\n",buf.sysname);//Display the system name.
+		return buf.sysname;
+	} else {
+		BOLD_RED_COLOR
+		perror("uname");
+		return "?";
+	}
+	BLACK_COLOR
+}
+
 
 void
 FCommand::echo_printlnf(std::string name)

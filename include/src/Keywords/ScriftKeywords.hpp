@@ -210,6 +210,9 @@ public:
 	std::string Find_Big = "Ffind";
 	std::string Find_Biggest = "FFIND";
 	
+	// FName 
+	std::string KName = "kname";
+	
 	// Whitespace
 	std::string Whitespace = " ";
 };
