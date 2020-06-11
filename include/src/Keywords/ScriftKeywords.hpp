@@ -205,6 +205,11 @@ public:
 	std::string Now = "now";
 	std::string DateNow = "datenow";
 	
+	// Find 
+	std::string Find = "ffind";
+	std::string Find_Big = "Ffind";
+	std::string Find_Biggest = "FFIND";
+	
 	// Whitespace
 	std::string Whitespace = " ";
 };
