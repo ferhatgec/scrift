@@ -33,6 +33,7 @@ public:
             "lsd || lsdir : List only folders\n"
             "ls : List folders and files\n"
             "fr <folder> : Going to <folder>\n"
+            "ffind <value> : Finds files and directories in path\n"
             "pwd\n"
             "setname <name> : sets Environment's name\n"
             "setto <value> : sets Environment's value.\n"
