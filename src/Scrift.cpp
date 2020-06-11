@@ -194,7 +194,13 @@ FMain::Shell()
         helpstr->GitLink();
     }
 
-
+    // Find 
+    else if(_h_str.rfind(keywords.Find, 0) == 0)
+    {
+   	FFindFileFunction *find = new FFindFileFunction();
+   	find->FindFile(scriftlang->EraseAllSubString(_h_str, keywords.Find + keywords.Whitespace));
+    }
+    
     // Edifor Scrift-Based Text Editor
     else if(_h_str.rfind(keywords.Edifor, 0) == 0)
     {

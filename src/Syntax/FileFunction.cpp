@@ -324,7 +324,35 @@ FReadFileFunction::ReadHistoryFileFunction()
     }
 }
 
-
+void
+FFindFileFunction::FindFile(std::string name) {
+    DIR *directory;
+    directory = opendir((getenv("HOME"), "/", command->_file_path_cd_function));
+    if(directory == NULL) {
+        printerror->PrintError("ERR: DIRECTORY OR FILE NOT FOUND OR NULL\n");
+        return;
+    }
+    while ((entryname = readdir(directory)))
+    {
+        stat(entryname->d_name, &filestat);
+        if(entryname->d_type == DT_DIR) {// DT_DIR -> directory
+            BOLD_RED_COLOR
+            if(strstr(entryname->d_name, ".")) {
+            // Null
+            } else if(strstr(entryname->d_name, "..")){
+	    // Null
+	    } else if(strstr(entryname->d_name, name.c_str())) {  
+            	printlnf("%4s: %s\n", "[Dir]", entryname->d_name);
+            }
+        } 
+        else if(strstr(entryname->d_name, name.c_str())){
+            BOLD_YELLOW_COLOR
+            printlnf("%4s: %s\n", "[File]", entryname->d_name);
+        }
+        BLACK_COLOR // Reset
+    }
+    closedir(directory);
+}
 
 void
 faddtextfunction::DeleteLine(std::string filename)

@@ -31,7 +31,6 @@ public:
     virtual func MKDirFunctionInit(fstr);
 };
 
-
 // Create File Function
 class FCreateFileFunction : public FMKDirFunction {
 public:
@@ -61,6 +60,16 @@ public:
     virtual func ReadFeLogFunction();
     virtual func ReadFileFunction(fstr);
 };
+
+
+// FindFile Function
+class FFindFileFunction : public FReadFileFunction {
+public:
+	FFindFileFunction() { }
+	~FFindFileFunction() { }
+	void FindFile(std::string);
+};
+
 
 class FClearFileFunction : public FReadFileFunction {
 public:
