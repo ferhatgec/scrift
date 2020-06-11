@@ -8,13 +8,14 @@ fetcheya command is shows your system's info.
 input:
     <username>@<hostname>:~/home/<username> $# fetcheya
 output:
-    <username>@<hostname> 
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-    Scrift Version: 0.1
-    OS Name: Ubuntu 20.04 LTS
-    Hostname: To be filled by O.E.M.
-    Kernel Name: 5.4.0-29-generic
-    Uptime: 1h 52m
+    <username>@pop-os 
+    ~~~~~~~~~~~~~ 
+    Scrift Version: 0.1.4-beta-4
+    OS Name: Pop!_OS 20.04 LTS
+    Hostname: pop-os
+    Kernel Name: Linux
+    Kernel Release: 5.4.0-7634-generic
+    Uptime: 12h 39m
     Terminal: xterm-256color
     Shell: scrift
     <username>@<hostname>:~/home/<username> $#
