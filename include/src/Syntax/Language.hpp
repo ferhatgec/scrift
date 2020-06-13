@@ -123,8 +123,10 @@ public:
 	}
 		
 		
-	if(line.find(keyword.ChangeShell, 0) == 0) {
-		std::string chsh = "sudo chsh -s /bin/scrift ";
+	if(line.find(keyword.ChangeShell + keyword.Whitespace, 0) == 0) {
+		std::string chsh = "sudo chsh -s /bin/";
+		chsh.append(EraseAllSubString(line, keyword.ChangeShell + keyword.Whitespace));
+		chsh.append(" ");
 		chsh.append(getenv("USER"));
 		system(chsh.c_str());
 	}	
