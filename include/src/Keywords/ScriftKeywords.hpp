@@ -217,6 +217,9 @@ public:
 	// FName 
 	std::string KName = "kname";
 	
+	// Emoji
+	std::string Emoji = "emoji";
+	
 	// Whitespace
 	std::string Whitespace = " ";
 };

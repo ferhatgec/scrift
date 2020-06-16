@@ -466,9 +466,18 @@ void InputFunction() {
           	BLACK_COLOR
           	terminalstr->Terminal(); 
    				return;
-       }  else if(main_function->_h_str.find(keywords.RunDotSlash, 0) == 0) {
+       } else if(main_function->_h_str.find(keywords.Emoji) == 0) {
+       	RemovePrintedChar(keywords.Emoji.length() - 1);
+       	std::cout << WBOLD_BLUE_COLOR << "emoji " << WBLACK_COLOR; 
+       	BOLD_CYAN_COLOR
+       	std::getline(std::cin, main_function->_h_str);
+     		std::cout << emojiplusplus::EmojiString(main_function->_h_str) << "\n";
+       	main_function->_h_str.erase();
+       	terminalstr->Terminal();
+       	return;
+       } else if(main_function->_h_str.find(keywords.RunDotSlash, 0) == 0) {
           	RemovePrintedChar(keywords.RunDotSlash.length() - 1);
-        	std::cout << WBOLD_MAGENTA_COLOR << " .." << WBOLD_BLUE_COLOR << "/" << WBLACK_COLOR;
+        	std::cout << WBOLD_MAGENTA_COLOR << " ." << WBOLD_BLUE_COLOR << "/" << WBLACK_COLOR;
         	BOLD_CYAN_COLOR
         	std::cin >> main_function->_h_str;
       		std::string pathrun = "./";
@@ -652,7 +661,7 @@ void InputFunction() {
     		terminalstr->Terminal();
        	return;
      } else {
-     		sign.push_back(c);
+		sign.push_back(c);
      		if(c == ARROW_UP) {
      			 
      		} else if(c == ARROW_DOWN) {

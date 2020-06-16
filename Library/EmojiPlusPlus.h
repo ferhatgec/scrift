@@ -1318,7 +1318,7 @@ namespace emojiplusplus {
         {":zipper__mouth_face:" , "\U0001F910"}
     };  
 
-    std::string EmojiString(std::string s) {
+    static std::string EmojiString(std::string s) {
         int index = -1;
         int sLen = s.size();
         for (int i = 0; i < sLen; i++) {

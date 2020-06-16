@@ -27,6 +27,7 @@
 #include <net/if.h>
 #include <arpa/inet.h>
 #include "../../include/Library/Keywords.hpp"
+#include "../../Library/EmojiPlusPlus.h"
 
 namespace filesys = std::experimental::filesystem;
 FKeyword keyword;
@@ -93,7 +94,7 @@ FCommand::echo_printlnf(std::string name) {
         	printlnf(getenv(lang.EraseAllSubString(name, "#").c_str()));
         }
         else {
-        printlnf(name.c_str());
+        	std::cout << emojiplusplus::EmojiString(name);
         }
         BLACK_COLOR
     }
