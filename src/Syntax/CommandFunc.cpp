@@ -5,6 +5,7 @@
 #
 # */
 
+#include <Syntax/Language.hpp>
 #include <sys/utsname.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -78,18 +79,18 @@ FCommand::FName()
 
 
 void
-FCommand::echo_printlnf(std::string name)
-{ 
+FCommand::echo_printlnf(std::string name) { 
+    FLanguage lang;
     if(name != "")
     {
         WHITE_COLOR
-        if(name.rfind("#USER", 0) == 0)
-        {        
+        if(name.rfind("#USER") == 0) {        
             keyword.EndWithUser();
         } 
-        else if(name.rfind("#PATH", 0) == 0)
-        {
+        else if(name.rfind("#PATH") == 0) {
             keyword.EndWithPath();
+        } else if(name.rfind("#") == 0) {
+        	printlnf(getenv(lang.EraseAllSubString(name, "#").c_str()));
         }
         else {
         printlnf(name.c_str());
@@ -99,8 +100,7 @@ FCommand::echo_printlnf(std::string name)
 }
 
 void
-FCommand::_set_locale()
-{
+FCommand::_set_locale() {
         BOLD_MAGENTA_COLOR
         printlnf("Set up -> Your system language");// setlocale(LC_CTYPE, NULL);
         BLACK_COLOR // reset
@@ -110,8 +110,7 @@ FCommand::_set_locale()
 
 
 void
-FCommand::list_direc(boolean _home)
-{
+FCommand::list_direc(boolean _home) {
         integer files = 0;
         struct stat filestat;
         struct dirent *entry;
@@ -145,8 +144,7 @@ FCommand::list_direc(boolean _home)
 }
 
 void 
-FCommand::list_file(boolean _home)
-{
+FCommand::list_file(boolean _home) {
         integer files = 0;
         struct stat filestat;
         struct dirent *entry;
