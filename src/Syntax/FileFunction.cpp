@@ -315,6 +315,36 @@ FReadFileFunction::ReadHistoryFileFunction()
     }
 }
 
+std::string 
+FFindFileFunction::FindWithoutPrint(std::string name) {
+    DIR *directory;
+    directory = opendir((getenv("HOME"), "/", command->_file_path_cd_function));
+    if(directory == NULL) {
+        printerror->PrintError("ERR: DIRECTORY OR FILE NOT FOUND OR NULL\n");
+    }
+    while ((entryname = readdir(directory)))
+    {
+        stat(entryname->d_name, &filestat);
+        if(entryname->d_type == DT_DIR) {// DT_DIR -> directory
+            BOLD_RED_COLOR
+            if(strstr(entryname->d_name, ".")) {
+            // Null
+            } else if(strstr(entryname->d_name, "..")){
+	    // Null
+	    } else if(strstr(entryname->d_name, name.c_str())) { 
+	    	//std::string clone_entry(entryname->d_name); 
+            	return entryname->d_name;
+            }
+        } 
+        else if(strstr(entryname->d_name, name.c_str())){
+            // Null
+        }
+        BLACK_COLOR // Reset
+    }
+    closedir(directory);
+}
+
+
 void
 FFindFileFunction::FindFile(std::string name) {
     DIR *directory;

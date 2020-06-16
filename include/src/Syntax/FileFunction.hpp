@@ -68,6 +68,7 @@ public:
 	FFindFileFunction() { }
 	~FFindFileFunction() { }
 	void FindFile(std::string);
+	std::string FindWithoutPrint(std::string);
 };
 
 
