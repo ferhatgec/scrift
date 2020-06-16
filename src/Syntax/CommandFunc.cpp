@@ -131,12 +131,16 @@ FCommand::list_direc(boolean _home) {
         {
             files++;
             char * _str = entry->d_name;
-            remove_character(_str, '.');
-            remove_character(_str, '..');
             stat(entry->d_name,&filestat);
             if(entry->d_type == DT_DIR) {
-                BOLD_RED_COLOR
-                printf("%4s: %s\n","Dir",entry->d_name); 
+            	if(strstr(entry->d_name, ".")) {
+
+		} else if(strstr(entry->d_name, "..")) {
+		
+		} else {	
+                	BOLD_RED_COLOR
+                	printf("%4s: %s\n","[Dir]",entry->d_name); 
+            	}
             }
             BLACK_COLOR
         }
@@ -176,7 +180,7 @@ FCommand::list_file(boolean _home) {
             if(entry->d_type == DT_DIR) {
             } else{
                 BOLD_YELLOW_COLOR
-                printf("%4s: %s\n"," File",entry->d_name);
+                printf("%4s: %s\n","[File]",entry->d_name);
             } 
             BLACK_COLOR
         }
