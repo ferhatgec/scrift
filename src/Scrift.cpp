@@ -748,21 +748,21 @@ void InputFunction() {
        	return;
      } else {
      		sign.push_back(c);
-     		if(c == 65) { // ARROW_UP
+     		if(c == ARROW_UP) {
      			
-     		} else if(c == 66) { // ARROW_DOWN
+     		} else if(c == ARROW_DOWN) {
      			
-     		} if(c == 67) { // ARROW_RIGHT
+     		} if(c == ARROW_RIGHT) { 
      			std::cout << "\033[1C";
      			cursorpos.x += 1;
-     		} else if(c == 68) { // ARROW_LEFT
+     		} else if(c == ARROW_LEFT) {
      			if(cursorpos.x >= 2) {
 		        	std::cout << "\033[1D";
 		        	cursorpos.x -= 1;	
 		        } else {
 		        	return;
 		        }
-		} else if(c == 127) {
+		} else if(c == BACKSPACE) {
 			if(cursorpos.x >= 1)
 			{
 				cursorpos.x -= 1;

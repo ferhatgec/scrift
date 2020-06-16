@@ -32,14 +32,13 @@
 #define SCRIFT_VERSION "0.1.5"
 #define SCRIFT_STATUS "beta-1-preview"
 
-#define ARROW_UP    72
 
-#define ARROW_LEFT  75
-
-#define ARROW_RIGHT  77
-
-#define ARROW_DOWN  80
-
+// Input Definitions
+#define ARROW_UP    65
+#define ARROW_LEFT  68
+#define ARROW_RIGHT  67
+#define ARROW_DOWN  66
+#define BACKSPACE 127
 
 class FMain {
 public:
