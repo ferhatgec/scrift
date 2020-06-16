@@ -84,6 +84,7 @@ public:
     destructor FLSFunction();
     func InitLSFunction();
     virtual void ListObjectFunction();
+    virtual bool ListArgumentObjectFunction(std::string);
     virtual boolean DirectoryExists();
     virtual func LSFunction();
     std::string GetObjects();

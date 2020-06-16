@@ -631,8 +631,7 @@ FLSFunction::GetObjects()
 }
 
 void 
-FLSFunction::ListObjectFunction()
-{
+FLSFunction::ListObjectFunction() {
     DIR *directory;
     directory = opendir("/bin/");
     while((entryname = readdir(directory))) {
@@ -655,9 +654,26 @@ FLSFunction::ListObjectFunction()
     closedir(directory);
 }
 
+bool
+FLSFunction::ListArgumentObjectFunction(std::string argument) {
+    DIR *directory;
+    directory = opendir("/bin/");
+    while((entryname = readdir(directory))) {
+    	stat(entryname->d_name, &filestat);
+    	if(entryname->d_type == DT_DIR) {
+    		BOLD_RED_COLOR
+    		if(strstr(entryname->d_name, ".")) {
+    		
+    		} else if(strstr(entryname->d_name, "..")) { } else if(strstr(entryname->d_name, argument.c_str())) {
+   			return true;
+		} else { }
+	} else { }
+    }
+    closedir(directory);
+}
+
 void
-FLSFunction::LSFunction()
-{
+FLSFunction::LSFunction() {
     DIR *directory;
     directory = opendir((getenv("HOME"), "/", command->_file_path_cd_function));
     if(directory == NULL) {

@@ -653,7 +653,8 @@ void InputFunction() {
      		
 		} else if(c == '\n') {
 			cursorpos.x = 0;
-			printlnf(main_function->_h_str.c_str());
+			slashn
+        		runfunction->RunFunction(main_function->_h_str);
         		main_function->_h_str.erase();
         		terminalstr->Terminal(); 
         		return;
