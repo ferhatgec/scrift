@@ -69,6 +69,12 @@ const std::string compilation_time = __TIME__;
 static std::string SetNameToString;
 static std::string SetNameString;
 
+typedef struct CursorPos {
+    int x = 0;
+} cursorp;
+
+cursorp cursorpos;
+
 FContributors *contributors_lists = new FContributors();
 FDeveloperMode *developermode = new FDeveloperMode();
 FMain *main_function = new FMain();
@@ -128,7 +134,7 @@ FMain::~FMain()
     conf;
 }
 
-
+std::string fx;
 
 std::string ftime(compilation_time); // Convert
 
@@ -146,471 +152,663 @@ std::string currentDateTime() {
     return buf;
 }
 
+void moveCursor(std::ostream& os, int col, int row) {
+  os << "\033[" << col << ";" << row << "H";
+}
 
+
+void InputFunction() {
+	std::string sign;
+        struct termios t;
+        int c;
+        tcgetattr(0,&t);
+        t.c_lflag&=~ECHO+~ICANON;
+        tcsetattr(0,TCSANOW,&t);
+        fflush(stdout);
+        c=getchar();
+        t.c_lflag|=ICANON+ECHO;
+        tcsetattr(0,TCSANOW,&t);
+        main_function->_h_str.push_back(c);
+        if(main_function->_h_str == keywords.Help) {
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_YELLOW_COLOR << "help" << WBLACK_COLOR;
+        	if(getchar() == '\n') {
+        		slashn 
+        		helpstr->help();
+        	}
+        	history->WriteHistory(main_function->_h_str);
+        	main_function->_h_str.erase();
+        	terminalstr->Terminal();
+        	return; 
+        } else if(main_function->_h_str == keywords.Lsd) {
+                std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_RED_COLOR << "d" << WBOLD_YELLOW_COLOR << "ls" << WBLACK_COLOR;
+        	if(getchar() == '\n') {
+        		main_->list_direc(true);
+        	}
+        	history->WriteHistory(main_function->_h_str);
+         	main_function->_h_str.erase();
+        	terminalstr->Terminal();       	
+        	return;
+        } else if(main_function->_h_str == keywords.Create) {
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+                std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_BLUE_COLOR << "create" << WBLACK_COLOR;
+       	std::cout << WBOLD_CYAN_COLOR << " scrift_project";
+        	BOLD_MAGENTA_COLOR
+        	std::getline(std::cin, main_function->_h_str);
+        	BLACK_COLOR
+        	filefunction->CreateScriftFile(main_function->_h_str);
+        	history->WriteHistory(main_function->_h_str); 
+        	main_function->_h_str.erase();
+        	terminalstr->Terminal();  
+        	return;
+        } else if(main_function->_h_str.rfind(keywords.DeleteText, 0) == 0) {
+       	 logsystem->WriteLog("Launching deletetext function.. - ");
+       	 std::cout<<"\b";
+        	 std::cout<<"\b";
+        	 std::cout<<"\b";
+        	 std::cout<<"\b";
+        	 std::cout<<"\b";
+                 std::cout<<"\b";
+        	 std::cout<<"\b";
+        	 std::cout<<"\b";
+        	 std::cout<<"\b";
+        	 std::cout << WBOLD_RED_COLOR << "delete" << WBOLD_YELLOW_COLOR << "text ";
+        	 BOLD_BLUE_COLOR
+        	 std::getline(std::cin, main_function->_h_str);
+       	 fileaddtextfunction->DeleteLine(main_function->_h_str);
+       	 history->WriteHistory(main_function->_h_str);
+       	 main_function->_h_str.erase();
+        	 terminalstr->Terminal();   
+       	 return;
+    	} else if(main_function->_h_str == keywords.Lsf) {
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_BLUE_COLOR << "f" << WBOLD_YELLOW_COLOR << "ls" << WBLACK_COLOR;
+        	if(getchar() == '\n') {	
+        		main_->list_file(true);
+        	}
+        	history->WriteHistory(main_function->_h_str);
+        	main_function->_h_str.erase();
+        	terminalstr->Terminal(); 
+        	return;
+    	} else if(main_function->_h_str == keywords.GitLink) {
+      		std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_YELLOW_COLOR << "gitlink" << WBLACK_COLOR;
+        	if(getchar() == '\n') {
+        		slashn
+        		helpstr->GitLink();
+        	}
+        	history->WriteHistory(main_function->_h_str);
+        	main_function->_h_str.erase();
+        	terminalstr->Terminal(); 
+        	return;
+        } else if(main_function->_h_str.rfind(keywords.CreateText, 0) == 0) {
+        	logsystem->WriteLog("Launching ctxt function..\n");
+      		std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_MAGENTA_COLOR << "ctxt " << WBLACK_COLOR;
+        	BOLD_CYAN_COLOR
+        	std::getline(std::cin, main_function->_h_str);
+        	BLACK_COLOR
+        	filefunction->CreateFileFunctionInit(main_function->_h_str);
+        	history->WriteHistory(main_function->_h_str);
+          	main_function->_h_str.erase();
+        	terminalstr->Terminal();      	
+        	return;
+        } else if(main_function->_h_str == keywords.Pause) {
+                logsystem->WriteLog("Launching pause function.. - ");
+              	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_MAGENTA_COLOR << "pause" << WBLACK_COLOR; 
+        	if(getchar() == '\n') {                	          
+        		BOLD_BLUE_COLOR
+        		printlnf("Enter the continue...");
+        		BLACK_COLOR
+        		returni: if(std::cin.get() == '\n') {
+                		BOLD_GREEN_COLOR
+                		printlnf("Access - \n");
+                		BLACK_COLOR
+            	} else {
+                	goto returni;
+        	}
+        	}
+        	history->WriteHistory(main_function->_h_str);
+        	main_function->_h_str.erase();
+        	terminalstr->Terminal(); 
+        	return;
+    } else if(main_function->_h_str == keywords.KName) {
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_YELLOW_COLOR << "kname" << WBLACK_COLOR;
+        	if(getchar() == '\n') {
+        		printlnf(main_->FName().c_str());
+    			slashn
+    		}
+    		history->WriteHistory(main_function->_h_str);
+    		main_function->_h_str.erase();
+    		terminalstr->Terminal(); 
+    		return;
+        } else if(main_function->_h_str == keywords.Contr) {
+                std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_YELLOW_COLOR << "contr" << WBLACK_COLOR;
+        	if(getchar() == '\n') {
+        		slashn
+        		contributors_lists->AllOfThem();
+        		slashn
+        	}
+        	history->WriteHistory(main_function->_h_str);
+        	main_function->_h_str.erase();
+        	terminalstr->Terminal(); 
+        	return;
+        } else if(main_function->_h_str == keywords.LsObject) {
+                std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";    
+        	std::cout << WBOLD_MAGENTA_COLOR << "obj" << WBOLD_YELLOW_COLOR << "ls" << WBLACK_COLOR;
+        	if(getchar() == '\n') {   	
+    			listdirectoryfunction->ListObjectFunction();
+    		}
+        	history->WriteHistory(main_function->_h_str);
+        	main_function->_h_str.erase();
+        	terminalstr->Terminal();     		
+    		return;
+    	} else if(main_function->_h_str.find(keywords.SetName, 0) == 0) {
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_BLUE_COLOR << " setname " << WBLACK_COLOR;
+        	if(getchar() == '\n') {
+        		std::cin >> main_function->_h_str;
+        		SetNameString = scriftlang->EraseAllSubString(main_function->_h_str, keywords.SetName + keywords.Whitespace);
+        	}
+        	history->WriteHistory(main_function->_h_str);
+        	main_function->_h_str.erase();
+        	return;
+        } else if(main_function->_h_str.find(keywords.SetTo, 0) == 0) {
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_CYAN_COLOR << "setto " << WBLACK_COLOR;
+        	std::cin >> main_function->_h_str;
+    		SetNameToString = scriftlang->EraseAllSubString(main_function->_h_str, keywords.SetTo + keywords.Whitespace);
+    		setenv(SetNameString.c_str(), SetNameToString.c_str(), true);
+        	history->WriteHistory(main_function->_h_str);
+    		main_function->_h_str.erase();
+        	return;
+    	} else if(main_function->_h_str == keywords.Now) {
+    	        std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_YELLOW_COLOR << "now" << WBLACK_COLOR;
+        	if(getchar() == '\n') {
+        		WHITE_COLOR
+    			printlnf(currentDateTime().c_str());
+    			slashn
+    			BLACK_COLOR
+    		}
+        	history->WriteHistory(main_function->_h_str);
+    		main_function->_h_str.erase();
+    		terminalstr->Terminal(); 
+        	return;
+    	} else if(main_function->_h_str.find(keywords.Printlnf, 0) == 0){
+        	logsystem->WriteLog("Launching printlnf function.. - ");
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_BLUE_COLOR << " printlnf " << WBLACK_COLOR;
+        	BOLD_CYAN_COLOR
+        	std::cin >> main_function->_h_str;
+        	WHITE_COLOR
+        	main_->echo_printlnf(main_function->_h_str);
+        	history->WriteHistory(main_function->_h_str);
+        	main_function->_h_str.erase();
+        	return;
+       } else if(main_function->_h_str == keywords.ClearLog) {
+            	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+		std::cout << WBOLD_GREEN_COLOR << "clear_log";
+		if(getchar() == '\n') {
+       		logsystem->WriteLog("Launching ClearLog function.. - ");
+       		logsystem->ClearLog();
+       		printlnf("Done.\n");
+       	}
+        	history->WriteHistory(main_function->_h_str);
+    		main_function->_h_str.erase();
+        	return;
+        } else if(main_function->_h_str.find(keywords.MKDir, 0) == 0) {
+        	logsystem->WriteLog("Launching mkdir function.. - ");
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_GREEN_COLOR << "mkdir " << WBLACK_COLOR;
+        	BOLD_CYAN_COLOR
+        	std::cin >> main_function->_h_str;
+        	BLACK_COLOR
+        	mkdirfunction->MKDirFunctionInit(scriftlang->EraseAllSubString(main_function->_h_str, keywords.MKDir + keywords.Whitespace));
+        	history->WriteHistory(main_function->_h_str);
+        	main_function->_h_str.erase();
+        	return;
+   	}  else if(main_function->_h_str.rfind(keywords.RandomizeString, 0) == 0) {
+        	logsystem->WriteLog("Launching rstr function.. - ");
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_GREEN_COLOR << "rstr " << WBLACK_COLOR;
+        	BOLD_CYAN_COLOR
+        	std::cin >> main_function->_h_str;
+        	BOLD_BLUE_COLOR
+        	main_->_generated_hash_string(atoi(main_function->_h_str.c_str()));
+        	BLACK_COLOR
+        	history->WriteHistory(main_function->_h_str);
+        	main_function->_h_str.erase();
+        	return;
+       } else if(main_function->_h_str.find(keywords.RemoveFile, 0) == 0) {
+   	      logsystem->WriteLog("Launching rmvfile function.. -");
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_RED_COLOR << "rmv" << WBOLD_MAGENTA_COLOR << "file " << WBLACK_COLOR;
+        	BOLD_CYAN_COLOR
+        	std::cin >> main_function->_h_str;
+        	BLACK_COLOR
+        	removefile->DeleteFile(scriftlang->EraseAllSubString(main_function->_h_str, keywords.RemoveFile + keywords.Whitespace));
+        	history->WriteHistory(main_function->_h_str);
+          	main_function->_h_str.erase();
+        	return;      	
+        }  else if(main_function->_h_str == keywords.Scr) {
+        	logsystem->WriteLog("Erasing _h_str function.. - ");
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_GREEN_COLOR << "scr " << WBLACK_COLOR;
+        	BOLD_CYAN_COLOR
+        	std::getline(std::cin, main_function->_h_str);
+        	BLACK_COLOR
+        	runfunction->RunFunction(main_function->_h_str);
+       	main_function->_h_str.erase();
+        	history->WriteHistory(main_function->_h_str);
+       	terminalstr->Terminal(); 
+       	return;
+       } else if(main_function->_h_str == keywords.FeLog) {
+          std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_YELLOW_COLOR << "felog" << WBLACK_COLOR;
+        	if(getchar() == '\n') {
+        		slashn
+       		logsystem->WriteLog("Launching felog function.. - ");
+        		readfilefunction->ReadFeLogFunction();
+        	}
+        	history->WriteHistory(main_function->_h_str);
+        	main_function->_h_str.erase();
+        	terminalstr->Terminal(); 
+        	return;  
+       }  else if(main_function->_h_str.rfind(keywords.Find, 0) == 0) {
+          	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+   		FFindFileFunction *find = new FFindFileFunction();
+        	std::cout << WBOLD_BLUE_COLOR << "ffind " << WBLACK_COLOR;
+        	BOLD_CYAN_COLOR
+        	std::cin >> main_function->_h_str;
+   		find->FindFile(scriftlang->EraseAllSubString(main_function->_h_str, keywords.Find + keywords.Whitespace));
+        	history->WriteHistory(main_function->_h_str);
+   		main_function->_h_str.erase();
+   		return;
+       } else if(main_function->_h_str.find(keywords.AddText, 0) == 0) {
+        	logsystem->WriteLog("Launching addtext function.. - ");
+          	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+          	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_GREEN_COLOR << " addtext " << WBLACK_COLOR;
+        	BOLD_CYAN_COLOR
+        	std::cin >> main_function->_h_str;
+  		WHITE_COLOR
+        	fileaddtextfunction->AppendLine(scriftlang->EraseAllSubString(main_function->_h_str, keywords.AddText + keywords.Whitespace));
+        	history->WriteHistory(main_function->_h_str);
+          	main_function->_h_str.erase();
+          	BLACK_COLOR
+          	terminalstr->Terminal(); 
+   				return;
+       }  else if(main_function->_h_str.find(keywords.RunDotSlash, 0) == 0) {
+          	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_MAGENTA_COLOR << " .." << WBOLD_BLUE_COLOR << "/" << WBLACK_COLOR;
+        	BOLD_CYAN_COLOR
+        	std::cin >> main_function->_h_str;
+      		std::string pathrun = "./";
+      		pathrun.append(scriftlang->EraseAllSubString(main_function->_h_str, keywords.RunDotSlash));
+      		system(pathrun.c_str());
+        	history->WriteHistory(main_function->_h_str);
+      		main_function->_h_str.erase();
+      		BLACK_COLOR
+          	return;
+      } else if(main_function->_h_str == keywords.IP) {
+          logsystem->WriteLog("Launching ip function.. - ");
+          std::cout<<"\b";
+		std::cout << WBOLD_YELLOW_COLOR << "ip" << WBLACK_COLOR;
+		if(getchar() == '\n') {
+			slashn
+       		main_->getIPAddress();
+        		history->WriteHistory(main_function->_h_str);
+       	}
+        	history->WriteHistory(main_function->_h_str);
+       	main_function->_h_str.erase();
+       	terminalstr->Terminal(); 
+       	return;
+      } else if(main_function->_h_str == keywords.History) {                                       
+        logsystem->WriteLog("Calling ReadHistoryFileFunction - ");
+         	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+          	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_YELLOW_COLOR << "history" << WBLACK_COLOR;
+        	if(getchar() == '\n') {
+        		readfilefunction->ReadHistoryFileFunction();
+        	}
+        	history->WriteHistory(main_function->_h_str);
+    		main_function->_h_str.erase();
+    		terminalstr->Terminal(); 	
+    		return;
+    } else if (main_function->_h_str == keywords.Clear_History) {
+         logsystem->WriteLog("Calling ClearHistory - ");
+                std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+          	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_RED_COLOR << "rmvhistory" << WBLACK_COLOR; 
+         	history->ClearHistory();
+        	history->WriteHistory(main_function->_h_str);
+   	 	main_function->_h_str.erase();
+         	BLACK_COLOR
+         	terminalstr->Terminal(); 
+   	 	return;
+    } else if(main_function->_h_str == keywords.Back) {
+          	logsystem->WriteLog("Launching back function.. - ");
+      	  	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_MAGENTA_COLOR << "back" << WBLACK_COLOR;
+        	if(getchar() == '\n') {
+        		std::string path_string(main_->_file_path_cd_function);
+        		std::size_t test = path_string.find_last_of("/\\");
+        		std::string test_string = path_string.substr(0, test);
+        		int convertdata = static_cast<int>(test);
+        		std::strcpy(main_->_file_path_cd_function, test_string.c_str());
+        		chdir(test_string.c_str());
+        		logsystem->WriteLog(main_->_file_path_cd_function);
+        	}
+        	history->WriteHistory(main_function->_h_str);
+       	main_function->_h_str.erase();
+       	terminalstr->Terminal(); 
+       	return;
+     } else if(main_function->_h_str == keywords.Ls) {
+          logsystem->WriteLog("Launching ls function.. - ");
+          std::cout<<"\b";
+          std::cout << WBOLD_YELLOW_COLOR << "ls" << WBLACK_COLOR; 
+     	  if(getchar() == '\n') {
+     	  	slashn
+      	  	listdirectoryfunction->LSFunction();
+      	  }
+          history->WriteHistory(main_function->_h_str);
+      	  main_function->_h_str.erase();
+      	  terminalstr->Terminal();
+      	  return;
+     } else if(main_function->_h_str.find(keywords.Fr, 0) == 0) {
+        	logsystem->WriteLog("Launching cd function.. -");
+      	  std::cout<<"\b";
+      	  std::cout << WBOLD_GREEN_COLOR << "fr " << WBLACK_COLOR;
+      	  BOLD_CYAN_COLOR
+      	  std::cin >> main_function->_h_str;
+          cdfunction->CDFunctionInit(scriftlang->EraseAllSubString(main_function->_h_str, keywords.Fr + keywords.Whitespace));
+          history->WriteHistory(main_function->_h_str);
+     	  main_function->_h_str.erase();
+      	  return;
+     } else if(main_function->_h_str == keywords.Clear_Settings) {
+          logsystem->WriteLog("Calling DeleteSettingsFunction .. -  ");
+     	  std::cout<<"\b";
+          std::cout<<"\b";
+          std::cout<<"\b";
+          std::cout<<"\b";
+          std::cout<<"\b";
+          std::cout<<"\b";
+          std::cout<<"\b";
+          std::cout<<"\b";
+          std::cout<<"\b";
+          std::cout<<"\b";
+	  std::cout << WBOLD_RED_COLOR << "clear" << WBOLD_YELLOW_COLOR << "settings" << WBLACK_COLOR;
+	  if(getchar() == '\n') {
+          	clearfile->ClearSettingsFunction();
+          }
+          history->WriteHistory(main_function->_h_str);
+          main_function->_h_str.erase();
+          terminalstr->Terminal();
+      	  return;
+    } else if (main_function->_h_str == keywords.Home) {
+        	logsystem->WriteLog("Launching home function.. - ");
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_MAGENTA_COLOR << "home" << WBLACK_COLOR;
+        	if(getchar() == '\n') {
+       		homefunction->GetHome();
+       		slashn
+       	}
+        	history->WriteHistory(main_function->_h_str);
+       	main_function->_h_str.erase();
+       	terminalstr->Terminal();
+       	return;
+     } else if(main_function->_h_str == keywords.Close)  {                                      
+        	logsystem->WriteLog("Exit signal.. - ");
+          std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_MAGENTA_COLOR << "cls" << WBLACK_COLOR;
+        	if(getchar() == '\n') {
+        		slashn
+        		history->WriteHistory(main_function->_h_str);
+        		main_function->_h_str.erase();
+          		exit(EXIT_SUCCESS);
+          	}
+          	return;
+     } else if(main_function->_h_str.find("fscrift", 0) == 0) {
+          	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";    
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout << WBOLD_GREEN_COLOR << "fscrift " << WBLACK_COLOR;
+        	BOLD_CYAN_COLOR
+        	std::cin >> main_function->_h_str;
+        	scriftlang->ReadFunc(scriftlang->EraseAllSubString(main_function->_h_str, keywords.Scrift + keywords.Whitespace));
+        	history->WriteHistory(main_function->_h_str);
+         	main_function->_h_str.erase();
+       	return;
+     } else if(main_function->_h_str == keywords.Settings) {
+     		logsystem->WriteLog("Calling ReadSettingsFunction.. - ");
+    		std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";    
+        	std::cout<<"\b";
+        	std::cout<<"\b";
+        	std::cout<<"\b";    
+        	std::cout<<"\b";	
+        	std::cout << WBOLD_YELLOW_COLOR << "settings" << WBLACK_COLOR;
+        	if(getchar() == '\n') {
+        		readfilefunction->ReadSettingsFunction();
+        		slashn
+        	}
+        	history->WriteHistory(main_function->_h_str);
+        	main_function->_h_str.erase();
+        	terminalstr->Terminal();
+        	return;
+    } else if(main_function->_h_str == keywords.Clear) { 
+         	logsystem->WriteLog("Launching clear function.. - ");                                    
+      		std::cout<<"\b";
+      		std::cout<<"\b";
+      		std::cout<<"\b";
+      		std::cout<<"\b";
+      		std::cout << WBOLD_YELLOW_COLOR << "clear" << WBLACK_COLOR;
+      		if(getchar() == '\n') {
+      	  		printlnf("\033c");
+      	  	}
+        	history->WriteHistory(main_function->_h_str);
+         	main_function->_h_str.erase();
+         	terminalstr->Terminal();
+       		return;
+     } else if(main_function->_h_str == keywords.Version)  {          
+                std::cout<<"\b";
+      		std::cout<<"\b";
+      		std::cout<<"\b";
+      		std::cout<<"\b";  
+      		std::cout<<"\b";
+      		std::cout<<"\b";  
+      		std::cout << WBOLD_YELLOW_COLOR << "version" << WBLACK_COLOR;
+      		if(getchar() == '\n') {
+    			BOLD_MAGENTA_COLOR
+    			printlnf("Fegeya Scrift Version: ");
+    			BOLD_GREEN_COLOR
+    			printlnf(SCRIFT_VERSION);
+    			BOLD_YELLOW_COLOR
+    			printhyphen // printlnf("-");
+    			BOLD_CYAN_COLOR
+    			printlnf(SCRIFT_STATUS);
+    			BOLD_BLUE_COLOR
+    			printhyphen // printlnf("-");
+    			BOLD_MAGENTA_COLOR
+    			printlnf(VersionGenerator().c_str());
+    			slashn
+    			BOLD_RED_COLOR
+    			printlnf("Copyright (c) 2020 ");
+    			BOLD_BLUE_COLOR
+    			printlnf("Ferhat Gecdogan \n");
+    			BOLD_YELLOW_COLOR
+    			printlnf("All Rights Reserved. \n");
+    			BOLD_CYAN_COLOR
+			printlnf("Distributed under the terms of the MIT License.");
+			BLACK_COLOR
+    			slashn
+    		}
+        	history->WriteHistory(main_function->_h_str);
+    		main_function->_h_str.erase();
+    		terminalstr->Terminal();
+       	return;
+     } else {
+     		sign.push_back(c);
+     		if(c == 65) { // ARROW_UP
+     			
+     		} else if(c == 66) { // ARROW_DOWN
+     			
+     		} if(c == 67) { // ARROW_RIGHT
+     			std::cout << "\033[1C";
+     			cursorpos.x += 1;
+     		} else if(c == 68) { // ARROW_LEFT
+     			if(cursorpos.x >= 2) {
+		        	std::cout << "\033[1D";
+		        	cursorpos.x -= 1;	
+		        } else {
+		        	return;
+		        }
+		} else if(c == 127) {
+			if(cursorpos.x >= 1)
+			{
+				cursorpos.x -= 1;
+				if(cursorpos.x + 2 == main_function->_h_str.length()) {
+					main_function->_h_str.erase(main_function->_h_str.begin() + cursorpos.x);
+     					std::cout << '\b' << " " << '\b';
+				} 
+				else if(cursorpos.x > 2) {
+     					main_function->_h_str.erase(main_function->_h_str.begin() + cursorpos.x - 1);
+     					std::cout << '\b' << " " << '\b';
+     				} 
+			}
+     		} else if(c == 91) {
+     		
+		} else if(c == '\n') {
+			cursorpos.x = 0;
+			slashn
+			printlnf(main_function->_h_str.c_str());
+        		main_function->_h_str.erase();
+        		slashn
+        		terminalstr->Terminal(); 
+        		return;
+        	}
+		else {
+			//std::cout << "CURSORPOS" << cursorpos.x;
+			//std::cout << cursorpos.x;
+        		std::cout << sign;
+        		cursorpos.x += 1;
+        		return;
+        	}
+        	//std::cout << cursorpos.x;
+        	sign.erase();
+        }
+}
 
 func
 FMain::Shell()
-{
+{	
     readfilefunction->ReadFeLogFunctionWithoutPrint();
     char output;
-    terminalstr->Terminal(); 
     WHITE_COLOR
-    std::getline(std::cin, _h_str); // ws -> whitespace
+    InputFunction();
+    //std::getline(std::cin, _h_str); // ws -> whitespace
     BLACK_COLOR
     int t = 0;
     if (_h_str != "") { //NULL
-    // HELP FUNCTION
-    
-    // Help
-    if(_h_str == keywords.Help || _h_str == keywords.Help_Short || _h_str == keywords.Help_Big || _h_str == keywords.Help_Biggest || _h_str == keywords.Help_Short_Biggest)
-    {             	
-        logsystem->WriteLog("Launching help function.. - ");
-        helpstr->help();
-        logsystem->WriteLog("Launched.. - ");
-    }
-    
-    // Setname Function
-    else if(_h_str.find(keywords.SetName + keywords.Whitespace, 0) == 0) 
-    {
-    	SetNameString = scriftlang->EraseAllSubString(_h_str, keywords.SetName + keywords.Whitespace );
-    }
-    
-    // Setname To Function
-    else if(_h_str.find(keywords.SetTo + keywords.Whitespace, 0) == 0) 
-    {
-    	SetNameToString = scriftlang->EraseAllSubString(_h_str, keywords.SetTo + keywords.Whitespace);
-    	setenv(SetNameString.c_str(), SetNameToString.c_str(), true);
-    }
-
-    else if(_h_str.find(keywords.Printlnf + keywords.Whitespace + keywords.ArrowSign, 0) == 0)
-    {
-    	printlnf(getenv(scriftlang->EraseAllSubString(_h_str, keywords.Printlnf + keywords.Whitespace + keywords.ArrowSign).c_str()));
-    	slashn
-    }
-    
-    // GitHub link
-    else if(_h_str == keywords.GitLink || _h_str == keywords.GitLink_Big)
-    {
-        helpstr->GitLink();
-    }
-
-    // Find 
-    else if(_h_str.rfind(keywords.Find, 0) == 0)
-    {
-   	FFindFileFunction *find = new FFindFileFunction();
-   	find->FindFile(scriftlang->EraseAllSubString(_h_str, keywords.Find + keywords.Whitespace));
-    }
-    
-    // Edifor Scrift-Based Text Editor
-    else if(_h_str.rfind(keywords.Edifor, 0) == 0)
-    {
-    	logsystem->WriteLog("Deleting _h_str - ");
-    	strfor_h_str = _h_str.erase(0, 7);
-    	logsystem->WriteLog("RunFunction is running Fegeya Edifor - ");
- 	runfunction->RunFunction("edifor " + strfor_h_str);
- 	logsystem->WriteLog("Successfully! - ");
-    }
-
-    else if(_h_str == keywords.KName) 
-    {
-    	printlnf(main_->FName().c_str());
-    	slashn
-    }
-
-    // Contributors
-    else if(_h_str == keywords.Cont || _h_str == keywords.Contr || _h_str == keywords.Contributors || _h_str == keywords.Contributors_Big || _h_str == keywords.Cont_Big)
-    {
-        contributors_lists->AllOfThem();
-    }
-
-    // Show FeLog file.
-    else if(_h_str == keywords.FeLog || _h_str == keywords.Show_Log || _h_str == keywords.FeLog_Big || _h_str == keywords.FeLog_F_Big || _h_str == keywords.FeLog_Biggest || _h_str == keywords.Show_Log_Big)
-    {
-        logsystem->WriteLog("Launching felog function.. - ");
-        readfilefunction->ReadFeLogFunction();
-        logsystem->WriteLog("Launched.. - ");
-    }
-
-
-    // Clear FeLog file.
-    else if(_h_str == keywords.ClearLog || _h_str == keywords.FeLogClear || _h_str == keywords.Clear_Log_Big || _h_str == keywords.Clear_Log_Biggest || _h_str == keywords.FeLogClearBig || _h_str == keywords.FeLogClearBiggest)
-    {
-        logsystem->WriteLog("Launching ClearLog function.. - ");
-        printlnf("Clearing... - ");
-        logsystem->ClearLog();
-        logsystem->WriteLog("Launched.. - ");
-        printlnf("Done.\n");
-    }
-
-    // Developer Mode but this is not ended.
-    else if(_h_str.rfind(keywords.GetDev, 0) == 0)
-    {
-        logsystem->WriteLog("Launching getdev function.. - ");
-        strfor_h_str = _h_str.erase(0, 7);
-        if(strfor_h_str == "true" || strfor_h_str == "-t")  {
-            developermode->AllOfThem(true);
-            logsystem->WriteLog("Launched with true boolean - ");
-        }
-        else {
-            developermode->AllOfThem(false);
-            logsystem->WriteLog("Launched with false boolean - ");
-        }
-    }
-
-    // ADD TEXT FUNCTION
-    else if(_h_str.rfind(keywords.AddText, 0) == 0) {
-        logsystem->WriteLog("Launching addtext function.. - ");
-        strfor_h_str = _h_str.erase(0, 8);
-        logsystem->WriteLog("Erasing _h_str string.. -");
-        fileaddtextfunction->AppendLine(strfor_h_str);
-        logsystem->WriteLog("Launched\n");
-    }
-
-
-    // Castle Game
-    else if(_h_str == keywords.Castle || _h_str == keywords.FCastle) {
-          logsystem->WriteLog("Launching castle - ");
-          runfunction->RunFunction("castle");
-          logsystem->WriteLog("Launched - ");
-    }
-
-    else if(_h_str.rfind(keywords.RemoveFile, 0) == 0) {
-        logsystem->WriteLog("Launching rmvfile function.. -");
-        strfor_h_str = _h_str.erase(0, 8);
-        logsystem->WriteLog("Erasing _h_str string. -");
-        removefile->DeleteFile(strfor_h_str);
-        logsystem->WriteLog("Launched.. - ");
-    }
-
-
-    // DELETE TEXT FUNCTION
-    else if(_h_str.rfind(keywords.DeleteText, 0) == 0) {
-        logsystem->WriteLog("Launching deletetext function.. - ");
-        strfor_h_str = _h_str.erase(0,11);
-        logsystem->WriteLog("Erasing _h_str string.. -");
-        fileaddtextfunction->DeleteLine(strfor_h_str);
-        logsystem->WriteLog("Launched.. -");
-    }
-
-
-
-    // CREATE FOLDER FUNCTION
-    else if(_h_str.rfind(keywords.MKDir, 0) == 0) {
-        logsystem->WriteLog("Launching mkdir function.. - ");
-        strfor_h_str = _h_str.erase(0, 6);
-        logsystem->WriteLog("Erasing _h_str string.. -");
-        mkdirfunction->MKDirFunctionInit(strfor_h_str);
-        logsystem->WriteLog("Launched.. - ");
-    }
-
-
-
-    // READ TEXT FUNCTION
-    else if (_h_str.find(keywords.ReadText, 0) == 0) {
-        logsystem->WriteLog("Launching readtext function.. - ");
-        strfor_h_str = _h_str.erase(0,9);
-        logsystem->WriteLog("Erasing _h_str string.. - ");
-        readfilefunction->ReadFileFunction(strfor_h_str);
-        logsystem->WriteLog("Launched.. -");
-    }
-
-    // Run ./
-    else if(_h_str.rfind(keywords.RunDotSlash, 0) == 0 || _h_str.rfind(keywords.RunST, 0) == 0)
-    {
-      std::string pathrun = "./";
-      logsystem->WriteLog("Deleting _h_str - ");
-      strfor_h_str = _h_str.erase(0, 2);
-      pathrun.append(strfor_h_str);
-      system(pathrun.c_str());
-    }
-
-    // CD FUNCTION
-    else if(_h_str.rfind(keywords.Fr, 0) == 0 || _h_str.rfind(keywords.Cd, 0) == 0)
-    {
-        logsystem->WriteLog("Launching cd function.. -");
-        strfor_h_str = _h_str.erase(0,3);
-        logsystem->WriteLog("Erasing _h_str string.. -");
-        cdfunction->CDFunctionInit(strfor_h_str);
-        logsystem->WriteLog("Launched.. - ");
-    }
-
-    // Back Function
-    else if(_h_str == keywords.Back)
-    {
-        logsystem->WriteLog("path string = filepathcdfunc - ");
-        std::string path_string(main_->_file_path_cd_function);
-        logsystem->WriteLog("finding last folder.... - ");
-        std::size_t test = path_string.find_last_of("/\\");
-        std::string test_string = path_string.substr(0, test);
-        int convertdata = static_cast<int>(test);
-        std::strcpy(main_->_file_path_cd_function, test_string.c_str());
-        chdir(test_string.c_str());
-        logsystem->WriteLog(main_->_file_path_cd_function);
-    }
-
-
-
-    // HOME FUNCTION
-    else if (_h_str == keywords.Home || _h_str == keywords.Default || _h_str == keywords.Home_Big || _h_str == keywords.Home_Biggest || _h_str == keywords.Default_Big || _h_str == keywords.Default_Biggest)
-    {
-        logsystem->WriteLog("Launching home function.. - ");
-        homefunction->GetHome();
-        logsystem->WriteLog("Launched.. - ");
-    }
-
-    // Scrift Scripting Language Calls
-    else if(_h_str.rfind(keywords.Scrift, 0) == 0)
-    {
-        logsystem->WriteLog("Deleting _h_str - ");
-        strfor_h_str = _h_str.erase(0, 7);
-        scriftlang->ReadFunc(strfor_h_str);
-    }
-
-    else if(_h_str.rfind(keywords.CreateScriftProject, 0) == 0)
-    {
-        logsystem->WriteLog("Deleting _h_str - ");
-        strfor_h_str = _h_str.erase(0, 22);
-        logsystem->WriteLog("Launching CreateScriftFile - ");
-        filefunction->CreateScriftFile(strfor_h_str);
-        logsystem->WriteLog("Launched.. - ");
-    }
-    else if(_h_str == keywords.TestSettings || _h_str == keywords.ScrLang)
-    {
-        logsystem->WriteLog("Calling ReadSettings... - ");
-        runsyntax->ReadFile();
-        logsystem->WriteLog("Launched... - ");
-    }
-
-    // List Objects Function
-    else if(_h_str == keywords.LsObject) {
-    	listdirectoryfunction->ListObjectFunction();
-    }
-
-
-    // List Directory Function
-    else if(_h_str == keywords.Lsd || _h_str == keywords.Lsdir || _h_str == keywords.ls_d || _h_str == keywords.Lsd_Biggest || _h_str == keywords.Lsdir_Biggest || _h_str == keywords.Lsdir_Big)
-    {
-        main_->list_direc(true);
-        logsystem->WriteLog("Launched.. - ");
-    }
-
-    // Settings 
-    else if(_h_str == keywords.ShowSettings || _h_str == keywords.Settings)
-    {
-        logsystem->WriteLog("Calling ReadSettingsFunction.. - ");
-        readfilefunction->ReadSettingsFunction();
-        slashn
-    }
-
-    // Clear Settings
-    else if(_h_str == keywords.Clear_Settings ||
-    _h_str == keywords.DeleteSettings)
-    {
-        logsystem->WriteLog("Calling DeleteSettingsFunction .. -  ");
-        clearfile->ClearSettingsFunction();
-        logsystem->WriteLog("Cleared Settings - ");
-    }
-
-    // LIST FUNCTION
-    else if(_h_str == keywords.Ls || _h_str == keywords.Dir ||_h_str == keywords.Ls_Biggest || _h_str == keywords.Dir_Biggest || _h_str == keywords.Ls_Big || _h_str == keywords.Dir_Big) // list directory
-    {
-       listdirectoryfunction->LSFunction();
-       logsystem->WriteLog("Launched.. - ");
-    }
-
-
-    // LIST FILE FUNCTION
-    else if(_h_str == keywords.Lsf || _h_str == keywords.Lsfile || _h_str == keywords.Ls_f || _h_str == keywords.Lsf_Biggest || _h_str == keywords.Lsfile_Biggest || _h_str == keywords.Ls_File)
-    {
-        main_->list_file(true);
-        logsystem->WriteLog("Launched.. - ");
-    }
-
-
-
-    // CREATE TEXT FUNCTION
-    else if(_h_str.rfind(keywords.CreateText, 0) == 0){
-        logsystem->WriteLog("Launching ctxt function..\n");
-        strfor_h_str = _h_str.erase(0,5);
-        logsystem->WriteLog("Erasing _h_str function..\n");
-        filefunction->CreateFileFunctionInit(strfor_h_str);
-        logsystem->WriteLog("Launched.. -");
-    }
-
-
-
-    // PRINT FUNCTION
-    else if(_h_str.rfind(keywords.Printlnf, 0) == 0){
-        logsystem->WriteLog("Launching printlnf function.. - ");
-        strfor_h_str = _h_str.erase(0, 9);
-        logsystem->WriteLog("Erasing _h_str function.. - ");
-        main_->echo_printlnf(strfor_h_str);
-        logsystem->WriteLog("Launched.. - ");
-    }
-
-
-
-    // CLEAR FUNCTION
-    else if(_h_str == keywords.Clear || _h_str == keywords.Clear___) {                                     
-        logsystem->WriteLog("Launching clear function.. - ");
-        printf("\033c");
-        logsystem->WriteLog("Launched.. - ");
-    }
-
-
-
-    // CLOSE FUNCTION
-    else if(_h_str == keywords.Break || _h_str == keywords.Close)  {                                      
-        logsystem->WriteLog("Exit signal.. - ");
-        logsystem->WriteLog("Launched.. - ");
-        exit(EXIT_SUCCESS);
-    }
-
-
-
-    // USERNAME FUNCTION
-    else if(_h_str == keywords.Username || _h_str == keywords.UName) {                                                   
-        logsystem->WriteLog("Launching username function.. - ");
-        BOLD_BLUE_COLOR
-        userhostname->InitUsername();
-        BLACK_COLOR
-        logsystem->WriteLog("Launched.. - ");
-        slashn
-    }
-
-    // READ HISTORY
-    else if(_h_str == keywords.History || _h_str == keywords.FHist) {                                       
-        logsystem->WriteLog("Calling ReadHistoryFileFunction - ");
-        readfilefunction->ReadHistoryFileFunction();
-        logsystem->WriteLog("Called - ");
-    }
-
-
-    // CLEAR HISTORY
-    else if (_h_str == keywords.Clear_History || _h_str == keywords.History_Cleaner) {
-         logsystem->WriteLog("Calling ClearHistory - ");
-         history->ClearHistory();
-         logsystem->WriteLog("Called - ");
-    }
-
-
-    // RUN FUNCTION
-    else if(_h_str.rfind(keywords.Scr, 0) == 0)
-    {
-        logsystem->WriteLog("Erasing _h_str function.. - ");
-        strfor_h_str = _h_str.erase(0,4);
-        logsystem->WriteLog("Launching _h_str function.. - ");
-        runfunction->RunFunction(strfor_h_str);
-        logsystem->WriteLog("Launched.. - ");
-    }
-
-
-
-    // RANDOMIZE STRING FUNCTION
-    else if(_h_str.rfind(keywords.RandomizeString, 0) == 0) {
-        logsystem->WriteLog("Launching rstr function.. - ");
-        strfor_h_str = _h_str.erase(0, 5);
-        logsystem->WriteLog("Erasing _h_str function.. - ");
-        int atest = atoi(strfor_h_str.c_str());
-        logsystem->WriteLog("Append integer.. - ");
-        main_->_generated_hash_string(atest);
-        logsystem->WriteLog("Launched.. - ");
-    }
-
-
-
-    // PAUSE FUNCTION
-    else if(_h_str == keywords.Pause) {                   	          
-        logsystem->WriteLog("Launching pause function.. - ");
-        BOLD_BLUE_COLOR
-        printlnf("Enter the continue...");
-        BLACK_COLOR
-        logsystem->WriteLog("Printing Enter the continue.. - ");
-        returni: if(std::cin.get() == '\n') {
-                logsystem->WriteLog("Input.. - ");
-                BOLD_GREEN_COLOR
-                printlnf("Access - \n");
-                BLACK_COLOR
-                logsystem->WriteLog("Accessing returni function.. - ");
-            } else {
-                goto returni;
-        }
-        logsystem->WriteLog("Launched.. - ");
-    }
-
-    // Date Now Function
-    else if(_h_str == keywords.Now || _h_str == keywords.DateNow) 
-    {
-    	WHITE_COLOR
-    	printlnf(currentDateTime().c_str());
-    	slashn
-    	BLACK_COLOR
-    }
-
-    // PRINT VERSION
-    else if(_h_str == keywords.Version || _h_str == keywords._V)
-    {                              
-    	BOLD_MAGENTA_COLOR
-    	printlnf("Fegeya Scrift Version: ");
-    	BOLD_GREEN_COLOR
-    	printlnf(SCRIFT_VERSION);
-    	BOLD_YELLOW_COLOR
-    	printhyphen // printlnf("-");
-    	BOLD_CYAN_COLOR
-    	printlnf(SCRIFT_STATUS);
-    	BOLD_BLUE_COLOR
-    	printhyphen // printlnf("-");
-    	BOLD_MAGENTA_COLOR
-    	printlnf(VersionGenerator().c_str());
-    	slashn
-    	BOLD_RED_COLOR
-    	printlnf("Copyright (c) 2020 ");
-    	BOLD_BLUE_COLOR
-    	printlnf("Ferhat Gecdogan \n");
-    	BOLD_YELLOW_COLOR
-    	printlnf("All Rights Reserved. \n");
-    	BOLD_CYAN_COLOR
-	printlnf("Distributed under the terms of the MIT License.");
-	BLACK_COLOR
-    	slashn
-    }
-
-    // SYSTEM INFO FUNCTION
-    else if(_h_str == keywords.Fetcheya || _h_str == keywords._f){
-        logsystem->WriteLog("Launching fetcheya function.. - ");
-	runfunction->RunFunction("fetcheya");
-        logsystem->WriteLog("Erasing RAMInfo function.. - ");
-    }
-    // LOCALE FUNCTION
-    else if(_h_str  == keywords.SetLocaleSystem){
-        logsystem->WriteLog("Launching setlocale_system function.. - ");
-        main_->_set_locale();
-        logsystem->WriteLog("Launched.. - ");
-    }
-
-
-
-    // IP FUNCTION
-    else if(_h_str == keywords.IP || _h_str == keywords.MyIP){
-        logsystem->WriteLog("Launching ip function.. - ");
-        main_->getIPAddress();
-        logsystem->WriteLog("Launched.. - ");
-    }
-
-    else if (_h_str.rfind(keywords.Scrp, 0) == 0)
-    {
-        logsystem->WriteLog("Launching Scrift Run in Path function.. - ");
-        logsystem->WriteLog("Erasing _h_str.. - ");
-        strfor_h_str = _h_str.erase(0, 5);
-        runfunction->RunGMakeFunction(strfor_h_str);
-        logsystem->WriteLog("Launched.. - ");
-    }
-
-    else {
-        runfunction->RunFunction(_h_str);
-        slashn
-    }
-    history->WriteHistory(_h_str);
     } else {
     	if(limit >= 50)
     	{
@@ -625,7 +823,8 @@ FMain::Shell()
 }
 
 integer main(integer argc)
-{
+{ 
+    std::locale::global(std::locale("")); 
     logsystem->AllofThem();
     asciifunction *ascii = new asciifunction;
     ascii->Allofthem();
@@ -641,6 +840,7 @@ integer main(integer argc)
     logsystem->WriteLog("Launching hello function.. - ");
     helpstr->hello();
     logsystem->WriteLog("Launched.. - ");
+    terminalstr->Terminal(); 
     while(argc = 2) {
         logsystem->WriteLog("Launching ScriftShell function.. Good luck bro! - ");
         main_function->Shell();

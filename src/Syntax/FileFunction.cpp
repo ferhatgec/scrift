@@ -604,6 +604,32 @@ FLSFunction::DirectoryExists()
 }
 
 
+std::string
+FLSFunction::GetObjects()
+{
+    DIR *directory;
+    directory = opendir("/bin/");
+    while((entryname = readdir(directory))) {
+    	stat(entryname->d_name, &filestat);
+    	if(entryname->d_type == DT_DIR) {
+    		BOLD_RED_COLOR
+    		if(strstr(entryname->d_name, ".")) {
+    		
+    		} else if(strstr(entryname->d_name, "..")) {
+    		
+    		} else {
+   			printlnf("%4s: %s\n", "[Dir]", entryname->d_name);
+		}
+	} else {
+		BOLD_YELLOW_COLOR
+		printlnf("%4s: %s\n", "[Object]", entryname->d_name);
+	}
+	return entryname->d_name;
+    	BLACK_COLOR
+    }
+    closedir(directory);
+}
+
 void 
 FLSFunction::ListObjectFunction()
 {

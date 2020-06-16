@@ -95,7 +95,6 @@ FCommand::echo_printlnf(std::string name)
         printlnf(name.c_str());
         }
         BLACK_COLOR
-        slashn
     }
 }
 
@@ -221,7 +220,6 @@ FCommand::_generated_hash_string(integer size)
         std::cout << str[i];
         BLACK_COLOR
     }
-    slashn
 }
 
 void

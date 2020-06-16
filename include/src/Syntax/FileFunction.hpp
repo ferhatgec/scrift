@@ -86,6 +86,7 @@ public:
     virtual void ListObjectFunction();
     virtual boolean DirectoryExists();
     virtual func LSFunction();
+    std::string GetObjects();
 };
 
 class FRemoveFileFunction : public FCDFunction {

@@ -72,6 +72,9 @@ public:
 	// MKDir 
 	std::string MKDir = "mkdir";
 	
+	// Create
+	std::string Create = "create";
+	
 	// ReadText 
 	std::string ReadText = "readtext";
 	
@@ -98,7 +101,7 @@ public:
  	std::string Scrift = "scrift";
  	
  	// Create Scrift Project 
- 	std::string CreateScriftProject = "create_scrift_project";
+ 	std::string CreateScriftProject = "create scrift_project";
  	
  	
  	// Test Settings
@@ -106,7 +109,7 @@ public:
  	std::string ScrLang = "scrlang";
  	
  	// List Dir
- 	std::string Lsd = "lsd";
+ 	std::string Lsd = "dls";
  	std::string Lsdir = "lsdir";
  	std::string ls_d = "ls -d";
  	std::string Lsd_Biggest = "LSD";
@@ -118,7 +121,7 @@ public:
 	std::string Settings = "settings";
 	
 	// Clear Settings 
-	std::string Clear_Settings = "clear_settings";
+	std::string Clear_Settings = "rmvsettings";
 	std::string DeleteSettings = "deletesettings";
 	
 	
@@ -131,10 +134,10 @@ public:
 	std::string Dir_Big = "Dir";
 	
 	// List Objects
-	std::string LsObject = "lsobj";
+	std::string LsObject = "objls";
 	
 	// List File 
-	std::string Lsf = "lsf";
+	std::string Lsf = "fls";
 	std::string Lsfile = "lsfile";
 	std::string Ls_f = "ls -f";
 	std::string Lsf_Biggest = "LSF";
@@ -164,7 +167,7 @@ public:
 	std::string FHist = "fhist";
 	
 	// Clear History
-	std::string Clear_History = "clear_history";
+	std::string Clear_History = "rmvhistory";
 	std::string History_Cleaner = "history_cleaner";
 	
 	// Scr
@@ -177,7 +180,7 @@ public:
 	std::string Pause = "pause";
 	
 	// Version
-	std::string Version = "--version";
+	std::string Version = "version";
 	std::string _V = "-v";
 	
 	// Fetcheya
@@ -193,6 +196,7 @@ public:
 	
 	// Arrow Sign
 	std::string ArrowSign = "->";	
+	std::string Enter = "\n";
 	
 	// IP
 	std::string IP = "ip";
