@@ -1,4 +1,4 @@
-# Fegeya Scrift
+# Fegeya Scrift 0.1.5-beta1-preview
 
 ## Scrift is new generation shell and scripting language project.
 
@@ -8,6 +8,9 @@
 
 # Features 
 - User-friendly shell interface.
+- Color highlighter
+- Auto-Whitespace
+- Auto-Completer (not ended)
 - Customizable
 - Faster than other shell (e.g. Bash)
 - Own Emoji library (see [Emoji++](https://github.com/FerhatGec/emojiplusplus)) :airplane:
@@ -24,7 +27,6 @@
 - Pong
 - Auto-clear
 - Own Interpreter.
-- Own Emoji Library :thinking:
 - Randomize String generator (rstr)
 
 # How to build and run in Linux?
