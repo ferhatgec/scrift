@@ -79,7 +79,7 @@ FStructure::Terminal()
     printlnf(terminal->_file_path_cd_function);
     printlnf(" ");
     BOLD_RED_COLOR
-    printlnf("$#");
+    std::cout << "\u25B6";
     printlnf(" ");
     BLACK_COLOR
     delete _username;

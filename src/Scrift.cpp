@@ -147,6 +147,25 @@ void RemovePrintedChar(int value) {
 std::string fx;
 int space = 0;
 std::string ftime(compilation_time); // Convert
+std::string input_history;
+
+int input_value = 0;
+    // Get Between String    
+void GetBtwString(std::string oStr, std::string sStr1, std::string sStr2, std::string &rStr)
+    {  
+    int start = oStr.find(sStr1);   
+    if (start >= 0)     
+    {       
+      std::string tstr = oStr.substr(start + sStr1.length());        
+      int stop = tstr.find(sStr2);      
+      if (stop >1)          
+        rStr = oStr.substr(start + sStr1.length(), stop);
+      else
+        rStr ="error";  
+    }
+    else
+       rStr = "error"; 
+}  
 
 std::string 
 VersionGenerator() {
@@ -623,7 +642,7 @@ void InputFunction() {
      } else {
      		sign.push_back(c);
      		if(c == ARROW_UP) {
-     			
+     			 
      		} else if(c == ARROW_DOWN) {
      			
      		} if(c == ARROW_RIGHT) { 
@@ -656,6 +675,7 @@ void InputFunction() {
 			space++;
 		}else if(c == '\n') {
 			space = 0;
+			input_value++;
 			cursorpos.x = 0;
 			slashn
         		runfunction->RunFunction(main_function->_h_str);
@@ -682,7 +702,11 @@ void InputFunction() {
 			} else if(space % 7 || space == 7) {
 				std::cout << WBLACK_COLOR << sign;
 			} else if(space == 0) {
-				std::cout << WBOLD_CYAN_COLOR << sign;
+				if(c == ARROW_UP) {
+     			 		std::cout << "\u2191";
+     				} else {
+					std::cout << WBOLD_CYAN_COLOR << sign;
+				}
 			}
         		cursorpos.x += 1;
         		return;
