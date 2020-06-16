@@ -1,4 +1,4 @@
-# Fegeya Scrift 0.1.5-beta1-preview
+# Fegeya Scrift 0.1.5-beta1
 
 ## Scrift is new generation shell and scripting language project.
 
@@ -38,7 +38,7 @@
 ## If you are already using Scrift, use the following commands (You should going to scrift-lang directory, and run)
 
 ```
- $ scrift make
+ $ fscrift make
 ```
 
 # How to install?
@@ -56,7 +56,7 @@
 # How to set default shell (For Fegeya Scrift users)
 
 ```
- $ scrift install
+ $ fscrift install
 ```
 
 ## If you are using Bash or etc, use the following commands:
@@ -68,9 +68,9 @@
 
 # Use Edifor with Git and etc (If you are already using Scrift, use the following commands)
 ```
- $ scrift default_git_editor
+ $ fscrift default_git_editor
 ```
 
 ###### Fegeya Edifor, only runs if you're use default shell is Scrift.
 
-###### Scrift licensed with GPLv3.
+###### Scrift licensed with MIT License.
