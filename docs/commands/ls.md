@@ -29,10 +29,9 @@ output:
     <username>@<hostname>:~/home/<username> $#
 ```
 
-# List Dir File Command
+# List File Command
 
-* lsf
-* lsfile
+* fls
 
 This commands is shows your directory, but only files.
 
@@ -40,7 +39,7 @@ This commands is shows your directory, but only files.
 # Example:
 ```
 input:
-     <username>@<hostname>:~/home/<username> $# lsf
+     <username>@<hostname>:~/home/<username> $# fls
 
 output:
     File: pulse-cookie
@@ -50,17 +49,16 @@ output:
     <username>@<hostname>:~/home/<username> $#
 ```
 
-# List Dir Directory Command
+# List Directory Command
 
 
-* lsd
-* lsdir 
+* dls
  
 This commands is shows your directory, but only folders.
 
 ```
 input:
-     <username>@<hostname>:~/home/<username> $# lsd
+     <username>@<hostname>:~/home/<username> $# dls
 
 output:
     Dir: Desktop
@@ -79,13 +77,13 @@ output:
 
 ## List Object Function
 
-* lsobj
+* objls
 
 This command is shows /bin/ directory.
 
 ```
 input:
-     <username>@<hostname>:~/home/<username> $# lsobj
+     <username>@<hostname>:~/home/<username> $# objls
 
 output:
     [Object]: scrift

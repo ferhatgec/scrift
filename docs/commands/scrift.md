@@ -1,12 +1,12 @@
-# Scrift Command
+# FScrift Command
 
-scrift command is runs <dot>scr files. 
+fscrift command is runs <dot>scr files. 
 
 # Examples 
 
 ```
 input:
-    <username>@<hostname>:~/home/<username> $# scrift test (test<dot>scr)
+    <username>@<hostname>:~/home/<username> $# fscrift test (test<dot>scr)
 output:
     Hello Scrift!<Output>
     <username>@<hostname>:~/home/<username> $# 

@@ -19,22 +19,20 @@ public:
             "printlnf -><setname <value>>\n");
             BOLD_RED_COLOR
             printlnf("scr <argument> : Launch /bin/<argument>\n"
-            "scr mkdir : Launch Bash's mkdir\n"
-            "[For Scrift Developers] devs : Not for you.\n"
+            "scr mkdir : Launch mkdir (Object)\n"
             "scr ls\n"
             "scr apt\n"
             "scr make\n"
-            "scrlang\n"
-            "scrp\n"
-            "create_scrift_project <name> : Creates <name><dot>scr file\n\n");
+            "create <name> : Creates <name><dot>scr file\n\n");
             BOLD_YELLOW_COLOR
             printlnf("home || default : Going to /home/<username>\n"
-            "lsf || lsfile : List only files\n"
-            "lsd || lsdir : List only folders\n"
+            "fls || lsfile : List only files\n"
+            "dls || lsdir : List only folders\n"
             "ls : List folders and files\n"
             "fr <folder> : Going to <folder>\n"
+            "mkdir <foldername> : Creates a folder\n"
             "ffind <value> : Finds files and directories in path\n"
-            "pwd\n"
+            "rmvfile <folder or file> : Removes folder or file in path\n"
             "setname <name> : sets Environment's name\n"
             "setto <value> : sets Environment's value.\n"
             "back : Going to back directory\n\n");
@@ -42,16 +40,17 @@ public:
             printlnf("[For Scrift Developers] getdev <boolean> : Get Developer Permissions\n"
             "username : Shows your username\n"
             "castle : Play Scrift's Castle Game!\n"
-            "gitlink || scrift_link || fusionlink : Shows GitHub link.\n"
-            "contr || cont || contributors : Shows contributors\n"
+            "gitlink : Shows GitHub link.\n"
+            "contr: Shows contributors\n"
+            "fscrift <file> : Interprets <file>.scr\n"
             "[For Scrift Developers] clear_log || felog_clear : Clear your FeLog\n"
             "history : Shows your Scrift History.\n"
-            "clear_history : Clear your Scrift History\n"
-            "clear_settings : Clear your Settings\n"
+            "rmvhistory : Clear your Scrift History\n"
+            "rmvsettings : Clear your Settings\n"
             "settings : Shows your Settings\n"
             "fetcheya : Shows your system\n"
-            "-v : Shows version and license\n"
-            "datenow (or now) : Shows time.\n"
+            "version : Shows version and license\n"
+            "now : Shows time.\n"
             "[If your default shell is Scrift] fdate : Shows calendar\n"
             "readtext <file> : Reads <file>\n"
      	    "[For Scrift Developers] felog : Shows your FeLog.\n"
@@ -62,11 +61,10 @@ public:
             "ctxt <name> : Creates Text file\n\n");
             BOLD_BLUE_COLOR
             printlnf("pause : Stops your Scrift shell\n"
-            "cls || brk : Close Scrift (with Terminal)\n"
+            "cls : Close Scrift (with Terminal)\n"
             "rstr <number> : Generated random string\n"
-            "clear || clear!!! : Clear Scrift inputs\n"
-            "[For Development Status] set_locale_system || slcl_sys : Change locale\n"
-            "ip || myip : Show your IP and info\n");
+            "clear : Clear Scrift inputs\n"
+            "ip  Show your IP and info\n");
         BLACK_COLOR
     }
     virtual func hello() {

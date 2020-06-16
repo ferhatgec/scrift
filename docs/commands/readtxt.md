@@ -1,12 +1,12 @@
 # Read Text Command
 
-readtext command is add text in file.
+readtxt command is add text in file.
 
 # Examples 
 
 ```
 input:
-    <username>@<hostname>:~/home/<username> $# readtext file
+    <username>@<hostname>:~/home/<username> $# readtxt file
 output:
     <text>
     <username>@<hostname>:~/home/<username> $#

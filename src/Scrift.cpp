@@ -810,14 +810,6 @@ FMain::Shell()
     int t = 0;
     if (_h_str != "") { //NULL
     } else {
-    	if(limit >= 50)
-    	{
-    			BOLD_RED_COLOR
-    			printlnf("Please don't spamming :)\n");
-    			BLACK_COLOR
-    			limit = 0;
-    	}
-    	limit++;
         return;
     }
 }
@@ -839,12 +831,9 @@ integer main(integer argc)
     filefunction->CreateSettingsFileFunction(); // Directory is "/home/<username>/<dot>scrift_settings"
     logsystem->WriteLog("Launching hello function.. - ");
     helpstr->hello();
-    logsystem->WriteLog("Launched.. - ");
     terminalstr->Terminal(); 
     while(argc = 2) {
-        logsystem->WriteLog("Launching ScriftShell function.. Good luck bro! - ");
         main_function->Shell();
-        logsystem->WriteLog("Launched.. - ");
     }
     return F_OK;
 }

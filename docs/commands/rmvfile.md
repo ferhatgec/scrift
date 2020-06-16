@@ -2,7 +2,7 @@
 
 * rmvfile
 
-This commands is deletes file.
+This commands is deletes file or folder.
 
 # Example:
 ```
