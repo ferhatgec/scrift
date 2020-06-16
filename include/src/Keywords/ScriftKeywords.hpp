@@ -98,7 +98,7 @@ public:
  	std::string Default_Biggest = "DEFAULT";
  	
  	// Scrift
- 	std::string Scrift = "scrift";
+ 	std::string Scrift = "fscrift";
  	
  	// Create Scrift Project 
  	std::string CreateScriftProject = "create scrift_project";
