@@ -330,22 +330,22 @@ void InputFunction() {
     		return;
     	} else if(main_function->_h_str.find(keywords.SetName, 0) == 0) {
         	RemovePrintedChar(keywords.SetName.length() - 1);
-        	std::cout << WBOLD_BLUE_COLOR << " setname " << WBLACK_COLOR;
-        	if(getchar() == '\n') {
-        		std::cin >> main_function->_h_str;
-        		SetNameString = scriftlang->EraseAllSubString(main_function->_h_str, keywords.SetName + keywords.Whitespace);
-        	}
+        	std::cout << WBOLD_BLUE_COLOR << "setname " << WBLACK_COLOR;
+        	std::getline(std::cin, main_function->_h_str);
+        	SetNameString = scriftlang->EraseAllSubString(main_function->_h_str, keywords.SetName + keywords.Whitespace);
         	history->WriteHistory(main_function->_h_str);
         	main_function->_h_str.erase();
+        	terminalstr->Terminal(); 
         	return;
         } else if(main_function->_h_str.find(keywords.SetTo, 0) == 0) {
         	RemovePrintedChar(keywords.SetTo.length() - 1);
         	std::cout << WBOLD_CYAN_COLOR << "setto " << WBLACK_COLOR;
-        	std::cin >> main_function->_h_str;
+        	std::getline(std::cin, main_function->_h_str);
     		SetNameToString = scriftlang->EraseAllSubString(main_function->_h_str, keywords.SetTo + keywords.Whitespace);
     		setenv(SetNameString.c_str(), SetNameToString.c_str(), true);
         	history->WriteHistory(main_function->_h_str);
     		main_function->_h_str.erase();
+    		terminalstr->Terminal(); 
         	return;
     	} else if(main_function->_h_str == keywords.Now) {
     	        RemovePrintedChar(keywords.Now.length() - 1);

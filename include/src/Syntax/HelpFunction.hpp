@@ -15,8 +15,7 @@ public:
         BOLD_GREEN_COLOR
         printlnf("Scrift Functions && Arguments\n\n");
             BOLD_GREEN_COLOR
-            printlnf("printlnf <arg> (e.g. : #USER, #PATH) : Shows <arg> \n"
-            "printlnf -><setname <value>>\n");
+            printlnf("printlnf <arg> (e.g. : #USER, #PATH, Environment) : Shows <arg> \n");
             BOLD_RED_COLOR
             printlnf("scr <argument> : Launch /bin/<argument>\n"
             "scr mkdir : Launch mkdir (Object)\n"
@@ -25,9 +24,9 @@ public:
             "scr make\n"
             "create <name> : Creates <name><dot>scr file\n\n");
             BOLD_YELLOW_COLOR
-            printlnf("home || default : Going to /home/<username>\n"
-            "fls || lsfile : List only files\n"
-            "dls || lsdir : List only folders\n"
+            printlnf("home : Going to /home/<username>\n"
+            "fls : List only files\n"
+            "dls : List only folders\n"
             "ls : List folders and files\n"
             "fr <folder> : Going to <folder>\n"
             "mkdir <foldername> : Creates a folder\n"
@@ -37,13 +36,12 @@ public:
             "setto <value> : sets Environment's value.\n"
             "back : Going to back directory\n\n");
             BOLD_MAGENTA_COLOR
-            printlnf("[For Scrift Developers] getdev <boolean> : Get Developer Permissions\n"
-            "username : Shows your username\n"
+            printlnf("username : Shows your username\n"
             "castle : Play Scrift's Castle Game!\n"
             "gitlink : Shows GitHub link.\n"
             "contr: Shows contributors\n"
             "fscrift <file> : Interprets <file>.scr\n"
-            "[For Scrift Developers] clear_log || felog_clear : Clear your FeLog\n"
+            "clear_log : Clear your FeLog\n"
             "history : Shows your Scrift History.\n"
             "rmvhistory : Clear your Scrift History\n"
             "rmvsettings : Clear your Settings\n"
