@@ -602,22 +602,22 @@ void InputFunction() {
           std::cout<<"\b";
           std::cout << WBOLD_YELLOW_COLOR << "ls" << WBLACK_COLOR; 
      	  if(getchar() == '\n') {
-     	  	slashn
       	  	listdirectoryfunction->LSFunction();
       	  }
           history->WriteHistory(main_function->_h_str);
       	  main_function->_h_str.erase();
       	  terminalstr->Terminal();
       	  return;
-     } else if(main_function->_h_str.find(keywords.Fr, 0) == 0) {
-        	logsystem->WriteLog("Launching cd function.. -");
+     } else if(main_function->_h_str.find(keywords.Fr) == 0 || main_function->_h_str.find(keywords.Cd) == 0) {
+          logsystem->WriteLog("Launching cd function.. -");
       	  std::cout<<"\b";
       	  std::cout << WBOLD_GREEN_COLOR << "fr " << WBLACK_COLOR;
       	  BOLD_CYAN_COLOR
-      	  std::cin >> main_function->_h_str;
+      	  std::getline(std::cin, main_function->_h_str);
           cdfunction->CDFunctionInit(scriftlang->EraseAllSubString(main_function->_h_str, keywords.Fr + keywords.Whitespace));
           history->WriteHistory(main_function->_h_str);
      	  main_function->_h_str.erase();
+     	  terminalstr->Terminal();
       	  return;
      } else if(main_function->_h_str == keywords.Clear_Settings) {
           logsystem->WriteLog("Calling DeleteSettingsFunction .. -  ");
