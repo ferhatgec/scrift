@@ -47,6 +47,7 @@
 #define WBOLD_BLUE_COLOR "\033[1;34m"
 #define WBOLD_MAGENTA_COLOR "\033[1;35m"
 #define WBOLD_CYAN_COLOR "\033[1;36m"
+#define WWHITE_COLOR "\033[1;37m"
 
 // Reset (BLACK)
 #define WBLACK_COLOR "\033[0m"

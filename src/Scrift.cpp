@@ -145,7 +145,7 @@ void RemovePrintedChar(int value) {
 }
 
 std::string fx;
-
+int space = 0;
 std::string ftime(compilation_time); // Convert
 
 std::string 
@@ -651,7 +651,11 @@ void InputFunction() {
 			}
      		} else if(c == 91) {
      		
-		} else if(c == '\n') {
+		} else if(c == 32) {
+			printlnf(" ");
+			space++;
+		}else if(c == '\n') {
+			space = 0;
 			cursorpos.x = 0;
 			slashn
         		runfunction->RunFunction(main_function->_h_str);
@@ -662,7 +666,24 @@ void InputFunction() {
 		else {
 			//std::cout << "CURSORPOS" << cursorpos.x;
 			//std::cout << cursorpos.x;
-        		std::cout << sign;
+			if(space == 1 || space % 1) {
+				std::cout <<  WBOLD_RED_COLOR << sign;
+			} else if(space % 2 || space == 2) {
+				std::cout << WBOLD_MAGENTA_COLOR << sign;
+			}
+			else if(space % 3 || space == 3) {
+				std::cout << WBOLD_BLUE_COLOR << sign;
+			} else if(space % 4 || space == 4) {
+				std::cout << WBOLD_YELLOW_COLOR << sign;
+			} else if(space % 5) {
+				std::cout << WBOLD_GREEN_COLOR << sign;
+			} else if(space % 6 || space == 6) {
+				std::cout << WWHITE_COLOR << sign;
+			} else if(space % 7 || space == 7) {
+				std::cout << WBLACK_COLOR << sign;
+			} else if(space == 0) {
+				std::cout << WBOLD_CYAN_COLOR << sign;
+			}
         		cursorpos.x += 1;
         		return;
         	}
