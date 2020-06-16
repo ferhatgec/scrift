@@ -699,25 +699,25 @@ void InputFunction() {
 			//std::cout << "CURSORPOS" << cursorpos.x;
 			//std::cout << cursorpos.x;
 			if(space == 1 || space % 1) {
-				std::cout <<  WBOLD_RED_COLOR << sign;
+				std::cout <<  WBOLD_RED_COLOR << sign << WBLACK_COLOR;
 			} else if(space % 2 || space == 2) {
-				std::cout << WBOLD_MAGENTA_COLOR << sign;
+				std::cout << WBOLD_MAGENTA_COLOR << sign << WBLACK_COLOR;
 			}
 			else if(space % 3 || space == 3) {
-				std::cout << WBOLD_BLUE_COLOR << sign;
+				std::cout << WBOLD_BLUE_COLOR << sign << WBLACK_COLOR;
 			} else if(space % 4 || space == 4) {
-				std::cout << WBOLD_YELLOW_COLOR << sign;
+				std::cout << WBOLD_YELLOW_COLOR << sign << WBLACK_COLOR;
 			} else if(space % 5) {
-				std::cout << WBOLD_GREEN_COLOR << sign;
+				std::cout << WBOLD_GREEN_COLOR << sign << WBLACK_COLOR;
 			} else if(space % 6 || space == 6) {
-				std::cout << WWHITE_COLOR << sign;
+				std::cout << WWHITE_COLOR << sign << WBLACK_COLOR;
 			} else if(space % 7 || space == 7) {
-				std::cout << WBLACK_COLOR << sign;
+				std::cout << WBLACK_COLOR << sign << WBLACK_COLOR;
 			} else if(space == 0) {
 				if(c == ARROW_UP) {
      			 		std::cout << "\u2191";
      				} else {
-					std::cout << WBOLD_CYAN_COLOR << sign;
+					std::cout << WBOLD_CYAN_COLOR << sign << WBLACK_COLOR;
 				}
 			}
         		cursorpos.x += 1;
