@@ -388,11 +388,13 @@ void InputFunction() {
         	std::cout<<"\b";
         	std::cout << WBOLD_BLUE_COLOR << " printlnf " << WBLACK_COLOR;
         	BOLD_CYAN_COLOR
-        	std::cin >> main_function->_h_str;
+        	std::getline(std::cin, main_function->_h_str);
         	WHITE_COLOR
         	main_->echo_printlnf(main_function->_h_str);
+        	slashn
         	history->WriteHistory(main_function->_h_str);
         	main_function->_h_str.erase();
+        	terminalstr->Terminal(); 
         	return;
        } else if(main_function->_h_str == keywords.ClearLog) {
             	std::cout<<"\b";
@@ -779,10 +781,8 @@ void InputFunction() {
      		
 		} else if(c == '\n') {
 			cursorpos.x = 0;
-			slashn
 			printlnf(main_function->_h_str.c_str());
         		main_function->_h_str.erase();
-        		slashn
         		terminalstr->Terminal(); 
         		return;
         	}
