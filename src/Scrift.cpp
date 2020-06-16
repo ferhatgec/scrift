@@ -607,6 +607,18 @@ void InputFunction() {
          	main_function->_h_str.erase();
          	terminalstr->Terminal();
        	return;
+     } else if(main_function->_h_str == keywords.Username) {
+		RemovePrintedChar(keywords.Username.length() - 1);
+		std::cout << WBOLD_MAGENTA_COLOR << "username" << WBLACK_COLOR;
+		if(getchar() == '\n') {
+			BOLD_CYAN_COLOR
+			userhostname->InitUsername();
+			BLACK_COLOR
+			slashn
+		}	
+		main_function->_h_str.erase();
+		terminalstr->Terminal();
+		return;
      } else if(main_function->_h_str == keywords.Version)  {          
                 RemovePrintedChar(keywords.Version.length() - 1);  
       		std::cout << WBOLD_YELLOW_COLOR << "version" << WBLACK_COLOR;
