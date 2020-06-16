@@ -214,26 +214,16 @@ FCreateFileFunction::CreateSettingsFileFunction()
 {
     if(IsExistFile() != true) {
     FeLog *logsystem = new FeLog();
-    logsystem->WriteLog("Calling getuid from CreateSettingsFileFunction - ");
     uid_t fuid = geteuid();
-    logsystem->WriteLog("Calling getpwuid from CreateSettingsFileFunction - ");
     struct passwd *password = getpwuid(fuid);
-    logsystem->WriteLog("Creating pathfile from CreateSettingsFileFunction - ");
     std::string pathfile;
-    logsystem->WriteLog("Appending password->pw_name in pathfile - ");
     pathfile.append("/home/");
     pathfile.append(password->pw_name);
-    logsystem->WriteLog("Appending slash in pathfile - ");
     pathfile.append("/");
-    logsystem->WriteLog("Appending ScriftSettings file in pathfile - ");
     pathfile.append(".scrift_settings");
-    logsystem->WriteLog("Creating ofstream from CreateSettingsFileFunction - ");
     std::ofstream file(pathfile, std::ios::app);
     file << "felog_cleaner 100\n";
     file << "welcome_emoji :thinking_face:\n";
-    //file <<  Settings variables begin.
-    // Settings variables end.
-    logsystem->WriteLog("Calling file<dot>close from CreateSettingsFileFunction - ");
     file.close();
     } else {
         filelog->WriteLog("Settings file is exists! Nice. - ");
@@ -254,7 +244,8 @@ FClearFileFunction::ClearSettingsFunction()
         path.append("/");
         path.append(".scrift_settings");
         std::ofstream file(path); // App = Append
-        file << " ";
+        file << "felog_cleaner 100\n";
+    	file << "welcome_emoji :thinking_face:\n";
         filelog->WriteLog("Cleared.. - ");
     }
     else {

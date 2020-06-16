@@ -544,7 +544,7 @@ void InputFunction() {
      } else if(main_function->_h_str == keywords.Clear_Settings) {
           logsystem->WriteLog("Calling DeleteSettingsFunction .. -  ");
      	  RemovePrintedChar(keywords.Clear_Settings.length() - 1);
-	  std::cout << WBOLD_RED_COLOR << "clear" << WBOLD_YELLOW_COLOR << "settings" << WBLACK_COLOR;
+	  std::cout << WBOLD_RED_COLOR << "rmv" << WBOLD_YELLOW_COLOR << "settings" << WBLACK_COLOR;
 	  if(getchar() == '\n') {
           	clearfile->ClearSettingsFunction();
           }
