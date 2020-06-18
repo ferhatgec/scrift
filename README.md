@@ -71,6 +71,4 @@
  $ fscrift default_git_editor
 ```
 
-###### Fegeya Edifor, only runs if you're use default shell is Scrift.
-
 ###### Scrift licensed with MIT License.
