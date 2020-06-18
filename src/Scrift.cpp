@@ -256,7 +256,6 @@ void InputFunction() {
       		RemovePrintedChar(keywords.GitLink.length() - 1);
         	std::cout << WBOLD_YELLOW_COLOR << "gitlink" << WBLACK_COLOR;
         	if(getchar() == '\n') {
-        		slashn
         		helpstr->GitLink();
         	}
         	history->WriteHistory(main_function->_h_str);
