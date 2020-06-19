@@ -219,7 +219,10 @@ public:
 	
 	// Emoji
 	std::string Emoji = "emoji";
-	
+
+	// Random
+	std::string Random = "random";
+		
 	// Whitespace
 	std::string Whitespace = " ";
 };

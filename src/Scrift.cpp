@@ -134,6 +134,7 @@ FMain::~FMain()
     conf;
 }
 
+
 void RemovePrintedChar(int value) {
 	int rvalue = 0;
 	do {
@@ -151,11 +152,9 @@ std::string input_history;
 
 int input_value = 0;
     // Get Between String    
-void GetBtwString(std::string oStr, std::string sStr1, std::string sStr2, std::string &rStr)
-    {  
+void GetBtwString(std::string oStr, std::string sStr1, std::string sStr2, std::string &rStr) {  
     int start = oStr.find(sStr1);   
-    if (start >= 0)     
-    {       
+    if (start >= 0) {       
       std::string tstr = oStr.substr(start + sStr1.length());        
       int stop = tstr.find(sStr2);      
       if (stop >1)          
@@ -242,6 +241,22 @@ void InputFunction() {
        	 main_function->_h_str.erase();
         	 terminalstr->Terminal();   
        	 return;
+    	} else if(main_function->_h_str == keywords.Random) {
+    		RemovePrintedChar(keywords.Random.length() - 1);
+    		std::cout << WBOLD_BLUE_COLOR << "random " << WBLACK_COLOR;
+    		int number;
+    		BOLD_CYAN_COLOR
+    		std::cin >> number;
+    		if(number == 0) {
+    			return;
+    		}
+    		number = rand()%(number+1);
+    		BOLD_YELLOW_COLOR
+    		std::cout << number;
+    		BLACK_COLOR
+    		number = 0;
+    		main_function->_h_str.erase();
+    		return;
     	} else if(main_function->_h_str == keywords.Lsf) {
         	RemovePrintedChar(keywords.Lsf.length() - 1);
         	std::cout << WBOLD_BLUE_COLOR << "f" << WBOLD_YELLOW_COLOR << "ls" << WBLACK_COLOR;
@@ -577,7 +592,6 @@ void InputFunction() {
           	RemovePrintedChar(keywords.Close.length() - 1);
         	std::cout << WBOLD_MAGENTA_COLOR << "cls" << WBLACK_COLOR;
         	if(getchar() == '\n') {
-        		slashn
         		history->WriteHistory(main_function->_h_str);
         		main_function->_h_str.erase();
           		exit(EXIT_SUCCESS);
