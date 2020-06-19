@@ -148,8 +148,6 @@ public:
             std::string test = EraseAllSubString(line, keyword.System + keyword.BracketsBegin + keyword.QuotationMarks);
             test = EraseAllSubString(test, keyword.QuotationMarks + keyword.BracketsEnd + keyword.Semicolon);
             run->RunFunction(test);
-            std::cout << "RunFunction calling " + test;
-            slashn
         }
         if(line.rfind(keyword.PrintString, 0) == 0)
             std::cout << name << "\n";

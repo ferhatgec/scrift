@@ -476,7 +476,7 @@ void InputFunction() {
        	return;
        } else if(main_function->_h_str.find(keywords.RunDotSlash, 0) == 0) {
           	RemovePrintedChar(keywords.RunDotSlash.length() - 1);
-        	std::cout << WBOLD_MAGENTA_COLOR << " ." << WBOLD_BLUE_COLOR << "/" << WBLACK_COLOR;
+        	std::cout << WBOLD_MAGENTA_COLOR << "." << WBOLD_BLUE_COLOR << "/" << WBLACK_COLOR;
         	BOLD_CYAN_COLOR
         	std::cin >> main_function->_h_str;
       		std::string pathrun = "./";
