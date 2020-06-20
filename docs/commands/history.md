@@ -8,9 +8,7 @@ history command is shows your Scrift History.
 input:
     <username>@<hostname>:~/home/<username> $# history
 output:
-    ls 
-    fr
-    show_log
+    1 : ls 
     <username>@<hostname>:~/home/<username> $# 
 ```
 
@@ -22,7 +20,7 @@ clear_history command is clears your Scrift History.
 
 ```
 input:
-    <username>@<hostname>:~/home/<username> $# clear_history
+    <username>@<hostname>:~/home/<username> $# rmvhistory
 output:
     <Cleared>
     <username>@<hostname>:~/home/<username> $# 
