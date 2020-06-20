@@ -57,23 +57,20 @@
 #include <sys/ioctl.h>
 #include <termios.h>
 #include <stdbool.h>
-// Variables
 
+// Variables
 using namespace FileFunction;
 using namespace FLinker;
 
 const std::string compilation_date = __DATE__;
 const std::string compilation_time = __TIME__;
 
+// Definitions
+#define ESC 033 
+
 // For Environment
 static std::string SetNameToString;
 static std::string SetNameString;
-
-typedef struct CursorPos {
-    int x = 0;
-} cursorp;
-
-cursorp cursorpos;
 
 FContributors *contributors_lists = new FContributors();
 FDeveloperMode *developermode = new FDeveloperMode();
@@ -101,6 +98,12 @@ FHistory *history = new FHistory();
 FConfiguration *conf = new FConfiguration();
 ScriftKeywords keywords;
 integer limit;
+
+typedef struct CursorPos {
+    int x = 0;
+} cursorp;
+
+cursorp cursorpos;
 
 FMain::FMain()
 {
@@ -185,7 +188,13 @@ void moveCursor(std::ostream& os, int col, int row) {
 }
 
 
+void textbackground(int color) {
+	printf ("%c[%dm", ESC, 40+color);
+}
+
+
 void InputFunction() {
+	textbackground(runsyntax->BackgroundColor());
 	std::string sign;
         struct termios t;
         int c;

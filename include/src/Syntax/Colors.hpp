@@ -52,5 +52,4 @@
 // Reset (BLACK)
 #define WBLACK_COLOR "\033[0m"
 
-
 #endif // COLORS_HPP

@@ -224,6 +224,7 @@ FCreateFileFunction::CreateSettingsFileFunction()
     std::ofstream file(pathfile, std::ios::app);
     file << "felog_cleaner 100\n";
     file << "welcome_emoji :thinking_face:\n";
+    file << "bg_color 12\n";
     file.close();
     } else {
         filelog->WriteLog("Settings file is exists! Nice. - ");

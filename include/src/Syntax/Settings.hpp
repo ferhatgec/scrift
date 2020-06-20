@@ -79,6 +79,21 @@ public:
     	}
     }
     
+    int BackgroundColor() {
+    	std::string line;
+    	std::string ftest;
+    	std::ifstream readfile(Path());
+    	if(readfile.is_open()) {
+    		while(std::getline(readfile, line)) {
+    			if(line.rfind("bg_color", 0) == 0) {
+    					return atoi(EraseAllSubString(line, "bg_color ").c_str());
+    			} else {
+    				createfile->CreateSettingsFileFunction();
+    			} 
+    		}
+    	}
+    }
+    
     virtual func ReadFile() {
     	std::string line;
     	std::string ftest;
@@ -96,6 +111,13 @@ public:
         	FWelcomeEmoji();
         } else {
         	createfile->CreateSettingsFileFunction();
+        	return;
+        }
+        
+        if(line.rfind("bg_color", 0) == 0) {
+        	BackgroundColor();
+        } else {
+                createfile->CreateSettingsFileFunction();
         	return;
         }
     	}

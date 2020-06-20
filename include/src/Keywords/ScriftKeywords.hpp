@@ -222,6 +222,12 @@ public:
 
 	// Random
 	std::string Random = "random";
+	
+	// Set 
+	std::string Set = "fset";
+	
+	// Set Background Color
+	std::string SetBgColor = "fset bg";
 		
 	// Whitespace
 	std::string Whitespace = " ";
