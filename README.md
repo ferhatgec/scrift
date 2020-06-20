@@ -16,6 +16,7 @@
 - Own Emoji library (see [Emoji++](https://github.com/FerhatGec/emojiplusplus)) :airplane:
 - Colorized! :satisfied:
 - Log system (FeLog) :open_mouth:
+- Scrift based system information tool (Fetcheya) :open_mouth:
 - Scrift based Text Editor (Edifor) :open_mouth:
 - ASCII Art :open_mouth:
 - History 
