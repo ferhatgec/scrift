@@ -767,6 +767,8 @@ FMain::Shell() {
 
 integer main(integer argc) { 
     std::locale::global(std::locale("")); 
+    runsyntax->ReadFile();
+    filefunction->CreateSettingsFileFunction(); // Directory is "/home/<username>/<dot>scrift_settings"
     logsystem->AllofThem();
     asciifunction *ascii = new asciifunction;
     ascii->Allofthem();
@@ -778,7 +780,6 @@ integer main(integer argc) {
     std::cout << " " << emojiplusplus::EmojiString(runsyntax->FWelcomeEmoji()) << "\n";
     BLACK_COLOR
     history->AllofThem();
-    filefunction->CreateSettingsFileFunction(); // Directory is "/home/<username>/<dot>scrift_settings"
     logsystem->WriteLog("Launching hello function.. - ");
     helpstr->hello();
     terminalstr->Terminal(); 

@@ -41,8 +41,7 @@ endif
 
 all: conio headersfile main clean
 
-allp: conio headersfile mainc castle edifor fetcheya date \
-	 pong tictactoe clean 
+allp: headersfile mainc edifor fetcheya clean 
 
 removeall: uninstall cleanall
 

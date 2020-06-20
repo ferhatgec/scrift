@@ -84,19 +84,16 @@ public:
     	std::string ftest;
     	std::ifstream readfile(Path());
     	if(readfile.is_open()) {
-    	while (std::getline(readfile, line))
-    	{
-        if(line.rfind("felog_cleaner", 0) == 0)
-        {
-        	std::string fsettings = EraseAllSubString(line, "felog_cleaner ");
-        	linenumber = atoi(fsettings.c_str());
+    	while (std::getline(readfile, line)) {
+        if(line.rfind("felog_cleaner", 0) == 0) {
+        	FeLogCleaner();
         } else {
         	createfile->CreateSettingsFileFunction();
         	return;
         }
         
         if(line.rfind("welcome_emoji", 0) == 0) {
-        	WelcomeEmoji = EraseAllSubString(line, "welcome_emoji ");
+        	FWelcomeEmoji();
         } else {
         	createfile->CreateSettingsFileFunction();
         	return;
