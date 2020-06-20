@@ -48,6 +48,9 @@
 ```
  $ sudo apt-get install libncurses-dev 
 ```
+```
+ $ sudo dnf install ncurses-devel
+```
 
 ## Run
 ```
