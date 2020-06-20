@@ -291,8 +291,8 @@ FCreateFileFunction::CreateFeLogFileFunction()
 }
 
 func
-FReadFileFunction::ReadHistoryFileFunction()
-{
+FReadFileFunction::ReadHistoryFileFunction() {
+    int line_number = 0;	
     std::string line;
     std::string path;
     uid_t uid = geteuid();
@@ -302,10 +302,10 @@ FReadFileFunction::ReadHistoryFileFunction()
     path.append(slash);
     path.append(".scrift_history");
     std::ifstream readfile(path);
-    if(readfile.is_open())
-    {
-        while(std::getline(readfile, line))
-        {
+    if(readfile.is_open()) {
+        while(std::getline(readfile, line)) {
+            line_number++;
+            std::cout << line_number << " : ";
             printlnf(line.c_str());
             slashn
         }

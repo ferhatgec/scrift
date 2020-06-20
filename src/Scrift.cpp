@@ -379,7 +379,7 @@ void InputFunction() {
     			slashn
     			BLACK_COLOR
     		}
-        	history->WriteHistory(main_function->_h_str);
+        	history->WriteHistory(keywords.Now);
     		main_function->_h_str.erase();
     		terminalstr->Terminal(); 
         	return;
@@ -519,12 +519,21 @@ void InputFunction() {
        		main_->getIPAddress();
         		history->WriteHistory(main_function->_h_str);
        	}
-        	history->WriteHistory(main_function->_h_str);
        	main_function->_h_str.erase();
        	terminalstr->Terminal(); 
        	return;
+      } else if(main_function->_h_str == keywords.Clear_History) {
+      		RemovePrintedChar(keywords.Clear_History.length() - 1);
+      		std::cout << WBOLD_RED_COLOR << "rmv" << WBOLD_MAGENTA_COLOR << "history" << WBLACK_COLOR;
+      		if(getchar() == '\n') {
+      			history->ClearHistory();
+      		}
+      		history->WriteHistory(main_function->_h_str);
+      		main_function->_h_str.erase();
+      		terminalstr->Terminal();
+      		return;
       } else if(main_function->_h_str == keywords.History) {                                       
-        logsystem->WriteLog("Calling ReadHistoryFileFunction - ");
+        	logsystem->WriteLog("Calling ReadHistoryFileFunction - ");
          	RemovePrintedChar(keywords.History.length() - 1);
         	std::cout << WBOLD_YELLOW_COLOR << "history" << WBLACK_COLOR;
         	if(getchar() == '\n') {

@@ -20,19 +20,16 @@ FeLog *loghistory = new FeLog();
 std::ofstream historyfile;
 std::string filepath_history;
 
-FHistory::FHistory()
-{
+FHistory::FHistory() {
 
 }
 
-FHistory::~FHistory()
-{
+FHistory::~FHistory() {
     delete loghistory, historyfile, filepath_history;
 }
 
 func
-FHistory::ClearHistory()
-{
+FHistory::ClearHistory() {
     std::string path;
     uid_t uid = geteuid();
     struct passwd *password = getpwuid(uid);
@@ -47,8 +44,7 @@ FHistory::ClearHistory()
 
 
 const std::string
-FHistory::TimeFunction()
-{
+FHistory::TimeFunction() {
     time_t nowtime = time(0);
     struct tm tstruct;
     char    buff[80];
@@ -59,8 +55,7 @@ FHistory::TimeFunction()
 
 
 func
-FHistory::WriteHistory(fstr filepathw)
-{
+FHistory::WriteHistory(fstr filepathw) {
     std::string filepath_with_path;
     uid_t uid = geteuid();
     struct passwd *password = getpwuid(uid);
