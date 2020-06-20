@@ -16,15 +16,26 @@
 #include "../../include/src/Scrift.hpp"
 #include "../../include/src/synflang.hpp"
 #include "../../include/src/Syntax/Colors.hpp"
+
 using namespace std; // Sorry...
 
+const std::string compilation_time = __TIME__;
+std::string ftime(compilation_time); // Convert
 
 class systemInfo {
-public:
+public:	
+	string EraseAllSubString(string & mainString, const string & erase) {
+   	 size_t pos = string::npos;
+   	 while((pos = mainString.find(erase)) != string::npos) {
+   	     	mainString.erase(pos, erase.length());
+   	 }
+   		return mainString;
+    	}
+    	
 	string getOS() {
-		system("lsb_release -sd >/tmp/distro.out");
+		system("cat /etc/os-release");
 		ifstream infile;
-		filename = "/tmp/distro.out";
+		filename = "/etc/os-release";
 		infile.open(filename);
 		if(infile.good()){
 			getline(infile, distroLine);
@@ -34,9 +45,11 @@ public:
 		remove( distroLine.begin(), distroLine.end(), '\"' ),
 		distroLine.end()
 		);
-		return distroLine;
+		if(distroLine.find("NAME") == 0) {
+			return EraseAllSubString(distroLine, "NAME=");
+		}
 	}
-	
+
 	std::string getSystem() {
 		struct utsname buf;
 		if(!uname(&buf)) { //Get name and information about current kernel.
@@ -194,6 +207,7 @@ int main() {
                                                                      
 	cout << Colours.getTextColourBlue() << underline << " " <<  endl;
 	cout << "\033[1;36m" << "Scrift Version: " << "\033[01;33m" <<  SCRIFT_VERSION << WBOLD_YELLOW_COLOR << hyphen << WBOLD_CYAN_COLOR << SCRIFT_STATUS << endl;
+	cout << "\033[1;34m" << "Build: " << "\033[01;33m" << "fetcheyav" << systemInfo.EraseAllSubString(ftime, ":") << endl;
 	cout << "\033[1;31m" << "OS Name:" << "\033[1;36m" << " " << systemInfo.getOS() << endl;
 	cout << "\033[1;32m" << "Hostname:" << "\033[1;35m" << " " << systemInfo.getHostname() << endl;
 	cout << "\033[1;34m" << "Kernel Name:" << "\033[1;35m" << " " <<  systemInfo.getSystem() << endl;
