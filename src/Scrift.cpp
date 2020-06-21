@@ -418,7 +418,17 @@ void InputFunction() {
         	history->WriteHistory(main_function->_h_str);
         	main_function->_h_str.erase();
         	return;
-   	}  else if(main_function->_h_str.rfind(keywords.RandomizeString, 0) == 0) {
+   	} else if(main_function->_h_str == keywords.SquareofNumber) {
+   		RemovePrintedChar(keywords.SquareofNumber.length() - 1);
+   		std::cout << WBOLD_BLUE_COLOR << "square " << WBLACK_COLOR;
+   		BOLD_CYAN_COLOR
+  		main_function->_h_str.erase();
+   		std::cin >> main_function->_h_str;
+   		std::cout << atoi(main_function->_h_str.c_str()) * atoi(main_function->_h_str.c_str());
+   		history->WriteHistory(keywords.SquareofNumber + " "  + main_function->_h_str);
+   		main_function->_h_str.erase();
+   		return;
+   	} else if(main_function->_h_str.rfind(keywords.RandomizeString, 0) == 0) {
         	logsystem->WriteLog("Launching rstr function.. - ");
         	RemovePrintedChar(keywords.RandomizeString.length() - 1);
         	std::cout << WBOLD_GREEN_COLOR << "rstr " << WBLACK_COLOR;

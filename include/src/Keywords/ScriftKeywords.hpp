@@ -226,6 +226,10 @@ public:
 	// Set 
 	std::string Set = "fset";
 	
+	// Square and Sqrt (square root)
+	std::string SquareofNumber = "square";
+	std::string SquareRootofNumber = "sqrt";
+	
 	// Set Background Color
 	std::string SetBgColor = "fset bg";
 		
