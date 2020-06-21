@@ -9,6 +9,7 @@
 #define _BSD_SOURCE
 #define _GNU_SOURCE
 
+#include <sstream>
 #include <ctype.h>
 #include <fstream>
 #include <memory>
@@ -172,6 +173,23 @@ void GetBtwString(std::string oStr, std::string sStr1, std::string sStr2, std::s
 std::string 
 VersionGenerator() {
 	return "scriftv" + scriftlang->EraseAllSubString(ftime, ":");
+}
+
+int sqrti(int x) {
+    union { float f; int x; } v; 
+
+    // convert to float
+    v.f = (float)x;
+    v.x  -= 1 << 23; // subtract 2^m 
+    v.x >>= 1;       // divide by 2
+    v.x  += 1 << 29; // add ((b + 1) / 2) * 2^m
+    return (int)v.f;
+}
+
+std::string IntToString(int a) {
+    	std::ostringstream temp;
+    	temp << a;
+    	return temp.str();
 }
 
 std::string currentDateTime() {
@@ -426,6 +444,16 @@ void InputFunction() {
    		std::cin >> main_function->_h_str;
    		std::cout << atoi(main_function->_h_str.c_str()) * atoi(main_function->_h_str.c_str());
    		history->WriteHistory(keywords.SquareofNumber + " "  + main_function->_h_str);
+   		main_function->_h_str.erase();
+   		return;
+   	} else if(main_function->_h_str == keywords.SquareRootofNumber) {
+   		RemovePrintedChar(keywords.SquareRootofNumber.length() - 1);
+   		std::cout << WBOLD_BLUE_COLOR << "sqrt " << WBLACK_COLOR;
+   		BOLD_CYAN_COLOR
+   		main_function->_h_str.erase();
+   		std::cin >> main_function->_h_str;
+   		(atoi(main_function->_h_str.c_str()) <= - 1) ? std::cout << "Hmm" : std::cout << sqrti(atoi(main_function->_h_str.c_str()));
+   		history->WriteHistory(keywords.SquareRootofNumber + " " + IntToString(atoi(main_function->_h_str.c_str())));
    		main_function->_h_str.erase();
    		return;
    	} else if(main_function->_h_str.rfind(keywords.RandomizeString, 0) == 0) {
