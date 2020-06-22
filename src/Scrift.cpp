@@ -565,13 +565,14 @@ void InputFunction() {
           	RemovePrintedChar(keywords.RunDotSlash.length() - 1);
         	std::cout << WBOLD_MAGENTA_COLOR << "." << WBOLD_BLUE_COLOR << "/" << WBLACK_COLOR;
         	BOLD_CYAN_COLOR
-        	std::cin >> main_function->_h_str;
+        	std::getline(std::cin, main_function->_h_str);
       		std::string pathrun = "./";
       		pathrun.append(scriftlang->EraseAllSubString(main_function->_h_str, keywords.RunDotSlash));
       		system(pathrun.c_str());
         	history->WriteHistory(main_function->_h_str);
       		main_function->_h_str.erase();
       		BLACK_COLOR
+      		terminalstr->Terminal();
           	return;
       } else if(main_function->_h_str == keywords.IP) {
           logsystem->WriteLog("Launching ip function.. - ");
