@@ -1,4 +1,4 @@
-# Fegeya Scrift 0.1.5-beta1
+# Fegeya Scrift 0.1.5-beta2
 
 ## Scrift is new generation shell and scripting language project.
 
