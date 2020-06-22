@@ -248,7 +248,16 @@ void InputFunction() {
         c=getchar();
         t.c_lflag|=ICANON+ECHO;
         tcsetattr(0,TCSANOW,&t);
-        main_function->_h_str.push_back(c);
+        if(c == BACKSPACE) {
+		if(cursorpos.x >= 1) {
+			cursorpos.x -= 1;
+			// Under the Construction
+     			main_function->_h_str.erase(main_function->_h_str.end() - 1);
+     			std::cout << '\b' << " " << '\b';
+		}
+     	} else {
+        	main_function->_h_str.push_back(c);
+        }
         if(main_function->_h_str == keywords.Help) {
 		RemovePrintedChar(keywords.Help.length() - 1);
         	std::cout << WBOLD_YELLOW_COLOR << "help" << WBLACK_COLOR;
@@ -749,20 +758,7 @@ void InputFunction() {
 		        } else {
 		        	return;
 		        }
-		} else if(c == BACKSPACE) {
-			if(cursorpos.x >= 1)
-			{
-				cursorpos.x -= 1;
-				if(cursorpos.x + 2 == main_function->_h_str.length()) {
-					main_function->_h_str.erase(main_function->_h_str.begin() + cursorpos.x);
-     					std::cout << '\b' << " " << '\b';
-				} 
-				else if(cursorpos.x > 2) {
-     					main_function->_h_str.erase(main_function->_h_str.begin() + cursorpos.x - 1);
-     					std::cout << '\b' << " " << '\b';
-     				} 
-			}
-     		} else if(c == 91) {
+		}  else if(c == 91) {
      		
 		} else if(c == 32) {
 			printlnf(" ");
