@@ -6,12 +6,7 @@
 - Distributed under the terms of the MIT License.	
 -/
 
-// With Sudo mode.
-setname ScriftInterpreter
-setto g++ -c ./Interpreter/ScriftInterpreter.cpp -o /bin/scriftip
-
 setname Allofthem
 setto g++ -s -Wall -I./include/src/ ./src/Scrift.cpp ./src/Syntax/CommandFunc.cpp ./src/Syntax/Configuration.cpp ./src/Syntax/FileFunction.cpp ./src/Syntax/GetNameFunction.cpp ./src/Syntax/History.cpp ./src/Syntax/Linker.cpp ./src/Syntax/Log.cpp ./src/Syntax/RunFunction.cpp ./Library/FConio.c -o scrift
 
 system ->Allofthem
-//system ->ScriftInterpreter

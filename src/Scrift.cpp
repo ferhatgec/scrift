@@ -170,9 +170,34 @@ void GetBtwString(std::string oStr, std::string sStr1, std::string sStr2, std::s
        rStr = "error"; 
 }  
 
-std::string 
-VersionGenerator() {
+std::string VersionGenerator() {
 	return "scriftv" + scriftlang->EraseAllSubString(ftime, ":");
+}
+
+void PrintVersion() {
+	BOLD_MAGENTA_COLOR
+        printlnf("Fegeya Scrift Version: ");
+    	BOLD_GREEN_COLOR
+    	printlnf(SCRIFT_VERSION);
+    	BOLD_YELLOW_COLOR
+    	printhyphen // printlnf("-");
+    	BOLD_CYAN_COLOR
+    	printlnf(SCRIFT_STATUS);
+    	BOLD_BLUE_COLOR
+    	printhyphen // printlnf("-");
+    	BOLD_MAGENTA_COLOR
+    	printlnf(VersionGenerator().c_str());
+    	slashn
+    	BOLD_RED_COLOR
+    	printlnf("Copyright (c) 2020 ");
+    	BOLD_BLUE_COLOR
+    	printlnf("Ferhat Gecdogan \n");
+    	BOLD_YELLOW_COLOR
+    	printlnf("All Rights Reserved. \n");
+    	BOLD_CYAN_COLOR
+	printlnf("Distributed under the terms of the MIT License.");
+	BLACK_COLOR
+    	slashn
 }
 
 int sqrti(int x) {
@@ -701,29 +726,7 @@ void InputFunction() {
                 RemovePrintedChar(keywords.Version.length() - 1);  
       		std::cout << WBOLD_YELLOW_COLOR << "version" << WBLACK_COLOR;
       		if(getchar() == '\n') {
-    			BOLD_MAGENTA_COLOR
-    			printlnf("Fegeya Scrift Version: ");
-    			BOLD_GREEN_COLOR
-    			printlnf(SCRIFT_VERSION);
-    			BOLD_YELLOW_COLOR
-    			printhyphen // printlnf("-");
-    			BOLD_CYAN_COLOR
-    			printlnf(SCRIFT_STATUS);
-    			BOLD_BLUE_COLOR
-    			printhyphen // printlnf("-");
-    			BOLD_MAGENTA_COLOR
-    			printlnf(VersionGenerator().c_str());
-    			slashn
-    			BOLD_RED_COLOR
-    			printlnf("Copyright (c) 2020 ");
-    			BOLD_BLUE_COLOR
-    			printlnf("Ferhat Gecdogan \n");
-    			BOLD_YELLOW_COLOR
-    			printlnf("All Rights Reserved. \n");
-    			BOLD_CYAN_COLOR
-			printlnf("Distributed under the terms of the MIT License.");
-			BLACK_COLOR
-    			slashn
+    			PrintVersion();
     		}
         	history->WriteHistory(main_function->_h_str);
     		main_function->_h_str.erase();
@@ -821,7 +824,40 @@ FMain::Shell() {
     }
 }
 
-integer main(integer argc) { 
+integer main(integer argc, char** argv) {
+    if(argc > 1) {
+		for(int i = 1; i < argc; i++) {
+			std::string arg(argv[i]);
+
+			if(arg.substr(0, 2) == "--") {
+				if(arg == "--build") {
+					main_function->_h_str.erase();
+        				std::cin >> main_function->_h_str;
+        				scriftlang->ReadFunc(main_function->_h_str);
+				} else if(arg == "--b") {
+					main_function->_h_str.erase();
+        				std::cin >> main_function->_h_str;
+        				scriftlang->ReadFunc(main_function->_h_str);
+				} else if(arg == "--help") {
+					BOLD_RED_COLOR
+					helpstr->help();
+					BLACK_COLOR
+					exit(EXIT_SUCCESS);
+				} else if(arg == "--h") {
+					BOLD_RED_COLOR
+					helpstr->help();
+					BLACK_COLOR
+					exit(EXIT_SUCCESS);
+				} else if(arg == "--version") {
+					PrintVersion();
+					exit(EXIT_SUCCESS);
+				} else if(arg == "--v") {
+					PrintVersion();
+					exit(EXIT_SUCCESS);			
+				}
+			} 
+		}
+    } 
     std::locale::global(std::locale("")); 
     runsyntax->ReadFile();
     filefunction->CreateSettingsFileFunction(); // Directory is "/home/<username>/<dot>scrift_settings"
