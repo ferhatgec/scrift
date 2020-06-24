@@ -16,6 +16,7 @@
 #include "../../include/src/Scrift.hpp"
 #include "../../include/src/synflang.hpp"
 #include "../../include/src/Syntax/Colors.hpp"
+#include "../../Library/FileSystemPlusPlus.h"
 
 using namespace std; // Sorry...
 
@@ -32,22 +33,8 @@ public:
    		return mainString;
     	}
     	
-	string getOS() {
-		system("cat /etc/os-release");
-		ifstream infile;
-		filename = "/etc/os-release";
-		infile.open(filename);
-		if(infile.good()){
-			getline(infile, distroLine);
-		}
-		infile.close();
-		distroLine.erase(
-		remove( distroLine.begin(), distroLine.end(), '\"' ),
-		distroLine.end()
-		);
-		if(distroLine.find("NAME") == 0) {
-			return EraseAllSubString(distroLine, "NAME=");
-		}
+	void getOS() {
+		fsplusplus::ReadFilePath("/etc/os-release");
 	}
 
 	std::string getSystem() {
@@ -208,7 +195,8 @@ int main() {
 	cout << Colours.getTextColourBlue() << underline << " " <<  endl;
 	cout << "\033[1;36m" << "Scrift Version: " << "\033[01;33m" <<  SCRIFT_VERSION << WBOLD_YELLOW_COLOR << hyphen << WBOLD_CYAN_COLOR << SCRIFT_STATUS << endl;
 	cout << "\033[1;34m" << "Build: " << "\033[01;33m" << "fetcheyav" << systemInfo.EraseAllSubString(ftime, ":") << endl;
-	cout << "\033[1;31m" << "OS Name:" << "\033[1;36m" << " " << systemInfo.getOS() << endl;
+	cout << "\033[1;31m" << "OS Name:" << "\033[1;36m" << " ";
+	systemInfo.getOS();
 	cout << "\033[1;32m" << "Hostname:" << "\033[1;35m" << " " << systemInfo.getHostname() << endl;
 	cout << "\033[1;34m" << "Kernel Name:" << "\033[1;35m" << " " <<  systemInfo.getSystem() << endl;
 	cout << "\033[01;33m" << "Kernel Release:" << "\033[1;34m" << " "  << systemInfo.getKernel() << endl;
