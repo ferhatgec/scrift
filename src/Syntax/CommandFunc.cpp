@@ -111,13 +111,13 @@ FCommand::_set_locale() {
 
 
 void
-FCommand::list_direc(boolean _home) {
+FCommand::list_direc(boolean _home, std::string arg) {
         integer files = 0;
         struct stat filestat;
         struct dirent *entry;
         DIR *dir;
 
-        if(_home != false) {dir = opendir((getenv("HOME"), "/", _file_path_cd_function)); /*For Linux and *nix*/
+        if(_home != false) {dir = opendir((getenv("HOME"), "/", _file_path_cd_function, arg.c_str())); /*For Linux and *nix*/
         } else if(_home == false || _home == NULL)
         {
             dir = opendir(getenv("HOME"));
@@ -149,13 +149,13 @@ FCommand::list_direc(boolean _home) {
 }
 
 void 
-FCommand::list_file(boolean _home) {
+FCommand::list_file(boolean _home, std::string arg) {
         integer files = 0;
         struct stat filestat;
         struct dirent *entry;
         DIR *dir;
 
-        if(_home != false) {dir = opendir((getenv("HOME"), "/", _file_path_cd_function)); /*For Linux and *nix*/
+        if(_home != false) {dir = opendir((getenv("HOME"), "/", _file_path_cd_function, arg.c_str())); /*For Linux and *nix*/
         } else if(_home == false || _home == NULL)
         {
             dir = opendir(getenv("HOME"));

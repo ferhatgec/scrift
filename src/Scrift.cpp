@@ -112,14 +112,10 @@ typedef struct CursorPos {
 
 cursorp cursorpos;
 
-FMain::FMain()
-{
-
-}
+FMain::FMain() { }
 
 
-FMain::~FMain()
-{
+FMain::~FMain() {
     delete terminalstr,
     helpstr,
     kernel,
@@ -279,11 +275,17 @@ void InputFunction() {
         	terminalstr->Terminal();
         	return; 
         } else if(main_function->_h_str == keywords.Lsd) {
+        	std::string input;
                 RemovePrintedChar(keywords.Lsd.length() - 1);
-        	std::cout << WBOLD_RED_COLOR << "d" << WBOLD_YELLOW_COLOR << "ls" << WBLACK_COLOR;
-        	if(getchar() == '\n') {
-        		main_->list_direc(true);
-        	} 
+        	std::cout << WBOLD_RED_COLOR << "d" << WBOLD_YELLOW_COLOR << "ls " << WBLACK_COLOR;
+        	BOLD_CYAN_COLOR
+          	std::getline(std::cin, input);
+          	BLACK_COLOR
+         	if(input == "") {
+          		main_->list_direc(true, ".");
+          	} else {
+          		main_->list_direc(true, input);
+          	}  
         	history->WriteHistory(main_function->_h_str);
          	main_function->_h_str.erase();
         	terminalstr->Terminal();       	
@@ -328,11 +330,17 @@ void InputFunction() {
     		main_function->_h_str.erase();
     		return;
     	} else if(main_function->_h_str == keywords.Lsf) {
+    		std::string input;
         	RemovePrintedChar(keywords.Lsf.length() - 1);
-        	std::cout << WBOLD_BLUE_COLOR << "f" << WBOLD_YELLOW_COLOR << "ls" << WBLACK_COLOR;
-        	if(getchar() == '\n') {	
-        		main_->list_file(true);
-        	}
+        	std::cout << WBOLD_BLUE_COLOR << "f" << WBOLD_YELLOW_COLOR << "ls " << WBLACK_COLOR;
+        	BOLD_CYAN_COLOR
+          	std::getline(std::cin, input);
+          	BLACK_COLOR
+         	if(input == "") {
+          		main_->list_file(true, ".");
+          	} else {
+			main_->list_file(true, input);
+          	}  
         	history->WriteHistory(main_function->_h_str);
         	main_function->_h_str.erase();
         	terminalstr->Terminal(); 
@@ -647,7 +655,7 @@ void InputFunction() {
           logsystem->WriteLog("Launching ls function.. - ");
           RemovePrintedChar(keywords.Ls.length() - 1);
           std::cout << WBOLD_YELLOW_COLOR << "ls " << WBLACK_COLOR;
-          BOLD_CYAN_COLOR
+          BOLD_BLUE_COLOR
           std::getline(std::cin, input);
           BLACK_COLOR
           if(input == "") {
