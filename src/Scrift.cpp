@@ -9,12 +9,12 @@
 #define _BSD_SOURCE
 #define _GNU_SOURCE
 
+
 #include <sstream>
 #include <ctype.h>
 #include <fstream>
 #include <memory>
 #include <stdlib.h>
-#include "../include/src/Scrift.hpp"
 #include <dirent.h>
 #include <sys/types.h>
 #include <dirent.h>
@@ -27,9 +27,19 @@
 #include <algorithm>
 #include <string.h>
 #include <stdio.h>
-#include "../include/src/Syntax/CommandFunc.h"
 #include <locale.h>
-#include "../Library/EmojiPlusPlus.h"
+#include <ctype.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <stdarg.h>
+#include <termios.h>
+#include <sys/ioctl.h>
+#include <termios.h>
+#include <stdbool.h>
+
+// Source
+#include "../include/src/Syntax/CommandFunc.h"
+#include "../include/src/Scrift.hpp"
 #include "../include/src/Keywords/ScriftKeywords.hpp"
 #include "../include/src/Syntax/Linker.hpp"
 #include "../include/src/synflang.hpp"
@@ -50,14 +60,10 @@
 #include "../include/src/Syntax/History.hpp"
 #include "../include/src/Syntax/Configuration.hpp"
 #include "../include/Library/Keywords.hpp"
-#include <ctype.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <stdarg.h>
-#include <termios.h>
-#include <sys/ioctl.h>
-#include <termios.h>
-#include <stdbool.h>
+
+// Library
+#include "../Library/InputPlusPlus.h"
+#include "../Library/EmojiPlusPlus.h"
 
 // Variables
 using namespace FileFunction;
@@ -277,7 +283,7 @@ void InputFunction() {
         	std::cout << WBOLD_RED_COLOR << "d" << WBOLD_YELLOW_COLOR << "ls" << WBLACK_COLOR;
         	if(getchar() == '\n') {
         		main_->list_direc(true);
-        	}
+        	} 
         	history->WriteHistory(main_function->_h_str);
          	main_function->_h_str.erase();
         	terminalstr->Terminal();       	
@@ -637,12 +643,18 @@ void InputFunction() {
        	terminalstr->Terminal(); 
        	return;
      } else if(main_function->_h_str == keywords.Ls) {
+          std::string input;
           logsystem->WriteLog("Launching ls function.. - ");
           RemovePrintedChar(keywords.Ls.length() - 1);
-          std::cout << WBOLD_YELLOW_COLOR << "ls" << WBLACK_COLOR; 
-     	  if(getchar() == '\n') {
-      	  	listdirectoryfunction->LSFunction();
-      	  }
+          std::cout << WBOLD_YELLOW_COLOR << "ls " << WBLACK_COLOR;
+          BOLD_CYAN_COLOR
+          std::getline(std::cin, input);
+          BLACK_COLOR
+          if(input == "") {
+          	listdirectoryfunction->LSFunction(".");
+          } else {
+          	listdirectoryfunction->LSFunction(input);
+          }  	
           history->WriteHistory(main_function->_h_str);
       	  main_function->_h_str.erase();
       	  terminalstr->Terminal();
@@ -764,7 +776,7 @@ void InputFunction() {
 		} else if(c == 32) {
 			printlnf(" ");
 			space++;
-		}else if(c == '\n') {
+		} else if(c == '\n') {
 			space = 0;
 			input_value++;
 			cursorpos.x = 0;
@@ -773,8 +785,7 @@ void InputFunction() {
         		main_function->_h_str.erase();
         		terminalstr->Terminal(); 
         		return;
-        	}
-		else {
+        	} else {
 			//std::cout << "CURSORPOS" << cursorpos.x;
 			//std::cout << cursorpos.x;
 			if(space == 1 || space % 1) {
@@ -823,6 +834,7 @@ FMain::Shell() {
 }
 
 integer main(integer argc, char** argv) {
+    setlocale(LC_ALL, "");
     if(argc > 1) {
 		for(int i = 1; i < argc; i++) {
 			std::string arg(argv[i]);
@@ -856,7 +868,6 @@ integer main(integer argc, char** argv) {
 			} 
 		}
     } 
-    std::locale::global(std::locale("")); 
     runsyntax->ReadFile();
     filefunction->CreateSettingsFileFunction(); // Directory is "/home/<username>/<dot>scrift_settings"
     logsystem->AllofThem();

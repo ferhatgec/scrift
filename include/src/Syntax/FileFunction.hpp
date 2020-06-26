@@ -83,11 +83,11 @@ class FLSFunction : public FCDFunction {
 public:
     FLSFunction();
     destructor FLSFunction();
-    func InitLSFunction();
+    void InitLSFunction();
     virtual void ListObjectFunction();
     virtual bool ListArgumentObjectFunction(std::string);
-    virtual boolean DirectoryExists();
-    virtual func LSFunction();
+    virtual bool DirectoryExists();
+    virtual void LSFunction(std::string);
     std::string GetObjects();
 };
 

@@ -584,8 +584,7 @@ FReadFileFunction::ReadASCIIFunction()
 }
 // FHOMEFUNCTION
 void
-fhomefunction::GetHome()
-{
+fhomefunction::GetHome() {
     std::string path;
     uid_t uid = geteuid();
     struct passwd *password = getpwuid(uid);
@@ -596,39 +595,28 @@ fhomefunction::GetHome()
 
 
 std::string
-fhomefunction::CurrentDirectory(void)
-{
+fhomefunction::CurrentDirectory(void) {
   char buff[FILENAME_MAX];
   getcwd( buff, FILENAME_MAX );
   std::string current_working_dir(buff);
   return current_working_dir;
 }
 // FILELSFUNCTION
-FLSFunction::FLSFunction()
-{
+FLSFunction::FLSFunction() {
     string = new fchar;
 }
 
-FLSFunction::~FLSFunction()
-{
-}
+FLSFunction::~FLSFunction() { }
 
 void
-FLSFunction::InitLSFunction()
-{
-
-}
+FLSFunction::InitLSFunction() { }
 
 boolean
-FLSFunction::DirectoryExists()
-{
-
-}
+FLSFunction::DirectoryExists() { }
 
 
 std::string
-FLSFunction::GetObjects()
-{
+FLSFunction::GetObjects() {
     DIR *directory;
     directory = opendir("/bin/");
     while((entryname = readdir(directory))) {
@@ -695,11 +683,11 @@ FLSFunction::ListArgumentObjectFunction(std::string argument) {
 }
 
 void
-FLSFunction::LSFunction() {
+FLSFunction::LSFunction(std::string arg) {
     DIR *directory;
-    directory = opendir((getenv("HOME"), "/", command->_file_path_cd_function));
+    directory = opendir((getenv("HOME"), "/", command->_file_path_cd_function, "/", arg.c_str()));
     if(directory == NULL) {
-        printerror->PrintError("ERR: DIRECTORY NOT FOUND OR NULL\n");
+        printerror->PrintError("Directory not found.\n");
         return;
     }
     while ((entryname = readdir(directory)))
