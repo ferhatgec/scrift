@@ -248,13 +248,16 @@ void InputFunction() {
         c=getchar();
         t.c_lflag|=ICANON+ECHO;
         tcsetattr(0,TCSANOW,&t);
+        cursorpos.x = main_function->_h_str.length();
         if(c == BACKSPACE) {
 		if(cursorpos.x >= 1) {
 			cursorpos.x -= 1;
 			// Under the Construction
      			main_function->_h_str.erase(main_function->_h_str.end() - 1);
      			std::cout << '\b' << " " << '\b';
+		} else {
 		}
+		return;
      	} else {
         	main_function->_h_str.push_back(c);
         }
@@ -754,12 +757,10 @@ void InputFunction() {
      		} else if(c == ARROW_LEFT) {
      			if(cursorpos.x >= 2) {
 		        	std::cout << "\033[1D";
-		        	cursorpos.x -= 1;	
+		        	cursorpos.x -= 1;
 		        } else {
 		        	return;
 		        }
-		}  else if(c == 91) {
-     		
 		} else if(c == 32) {
 			printlnf(" ");
 			space++;
