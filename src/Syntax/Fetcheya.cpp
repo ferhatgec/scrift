@@ -13,6 +13,8 @@
 #include <sys/utsname.h>
 #include <sys/sysinfo.h>
 #include <chrono>
+
+// Libraries 
 #include "../../include/src/Scrift.hpp"
 #include "../../include/src/synflang.hpp"
 #include "../../include/src/Syntax/Colors.hpp"
@@ -32,12 +34,16 @@ public:
    	 }
    		return mainString;
     	}
-    	
+
 	void getOS() {
 		fsplusplus::ReadFilePath("/etc/os-release");
 	}
+	
+	void getCPU() {
+		fsplusplus::ReadCPU();
+	}
 
-	std::string getSystem() {
+	string getSystem() {
 		struct utsname buf;
 		if(!uname(&buf)) { //Get name and information about current kernel.
 			//printf("%s\n",buf.sysname);//Display the system name.
@@ -141,6 +147,7 @@ private:
 		hostnameLength, UserHostLength;
 	stringstream uptimeStream;
 };
+
 class Colours {
 public:
 	string getColourBar() {
@@ -186,6 +193,7 @@ private:
 	       colourTwelve = "\033[7;94m  ", colourThirteen = "\033[7;95m  ", colourFourteen = "\033[7;96m  ", colourFifteen = "\033[7;97m  ",
 	       ColourBar, FullColourBar, NeutralText, RedText, GreenText, YellowText, BlueText, MagentaText, CyanText;
 };
+
 int main() {
 	systemInfo systemInfo;
 	Colours Colours;
@@ -197,9 +205,12 @@ int main() {
 	cout << "\033[1;34m" << "Build: " << "\033[01;33m" << "fetcheyav" << systemInfo.EraseAllSubString(ftime, ":") << endl;
 	cout << "\033[1;31m" << "OS Name:" << "\033[1;36m" << " ";
 	systemInfo.getOS();
+	cout << "\033[1;36m" << "Architecture:" << "\033[1;33m" << " " << systemInfo.getArch() << endl;
 	cout << "\033[1;32m" << "Hostname:" << "\033[1;35m" << " " << systemInfo.getHostname() << endl;
 	cout << "\033[1;34m" << "Kernel Name:" << "\033[1;35m" << " " <<  systemInfo.getSystem() << endl;
 	cout << "\033[01;33m" << "Kernel Release:" << "\033[1;34m" << " "  << systemInfo.getKernel() << endl;
+	cout << "\033[1;35m" << "CPU:" << "\033[1;31m" << " ";
+	systemInfo.getCPU();
 	cout << "\033[1;34m" << "Uptime:" << "\033[01;33m" << " "  <<  systemInfo.getUptime() << endl;
 	cout << "\033[1;35m" << "Terminal:" << "\033[1;32m" << " "  << systemInfo.getTerm() << endl;
 	cout << "\033[1;36m" << "Shell:" << "\033[1;31m" << " " << systemInfo.getShell() << endl;

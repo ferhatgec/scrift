@@ -23,6 +23,14 @@
 #endif
 
 namespace fsplusplus {
+	static std::string EraseAllSubString(std::string & mainString, const std::string & erase) {
+   	 size_t pos = std::string::npos;
+   	 while((pos = mainString.find(erase)) != std::string::npos) {
+   	     	mainString.erase(pos, erase.length());
+   	 }
+   		return mainString;
+    	}
+
 	static std::string GetCurrentWorkingDir(void) {
   		char buff[FILENAME_MAX];
   		GetCurrentDir( buff, FILENAME_MAX );
@@ -363,7 +371,25 @@ namespace fsplusplus {
         		if(line.find("PRETTY_NAME=\"") == 0) {
 				GetBtwString(line, "\"", "\"", line); 
 				printf(line.c_str());
-				slashn  
+				printf("\n");
+        		}
+        	}
+        	readfile.close();
+    	} else {
+        	printf("Unable to open file\n");
+    	}
+	}
+	
+	static void ReadCPU() {
+    		std::string line;
+    		std::ifstream readfile("/proc/cpuinfo");
+    		if(readfile.is_open()) {
+        	while (std::getline(readfile, line)) {
+        		if(line.find("model name	: ") == 0) {
+				line = EraseAllSubString(line, "model name	: ");
+				printf(line.c_str());
+				printf("\n");
+				return;
         		}
         	}
         	readfile.close();
