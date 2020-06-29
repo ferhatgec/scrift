@@ -545,7 +545,7 @@ void InputFunction() {
        } else if(main_function->_h_str == keywords.FeLog) {
           std::cout<<"\b";
         	RemovePrintedChar(keywords.FeLog.length() - 1);
-        	std::cout << WBOLD_YELLOW_COLOR << "felog" << WBLACK_COLOR;
+        	std::cout << WBOLD_YELLOW_COLOR << " felog" << WBLACK_COLOR;
         	if(getchar() == '\n') {
         		slashn
        		logsystem->WriteLog("Launching felog function.. - ");
