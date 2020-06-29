@@ -197,7 +197,6 @@ FCreateFileFunction::IsExistFile()
 {
     uid_t fuid = geteuid();
     struct passwd *password = getpwuid(fuid);
-    filelog->WriteLog("Appended passwd structure - ");
     std::string path;
     path.append("/home/");
     path.append(password->pw_name);
@@ -227,7 +226,6 @@ FCreateFileFunction::CreateSettingsFileFunction()
     file << "bg_color 12\n";
     file.close();
     } else {
-        filelog->WriteLog("Settings file is exists! Nice. - ");
     }
 }
 
@@ -247,7 +245,6 @@ FClearFileFunction::ClearSettingsFunction()
         std::ofstream file(path); // App = Append
         file << "felog_cleaner 100\n";
     	file << "welcome_emoji :thinking_face:\n";
-        filelog->WriteLog("Cleared.. - ");
     }
     else {
         CreateSettingsFileFunction();
