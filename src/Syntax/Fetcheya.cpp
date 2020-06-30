@@ -1,5 +1,6 @@
 /* MIT License
-# Forked from 
+# Forked from https://github.com/FerhatGec/fetcheya
+# Modified for Scrift
 # Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
 # Distributed under the terms of the MIT License.
 #
