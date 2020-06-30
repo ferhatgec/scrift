@@ -9,4 +9,3 @@ slashn
 (green)printlnf("Calling make");
 slashn
 system("make runall");
-return
