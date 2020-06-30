@@ -398,6 +398,22 @@ namespace fsplusplus {
     	}
 	}
 	
+	static std::string ReadOSName() {
+    		std::string line;
+    		std::ifstream readfile("/etc/os-release");
+    		if(readfile.is_open()) {
+        	while (std::getline(readfile, line)) {
+        		if(line.find("PRETTY_NAME=\"") == 0) {
+				GetBtwString(line, "\"", "\"", line);
+				return line;
+        		}
+        	}
+        	readfile.close();
+    	} else {
+        	printf("Unable to open file\n");
+    	}
+	}
+	
 	static void CreateFile(std::string name, std::string input) {
 		std::string path;
     		path.append(GetCurrentWorkingDir());
