@@ -27,7 +27,7 @@ HECOMP = g++ -c $< -std=gnu++17 -o
 CLEANALL = scrift /Games/Castle/castle
 CLEAN = *.o
 HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o RunFunction.o Linker.o \
-Log.o History.o Configuration.o
+Log.o History.o Template.o Configuration.o
 
 ifeq ($(OS),Windows_NT)
 	echo Windows_NT is not supported!

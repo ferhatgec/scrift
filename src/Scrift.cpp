@@ -59,11 +59,13 @@
 #include "../include/src/Syntax/Language.hpp"
 #include "../include/src/Syntax/History.hpp"
 #include "../include/src/Syntax/Configuration.hpp"
+#include "../include/src/Syntax/Template.hpp"
 #include "../include/Library/Keywords.hpp"
 
-// Library
+// Libraries
 #include "../Library/InputPlusPlus.h"
 #include "../Library/EmojiPlusPlus.h"
+#include "../Library/Colorized.hpp"
 
 // Variables
 using namespace FileFunction;
@@ -104,6 +106,8 @@ FLanguage *scriftlang = new FLanguage();
 FHistory *history = new FHistory();
 FConfiguration *conf = new FConfiguration();
 ScriftKeywords keywords;
+FTemplate temp;
+
 integer limit;
 
 typedef struct CursorPos {
@@ -301,6 +305,16 @@ void InputFunction() {
         	history->WriteHistory(main_function->_h_str); 
         	main_function->_h_str.erase();
         	terminalstr->Terminal();  
+        	return;
+        } else if(main_function->_h_str == keywords.LanguageTemplate) {
+        	RemovePrintedChar(keywords.LanguageTemplate.length() - 1);
+        	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "template");
+        	if(getchar() == '\n') {
+        		temp.LangTemplate();
+        	}
+        	history->WriteHistory(main_function->_h_str);
+        	main_function->_h_str.erase();
+        	terminalstr->Terminal();
         	return;
         } else if(main_function->_h_str.rfind(keywords.DeleteText, 0) == 0) {
        	 logsystem->WriteLog("Launching deletetext function.. - ");

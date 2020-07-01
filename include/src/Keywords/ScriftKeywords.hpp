@@ -233,6 +233,9 @@ public:
 	// Set Background Color
 	std::string SetBgColor = "fset bg";
 		
+	// Template
+	std::string LanguageTemplate = "template";	
+		
 	// Whitespace
 	std::string Whitespace = " ";
 };

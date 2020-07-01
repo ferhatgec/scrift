@@ -112,9 +112,9 @@
 #define Mark "m"
 #define Template "\033["
 
-std::string Markstr(Mark);
-std::string Semicolonstr(Semicolon);
-std::string Templatestr(Template);
+static std::string Markstr(Mark);
+static std::string Semicolonstr(Semicolon);
+static std::string Templatestr(Template);
 
 
 
@@ -122,21 +122,21 @@ std::string Templatestr(Template);
 #define WBLACK_COLOR "\033[0m"
 
 namespace colorized {
-    void TextBackground(int color) {
+    static void TextBackground(int color) {
 	printf("%c[%dm", ESC, 40+color);
     }
         
-    std::string IntToString(int a) {
+    static std::string IntToString(int a) {
     	std::ostringstream temp;
     	temp << a;
     	return temp.str();
     }
     
-    void PrintWith(const char* color, const char* text) {
+    static void PrintWith(const char* color, const char* text) {
     	std::cout << color <<  text <<  WBLACK_COLOR;
     }
 
-    std::string Colorize(int type, int color) {
+    static std::string Colorize(int type, int color) {
     	return Templatestr + IntToString(type) + Semicolonstr + IntToString(color) + Markstr;
     }
 }
