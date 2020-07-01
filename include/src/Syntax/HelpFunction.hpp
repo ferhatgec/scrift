@@ -25,6 +25,7 @@ public:
             "create <name> : Creates <name><dot>scr file\n\n");
             BOLD_YELLOW_COLOR
             printlnf("home : Going to /home/<username>\n"
+            "objls : List installed objects\n"
             "fls : List only files\n"
             "dls : List only folders\n"
             "ls : List folders and files\n"
@@ -50,6 +51,7 @@ public:
             "emoji : Shows your inputted emoji (e.g: :thinking_face:)\n"
             "version : Shows version and license\n"
             "now : Shows time.\n"
+            "template : Creates a language example. (Hello Language)\n"
             "[If your default shell is Scrift] fdate : Shows calendar\n"
             "readtext <file> : Reads <file>\n"
      	    "[For Scrift Developers] felog : Shows your FeLog.\n"
