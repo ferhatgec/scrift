@@ -806,20 +806,21 @@ void InputFunction() {
 			//std::cout << "CURSORPOS" << cursorpos.x;
 			//std::cout << cursorpos.x;
 			if(space == 1 || space % 1) {
-				std::cout <<  WBOLD_RED_COLOR << sign << WBLACK_COLOR;
+				colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), sign.c_str());
 			} else if(space % 2 || space == 2) {
-				std::cout << WBOLD_MAGENTA_COLOR << sign << WBLACK_COLOR;
-			}
-			else if(space % 3 || space == 3) {
-				std::cout << WBOLD_BLUE_COLOR << sign << WBLACK_COLOR;
+				colorized::PrintWith(colorized::Colorize(BOLD, MAGENTA).c_str(), sign.c_str());
+			} else if(space % 3 || space == 3) {
+				colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), sign.c_str());
 			} else if(space % 4 || space == 4) {
-				std::cout << WBOLD_YELLOW_COLOR << sign << WBLACK_COLOR;
+				colorized::PrintWith(colorized::Colorize(BOLD, YELLOW).c_str(), sign.c_str());
 			} else if(space % 5) {
-				std::cout << WBOLD_GREEN_COLOR << sign << WBLACK_COLOR;
+				colorized::PrintWith(colorized::Colorize(BOLD, GREEN).c_str(), sign.c_str());
 			} else if(space % 6 || space == 6) {
-				std::cout << WWHITE_COLOR << sign << WBLACK_COLOR;
+				colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), sign.c_str());
 			} else if(space % 7 || space == 7) {
-				std::cout << WBLACK_COLOR << sign << WBLACK_COLOR;
+				colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), sign.c_str());
+			} else if(space % 7 || space == 7) {
+				colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), sign.c_str());
 			} else if(space == 0) {
 				if(c == ARROW_UP) {
      			 		std::cout << "\u2191";
