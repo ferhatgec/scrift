@@ -9,7 +9,6 @@
 #define _BSD_SOURCE
 #define _GNU_SOURCE
 
-
 #include <sstream>
 #include <ctype.h>
 #include <fstream>
@@ -108,8 +107,6 @@ FConfiguration *conf = new FConfiguration();
 ScriftKeywords keywords;
 FTemplate temp;
 
-integer limit;
-
 typedef struct CursorPos {
     int x = 0;
 } cursorp;
@@ -155,10 +152,8 @@ void RemovePrintedChar(int value) {
 	return;
 }
 
-std::string fx;
 int space = 0;
 std::string ftime(compilation_time); // Convert
-std::string input_history;
 
 int input_value = 0;
     // Get Between String    

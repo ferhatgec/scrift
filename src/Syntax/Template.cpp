@@ -17,10 +17,13 @@
 void
 FTemplate::LangTemplate() {
 	std::string name, lang;
-	colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), "File name:");
+	colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), "File name: ");
+	BOLD_CYAN_COLOR
 	std:getline(std::cin, name);
-	colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), "Template (e.g. c, cpp, go, flascript, python):");
+	colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(), "Template (e.g. c, cpp, go, flascript, python): ");
+	BOLD_BLUE_COLOR
 	std::getline(std::cin, lang);
+	BLACK_COLOR
 	if(lang == "cpp") {
 		fsplusplus::CreateFile(name, CPlusPlusTemplate());
 	} else if(lang == "c") {
