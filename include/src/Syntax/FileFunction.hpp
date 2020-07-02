@@ -15,50 +15,43 @@ namespace FileFunction {
 // CD Function
 class FCDFunction : public FGetUsername {
 public:
-
     FCDFunction();
-    destructor FCDFunction();
-    virtual func CDFunctionInit(fstr);
-    //virtual func CDFunctionBack();
-    virtual boolean FileExists(const fstr &);
+    ~FCDFunction();
+    bool FileExists(const std::string &);
+    void CDFunctionInit(std::string);
 };
 
 // MKDir Function
 class FMKDirFunction : public FCDFunction {
 public:
     FMKDirFunction();
-    destructor FMKDirFunction();
-    virtual func MKDirFunctionInit(fstr);
+    ~FMKDirFunction();
+    void MKDirFunctionInit(fstr);
 };
 
 // Create File Function
 class FCreateFileFunction : public FMKDirFunction {
 public:
     FCreateFileFunction();
-    destructor FCreateFileFunction();
-    virtual boolean IsExistFile();
-    //virtual func CreateHistoryFileFunction();
-    virtual func CreateASCIIFileFunction();
-    virtual func CreateFeLogFileFunction();
-    virtual func CreateScriftFile(std::string);
-    virtual func CreateFileFunctionInit(fstr);
-    virtual func CreateSettingsFileFunction();
+    ~FCreateFileFunction();
+    bool IsExistFile(std::string);
+    void CreateASCIIFileFunction();
+    void CreateScriftFile(std::string);
+    void CreateFileFunctionInit(fstr);
+    void CreateSettingsFileFunction();
 };
 
 // ReadFile Function
 class FReadFileFunction : public FCreateFileFunction {
 public:
     FReadFileFunction();
-    destructor FReadFileFunction();
-    virtual func ReadFileInit();
-    boolean ReadFileExists();
-    // virtual func CreateFeLog..
-    virtual void ReadFeLogFunctionWithoutPrint();
-    virtual func ReadHistoryFileFunction();
-    virtual func ReadSettingsFunction();
-    virtual func ReadASCIIFunction();
-    virtual func ReadFeLogFunction();
-    virtual func ReadFileFunction(fstr);
+    ~FReadFileFunction();
+    void ReadFeLogFunctionWithoutPrint();
+    void ReadHistoryFileFunction();
+    void ReadSettingsFunction();
+    void ReadASCIIFunction();
+    void ReadFeLogFunction();
+    void ReadFileFunction(fstr);
 };
 
 
@@ -74,43 +67,43 @@ public:
 
 class FClearFileFunction : public FReadFileFunction {
 public:
-    virtual func ClearSettingsFunction(); 
-    virtual func ClearFeLogFunction();
+    void ClearSettingsFunction(); 
+    void ClearFeLogFunction();
 };
 
 // List Function
 class FLSFunction : public FCDFunction {
 public:
     FLSFunction();
-    destructor FLSFunction();
+    ~FLSFunction();
+    bool DirectoryExists();
+    bool ListArgumentObjectFunction(std::string);
     void InitLSFunction();
-    virtual void ListObjectFunction();
-    virtual bool ListArgumentObjectFunction(std::string);
-    virtual bool DirectoryExists();
-    virtual void LSFunction(std::string);
+    void ListObjectFunction();
+    void LSFunction(std::string);
     std::string GetObjects();
 };
 
 class FRemoveFileFunction : public FCDFunction {
 public:
-    virtual func DeleteFile(std::string);
+    void DeleteFile(std::string);
     // DeleteMultipleFiles coming soon.
 };
 
 
 typest {
 public:
-    boolean FileExist(const fstr);
-    static func AppendLine(fstr);
-    static func DeleteLine(fstr);
+    bool FileExist(const std::string);
+    static void AppendLine(std::string);
+    static void DeleteLine(std::string);
 } faddtextfunction;
 
 
 // Home Directory Function
 typest {
 public:
-    virtual std::string CurrentDirectory(void);
-    virtual func GetHome();
+    std::string CurrentDirectory(void);
+    void GetHome();
 } fhomefunction;
 };
 

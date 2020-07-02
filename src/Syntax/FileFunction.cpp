@@ -51,15 +51,13 @@ FRunFunction *filerunfunction = new FRunFunction();
 asciifunction *ascii = new asciifunction;
 FeLog *filelog = new FeLog();
 // FCDFUNCTION
-FCDFunction::FCDFunction()
-{
+FCDFunction::FCDFunction() {
 
 }
 
 
 
-FCDFunction::~FCDFunction()
-{
+FCDFunction::~FCDFunction() {
     delete fmain, 
     printerror,
     command,
@@ -69,31 +67,26 @@ FCDFunction::~FCDFunction()
 }
 
 
-boolean
-FCDFunction::FileExists(const std::string &Filename)
-{
+bool
+FCDFunction::FileExists(const std::string &Filename) {
     return access(Filename.c_str(), 0 ) == 0;
 }
 
 
-boolean
-faddtextfunction::FileExist(const std::string filename)
-{
+bool
+faddtextfunction::FileExist(const std::string filename) {
     fcdfunction->FileExists(filename);
 }
 
 std::string pathnamef;
 void
-FCDFunction::CDFunctionInit(std::string name)
-{
+FCDFunction::CDFunctionInit(std::string name) {
     command = new FCommand();
     fmain = new FMain();
 
     // or std::getline
-    if(name != "")
-    {
-        if(fmain->_home != true)
-        {
+    if(name != "") {
+        if(fmain->_home != true) {
             std::string path;
             path.append(command->_file_path_cd_function);
             path.append("/");
@@ -114,21 +107,18 @@ FCDFunction::CDFunctionInit(std::string name)
 }
 
 // FMKDIRFUNCTION
-FMKDirFunction::FMKDirFunction()
-{
+FMKDirFunction::FMKDirFunction() {
     input_char = new fchar;
 }
 
 
-FMKDirFunction::~FMKDirFunction()
-{
+FMKDirFunction::~FMKDirFunction() {
     delete input_char;
 }
 
 
 void
-FMKDirFunction::MKDirFunctionInit(std::string name)
-{
+FMKDirFunction::MKDirFunctionInit(std::string name) {
     // I will use std::getline.
     path_directory.append(command->_file_path_cd_function); // default getenv("HOME")
     path_directory.append("/"); // ex: /home/username -> getenv("HOME") -> /home/username'/'
@@ -146,23 +136,20 @@ FMKDirFunction::MKDirFunctionInit(std::string name)
 }
 
 // FCREATEFILEFUNCTION
-FCreateFileFunction::FCreateFileFunction()
-{
+FCreateFileFunction::FCreateFileFunction() {
     file_name = new fchar;
     file_directory = new fchar;
 }
 
-FCreateFileFunction::~FCreateFileFunction()
-{
+FCreateFileFunction::~FCreateFileFunction() {
      delete file_path, 
      file_name, 
      file_directory_string, 
      file_directory;
 }
 
-func
-FCreateFileFunction::CreateScriftFile(std::string pathname)
-{
+void
+FCreateFileFunction::CreateScriftFile(std::string pathname) {
     std::string path;
     path.append(command->_file_path_cd_function);
     path.append(slash);
@@ -177,8 +164,7 @@ FCreateFileFunction::CreateScriftFile(std::string pathname)
 }
 
 void
-FCreateFileFunction::CreateFileFunctionInit(fstr name)
-{
+FCreateFileFunction::CreateFileFunctionInit(fstr name) {
     file_directory_string.append(command->_file_path_cd_function);
     file_directory_string.append(slash);
     file_directory_string.append(name.c_str());
@@ -192,26 +178,24 @@ FCreateFileFunction::CreateFileFunctionInit(fstr name)
     file.close();
 }
 
-boolean
-FCreateFileFunction::IsExistFile()
-{
+bool
+FCreateFileFunction::IsExistFile(std::string file) {
     uid_t fuid = geteuid();
     struct passwd *password = getpwuid(fuid);
     std::string path;
     path.append("/home/");
     path.append(password->pw_name);
     path.append("/");
-    path.append(".scrift_settings");
+    path.append(file);
     struct stat buffer;
     return (stat(path.c_str(), &buffer) == 0);
 }
 
 
 
-func
-FCreateFileFunction::CreateSettingsFileFunction()
-{
-    if(IsExistFile() != true) {
+void
+FCreateFileFunction::CreateSettingsFileFunction() {
+    if(IsExistFile(".scrift_settings") != true) {
     FeLog *logsystem = new FeLog();
     uid_t fuid = geteuid();
     struct passwd *password = getpwuid(fuid);
@@ -229,11 +213,9 @@ FCreateFileFunction::CreateSettingsFileFunction()
     }
 }
 
-func
-FClearFileFunction::ClearSettingsFunction()
-{
-    if(IsExistFile() == true)
-    {
+void
+FClearFileFunction::ClearSettingsFunction() {
+    if(IsExistFile(".scrift_settings") == true) {
         filelog->WriteLog("Clearing Settings File - ");
         uid_t fuid = getuid();
         struct passwd *password = getpwuid(fuid);
@@ -245,33 +227,26 @@ FClearFileFunction::ClearSettingsFunction()
         std::ofstream file(path); // App = Append
         file << "felog_cleaner 100\n";
     	file << "welcome_emoji :thinking_face:\n";
-    }
-    else {
+    } else {
         CreateSettingsFileFunction();
     }
 }
 
 
 void
-FCreateFileFunction::CreateASCIIFileFunction()
-{
+FCreateFileFunction::CreateASCIIFileFunction() {
     if(ascii->InitFile() != true) {
     file_directory_string.append(command->_file_path_cd_function);
     file_directory_string.append(slash);
     file_directory_string.append(".scrift_ascii");
     command->chartostring(file_directory_string, file_directory);
     std::ofstream file(file_directory_string, std::ios::app);
-    
     file << " ███████╗ ██████╗██████╗ ██╗███████╗████████╗ 	\n";
     file << " ██╔════╝██╔════╝██╔══██╗██║██╔════╝╚══██╔══╝ 	\n";
     file << " ███████╗██║     ██████╔╝██║█████╗     ██║	\n";   
     file << " ╚════██║██║     ██╔══██╗██║██╔══╝     ██║	\n";   
     file << " ███████║╚██████╗██║  ██║██║██║        ██║	\n";   
     file << " ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝	\n";   
-                                            
-    
-    
-    
     file.close();
     }
     else {
@@ -279,15 +254,7 @@ FCreateFileFunction::CreateASCIIFileFunction()
     }
 }
 
-
-
-func
-FCreateFileFunction::CreateFeLogFileFunction()
-{
-
-}
-
-func
+void
 FReadFileFunction::ReadHistoryFileFunction() {
     int line_number = 0;	
     std::string line;
@@ -320,8 +287,7 @@ FFindFileFunction::FindWithoutPrint(std::string name) {
     if(directory == NULL) {
         printerror->PrintError("ERR: DIRECTORY OR FILE NOT FOUND OR NULL\n");
     }
-    while ((entryname = readdir(directory)))
-    {
+    while ((entryname = readdir(directory))) {
         stat(entryname->d_name, &filestat);
         if(entryname->d_type == DT_DIR) {// DT_DIR -> directory
             BOLD_RED_COLOR
@@ -351,8 +317,7 @@ FFindFileFunction::FindFile(std::string name) {
         printerror->PrintError("ERR: DIRECTORY OR FILE NOT FOUND OR NULL\n");
         return;
     }
-    while ((entryname = readdir(directory)))
-    {
+    while ((entryname = readdir(directory))) {
         stat(entryname->d_name, &filestat);
         if(entryname->d_type == DT_DIR) {// DT_DIR -> directory
             BOLD_RED_COLOR
@@ -374,8 +339,7 @@ FFindFileFunction::FindFile(std::string name) {
 }
 
 void
-faddtextfunction::DeleteLine(std::string filename)
-{
+faddtextfunction::DeleteLine(std::string filename) {
     std::string file_string_path;
     file_string_path.append("edifor ");
     file_string_path.append(command->_file_path_cd_function);
@@ -385,8 +349,7 @@ faddtextfunction::DeleteLine(std::string filename)
 }
 
 void
-faddtextfunction::AppendLine(std::string filepathw)
-{
+faddtextfunction::AppendLine(std::string filepathw) {
     std::string line;
     std::string filepath_with_path;
     filepath_with_path.append(command->_file_path_cd_function);
@@ -411,33 +374,16 @@ faddtextfunction::AppendLine(std::string filepathw)
 
 
 // READFILEFUNCTION
-FReadFileFunction::FReadFileFunction()
-{
+FReadFileFunction::FReadFileFunction() {
 
 }
 
-FReadFileFunction::~FReadFileFunction()
-{
+FReadFileFunction::~FReadFileFunction() {
 
 }
 
 void
-FReadFileFunction::ReadFileInit()
-{
-
-}
-
-
-boolean
-FReadFileFunction::ReadFileExists()
-{
-
-}
-
-
-func 
-FClearFileFunction::ClearFeLogFunction()
-{
+FClearFileFunction::ClearFeLogFunction() {
     std::ofstream file;
     std::string path;
     uid_t uid = geteuid();
@@ -470,9 +416,8 @@ FReadFileFunction::ReadFeLogFunctionWithoutPrint() {
 	}
 }
 
-func
-FReadFileFunction::ReadFeLogFunction()
-{
+void
+FReadFileFunction::ReadFeLogFunction() {
     int a = 0;
     std::string line;
     std::string path;
@@ -483,17 +428,14 @@ FReadFileFunction::ReadFeLogFunction()
     path.append(slash);
     path.append(".scrift_log");
     std::ifstream readfile(path);
-    if(readfile.is_open())
-    {
-        while(std::getline(readfile, line))
-        {
+    if(readfile.is_open()) {
+        while(std::getline(readfile, line)) {
             printlnf(line.c_str());
             a++;
             slashn
         }
         std::cout << a << "\n";
-        if(a >= settings->FeLogCleaner())
-        {
+        if(a >= settings->FeLogCleaner()) {
             FClearFileFunction *clearlog = new FClearFileFunction();
             clearlog->ClearFeLogFunction();
         } else {
@@ -501,15 +443,13 @@ FReadFileFunction::ReadFeLogFunction()
             slashn
         }
         readfile.close();
-    }
-    else {
+    } else {
         filelog->AllofThem();
     }
 }
 
 void
-FReadFileFunction::ReadFileFunction(fstr filename)
-{
+FReadFileFunction::ReadFileFunction(fstr filename) {
     std::string line;
     std::string path;
     path.append(command->_file_path_cd_function);
@@ -517,10 +457,8 @@ FReadFileFunction::ReadFileFunction(fstr filename)
     path.append(filename);
     //path.append(txt);
     std::ifstream readfile(path);
-    if(readfile.is_open())
-    {
-        while (std::getline(readfile, line))
-        {
+    if(readfile.is_open()) {
+        while (std::getline(readfile, line)) {
             printlnf(line.c_str());
             slashn
         }
@@ -531,9 +469,8 @@ FReadFileFunction::ReadFileFunction(fstr filename)
     }
 }
 
-func
-FReadFileFunction::ReadSettingsFunction()
-{
+void
+FReadFileFunction::ReadSettingsFunction() {
     std::string line;
     std::string fpath;
     uid_t fuid = geteuid();
@@ -544,8 +481,7 @@ FReadFileFunction::ReadSettingsFunction()
     fpath.append(".scrift_settings");
     std::ifstream readfile(fpath);
     if(readfile.is_open()) {
-    while (std::getline(readfile, line))
-    {
+    while (std::getline(readfile, line)) {
         BOLD_BLUE_COLOR
         printlnf(line.c_str());
         BLACK_COLOR
@@ -555,8 +491,7 @@ FReadFileFunction::ReadSettingsFunction()
 }
 
 void
-FReadFileFunction::ReadASCIIFunction()
-{
+FReadFileFunction::ReadASCIIFunction() {
     std::string line;
     std::string path;
     path.append(command->_file_path_cd_function);
@@ -564,16 +499,13 @@ FReadFileFunction::ReadASCIIFunction()
     path.append(".scrift_ascii");
     //path.append(txt);
     std::ifstream readfile(path);
-    if(readfile.is_open())
-    {
-        while (std::getline(readfile, line))
-        {
+    if(readfile.is_open()) {
+        while (std::getline(readfile, line)) {
       	    BOLD_BLUE_COLOR  
             printlnf(line.c_str());
             slashn
             BLACK_COLOR
         }
-
         readfile.close();
     } else {
         printerror->PrintError("Unable to open file\n");
@@ -687,8 +619,7 @@ FLSFunction::LSFunction(std::string arg) {
         printerror->PrintError("Directory not found.\n");
         return;
     }
-    while ((entryname = readdir(directory)))
-    {
+    while ((entryname = readdir(directory))) {
         stat(entryname->d_name, &filestat);
         if(entryname->d_type == DT_DIR) {// DT_DIR -> directory
             BOLD_RED_COLOR
@@ -699,49 +630,32 @@ FLSFunction::LSFunction(std::string arg) {
 	    } else {  
             	printlnf("%4s: %s\n", "[Dir]", entryname->d_name);
             }
-        } 
-        else if(strstr(entryname->d_name, "Elitefile")) 
-        {
+        }  else if(strstr(entryname->d_name, "Elitefile")) {
             BOLD_BLUE_COLOR
             printlnf("%4s: %s\n", "[Elitebuild]", entryname->d_name);
-        }
-        else if(strstr(entryname->d_name, ".scr"))
-        {
+        } else if(strstr(entryname->d_name, ".scr")) {
             BOLD_GREEN_COLOR
             printlnf("%4s: %s\n", "[Scrift]", entryname->d_name);
-        }     
-	else if(strstr(entryname->d_name, ".cpp") || strstr(entryname->d_name, ".hpp") || strstr(entryname->d_name, ".cxx") || strstr(entryname->d_name, ".hxx") || strstr(entryname->d_name, ".cc") || strstr(entryname->d_name, ".hh")) 
-	{
+        } else if(strstr(entryname->d_name, ".cpp") || strstr(entryname->d_name, ".hpp") || strstr(entryname->d_name, ".cxx") || strstr(entryname->d_name, ".hxx") || strstr(entryname->d_name, ".cc") || strstr(entryname->d_name, ".hh")) {
 	    BOLD_CYAN_COLOR
             printlnf("%4s: %s\n", "[C++]", entryname->d_name);
-	}  
-	else if(strstr(entryname->d_name, ".c") || strstr(entryname->d_name, ".h"))
-	{
+	} else if(strstr(entryname->d_name, ".c") || strstr(entryname->d_name, ".h")) {
 	    BOLD_BLUE_COLOR
             printlnf("%4s: %s\n", "[C]", entryname->d_name);		
-	}
-	else if(strstr(entryname->d_name, "CMakeLists.txt"))
-	{
+	} else if(strstr(entryname->d_name, "CMakeLists.txt")) {
 	    BOLD_MAGENTA_COLOR
             printlnf("%4s: %s\n", "[CMake]", entryname->d_name);	
-	}
-	else if(strstr(entryname->d_name, ".sh"))
-	{
+	} else if(strstr(entryname->d_name, ".sh")) {
 	    BOLD_GREEN_COLOR
             printlnf("%4s: %s\n", "[Bash]", entryname->d_name);	
 	
-	}
-	else if(strstr(entryname->d_name, ".py")) 
-	{
+	} else if(strstr(entryname->d_name, ".py")) {
 	    BOLD_BLUE_COLOR
             printlnf("%4s: %s\n", "[Python]", entryname->d_name);
-	}
-	else if(strstr(entryname->d_name, ".md")) 
-	{
+	} else if(strstr(entryname->d_name, ".md")) {
 	    BOLD_YELLOW_COLOR
             printlnf("%4s: %s\n", "[Markdown]", entryname->d_name);
-	}	
-        else {
+	} else {
             BOLD_YELLOW_COLOR
             printlnf("%4s: %s\n", "[File]", entryname->d_name);
         }
@@ -751,9 +665,8 @@ FLSFunction::LSFunction(std::string arg) {
 }
 
 
-func
-FRemoveFileFunction::DeleteFile(std::string file)
-{
+void
+FRemoveFileFunction::DeleteFile(std::string file) {
     std::string path;
     path.append(command->_file_path_cd_function);
     path.append("/");
@@ -763,8 +676,7 @@ FRemoveFileFunction::DeleteFile(std::string file)
     	BOLD_GREEN_COLOR
         printlnf("Succesfully deleted\n");
         BLACK_COLOR
-    }
-    else {
+    } else {
         BOLD_RED_COLOR
         printlnf("Error: Unable to delete file.\n");
         BLACK_COLOR
