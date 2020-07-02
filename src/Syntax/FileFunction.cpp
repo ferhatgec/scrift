@@ -29,6 +29,8 @@
 #include <Syntax/Settings.hpp>
 #include <vector>
 #include <Syntax/ASCIIFunction.hpp>
+
+// Library
 #include "../../Library/Colorized.hpp"
 
 using namespace FileFunction;
@@ -209,6 +211,7 @@ FCreateFileFunction::CreateSettingsFileFunction() {
     file << "felog_cleaner 100\n";
     file << "welcome_emoji :thinking_face:\n";
     file << "bg_color 12\n";
+    file << "ascii_art_color 34\n";
     file.close();
     } else {
     }
@@ -502,10 +505,8 @@ FReadFileFunction::ReadASCIIFunction() {
     std::ifstream readfile(path);
     if(readfile.is_open()) {
         while (std::getline(readfile, line)) {
-      	    BOLD_BLUE_COLOR  
-            printlnf(line.c_str());
+            colorized::PrintWith(colorized::Colorize(BOLD, settings->ASCIIColor()).c_str(), line.c_str());
             slashn
-            BLACK_COLOR
         }
         readfile.close();
     } else {

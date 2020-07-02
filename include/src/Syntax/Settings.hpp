@@ -79,6 +79,28 @@ public:
     	}
     }
     
+    int ASCIIColor() {
+    	std::string line;
+    	std::string ftest;
+    	std::ifstream readfile(Path());
+    	if(readfile.is_open()) {
+    		while(std::getline(readfile, line)) {
+    			if(line.rfind("ascii_art_color", 0) == 0) {
+    				if(atoi(EraseAllSubString(line, "ascii_art_color ").c_str()) <= 29) {
+    					BOLD_RED_COLOR
+    					printlnf("Please give 30 or higher value for ascii_art_color.\n");
+    					BLACK_COLOR
+    					return 34;
+    				} else {
+    					return atoi(EraseAllSubString(line, "ascii_art_color ").c_str());
+    				}
+    			} else {
+    				createfile->CreateSettingsFileFunction();
+    			} 
+    		}
+    	}
+    }
+    
     int BackgroundColor() {
     	std::string line;
     	std::string ftest;
@@ -118,6 +140,13 @@ public:
         	BackgroundColor();
         } else {
                 createfile->CreateSettingsFileFunction();
+        	return;
+        }
+        
+        if(line.rfind("ascii_art_color") == 0) {
+        	ASCIIColor();	
+        } else {
+        	createfile->CreateSettingsFileFunction();
         	return;
         }
     	}
