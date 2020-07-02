@@ -5,7 +5,6 @@
 #
 # */
 
-#include "Syntax/ASCIIFunction.hpp"
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -29,6 +28,8 @@
 #include <Syntax/Colors.hpp>
 #include <Syntax/Settings.hpp>
 #include <vector>
+#include <Syntax/ASCIIFunction.hpp>
+#include "../../Library/Colorized.hpp"
 
 using namespace FileFunction;
 FSettings *settings = new FSettings();
@@ -652,6 +653,9 @@ FLSFunction::LSFunction(std::string arg) {
 	} else if(strstr(entryname->d_name, ".py")) {
 	    BOLD_BLUE_COLOR
             printlnf("%4s: %s\n", "[Python]", entryname->d_name);
+	} else if(strstr(entryname->d_name, ".fls") || strstr(entryname->d_name, ".flsh")) {
+	    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "");
+	    printlnf("%4s: %s\n", "[FlaScript]", entryname->d_name);
 	} else if(strstr(entryname->d_name, ".md")) {
 	    BOLD_YELLOW_COLOR
             printlnf("%4s: %s\n", "[Markdown]", entryname->d_name);
