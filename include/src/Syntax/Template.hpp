@@ -38,6 +38,18 @@ public:
 	std::string HaskellTemplate() {
 		return "putStrLn \"Hello, Haskell!\"";
 	}
+	
+	std::string DartTemplate() {
+		return "main() {\nprint('Hello Dart!');\n}";
+	}
+	
+	std::string LuaTemplate() {
+		return "print(\"Hello Lua!\")";
+	}
+	
+	std::string RustTemplate() {
+		return "fn main() {\nprintln!(\"Hello Rust!\");\n}";
+	}
 };
 
 #endif // LINKER_HPP

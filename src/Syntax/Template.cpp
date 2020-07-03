@@ -36,6 +36,12 @@ FTemplate::LangTemplate() {
 		fsplusplus::CreateFile(name, PythonTemplate());
 	} else if(lang == "haskell") {
 		fsplusplus::CreateFile(name, HaskellTemplate());
+	} else if(lang == "dart") {
+		fsplusplus::CreateFile(name, DartTemplate());
+	} else if(lang == "lua") {
+		fsplusplus::CreateFile(name, LuaTemplate());
+	} else if(lang == "rust") {
+		fsplusplus::CreateFile(name, RustTemplate());
 	} else {
 		fsplusplus::CreateFile(name, "Sorry, this is not available for Scrift, Try again later... Or create pull request for Template.cpp and Template.hpp\n\nhttps://github.com/FerhatGec/scrift-lang");
 	}
