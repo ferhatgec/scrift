@@ -774,6 +774,16 @@ void InputFunction() {
     		main_function->_h_str.erase();
     		terminalstr->Terminal();
        	return;
+     } else if(main_function->_h_str == keywords.Welcome) {
+     		RemovePrintedChar(keywords.Welcome.length() - 1);
+      		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "welcome");
+      		if(getchar() == '\n') {
+      	  		 helpstr->hello();
+      	  	}
+        	history->WriteHistory(main_function->_h_str);
+         	main_function->_h_str.erase();
+         	terminalstr->Terminal();
+       	return;
      } else {
 		sign.push_back(c);
      		if(c == ARROW_UP) {

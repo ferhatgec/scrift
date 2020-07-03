@@ -236,6 +236,9 @@ public:
 	// Template
 	std::string LanguageTemplate = "template";	
 		
+	// Welcome 
+	std::string Welcome = "welcome";
+		
 	// Whitespace
 	std::string Whitespace = " ";
 };

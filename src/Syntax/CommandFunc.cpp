@@ -33,20 +33,14 @@ namespace filesys = std::experimental::filesystem;
 FKeyword keyword;
 static const char *_uname;
 
-FCommand::FCommand()
-{
-    
+FCommand::FCommand() { }
 
-}
-
-FCommand::~FCommand()
-{
+FCommand::~FCommand() {
     delete[] _home_dir, _file_path_cd_function, _uname;   
 }
 
 void 
-FCommand::remove_character(char * _str, char ptr)
-{
+FCommand::remove_character(char * _str, char ptr) {
     if(_str == NULL)
         return;
 
@@ -62,8 +56,7 @@ FCommand::remove_character(char * _str, char ptr)
 
 
 std::string
-FCommand::FName()
-{
+FCommand::FName() {
 	struct utsname buf;
 
 	if(!uname(&buf)) { //Get name and information about current kernel.
@@ -190,15 +183,13 @@ FCommand::list_file(boolean _home, std::string arg) {
 
 
 std::string 
-FCommand::chartostring(std::string const & s, fchar *a)
-{
+FCommand::chartostring(std::string const & s, fchar *a) {
     return s + a;
 }
 
 
 void
-FCommand::plus_num(uinteger64 first_num, uinteger64 sec_num)
-{
+FCommand::plus_num(uinteger64 first_num, uinteger64 sec_num) {
         printlnf("First number: ");
         std::cin >> first_num;
         printlnf("Second number ");
@@ -209,8 +200,7 @@ FCommand::plus_num(uinteger64 first_num, uinteger64 sec_num)
 
 
 void
-FCommand::_generated_hash_string(integer size)
-{
+FCommand::_generated_hash_string(integer size) {
     std::string str;
     for (integer i = 0; i < size; i++)
     {
@@ -262,8 +252,7 @@ FCommand::getIPAddress(){
 }
 
 void
-FCommand::printerror(fchar *err_str, integer8 err_number, fchar * _error_code)
-{
+FCommand::printerror(fchar *err_str, integer8 err_number, fchar * _error_code) {
         RED_COLOR
         printlnf(err_str);
         slashn 
@@ -274,8 +263,7 @@ FCommand::printerror(fchar *err_str, integer8 err_number, fchar * _error_code)
 }
 
 void
-FCommand::_n_supported_()
-{
+FCommand::_n_supported_() {
     RED_COLOR
     printerror("Your os not supported!", 10, "1_n_support \n");
     BLACK_COLOR // reset

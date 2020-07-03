@@ -12,9 +12,9 @@
 
 class FGetUsername {
 public:
-    virtual func InitUsername();
-    virtual func GetUsername();
-    virtual func InitHostname();
+    void InitUsername();
+    void GetUsername();
+    void InitHostname();
 };
 
 
@@ -22,7 +22,6 @@ class FStructure : public FGetUsername {
 public:
     FStructure();
     ~FStructure();
-    virtual func Terminal();
-    virtual func FuncKill();
+    void Terminal();
 };
 #endif // GET_NAME_FUNCTION_HPP

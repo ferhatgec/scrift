@@ -13,25 +13,14 @@
 
 FCommand *terminal = new FCommand();
 FSettings *fsettings = new FSettings();
-FStructure::FStructure()
-{
+FStructure::FStructure() { }
 
-}
-
-FStructure::~FStructure()
-{
+FStructure::~FStructure() {
     delete terminal;
 }
 
 void
-FStructure::FuncKill()
-{
-
-}
- 
-void
-FGetUsername::InitUsername()
-{
+FGetUsername::InitUsername() {
     #ifdef __linux__ 
     uid_t uid = geteuid();
     struct passwd *password = getpwuid(uid);
@@ -45,14 +34,12 @@ FGetUsername::InitUsername()
 }
 
 void
-FGetUsername::GetUsername()
-{
+FGetUsername::GetUsername() {
     InitUsername();
 }
 
 void 
-FGetUsername::InitHostname()
-{
+FGetUsername::InitHostname() {
     fchar hostname_buffer[256];
     struct hostent *hostname_entry;
     integer hostname;
