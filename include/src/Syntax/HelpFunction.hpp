@@ -7,8 +7,13 @@
 
 #ifndef HELP_FUNCTION_HPP
 #define HELP_FUNCTION_HPP
+
 #include "CommandFunc.h"
 #include "Colors.hpp"
+
+// Library
+#include "../../../Library/Colorized.hpp"
+
 typest {
 public:
     virtual func help() {
@@ -69,26 +74,17 @@ public:
         BLACK_COLOR
     }
     virtual func hello() {
-        BOLD_BLUE_COLOR
-        printlnf("Welcome to ");
-        BOLD_GREEN_COLOR
-        printlnf("Fegeya ");
-        BOLD_BLUE_COLOR
-        printlnf("Scrift");
-        BOLD_CYAN_COLOR
-        printlnf(" Terminal\n");
-        BOLD_GREEN_COLOR
-        printlnf("Fegeya ");
-        BOLD_BLUE_COLOR
-        printlnf("Scrift ");
-        BOLD_YELLOW_COLOR
-        printlnf("licensed with");
-        BOLD_RED_COLOR
-        printlnf(" MIT License\n");
-        BOLD_MAGENTA_COLOR
-        printlnf("Copyright (c) 2020");
-        BOLD_CYAN_COLOR
-        printlnf(" Ferhat Gecdogan\n");
+    	colorized::PrintWhReset(colorized::Colorize(BOLD, BLUE).c_str(), "Welcome to ");
+        colorized::PrintWhReset(colorized::Colorize(BOLD, GREEN).c_str(), "Fegeya ");
+        colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "Scrift ");
+        colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), "Terminal \n");
+        colorized::PrintWhReset(colorized::Colorize(BOLD, GREEN).c_str(), "Fegeya ");
+	colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "Scrift ");
+	colorized::PrintWhReset(colorized::Colorize(BOLD, YELLOW).c_str(), "licensed with ");
+        colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_GREEN).c_str(), "MIT License \n");
+        colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "Copyright (c)");
+        colorized::PrintWhReset(colorized::Colorize(BOLD, MAGENTA).c_str(), " 2020 ");
+        colorized::PrintWhReset(colorized::Colorize(BOLD, YELLOW).c_str(), "Ferhat Gecdogan\n");
         BLACK_COLOR
     }
 

@@ -23,15 +23,15 @@
 #define BLUE 34
 #define MAGENTA 35
 #define CYAN 36
-#define LIGHT_GRAY 37
-#define DARK_GRAY 90
+#define WHITE 37
+#define LIGHT_BLACK 90
 #define LIGHT_RED 91
 #define LIGHT_GREEN 92
 #define LIGHT_YELLOW 93
 #define LIGHT_BLUE 94
 #define LIGHT_MAGENTA 95
 #define LIGHT_CYAN 96
-#define WHITE 97
+#define LIGHT_WHITE 97
 
 // Default Foreground Color Definitions
 #define FDEFAULT 49
@@ -107,16 +107,9 @@
 #define WBOLD_CYAN_COLOR "\033[1;36m"
 #define WWHITE_COLOR "\033[1;37m"
 
-// Sign
-#define Semicolon ";"
-#define Mark "m"
-#define Template "\033["
-
-static std::string Markstr(Mark);
-static std::string Semicolonstr(Semicolon);
-static std::string Templatestr(Template);
-
-
+static std::string Markstr("m");
+static std::string Semicolonstr(";");
+static std::string Templatestr("\033[");
 
 // Reset (BLACK)
 #define WBLACK_COLOR "\033[0m"

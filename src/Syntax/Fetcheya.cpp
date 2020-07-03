@@ -56,8 +56,8 @@ public:
 		colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), "███");
 		colorized::PrintWith(colorized::Colorize(BOLD, MAGENTA).c_str(), "███");
 		colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(), "███");
-		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_GRAY).c_str(), "███\n");
-		colorized::PrintWith(colorized::Colorize(BOLD, DARK_GRAY).c_str(), "███");
+		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLACK).c_str(), "███\n");
+		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLACK).c_str(), "███");
 		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "███");
 		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_GREEN).c_str(), "███");
 		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "███");
@@ -228,9 +228,9 @@ int main() {
 	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), "@");  
 	colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), (systemInfo.getHostname() + " \n").c_str());
 	for(int i = 0; i != systemInfo.getUserHostLength() + 1; i++) {
-		colorized::PrintWith(colorized::Colorize(BOLD, DARK_GRAY).c_str(), "▂");
+		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLACK).c_str(), "▂");
 		/*if(BLACK + i >= LIGHT_GRAY) {  
-			if(DARK_GRAY + a > WHITE) {
+			if(LIGHT_BLACK + a > WHITE) {
 				a = 0;
 				colorized::PrintWith(colorized::Colorize(BOLD, BLACK + a).c_str(), (underline + "").c_str()); 	
 				control = true;
@@ -238,7 +238,7 @@ int main() {
 					break;
 				}
 			} else {
-				colorized::PrintWith(colorized::Colorize(BOLD, DARK_GRAY + a).c_str(), (underline + "").c_str()); 
+				colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLACK + a).c_str(), (underline + "").c_str()); 
 				a++;
 			}
 		} else {
