@@ -45,6 +45,7 @@ public:
             printlnf("username : Shows your username\n"
             "castle : Play Scrift's Castle Game!\n"
             "gitlink : Shows GitHub link.\n"
+            "welcome : Shows Welcome message\n"
             "contr: Shows contributors\n"
             "fscrift <file> : Interprets <file>.scr\n"
             "clear_log : Clear your FeLog\n"
