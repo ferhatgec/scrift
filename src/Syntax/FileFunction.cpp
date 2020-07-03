@@ -498,7 +498,10 @@ void
 FReadFileFunction::ReadASCIIFunction() {
     std::string line;
     std::string path;
-    path.append(command->_file_path_cd_function);
+    uid_t fuid = geteuid();
+    struct passwd *pass = getpwuid(fuid);
+    path.append("/home/");
+    path.append(pass->pw_name); // Your username
     path.append("/");
     path.append(".scrift_ascii");
     //path.append(txt);

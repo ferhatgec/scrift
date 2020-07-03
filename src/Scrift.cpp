@@ -891,10 +891,12 @@ integer main(integer argc, char** argv) {
     logsystem->AllofThem();
     asciifunction *ascii = new asciifunction;
     ascii->Allofthem();
+    uid_t fuid = geteuid();
+    struct passwd *pass = getpwuid(fuid);
     BOLD_MAGENTA_COLOR
     printlnf("Welcome ");
     BOLD_CYAN_COLOR
-    printlnf(getenv("USER"));
+    printlnf(pass->pw_name);
     BOLD_BLUE_COLOR
     std::cout << " " << emojiplusplus::EmojiString(runsyntax->FWelcomeEmoji()) << "\n";
     BLACK_COLOR
