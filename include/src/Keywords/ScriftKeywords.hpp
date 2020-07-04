@@ -239,6 +239,9 @@ public:
 	// Welcome 
 	std::string Welcome = "welcome";
 		
+	// Uptime
+	std::string Uptime = "uptime";
+	
 	// Whitespace
 	std::string Whitespace = " ";
 };

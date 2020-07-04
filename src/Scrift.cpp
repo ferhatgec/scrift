@@ -16,6 +16,7 @@
 #include <stdlib.h>
 #include <dirent.h>
 #include <sys/types.h>
+#include <sys/sysinfo.h>
 #include <dirent.h>
 #include <sys/stat.h>
 #include <unistd.h>
@@ -262,6 +263,38 @@ void textbackground(int color) {
 	printf ("%c[%dm", ESC, 40+color);
 }
 
+std::string GetUptime() {
+	double uptime, uptimeMinutes, uptimeHour, uptimeDay;
+	int initialUptime, uptimeMinutesWhole, uptimeHourWhole, uptimeDayWhole;
+	std::string uptimeString;
+	std::stringstream uptimeStream;
+	struct sysinfo info;
+	sysinfo(&info);
+	uptime = info.uptime;
+	if(uptime/60 >= 60) {
+		uptimeHour = (uptime/60)/60;
+		uptimeHourWhole = uptimeHour;
+		uptimeMinutes = uptimeHour - uptimeHourWhole;
+		uptimeMinutesWhole = uptimeMinutes * 60;
+		if(uptimeHour >= 24) {
+			uptimeDay = uptimeHour/24;
+			uptimeDayWhole = uptimeDay;
+			uptimeHour = uptimeDay - uptimeDayWhole;
+			uptimeHour = uptimeHour * 24;
+			uptimeHourWhole = uptimeHour;
+			uptimeStream << uptimeDayWhole << "d " << uptimeHourWhole << "h " << uptimeMinutesWhole << "m";
+		} else {
+			uptimeStream << WBOLD_LIGHT_CYAN_COLOR << uptimeHourWhole << WBOLD_CYAN_COLOR << "h " << WBOLD_LIGHT_MAGENTA_COLOR << uptimeMinutesWhole << WBOLD_MAGENTA_COLOR << "m" << WBLACK_COLOR;
+		}
+	} else {
+		uptimeMinutes = uptime/60;
+		uptimeMinutesWhole = uptimeMinutes;
+		uptimeStream << uptimeMinutesWhole << "m";
+	}
+	uptimeString = uptimeStream.str();
+	return uptimeString;
+}
+
 
 void InputFunction() {
 	textbackground(runsyntax->BackgroundColor());
@@ -423,6 +456,23 @@ void InputFunction() {
         	main_function->_h_str.erase();
         	terminalstr->Terminal(); 
         	return;
+    	} else if(main_function->_h_str == keywords.Uptime) {
+    		RemovePrintedChar(keywords.Uptime.length() - 1);
+    		if(runsyntax->Theme() == "default") {
+    			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "uptime");
+		} else if(runsyntax->Theme() == "classic") {
+			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "uptime");
+		} else {
+			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "uptime");
+		}
+		if(getchar() == '\n') {
+			colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), (GetUptime() + "\n").c_str());
+		} 
+		
+		history->WriteHistory(main_function->_h_str);
+		main_function->_h_str.erase();
+		terminalstr->Terminal();
+		return;
     	} else if(main_function->_h_str == keywords.GitLink) {
       		RemovePrintedChar(keywords.GitLink.length() - 1);
       		if(runsyntax->Theme() == "default")  {
