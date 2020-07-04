@@ -9,17 +9,19 @@
 # Features 
 - User-friendly shell interface.
 - Color highlighter
+- Theme option (Classic, Default and more.)
 - Auto-Whitespace
 - Auto-Completer (not ended)
 - Customizable
 - Faster than other shell (e.g. Bash)
-- Own Emoji library (see [Emoji++](https://github.com/FerhatGec/emojiplusplus)) :airplane:
-- Colorized! :satisfied:
-- Log system (FeLog) :open_mouth:
-- Scrift based system information tool (Fetcheya) :open_mouth:
-- Scrift based Text Editor (Edifor) :open_mouth:
-- ASCII Art :open_mouth:
+- Integrated Own Emoji library (see [Emoji++](https://github.com/FerhatGec/emojiplusplus)) :airplane:
+- Integrated Own Color library (see [Colorized](https://github.com/FerhatGec/colorized)) :satisfied:
+- Integrated Log system (FeLog) :open_mouth:
+- Integrated Scrift based system information tool (Fetcheya) :open_mouth:
+- Integrated Scrift based Text Editor (Edifor) :open_mouth:
+- ASCII Art (with Color option) :open_mouth:
 - History 
+- Template for programming language
 - Welcome message 
 - Scripting language :open_mouth:
 - Calendar 
@@ -29,6 +31,7 @@
 - Auto-clear
 - Own Interpreter.
 - Randomize String generator (rstr)
+- And more!
 
 # How to build and run in Linux?
 
