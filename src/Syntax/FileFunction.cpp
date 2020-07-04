@@ -212,6 +212,7 @@ FCreateFileFunction::CreateSettingsFileFunction() {
     file << "welcome_emoji :thinking_face:\n";
     file << "bg_color 12\n";
     file << "ascii_art_color 34\n";
+    file << "scrift_theme default\n";
     file.close();
     } else {
     }

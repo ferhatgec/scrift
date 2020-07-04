@@ -88,7 +88,7 @@ public:
     			if(line.rfind("ascii_art_color", 0) == 0) {
     				if(atoi(EraseAllSubString(line, "ascii_art_color ").c_str()) <= 29) {
     					BOLD_RED_COLOR
-    					printlnf("Please give 30 or higher value for ascii_art_color.\n");
+    					printlnf("Give 30 or higher value for ascii_art_color.\n");
     					BLACK_COLOR
     					return 34;
     				} else {
@@ -107,8 +107,29 @@ public:
     	std::ifstream readfile(Path());
     	if(readfile.is_open()) {
     		while(std::getline(readfile, line)) {
-    			if(line.rfind("bg_color", 0) == 0) {
+    			if(line.rfind("bg_color") == 0) {
     					return atoi(EraseAllSubString(line, "bg_color ").c_str());
+    			} else {
+    				createfile->CreateSettingsFileFunction();
+    			} 
+    		}
+    	}
+    }
+    
+    std::string Theme() {
+    	std::string line;
+    	std::string ftest;
+    	std::ifstream readfile(Path());
+    	if(readfile.is_open()) {
+    		while(std::getline(readfile, line)) {
+    			if(line.rfind("scrift_theme", 4) == 0) {
+    				if(EraseAllSubString(line, "scrift_theme ") == "default") {
+    					return "default";	
+    				} else if(EraseAllSubString(line, "scrift_theme ") == "classic") {
+    					return "classic";
+    				} else {
+    					return "default";
+    				}
     			} else {
     				createfile->CreateSettingsFileFunction();
     			} 
@@ -129,7 +150,7 @@ public:
         	return;
         }
         
-        if(line.rfind("welcome_emoji", 0) == 0) {
+        if(line.rfind("welcome_emoji") == 0) {
         	FWelcomeEmoji();
         } else {
         	createfile->CreateSettingsFileFunction();
