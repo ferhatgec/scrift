@@ -1,5 +1,5 @@
 /* MIT License
-#
+# Forked from https://github.com/FerhatGec/colorized
 # Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
 # Distributed under the terms of the MIT License.
 #
