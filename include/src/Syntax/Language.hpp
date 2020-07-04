@@ -29,15 +29,13 @@ public:
 
     std::string EraseAllSubString(std::string & mainString, const std::string & erase) {
     size_t pos = std::string::npos;
-    while((pos = mainString.find(erase)) != std::string::npos)
-    {
+    while((pos = mainString.find(erase)) != std::string::npos) {
         mainString.erase(pos, erase.length());
     }
     return mainString;
     }
 
-    virtual func ReadFunc(std::string filename)
-    {
+    virtual func ReadFunc(std::string filename) {
     std::string line;
     
     // For Float function
@@ -61,8 +59,7 @@ public:
     
     if(readfile.is_open()) {
 
-    while (std::getline(readfile, line))
-    {
+    while (std::getline(readfile, line)) {
         if(line.find(keyword.PrintSlashn, 0) == 0) {
             slashn
         }

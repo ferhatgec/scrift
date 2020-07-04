@@ -741,7 +741,7 @@ void InputFunction() {
         	main_function->_h_str.erase();
         	terminalstr->Terminal(); 
         	return;  
-       }  else if(main_function->_h_str.rfind(keywords.Find, 0) == 0) {
+       } else if(main_function->_h_str.rfind(keywords.Find, 0) == 0) {
           	RemovePrintedChar(keywords.Find.length() - 1);
    		FFindFileFunction *find = new FFindFileFunction();
    		if(runsyntax->Theme() == "default")  {
