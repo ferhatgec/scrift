@@ -57,6 +57,7 @@ public:
             "emoji : Shows your inputted emoji (e.g: :thinking_face:)\n"
             "version : Shows version and license\n"
             "now : Shows time.\n"
+			"uptime : Shows uptime.\n"
             "template : Creates a language example. (Hello Language)\n"
             "[If your default shell is Scrift] fdate : Shows calendar\n"
             "readtext <file> : Reads <file>\n"
