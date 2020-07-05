@@ -242,6 +242,9 @@ public:
 	// Uptime
 	std::string Uptime = "uptime";
 	
+	// My ASCII Art
+	std::string MyASCIIArt = "asciiart";
+	
 	// Whitespace
 	std::string Whitespace = " ";
 };

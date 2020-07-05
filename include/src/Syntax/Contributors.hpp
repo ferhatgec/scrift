@@ -25,8 +25,6 @@ func
 FContributors::ShellContributors() {
     BOLD_GREEN_COLOR
     printlnf("Scrift Contributors:\n");
-    BOLD_RED_COLOR
-    printlnf("I don't know but If you're supported Scrift with Shell codes, please add your name.\n");
     BLACK_COLOR
 }
 
@@ -34,8 +32,6 @@ func
 FContributors::FeedbackContributors() {
     BOLD_GREEN_COLOR
     printlnf("Feedback Contributors:\n");
-    BOLD_RED_COLOR
-    printlnf("I don't know but If you're supported Scrift with Feedback, please add your name.\n");
     BLACK_COLOR
 }
 
@@ -43,8 +39,6 @@ func
 FContributors::TestingContributors() {
     BOLD_GREEN_COLOR
     printlnf("Testing Contributors:\n");
-    BOLD_RED_COLOR
-    printlnf("I don't know but If you're supported Scrift with Testing, please add your name.\n");
     BLACK_COLOR
 }
 
@@ -52,17 +46,13 @@ func
 FContributors::DonateContributors() {
     BOLD_GREEN_COLOR
     printlnf("Donate Contributors:\n");
-    BOLD_RED_COLOR
-    printlnf("I don't know but If you're supported Scrift with Donate, please add your name.\n");
     BLACK_COLOR
 }
 
 func
 FContributors::Sponsors() {
     BOLD_GREEN_COLOR
-    printlnf("Sponsors:\n");
-    BOLD_RED_COLOR
-    printlnf("I don't know but If you're supported Scrift with Sponsors, please add your name.\n");
+    printlnf("Sponsors:");
     BLACK_COLOR
 }
 

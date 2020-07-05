@@ -1065,6 +1065,21 @@ void InputFunction() {
          	main_function->_h_str.erase();
          	terminalstr->Terminal();
        	return;
+     } else if(main_function->_h_str == keywords.MyASCIIArt) {
+     		RemovePrintedChar(keywords.MyASCIIArt.length() - 1);
+     		if(runsyntax->Theme() == "default") {
+     			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), "asciiart");
+     		} else if(runsyntax->Theme() == "classic") {
+     			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "asciiart");
+     		} else {
+     			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), "asciiart");
+     		}
+     		if(getchar() == '\n') {
+     			readfilefunction->ReadASCIIFunction();
+     		}
+     		main_function->_h_str.erase();
+     		terminalstr->Terminal();
+     		return;
      } else if(main_function->_h_str == keywords.Username) {
 		RemovePrintedChar(keywords.Username.length() - 1);
 		if(runsyntax->Theme() == "default")  {
