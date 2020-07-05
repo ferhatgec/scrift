@@ -69,6 +69,19 @@ output:
     <username>@<hostname>:~/home/<username> $#
 ```
 
+## With Environment Value
+```
+input:
+     <username>@<hostname>:~/home/<username> $# setname path
+     <username>@<hostname>:~/home/<username> $# setto Desktop
+     <username>@<hostname>:~/home/<username> $# fls #path
+
+output:
+    [File]: ScriftVersionBanner.png
+    [File]: Beethoven.jpg
+    <username>@<hostname>:~/home/<username> $#
+```
+
 # List Directory Command
 
 
@@ -92,6 +105,28 @@ output:
     Dir: vscode
     Dir: thunderbird
     Dir: local
+    <username>@<hostname>:~/home/<username> $#
+```
+
+## With Environment Value
+```
+input:
+     <username>@<hostname>:~/home/<username> $# setname path
+     <username>@<hostname>:~/home/<username> $# setto Desktop
+     <username>@<hostname>:~/home/<username> $# dls #path
+
+output:
+    [Dir]: gocolorized
+    [Dir]: scrift-lang
+    [Dir]: goscrift
+    [Dir]: flascript
+    [Dir]: colorized
+    [Dir]: easygit
+    [Dir]: fsplusplus
+    [Dir]: fegeya-icons
+    [Dir]: inputplusplus
+    [Dir]: gotree
+    [Dir]: fetcheya
     <username>@<hostname>:~/home/<username> $#
 ```
 
