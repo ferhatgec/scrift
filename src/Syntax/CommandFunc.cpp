@@ -75,18 +75,15 @@ FCommand::FName() {
 void
 FCommand::echo_printlnf(std::string name) { 
     FLanguage lang;
-    if(name != "")
-    {
+    if(name != "") {
         WHITE_COLOR
         if(name.rfind("#USER") == 0) {        
             keyword.EndWithUser();
-        } 
-        else if(name.rfind("#PATH") == 0) {
+        } else if(name.rfind("#PATH") == 0) {
             keyword.EndWithPath();
         } else if(name.rfind("#") == 0) {
         	printlnf(getenv(lang.EraseAllSubString(name, "#").c_str()));
-        }
-        else {
+        } else {
         	std::cout << emojiplusplus::EmojiString(name);
         }
         BLACK_COLOR

@@ -638,9 +638,9 @@ void InputFunction() {
         	logsystem->WriteLog("Launching printlnf function.. - ");
         	RemovePrintedChar(keywords.Printlnf.length() - 1);
         	if(runsyntax->Theme() == "default")  {
-        		std::cout << WBOLD_YELLOW_COLOR << "now" << WBLACK_COLOR;
+        		std::cout << WBOLD_YELLOW_COLOR << "printlnf " << WBLACK_COLOR;
        	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "now");
+       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "printlnf ");
        	} else {
 			std::cout << WBOLD_BLUE_COLOR << "printlnf " << WBLACK_COLOR;
         	}

@@ -22,7 +22,7 @@ public:
     integer linenumber;
     std::string WelcomeEmoji = ":thinking_face:";
     
-    std::string EraseAllSubString(std::string & mainString, const std::string & erase) {
+    static std::string EraseAllSubString(std::string & mainString, const std::string & erase) {
     	size_t pos = std::string::npos;
    	while((pos = mainString.find(erase)) != std::string::npos)
     	{

@@ -90,19 +90,38 @@ FCDFunction::CDFunctionInit(std::string name) {
     // or std::getline
     if(name != "") {
         if(fmain->_home != true) {
-            std::string path;
-            path.append(command->_file_path_cd_function);
-            path.append("/");
-            path.append(name);
-            if(FileExists(path) == true) {
-                std::strcat(command->_file_path_cd_function, "/");
-                std::strcat(command->_file_path_cd_function, name.c_str());
-                chdir(name.c_str());
-                pathnamef = name;
-            } else {
-                printerror->PrintError("This directory is not exist!");
-                slashn
-                return;
+	    if(name.rfind("#") == 0) {
+	    	name = settings->EraseAllSubString(name, "#");
+	    	std::string new_name(getenv(name.c_str()));
+	    	std::string path;
+            	path.append(command->_file_path_cd_function);
+            	path.append("/");
+            	path.append(new_name);
+            	if(FileExists(path) == true) {
+            	    std::strcat(command->_file_path_cd_function, "/");
+            	    std::strcat(command->_file_path_cd_function, new_name.c_str());
+            	    chdir(new_name.c_str());
+            	    pathnamef = new_name;
+            	} else {
+            	    printerror->PrintError("This directory is not exist!");
+            	    slashn
+            	    return;
+            	}
+	    } else {
+                std::string path;
+            	path.append(command->_file_path_cd_function);
+            	path.append("/");
+            	path.append(name);
+            	if(FileExists(path) == true) {
+            	    std::strcat(command->_file_path_cd_function, "/");
+            	    std::strcat(command->_file_path_cd_function, name.c_str());
+            	    chdir(name.c_str());
+            	    pathnamef = name;
+            	} else {
+            	    printerror->PrintError("This directory is not exist!");
+            	    slashn
+            	    return;
+            	}
             }
         }
     }
