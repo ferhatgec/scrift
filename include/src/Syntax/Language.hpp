@@ -35,7 +35,11 @@ public:
     return mainString;
     }
 
-    virtual func ReadFunc(std::string filename) {
+    void ReadFunc(std::string filename) {
+    if(filename.rfind("#") == 0) {
+    	std::string new_name(getenv(EraseAllSubString(filename, "#").c_str()));
+    	filename = new_name;
+    }
     std::string line;
     
     // For Float function
