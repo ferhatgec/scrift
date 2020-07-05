@@ -116,12 +116,12 @@ FCommand::list_direc(boolean _home, std::string arg) {
     		dir = opendir((getenv("HOME"), "/", command->_file_path_cd_function, "/", new_name.c_str()));
 	} else {
         	if(_home != false) {dir = opendir((getenv("HOME"), "/", _file_path_cd_function, arg.c_str())); /*For Linux and *nix*/
-        	} else if(_home == false || _home == NULL) {
+        	} else if(_home == false) {
         	    dir = opendir(getenv("HOME"));
         	}
         }
         if (dir == NULL) {
-            printerror("ERR:DIRECTORY NOT FOUND", 12, "ERR:DIRNFND");
+            printlnf("Directory not found.");
             return;
         }
         while ((entry = readdir(dir))) {

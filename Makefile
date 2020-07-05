@@ -21,12 +21,12 @@ CFLAGS = -c -Wall -I$(INCLUDEDIR)
 GCC = gcc
 GPP = g++
 COMP = g++ -c
-HECOMP = g++ -c $< -std=gnu++17 -o
+HECOMP = g++ -c -Wall $< -std=gnu++17 -o
 
 # CLEAN
 CLEANALL = scrift /Games/Castle/castle
 CLEAN = *.o
-HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o RunFunction.o Linker.o \
+HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o RunFunction.o \
 Log.o History.o Template.o Configuration.o
 
 ifeq ($(OS),Windows_NT)

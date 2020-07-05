@@ -59,17 +59,6 @@ FCDFunction::FCDFunction() {
 }
 
 
-
-FCDFunction::~FCDFunction() {
-    delete fmain, 
-    printerror,
-    command,
-    ascii, 
-    filelog, 
-    settings;
-}
-
-
 bool
 FCDFunction::FileExists(const std::string &Filename) {
     return access(Filename.c_str(), 0 ) == 0;
@@ -161,13 +150,6 @@ FMKDirFunction::MKDirFunctionInit(std::string name) {
 FCreateFileFunction::FCreateFileFunction() {
     file_name = new fchar;
     file_directory = new fchar;
-}
-
-FCreateFileFunction::~FCreateFileFunction() {
-     delete file_path, 
-     file_name, 
-     file_directory_string, 
-     file_directory;
 }
 
 void
@@ -716,3 +698,21 @@ FRemoveFileFunction::DeleteFile(std::string file) {
         BLACK_COLOR
     }
 }
+
+
+FCreateFileFunction::~FCreateFileFunction() {
+     delete file_path, 
+     file_name, 
+     file_directory_string, 
+     file_directory;
+}
+
+FCDFunction::~FCDFunction() {
+    delete fmain, 
+    printerror,
+    command,
+    ascii, 
+    filelog, 
+    settings;
+}
+

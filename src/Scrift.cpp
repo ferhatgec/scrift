@@ -5,10 +5,6 @@
 #
 # */
 
-#define _DEFAULT_SOURCE
-#define _BSD_SOURCE
-#define _GNU_SOURCE
-
 #include <sstream>
 #include <ctype.h>
 #include <fstream>
@@ -41,7 +37,6 @@
 #include "../include/src/Syntax/CommandFunc.h"
 #include "../include/src/Scrift.hpp"
 #include "../include/src/Keywords/ScriftKeywords.hpp"
-#include "../include/src/Syntax/Linker.hpp"
 #include "../include/src/synflang.hpp"
 #include "../include/src/Syntax/Log.hpp"
 #include "../include/src/Syntax/FileFunction.hpp"
@@ -54,7 +49,6 @@
 #include "../include/src/Syntax/ASCIIFunction.hpp"
 #include "../include/src/Syntax/DeveloperMode.hpp"
 #include "../include/src/Syntax/Contributors.hpp"
-#include "../include/src/Syntax/Colors.hpp"
 #include "../include/src/Syntax/Settings.hpp"
 #include "../include/src/Syntax/Language.hpp"
 #include "../include/src/Syntax/History.hpp"
@@ -69,7 +63,6 @@
 
 // Variables
 using namespace FileFunction;
-using namespace FLinker;
 
 const std::string compilation_date = __DATE__;
 const std::string compilation_time = __TIME__;
@@ -82,7 +75,6 @@ static std::string SetNameToString;
 static std::string SetNameString;
 
 FContributors *contributors_lists = new FContributors();
-FDeveloperMode *developermode = new FDeveloperMode();
 FMain *main_function = new FMain();
 FCommand *main_ = new FCommand();
 fhelp *helpstr = new fhelp;
@@ -97,7 +89,6 @@ FLSFunction *listdirectoryfunction = new FLSFunction();
 FRunFunction *runfunction = new FRunFunction();
 FReadFileFunction *readfilefunction = new FReadFileFunction();
 faddtextfunction *fileaddtextfunction = new faddtextfunction;
-FLinkerAndSign *linkersign = new FLinkerAndSign();
 FeLog *logsystem = new FeLog();
 FRemoveFileFunction *removefile = new FRemoveFileFunction();
 FClearFileFunction *clearfile = new FClearFileFunction();
@@ -131,9 +122,7 @@ FMain::~FMain() {
     runfunction,
     readfilefunction,
     fileaddtextfunction,
-    linkersign,
     removefile,
-    developermode,
     contributors_lists,
     clearfile,
     runsyntax,

@@ -24,10 +24,6 @@ FHistory::FHistory() {
 
 }
 
-FHistory::~FHistory() {
-    delete loghistory, historyfile, filepath_history;
-}
-
 func
 FHistory::ClearHistory() {
     std::string path;
@@ -80,8 +76,7 @@ FHistory::WriteHistory(fstr filepathw) {
 
 
 func
-FHistory::CreateFile()
-{   
+FHistory::CreateFile() {   
     std::string path;
     uid_t uid = geteuid();
     struct passwd *password = getpwuid(uid);
@@ -97,22 +92,19 @@ FHistory::CreateFile()
 }   
 
 func 
-FHistory::InitFile() 
-{
+FHistory::InitFile() {
 
 }
 
 boolean
-FHistory::IsExist()
-{
+FHistory::IsExist() {
     struct stat buffer;
     return (stat(filepath_history.c_str(), &buffer) == 0);
 }
 
 
 func 
-FHistory::AllofThem()
-{
+FHistory::AllofThem() {
     if(IsExist() != true) {
     CreateFile();
     }
@@ -121,3 +113,9 @@ FHistory::AllofThem()
         loghistory->WriteLog("FHistory file is exists! - ");
     }
 }
+
+
+FHistory::~FHistory() {
+    delete loghistory, historyfile, filepath_history;
+}
+

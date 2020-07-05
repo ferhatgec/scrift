@@ -9,8 +9,6 @@
 #define HELP_FUNCTION_HPP
 
 #include "CommandFunc.h"
-#include "Colors.hpp"
-
 // Library
 #include "../../../Library/Colorized.hpp"
 
@@ -18,7 +16,7 @@ typest {
 public:
     virtual func help() {
         BOLD_GREEN_COLOR
-        printlnf("Scrift Functions && Arguments\n\n");
+            printlnf("Scrift Functions && Arguments\n\n");
             BOLD_GREEN_COLOR
             printlnf("printlnf <arg> (e.g. : #USER, #PATH, Environment) : Shows <arg> \n");
             BOLD_RED_COLOR
