@@ -83,8 +83,14 @@ FCDFunction::CDFunctionInit(std::string name) {
 	    	name = settings->EraseAllSubString(name, "#");
 	    	std::string new_name(getenv(name.c_str()));
 	    	if(new_name.rfind("/") == 0) {
-           		std::strcpy(command->_file_path_cd_function, new_name.c_str());
-	    		chdir(new_name.c_str());
+	    		if(FileExists(new_name) == true) {
+            		    std::strcpy(command->_file_path_cd_function, new_name.c_str());
+	    		    chdir(new_name.c_str());
+            		} else {
+            		    printerror->PrintError("This directory is not exist!");
+            		    slashn
+            		    return;
+            		}
            	} else {
 	    		std::string path;
             		path.append(command->_file_path_cd_function);
@@ -103,8 +109,14 @@ FCDFunction::CDFunctionInit(std::string name) {
             	}
 	    } else {
 	    	if(name.rfind("/") == 0) {
-	    		std::strcpy(command->_file_path_cd_function, name.c_str());
-	    		chdir(name.c_str());
+	    		if(FileExists(name) == true) {
+	    		    std::strcpy(command->_file_path_cd_function, name.c_str());
+	    		    chdir(name.c_str());
+            		} else {
+            		    printerror->PrintError("This directory is not exist!");
+            		    slashn
+            		}
+            		return;
 	    	} else {
 		std::string path;
 	    	if(command->_file_path_cd_function == "/") {
