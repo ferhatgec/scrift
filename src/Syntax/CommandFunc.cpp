@@ -33,7 +33,7 @@
 namespace filesys = std::experimental::filesystem;
 static FKeyword keyword;
 static FSettings settings;
-static FCommand command;
+static FCommand *command;
 
 static const char *_uname;
 
@@ -113,7 +113,7 @@ FCommand::list_direc(boolean _home, std::string arg) {
 	if(_home != false && arg.rfind("#") == 0) {
 		arg = settings.EraseAllSubString(arg, "#");
     		std::string new_name(getenv(arg.c_str()));
-    		dir = opendir((getenv("HOME"), "/", command._file_path_cd_function, "/", new_name.c_str()));
+    		dir = opendir((getenv("HOME"), "/", command->_file_path_cd_function, "/", new_name.c_str()));
 	} else {
         	if(_home != false) {dir = opendir((getenv("HOME"), "/", _file_path_cd_function, arg.c_str())); /*For Linux and *nix*/
         	} else if(_home == false || _home == NULL) {
@@ -152,7 +152,7 @@ FCommand::list_file(boolean _home, std::string arg) {
 	if(_home != false && arg.rfind("#") == 0) {
 		arg = settings.EraseAllSubString(arg, "#");
     		std::string new_name(getenv(arg.c_str()));
-    		dir = opendir((getenv("HOME"), "/", command._file_path_cd_function, "/", new_name.c_str()));
+    		dir = opendir((getenv("HOME"), "/", command->_file_path_cd_function, "/", new_name.c_str()));
 	} else {
         	if(_home != false) {dir = opendir((getenv("HOME"), "/", _file_path_cd_function, arg.c_str())); /*For Linux and *nix*/
         	} else if(_home == false || _home == NULL) {
