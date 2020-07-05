@@ -34,7 +34,7 @@ public:
             "fls : List only files\n"
             "dls : List only folders\n"
             "ls : List folders and files\n"
-            "fr <folder> : Going to <folder>\n"
+            "fr <folder> : Going to <folder> or environment value (#<env>)\n"
             "mkdir <foldername> : Creates a folder\n"
             "ffind <value> : Finds files and directories in path\n"
             "rmvfile <folder or file> : Removes folder or file in path\n"
