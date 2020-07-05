@@ -82,34 +82,53 @@ FCDFunction::CDFunctionInit(std::string name) {
 	    if(name.rfind("#") == 0) {
 	    	name = settings->EraseAllSubString(name, "#");
 	    	std::string new_name(getenv(name.c_str()));
-	    	std::string path;
-            	path.append(command->_file_path_cd_function);
-            	path.append("/");
-            	path.append(new_name);
+	    	if(new_name.rfind("/") == 0) {
+           		std::strcpy(command->_file_path_cd_function, new_name.c_str());
+	    		chdir(new_name.c_str());
+           	} else {
+	    		std::string path;
+            		path.append(command->_file_path_cd_function);
+            		path.append("/");
+            		path.append(new_name);
+            		if(FileExists(path) == true) {
+            		    std::strcat(command->_file_path_cd_function, "/");
+            		    std::strcat(command->_file_path_cd_function, new_name.c_str());
+            		    chdir(new_name.c_str());
+            		    pathnamef = new_name;
+            		} else {
+            		    printerror->PrintError("This directory is not exist!");
+            		    slashn
+            		    return;
+            		}
+            	}
+	    } else {
+	    	if(name.rfind("/") == 0) {
+	    		std::strcpy(command->_file_path_cd_function, name.c_str());
+	    		chdir(name.c_str());
+	    	} else {
+		std::string path;
+	    	if(command->_file_path_cd_function == "/") {
+			path.append(command->_file_path_cd_function);
+			path.append(name);				    		
+		} else {
+            		path.append(command->_file_path_cd_function);
+            		path.append("/");
+            		path.append(name);
+            	}
             	if(FileExists(path) == true) {
-            	    std::strcat(command->_file_path_cd_function, "/");
-            	    std::strcat(command->_file_path_cd_function, new_name.c_str());
-            	    chdir(new_name.c_str());
-            	    pathnamef = new_name;
-            	} else {
+            	    std::string path;
+	    	    if(command->_file_path_cd_function == "/") {
+		    } else {
+            		std::strcat(command->_file_path_cd_function, "/");
+                    }
+                    std::strcat(command->_file_path_cd_function, name.c_str());
+            	    chdir(name.c_str());
+            	    pathnamef = name;
+            	}  else {
             	    printerror->PrintError("This directory is not exist!");
             	    slashn
             	    return;
             	}
-	    } else {
-                std::string path;
-            	path.append(command->_file_path_cd_function);
-            	path.append("/");
-            	path.append(name);
-            	if(FileExists(path) == true) {
-            	    std::strcat(command->_file_path_cd_function, "/");
-            	    std::strcat(command->_file_path_cd_function, name.c_str());
-            	    chdir(name.c_str());
-            	    pathnamef = name;
-            	} else {
-            	    printerror->PrintError("This directory is not exist!");
-            	    slashn
-            	    return;
             	}
             }
         }
