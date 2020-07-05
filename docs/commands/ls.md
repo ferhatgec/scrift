@@ -1,9 +1,6 @@
 # List Dir Command 
 
-* ls
-* dir
-
-This commands is shows directory list.
+ls command is shows directory list.
 
 # Example:
 ```
