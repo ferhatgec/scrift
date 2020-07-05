@@ -31,8 +31,8 @@ public:
             BOLD_YELLOW_COLOR
             printlnf("home : Going to /home/<username>\n"
             "objls : List installed objects\n"
-            "fls : List only files\n"
-            "dls : List only folders\n"
+            "fls : List only files with input or environment value (#<env>)\n"
+            "dls : List only folders with input or environment value (#<env>)\n"
             "ls : List folders and files with input or environment value (#<env>)\n"
             "fr <folder> : Going to <folder> or environment value (#<env>)\n"
             "mkdir <foldername> : Creates a folder\n"

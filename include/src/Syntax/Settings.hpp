@@ -8,6 +8,7 @@
 #ifndef SETTINGS_HPP
 #define SETTINGS_HPP
 
+#include "Colors.hpp"
 #include "FileFunction.hpp"
 #include "Log.hpp"
 #include "../Scrift.hpp"

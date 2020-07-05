@@ -5,6 +5,7 @@
 #
 # */
 
+#include <Syntax/Settings.hpp>
 #include <Syntax/Language.hpp>
 #include <sys/utsname.h>
 #include <stdlib.h>
@@ -30,7 +31,10 @@
 #include "../../Library/EmojiPlusPlus.h"
 
 namespace filesys = std::experimental::filesystem;
-FKeyword keyword;
+static FKeyword keyword;
+static FSettings settings;
+static FCommand command;
+
 static const char *_uname;
 
 FCommand::FCommand() { }
@@ -106,20 +110,21 @@ FCommand::list_direc(boolean _home, std::string arg) {
         struct stat filestat;
         struct dirent *entry;
         DIR *dir;
-
-        if(_home != false) {dir = opendir((getenv("HOME"), "/", _file_path_cd_function, arg.c_str())); /*For Linux and *nix*/
-        } else if(_home == false || _home == NULL)
-        {
-            dir = opendir(getenv("HOME"));
+	if(_home != false && arg.rfind("#") == 0) {
+		arg = settings.EraseAllSubString(arg, "#");
+    		std::string new_name(getenv(arg.c_str()));
+    		dir = opendir((getenv("HOME"), "/", command._file_path_cd_function, "/", new_name.c_str()));
+	} else {
+        	if(_home != false) {dir = opendir((getenv("HOME"), "/", _file_path_cd_function, arg.c_str())); /*For Linux and *nix*/
+        	} else if(_home == false || _home == NULL) {
+        	    dir = opendir(getenv("HOME"));
+        	}
         }
-        
-        if (dir == NULL) 
-        {
+        if (dir == NULL) {
             printerror("ERR:DIRECTORY NOT FOUND", 12, "ERR:DIRNFND");
             return;
         }
-        while ((entry = readdir(dir))) 
-        {
+        while ((entry = readdir(dir))) {
             files++;
             char * _str = entry->d_name;
             stat(entry->d_name,&filestat);
@@ -144,22 +149,23 @@ FCommand::list_file(boolean _home, std::string arg) {
         struct stat filestat;
         struct dirent *entry;
         DIR *dir;
-
-        if(_home != false) {dir = opendir((getenv("HOME"), "/", _file_path_cd_function, arg.c_str())); /*For Linux and *nix*/
-        } else if(_home == false || _home == NULL)
-        {
-            dir = opendir(getenv("HOME"));
+	if(_home != false && arg.rfind("#") == 0) {
+		arg = settings.EraseAllSubString(arg, "#");
+    		std::string new_name(getenv(arg.c_str()));
+    		dir = opendir((getenv("HOME"), "/", command._file_path_cd_function, "/", new_name.c_str()));
+	} else {
+        	if(_home != false) {dir = opendir((getenv("HOME"), "/", _file_path_cd_function, arg.c_str())); /*For Linux and *nix*/
+        	} else if(_home == false || _home == NULL) {
+        	    dir = opendir(getenv("HOME"));
+        	}
         }
-        
-        if (dir == NULL) 
-        {
+        if (dir == NULL) {
             RED_COLOR
             printerror("ERR:DIRECTORY NOT FOUND", 12, "ERR:DIRNFND");
             BLACK_COLOR
             return;
         }
-        while ((entry = readdir(dir))) 
-        {
+        while ((entry = readdir(dir))) {
             files++;
             char * _str = entry->d_name;
             remove_character(_str, '.');
