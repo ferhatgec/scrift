@@ -1,6 +1,6 @@
 # List Dir Command 
 
-* ls  
+* ls
 * dir
 
 This commands is shows directory list.

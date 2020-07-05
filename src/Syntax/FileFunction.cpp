@@ -639,7 +639,13 @@ FLSFunction::ListArgumentObjectFunction(std::string argument) {
 void
 FLSFunction::LSFunction(std::string arg) {
     DIR *directory;
-    directory = opendir((getenv("HOME"), "/", command->_file_path_cd_function, "/", arg.c_str()));
+    if(arg.rfind("#") == 0) {
+    	arg = settings->EraseAllSubString(arg, "#");
+    	std::string new_name(getenv(arg.c_str()));
+    	directory = opendir((getenv("HOME"), "/", command->_file_path_cd_function, "/", new_name.c_str()));
+    } else {
+    	directory = opendir((getenv("HOME"), "/", command->_file_path_cd_function, "/", arg.c_str()));
+    }
     if(directory == NULL) {
         printerror->PrintError("Directory not found.\n");
         return;

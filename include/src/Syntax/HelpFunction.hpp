@@ -33,7 +33,7 @@ public:
             "objls : List installed objects\n"
             "fls : List only files\n"
             "dls : List only folders\n"
-            "ls : List folders and files\n"
+            "ls : List folders and files with input or environment value (#<env>)\n"
             "fr <folder> : Going to <folder> or environment value (#<env>)\n"
             "mkdir <foldername> : Creates a folder\n"
             "ffind <value> : Finds files and directories in path\n"
