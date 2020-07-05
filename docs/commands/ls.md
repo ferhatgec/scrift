@@ -28,6 +28,29 @@ output:
     File: testshswo
     <username>@<hostname>:~/home/<username> $#
 ```
+## With Environment Value
+```
+input:
+     <username>@<hostname>:~/home/<username> $# setname path
+     <username>@<hostname>:~/home/<username> $# setto Desktop
+     <username>@<hostname>:~/home/<username> $# ls #path
+
+output:
+    [Dir]: gocolorized
+    [Dir]: scrift-lang
+    [Dir]: goscrift
+    [Dir]: flascript
+    [Dir]: colorized
+    [Dir]: easygit
+    [File]: ScriftVersionBanner.png
+    [Dir]: fsplusplus
+    [File]: Beethoven.jpg
+    [Dir]: fegeya-icons
+    [Dir]: inputplusplus
+    [Dir]: gotree
+    [Dir]: fetcheya
+    <username>@<hostname>:~/home/<username> $#
+```
 
 # List File Command
 
@@ -45,7 +68,7 @@ output:
     File: pulse-cookie
     File: bashrc
     File: bash_history
-    File: testshswo
+    File: testsh
     <username>@<hostname>:~/home/<username> $#
 ```
 
