@@ -18,11 +18,9 @@
 
 FeLog *loghistory = new FeLog();
 std::ofstream historyfile;
-std::string filepath_history;
+std::string filepath_history, history_text;
 
-FHistory::FHistory() {
-
-}
+FHistory::FHistory() { }
 
 func
 FHistory::ClearHistory() {
@@ -34,7 +32,7 @@ FHistory::ClearHistory() {
     path.append(slash);
     path.append(".scrift_history");
     historyfile.open(path); // append
-    historyfile << "clear_history \n";
+    historyfile << "rmvhistory\n";
     historyfile.close();
 }
 
@@ -52,6 +50,11 @@ FHistory::TimeFunction() {
 
 func
 FHistory::WriteHistory(fstr filepathw) {
+	if(filepathw.length() != 0) {history_text.append(filepathw + "\n");}
+}
+
+void 
+FHistory::WriteAllHistory() {
     std::string filepath_with_path;
     uid_t uid = geteuid();
     struct passwd *password = getpwuid(uid);
@@ -67,12 +70,8 @@ FHistory::WriteHistory(fstr filepathw) {
 
     file.exceptions(file.exceptions() | std::ios::failbit | std::ifstream::badbit);
 
-    file << filepathw << "\n";
-
-   // printlnf("Done\n");
+    file << history_text << "\n";
 }
-
-
 
 
 func
@@ -84,17 +83,9 @@ FHistory::CreateFile() {
     path.append(password->pw_name);
     path.append(slash);
     path.append(".scrift_history");
-
     historyfile.open(path, std::ios::app);
-    historyfile << " ";
-    historyfile << TimeFunction() << "\n";
     historyfile.close();
 }   
-
-func 
-FHistory::InitFile() {
-
-}
 
 boolean
 FHistory::IsExist() {
@@ -106,7 +97,7 @@ FHistory::IsExist() {
 func 
 FHistory::AllofThem() {
     if(IsExist() != true) {
-    CreateFile();
+    	CreateFile();
     }
     else {
         printlnf("FHistory file is exists\n");

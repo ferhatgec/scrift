@@ -762,7 +762,7 @@ void InputFunction() {
        	terminalstr->Terminal(); 
        	return;
        } else if(main_function->_h_str == keywords.FeLog) {
-          std::cout<<"\b";
+          	std::cout<<"\b";
         	RemovePrintedChar(keywords.FeLog.length() - 1);
         	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_YELLOW_COLOR << " felog" << WBLACK_COLOR;
@@ -827,6 +827,7 @@ void InputFunction() {
        	BOLD_CYAN_COLOR
        	std::getline(std::cin, main_function->_h_str);
      		std::cout << emojiplusplus::EmojiString(main_function->_h_str) << "\n";
+     		history->WriteHistory(main_function->_h_str);
        	main_function->_h_str.erase();
        	terminalstr->Terminal();
        	return;
@@ -1014,6 +1015,7 @@ void InputFunction() {
        	}
         	if(getchar() == '\n') {
         		history->WriteHistory(main_function->_h_str);
+        		history->WriteAllHistory();
         		main_function->_h_str.erase();
           		exit(EXIT_SUCCESS);
           	}
@@ -1097,7 +1099,8 @@ void InputFunction() {
 			userhostname->InitUsername();
 			BLACK_COLOR
 			slashn
-		}	
+		}
+		history->WriteHistory(main_function->_h_str);	
 		main_function->_h_str.erase();
 		terminalstr->Terminal();
 		return;
@@ -1250,5 +1253,6 @@ integer main(integer argc, char** argv) {
     while(argc = 2) {
         main_function->Shell();
     }
+    history->WriteAllHistory();
     return F_OK;
 }

@@ -14,13 +14,13 @@ class FHistory {
 public:
     FHistory();
     ~FHistory();
-    virtual func CreateFile();
-    virtual func InitFile();
+    bool IsExist();   
     const std::string TimeFunction();
-    virtual func WriteHistory(fstr);
-    virtual boolean IsExist();
-    virtual func ClearHistory();
-    virtual func AllofThem();
+    void CreateFile();
+    void WriteAllHistory();
+    void WriteHistory(fstr);
+    void ClearHistory();
+    void AllofThem();
 };
 
 
