@@ -30,7 +30,7 @@
 #define hyphen "-"
 
 #define SCRIFT_VERSION "0.1.6"
-#define SCRIFT_STATUS "beta-2"
+#define SCRIFT_STATUS "beta-3"
 
 
 // Input Definitions
@@ -43,13 +43,13 @@
 class FMain {
 public:
     FMain();
-    destructor FMain();
-    virtual func Shell();
-    boolean    _home;
-    fstr header_string;
-    fstr str;
-    fstr _h_str;
-    fstr strfor_h_str;
+    ~FMain();
+    void Shell();
+    bool _home;
+    std::string header_string;
+    std::string str;
+    std::string _h_str;
+    std::string strfor_h_str;
 };
 
 #endif // SCRIFT_HPP
