@@ -245,6 +245,10 @@ public:
 	// My ASCII Art
 	std::string MyASCIIArt = "asciiart";
 	
+	// Morse
+	std::string Morse = "morse";
+	std::string MorseinMorseCode = "-- --- .-. ... .";
+	
 	// Whitespace
 	std::string Whitespace = " ";
 };

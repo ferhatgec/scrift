@@ -60,6 +60,7 @@
 #include "../Library/InputPlusPlus.h"
 #include "../Library/EmojiPlusPlus.h"
 #include "../Library/Colorized.hpp"
+#include "../Library/EasyMorse.hpp"
 
 // Variables
 using namespace FileFunction;
@@ -1120,6 +1121,22 @@ void InputFunction() {
     		main_function->_h_str.erase();
     		terminalstr->Terminal();
        	return;
+     } else if(main_function->_h_str == keywords.Morse) {
+     		RemovePrintedChar(keywords.Morse.length() - 1);
+     		if(runsyntax->Theme() == "default") {
+     			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), "morse ");
+     		} else if(runsyntax->Theme() == "classic") {
+     			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "morse ");
+		} else {
+			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), "morse ");
+		}
+		if(getchar() == '\n') {
+			EasyMorse::MainMorse();
+		}
+		history->WriteHistory(main_function->_h_str);
+		main_function->_h_str.erase();
+		terminalstr->Terminal();
+		return;
      } else if(main_function->_h_str == keywords.Welcome) {
      		RemovePrintedChar(keywords.Welcome.length() - 1);
      		if(runsyntax->Theme() == "default")  {
