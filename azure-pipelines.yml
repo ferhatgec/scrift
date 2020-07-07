@@ -6,5 +6,5 @@ pool:
 
 steps:
 - script: |
-    ./elitebuild --build
-  displayName: 'elitebuild'
+    make
+  displayName: 'make'
