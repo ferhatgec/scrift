@@ -424,6 +424,46 @@ void InputFunction() {
     		number = 0;
     		main_function->_h_str.erase();
     		return;
+    	} else if(main_function->_h_str == keywords.Uninstall) {
+    		RemovePrintedChar(keywords.Uninstall.length() - 1);
+    		if(runsyntax->Theme() == "default")  {
+        		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "uninstall");
+       	} else if(runsyntax->Theme() == "classic") {
+       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "uninstall");
+       	} else {
+        		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "uninstall");
+        	}
+        	if(getchar() == '\n') {
+        		std::string option;
+        		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "Remove with tools? (Fetcheya, Edifor etc.) : ");
+        		BOLD_CYAN_COLOR
+        		std::cin >> option;
+        		BLACK_COLOR
+        		if(option == "y" || option == "Y") {
+        			system("sudo rm -f /bin/fetcheya");
+  				colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "Fetcheya has been removed.\n");
+        			system("sudo rm -f /bin/edifor");
+        			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_GREEN).c_str(), "Edifor has been removed\n");
+        			system("sudo rm -f /bin/castle");
+        			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), "Castle has been removed\n");
+        			system("sudo rm -f /bin/fdate");
+        			system("sudo rm -f /bin/tictactoe");
+        			system("sudo rm -f /bin/pong");
+        			system("sudo rm -f /bin/scrift");
+        			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "Note: Select a shell and restart, because Scrift has been deleted\n");
+        			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_GREEN).c_str(), "Goodbye!\n");
+        		} else if(option == "n" || option == "N") {
+        			system("sudo rm -f /bin/scrift");
+        			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), "Note: Select a shell and restart, because Scrift has been deleted\n");
+        			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_GREEN).c_str(), "Goodbye!\n");
+        		} else {
+        			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "\nAborted.\n");
+        		}
+        	}
+        	history->WriteHistory(main_function->_h_str);
+        	main_function->_h_str.erase();
+        	terminalstr->Terminal();
+        	return;
     	} else if(main_function->_h_str == keywords.Lsf) {
     		std::string input;
         	RemovePrintedChar(keywords.Lsf.length() - 1);

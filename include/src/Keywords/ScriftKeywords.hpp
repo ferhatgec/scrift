@@ -249,6 +249,9 @@ public:
 	std::string Morse = "morse";
 	std::string MorseinMorseCode = "-- --- .-. ... .";
 	
+	// Uninstall
+	std::string Uninstall = "uninstall";
+	
 	// Whitespace
 	std::string Whitespace = " ";
 };
