@@ -1217,7 +1217,10 @@ void InputFunction() {
 			input_value++;
 			cursorpos.x = 0;
 			slashn
-        		runfunction->RunFunction(main_function->_h_str);
+			if(main_function->_h_str == "\n") {} else {
+				std::string copy(main_function->_h_str);
+        			runfunction->RunFunction(copy);
+        		}
         		main_function->_h_str.erase();
         		terminalstr->Terminal(); 
         		return;
