@@ -2,7 +2,7 @@
 
 ## Scrift is new generation shell and scripting language project.
 
-![Scrift](docs/resource/ScriftBannerLight.jpg)
+![Scrift](docs/resource/ScriftBanner.png)
 
 [![Build Status](https://dev.azure.com/ferhatgectao/scrift-lang/_apis/build/status/FerhatGec.scrift-lang?branchName=master)](https://dev.azure.com/ferhatgectao/scrift-lang/_build/latest?definitionId=1&branchName=master)
 
