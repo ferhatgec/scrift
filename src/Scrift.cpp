@@ -881,14 +881,14 @@ void InputFunction() {
        	} else {
        		std::cout << WBOLD_MAGENTA_COLOR << "." << WBOLD_BLUE_COLOR << "/" << WBLACK_COLOR;
         	}
-        	BOLD_CYAN_COLOR
+        	BOLD_LIGHT_MAGENTA_COLOR
         	std::getline(std::cin, main_function->_h_str);
+        	BLACK_COLOR
       		std::string pathrun = "./";
-      		pathrun.append(scriftlang->EraseAllSubString(main_function->_h_str, keywords.RunDotSlash));
+      		pathrun.append(main_function->_h_str);
       		system(pathrun.c_str());
         	history->WriteHistory(main_function->_h_str);
       		main_function->_h_str.erase();
-      		BLACK_COLOR
       		terminalstr->Terminal();
           	return;
       } else if(main_function->_h_str == keywords.IP) {
