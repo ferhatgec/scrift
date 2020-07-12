@@ -884,9 +884,11 @@ void InputFunction() {
         	BOLD_LIGHT_MAGENTA_COLOR
         	std::getline(std::cin, main_function->_h_str);
         	BLACK_COLOR
-      		std::string pathrun = "./";
-      		pathrun.append(main_function->_h_str);
-      		system(pathrun.c_str());
+        	if(main_function->_h_str.length() == 0) {
+			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "scrift : ./ : Is a directory.\n"); 
+		} else {
+      			runfunction->RunFunction("./" + main_function->_h_str);
+        	}
         	history->WriteHistory(main_function->_h_str);
       		main_function->_h_str.erase();
       		terminalstr->Terminal();
