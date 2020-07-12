@@ -21,16 +21,16 @@ FStructure::~FStructure() {
 
 void
 FGetUsername::InitUsername() {
-    #ifdef __linux__ 
+    //#ifdef __linux__ 
     uid_t uid = geteuid();
     struct passwd *password = getpwuid(uid);
     if(password) {
         printlnf(password->pw_name);
     }
-    #else 
-    slashn 
-    printlnf("Fegeya Fusion Username: 'user'");
-    #endif
+   //#else 
+   // slashn 
+   // printlnf("Fegeya Fusion Username: 'user'");
+   // #endif
 }
 
 void
@@ -48,11 +48,8 @@ FGetUsername::InitHostname() {
 }
 
 
-
-
 void
-FStructure::Terminal()
-{
+FStructure::Terminal() {
     fchar* _username = new fchar;
     BOLD_BLUE_COLOR
     InitUsername();
