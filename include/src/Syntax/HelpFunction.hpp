@@ -38,6 +38,7 @@ public:
             "rmvfile <folder or file> : Removes folder or file in path\n"
             "setname <name> : sets Environment's name\n"
             "setto <value> : sets Environment's value.\n"
+            "genfrbr <value> : Generates FreeBrain key code with input number\n"
             "back : Going to back directory\n\n");
             BOLD_MAGENTA_COLOR
             printlnf("username : Shows your username\n"
