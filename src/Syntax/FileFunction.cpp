@@ -243,7 +243,7 @@ FCreateFileFunction::CreateSettingsFileFunction() {
     file << "felog_cleaner 100\n";
     file << "welcome_emoji :thinking_face:\n";
     file << "bg_color 12\n";
-    file << "ascii_art_color 34\n";
+    file << "ascii_art_color random\n";
     file << "scrift_theme default\n";
     file.close();
     } else {
@@ -264,6 +264,9 @@ FClearFileFunction::ClearSettingsFunction() {
         std::ofstream file(path); // App = Append
         file << "felog_cleaner 100\n";
     	file << "welcome_emoji :thinking_face:\n";
+    	file << "bg_color 12\n";
+    	file << "ascii_art_color random\n";
+    	file << "scrift_theme default\n";
     } else {
         CreateSettingsFileFunction();
     }
