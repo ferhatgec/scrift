@@ -20,7 +20,7 @@ FTemplate::LangTemplate() {
 	colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), "File name: ");
 	BOLD_CYAN_COLOR
 	std:getline(std::cin, name);
-	colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(), "Template (e.g. c, cpp, go, flascript, python): ");
+	colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(), "Template (e.g. c, cpp, go, flascript, freebrain, rust, bash, d, python): ");
 	BOLD_BLUE_COLOR
 	std::getline(std::cin, lang);
 	BLACK_COLOR
@@ -42,6 +42,16 @@ FTemplate::LangTemplate() {
 		fsplusplus::CreateFile(name, LuaTemplate());
 	} else if(lang == "rust") {
 		fsplusplus::CreateFile(name, RustTemplate());
+	} else if(lang =="bash") {
+		fsplusplus::CreateFile(name, BashTemplate());
+	} else if(lang == "csharp") {
+		fsplusplus::CreateFile(name, CSharpTemplate());
+	} else if(lang == "freebrain") {
+		fsplusplus::CreateFile(name, FreeBrainTemplate());
+	} else if(lang == "brainfuck") {
+		fsplusplus::CreateFile(name, BrainfuckTemplate());
+	} else if(lang == "d") {
+		fsplusplus::CreateFile(name, DLangTemplate());
 	} else {
 		fsplusplus::CreateFile(name, "Sorry, this is not available for Scrift, Try again later... Or create pull request for Template.cpp and Template.hpp\n\nhttps://github.com/FerhatGec/scrift-lang");
 	}
