@@ -252,6 +252,8 @@ public:
 	// Uninstall
 	std::string Uninstall = "uninstall";
 	
+	// FreeBrain Generator
+	std::string FreeBrainGen = "genfrbr";
 	// Whitespace
 	std::string Whitespace = " ";
 };

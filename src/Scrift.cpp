@@ -248,6 +248,13 @@ void moveCursor(std::ostream& os, int col, int row) {
   os << "\033[" << col << ";" << row << "H";
 }
 
+std::string AsciiGenFreeBrain(int len) {
+	std::string rtr = "~";
+	for(int i = 0; i != len; i++) {
+		rtr.append("+");
+	}
+	return rtr;
+}
 
 void textbackground(int color) {
 	printf ("%c[%dm", ESC, 40+color);
@@ -1194,6 +1201,22 @@ void InputFunction() {
         	history->WriteHistory(main_function->_h_str);
          	main_function->_h_str.erase();
          	terminalstr->Terminal();
+       	return;
+     } else if(main_function->_h_str == keywords.FreeBrainGen) {
+     		RemovePrintedChar(keywords.FreeBrainGen.length() - 1);
+     		if(runsyntax->Theme() == "default")  {
+			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "genfrbr ");
+       	} else if(runsyntax->Theme() == "classic") {
+       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "genfrbr ");
+       	} else {
+	  		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "genfrbr ");
+       	}
+       	BOLD_LIGHT_MAGENTA_COLOR
+       	std::getline(std::cin, main_function->_h_str);
+       	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), (AsciiGenFreeBrain(atoi(scriftlang->EraseAllSubString(main_function->_h_str, " ").c_str())) + "\n").c_str());
+       	history->WriteHistory(keywords.FreeBrainGen + " " + main_function->_h_str);
+       	main_function->_h_str.erase();
+       	terminalstr->Terminal();
        	return;
      } else {
 		sign.push_back(c);
