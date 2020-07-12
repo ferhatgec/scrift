@@ -29,8 +29,8 @@
 #define printhyphen printlnf("-");
 #define hyphen "-"
 
-#define SCRIFT_VERSION "0.1.6"
-#define SCRIFT_STATUS "beta-3"
+#define SCRIFT_VERSION "0.1.7"
+#define SCRIFT_STATUS "beta-1"
 
 
 // Input Definitions
