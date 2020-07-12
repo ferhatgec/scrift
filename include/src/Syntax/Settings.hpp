@@ -8,12 +8,15 @@
 #ifndef SETTINGS_HPP
 #define SETTINGS_HPP
 
+#include <pwd.h>
+#include <ctime>
+
 #include "Colors.hpp"
 #include "FileFunction.hpp"
 #include "Log.hpp"
-#include "../Scrift.hpp"
-#include <pwd.h>
 #include "../synflang.hpp"
+#include "../Scrift.hpp"
+
 
 class FSettings {
 public:
@@ -79,6 +82,22 @@ public:
     		}
     	}
     }
+
+    int random(int min_num, int max_num) {
+      	srand(time(0));
+   	return rand() % (max_num - min_num + 1 ) + min_num;
+    }
+    
+    int color() {
+    	int x = random(0, 2);
+    	if(x == 1) {
+    		return random(30, 37);
+    	} else if(x == 2) {
+    		return random(90, 97);
+    	} else if(x == 0) {  
+    		return random(30, 37);  	
+    	}
+    }
     
     int ASCIIColor() {
     	std::string line;
@@ -87,11 +106,13 @@ public:
     	if(readfile.is_open()) {
     		while(std::getline(readfile, line)) {
     			if(line.rfind("ascii_art_color", 0) == 0) {
-    				if(atoi(EraseAllSubString(line, "ascii_art_color ").c_str()) <= 29) {
+    				if(EraseAllSubString(line, "ascii_art_color ") != "random" && atoi(EraseAllSubString(line, "ascii_art_color ").c_str()) <= 29) {
     					BOLD_RED_COLOR
     					printlnf("Give 30 or higher value for ascii_art_color.\n");
     					BLACK_COLOR
     					return 34;
+    				} else if(EraseAllSubString(line, "ascii_art_color ") == "random") {
+    					return color();
     				} else {
     					return atoi(EraseAllSubString(line, "ascii_art_color ").c_str());
     				}
