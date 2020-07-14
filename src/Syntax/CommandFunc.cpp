@@ -186,7 +186,7 @@ FCommand::list_file(boolean _home, std::string arg) {
 
 
 std::string 
-FCommand::chartostring(std::string const & s, fchar *a) {
+FCommand::chartostring(std::string const & s, char *a) {
     return s + a;
 }
 

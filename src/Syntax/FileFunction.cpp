@@ -694,8 +694,7 @@ FLSFunction::LSFunction(std::string arg) {
             printlnf("%4s: %s\n", "[CMake]", entryname->d_name);	
 	} else if(strstr(entryname->d_name, ".sh")) {
 	    BOLD_GREEN_COLOR
-            printlnf("%4s: %s\n", "[Bash]", entryname->d_name);	
-	
+            printlnf("%4s: %s\n", "[Bash]", entryname->d_name);
 	} else if(strstr(entryname->d_name, ".py")) {
 	    BOLD_BLUE_COLOR
             printlnf("%4s: %s\n", "[Python]", entryname->d_name);
@@ -705,6 +704,27 @@ FLSFunction::LSFunction(std::string arg) {
 	} else if(strstr(entryname->d_name, ".md")) {
 	    BOLD_YELLOW_COLOR
             printlnf("%4s: %s\n", "[Markdown]", entryname->d_name);
+	} else if(strstr(entryname->d_name, ".frbr")) {
+	    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "");
+	    printlnf("%4s: %s\n", "[FreeBrain]", entryname->d_name);
+	} else if(strstr(entryname->d_name, ".png")) {
+	    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "");
+	    printlnf("%4s: %s\n", "[Png]", entryname->d_name);
+	} else if(strstr(entryname->d_name, ".jpg") || strstr(entryname->d_name, ".jpeg")) {
+	    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "");
+	    printlnf("%4s: %s\n", "[Jpg]", entryname->d_name);
+	} else if(strstr(entryname->d_name, ".gif")) {
+	    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "");
+	    printlnf("%4s: %s\n", "[Gif]", entryname->d_name);
+	} else if(strstr(entryname->d_name, ".html") || strstr(entryname->d_name, ".htm")) {
+	    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "");
+	    printlnf("%4s: %s\n", "[Html]", entryname->d_name);
+	} else if(strstr(entryname->d_name, ".rs") || strstr(entryname->d_name, ".rslib")) {
+	    colorized::PrintWhReset(colorized::Colorize(BOLD, YELLOW).c_str(), "");
+	    printlnf("%4s: %s\n", "[Rust]", entryname->d_name);
+	} else if(strstr(entryname->d_name, ".lua")) {
+	    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLACK).c_str(), "");
+	    printlnf("%4s: %s\n", "[Lua]", entryname->d_name);	
 	} else {
             BOLD_YELLOW_COLOR
             printlnf("%4s: %s\n", "[File]", entryname->d_name);
