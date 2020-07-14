@@ -677,10 +677,22 @@ FLSFunction::LSFunction(std::string arg) {
 	    } else {  
             	printlnf("%4s: %s\n", "[Dir]", entryname->d_name);
             }
-        }  else if(strstr(entryname->d_name, "Elitefile")) {
+        } else if(strstr(entryname->d_name, "Elitefile")) {
             BOLD_BLUE_COLOR
             printlnf("%4s: %s\n", "[Elitebuild]", entryname->d_name);
-        } else if(strstr(entryname->d_name, ".scr")) {
+        } else if(strstr(entryname->d_name, ".scrift_log")) {
+	    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "");
+	    printlnf("%4s: %s\n", "FeLog*", entryname->d_name);	
+	} else if(strstr(entryname->d_name, ".scrift_ascii")) {
+	    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "");
+	    printlnf("%4s: %s\n", "Ascii Art*", entryname->d_name);	
+	} else if(strstr(entryname->d_name, ".scrift_settings")) {
+	    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "");
+	    printlnf("%4s: %s\n", "Settings*", entryname->d_name);	
+	} else if(strstr(entryname->d_name, ".scrift_history")) {
+	    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "");
+	    printlnf("%4s: %s\n", "History*", entryname->d_name);	
+	} else if(strstr(entryname->d_name, ".scr")) {
             BOLD_GREEN_COLOR
             printlnf("%4s: %s\n", "[Scrift]", entryname->d_name);
         } else if(strstr(entryname->d_name, ".cpp") || strstr(entryname->d_name, ".hpp") || strstr(entryname->d_name, ".cxx") || strstr(entryname->d_name, ".hxx") || strstr(entryname->d_name, ".cc") || strstr(entryname->d_name, ".hh")) {
