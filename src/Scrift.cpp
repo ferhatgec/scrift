@@ -909,7 +909,6 @@ void InputFunction() {
        	}
        	
 		if(getchar() == '\n') {
-			slashn
        		main_->getIPAddress();
         		history->WriteHistory(main_function->_h_str);
        	}

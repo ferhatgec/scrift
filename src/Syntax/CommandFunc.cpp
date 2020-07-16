@@ -212,7 +212,7 @@ FCommand::_generated_hash_string(integer size) {
 }
 
 void
-FCommand::getIPAddress(){
+FCommand::getIPAddress() {
    int sock = socket(PF_INET, SOCK_DGRAM, 0);
     sockaddr_in loopback;
 
@@ -242,7 +242,7 @@ FCommand::getIPAddress(){
     if (inet_ntop(AF_INET, &loopback.sin_addr, buf, INET_ADDRSTRLEN) == 0x0) {
         std::cerr << "Could not inet_ntop\n";
     } else {
-        std::cout << WBOLD_GREEN_COLOR <<"Local ip address: ";
+        std::cout << WBOLD_GREEN_COLOR << "Local ip address: ";
         std::cout << WBOLD_YELLOW_COLOR << buf << "\n";
     }
 }
