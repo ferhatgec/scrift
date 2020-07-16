@@ -11,7 +11,7 @@
 #include <cstring>
 
 namespace stringtools {
-	std::string EraseAllSubString(std::string & mainString, const std::string & erase) {
+	static std::string EraseAllSubString(std::string & mainString, const std::string & erase) {
     		size_t pos = std::string::npos;
    		while((pos = mainString.find(erase)) != std::string::npos) {
         		mainString.erase(pos, erase.length());
@@ -19,7 +19,7 @@ namespace stringtools {
   		return mainString;
   	}
   	
-  	int IntConverter(const char *s) {
+  	static int IntConverter(const char *s) {
   		int sum = 0;
   		char ch;
   		char sign = *s;
@@ -33,7 +33,7 @@ namespace stringtools {
   		return sum;
 	}
 	
-	int IntConverterWithWhitespace(char* s) {
+	static int IntConverterWithWhitespace(char* s) {
 		int sum = 0;
   		char ch;
   		std::string conv(s); 
@@ -49,7 +49,7 @@ namespace stringtools {
   		return sum;
 	}
 	
-	std::string GetBetweenString(std::string oStr, std::string sStr1, std::string sStr2) {  
+	static std::string GetBetweenString(std::string oStr, std::string sStr1, std::string sStr2) {  
     		int start = oStr.find(sStr1);   
     		if (start >= 0) {       
      			std::string tstr = oStr.substr(start + sStr1.length());        

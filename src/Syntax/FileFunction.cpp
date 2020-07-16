@@ -245,6 +245,7 @@ FCreateFileFunction::CreateSettingsFileFunction() {
     file << "bg_color 12\n";
     file << "ascii_art_color random\n";
     file << "scrift_theme default\n";
+    file << "input_customize ▶\n";
     file.close();
     } else {
     }
@@ -267,6 +268,7 @@ FClearFileFunction::ClearSettingsFunction() {
     	file << "bg_color 12\n";
     	file << "ascii_art_color random\n";
     	file << "scrift_theme default\n";
+    	file << "input_customize ▶\n";
     } else {
         CreateSettingsFileFunction();
     }

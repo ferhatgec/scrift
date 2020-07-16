@@ -38,6 +38,7 @@ FGetUsername::GetUsername() {
     InitUsername();
 }
 
+
 void 
 FGetUsername::InitHostname() {
     fchar hostname_buffer[256];
@@ -47,7 +48,7 @@ FGetUsername::InitHostname() {
     printlnf("%s", hostname_buffer);
 }
 
-
+std::string customize = fsettings->InputCustomize();
 void
 FStructure::Terminal() {
     fchar* _username = new fchar;
@@ -63,7 +64,7 @@ FStructure::Terminal() {
     printlnf(terminal->_file_path_cd_function);
     printlnf(" ");
     BOLD_RED_COLOR
-    std::cout << "\u25B6";
+    std::cout << customize;
     printlnf(" ");
     BLACK_COLOR
     delete _username;

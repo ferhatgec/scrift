@@ -159,6 +159,19 @@ public:
     	}
     }
     
+    std::string InputCustomize() {
+    	std::string line;
+    	std::string ftest;
+    	std::ifstream readfile(Path());
+    	if(readfile.is_open()) {
+    		while(std::getline(readfile, line)) {
+    			if(line.find("input_customize") == 0) {
+    				return EraseAllSubString(line, "input_customize ");
+    			}
+    		}
+    	}
+    }
+    
     virtual func ReadFile() {
     	std::string line;
     	std::string ftest;
@@ -192,6 +205,13 @@ public:
         	createfile->CreateSettingsFileFunction();
         	return;
         }
+        
+        if(line.rfind("input_customize") == 0) {
+        	InputCustomize();
+        } else {
+        	createfile->CreateSettingsFileFunction();
+        	return;
+        }	
     	}
     }
 }
