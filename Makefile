@@ -27,7 +27,7 @@ HECOMP = g++ -c -Wall $< -std=gnu++17 -o
 CLEANALL = scrift /Games/Castle/castle
 CLEAN = *.o
 HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o RunFunction.o \
-Log.o History.o Template.o Configuration.o
+Log.o History.o Template.o
 
 ifeq ($(OS),Windows_NT)
 	echo Windows_NT is not supported!
@@ -64,18 +64,18 @@ headersfile: $(HEADERFILE)
 
 
 conio: $(SRCLIBDIREC)FConio.c
-	$(GCC) -c $(SRCLIBDIREC)FConio.c -o fconio.o
+	$(GCC) -c -Wno-unused-function -Wno-unused-value $(SRCLIBDIREC)FConio.c -o fconio.o
 
 %.o: $(SRCSYNTAXDIREC)%.cpp
-	$(GPP) $(CFLAGS) -c $< -o $@
+	$(GPP) -Wno-unused-function -Wno-unused-value $(CFLAGS) -c $< -o $@
 
 
 main: $(SRCDIREC)Scrift.cpp
-	$(GPP) $< $(HEADERFILE) -o scrift
+	$(GPP) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) -o scrift
 	echo Scrift building successfully!
 
 mainc: $(SRCDIREC)Scrift.cpp
-	$(GPP) $< $(HEADERFILE) -o /bin/scrift
+	$(GPP) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) -o /bin/scrift
 	echo Scrift building successfully in Bin Directory!
 
 # Edifor

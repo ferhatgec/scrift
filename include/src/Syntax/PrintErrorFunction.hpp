@@ -10,7 +10,9 @@
 
 #include "../synflang.hpp"
 #include "../Scrift.hpp"
-#include "Colors.hpp"
+
+// Library
+#include "../../../Library/Colorized.hpp"
 
 typest {
 public:

@@ -9,7 +9,6 @@
 #define SCRIFT_KEYWORDS_HPP
 
 #include "../Scrift.hpp"
-#include "../Syntax/Colors.hpp"
 #include "../synflang.hpp"
 
 struct ScriftKeywords {

@@ -186,8 +186,7 @@ namespace fsplusplus {
         	printf("ERR: DIRECTORY NOT FOUND OR NULL\n");
         	return;
     	    }
-            while ((entryname = readdir(directory)))
-    	    {
+            while ((entryname = readdir(directory))) {
         	stat(entryname->d_name, &filestat);
         	if(entryname->d_type == DT_DIR) {// DT_DIR -> directory
             	if(strstr(entryname->d_name, ".")) {
@@ -198,7 +197,7 @@ namespace fsplusplus {
           	// Null
             	}
             } else {
-               printf("%4s %s\n", entryname->d_name);
+               std::cout << "%4s %s\n" << entryname->d_name;
             }
     	}
    	 closedir(directory);
@@ -222,7 +221,7 @@ namespace fsplusplus {
             	} else if(strstr(entryname->d_name, "..")){
 	    		// Null
 	    	} else {  
-          		printf("%4s %s\n", entryname->d_name);
+          		std::cout << "%4s %s\n" << entryname->d_name;
             	}
             } else {
                // Null
@@ -318,6 +317,7 @@ namespace fsplusplus {
     	} else {
         	printf("Unable to open file\n");
     	}
+    		return "null";
     	}
     	
     	static void FindPath(std::string name) {
@@ -412,6 +412,7 @@ namespace fsplusplus {
     	} else {
         	printf("Unable to open file\n");
     	}
+    		return "null";
 	}
 	
 	static void CreateFile(std::string name, std::string input) {

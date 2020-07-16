@@ -11,12 +11,11 @@
 #include <pwd.h>
 #include <ctime>
 
-#include "Colors.hpp"
 #include "FileFunction.hpp"
 #include "Log.hpp"
 #include "../synflang.hpp"
 #include "../Scrift.hpp"
-
+#include "../../../Library/Colorized.hpp"
 
 class FSettings {
 public:
@@ -59,6 +58,7 @@ public:
     		}
     	}
     	//return EraseAllSubString(line, "welcome_emoji ");
+    	return ":thinking_face:";
     }
     
     int FeLogCleaner() {
@@ -81,6 +81,7 @@ public:
     			} 
     		}
     	}
+    	return 100;
     }
 
     int random(int min_num, int max_num) {
@@ -97,6 +98,7 @@ public:
     	} else if(x == 0) {  
     		return random(30, 37);  	
     	}
+    	return random(90, 97);
     }
     
     int ASCIIColor() {
@@ -120,6 +122,7 @@ public:
     			} 
     		}
     	}
+    	return 34;
     }
     
     int BackgroundColor() {
@@ -134,6 +137,7 @@ public:
     			} 
     		}
     	}
+    	return 12;
     }
     
     std::string Theme() {
@@ -154,6 +158,7 @@ public:
     			} 
     		}
     	}
+    	return "default";
     }
     
     std::string InputCustomize() {
@@ -166,6 +171,7 @@ public:
     			}
     		}
     	}
+    	return "▶";
     }
 };
 

@@ -64,8 +64,8 @@ public:
     void echo_printlnf(std::string);
     void remove_character(char * , char );
     struct dirent *direntfunction;
-    fchar *_file_path_cd_function = getenv("PWD");
-    fchar *_home_dir = getenv("HOME");
+    char *_file_path_cd_function = getenv("PWD");
+    char *_home_dir = getenv("HOME");
 };
 
 

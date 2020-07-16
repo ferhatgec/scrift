@@ -68,23 +68,23 @@ public:
         		return "-.--"; break;
         	case 'z': case 'Z':
         		return "--.."; break;
-        	case 'ą': case 'Ą':
+        	case L'ą': case L'Ą':
         		return ".-.-"; break;
-        	case 'ć': case 'Ć':
+        	case L'ć': case L'Ć':
         		return "-.-.."; break;
-        	case 'ę': case 'Ę':
+        	case L'ę': case L'Ę':
         		return "..-.."; break;
-        	case 'ł': case 'Ł':
+        	case L'ł': case L'Ł':
         		return ".-..-"; break;
-        	case 'ń': case 'Ń':
+        	case L'ń': case L'Ń':
         		return "--.--"; break;
-        	case 'ó': case 'Ó':
+        	case L'ó': case L'Ó':
         		return "---."; break;
-        	case 'ś': case 'Ś':
+        	case L'ś': case L'Ś':
         		return "...-..."; break;
-        	case 'ż': case 'Ż':
+        	case L'ż': case L'Ż':
         		return "--..-."; break;
-        	case 'ź': case 'Ź':
+        	case L'ź': case L'Ź':
         		return "--..-"; break;
         	default:
         		return " "; break;

@@ -106,7 +106,5 @@ FHistory::AllofThem() {
 }
 
 
-FHistory::~FHistory() {
-    delete loghistory, historyfile, filepath_history;
-}
+FHistory::~FHistory() {}
 

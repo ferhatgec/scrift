@@ -9,8 +9,10 @@
 #define LEXER_HPP
 
 #include "../Scrift.hpp"
-#include "../Syntax/Colors.hpp"
 #include "../synflang.hpp"
+
+// Library
+#include "../../../Library/Colorized.hpp"
 
 struct LexerKeywords {
 public:

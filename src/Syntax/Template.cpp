@@ -19,7 +19,7 @@ FTemplate::LangTemplate() {
 	std::string name, lang;
 	colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), "File name: ");
 	BOLD_CYAN_COLOR
-	std:getline(std::cin, name);
+	std::getline(std::cin, name);
 	colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(), "Template (e.g. c, cpp, go, flascript, freebrain, rust, bash, d, python): ");
 	BOLD_BLUE_COLOR
 	std::getline(std::cin, lang);

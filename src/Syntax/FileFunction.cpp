@@ -19,13 +19,11 @@
 #include <iostream>
 #include <unistd.h>
 #include <pwd.h>
-#include <Syntax/Colors.hpp>
 #include <unistd.h>
 #include <sys/stat.h>
 #include <dirent.h>
 #include <fstream>
 #include <Syntax/Log.hpp>
-#include <Syntax/Colors.hpp>
 #include <Syntax/Settings.hpp>
 #include <vector>
 #include <Syntax/ASCIIFunction.hpp>
@@ -64,12 +62,6 @@ FCDFunction::FileExists(const std::string &Filename) {
     return access(Filename.c_str(), 0 ) == 0;
 }
 
-
-bool
-faddtextfunction::FileExist(const std::string filename) {
-    fcdfunction->FileExists(filename);
-}
-
 std::string pathnamef;
 void
 FCDFunction::CDFunctionInit(std::string name) {
@@ -87,7 +79,7 @@ FCDFunction::CDFunctionInit(std::string name) {
             		    std::strcpy(command->_file_path_cd_function, new_name.c_str());
 	    		    chdir(new_name.c_str());
             		} else {
-            		    printerror->PrintError("This directory is not exist!");
+            		    std::cout << "This directory is not exist!\n";
             		    slashn
             		    return;
             		}
@@ -102,7 +94,7 @@ FCDFunction::CDFunctionInit(std::string name) {
             		    chdir(new_name.c_str());
             		    pathnamef = new_name;
             		} else {
-            		    printerror->PrintError("This directory is not exist!");
+            		    std::cout << "This directory is not exist!\n";
             		    slashn
             		    return;
             		}
@@ -113,13 +105,13 @@ FCDFunction::CDFunctionInit(std::string name) {
 	    		    std::strcpy(command->_file_path_cd_function, name.c_str());
 	    		    chdir(name.c_str());
             		} else {
-            		    printerror->PrintError("This directory is not exist!");
+            		    std::cout << "This directory is not exist!\n";
             		    slashn
             		}
             		return;
 	    	} else {
 		std::string path;
-	    	if(command->_file_path_cd_function == "/") {
+	    	if(command->_file_path_cd_function[0] == '/') {
 			path.append(command->_file_path_cd_function);
 			path.append(name);				    		
 		} else {
@@ -129,7 +121,7 @@ FCDFunction::CDFunctionInit(std::string name) {
             	}
             	if(FileExists(path) == true) {
             	    std::string path;
-	    	    if(command->_file_path_cd_function == "/") {
+	    	    if(command->_file_path_cd_function[0] == '/') {
 		    } else {
             		std::strcat(command->_file_path_cd_function, "/");
                     }
@@ -137,7 +129,7 @@ FCDFunction::CDFunctionInit(std::string name) {
             	    chdir(name.c_str());
             	    pathnamef = name;
             	}  else {
-            	    printerror->PrintError("This directory is not exist!");
+            	    std::cout << "This directory is not exist!\n";
             	    slashn
             	    return;
             	}
@@ -166,7 +158,7 @@ FMKDirFunction::MKDirFunctionInit(std::string name) {
     path_directory.append("/"); // ex: /home/username -> getenv("HOME") -> /home/username'/'
     path_directory.append(name); // maybe directory is exist or directory is not exist.
     if(mkdir(path_directory.c_str(), 0777) == -1 ) {// 0777 is user permission number.
-        printerror->PrintError("Directory is exist or you're not root");
+        std::cout << "Directory is exist or you're not root\n";
         slashn
     } else {
             BOLD_GREEN_COLOR
@@ -231,22 +223,21 @@ FCreateFileFunction::IsExistFile(std::string file) {
 void
 FCreateFileFunction::CreateSettingsFileFunction() {
     if(IsExistFile(".scrift_settings") != true) {
-    FeLog *logsystem = new FeLog();
-    uid_t fuid = geteuid();
-    struct passwd *password = getpwuid(fuid);
-    std::string pathfile;
-    pathfile.append("/home/");
-    pathfile.append(password->pw_name);
-    pathfile.append("/");
-    pathfile.append(".scrift_settings");
-    std::ofstream file(pathfile, std::ios::app);
-    file << "felog_cleaner 100\n";
-    file << "welcome_emoji :thinking_face:\n";
-    file << "bg_color 12\n";
-    file << "ascii_art_color random\n";
-    file << "scrift_theme default\n";
-    file << "input_customize ▶\n";
-    file.close();
+    	uid_t fuid = geteuid();
+    	struct passwd *password = getpwuid(fuid);
+    	std::string pathfile;
+    	pathfile.append("/home/");
+    	pathfile.append(password->pw_name);
+    	pathfile.append("/");
+    	pathfile.append(".scrift_settings");
+    	std::ofstream file(pathfile, std::ios::app);
+    	file << "felog_cleaner 100\n";
+    	file << "welcome_emoji :thinking_face:\n";
+    	file << "bg_color 12\n";
+    	file << "ascii_art_color random\n";
+    	file << "scrift_theme default\n";
+    	file << "input_customize ▶\n";
+    	file.close();
     } else {
     }
 }
@@ -325,9 +316,9 @@ FReadFileFunction::ReadHistoryFileFunction() {
 std::string 
 FFindFileFunction::FindWithoutPrint(std::string name) {
     DIR *directory;
-    directory = opendir((getenv("HOME"), "/", command->_file_path_cd_function));
+    directory = opendir(command->_file_path_cd_function);
     if(directory == NULL) {
-        printerror->PrintError("ERR: DIRECTORY OR FILE NOT FOUND OR NULL\n");
+        std::cout << "ERR: DIRECTORY OR FILE NOT FOUND OR NULL\n";
     }
     while ((entryname = readdir(directory))) {
         stat(entryname->d_name, &filestat);
@@ -348,15 +339,16 @@ FFindFileFunction::FindWithoutPrint(std::string name) {
         BLACK_COLOR // Reset
     }
     closedir(directory);
+    return "null";
 }
 
 
 void
 FFindFileFunction::FindFile(std::string name) {
     DIR *directory;
-    directory = opendir((getenv("HOME"), "/", command->_file_path_cd_function));
+    directory = opendir(command->_file_path_cd_function);
     if(directory == NULL) {
-        printerror->PrintError("ERR: DIRECTORY OR FILE NOT FOUND OR NULL\n");
+        std::cout << "ERR: DIRECTORY OR FILE NOT FOUND OR NULL\n";
         return;
     }
     while ((entryname = readdir(directory))) {
@@ -404,7 +396,7 @@ faddtextfunction::AppendLine(std::string filepathw) {
     std::ofstream file;
     file.open(filepath_with_path, std::ios::out | std::ios::app);
     if(file.fail()) {
-        printerror->PrintError("FAIL");
+        std::cout << "FAIL";
     }
 
     file.exceptions(file.exceptions() | std::ios::failbit | std::ifstream::badbit);
@@ -507,7 +499,7 @@ FReadFileFunction::ReadFileFunction(fstr filename) {
 
         readfile.close();
     } else {
-        printerror->PrintError("Unable to open file\n");
+	std::cout << "Unable to open file\n";
     }
 }
 
@@ -551,7 +543,7 @@ FReadFileFunction::ReadASCIIFunction() {
         }
         readfile.close();
     } else {
-        printerror->PrintError("Unable to open file\n");
+        std::cout << "Unable to open file\n";
     }
 }
 // FHOMEFUNCTION
@@ -580,13 +572,6 @@ FLSFunction::FLSFunction() {
 
 FLSFunction::~FLSFunction() { }
 
-void
-FLSFunction::InitLSFunction() { }
-
-boolean
-FLSFunction::DirectoryExists() { }
-
-
 std::string
 FLSFunction::GetObjects() {
     DIR *directory;
@@ -610,6 +595,7 @@ FLSFunction::GetObjects() {
     	BLACK_COLOR
     }
     closedir(directory);
+    return "null";
 }
 
 void 
@@ -652,6 +638,7 @@ FLSFunction::ListArgumentObjectFunction(std::string argument) {
 	} else { }
     }
     closedir(directory);
+    return false;
 }
 
 void
@@ -660,12 +647,12 @@ FLSFunction::LSFunction(std::string arg) {
     if(arg.rfind("#") == 0) {
     	arg = settings->EraseAllSubString(arg, "#");
     	std::string new_name(getenv(arg.c_str()));
-    	directory = opendir((getenv("HOME"), "/", command->_file_path_cd_function, "/", new_name.c_str()));
+    	directory = opendir((command->_file_path_cd_function, "/", new_name.c_str()));
     } else {
-    	directory = opendir((getenv("HOME"), "/", command->_file_path_cd_function, "/", arg.c_str()));
+    	directory = opendir((command->_file_path_cd_function, "/", arg.c_str()));
     }
     if(directory == NULL) {
-        printerror->PrintError("Directory not found.\n");
+        std::cout << "Directory not found.\n";
         return;
     }
     while ((entryname = readdir(directory))) {
@@ -768,19 +755,7 @@ FRemoveFileFunction::DeleteFile(std::string file) {
 }
 
 
-FCreateFileFunction::~FCreateFileFunction() {
-     delete file_path, 
-     file_name, 
-     file_directory_string, 
-     file_directory;
-}
+FCreateFileFunction::~FCreateFileFunction() {}
 
-FCDFunction::~FCDFunction() {
-    delete fmain, 
-    printerror,
-    command,
-    ascii, 
-    filelog, 
-    settings;
-}
+FCDFunction::~FCDFunction() {}
 

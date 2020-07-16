@@ -8,8 +8,10 @@
 #include <Syntax/CommandFunc.h>
 #include <Syntax/GetNameFunction.hpp>
 #include <pwd.h>
-#include <Syntax/Colors.hpp>
 #include <Syntax/Settings.hpp>
+
+// Library
+#include "../../Library/Colorized.hpp"
 
 FCommand *terminal = new FCommand();
 FSettings *fsettings = new FSettings();
@@ -42,9 +44,7 @@ FGetUsername::GetUsername() {
 void 
 FGetUsername::InitHostname() {
     fchar hostname_buffer[256];
-    struct hostent *hostname_entry;
-    integer hostname;
-    hostname = gethostname(hostname_buffer, sizeof(hostname_buffer));
+    gethostname(hostname_buffer, sizeof(hostname_buffer));
     printlnf("%s", hostname_buffer);
 }
 

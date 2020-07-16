@@ -5,11 +5,11 @@
 #
 # */
 
-#include<cstring> 
-#include<cstdlib> 
-#include<unistd.h> 
-#include<sys/types.h> 
-#include<sys/wait.h>
+#include <cstring> 
+#include <cstdlib> 
+#include <unistd.h> 
+#include <sys/types.h> 
+#include <sys/wait.h>
 #include <pwd.h>
 
 #include <Scrift.hpp>

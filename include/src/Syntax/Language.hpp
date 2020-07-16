@@ -7,17 +7,21 @@
 
 #ifndef LANGUAGE_HPP
 #define LANGUAGE_HPP
-#include "Colors.hpp"
-#include "Log.hpp"
-#include "RunFunction.hpp"
-#include "Settings.hpp"
-#include "../Scrift.hpp"
-#include "CommandFunc.h"
+
 #include <pwd.h>
 #include <vector>
-#include "../synflang.hpp"
+
+#include "Settings.hpp"
+#include "CommandFunc.h"
+#include "Log.hpp"
+#include "RunFunction.hpp"
 #include "FileFunction.hpp"
 #include "../Lexer/Lexer.hpp"
+#include "../synflang.hpp"
+#include "../Scrift.hpp"
+
+// Library
+#include "../../../Library/Colorized.hpp"
 
 class FLanguage {
 	FCommand *command = new FCommand();

@@ -7,56 +7,59 @@
 
 #ifndef CONTRIBUTORS_HPP
 #define CONTRIBUTORS_HPP
+
 #include "Log.hpp"
 #include "../Scrift.hpp"
-#include "Colors.hpp"
+
+// Library
+#include "../../../Library/Colorized.hpp"
 
 class FContributors {
 public:
-    virtual func ShellContributors();
-    virtual func FeedbackContributors();
-    virtual func TestingContributors();
-    virtual func DonateContributors();
-    virtual func Sponsors();
-    virtual func AllOfThem();
+    void ShellContributors();
+    void FeedbackContributors();
+    void TestingContributors();
+    void DonateContributors();
+    void Sponsors();
+    void AllOfThem();
 };
 
-func
+void
 FContributors::ShellContributors() {
     BOLD_GREEN_COLOR
     printlnf("Scrift Contributors:\n");
     BLACK_COLOR
 }
 
-func
+void
 FContributors::FeedbackContributors() {
     BOLD_GREEN_COLOR
     printlnf("Feedback Contributors:\n");
     BLACK_COLOR
 }
 
-func
+void
 FContributors::TestingContributors() {
     BOLD_GREEN_COLOR
     printlnf("Testing Contributors:\n");
     BLACK_COLOR
 }
 
-func
+void
 FContributors::DonateContributors() {
     BOLD_GREEN_COLOR
     printlnf("Donate Contributors:\n");
     BLACK_COLOR
 }
 
-func
+void
 FContributors::Sponsors() {
     BOLD_GREEN_COLOR
     printlnf("Sponsors:");
     BLACK_COLOR
 }
 
-func
+void
 FContributors::AllOfThem() {
     ShellContributors();
     FeedbackContributors();

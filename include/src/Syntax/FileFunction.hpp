@@ -76,9 +76,7 @@ class FLSFunction : public FCDFunction {
 public:
     FLSFunction();
     ~FLSFunction();
-    bool DirectoryExists();
     bool ListArgumentObjectFunction(std::string);
-    void InitLSFunction();
     void ListObjectFunction();
     void LSFunction(std::string);
     std::string GetObjects();
@@ -93,7 +91,6 @@ public:
 
 typest {
 public:
-    bool FileExist(const std::string);
     static void AppendLine(std::string);
     static void DeleteLine(std::string);
 } faddtextfunction;

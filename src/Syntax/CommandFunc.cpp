@@ -10,7 +10,6 @@
 #include <sys/utsname.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <Syntax/Colors.hpp>
 #include <Syntax/GetNameFunction.hpp>
 #include <dirent.h>
 #include <sys/stat.h>
@@ -28,20 +27,19 @@
 #include <net/if.h>
 #include <arpa/inet.h>
 #include "../../include/Library/Keywords.hpp"
+
+// Libraries
 #include "../../Library/EmojiPlusPlus.h"
+#include "../../Library/Colorized.hpp"
 
 namespace filesys = std::experimental::filesystem;
 static FKeyword keyword;
 static FSettings settings;
 static FCommand *command;
 
-static const char *_uname;
-
 FCommand::FCommand() { }
 
-FCommand::~FCommand() {
-    delete[] _home_dir, _file_path_cd_function, _uname;   
-}
+FCommand::~FCommand() { }
 
 void 
 FCommand::remove_character(char * _str, char ptr) {
@@ -112,10 +110,9 @@ FCommand::list_direc(boolean _home, std::string arg) {
         DIR *dir;
 	if(_home != false && arg.rfind("#") == 0) {
 		arg = settings.EraseAllSubString(arg, "#");
-    		std::string new_name(getenv(arg.c_str()));
-    		dir = opendir((getenv("HOME"), "/", command->_file_path_cd_function, "/", new_name.c_str()));
+    		dir = opendir((command->_file_path_cd_function, "/", getenv(arg.c_str())));
 	} else {
-        	if(_home != false) {dir = opendir((getenv("HOME"), "/", _file_path_cd_function, arg.c_str())); /*For Linux and *nix*/
+        	if(_home != false) {dir = opendir((_file_path_cd_function, arg.c_str())); /*For Linux and *nix*/
         	} else if(_home == false) {
         	    dir = opendir(getenv("HOME"));
         	}
@@ -126,7 +123,6 @@ FCommand::list_direc(boolean _home, std::string arg) {
         }
         while ((entry = readdir(dir))) {
             files++;
-            char * _str = entry->d_name;
             stat(entry->d_name,&filestat);
             if(entry->d_type == DT_DIR) {
             	if(strstr(entry->d_name, ".")) {
@@ -152,24 +148,23 @@ FCommand::list_file(boolean _home, std::string arg) {
 	if(_home != false && arg.rfind("#") == 0) {
 		arg = settings.EraseAllSubString(arg, "#");
     		std::string new_name(getenv(arg.c_str()));
-    		dir = opendir((getenv("HOME"), "/", command->_file_path_cd_function, "/", new_name.c_str()));
+    		dir = opendir((command->_file_path_cd_function, "/", new_name.c_str()));
 	} else {
-        	if(_home != false) {dir = opendir((getenv("HOME"), "/", _file_path_cd_function, arg.c_str())); /*For Linux and *nix*/
-        	} else if(_home == false || _home == NULL) {
+        	if(_home != false) {dir = opendir((_file_path_cd_function, arg.c_str())); /*For Linux and *nix*/
+        	} else if(_home == false) {
         	    dir = opendir(getenv("HOME"));
         	}
         }
         if (dir == NULL) {
             RED_COLOR
-            printerror("ERR:DIRECTORY NOT FOUND", 12, "ERR:DIRNFND");
+            std::cout << "Directory not found.\n";
             BLACK_COLOR
             return;
         }
         while ((entry = readdir(dir))) {
             files++;
-            char * _str = entry->d_name;
-            remove_character(_str, '.');
-            remove_character(_str, '..');
+            remove_character(entry->d_name, '.');
+            remove_character(entry->d_name, '..');
             //printf("%d", entry->d_type, "\n");
             //printf("%d");
           //  printf("\033[0;34m");
@@ -266,6 +261,6 @@ FCommand::printerror(fchar *err_str, integer8 err_number, fchar * _error_code) {
 void
 FCommand::_n_supported_() {
     RED_COLOR
-    printerror("Your os not supported!", 10, "1_n_support \n");
+    std::cout << "This OS is not supported.\n";
     BLACK_COLOR // reset
 }

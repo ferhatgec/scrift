@@ -7,12 +7,15 @@
 
 #ifndef ASCII_FUNCTION_HPP
 #define ASCII_FUNCTION_HPP
-#include "Colors.hpp"
+
 #include "FileFunction.hpp"
 #include "../synflang.hpp"
 #include "../Scrift.hpp"
 #include "Log.hpp"
 #include <pwd.h>
+
+// Library
+#include "../../../Library/Colorized.hpp"
 
 using namespace FileFunction;
 

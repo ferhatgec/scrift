@@ -52,7 +52,6 @@
 #include "../include/src/Syntax/Settings.hpp"
 #include "../include/src/Syntax/Language.hpp"
 #include "../include/src/Syntax/History.hpp"
-#include "../include/src/Syntax/Configuration.hpp"
 #include "../include/src/Syntax/Template.hpp"
 #include "../include/Library/Keywords.hpp"
 
@@ -96,7 +95,6 @@ FClearFileFunction *clearfile = new FClearFileFunction();
 FSettings *runsyntax = new FSettings();
 FLanguage *scriftlang = new FLanguage();
 FHistory *history = new FHistory();
-FConfiguration *conf = new FConfiguration();
 ScriftKeywords keywords;
 FTemplate temp;
 
@@ -128,8 +126,7 @@ FMain::~FMain() {
     clearfile,
     runsyntax,
     scriftlang,
-    history,
-    conf;
+    history;
 }
 
 
@@ -168,7 +165,7 @@ std::string VersionGenerator() {
 
 void Space(int space, std::string sign, bool theme) {
 	if(theme == true) {
-		std::cout << WWHITE_COLOR << sign << WBLACK_COLOR;
+		colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), sign.c_str());
 	} else {
 		if(space == 1 || space % 1) {
 			colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), sign.c_str());
