@@ -1316,28 +1316,31 @@ integer main(integer argc, char** argv) {
 				}
 			} 
 		}
-    } 
-    runsyntax->ReadFile();
-    filefunction->CreateSettingsFileFunction(); // Directory is "/home/<username>/<dot>scrift_settings"
-    logsystem->AllofThem();
-    asciifunction *ascii = new asciifunction;
-    ascii->Allofthem();
-    uid_t fuid = geteuid();
-    struct passwd *pass = getpwuid(fuid);
-    BOLD_MAGENTA_COLOR
-    printlnf("Welcome ");
-    BOLD_CYAN_COLOR
-    printlnf(pass->pw_name);
-    BOLD_BLUE_COLOR
-    std::cout << " " << emojiplusplus::EmojiString(runsyntax->FWelcomeEmoji()) << "\n";
-    BLACK_COLOR
-    history->AllofThem();
-    logsystem->WriteLog("Launching hello function.. - ");
-    helpstr->hello();
-    terminalstr->Terminal(); 
-    while(argc = 2) {
-        main_function->Shell();
+    } else {
+    	runsyntax->ReadFile();
+    	filefunction->CreateSettingsFileFunction(); // Directory is "/home/<username>/<dot>scrift_settings"
+    	logsystem->AllofThem();
+    	asciifunction *ascii = new asciifunction;
+    	ascii->Allofthem();
+    	uid_t fuid = geteuid();
+    	struct passwd *pass = getpwuid(fuid);
+    	BOLD_MAGENTA_COLOR
+    	printlnf("Welcome ");
+    	BOLD_CYAN_COLOR
+    	printlnf(pass->pw_name);
+    	BOLD_BLUE_COLOR
+    	std::cout << " " << emojiplusplus::EmojiString(runsyntax->FWelcomeEmoji()) << "\n";
+    	BLACK_COLOR
+    	history->AllofThem();
+    	logsystem->WriteLog("Launching hello function.. - ");
+    	helpstr->hello();
+    	terminalstr->Terminal(); 
+    	while(argc = 2) {
+    		
+    	    std::cout << "\e]2; " << "Scrift: " << pass->pw_name << "@" << main_->_file_path_cd_function << "\a";
+    	    main_function->Shell();
+    	}
+    	history->WriteAllHistory();
     }
-    history->WriteAllHistory();
     return F_OK;
 }
