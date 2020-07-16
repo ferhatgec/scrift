@@ -111,7 +111,7 @@ FCDFunction::CDFunctionInit(std::string name) {
             		return;
 	    	} else {
 		std::string path;
-	    	if(command->_file_path_cd_function[0] == '/') {
+	    	if(command->_file_path_cd_function == "/") {
 			path.append(command->_file_path_cd_function);
 			path.append(name);				    		
 		} else {
@@ -121,7 +121,7 @@ FCDFunction::CDFunctionInit(std::string name) {
             	}
             	if(FileExists(path) == true) {
             	    std::string path;
-	    	    if(command->_file_path_cd_function[0] == '/') {
+	    	    if(command->_file_path_cd_function == "/") {
 		    } else {
             		std::strcat(command->_file_path_cd_function, "/");
                     }
