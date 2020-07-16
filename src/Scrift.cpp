@@ -233,6 +233,7 @@ std::string IntToString(int a) {
 }
 
 std::string currentDateTime() {
+    // return "2020-01-01-12:34:67:00"; For Test.
     time_t     now = time(0);
     struct tm  tstruct;
     char       buf[80];
@@ -1280,6 +1281,11 @@ FMain::Shell() {
 
 integer main(integer argc, char** argv) {
     setlocale(LC_ALL, "");
+    if(currentDateTime().substr(4, 6) == "-01-01") {
+    	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "Happy new year!");
+    	std::cout << " " << emojiplusplus::EmojiString(":balloon:") << " - ";
+    	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "Scrift\n");
+    }
     if(argc > 1) {
 		for(int i = 1; i < argc; i++) {
 			std::string arg(argv[i]);
