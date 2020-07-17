@@ -31,6 +31,10 @@
 - Auto-clear
 - Own Interpreter.
 - Randomize String generator (rstr)
+- Celebrates the new year :)
+- Morse Code Generator
+- Input customization
+- Dynamic Titles.
 - And more!
 
 # How to build and run in Linux?
