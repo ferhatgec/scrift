@@ -3,14 +3,38 @@
 # Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
 # Distributed under the terms of the MIT License.
 #
+#
+#
+# UNIX Time Conversions added by Ali Sancakli <github.com/TerabyteForever>
+#
 # */
 
 #include <iostream>
 #include <iomanip>
 #include "../../include/src/Scrift.hpp"
 #include "../../include/src/Syntax/Colors.hpp"
+#include <cmath>
+#include <ctime>
+#include <string>
 
 using namespace std;
+int getEpochDifference();
+bool isLeapYear(int);
+void UNIXTimeToNormalTime(time_t epoch){
+   cout<<"Converting UNIX Time to normal time..."<<endl; 
+   struct tm UTCTime; /*struct tm is a structure used to hold the time and date.*/
+   char buffer[80];
+   UTCTime = *localtime(&epoch); //The value of timer is broken up into the structure tm and expressed in the local time zone.
+   strftime(buffer /*C style string that these infos will be copied to.*/, sizeof(buffer)/*Maximum number of characters to be copied to ptr, including the terminating null-character.*/, "%d-%m-%Y %H:%M:%S", &UTCTime);
+   
+   cout<<"Your epoch belongs to this date : (DD/MM/YYYY HH:MM:SS) "<<buffer<<endl;
+}
+int NormalTimeToUNIXTime(int gun=0,int ay=0, int yil=0, int saat=0, int dakika=0, int saniye=0){
+
+
+   return (((yil-1970) * 31104000)+((ay)*2592000)+((gun)*86400)+((saat)*3600)+((dakika)*60)+(saniye));
+
+}
 
 int getMonth()
 {
@@ -169,10 +193,92 @@ void display(int year, int month, int offset)
    displayTable(numDays, offset, year, month);
    cout << endl;   
 }
+int getEpochDifference(){ //Returns the epoch value between current date and 1/1/1970. Simple.
 
+   return time(NULL);
 
-int main()
+}
+
+int main(int argc, char* argv[])
 {
+   cout<<WBOLD_GREEN_COLOR<<"Welcome to FDate!"<<endl<<endl;
+
+   if(strcmp(argv[argc-1],"-currentUNIX") == 0){
+
+      cout<<WBOLD_RED_COLOR<<"Current UNIX Time is : "<<getEpochDifference()<<endl<<endl;
+
+      cout<<WBOLD_MAGENTA_COLOR<<"Run FDate with -help parameter to see all available parameters."<<endl<<endl;
+      exit(EXIT_SUCCESS);
+
+   }
+   else if(strcmp(argv[argc-1],"-fromUNIX") == 0){
+
+         int unixTimestamp;
+         cout<<WBOLD_YELLOW_COLOR<<"Enter the UNIX time that you want to convert to real date."<<endl;
+         cin>>unixTimestamp;
+         UNIXTimeToNormalTime(unixTimestamp);
+         exit(EXIT_SUCCESS);
+
+
+   }
+   else if(strcmp(argv[argc-1],"-toUNIX") == 0){
+         int dd,mm,yyyy,hh,minute,ss;
+         cout<<WBOLD_CYAN_COLOR<<"Enter the date that you want to convert to UNIX date. (DD/MM/YYYY) "<<endl;
+         cout<<"Day : ";
+         cin>>dd;
+            if(dd < 1 || dd > 31){
+
+         cout<<WBOLD_RED_COLOR<<"Day entry is wrong. Aborting."<<endl;
+         exit(0);
+   }
+         cout<<"Month : ";
+         cin>>mm;
+            if(mm < 1 || mm > 12){
+
+         cout<<WBOLD_RED_COLOR<<"Month entry is wrong. Aborting."<<endl;
+         exit(0);
+   }
+         cout<<"Year : ";
+         cin>>yyyy;
+            if(yyyy < 1970 || yyyy >= 2038){
+
+         cout<<WBOLD_RED_COLOR<<"Year entry is wrong. Aborting."<<endl;
+         exit(0);
+   }
+         cout<<"Hour : ";
+         cin>>hh;
+            if(hh < 0 || hh > 23){
+
+         cout<<WBOLD_RED_COLOR<<"Hour entry is wrong. Aborting."<<endl;
+         exit(0);
+   }
+         cout<<"Minute : ";
+         cin>>mm;
+            if(mm < 0 || mm > 59){
+
+         cout<<WBOLD_RED_COLOR<<"Minute entry is wrong. Aborting."<<endl;
+         exit(0);
+   }
+         cout<<"Second : ";
+         cin>>ss;
+            if(ss < 0 || ss > 59){
+
+         cout<<WBOLD_RED_COLOR<<"Seconds entry is wrong. Aborting."<<endl;
+         exit(0);
+   }
+         cout<<"The date you entered belongs to this epoch : "<<NormalTimeToUNIXTime(dd,mm,yyyy,hh,minute,ss)<<endl;
+         exit(EXIT_SUCCESS);
+
+   }
+   else if(strcmp(argv[argc-1],"-help") == 0){
+
+         cout<<endl<<"***************FDate Help***************"<<endl<<endl<<endl;
+         cout<<"Available parameters are : "<<endl<<"-toUNIX (converts UTC clock to UNIX clock.)"<<endl<<"-fromUNIX (converts UNIX Clock to UTC.)"<<endl<<"-currentUNIX (displays current UNIX Clock.)"<<endl<<endl;
+         cout<<WBOLD_YELLOW_COLOR<<"You can launch the FDate without parameters also. That will display a calendar of the month that you've entered."<<endl;
+
+         exit(EXIT_SUCCESS);
+   }
+
    int offset;
    int month;
    int year;
