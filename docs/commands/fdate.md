@@ -1,6 +1,6 @@
 # Fegeya Date Command
 
-fdate command is shows calendar.
+fdate command shows calendar.
 
 # Examples 
 
@@ -18,4 +18,9 @@ output:
   22  23  24  25  26  27  28
   29
     <username>@<hostname>:~/home/<username> $#
+    
 ```
+#Parameters
+
+You can use parameters to run FDate with newly added UNIX conversions.
+Run the FDate with -help parameter to see all available commands.
