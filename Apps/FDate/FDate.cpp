@@ -3,19 +3,20 @@
 # Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
 # Distributed under the terms of the MIT License.
 #
-#
-#
 # UNIX Time Conversions added by Ali Sancakli <github.com/TerabyteForever>
 #
 # */
 
 #include <iostream>
 #include <iomanip>
-#include "../../include/src/Scrift.hpp"
-#include "../../include/src/Syntax/Colors.hpp"
 #include <cmath>
 #include <ctime>
 #include <string>
+
+#include "../../include/src/Scrift.hpp"
+
+// Library
+#include "../../Library/Colorized.hpp"
 
 using namespace std;
 int getEpochDifference();

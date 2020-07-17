@@ -41,7 +41,7 @@ endif
 
 all: conio headersfile main clean
 
-allp: headersfile mainc edifor fetcheya clean 
+allp: headersfile mainc edifor fetcheya date clean 
 
 removeall: uninstall cleanall
 
