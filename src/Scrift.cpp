@@ -140,9 +140,9 @@ void RemovePrintedChar(int value) {
 	return;
 }
 
+int factorial(int n);
 int space = 0;
 std::string ftime(compilation_time); // Convert
-
 int input_value = 0;
     // Get Between String    
 void GetBtwString(std::string oStr, std::string sStr1, std::string sStr2, std::string &rStr) {  
@@ -224,6 +224,13 @@ int sqrti(int x) {
     v.x >>= 1;       // divide by 2
     v.x  += 1 << 29; // add ((b + 1) / 2) * 2^m
     return (int)v.f;
+}
+
+int factorial(int n) {
+    if(n > 1)
+        return n * factorial(n - 1);
+    else
+        return 1;
 }
 
 std::string IntToString(int a) {
@@ -490,6 +497,27 @@ void InputFunction() {
         	history->WriteHistory(main_function->_h_str);
         	main_function->_h_str.erase();
         	terminalstr->Terminal(); 
+        	return;
+    	} else if(main_function->_h_str == keywords.Factorial) {
+    		std::string input;
+        	RemovePrintedChar(keywords.Factorial.length() - 1);
+        	if(runsyntax->Theme() == "default")  {
+        		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "fact");
+       	} else if(runsyntax->Theme() == "classic") {
+       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "fact");
+       	} else {
+        		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "fact");
+        	}
+        	colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), " ");
+          	std::cin >> input;
+          	if(atoi(input.c_str()) < 0) {
+			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "n must be > or = to 0");          	
+          	} else {
+			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), std::to_string(factorial(atoi(input.c_str()))).c_str());
+        	}
+                BLACK_COLOR 	
+        	history->WriteHistory(main_function->_h_str);
+        	main_function->_h_str.erase();
         	return;
     	} else if(main_function->_h_str == keywords.Uptime) {
     		RemovePrintedChar(keywords.Uptime.length() - 1);

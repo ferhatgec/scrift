@@ -54,6 +54,7 @@ public:
             "rmvsettings : Clear your Settings\n"
             "settings : Shows your Settings\n"
             "fetcheya : Shows your system\n"
+            "fact : Prints input factorial\n"
             "emoji : Shows your inputted emoji (e.g: :thinking_face:)\n"
             "version : Shows version and license\n"
             "now : Shows time.\n"

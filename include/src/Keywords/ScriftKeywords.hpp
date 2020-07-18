@@ -229,6 +229,9 @@ public:
 	std::string SquareofNumber = "square";
 	std::string SquareRootofNumber = "sqrt";
 	
+	// Factorial
+	std::string Factorial = "fact";
+	
 	// Set Background Color
 	std::string SetBgColor = "fset bg";
 		
