@@ -726,6 +726,9 @@ FLSFunction::LSFunction(std::string arg) {
 	} else if(strstr(entryname->d_name, ".lua")) {
 	    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLACK).c_str(), "");
 	    printlnf("%4s: %s\n", "[Lua]", entryname->d_name);	
+	} else if(strstr(entryname->d_name, ".inclink")) {
+	    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "");
+	    printlnf("%4s: %s\n", "[includeLink]", entryname->d_name);			
 	} else {
             BOLD_YELLOW_COLOR
             printlnf("%4s: %s\n", "[File]", entryname->d_name);
