@@ -253,6 +253,10 @@ public:
 	
 	// FreeBrain Generator
 	std::string FreeBrainGen = "genfrbr";
+	
+	// Parse
+	std::string Parse = "parse";
+	
 	// Whitespace
 	std::string Whitespace = " ";
 };
