@@ -919,9 +919,12 @@ void InputFunction() {
         	BLACK_COLOR
         	if(main_function->_h_str.length() == 0) {
 			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "scrift : ./ : Is a directory.\n"); 
-		} else {
-      			runfunction->RunFunction("./" + main_function->_h_str);
-        	}
+		} else if(strstr(main_function->_h_str.c_str(), ".scr")) { 
+			scriftlang->ReadFunc(scriftlang->EraseAllSubString(main_function->_h_str, ".scr"));
+		} else  {
+			runfunction->RunFunction("./" + main_function->_h_str);
+		}
+        	
         	history->WriteHistory(main_function->_h_str);
       		main_function->_h_str.erase();
       		terminalstr->Terminal();
