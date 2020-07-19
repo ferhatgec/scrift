@@ -54,8 +54,6 @@ public:
     path.append(command->_file_path_cd_function);
     path.append("/");
     path.append(filename);
-    path.append(scrift);
-    
     
     std::ifstream readfile(path);
     

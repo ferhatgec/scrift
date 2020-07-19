@@ -830,7 +830,11 @@ void InputFunction() {
         	BOLD_CYAN_COLOR
         	std::getline(std::cin, main_function->_h_str);
         	BLACK_COLOR
-        	runfunction->RunFunction(main_function->_h_str);
+        	if(strstr(main_function->_h_str.c_str(), ".scr")) {
+        		runfunction->RunFunction(main_function->_h_str);	
+        	} else {
+        		runfunction->RunFunction(main_function->_h_str + ".scr");
+        	}
        	main_function->_h_str.erase();
         	history->WriteHistory(main_function->_h_str);
        	terminalstr->Terminal(); 
@@ -920,7 +924,7 @@ void InputFunction() {
         	if(main_function->_h_str.length() == 0) {
 			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "scrift : ./ : Is a directory.\n"); 
 		} else if(strstr(main_function->_h_str.c_str(), ".scr")) { 
-			scriftlang->ReadFunc(scriftlang->EraseAllSubString(main_function->_h_str, ".scr"));
+			scriftlang->ReadFunc(main_function->_h_str);
 		} else  {
 			runfunction->RunFunction("./" + main_function->_h_str);
 		}
