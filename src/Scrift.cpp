@@ -830,11 +830,7 @@ void InputFunction() {
         	BOLD_CYAN_COLOR
         	std::getline(std::cin, main_function->_h_str);
         	BLACK_COLOR
-        	if(strstr(main_function->_h_str.c_str(), ".scr")) {
-        		runfunction->RunFunction(main_function->_h_str);	
-        	} else {
-        		runfunction->RunFunction(main_function->_h_str + ".scr");
-        	}
+        	runfunction->RunFunction(main_function->_h_str);	
        	main_function->_h_str.erase();
         	history->WriteHistory(main_function->_h_str);
        	terminalstr->Terminal(); 
@@ -1113,7 +1109,11 @@ void InputFunction() {
        	}
         	BOLD_CYAN_COLOR
         	std::cin >> main_function->_h_str;
-        	scriftlang->ReadFunc(scriftlang->EraseAllSubString(main_function->_h_str, keywords.Scrift + keywords.Whitespace));
+        	if(strstr(main_function->_h_str.c_str(), ".scr")) {
+        		scriftlang->ReadFunc(scriftlang->EraseAllSubString(main_function->_h_str, keywords.Scrift + keywords.Whitespace));	
+        	} else {
+        		scriftlang->ReadFunc(scriftlang->EraseAllSubString(main_function->_h_str, keywords.Scrift + keywords.Whitespace + ".scr"));
+        	}
         	history->WriteHistory(main_function->_h_str);
          	main_function->_h_str.erase();
        	return;
