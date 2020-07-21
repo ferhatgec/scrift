@@ -1109,11 +1109,7 @@ void InputFunction() {
        	}
         	BOLD_CYAN_COLOR
         	std::cin >> main_function->_h_str;
-        	if(strstr(main_function->_h_str.c_str(), ".scr")) {
-        		scriftlang->ReadFunc(scriftlang->EraseAllSubString(main_function->_h_str, keywords.Scrift + keywords.Whitespace));	
-        	} else {
-        		scriftlang->ReadFunc(scriftlang->EraseAllSubString(main_function->_h_str, keywords.Scrift + keywords.Whitespace + ".scr"));
-        	}
+        	scriftlang->ReadFunc(main_function->_h_str + ".scr");
         	history->WriteHistory(main_function->_h_str);
          	main_function->_h_str.erase();
        	return;
