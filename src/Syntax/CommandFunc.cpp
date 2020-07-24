@@ -6,7 +6,6 @@
 # */
 
 #include <Syntax/Settings.hpp>
-#include <Syntax/Language.hpp>
 #include <sys/utsname.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -31,6 +30,7 @@
 // Libraries
 #include "../../Library/EmojiPlusPlus.h"
 #include "../../Library/Colorized.hpp"
+#include "../../Library/StringTools.h"
 
 namespace filesys = std::experimental::filesystem;
 static FKeyword keyword;
@@ -76,15 +76,25 @@ FCommand::FName() {
 
 void
 FCommand::echo_printlnf(std::string name) { 
-    FLanguage lang;
     if(name != "") {
         WHITE_COLOR
         if(name.rfind("#USER") == 0) {        
             keyword.EndWithUser();
         } else if(name.rfind("#PATH") == 0) {
             keyword.EndWithPath();
-        } else if(name.rfind("#") == 0) {
-        	printlnf(getenv(lang.EraseAllSubString(name, "#").c_str()));
+        } else if(name[0] == '#') {
+		name = name.erase(0, 1);
+        	const char* env = getenv(name.c_str());
+		if(env != NULL) {
+			std::cout << env;
+		} else {
+			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "scrift : This Environment not found. ");
+			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "Use:\n");
+			colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), "setname ");
+			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), name.c_str());
+			colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(), "\nsetto ");
+			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "<variable>");
+		}
         } else {
         	std::cout << emojiplusplus::EmojiString(name);
         }

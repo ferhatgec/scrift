@@ -49,7 +49,7 @@ namespace stringtools {
   		return sum;
 	}
 	
-	int Count(std::string s, char ch) {
+	static int Count(std::string s, char ch) {
   		int count = 0;
 
 	 	for (int i = 0; i < s.size(); i++)
