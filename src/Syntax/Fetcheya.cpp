@@ -26,8 +26,8 @@
 
 using namespace std; // Sorry...
 
-const std::string compilation_time = __TIME__;
-std::string ftime(compilation_time); // Convert
+static const std::string compilation_time = __TIME__;
+static std::string ftime(compilation_time); // Convert
 
 class systemInfo {
 public:
@@ -103,7 +103,8 @@ public:
 		device.close();
 		return deviceName;
 	}
-	string getUptime() {
+	
+	/*string GetUptime() {
 		struct sysinfo info;
 		sysinfo(&info);
 		uptime = info.uptime;
@@ -131,7 +132,8 @@ public:
 		}
 		uptimeString = uptimeStream.str();
 		return uptimeString;
-	}
+	}*/
+
 	string getShell() {
 		shell = getenv("SHELL");
 		shell.erase(0,5);
@@ -222,12 +224,12 @@ int main() {
 	bool control = false;
 	systemInfo systemInfo;
 	Colours Colours;
-	string underline = "▂▂"; 
+	string underline = "--"; 
 	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), systemInfo.getUsername().c_str());
 	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), "@");  
 	colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), (systemInfo.getHostname() + " \n").c_str());
 	for(int i = 0; i != systemInfo.getUserHostLength() + 1; i++) {
-		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLACK).c_str(), "▂");
+		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLACK).c_str(), "-");
 		/*if(BLACK + i >= LIGHT_GRAY) {  
 			if(LIGHT_BLACK + a > WHITE) {
 				a = 0;
@@ -246,14 +248,18 @@ int main() {
 	}         
 	cout << "\033[1;36m" << " \n\nScrift Version: " << "\033[01;33m" <<  SCRIFT_VERSION << WBOLD_YELLOW_COLOR << hyphen << WBOLD_CYAN_COLOR << SCRIFT_STATUS << endl;                                
 	cout << "\033[1;34m" << "Build: " << "\033[01;33m" << FETCHEYA_VERSION << "-" << FETCHEYA_STATUS << "-" << "fetcheyav" << systemInfo.EraseAllSubString(ftime, ":") << endl;
+	#ifdef __FreeBSD__
+	cout << "\033[1;31m" << "OS Name:" << "\033[1;36m" << " " << "FreeBSD" << endl;
+	#else
 	cout << "\033[1;31m" << "OS Name:" << "\033[1;36m" << " " << fsplusplus::ReadOSName() << endl;
+	#endif
 	cout << "\033[1;36m" << "Architecture:" << "\033[1;33m" << " " << systemInfo.getArch() << endl;
 	cout << "\033[1;32m" << "Hostname:" << "\033[1;35m" << " " << systemInfo.getHostname() << endl;
 	cout << "\033[1;34m" << "Kernel Name:" << "\033[1;35m" << " " <<  systemInfo.getSystem() << endl;
 	cout << "\033[01;33m" << "Kernel Release:" << "\033[1;34m" << " "  << systemInfo.getKernel() << endl;
 	cout << "\033[1;35m" << "CPU:" << "\033[1;31m" << " ";
 	systemInfo.getCPU();
-	cout << "\033[1;34m" << "Uptime:" << "\033[01;33m" << " "  <<  systemInfo.getUptime() << endl;
+	/* cout << "\033[1;34m" << "Uptime:" << "\033[01;33m" << " "  <<  systemInfo.GetUptime() << endl; */
 	cout << "\033[1;35m" << "Terminal:" << "\033[1;32m" << " "  << systemInfo.getTerm() << endl;
 	cout << "\033[1;36m" << "Shell:" << "\033[1;31m" << " " << systemInfo.getShell() << endl << endl;
 	systemInfo.Test16bitColours();
