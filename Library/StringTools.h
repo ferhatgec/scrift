@@ -1,11 +1,11 @@
 /*# MIT License
-#
+# Forked from https://github.com/ferhatgec/stringtools
 # Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
 # Distributed under the terms of the MIT License.
 #*/
 
-#ifndef STRING_TOOLS_H
-#define STRING_TOOLS_H
+#ifndef STRING_TOOLS_HPP
+#define STRING_TOOLS_HPP
 
 #include <iostream>
 #include <cstring>
@@ -49,6 +49,15 @@ namespace stringtools {
   		return sum;
 	}
 	
+	int Count(std::string s, char ch) {
+  		int count = 0;
+
+	 	for (int i = 0; i < s.size(); i++)
+    			if (s[i] == ch) count++;
+
+  		return count;
+	}
+	
 	static std::string GetBetweenString(std::string oStr, std::string sStr1, std::string sStr2) {  
     		int start = oStr.find(sStr1);   
     		if (start >= 0) {       
@@ -63,7 +72,19 @@ namespace stringtools {
        		return "error"; 
 	}	
 	
-	
+	static void GetBtwString(std::string oStr, std::string sStr1, std::string sStr2, std::string &rStr) {  
+    		int start = oStr.find(sStr1);   
+    		if (start >= 0) {       
+      		std::string tstr = oStr.substr(start + sStr1.length());        
+      		int stop = tstr.find(sStr2);      
+      		if (stop >1)          
+        		rStr = oStr.substr(start + sStr1.length(), stop);
+      		else
+        		rStr ="error";  
+    		}
+    		else
+       		rStr = "error"; 
+	}
 }
 
-#endif // STRING_TOOLS_H
+#endif // STRING_TOOLS_HPP
