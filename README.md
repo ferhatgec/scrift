@@ -79,4 +79,4 @@
  $# sh default_git_editor.sh // For GNU/Linux, FreeBSD etc.
 ```
 
-###### Scrift licensed with MIT License.
+#### Scrift licensed under the terms of MIT License.
