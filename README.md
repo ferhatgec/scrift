@@ -37,49 +37,49 @@
 - Dynamic Titles.
 - And more!
 
-# How to build and run in Linux?
+## How to build and run?
 
 ```
- $ make runall 
+ $ make runall // GNU/Linux and Unix-like systems.
 ```
-# How to build and run in Scrift?
-## If you are already using Scrift, use the following commands (You should going to scrift-lang directory, and run)
-
+```
+ $ sh build.sh // FreeBSD
+```
+## How to build and run in Scrift?
+### If you are already using Scrift, use the following commands (You should going to scrift directory, and run)
 ```
  $ fscrift make
 ```
 
-# How to install?
-## Install Packages
+## How to install?
+### Install Packages (For tools and games (Edifor, Castle etc.))
 
 ```
- $ sudo apt-get install libncurses-dev 
+ $ sudo apt-get install libncurses-dev // Ubuntu, Debian.
 ```
 ```
- $ sudo dnf install ncurses-devel
+ $ sudo dnf install ncurses-devel // Fedora, CentOS
 ```
 
 ## Run
 ```
- $ sudo make allp
+ $ fscrift install // For Scrift
+```
+```
+ $ sudo make allp // Linux and Unix-like systems.
 ```
 
-# How to set default shell (For Fegeya Scrift users)
-
+## Change Shell
 ```
- $ fscrift install
-```
-
-## If you are using Bash or etc, use the following commands:
-
-```
- $ sudo chsh -s /bin/scrift <username>
+ $ sudo chsh -s /bin/scrift <username> // Ubuntu, Debian, Fedora, FreeBSD etc.
 ```
 
-
-# Use Edifor with Git and etc (If you are already using Scrift, use the following commands)
+## Use Edifor for Git (Default Editor)
 ```
- $ fscrift default_git_editor
+ $ fscrift default_git_editor // For Scrift
+```
+```
+ $ sh default_git_editor.sh // For GNU/Linux, FreeBSD etc.
 ```
 
 ###### Scrift licensed with MIT License.
