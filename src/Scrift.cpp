@@ -660,8 +660,10 @@ void InputFunction() {
        	} else {
 			std::cout << WBOLD_BLUE_COLOR << "setname " << WBLACK_COLOR;
         	}
+		BOLD_LIGHT_CYAN_COLOR
         	std::getline(std::cin, main_function->_h_str);
-        	SetNameString = scriftlang->EraseAllSubString(main_function->_h_str, keywords.SetName + keywords.Whitespace);
+		BLACK_COLOR        	
+		SetNameString = scriftlang->EraseAllSubString(main_function->_h_str, keywords.SetName + keywords.Whitespace);
         	history->WriteHistory(main_function->_h_str);
         	main_function->_h_str.erase();
         	terminalstr->Terminal(); 
@@ -675,8 +677,10 @@ void InputFunction() {
        	} else {
 			std::cout << WBOLD_CYAN_COLOR << "setto " << WBLACK_COLOR;
         	}      	
+		BOLD_LIGHT_BLUE_COLOR
         	std::getline(std::cin, main_function->_h_str);
-    		SetNameToString = scriftlang->EraseAllSubString(main_function->_h_str, keywords.SetTo + keywords.Whitespace);
+		BLACK_COLOR    		
+		SetNameToString = scriftlang->EraseAllSubString(main_function->_h_str, keywords.SetTo + keywords.Whitespace);
     		setenv(SetNameString.c_str(), SetNameToString.c_str(), true);
         	history->WriteHistory(main_function->_h_str);
     		main_function->_h_str.erase();
@@ -701,9 +705,9 @@ void InputFunction() {
     		main_function->_h_str.erase();
     		terminalstr->Terminal(); 
         	return;
-    	} else if(main_function->_h_str.find(keywords.Printlnf, 0) == 0){
+    	} else if(main_function->_h_str == keywords.Printlnf || main_function->_h_str == keywords.Echo){
         	logsystem->WriteLog("Launching printlnf function.. - ");
-        	RemovePrintedChar(keywords.Printlnf.length() - 1);
+        	RemovePrintedChar(main_function->_h_str.length() - 1);
         	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_YELLOW_COLOR << "printlnf " << WBLACK_COLOR;
        	} else if(runsyntax->Theme() == "classic") {
@@ -1085,9 +1089,9 @@ void InputFunction() {
        	main_function->_h_str.erase();
        	terminalstr->Terminal();
        	return;
-     } else if(main_function->_h_str == keywords.Close)  {                                      
+     } else if(main_function->_h_str == keywords.Close || main_function->_h_str == keywords.Exit)  {                                      
         	logsystem->WriteLog("Exit signal.. - ");
-          	RemovePrintedChar(keywords.Close.length() - 1);
+          	RemovePrintedChar(main_function->_h_str.length() - 1);
           	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_MAGENTA_COLOR << "cls" << WBLACK_COLOR;
        	} else if(runsyntax->Theme() == "classic") {

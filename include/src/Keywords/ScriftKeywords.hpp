@@ -148,13 +148,14 @@ public:
 	
 	// Printlnf
 	std::string Printlnf = "printlnf";
-	
+	std::string Echo = "echo";
+
 	// Clear
 	std::string Clear = "clear";
 	std::string Clear___ = "clear!!!";
 	
-	// Break && Close
-	std::string Break = "brk";
+	// Close
+	std::string Exit = "exit";
 	std::string Close = "cls";
 	
 	// Username 
