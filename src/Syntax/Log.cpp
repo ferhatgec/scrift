@@ -35,8 +35,7 @@ FeLog::ClearLog()
     std::string path;
     uid_t uid = geteuid();
     struct passwd *password = getpwuid(uid);
-    path.append("/home/");
-    path.append(password->pw_name);
+    path.append(getenv("HOME"));
     path.append(slash);
     path.append(".scrift_log");
     file.open(path); // append
@@ -64,8 +63,7 @@ FeLog::WriteLog(fstr filepathw)
     std::string filepath_with_path;
     uid_t uid = geteuid();
     struct passwd *password = getpwuid(uid);
-    filepath_with_path.append("/home/");
-    filepath_with_path.append(password->pw_name);
+    filepath_with_path.append(getenv("HOME"));
     filepath_with_path.append(slash);
     filepath_with_path.append(".scrift_log");
     std::ofstream file;
@@ -91,8 +89,7 @@ FeLog::CreateFile()
     std::string path;
     uid_t uid = geteuid();
     struct passwd *password = getpwuid(uid);
-    path.append("/home/");
-    path.append(password->pw_name);
+    path.append(getenv("HOME"));
     path.append(slash);
     path.append(".scrift_log");
 

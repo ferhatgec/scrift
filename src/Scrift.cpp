@@ -266,6 +266,9 @@ void textbackground(int color) {
 }
 
 std::string GetUptime() {
+	#ifdef __FreeBSD__
+	return "null";
+	#else 
 	double uptime, uptimeMinutes, uptimeHour, uptimeDay;
 	int initialUptime, uptimeMinutesWhole, uptimeHourWhole, uptimeDayWhole;
 	std::string uptimeString;
@@ -295,6 +298,7 @@ std::string GetUptime() {
 	}
 	uptimeString = uptimeStream.str();
 	return uptimeString;
+	#endif
 }
 
 

@@ -38,8 +38,7 @@ public:
     	uid_t fuid = geteuid();
     	struct passwd *password = getpwuid(fuid);
     	std::string Path;
-    	Path.append("/home/");
-    	Path.append(password->pw_name);
+    	Path.append(getenv("HOME"));
     	Path.append("/");
     	return Path.append(".scrift_settings");
     }

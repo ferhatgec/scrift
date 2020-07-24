@@ -35,11 +35,11 @@ typest {
     }
     void RAMInfo() {
         printlnf("(Long) RAM: ");
-        std::cout << sysconf(_SC_PHYS_PAGES) * sysconf(_SC_PAGE_SIZE) << std::endl;
+        // std::cout << sysconf(_SC_PHYS_PAGES) * sysconf(_SC_PAGE_SIZE) << std::endl;
         printlnf("(Long) Available: ");
-        std::cout << sysconf(_SC_AVPHYS_PAGES) << std::endl;
+        // std::cout << sysconf(_SC_AVPHYS_PAGES) << std::endl;
         printlnf("(Long) Available Page Size: ");
-        std::cout << sysconf(_SC_PAGE_SIZE) << std::endl;
+        // std::cout << sysconf(_SC_PAGE_SIZE) << std::endl;
     }
 
 } fkernel;

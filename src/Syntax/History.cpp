@@ -27,8 +27,7 @@ FHistory::ClearHistory() {
     std::string path;
     uid_t uid = geteuid();
     struct passwd *password = getpwuid(uid);
-    path.append("/home/");
-    path.append(password->pw_name);
+    path.append(getenv("HOME"));
     path.append(slash);
     path.append(".scrift_history");
     historyfile.open(path); // append
@@ -58,8 +57,7 @@ FHistory::WriteAllHistory() {
     std::string filepath_with_path;
     uid_t uid = geteuid();
     struct passwd *password = getpwuid(uid);
-    filepath_with_path.append("/home/");
-    filepath_with_path.append(password->pw_name);
+    filepath_with_path.append(getenv("HOME"));
     filepath_with_path.append(slash);
     filepath_with_path.append(".scrift_history");
     std::ofstream file;
@@ -79,8 +77,7 @@ FHistory::CreateFile() {
     std::string path;
     uid_t uid = geteuid();
     struct passwd *password = getpwuid(uid);
-    path.append("/home/");
-    path.append(password->pw_name);
+    path.append(getenv("HOME"));
     path.append(slash);
     path.append(".scrift_history");
     historyfile.open(path, std::ios::app);
