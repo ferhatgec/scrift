@@ -79,8 +79,9 @@ FCDFunction::CDFunctionInit(std::string name) {
             		    std::strcpy(command->_file_path_cd_function, new_name.c_str());
 	    		    chdir(new_name.c_str());
             		} else {
-            		    std::cout << "This directory is not exist!\n";
-            		    slashn
+            		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "scrift : "); 
+			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), new_name.c_str());
+			    colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), " : This directory is not exist!\n");
             		    return;
             		}
            	} else {
@@ -94,8 +95,9 @@ FCDFunction::CDFunctionInit(std::string name) {
             		    chdir(new_name.c_str());
             		    pathnamef = new_name;
             		} else {
-            		    std::cout << "This directory is not exist!\n";
-            		    slashn
+            		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "scrift : "); 
+			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), new_name.c_str());
+			    colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), " : This directory is not exist!\n");
             		    return;
             		}
             	}
@@ -105,8 +107,9 @@ FCDFunction::CDFunctionInit(std::string name) {
 	    		    std::strcpy(command->_file_path_cd_function, name.c_str());
 	    		    chdir(name.c_str());
             		} else {
-            		    std::cout << "This directory is not exist!\n";
-            		    slashn
+            		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "scrift : "); 
+			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), name.c_str());
+			    colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), " : This directory is not exist!\n");
             		}
             		return;
 	    	} else {
@@ -129,8 +132,9 @@ FCDFunction::CDFunctionInit(std::string name) {
             	    chdir(name.c_str());
             	    pathnamef = name;
             	}  else {
-            	    std::cout << "This directory is not exist!\n";
-            	    slashn
+            	    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "scrift : "); 
+		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), name.c_str());
+		    colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), " : This directory is not exist!\n");
             	    return;
             	}
             	}
