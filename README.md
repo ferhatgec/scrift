@@ -17,7 +17,7 @@
 - Integrated Own Emoji library (see [Emoji++](https://github.com/FerhatGec/emojiplusplus)) :airplane:
 - Integrated Own Color library (see [Colorized](https://github.com/FerhatGec/colorized)) :satisfied:
 - Integrated Log system (FeLog) :open_mouth:
-- Integrated Scrift based system information tool (Fetcheya) :open_mouth:
+- Integrated Scrift based system information tool (see [Fetcheya](https://github.com/FerhatGec/fetcheya)) :open_mouth:
 - Integrated Scrift based Text Editor (Edifor) :open_mouth:
 - ASCII Art (with Color option) :open_mouth:
 - History 
