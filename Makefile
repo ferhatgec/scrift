@@ -11,6 +11,7 @@ GLDFLAGS=$(shell pkg-config --libs ncursesw)
 SRCAPPSDIREC = ./Apps/
 SRCLIBDIREC = ./Library/
 SRCSYNTAXDIREC = ./src/Syntax/
+SRCFETCHEYADIREC = ./src/Fetcheya/
 GAMESDIREC = ./Games/
 SRCDIREC = ./src/
 PREFIX = /bin/
@@ -104,8 +105,8 @@ date: $(SRCAPPSDIREC)/FDate/FDate.cpp
 	echo FDate building successfully in Bin Directory!
 
 # Fetcheya
-fetcheya: $(SRCSYNTAXDIREC)Fetcheya.cpp
-	$(GPP) $(SRCSYNTAXDIREC)Fetcheya.cpp -o $(PREFIX)fetcheya
+fetcheya: $(SRCFETCHEYADIREC)Fetcheya.cpp
+	$(GPP) $(SRCFETCHEYADIREC)Logos.cpp $(SRCFETCHEYADIREC)Fetcheya.cpp -o $(PREFIX)fetcheya
 	echo Fetcheya building successfully in Bin Directory!
 
 uninstall:

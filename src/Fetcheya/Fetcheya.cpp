@@ -1,6 +1,5 @@
 /* MIT License
-# Forked from https://github.com/FerhatGec/fetcheya
-# Modified for Scrift
+#
 # Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
 # Distributed under the terms of the MIT License.
 #
@@ -14,20 +13,28 @@
 #include <sys/utsname.h>
 #include <sys/sysinfo.h>
 #include <chrono>
+#include <stdint.h>
 
 // Libraries 
-#include "../../include/src/Scrift.hpp"
-#include "../../include/src/synflang.hpp"
-#include "../../Library/Colorized.hpp"
-#include "../../Library/FileSystemPlusPlus.h"
+#include <Colorized.hpp>
+#include <FileSystemPlusPlus.h>
+#include <Fetcheya/Colors.h>
+#include <Fetcheya/Logos.h>
+#include <Scrift.hpp>
+#include <synflang.hpp>
+#include <FileSystemPlusPlus.h>
 
-#define FETCHEYA_VERSION "0.2"
-#define FETCHEYA_STATUS "beta-1"
+#define FETCHEYA_VERSION "0.3"
+#define FETCHEYA_STATUS "beta-1-preview"
+
+#ifdef __FreeBSD__
+#define GETTIME_OPTION CLOCK_UPTIME_PRECISE
+#endif
 
 using namespace std; // Sorry...
 
-static const std::string compilation_time = __TIME__;
-static std::string ftime(compilation_time); // Convert
+const std::string compilation_time = __TIME__;
+std::string ftime(compilation_time); // Convert
 
 class systemInfo {
 public:
@@ -55,7 +62,7 @@ public:
 		colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), "███");
 		colorized::PrintWith(colorized::Colorize(BOLD, MAGENTA).c_str(), "███");
 		colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(), "███");
-		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLACK).c_str(), "███\n");
+		colorized::PrintWith(colorized::Colorize(BOLD, WHITE).c_str(), "███\n");
 		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLACK).c_str(), "███");
 		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "███");
 		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_GREEN).c_str(), "███");
@@ -81,6 +88,9 @@ public:
 		struct utsname sysinfo;
 		uname(&sysinfo);
 		hostname = sysinfo.nodename;
+		if(hostname.length() == 0) {
+			return "fegeya";
+		}
 		return hostname;
 	}
 	string getUsername() {
@@ -103,11 +113,14 @@ public:
 		device.close();
 		return deviceName;
 	}
-	
-	/*string GetUptime() {
-		struct sysinfo info;
+
+	string getUptime() {
+		#ifdef __FreeBSD__
+		return "0m";
+		#else
+		static struct sysinfo info;
 		sysinfo(&info);
-		uptime = info.uptime;
+		uptime = info.uptime;		
 		if(uptime/60 >= 60) {
 			uptimeHour = (uptime/60)/60;
 			uptimeHourWhole = uptimeHour;
@@ -132,8 +145,8 @@ public:
 		}
 		uptimeString = uptimeStream.str();
 		return uptimeString;
-	}*/
-
+		#endif
+	}
 	string getShell() {
 		shell = getenv("SHELL");
 		shell.erase(0,5);
@@ -219,51 +232,67 @@ private:
 	       ColourBar, FullColourBar, NeutralText, RedText, GreenText, YellowText, BlueText, MagentaText, CyanText;
 };
 
+void Parse(int p) {
+	systemInfo systemInfo;
+	if(p == 2) {
+		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), systemInfo.getUsername().c_str());
+		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), "@");  
+		colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), (systemInfo.getHostname()).c_str());
+		printf("\n");		
+	} else if(p == 3) {
+		cout << "\033[1;36m" << "Scrift Version: " << "\033[01;33m" <<  SCRIFT_VERSION << 
+		WBOLD_YELLOW_COLOR << hyphen << WBOLD_CYAN_COLOR << SCRIFT_STATUS << endl;             
+	} else if(p == 4) {	
+		for(int i = 0; i != systemInfo.getUserHostLength() + 1; i++) {
+			cout << "\033[1;36m" << "▂" << "\033[1;31m";
+		}
+		printf("\n"); 
+	} else if(p == 5) {
+		cout << "\033[1;34m" << "Build: " << "\033[01;33m" << FETCHEYA_VERSION << "-" <<
+		FETCHEYA_STATUS << "-" << "fetcheyav" << systemInfo.EraseAllSubString(ftime, ":") << endl;
+	} else if(p == 6) {
+		#ifdef __FreeBSD__
+			cout << "\033[1;31m" << "OS Name:" << "\033[1;36m" << " " << "FreeBSD" << endl;
+		#else
+			cout << "\033[1;31m" << "OS Name:" << "\033[1;36m" << " " << fsplusplus::ReadOSName() << endl;
+		#endif
+	} else if(p == 7) {
+		cout << "\033[1;36m" << "Architecture:" << "\033[1;33m" << " " << systemInfo.getArch() << endl;
+	} else if(p == 8) {
+		cout << "\033[1;32m" << "Hostname:" << "\033[1;35m" << " " << systemInfo.getHostname() << endl;
+	} else if(p == 9) {
+		cout << "\033[1;34m" << "Kernel Name:" << "\033[1;35m" << " " <<  systemInfo.getSystem() << endl;
+	} else if(p == 10) {
+		cout << "\033[01;33m" << "Kernel Release:" << "\033[1;34m" << " "  << systemInfo.getKernel() << endl;
+	} else if(p == 11) {
+		cout << "\033[1;35m" << "CPU:" << "\033[1;31m" << " ";
+		systemInfo.getCPU();
+	} else if(p == 12) {
+		cout << "\033[1;34m" << "Uptime:" << "\033[01;33m" << " "  <<  systemInfo.getUptime() << endl;
+	} else if(p == 13) {
+		cout << "\033[1;35m" << "Terminal:" << "\033[1;32m" << " "  << systemInfo.getTerm() << endl;
+	} else if(p == 14) {
+		cout << "\033[1;36m" << "Shell:" << "\033[1;31m" << " " << systemInfo.getShell() << endl;
+	} else { printf("\n"); }
+}
+
 int main() {
 	int a = 0;
-	bool control = false;
 	systemInfo systemInfo;
-	Colours Colours;
-	string underline = "--"; 
-	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), systemInfo.getUsername().c_str());
-	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), "@");  
-	colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), (systemInfo.getHostname() + " \n").c_str());
-	for(int i = 0; i != systemInfo.getUserHostLength() + 1; i++) {
-		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLACK).c_str(), "-");
-		/*if(BLACK + i >= LIGHT_GRAY) {  
-			if(LIGHT_BLACK + a > WHITE) {
-				a = 0;
-				colorized::PrintWith(colorized::Colorize(BOLD, BLACK + a).c_str(), (underline + "").c_str()); 	
-				control = true;
-				if(control == true) {
-					break;
-				}
-			} else {
-				colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLACK + a).c_str(), (underline + "").c_str()); 
-				a++;
-			}
-		} else {
-			colorized::PrintWith(colorized::Colorize(BOLD, BLACK + i).c_str(), (underline + "").c_str());      
-		}*/
-	}         
-	cout << "\033[1;36m" << " \n\nScrift Version: " << "\033[01;33m" <<  SCRIFT_VERSION << WBOLD_YELLOW_COLOR << hyphen << WBOLD_CYAN_COLOR << SCRIFT_STATUS << endl;                                
-	cout << "\033[1;34m" << "Build: " << "\033[01;33m" << FETCHEYA_VERSION << "-" << FETCHEYA_STATUS << "-" << "fetcheyav" << systemInfo.EraseAllSubString(ftime, ":") << endl;
-	#ifdef __FreeBSD__
-	cout << "\033[1;31m" << "OS Name:" << "\033[1;36m" << " " << "FreeBSD" << endl;
-	#else
-	cout << "\033[1;31m" << "OS Name:" << "\033[1;36m" << " " << fsplusplus::ReadOSName() << endl;
-	#endif
-	cout << "\033[1;36m" << "Architecture:" << "\033[1;33m" << " " << systemInfo.getArch() << endl;
-	cout << "\033[1;32m" << "Hostname:" << "\033[1;35m" << " " << systemInfo.getHostname() << endl;
-	cout << "\033[1;34m" << "Kernel Name:" << "\033[1;35m" << " " <<  systemInfo.getSystem() << endl;
-	cout << "\033[01;33m" << "Kernel Release:" << "\033[1;34m" << " "  << systemInfo.getKernel() << endl;
-	cout << "\033[1;35m" << "CPU:" << "\033[1;31m" << " ";
-	systemInfo.getCPU();
-	/* cout << "\033[1;34m" << "Uptime:" << "\033[01;33m" << " "  <<  systemInfo.GetUptime() << endl; */
-	cout << "\033[1;35m" << "Terminal:" << "\033[1;32m" << " "  << systemInfo.getTerm() << endl;
-	cout << "\033[1;36m" << "Shell:" << "\033[1;31m" << " " << systemInfo.getShell() << endl << endl;
+	unsigned short int x = 0;                              
+      	char** logo =  OSLogo();
+	if(control != true) {
+  		for (x = 0; x < 18; x++) {
+    			printf("%s", logo[x]);
+			Parse(x);
+		}
+	} else {
+		for (x = 0; x < 14; x++) {
+			Parse(x);
+		}
+	}
 	systemInfo.Test16bitColours();
-	cout << endl;
+	printf("\n");
 	return F_OK;
 }
 
