@@ -16,6 +16,9 @@
 FCommand *terminal = new FCommand();
 FSettings *fsettings = new FSettings();
 FStructure::FStructure() { }
+FGetUsername usr;
+uid_t uid = geteuid();
+struct passwd *password = getpwuid(uid);
 
 FStructure::~FStructure() {
     delete terminal;
@@ -24,8 +27,6 @@ FStructure::~FStructure() {
 void
 FGetUsername::InitUsername() {
     //#ifdef __linux__ 
-    uid_t uid = geteuid();
-    struct passwd *password = getpwuid(uid);
     if(password) {
         printlnf(password->pw_name);
     }
@@ -47,25 +48,22 @@ FGetUsername::InitHostname() {
     gethostname(hostname_buffer, sizeof(hostname_buffer));
     printlnf("%s", hostname_buffer);
 }
-
+std::string uname(password->pw_name);
 std::string customize = fsettings->InputCustomize();
 void
 FStructure::Terminal() {
-    fchar* _username = new fchar;
     BOLD_BLUE_COLOR
-    InitUsername();
+    std::cout << uname;
     BOLD_CYAN_COLOR
-    printlnf("@");
+    std::cout << "@";
     BOLD_MAGENTA_COLOR
-    InitHostname();
+    usr.InitHostname();
     BOLD_CYAN_COLOR
-    printlnf(":~");
+    std::cout << ":~";
     BOLD_YELLOW_COLOR
-    printlnf(terminal->_file_path_cd_function);
-    printlnf(" ");
+    std::cout << terminal->_file_path_cd_function << " ";
     BOLD_RED_COLOR
-    std::cout << customize;
-    printlnf(" ");
+    // std::cout << "$# ";
+    std::cout << customize << " ";
     BLACK_COLOR
-    delete _username;
 }
