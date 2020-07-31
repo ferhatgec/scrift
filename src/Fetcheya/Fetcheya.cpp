@@ -12,9 +12,12 @@
 #include <string>
 #include <algorithm>
 #include <sys/utsname.h>
-#include <sys/sysinfo.h>
 #include <chrono>
 #include <stdint.h>
+
+#ifndef __FreeBSD__
+	#include <sys/sysinfo.h>
+#endif
 
 // Libraries 
 #include <Colorized.hpp>

@@ -12,7 +12,6 @@
 #include <stdlib.h>
 #include <dirent.h>
 #include <sys/types.h>
-#include <sys/sysinfo.h>
 #include <dirent.h>
 #include <sys/stat.h>
 #include <unistd.h>
@@ -32,6 +31,11 @@
 #include <sys/ioctl.h>
 #include <termios.h>
 #include <stdbool.h>
+
+#ifndef __FreeBSD__	
+	#include <sys/sysinfo.h>
+#endif
+
 
 // Source
 #include "../include/src/Syntax/CommandFunc.h"
