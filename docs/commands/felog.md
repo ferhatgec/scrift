@@ -1,17 +1,13 @@
 # Fegeya Log Command 
 
 * felog
-* show_log
 
-* NOTE: Felog is in development statue. Now, FeLog only shows Started Logs because this is simple :D but it will develop.
-
-
-* This commands is shows your logs (not logs, this is FeLogs :D)
+* This commands is shows your logs (not logs, this is FeLogs :^))
 
 # Example:
 ```
 input:
-     <username>@<hostname>:~/home/<username> $# felog <or show_log>
+     <username>@<hostname>:~/home/<username> $# felog
 
 output:
     FeLog Started. 2020-40-01.21:40:16
