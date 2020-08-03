@@ -9,12 +9,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdio.h>
-#include <Syntax/CommandFunc.h>
-#include <Scrift.hpp>
-#include <Syntax/RunFunction.hpp>
-#include <Syntax/GetNameFunction.hpp>
-#include <Syntax/FileFunction.hpp>
-#include <Syntax/MkdirFunction.hpp>
 #include <iostream>
 #include <unistd.h>
 #include <pwd.h>
@@ -22,10 +16,17 @@
 #include <sys/stat.h>
 #include <dirent.h>
 #include <fstream>
-#include <Syntax/Log.hpp>
-#include <Syntax/Settings.hpp>
 #include <vector>
-#include <Syntax/ASCIIFunction.hpp>
+
+#include <src/Syntax/CommandFunc.h>
+#include <src/Scrift.hpp>
+#include <src/Syntax/RunFunction.hpp>
+#include <src/Syntax/GetNameFunction.hpp>
+#include <src/Syntax/FileFunction.hpp>
+#include <src/Syntax/MkdirFunction.hpp>
+#include <src/Syntax/Log.hpp>
+#include <src/Syntax/Settings.hpp>
+#include <src/Syntax/ASCIIFunction.hpp>
 
 // Library
 #include <Colorized.hpp>

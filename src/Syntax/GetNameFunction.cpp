@@ -5,13 +5,13 @@
 #
 # */
 
-#include <Syntax/CommandFunc.h>
-#include <Syntax/GetNameFunction.hpp>
 #include <pwd.h>
-#include <Syntax/Settings.hpp>
+#include <src/Syntax/Settings.hpp>
+#include <src/Syntax/CommandFunc.h>
+#include <src/Syntax/GetNameFunction.hpp>
 
 // Library
-#include "../../Library/Colorized.hpp"
+#include <Colorized.hpp>
 
 FCommand *terminal = new FCommand();
 FSettings *fsettings = new FSettings();

@@ -19,13 +19,14 @@
 	#include <sys/sysinfo.h>
 #endif
 
+#include <src/Scrift.hpp>
+#include <src/synflang.hpp>
+#include <src/Fetcheya/Colors.h>
+#include <src/Fetcheya/Logos.h>
+
 // Libraries 
 #include <Colorized.hpp>
 #include <FileSystemPlusPlus.h>
-#include <Fetcheya/Colors.h>
-#include <Fetcheya/Logos.h>
-#include <Scrift.hpp>
-#include <synflang.hpp>
 #include <FileSystemPlusPlus.h>
 
 #define FETCHEYA_VERSION "0.3"

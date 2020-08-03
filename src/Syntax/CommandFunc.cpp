@@ -5,17 +5,13 @@
 #
 # */
 
-#include <Syntax/Settings.hpp>
 #include <sys/utsname.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <Syntax/GetNameFunction.hpp>
 #include <dirent.h>
 #include <sys/stat.h>
 #include <unistd.h>
 #include <limits.h>
-#include <Scrift.hpp>
-#include <Syntax/CommandFunc.h>
 #include <pwd.h>
 #include <string.h>
 #include <synflang.hpp>
@@ -25,12 +21,17 @@
 #include <netinet/in.h>
 #include <net/if.h>
 #include <arpa/inet.h>
-#include "../../include/Library/Keywords.hpp"
+
+#include <src/Scrift.hpp>
+#include <src/Syntax/GetNameFunction.hpp>
+#include <src/Syntax/CommandFunc.h>
+#include <src/Syntax/Settings.hpp>
+#include <Library/Keywords.hpp>
 
 // Libraries
-#include "../../Library/EmojiPlusPlus.h"
-#include "../../Library/Colorized.hpp"
-#include "../../Library/StringTools.h"
+#include <EmojiPlusPlus.h>
+#include <Colorized.hpp>
+#include <StringTools.h>
 
 namespace filesys = std::experimental::filesystem;
 static FKeyword keyword;

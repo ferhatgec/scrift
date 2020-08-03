@@ -17,7 +17,7 @@ SRCDIREC = ./src/
 PREFIX = /bin/
 
 INCLUDELIB = ./Library/
-INCLUDEDIR = ./include/src/
+INCLUDEDIR = ./include/
 CFLAGS = -Wall -I$(INCLUDELIB) -I$(INCLUDEDIR)
 
 GCC = gcc
@@ -76,7 +76,7 @@ main: $(SRCDIREC)Scrift.cpp
 	echo Scrift building successfully!
 
 mainc: $(SRCDIREC)Scrift.cpp
-	$(GPP) -I./include/src/ -I./Library/ -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) -o /bin/scrift
+	$(GPP) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) -o /bin/scrift
 	echo Scrift building successfully in Bin Directory!
 
 # Edifor

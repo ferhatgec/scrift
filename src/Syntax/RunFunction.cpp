@@ -12,14 +12,14 @@
 #include <sys/wait.h>
 #include <pwd.h>
 
-#include <Scrift.hpp>
-#include <Syntax/RunFunction.hpp>
-#include <Syntax/Language.hpp>
-#include <Syntax/CommandFunc.h>
+#include <src/Scrift.hpp>
+#include <src/Syntax/RunFunction.hpp>
+#include <src/Syntax/Language.hpp>
+#include <src/Syntax/CommandFunc.h>
 
 // Libraries
-#include "../../Library/StringTools.h"
-#include "../../Library/Colorized.hpp"
+#include <StringTools.h>
+#include <Colorized.hpp>
 
 #define MAXCOM 1000
 #define MAXLIST 100

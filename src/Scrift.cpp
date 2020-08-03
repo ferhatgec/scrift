@@ -38,32 +38,33 @@
 
 
 // Source
-#include "../include/src/Syntax/CommandFunc.h"
-#include "../include/src/Scrift.hpp"
-#include "../include/src/Keywords/ScriftKeywords.hpp"
-#include "../include/src/synflang.hpp"
-#include "../include/src/Syntax/Log.hpp"
-#include "../include/src/Syntax/FileFunction.hpp"
-#include "../include/src/Syntax/PrintErrorFunction.hpp"
-#include "../include/src/Syntax/KernelName.hpp"
-#include "../include/src/Syntax/HelpFunction.hpp"
-#include "../include/src/Syntax/GetNameFunction.hpp"
-#include "../include/src/Syntax/RunFunction.hpp"
-#include "../include/src/Syntax/Test.hpp"
-#include "../include/src/Syntax/ASCIIFunction.hpp"
-#include "../include/src/Syntax/DeveloperMode.hpp"
-#include "../include/src/Syntax/Contributors.hpp"
-#include "../include/src/Syntax/Settings.hpp"
-#include "../include/src/Syntax/Language.hpp"
-#include "../include/src/Syntax/History.hpp"
-#include "../include/src/Syntax/Template.hpp"
-#include "../include/Library/Keywords.hpp"
+#include <src/Syntax/CommandFunc.h>
+#include <src/Scrift.hpp>
+#include <src/Keywords/ScriftKeywords.hpp>
+#include <src/synflang.hpp>
+#include <src/Syntax/Log.hpp>
+#include <src/Syntax/FileFunction.hpp>
+#include <src/Syntax/PrintErrorFunction.hpp>
+#include <src/Syntax/KernelName.hpp>
+#include <src/Syntax/HelpFunction.hpp>
+#include <src/Syntax/GetNameFunction.hpp>
+#include <src/Syntax/RunFunction.hpp>
+#include <src/Syntax/Test.hpp>
+#include <src/Syntax/ASCIIFunction.hpp>
+#include <src/Syntax/DeveloperMode.hpp>
+#include <src/Syntax/Contributors.hpp>
+#include <src/Syntax/Settings.hpp>
+#include <src/Syntax/Language.hpp>
+#include <src/Syntax/History.hpp>
+#include <src/Syntax/Template.hpp>
+
+#include <Library/Keywords.hpp>
 
 // Libraries
-#include "../Library/InputPlusPlus.h"
-#include "../Library/EmojiPlusPlus.h"
-#include "../Library/Colorized.hpp"
-#include "../Library/EasyMorse.hpp"
+#include <InputPlusPlus.h>
+#include <EmojiPlusPlus.h>
+#include <Colorized.hpp>
+#include <EasyMorse.hpp>
 
 // Variables
 using namespace FileFunction;

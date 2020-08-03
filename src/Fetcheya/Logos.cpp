@@ -5,9 +5,10 @@
 #
 # */
 
-#include <Fetcheya/Colors.h>
-#include <Fetcheya/Logos.h>
 #include <stdio.h>
+
+#include <src/Fetcheya/Colors.h>
+#include <src/Fetcheya/Logos.h>
 
 char** OSLogo() {
 #ifdef __FreeBSD__

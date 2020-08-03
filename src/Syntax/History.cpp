@@ -5,15 +5,16 @@
 #
 # */
 
-#include <Syntax/History.hpp>
-#include <Syntax/Log.hpp> // Get Log Header
-#include <Syntax/FileFunction.hpp> // For  create file and folder 
-#include <Scrift.hpp>
-#include <Syntax/CommandFunc.h>
 #include <sys/stat.h>
 #include <ctime>
 #include <cstdio>
 #include <pwd.h>
+
+#include <src/Scrift.hpp>
+#include <src/Syntax/History.hpp>
+#include <src/Syntax/Log.hpp>
+#include <src/Syntax/FileFunction.hpp> 
+#include <src/Syntax/CommandFunc.h>
 // #include <Syntax/PrintErrorFunction.hpp>
 
 FeLog *loghistory = new FeLog();
