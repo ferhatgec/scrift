@@ -565,11 +565,11 @@ void InputFunction() {
 	} else if(main_function->_h_str == keywords.GitLink) {
       		RemovePrintedChar(keywords.GitLink.length() - 1);
       		if(runsyntax->Theme() == "default")  {
-        		std::cout << WBOLD_BLUE_COLOR << "f" << WBOLD_YELLOW_COLOR << "ls " << WBLACK_COLOR;
+        		std::cout << WBOLD_YELLOW_COLOR << "gitlink" << WBLACK_COLOR;
        	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "fls ");
+       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "gitlink");
        	} else {
-        		std::cout << WBOLD_BLUE_COLOR << "f" << WBOLD_YELLOW_COLOR << "ls " << WBLACK_COLOR;
+        		std::cout << WBOLD_YELLOW_COLOR << "gitlink" << WBLACK_COLOR;
         	}
         	if(getchar() == '\n') {
         		helpstr->GitLink();
@@ -583,9 +583,9 @@ void InputFunction() {
       		RemovePrintedChar(keywords.CreateText.length() - 1);
       		if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_MAGENTA_COLOR << "ctxt " << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "ctxt ");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "ctxt ");
+       		} else {
         		std::cout << WBOLD_MAGENTA_COLOR << "ctxt " << WBLACK_COLOR;
         	}
         	BOLD_CYAN_COLOR

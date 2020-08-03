@@ -8,6 +8,7 @@
 #ifndef HELP_FUNCTION_HPP
 #define HELP_FUNCTION_HPP
 
+#include "RunFunction.hpp"
 #include "CommandFunc.h"
 // Library
 #include "../../../Library/Colorized.hpp"
@@ -74,7 +75,7 @@ public:
             "cls : Close Scrift (with Terminal)\n"
             "rstr <number> : Generated random string\n"
             "clear : Clear Scrift inputs\n"
-            "ip  Show your IP and info\n");
+            "ip : Show your IP and info\n");
         BLACK_COLOR
     }
     virtual func hello() {
@@ -94,14 +95,27 @@ public:
 
     virtual func GitLink() {
         BOLD_YELLOW_COLOR
-        printlnf("https://github.com/FerhatGec\n");
+        printlnf("[1] https://github.com/ferhatgec\n");
         BOLD_BLUE_COLOR
-        printlnf("https://github.com/FerhatGec/scrift-lang\n");
+        printlnf("[2] https://github.com/ferhatgec/scrift-lang\n");
         BOLD_GREEN_COLOR
-        printlnf("https://github.com/FerhatGec/elite-build\n");
+        printlnf("[3] https://github.com/ferhatgec/fetcheya\n");
         BOLD_CYAN_COLOR
-        printlnf("https://github.com/FerhatGec/fresh-gui\n");
-        BLACK_COLOR // reset
+        printlnf("[4] https://github.com/ferhatgec/edifor\n");
+       	BOLD_MAGENTA_COLOR
+	printlnf("Select (ESC to cancel) : ");
+	int a = getchar();
+	FRunFunction fn;
+	if(a == '1') {
+		fn.RunFunction("xdg-open https://github.com/ferhatgec");
+	} else if(a == '2') {
+		fn.RunFunction("xdg-open ttps://github.com/ferhatgec/scrift-lang");
+	} else if(a == '3') {
+		fn.RunFunction("xdg-open https://github.com/ferhatgec/fetcheya");
+	} else if(a == '4') {
+		fn.RunFunction("xdg-open https://github.com/ferhatgec/edifor");
+	} else { }
+	}
     }
 } fhelp;
 
