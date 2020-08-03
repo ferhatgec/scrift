@@ -331,7 +331,6 @@ FFindFileFunction::FindWithoutPrint(std::string name) {
         else if(strstr(entryname->d_name, name.c_str())){
             // Null
         }
-        BLACK_COLOR // Reset
     }
     closedir(directory);
     return "null";
