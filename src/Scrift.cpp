@@ -583,11 +583,11 @@ void InputFunction() {
                 logsystem->WriteLog("Launching pause function.. - ");
               	RemovePrintedChar(keywords.Pause.length() - 1);
               	if(runsyntax->Theme() == "default")  {
-        		std::cout << WBOLD_MAGENTA_COLOR << "ctxt " << WBLACK_COLOR;
+        		std::cout << WBOLD_MAGENTA_COLOR << "pause" << WBLACK_COLOR;
        	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "ctxt ");
+       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "pause");
        	} else {
-        		std::cout << WBOLD_MAGENTA_COLOR << "ctxt " << WBLACK_COLOR;
+        		std::cout << WBOLD_MAGENTA_COLOR << "pause" << WBLACK_COLOR;
         	}
         	if(getchar() == '\n') {                	          
         		BOLD_BLUE_COLOR
