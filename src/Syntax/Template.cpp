@@ -8,8 +8,8 @@
 #include <iostream>
 #include <cstdlib>
 
-#include <Syntax/Template.hpp>
-#include <Scrift.hpp>
+#include <src/Syntax/Template.hpp>
+#include <src/Scrift.hpp>
 
 // Libraries
 #include <FileSystemPlusPlus.h>

@@ -14,7 +14,6 @@
 #include <limits.h>
 #include <pwd.h>
 #include <string.h>
-#include <synflang.hpp>
 #include <experimental/filesystem>
 #include <sys/socket.h>
 #include <sys/ioctl.h>
@@ -23,6 +22,7 @@
 #include <arpa/inet.h>
 
 #include <src/Scrift.hpp>
+#include <src/synflang.hpp>
 #include <src/Syntax/GetNameFunction.hpp>
 #include <src/Syntax/CommandFunc.h>
 #include <src/Syntax/Settings.hpp>

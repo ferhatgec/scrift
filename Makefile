@@ -12,6 +12,7 @@ SRCAPPSDIREC = ./Apps/
 SRCLIBDIREC = ./Library/
 SRCSYNTAXDIREC = ./src/Syntax/
 SRCFETCHEYADIREC = ./src/Fetcheya/
+SRCEDIFORDIREC = ./src/Edifor/
 GAMESDIREC = ./Games/
 SRCDIREC = ./src/
 PREFIX = /bin/
@@ -40,9 +41,9 @@ else
 endif
 
 
-all: conio headersfile main clean
+all: conio headersfile edifor main clean
 
-allp: headersfile mainc edifor fetcheya date clean 
+allp: headersfile mainc ediforc fetcheya date clean 
 
 removeall: uninstall cleanall
 
@@ -81,7 +82,12 @@ mainc: $(SRCDIREC)Scrift.cpp
 
 # Edifor
 edifor:
-	$(GPP) $(SRCDIREC)Edifor.cpp -o /bin/edifor
+	$(GCC) $(CFLAGS) $(SRCEDIFORDIREC)Edifor.c -o edifor
+	echo Edifor building successfully!
+
+# Edifor
+ediforc:
+	$(GCC) $(CFLAGS) $(SRCEDIFORDIREC)Edifor.c -o /bin/edifor
 	echo Edifor building successfully in Bin Directory!
 
 # Castle
