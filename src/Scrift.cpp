@@ -545,7 +545,24 @@ void InputFunction() {
 		main_function->_h_str.erase();
 		terminalstr->Terminal();
 		return;
-    	} else if(main_function->_h_str == keywords.GitLink) {
+    	} else if(main_function->_h_str == keywords.ReadText) {
+		RemovePrintedChar(keywords.ReadText.length() - 1);
+		if(runsyntax->Theme() == "default") {
+    			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "readtext ");
+		} else if(runsyntax->Theme() == "classic") {
+			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "readtext ");
+		} else {
+			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "readtext");
+		}
+		BOLD_CYAN_COLOR
+        	std::getline(std::cin, main_function->_h_str);
+        	BLACK_COLOR
+		readfilefunction->ReadFileFunction(main_function->_h_str);
+		history->WriteHistory(keywords.ReadText + " " +main_function->_h_str);		
+		main_function->_h_str.erase();		
+		terminalstr->Terminal();
+		return;
+	} else if(main_function->_h_str == keywords.GitLink) {
       		RemovePrintedChar(keywords.GitLink.length() - 1);
       		if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_BLUE_COLOR << "f" << WBOLD_YELLOW_COLOR << "ls " << WBLACK_COLOR;
