@@ -393,6 +393,9 @@ namespace fsplusplus {
 			#ifdef __FreeBSD__
 			if(line.find("CPU: ") == 0) {
 				line = EraseAllSubString(line, "CPU: ");
+				if(line.length() >= 20) {
+					line = line.substr(0, 40);
+				}
 				printf(line.c_str());
 				printf("\n");
 				return;
