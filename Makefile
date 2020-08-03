@@ -41,9 +41,9 @@ else
 endif
 
 
-all: conio headersfile edifor main clean
+all: conio headersfile edifor fetcheya main clean
 
-allp: headersfile mainc ediforc fetcheya date clean 
+allp: headersfile mainc ediforc fetcheyac date clean 
 
 removeall: uninstall cleanall
 
@@ -112,7 +112,12 @@ date: $(SRCAPPSDIREC)/FDate/FDate.cpp
 
 # Fetcheya
 fetcheya: $(SRCFETCHEYADIREC)Fetcheya.cpp
-	$(GPP) $(SRCFETCHEYADIREC)Logos.cpp $(SRCFETCHEYADIREC)Fetcheya.cpp -o $(PREFIX)fetcheya
+	$(GPP) $(CFLAGS) $(SRCFETCHEYADIREC)Logos.cpp $(SRCFETCHEYADIREC)Fetcheya.cpp -o fetcheya
+	echo Fetcheya building successfully!
+
+# Fetcheya
+fetcheyac: $(SRCFETCHEYADIREC)Fetcheya.cpp
+	$(GPP) $(CFLAGS) $(SRCFETCHEYADIREC)Logos.cpp $(SRCFETCHEYADIREC)Fetcheya.cpp -o $(PREFIX)fetcheya
 	echo Fetcheya building successfully in Bin Directory!
 
 uninstall:
