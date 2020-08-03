@@ -16,13 +16,13 @@ GAMESDIREC = ./Games/
 SRCDIREC = ./src/
 PREFIX = /bin/
 
+INCLUDELIB = ./Library/
 INCLUDEDIR = ./include/src/
-CFLAGS = -c -Wall -I$(INCLUDEDIR)
+CFLAGS = -Wall -I$(INCLUDELIB) -I$(INCLUDEDIR)
 
 GCC = gcc
 GPP = g++
 COMP = g++ -c
-HECOMP = g++ -c -Wall $< -std=gnu++17 -o
 
 # CLEAN
 CLEANALL = scrift /Games/Castle/castle
@@ -72,11 +72,11 @@ conio: $(SRCLIBDIREC)FConio.c
 
 
 main: $(SRCDIREC)Scrift.cpp
-	$(GPP) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) -o scrift
+	$(GPP) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) -o scrift
 	echo Scrift building successfully!
 
 mainc: $(SRCDIREC)Scrift.cpp
-	$(GPP) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) -o /bin/scrift
+	$(GPP) -I./include/src/ -I./Library/ -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) -o /bin/scrift
 	echo Scrift building successfully in Bin Directory!
 
 # Edifor

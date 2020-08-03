@@ -14,7 +14,6 @@
 #include <Syntax/RunFunction.hpp>
 #include <Syntax/GetNameFunction.hpp>
 #include <Syntax/FileFunction.hpp>
-#include <Syntax/PrintErrorFunction.hpp>
 #include <Syntax/MkdirFunction.hpp>
 #include <iostream>
 #include <unistd.h>
@@ -29,28 +28,28 @@
 #include <Syntax/ASCIIFunction.hpp>
 
 // Library
-#include "../../Library/Colorized.hpp"
+#include <Colorized.hpp>
 
 using namespace FileFunction;
-FSettings *settings = new FSettings();
-FCommand *command = new FCommand();
-FMain *fmain = new FMain();
-fprinterror *printerror = new fprinterror;
-std::string str;
-fchar *file_path = new fchar;
-fchar* input_char;
-std::string path_directory;
-FCDFunction *fcdfunction = new FCDFunction;
-fchar* file_name;
-fchar* file_directory;
-std::string file_directory_string;
 
-struct stat filestat;
-struct dirent *entryname;
-fchar *string;
+// FileFunction
 FRunFunction *filerunfunction = new FRunFunction();
 asciifunction *ascii = new asciifunction;
 FeLog *filelog = new FeLog();
+FSettings *settings = new FSettings();
+FCommand *command = new FCommand();
+FMain *fmain = new FMain();
+FCDFunction *fcdfunction = new FCDFunction;
+
+struct stat filestat;
+struct dirent *entryname;
+
+
+fchar* file_name;
+fchar* file_directory;
+std::string path_directory;
+std::string file_directory_string;
+
 // FCDFUNCTION
 FCDFunction::FCDFunction() {
 
@@ -145,14 +144,10 @@ FCDFunction::CDFunctionInit(std::string name) {
 }
 
 // FMKDIRFUNCTION
-FMKDirFunction::FMKDirFunction() {
-    input_char = new fchar;
-}
+FMKDirFunction::FMKDirFunction() {}
 
 
-FMKDirFunction::~FMKDirFunction() {
-    delete input_char;
-}
+FMKDirFunction::~FMKDirFunction() {}
 
 
 void
@@ -562,9 +557,7 @@ fhomefunction::CurrentDirectory(void) {
   return current_working_dir;
 }
 // FILELSFUNCTION
-FLSFunction::FLSFunction() {
-    string = new fchar;
-}
+FLSFunction::FLSFunction() { }
 
 FLSFunction::~FLSFunction() { }
 
