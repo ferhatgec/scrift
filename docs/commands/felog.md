@@ -2,9 +2,9 @@
 
 * felog
 
-* This commands is shows your logs (not logs, this is FeLogs :^))
+## This commands is shows your logs (not logs, this is FeLogs :^))
 
-# Example:
+## Example:
 ```
 input:
      <username>@<hostname>:~/home/<username> $# felog
