@@ -8,10 +8,9 @@ ffind command is finds files and directories.
 input:
     <username>@<hostname>:~/home/<username> $# ffind .scrift
 output:
-    [File]: .scrift_settings
-    [File]: .scrift_log
-    [File]: .scrift_history
-    [File]: .scrift_welcome
-    [File]: .scrift_ascii
+    Settings*: .scrift_settings
+    FeLog*: .scrift_log
+    History*: .scrift_history
+    Ascii Art*: .scrift_ascii
     <username>@<hostname>:~/home/<username> $#
 ```
