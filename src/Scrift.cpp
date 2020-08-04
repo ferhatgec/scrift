@@ -1024,7 +1024,6 @@ void InputFunction() {
         		std::string path_string(main_->_file_path_cd_function);
         		std::size_t test = path_string.find_last_of("/\\");
         		std::string test_string = path_string.substr(0, test);
-        		int convertdata = static_cast<int>(test);
         		if(test_string == "") {
         			test_string.append("/");
         		}
@@ -1033,9 +1032,9 @@ void InputFunction() {
         		logsystem->WriteLog(main_->_file_path_cd_function);
         	}
         	history->WriteHistory(main_function->_h_str);
-       	main_function->_h_str.erase();
-       	terminalstr->Terminal(); 
-       	return;
+       		main_function->_h_str.erase();
+       		terminalstr->Terminal(); 
+       		return;
      } else if(main_function->_h_str == keywords.Ls) {
           	std::string input;
           	logsystem->WriteLog("Launching ls function.. - ");
@@ -1328,16 +1327,7 @@ void InputFunction() {
 func
 FMain::Shell() {	
     readfilefunction->ReadFeLogFunctionWithoutPrint();
-    char output;
-    WHITE_COLOR
     InputFunction();
-    //std::getline(std::cin, _h_str); // ws -> whitespace
-    BLACK_COLOR
-    int t = 0;
-    if (_h_str != "") { //NULL
-    } else {
-        return;
-    }
 }
 
 integer main(integer argc, char** argv) {
@@ -1397,7 +1387,7 @@ integer main(integer argc, char** argv) {
     	logsystem->WriteLog("Launching hello function.. - ");
     	helpstr->hello();
     	terminalstr->Terminal(); 
-    	while(argc = 2) {
+    	while(argc == 2) {
     	    std::cout << "\e]2; " << "Scrift: " << pass->pw_name << "@" << main_->_file_path_cd_function << "\a";
     	    main_function->Shell();
     	}

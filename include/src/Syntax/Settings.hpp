@@ -35,8 +35,6 @@ public:
     }
     
     std::string Path() {
-    	uid_t fuid = geteuid();
-    	struct passwd *password = getpwuid(fuid);
     	std::string Path;
     	Path.append(getenv("HOME"));
     	Path.append("/");

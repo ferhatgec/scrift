@@ -26,8 +26,6 @@ FHistory::FHistory() { }
 func
 FHistory::ClearHistory() {
     std::string path;
-    uid_t uid = geteuid();
-    struct passwd *password = getpwuid(uid);
     path.append(getenv("HOME"));
     path.append(slash);
     path.append(".scrift_history");
@@ -56,8 +54,6 @@ FHistory::WriteHistory(fstr filepathw) {
 void 
 FHistory::WriteAllHistory() {
     std::string filepath_with_path;
-    uid_t uid = geteuid();
-    struct passwd *password = getpwuid(uid);
     filepath_with_path.append(getenv("HOME"));
     filepath_with_path.append(slash);
     filepath_with_path.append(".scrift_history");
@@ -76,8 +72,6 @@ FHistory::WriteAllHistory() {
 func
 FHistory::CreateFile() {   
     std::string path;
-    uid_t uid = geteuid();
-    struct passwd *password = getpwuid(uid);
     path.append(getenv("HOME"));
     path.append(slash);
     path.append(".scrift_history");

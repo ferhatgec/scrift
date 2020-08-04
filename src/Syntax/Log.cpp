@@ -19,22 +19,13 @@
 std::ofstream file;
 FCommand *commandlog = new FCommand();
 std::string filepath_with_path;
-FeLog::FeLog()
-{
+FeLog::FeLog(){}
 
-}
-
-FeLog::~FeLog()
-{
-    delete commandlog;
-}
+FeLog::~FeLog(){ delete commandlog; }
 
 func
-FeLog::ClearLog()
-{
+FeLog::ClearLog() {
     std::string path;
-    uid_t uid = geteuid();
-    struct passwd *password = getpwuid(uid);
     path.append(getenv("HOME"));
     path.append(slash);
     path.append(".scrift_log");
@@ -46,8 +37,7 @@ FeLog::ClearLog()
 
 
 const std::string
-FeLog::TimeFunction()
-{
+FeLog::TimeFunction() {
     time_t nowtime = time(0);
     struct tm tstruct;
     char    buff[80];
@@ -58,11 +48,8 @@ FeLog::TimeFunction()
 
 
 func
-FeLog::WriteLog(fstr filepathw)
-{
+FeLog::WriteLog(fstr filepathw) {
     std::string filepath_with_path;
-    uid_t uid = geteuid();
-    struct passwd *password = getpwuid(uid);
     filepath_with_path.append(getenv("HOME"));
     filepath_with_path.append(slash);
     filepath_with_path.append(".scrift_log");
@@ -84,11 +71,8 @@ FeLog::WriteLog(fstr filepathw)
 
 
 func
-FeLog::CreateFile()
-{   
+FeLog::CreateFile() {   
     std::string path;
-    uid_t uid = geteuid();
-    struct passwd *password = getpwuid(uid);
     path.append(getenv("HOME"));
     path.append(slash);
     path.append(".scrift_log");
@@ -100,22 +84,17 @@ FeLog::CreateFile()
 }   
 
 func 
-FeLog::InitFile() 
-{
-
-}
+FeLog::InitFile() {}
 
 boolean
-FeLog::IsExist()
-{
+FeLog::IsExist() {
     struct stat buffer;
     return (stat(filepath_with_path.c_str(), &buffer) == 0);
 }
 
 
 func 
-FeLog::AllofThem()
-{
+FeLog::AllofThem() {
     if(IsExist() != true) {
     CreateFile();
     }

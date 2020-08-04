@@ -207,8 +207,6 @@ FCreateFileFunction::CreateFileFunctionInit(fstr name) {
 
 bool
 FCreateFileFunction::IsExistFile(std::string file) {
-    uid_t fuid = geteuid();
-    struct passwd *password = getpwuid(fuid);
     std::string path;
     path.append(getenv("HOME"));
     path.append("/");
@@ -222,8 +220,6 @@ FCreateFileFunction::IsExistFile(std::string file) {
 void
 FCreateFileFunction::CreateSettingsFileFunction() {
     if(IsExistFile(".scrift_settings") != true) {
-    	uid_t fuid = geteuid();
-    	struct passwd *password = getpwuid(fuid);
     	std::string pathfile;
     	pathfile.append(getenv("HOME"));
     	pathfile.append("/");
@@ -244,8 +240,6 @@ void
 FClearFileFunction::ClearSettingsFunction() {
     if(IsExistFile(".scrift_settings") == true) {
         filelog->WriteLog("Clearing Settings File - ");
-        uid_t fuid = getuid();
-        struct passwd *password = getpwuid(fuid);
         std::string path;
         path.append(getenv("HOME"));
         path.append("/");
@@ -289,8 +283,6 @@ FReadFileFunction::ReadHistoryFileFunction() {
     int line_number = 0;	
     std::string line;
     std::string path;
-    uid_t uid = geteuid();
-    struct passwd *password = getpwuid(uid);
     path.append(getenv("HOME"));
     path.append(slash);
     path.append(".scrift_history");
@@ -415,8 +407,6 @@ void
 FClearFileFunction::ClearFeLogFunction() {
     std::ofstream file;
     std::string path;
-    uid_t uid = geteuid();
-    struct passwd *password = getpwuid(uid);
     path.append(getenv("HOME"));
     path.append(slash);
     path.append(".scrift_log");
@@ -449,8 +439,6 @@ FReadFileFunction::ReadFeLogFunction() {
     int a = 0;
     std::string line;
     std::string path;
-    uid_t uid = geteuid();
-    struct passwd *password = getpwuid(uid);
     path.append(getenv("HOME"));
     path.append(slash);
     path.append(".scrift_log");
@@ -500,8 +488,6 @@ void
 FReadFileFunction::ReadSettingsFunction() {
     std::string line;
     std::string fpath;
-    uid_t fuid = geteuid();
-    struct passwd *pass = getpwuid(fuid);
     fpath.append(getenv("HOME"));
     fpath.append("/"); // slash
     fpath.append(".scrift_settings");
@@ -520,8 +506,6 @@ void
 FReadFileFunction::ReadASCIIFunction() {
     std::string line;
     std::string path;
-    uid_t fuid = geteuid();
-    struct passwd *pass = getpwuid(fuid);
     path.append(getenv("HOME"));
     path.append("/");
     path.append(".scrift_ascii");
@@ -541,8 +525,6 @@ FReadFileFunction::ReadASCIIFunction() {
 void
 fhomefunction::GetHome() {
     std::string path;
-    uid_t uid = geteuid();
-    struct passwd *password = getpwuid(uid);
     path.append(getenv("HOME"));
     std::strcpy(command->_file_path_cd_function, path.c_str());
     chdir(getenv("HOME"));

@@ -13,7 +13,7 @@
 // Library
 #include "../../../Library/Colorized.hpp"
 
-typest {
+typedef struct {
 public:
     virtual func help() {
         BOLD_GREEN_COLOR
@@ -102,20 +102,21 @@ public:
         printlnf("[3] https://github.com/ferhatgec/fetcheya\n");
         BOLD_CYAN_COLOR
         printlnf("[4] https://github.com/ferhatgec/edifor\n");
-       	BOLD_MAGENTA_COLOR
+	BLACK_COLOR       	
+	/*BOLD_MAGENTA_COLOR
 	printlnf("Select (ESC to cancel) : ");
 	int a = getchar();
 	FRunFunction fn;
 	if(a == '1') {
 		fn.RunFunction("xdg-open https://github.com/ferhatgec");
 	} else if(a == '2') {
-		fn.RunFunction("xdg-open ttps://github.com/ferhatgec/scrift-lang");
+		fn.RunFunction("xdg-open https://github.com/ferhatgec/scrift-lang");
 	} else if(a == '3') {
 		fn.RunFunction("xdg-open https://github.com/ferhatgec/fetcheya");
 	} else if(a == '4') {
 		fn.RunFunction("xdg-open https://github.com/ferhatgec/edifor");
 	} else { }
-	}
+	}*/
     }
 } fhelp;
 
