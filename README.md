@@ -10,6 +10,7 @@
 - User-friendly shell interface.
 - Color highlighter
 - Theme option (Classic, Default and more.)
+- Display Git branches.
 - Auto-Whitespace
 - Auto-Completer (not ended)
 - Customizable
