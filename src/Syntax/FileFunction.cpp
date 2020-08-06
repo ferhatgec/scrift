@@ -30,6 +30,7 @@
 
 // Library
 #include <Colorized.hpp>
+#include <FileSystemPlusPlus.h>
 
 using namespace FileFunction;
 
@@ -62,13 +63,9 @@ FCDFunction::FileExists(const std::string &Filename) {
     return access(Filename.c_str(), 0 ) == 0;
 }
 
-std::string pathnamef;
+
 void
 FCDFunction::CDFunctionInit(std::string name) {
-    command = new FCommand();
-    fmain = new FMain();
-
-    // or std::getline
     if(name != "") {
         if(fmain->_home != true) {
 	    if(name.rfind("#") == 0) {
@@ -93,7 +90,6 @@ FCDFunction::CDFunctionInit(std::string name) {
             		    std::strcat(command->_file_path_cd_function, "/");
             		    std::strcat(command->_file_path_cd_function, new_name.c_str());
             		    chdir(new_name.c_str());
-            		    pathnamef = new_name;
             		} else {
             		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "scrift : "); 
 			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), new_name.c_str());
@@ -123,15 +119,10 @@ FCDFunction::CDFunctionInit(std::string name) {
             		path.append(name);
             	}
             	if(FileExists(path) == true) {
-            	    std::string path;
-	    	    if(command->_file_path_cd_function == "/") {
-		    } else {
-            		std::strcat(command->_file_path_cd_function, "/");
-                    }
-                    std::strcat(command->_file_path_cd_function, name.c_str());
             	    chdir(name.c_str());
-            	    pathnamef = name;
-            	}  else {
+		    char *path(&fsplusplus::GetCurrentWorkingDir()[0]);
+                    std::strcpy(command->_file_path_cd_function, path);	            	
+		}  else {
             	    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "scrift : "); 
 		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), name.c_str());
 		    colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), " : This directory is not exist!\n");
@@ -170,10 +161,7 @@ FMKDirFunction::MKDirFunctionInit(std::string name) {
 }
 
 // FCREATEFILEFUNCTION
-FCreateFileFunction::FCreateFileFunction() {
-    file_name = new fchar;
-    file_directory = new fchar;
-}
+FCreateFileFunction::FCreateFileFunction() { }
 
 void
 FCreateFileFunction::CreateScriftFile(std::string pathname) {
