@@ -1387,7 +1387,7 @@ integer main(integer argc, char** argv) {
     	logsystem->WriteLog("Launching hello function.. - ");
     	helpstr->hello();
     	terminalstr->Terminal(); 
-    	while(argc == 2) {
+    	while(argc = 2) {
     	    std::cout << "\e]2; " << "Scrift: " << pass->pw_name << "@" << main_->_file_path_cd_function << "\a";
     	    main_function->Shell();
     	}

@@ -5,14 +5,18 @@
 #
 # */
 
+#include <iostream>
+#include <algorithm>
 #include <pwd.h>
 #include <src/Syntax/Settings.hpp>
 #include <src/Syntax/CommandFunc.h>
 #include <src/Syntax/GetNameFunction.hpp>
+#include <src/Syntax/Branch.hpp>
 
 // Library
 #include <Colorized.hpp>
 
+FBranch br;
 FCommand *terminal = new FCommand();
 FSettings *fsettings = new FSettings();
 FStructure::FStructure() { }
@@ -48,6 +52,13 @@ FGetUsername::InitHostname() {
     gethostname(hostname_buffer, sizeof(hostname_buffer));
     printlnf("%s", hostname_buffer);
 }
+
+std::string GetBranch() {
+	std::string branch = br.GetGitBranch();
+	branch.erase(std::remove(branch.begin(), branch.end(), '\n'), branch.end());
+	return branch;
+}
+
 std::string uname(password->pw_name);
 std::string customize = fsettings->InputCustomize();
 void
@@ -62,6 +73,8 @@ FStructure::Terminal() {
     std::cout << ":~";
     BOLD_YELLOW_COLOR
     std::cout << terminal->_file_path_cd_function << " ";
+    BOLD_CYAN_COLOR
+    std::cout << GetBranch();
     BOLD_RED_COLOR
     // std::cout << "$# ";
     std::cout << customize << " ";

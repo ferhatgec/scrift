@@ -22,6 +22,8 @@
 #define GetCurrentDir getcwd
 #endif
 
+#define FS_PLUS_PLUS_VERSION "0.2-beta-1"
+
 namespace fsplusplus {
 	static std::string EraseAllSubString(std::string & mainString, const std::string & erase) {
    	 size_t pos = std::string::npos;
@@ -284,6 +286,87 @@ namespace fsplusplus {
             }
     	}
    	 closedir(directory);				
+	}
+
+	static std::string ListPathWithReturn(std::string path) {
+	    DIR *directory;
+	    std::string add;
+	    struct dirent *entryname;
+	    struct stat filestat;
+    	    directory = opendir(path.c_str());
+    	    if(directory == NULL) {
+        	return "null"; // Directory not found.
+    	    }
+            while ((entryname = readdir(directory))) {
+        	stat(entryname->d_name, &filestat);
+        	if(entryname->d_type == DT_DIR) {// DT_DIR -> directory
+            	if(strstr(entryname->d_name, ".")) {
+            		// Null
+            	} else if(strstr(entryname->d_name, "..")){
+	    		// Null
+	    	} else {  
+          		add.append(entryname->d_name);
+            	}
+            } else {
+               	add.append(entryname->d_name);
+            }
+	    return add;
+    	   }
+   	   closedir(directory);
+	   return "null";
+	}
+
+	static std::string ListDirectoryWithReturn(std::string path) {
+	    DIR *directory;
+	    std::string add, pth;
+	    struct dirent *entryname;
+	    struct stat filestat;
+	    pth.append(GetCurrentWorkingDir());
+            pth.append("/");
+	    pth.append(path);
+    	    directory = opendir(pth.c_str());
+    	    if(directory == NULL) {
+        	return "null"; // Directory not found.
+    	    }
+            while ((entryname = readdir(directory))) {
+        	stat(entryname->d_name, &filestat);
+        	if(entryname->d_type == DT_DIR) {// DT_DIR -> directory
+          		add.append(entryname->d_name);
+           	} else {
+                	// Null
+            }
+	    return add;
+    	   }
+   	   closedir(directory);
+	   return "null";
+	}
+	
+	static std::string ListFileWithReturn(std::string path) {
+	    DIR *directory;
+	    std::string add;
+	    struct dirent *entryname;
+	    struct stat filestat;
+    	    directory = opendir(path.c_str());
+    	    if(directory == NULL) {
+        	return "null"; // Directory not found.
+    	    }
+            while ((entryname = readdir(directory))) {
+        	stat(entryname->d_name, &filestat);
+        	if(entryname->d_type == DT_DIR) {// DT_DIR -> directory
+            	if(strstr(entryname->d_name, ".")) {
+            		// Null
+            	} else if(strstr(entryname->d_name, "..")){
+	    		// Null
+	    	} else {  
+          		// Null
+            	}
+            } else {
+                add.append(entryname->d_name);
+		return add;
+            }
+    	   }
+   	   closedir(directory);
+           return "null";
 	}
 
 	static std::string CDFunction(std::string path) {
