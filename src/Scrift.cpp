@@ -1137,6 +1137,8 @@ void InputFunction() {
 	  		std::cout << WBOLD_GREEN_COLOR << "fscrift " << WBLACK_COLOR;
        	}
         	BOLD_CYAN_COLOR
+		printlnf("\nFilename: ");
+		BOLD_LIGHT_MAGENTA_COLOR
         	std::cin >> main_function->_h_str;
         	scriftlang->ReadFunc(main_function->_h_str + ".scr");
         	history->WriteHistory(main_function->_h_str);
