@@ -67,6 +67,13 @@ struct editorSyntax HLDB[] = {
     "#", ": '", "'",
     HL_HIGHLIGHT_NUMBERS | HL_HIGHLIGHT_STRINGS
   },
+  {
+    "Lua",
+    Lua_HL_extensions,
+    Lua_HL_keywords,
+    "--", "--[[", "--]]",
+    HL_HIGHLIGHT_NUMBERS | HL_HIGHLIGHT_STRINGS
+  },
 };
 
 #define HLDB_ENTRIES (sizeof(HLDB) / sizeof(HLDB[0]))
@@ -936,6 +943,9 @@ void editorTemplateCode() {
 	} else if(strstr(template, "Python") || strstr(template, "python") || 
 	strstr(template, "python3")) {
 		code = "print('Hello, Python!')";
+		editorInsertRow(0, code, strlen(code));
+	} else if(strstr(template, "lua") || strstr(template, "Lua") || strstr(template, "LUA")) {
+		code = "print(\"Hello, Lua!\")";
 		editorInsertRow(0, code, strlen(code));
 	} else { 
 		editorInsertRow(0, template, strlen(template));
