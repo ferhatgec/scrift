@@ -83,4 +83,13 @@ char *Lua_HL_keywords[] = {
   "local|", NULL
 };
 
+/* Scrift Template */
+char *Scrift_HL_extensions[] = { ".scr", NULL }; 
+char *Scrift_HL_keywords[] = {
+  "red", "blue", "plpr", "floatpr", "intpr", "strpr", "wsinput", "fplus", "splus", "system",
+  "green", "input", "DATE", "inputpr", "return", "changesh", "slashn", "printlnf",
+
+  "string|", "integer|",  NULL
+};
+
 #endif // LANGUAGE_H

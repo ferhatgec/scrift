@@ -74,6 +74,13 @@ struct editorSyntax HLDB[] = {
     "--", "--[[", "--]]",
     HL_HIGHLIGHT_NUMBERS | HL_HIGHLIGHT_STRINGS
   },
+  {
+    "Scrift",
+    Scrift_HL_extensions,
+    Scrift_HL_keywords,
+    "#", "#*", "*#",
+    HL_HIGHLIGHT_NUMBERS | HL_HIGHLIGHT_STRINGS
+  },
 };
 
 #define HLDB_ENTRIES (sizeof(HLDB) / sizeof(HLDB[0]))
@@ -929,6 +936,11 @@ void editorTemplateCode() {
 		editorInsertRow(4, code, strlen(code));
 		code = "}";
 		editorInsertRow(5, code, strlen(code));
+	} else if(strstr(template, "scrift") || strstr(template, "Scrift")) {
+		code = "printlnf(\"Hello, Scrift!\");";
+		editorInsertRow(0, code, strlen(code));
+		code = "return";
+		editorInsertRow(1, code, strlen(code));
 	} else if(strstr(template, "C") || strstr(template, "c")) {
 		code = "#include <stdio.h>";
 		editorInsertRow(0, code, strlen(code));
