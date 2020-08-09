@@ -1324,51 +1324,27 @@ void InputFunction() {
         }
 }
 
-func
+void
 FMain::Shell() {	
     readfilefunction->ReadFeLogFunctionWithoutPrint();
     InputFunction();
 }
 
-integer main(integer argc, char** argv) {
+int main(integer argc, char** argv) {
+    std::string copy_arg, reg;
     setlocale(LC_ALL, "");
     if(currentDateTime().substr(4, 6) == "-01-01") {
     	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "Happy new year!");
     	std::cout << " " << emojiplusplus::EmojiString(":balloon:") << " - ";
     	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "Scrift\n");
     }
-    if(argc > 1) {
-		for(int i = 1; i < argc; i++) {
-			std::string arg(argv[i]);
 
-			if(arg.substr(0, 2) == "--") {
-				if(arg == "--build") {
-					main_function->_h_str.erase();
-        				std::cin >> main_function->_h_str;
-        				scriftlang->ReadFunc(main_function->_h_str);
-				} else if(arg == "--b") {
-					main_function->_h_str.erase();
-        				std::cin >> main_function->_h_str;
-        				scriftlang->ReadFunc(main_function->_h_str);
-				} else if(arg == "--help") {
-					BOLD_RED_COLOR
-					helpstr->help();
-					BLACK_COLOR
-					exit(EXIT_SUCCESS);
-				} else if(arg == "--h") {
-					BOLD_RED_COLOR
-					helpstr->help();
-					BLACK_COLOR
-					exit(EXIT_SUCCESS);
-				} else if(arg == "--version") {
-					PrintVersion();
-					exit(EXIT_SUCCESS);
-				} else if(arg == "--v") {
-					PrintVersion();
-					exit(EXIT_SUCCESS);			
-				}
-			} 
-		}
+    if(argc > 1) {
+	for(int i = 1; i < argc; i++) {
+		std::string arg(argv[i]);
+		reg = argv[1];
+		copy_arg = arg;
+	}
     } else {
     	filefunction->CreateSettingsFileFunction(); // Directory is "/home/<username>/<dot>scrift_settings"
     	logsystem->AllofThem();
@@ -1392,6 +1368,20 @@ integer main(integer argc, char** argv) {
     	    main_function->Shell();
     	}
     	history->WriteAllHistory();
+    }
+
+    if(reg.substr(0, 2) == "--") {
+	if(strstr(reg.c_str(), "--b")) {
+		scriftlang->ReadFunc(copy_arg + ".scr");
+	} else if(reg == "--help" || reg == "--h") {
+		BOLD_RED_COLOR
+		helpstr->help();
+		BLACK_COLOR
+		exit(EXIT_SUCCESS);
+	} else if(reg == "--version" || reg == "--v") {
+		PrintVersion();
+		exit(EXIT_SUCCESS);
+	}
     }
     return F_OK;
 }
