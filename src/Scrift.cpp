@@ -316,13 +316,12 @@ void InputFunction() {
 		RemovePrintedChar(keywords.Help.length() - 1);
 		if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_YELLOW_COLOR << "help" << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "help");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "help");
+       		} else {
         		std::cout << WBOLD_YELLOW_COLOR << "help" << WBLACK_COLOR;
-       	}
+       		}
         	if(getchar() == '\n') {
-        		slashn 
         		helpstr->help();
         	}
         	history->WriteHistory(main_function->_h_str);
@@ -334,11 +333,11 @@ void InputFunction() {
                 RemovePrintedChar(keywords.Lsd.length() - 1);
                 if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_RED_COLOR << "d" << WBOLD_YELLOW_COLOR << "ls " << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "dls ");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "dls ");
+       		} else {
         		std::cout << WBOLD_RED_COLOR << "d" << WBOLD_YELLOW_COLOR << "ls " << WBLACK_COLOR;
-       	}
+       		}
         	BOLD_CYAN_COLOR
           	std::getline(std::cin, input);
           	BLACK_COLOR
@@ -356,11 +355,11 @@ void InputFunction() {
         	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_BLUE_COLOR << "create" << WBLACK_COLOR;
        		std::cout << WBOLD_CYAN_COLOR << " scrift_project";
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "create scrift_project");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "create scrift_project");
+       		} else {
         		std::cout << WBOLD_BLUE_COLOR << "create" << WBLACK_COLOR;
-       		std::cout << WBOLD_CYAN_COLOR << " scrift_project";	
+       			std::cout << WBOLD_CYAN_COLOR << " scrift_project";	
         	}
         	BOLD_MAGENTA_COLOR
         	std::getline(std::cin, main_function->_h_str);
@@ -374,9 +373,9 @@ void InputFunction() {
         	RemovePrintedChar(keywords.LanguageTemplate.length() - 1);
         	if(runsyntax->Theme() == "default")  {
         		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "template");
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "template");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "template");
+       		} else {
         		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "template");	
         	}
         	if(getchar() == '\n') {
@@ -387,29 +386,29 @@ void InputFunction() {
         	terminalstr->Terminal();
         	return;
         } else if(main_function->_h_str.rfind(keywords.DeleteText, 0) == 0) {
-       	 logsystem->WriteLog("Launching deletetext function.. - ");
-       	 RemovePrintedChar(keywords.DeleteText.length() - 1);
-       	 if(runsyntax->Theme() == "default")  {
-        		 std::cout << WBOLD_RED_COLOR << "delete" << WBOLD_YELLOW_COLOR << "text ";
-       	 } else if(runsyntax->Theme() == "classic") {
-       		 colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "deletetext ");
-       	 } else {
-        		 std::cout << WBOLD_RED_COLOR << "delete" << WBOLD_YELLOW_COLOR << "text ";	
-        	 }
-        	 BOLD_BLUE_COLOR
-        	 std::getline(std::cin, main_function->_h_str);
-       	 fileaddtextfunction->DeleteLine(main_function->_h_str);
-       	 history->WriteHistory(main_function->_h_str);
-       	 main_function->_h_str.erase();
-        	 terminalstr->Terminal();   
-       	 return;
+       	 	logsystem->WriteLog("Launching deletetext function.. - ");
+       	 	RemovePrintedChar(keywords.DeleteText.length() - 1);
+       	 	if(runsyntax->Theme() == "default")  {
+        		std::cout << WBOLD_RED_COLOR << "delete" << WBOLD_YELLOW_COLOR << "text ";
+       	        } else if(runsyntax->Theme() == "classic") {
+       		 	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "deletetext ");
+       	 	} else {
+        		std::cout << WBOLD_RED_COLOR << "delete" << WBOLD_YELLOW_COLOR << "text ";	
+        	}
+        	BOLD_BLUE_COLOR
+        	std::getline(std::cin, main_function->_h_str);
+       	 	fileaddtextfunction->DeleteLine(main_function->_h_str);
+       	 	history->WriteHistory(main_function->_h_str);
+       	 	main_function->_h_str.erase();
+        	terminalstr->Terminal();   
+       	 	return;
     	} else if(main_function->_h_str == keywords.Random) {
     		RemovePrintedChar(keywords.Random.length() - 1);
     		if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_BLUE_COLOR << "random " << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "random ");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "random ");
+       		} else {
         		std::cout << WBOLD_BLUE_COLOR << "random " << WBLACK_COLOR;
         	}
     		int number;
@@ -429,9 +428,9 @@ void InputFunction() {
     		RemovePrintedChar(keywords.Uninstall.length() - 1);
     		if(runsyntax->Theme() == "default")  {
         		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "uninstall");
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "uninstall");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "uninstall");
+       		} else {
         		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "uninstall");
         	}
         	if(getchar() == '\n') {
@@ -470,9 +469,9 @@ void InputFunction() {
         	RemovePrintedChar(keywords.Lsf.length() - 1);
         	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_BLUE_COLOR << "f" << WBOLD_YELLOW_COLOR << "ls " << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "fls ");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "fls ");
+       		} else {
         		std::cout << WBOLD_BLUE_COLOR << "f" << WBOLD_YELLOW_COLOR << "ls " << WBLACK_COLOR;
         	}
         	BOLD_CYAN_COLOR
@@ -492,9 +491,9 @@ void InputFunction() {
         	RemovePrintedChar(keywords.Factorial.length() - 1);
         	if(runsyntax->Theme() == "default")  {
         		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "fact");
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "fact");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "fact");
+       		} else {
         		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "fact");
         	}
         	colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), " ");
@@ -546,9 +545,9 @@ void InputFunction() {
       		RemovePrintedChar(keywords.GitLink.length() - 1);
       		if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_YELLOW_COLOR << "gitlink" << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "gitlink");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "gitlink");
+       		} else {
         		std::cout << WBOLD_YELLOW_COLOR << "gitlink" << WBLACK_COLOR;
         	}
         	if(getchar() == '\n') {
@@ -581,9 +580,9 @@ void InputFunction() {
               	RemovePrintedChar(keywords.Pause.length() - 1);
               	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_MAGENTA_COLOR << "pause" << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "pause");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "pause");
+       		} else {
         		std::cout << WBOLD_MAGENTA_COLOR << "pause" << WBLACK_COLOR;
         	}
         	if(getchar() == '\n') {                	          
@@ -602,13 +601,13 @@ void InputFunction() {
         	main_function->_h_str.erase();
         	terminalstr->Terminal(); 
         	return;
-    } else if(main_function->_h_str == keywords.KName) {
+    	} else if(main_function->_h_str == keywords.KName) {
         	RemovePrintedChar(keywords.KName.length() - 1);
         	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_YELLOW_COLOR << "kname" << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "kname");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "kname");
+       		} else {
         		std::cout << WBOLD_YELLOW_COLOR << "kname" << WBLACK_COLOR;
         	}
         	if(getchar() == '\n') {
@@ -623,9 +622,9 @@ void InputFunction() {
                 RemovePrintedChar(keywords.Contr.length() - 1);
                 if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_YELLOW_COLOR << "contr" << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "contr");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "contr");
+       		} else {
         		std::cout << WBOLD_YELLOW_COLOR << "contr" << WBLACK_COLOR;
         	}
         	if(getchar() == '\n') {
@@ -641,9 +640,9 @@ void InputFunction() {
                 RemovePrintedChar(keywords.LsObject.length() - 1); 
         	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_MAGENTA_COLOR << "obj" << WBOLD_YELLOW_COLOR << "ls" << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "objls");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "objls");
+       		} else {
         		std::cout << WBOLD_MAGENTA_COLOR << "obj" << WBOLD_YELLOW_COLOR << "ls" << WBLACK_COLOR;
         	}
         	if(getchar() == '\n') {   	
@@ -657,9 +656,9 @@ void InputFunction() {
         	RemovePrintedChar(keywords.SetName.length() - 1);
         	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_BLUE_COLOR << "setname " << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "setname ");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "setname ");
+       		} else {
 			std::cout << WBOLD_BLUE_COLOR << "setname " << WBLACK_COLOR;
         	}
 		BOLD_LIGHT_CYAN_COLOR
@@ -674,9 +673,9 @@ void InputFunction() {
         	RemovePrintedChar(keywords.SetTo.length() - 1);
         	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_CYAN_COLOR << "setto " << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "setto ");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "setto ");
+       		} else {
 			std::cout << WBOLD_CYAN_COLOR << "setto " << WBLACK_COLOR;
         	}      	
 		BOLD_LIGHT_BLUE_COLOR
@@ -692,9 +691,9 @@ void InputFunction() {
     	        RemovePrintedChar(keywords.Now.length() - 1);
         	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_YELLOW_COLOR << "now" << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "now");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "now");
+       		} else {
 			std::cout << WBOLD_YELLOW_COLOR << "now" << WBLACK_COLOR;
         	}
         	if(getchar() == '\n') {
@@ -712,9 +711,9 @@ void InputFunction() {
         	RemovePrintedChar(main_function->_h_str.length() - 1);
         	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_YELLOW_COLOR << "printlnf " << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "printlnf ");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "printlnf ");
+       		} else {
 			std::cout << WBOLD_BLUE_COLOR << "printlnf " << WBLACK_COLOR;
         	}
         	BOLD_CYAN_COLOR
@@ -730,16 +729,16 @@ void InputFunction() {
             	RemovePrintedChar(keywords.ClearLog.length() - 1);
             	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_GREEN_COLOR << "clear_log";
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "clear_log");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "clear_log");
+       		} else {
 			std::cout << WBOLD_GREEN_COLOR << "clear_log";
         	}
 		if(getchar() == '\n') {
-       		logsystem->WriteLog("Launching ClearLog function.. - ");
-       		logsystem->ClearLog();
-       		printlnf("Done.\n");
-       	}
+       			logsystem->WriteLog("Launching ClearLog function.. - ");
+       			logsystem->ClearLog();
+       			printlnf("Done.\n");
+       		}
         	history->WriteHistory(main_function->_h_str);
     		main_function->_h_str.erase();
         	return;
@@ -748,9 +747,9 @@ void InputFunction() {
         	RemovePrintedChar(keywords.MKDir.length() - 1);
         	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_GREEN_COLOR << "mkdir " << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "mkdir ");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "mkdir ");
+       		} else {
 			std::cout << WBOLD_GREEN_COLOR << "mkdir " << WBLACK_COLOR;
         	}
         	BOLD_CYAN_COLOR
@@ -764,9 +763,9 @@ void InputFunction() {
    		RemovePrintedChar(keywords.SquareofNumber.length() - 1);
    		if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_BLUE_COLOR << "square " << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
+       		} else if(runsyntax->Theme() == "classic") {
        		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "square ");
-       	} else {
+       		} else {
 			std::cout << WBOLD_BLUE_COLOR << "square " << WBLACK_COLOR;
         	}
    		BOLD_CYAN_COLOR
@@ -780,9 +779,9 @@ void InputFunction() {
    		RemovePrintedChar(keywords.SquareRootofNumber.length() - 1);
    		if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_BLUE_COLOR << "sqrt " << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "sqrt ");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "sqrt ");
+       		} else {
 			std::cout << WBOLD_BLUE_COLOR << "sqrt " << WBLACK_COLOR;
         	}
    		BOLD_CYAN_COLOR
@@ -797,9 +796,9 @@ void InputFunction() {
         	RemovePrintedChar(keywords.RandomizeString.length() - 1);
 		if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_GREEN_COLOR << "rstr " << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "rstr ");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "rstr ");
+       		} else {
 			std::cout << WBOLD_GREEN_COLOR << "rstr " << WBLACK_COLOR;
         	}
         	BOLD_CYAN_COLOR
@@ -815,9 +814,9 @@ void InputFunction() {
                 RemovePrintedChar(keywords.RemoveFile.length() - 1);
         	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_RED_COLOR << "rmv" << WBOLD_MAGENTA_COLOR << "file " << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "rmvfile ");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "rmvfile ");
+       		} else {
 			std::cout << WBOLD_RED_COLOR << "rmv" << WBOLD_MAGENTA_COLOR << "file " << WBLACK_COLOR;
         	}        	
         	BOLD_CYAN_COLOR
@@ -832,32 +831,32 @@ void InputFunction() {
         	RemovePrintedChar(keywords.Scr.length() - 1);
         	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_GREEN_COLOR << "scr " << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "scr ");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "scr ");
+       		} else {
 			std::cout << WBOLD_GREEN_COLOR << "scr " << WBLACK_COLOR;
         	}        	
         	BOLD_CYAN_COLOR
         	std::getline(std::cin, main_function->_h_str);
         	BLACK_COLOR
         	runfunction->RunFunction(main_function->_h_str);	
-       	main_function->_h_str.erase();
+       		main_function->_h_str.erase();
         	history->WriteHistory(main_function->_h_str);
-       	terminalstr->Terminal(); 
-       	return;
+       		terminalstr->Terminal(); 
+       		return;
        } else if(main_function->_h_str == keywords.FeLog) {
           	std::cout<<"\b";
         	RemovePrintedChar(keywords.FeLog.length() - 1);
         	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_YELLOW_COLOR << " felog" << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), " felog");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), " felog");
+       		} else {
 			std::cout << WBOLD_YELLOW_COLOR << " felog" << WBLACK_COLOR;
         	}        	
         	if(getchar() == '\n') {
         		slashn
-       		logsystem->WriteLog("Launching felog function.. - ");
+       			logsystem->WriteLog("Launching felog function.. - ");
         		readfilefunction->ReadFeLogFunction();
         	}
         	history->WriteHistory(main_function->_h_str);
@@ -869,9 +868,9 @@ void InputFunction() {
    		FFindFileFunction *find = new FFindFileFunction();
    		if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_BLUE_COLOR << "ffind " << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "ffind ");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "ffind ");
+       		} else {
 			std::cout << WBOLD_BLUE_COLOR << "ffind " << WBLACK_COLOR;
         	}
         	BOLD_CYAN_COLOR
@@ -885,10 +884,10 @@ void InputFunction() {
           	RemovePrintedChar(keywords.AddText.length() - 1);
         	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_GREEN_COLOR << " addtext " << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), " addtext ");
-       	} else {
-       		std::cout << WBOLD_GREEN_COLOR << " addtext " << WBLACK_COLOR;
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), " addtext ");
+       		} else {
+       			std::cout << WBOLD_GREEN_COLOR << " addtext " << WBLACK_COLOR;
         	}
         	BOLD_CYAN_COLOR
         	std::cin >> main_function->_h_str;
@@ -898,31 +897,31 @@ void InputFunction() {
           	main_function->_h_str.erase();
           	BLACK_COLOR
           	terminalstr->Terminal(); 
-   				return;
+   		return;
        } else if(main_function->_h_str.find(keywords.Emoji) == 0) {
-       	RemovePrintedChar(keywords.Emoji.length() - 1);
-       	if(runsyntax->Theme() == "default")  {
+       		RemovePrintedChar(keywords.Emoji.length() - 1);
+       		if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_BLUE_COLOR << "emoji " << WBLACK_COLOR; 
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "emoji ");
-       	} else {
-       		std::cout << WBOLD_BLUE_COLOR << "emoji " << WBLACK_COLOR; 
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "emoji ");
+       		} else {
+       			std::cout << WBOLD_BLUE_COLOR << "emoji " << WBLACK_COLOR; 
         	}       	
-       	BOLD_CYAN_COLOR
-       	std::getline(std::cin, main_function->_h_str);
+       		BOLD_CYAN_COLOR
+       		std::getline(std::cin, main_function->_h_str);
      		std::cout << emojiplusplus::EmojiString(main_function->_h_str) << "\n";
      		history->WriteHistory(main_function->_h_str);
-       	main_function->_h_str.erase();
-       	terminalstr->Terminal();
-       	return;
+       		main_function->_h_str.erase();
+       		terminalstr->Terminal();
+       		return;
        } else if(main_function->_h_str.find(keywords.RunDotSlash, 0) == 0) {
           	RemovePrintedChar(keywords.RunDotSlash.length() - 1);
         	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_MAGENTA_COLOR << "." << WBOLD_BLUE_COLOR << "/" << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "./");
-       	} else {
-       		std::cout << WBOLD_MAGENTA_COLOR << "." << WBOLD_BLUE_COLOR << "/" << WBLACK_COLOR;
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "./");
+       		} else {
+       			std::cout << WBOLD_MAGENTA_COLOR << "." << WBOLD_BLUE_COLOR << "/" << WBLACK_COLOR;
         	}
         	BOLD_LIGHT_MAGENTA_COLOR
         	std::getline(std::cin, main_function->_h_str);
@@ -944,28 +943,28 @@ void InputFunction() {
           	RemovePrintedChar(keywords.IP.length() - 1);
           	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_YELLOW_COLOR << "ip" << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "ip");
-       	} else {
-       		std::cout << WBOLD_YELLOW_COLOR << "ip" << WBLACK_COLOR;
-       	}
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "ip");
+       		} else {
+       			std::cout << WBOLD_YELLOW_COLOR << "ip" << WBLACK_COLOR;
+       		}
        	
 		if(getchar() == '\n') {
-       		main_->getIPAddress();
+       			main_->getIPAddress();
         		history->WriteHistory(main_function->_h_str);
-       	}
-       	main_function->_h_str.erase();
-       	terminalstr->Terminal(); 
-       	return;
+       		}
+       		main_function->_h_str.erase();
+       		terminalstr->Terminal(); 
+       		return;
       } else if(main_function->_h_str == keywords.Clear_History) {
       		RemovePrintedChar(keywords.Clear_History.length() - 1);
       		if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_RED_COLOR << "rmv" << WBOLD_MAGENTA_COLOR << "history" << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "rmvhistory");
-       	} else {
-       		std::cout << WBOLD_RED_COLOR << "rmv" << WBOLD_MAGENTA_COLOR << "history" << WBLACK_COLOR;
-       	}
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "rmvhistory");
+       		} else {
+       			std::cout << WBOLD_RED_COLOR << "rmv" << WBOLD_MAGENTA_COLOR << "history" << WBLACK_COLOR;
+       		}
       		if(getchar() == '\n') {
       			history->ClearHistory();
       		}
@@ -978,11 +977,11 @@ void InputFunction() {
          	RemovePrintedChar(keywords.History.length() - 1);
          	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_YELLOW_COLOR << "history" << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "history");
-       	} else {
-       		std::cout << WBOLD_YELLOW_COLOR << "history" << WBLACK_COLOR;
-       	}
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "history");
+       		} else {
+       			std::cout << WBOLD_YELLOW_COLOR << "history" << WBLACK_COLOR;
+       		}
         	if(getchar() == '\n') {
         		readfilefunction->ReadHistoryFileFunction();
         	}
@@ -995,11 +994,11 @@ void InputFunction() {
       	  	RemovePrintedChar(keywords.Back.length() - 1);
       	  	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_MAGENTA_COLOR << "back" << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "back");
-       	} else {
-        		std::cout << WBOLD_MAGENTA_COLOR << "back" << WBLACK_COLOR;
-       	}
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "back");
+       		} else {
+        			std::cout << WBOLD_MAGENTA_COLOR << "back" << WBLACK_COLOR;
+       		}
         	if(getchar() == '\n') {
         		std::string path_string(main_->_file_path_cd_function);
         		std::size_t test = path_string.find_last_of("/\\");
@@ -1021,11 +1020,11 @@ void InputFunction() {
           	RemovePrintedChar(keywords.Ls.length() - 1);
                 if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_YELLOW_COLOR << "ls " << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "ls ");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "ls ");
+       		} else {
         		std::cout << WBOLD_YELLOW_COLOR << "ls " << WBLACK_COLOR;
-       	}
+       		}
           	BOLD_BLUE_COLOR
           	std::getline(std::cin, input);
           	BLACK_COLOR
@@ -1043,11 +1042,11 @@ void InputFunction() {
       	  	RemovePrintedChar(keywords.Fr.length() - 1);
       	  	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_GREEN_COLOR << "fr " << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "fr ");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "fr ");
+       		} else {
         		std::cout << WBOLD_GREEN_COLOR << "fr " << WBLACK_COLOR;
-       	}
+       		}
       	  	BOLD_CYAN_COLOR
       	  	std::getline(std::cin, main_function->_h_str);
           	cdfunction->CDFunctionInit(scriftlang->EraseAllSubString(main_function->_h_str, keywords.Fr + keywords.Whitespace));
@@ -1060,11 +1059,11 @@ void InputFunction() {
      	  	RemovePrintedChar(keywords.Clear_Settings.length() - 1);
      	  	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_RED_COLOR << "rmv" << WBOLD_YELLOW_COLOR << "settings" << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "rmvsettings");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "rmvsettings");
+       		} else {
 	  		std::cout << WBOLD_RED_COLOR << "rmv" << WBOLD_YELLOW_COLOR << "settings" << WBLACK_COLOR;
-       	}
+       		}
 	  	if(getchar() == '\n') {
 			std::unique_ptr<FClearFileFunction> clearfile(new FClearFileFunction);
           		clearfile->ClearSettingsFunction();
@@ -1073,34 +1072,34 @@ void InputFunction() {
           	main_function->_h_str.erase();
           	terminalstr->Terminal();
       	  	return;
-    } else if (main_function->_h_str == keywords.Home) {
+     } else if (main_function->_h_str == keywords.Home) {
         	logsystem->WriteLog("Launching home function.. - ");
         	RemovePrintedChar(keywords.Home.length() - 1);
         	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_MAGENTA_COLOR << "home" << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "home");
-       	} else {
-       		std::cout << WBOLD_MAGENTA_COLOR << "home" << WBLACK_COLOR;
-       	}
+     	  	} else if(runsyntax->Theme() == "classic") {
+     	  		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "home");
+     	  	} else {
+     	  		std::cout << WBOLD_MAGENTA_COLOR << "home" << WBLACK_COLOR;
+     	  	}
         	if(getchar() == '\n') {
-       		homefunction->GetHome();
-       		slashn
-       	}
+       			homefunction->GetHome();
+       			slashn
+       		}
         	history->WriteHistory(main_function->_h_str);
-       	main_function->_h_str.erase();
-       	terminalstr->Terminal();
-       	return;
+       		main_function->_h_str.erase();
+       		terminalstr->Terminal();
+       		return;
      } else if(main_function->_h_str == keywords.Close || main_function->_h_str == keywords.Exit)  {                                      
         	logsystem->WriteLog("Exit signal.. - ");
           	RemovePrintedChar(main_function->_h_str.length() - 1);
           	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_MAGENTA_COLOR << "cls" << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "cls");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "cls");
+       		} else {
 	  		std::cout << WBOLD_MAGENTA_COLOR << "cls" << WBLACK_COLOR;
-       	}
+       		}
         	if(getchar() == '\n') {
         		history->WriteHistory(main_function->_h_str);
         		history->WriteAllHistory();
@@ -1112,11 +1111,11 @@ void InputFunction() {
           	RemovePrintedChar(keywords.Scrift.length() - 1);
           	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_GREEN_COLOR << "fscrift " << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "fscrift ");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "fscrift ");
+       		} else {
 	  		std::cout << WBOLD_GREEN_COLOR << "fscrift " << WBLACK_COLOR;
-       	}
+	       	}
         	BOLD_CYAN_COLOR
 		printlnf("\nFilename: ");
 		BOLD_LIGHT_MAGENTA_COLOR
@@ -1124,17 +1123,17 @@ void InputFunction() {
         	scriftlang->ReadFunc(main_function->_h_str + ".scr");
         	history->WriteHistory(main_function->_h_str);
          	main_function->_h_str.erase();
-       	return;
+       		return;
      } else if(main_function->_h_str == keywords.Settings) {
      		logsystem->WriteLog("Calling ReadSettingsFunction.. - ");
     		RemovePrintedChar(keywords.Settings.length() - 1);	
     		if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_YELLOW_COLOR << "settings" << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "settings");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "settings");
+       		} else {
 	  		std::cout << WBOLD_YELLOW_COLOR << "settings" << WBLACK_COLOR;
-       	}
+       		}
         	if(getchar() == '\n') {
         		readfilefunction->ReadSettingsFunction();
         		slashn
@@ -1148,18 +1147,18 @@ void InputFunction() {
       		RemovePrintedChar(keywords.Clear.length() - 1);
       		if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_YELLOW_COLOR << "clear" << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "clear");
-       	} else {
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "clear");
+       		} else {
 	  		std::cout << WBOLD_YELLOW_COLOR << "clear" << WBLACK_COLOR;
-       	}
+       		}
       		if(getchar() == '\n') {
       	  		printlnf("\033c");
       	  	}
         	history->WriteHistory(main_function->_h_str);
          	main_function->_h_str.erase();
          	terminalstr->Terminal();
-       	return;
+       		return;
      } else if(main_function->_h_str == keywords.MyASCIIArt) {
      		RemovePrintedChar(keywords.MyASCIIArt.length() - 1);
      		if(runsyntax->Theme() == "default") {
@@ -1179,11 +1178,11 @@ void InputFunction() {
 		RemovePrintedChar(keywords.Username.length() - 1);
 		if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_MAGENTA_COLOR << "username" << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "username");
-       	} else {
+	       	} else if(runsyntax->Theme() == "classic") {
+	       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "username");
+	       	} else {
 	  		std::cout << WBOLD_MAGENTA_COLOR << "username" << WBLACK_COLOR;
-       	}
+	       	}
 		if(getchar() == '\n') {
 			BOLD_CYAN_COLOR
 			FGetUsername userhostname;
@@ -1199,18 +1198,18 @@ void InputFunction() {
                 RemovePrintedChar(keywords.Version.length() - 1);  
                 if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_YELLOW_COLOR << "version" << WBLACK_COLOR;
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "version");
-       	} else {
+	       	} else if(runsyntax->Theme() == "classic") {
+	       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "version");
+	       	} else {
 	  		std::cout << WBOLD_YELLOW_COLOR << "version" << WBLACK_COLOR;
-       	}
+	       	}
       		if(getchar() == '\n') {
     			PrintVersion();
     		}
         	history->WriteHistory(main_function->_h_str);
     		main_function->_h_str.erase();
     		terminalstr->Terminal();
-       	return;
+	       	return;
      } else if(main_function->_h_str == keywords.Morse) {
      		RemovePrintedChar(keywords.Morse.length() - 1);
      		if(runsyntax->Theme() == "default") {
@@ -1231,27 +1230,27 @@ void InputFunction() {
      		RemovePrintedChar(keywords.Welcome.length() - 1);
      		if(runsyntax->Theme() == "default")  {
 			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "welcome");
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "welcome");
-       	} else {
+	       	} else if(runsyntax->Theme() == "classic") {
+	       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "welcome");
+	       	} else {
 	  		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "welcome");
-       	}
+	       	}
       		if(getchar() == '\n') {
       	  		 helpstr->hello();
       	  	}
         	history->WriteHistory(main_function->_h_str);
          	main_function->_h_str.erase();
          	terminalstr->Terminal();
-       	return;
+	       	return;
      } else if(main_function->_h_str == keywords.FreeBrainGen) {
      		RemovePrintedChar(keywords.FreeBrainGen.length() - 1);
      		if(runsyntax->Theme() == "default")  {
 			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "genfrbr ");
-       	} else if(runsyntax->Theme() == "classic") {
-       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "genfrbr ");
-       	} else {
+	       	} else if(runsyntax->Theme() == "classic") {
+	       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "genfrbr ");
+	       	} else {
 	  		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "genfrbr ");
-       	}
+	       	}
        	BOLD_LIGHT_MAGENTA_COLOR
        	std::getline(std::cin, main_function->_h_str);
        	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), (AsciiGenFreeBrain(atoi(scriftlang->EraseAllSubString(main_function->_h_str, " ").c_str())) + "\n").c_str());
@@ -1295,11 +1294,11 @@ void InputFunction() {
 			//std::cout << cursorpos.x;
 			if(runsyntax->Theme() == "default")  {
 				Space(space, sign, false);
-       		} else if(runsyntax->Theme() == "classic") {
-       			Space(space, sign, true);
-       		} else {
+	       		} else if(runsyntax->Theme() == "classic") {
+	       			Space(space, sign, true);
+	       		} else {
 	  			Space(space, sign, false);
-       		}
+	       		}
         		cursorpos.x += 1;
         		return;
         	}

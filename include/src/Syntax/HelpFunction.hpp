@@ -15,67 +15,76 @@
 
 typedef struct {
 public:
-    virtual func help() {
+    void help() {
         BOLD_GREEN_COLOR
             printlnf("Scrift Functions && Arguments\n\n");
+	    BOLD_LIGHT_BLUE_COLOR
+            printlnf("[General]\n");
+	    BOLD_CYAN_COLOR
+	    printlnf(" * username : Show username\n"
+            " * castle : Scrift game.\n"
+            " * gitlink : Show GitHub link.\n"
+            " * welcome : Show welcome message\n"
+            " * contr : Show contributors\n"
+            " * fscrift <file> : Interpret <file>\n"
+            " * clear_log : Clear FeLog\n"
+            " * history : Show Scrift history.\n"
+            " * rmvhistory : Clear Scrift history\n"
+            " * rmvsettings : Clear settings\n"
+            " * settings : Show settings\n"
+            " * fetcheya : Show system-info-tool\n"
+            " * version : Show version and license\n"
+            " * now : Show time\n"
+	    " * uptime : Show uptime\n"
+	    " * asciiart : Show ASCII Art\n"
+            " * template : Create language template\n"
+            " * fdate : Show calendar\n"
+            " * readtext <file> : Read <file>\n"
+     	    " * felog : Show your FeLog.\n"
+            " * edifor : Open Edifor\n"
+	    " * addtext <file> : Add text in <file>\n"
+            " * ctxt <name> : Create text file\n"
+            " * pause : Stop Scrift\n"
+            " * cls || exit : Close Scrift\n"
+            " * clear : Clear Scrift buffer\n"
+            " * ip : Show local-IP\n\n");
+	    BOLD_LIGHT_YELLOW_COLOR
+	    printlnf("[Output]\n");
             BOLD_GREEN_COLOR
-            printlnf("printlnf <arg> (e.g. : #USER, #PATH, Environment) : Shows <arg> \n");
+            printlnf(" * printlnf || echo <arg> : Shows <arg> [#environment]\n"
+	    " * emoji <arg> : Shows <emoji> (e.g: :thinking_face:)\n\n");
+	    BOLD_LIGHT_MAGENTA_COLOR
+	    printlnf("[Execute]\n");
             BOLD_RED_COLOR
-            printlnf("scr <argument> : Launch /bin/<argument>\n"
-            "scr mkdir : Launch mkdir (Object)\n"
-            "scr ls\n"
-            "scr apt\n"
-            "scr make\n"
-            "create <name> : Creates <name><dot>scr file\n\n");
+            printlnf(" * scr <argument> : Execute <argument>\n\n");
+	    BOLD_LIGHT_RED_COLOR
+	    printlnf("[Path]\n");
             BOLD_YELLOW_COLOR
-            printlnf("home : Going to /home/<username>\n"
-            "objls : List installed objects\n"
-            "fls : List only files with input or environment value (#<env>)\n"
-            "dls : List only folders with input or environment value (#<env>)\n"
-            "ls : List folders and files with input or environment value (#<env>)\n"
-            "fr <folder> : Going to <folder> or environment value (#<env>)\n"
-            "mkdir <foldername> : Creates a folder\n"
-            "ffind <value> : Finds files and directories in path\n"
-            "rmvfile <folder or file> : Removes folder or file in path\n"
-            "setname <name> : sets Environment's name\n"
-            "setto <value> : sets Environment's value.\n"
-            "genfrbr <value> : Generates FreeBrain key code with input number\n"
-            "back : Going to back directory\n\n");
-            BOLD_MAGENTA_COLOR
-            printlnf("username : Shows your username\n"
-            "castle : Play Scrift's Castle Game!\n"
-            "gitlink : Shows GitHub link.\n"
-            "welcome : Shows Welcome message\n"
-            "contr : Shows contributors\n"
-            "morse : Generates string or morse code to morse code or string\n"
-            "fscrift <file> : Interprets <file>.scr\n"
-            "clear_log : Clear your FeLog\n"
-            "history : Shows your Scrift History.\n"
-            "rmvhistory : Clear your Scrift History\n"
-            "rmvsettings : Clear your Settings\n"
-            "settings : Shows your Settings\n"
-            "fetcheya : Shows your system\n"
-            "fact : Prints input factorial\n"
-            "emoji : Shows your inputted emoji (e.g: :thinking_face:)\n"
-            "version : Shows version and license\n"
-            "now : Shows time.\n"
-	    "uptime : Shows uptime.\n"
-	    "asciiart : Shows your ASCII Art with selected color (ascii_art_color)\n"
-            "template : Creates a language example. (Hello Language)\n"
-            "[If your default shell is Scrift] fdate : Shows calendar\n"
-            "readtext <file> : Reads <file>\n"
-     	    "[For Scrift Developers] felog : Shows your FeLog.\n"
-            "[If your default shell is Scrift] edifor : Open Edifor\n"
-            "[If your default shell is Scrift] edifor <filename> : Open Edifor with File\n\n");
-            BOLD_GREEN_COLOR
-            printlnf("addtext <file> : Add text in <file>\n"
-            "ctxt <name> : Creates Text file\n\n");
-            BOLD_BLUE_COLOR
-            printlnf("pause : Stops your Scrift shell\n"
-            "cls : Close Scrift (with Terminal)\n"
-            "rstr <number> : Generated random string\n"
-            "clear : Clear Scrift inputs\n"
-            "ip : Show your IP and info\n");
+            printlnf(" * home : /home/<username>\n"
+	    " * create <name> : Create <name>scr file\n"
+            " * objls : List installed objects\n"
+            " * fls : List only files (#<env>)\n"
+            " * dls : List only folders (#<env>)\n"
+            " * ls <folder> : List dir (#<env>)\n"
+            " * fr || cd <folder> : Change dir (#<env>)\n"
+            " * mkdir <foldername> : Create folder\n"
+            " * ffind <file, folder> : Find files and directories in path\n"
+            " * rmvfile <file, folder> : Remove file, folder in path\n"
+            " * setname <name> : Set environment name\n"
+            " * setto <value> : Sets environment value.\n"
+            " * back : Going to back directory\n\n");
+	    BOLD_LIGHT_CYAN_COLOR
+	    printlnf("[Generate]\n");
+	    BOLD_LIGHT_MAGENTA_COLOR
+	    printlnf(" * genfrbr <value> : Generate FreeBrain keycode\n"
+	    " * morse : Generate morse, string\n"
+	    " * rstr <number> : Generate random string\n\n");
+	    BOLD_LIGHT_GREEN_COLOR
+	    printlnf("[Math]\n");
+	    BOLD_CYAN_COLOR
+	    printlnf(" * fact : Print factorial\n"
+	    " * sqrt : Print Square root\n"
+	    " * square : Print Square\n");
         BLACK_COLOR
     }
     virtual func hello() {
