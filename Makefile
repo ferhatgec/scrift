@@ -21,7 +21,7 @@ INCLUDELIB = ./Library/
 INCLUDEDIR = ./include/
 CFLAGS = -Wall -I$(INCLUDELIB) -I$(INCLUDEDIR)
 
-GCC = gcc
+GCC = gcc -std=c++17
 GPP = g++
 COMP = g++ -c
 
@@ -29,7 +29,7 @@ COMP = g++ -c
 CLEANALL = scrift /Games/Castle/castle
 CLEAN = *.o
 HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o RunFunction.o \
-Log.o History.o Branch.o Template.o
+Log.o History.o Branch.o Template.o Settings.o
 
 ifeq ($(OS),Windows_NT)
 	echo Windows_NT is not supported!

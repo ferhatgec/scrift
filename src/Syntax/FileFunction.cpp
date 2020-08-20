@@ -31,6 +31,7 @@
 // Library
 #include <Colorized.hpp>
 #include <FileSystemPlusPlus.h>
+#include <StringTools.h>
 
 using namespace FileFunction;
 
@@ -69,7 +70,7 @@ FCDFunction::CDFunctionInit(std::string name) {
     if(name != "") {
         if(fmain->_home != true) {
 	    if(name.rfind("#") == 0) {
-	    	name = settings->EraseAllSubString(name, "#");
+	    	name = stringtools::EraseAllSubString(name, "#");
 	    	std::string new_name(getenv(name.c_str()));
 	    	if(new_name.rfind("/") == 0) {
 	    		if(FileExists(new_name) == true) {
@@ -604,7 +605,7 @@ void
 FLSFunction::LSFunction(std::string arg) {
     DIR *directory;
     if(arg.rfind("#") == 0) {
-    	arg = settings->EraseAllSubString(arg, "#");
+    	arg = stringtools::EraseAllSubString(arg, "#");
     	std::string new_name(getenv(arg.c_str()));
     	directory = opendir((command->_file_path_cd_function, "/", new_name.c_str()));
     } else {

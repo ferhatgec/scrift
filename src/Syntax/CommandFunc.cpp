@@ -120,7 +120,7 @@ FCommand::list_direc(boolean _home, std::string arg) {
         struct dirent *entry;
         DIR *dir;
 	if(_home != false && arg.rfind("#") == 0) {
-		arg = settings.EraseAllSubString(arg, "#");
+		arg = stringtools::EraseAllSubString(arg, "#");
     		dir = opendir((command->_file_path_cd_function, "/", getenv(arg.c_str())));
 	} else {
         	if(_home != false) {dir = opendir((_file_path_cd_function, arg.c_str())); /*For Linux and *nix*/
@@ -157,7 +157,7 @@ FCommand::list_file(boolean _home, std::string arg) {
         struct dirent *entry;
         DIR *dir;
 	if(_home != false && arg.rfind("#") == 0) {
-		arg = settings.EraseAllSubString(arg, "#");
+		arg = stringtools::EraseAllSubString(arg, "#");
     		std::string new_name(getenv(arg.c_str()));
     		dir = opendir((command->_file_path_cd_function, "/", new_name.c_str()));
 	} else {
