@@ -104,14 +104,16 @@ public:
     	if(readfile.is_open()) {
     		while(std::getline(readfile, line)) {
     			if(line.rfind("ascii_art_color", 0) == 0) {
-    				if(EraseAllSubString(line, "ascii_art_color ") != "random" && atoi(EraseAllSubString(line, "ascii_art_color ").c_str()) <= 29) {
+    				if(EraseAllSubString(line, "ascii_art_color ") == "no_thanks") {
+					return -1;
+				} else if(EraseAllSubString(line, "ascii_art_color ") != "random" && atoi(EraseAllSubString(line, "ascii_art_color ").c_str()) <= 29) {
     					BOLD_RED_COLOR
     					printlnf("Give 30 or higher value for ascii_art_color.\n");
     					BLACK_COLOR
     					return 34;
     				} else if(EraseAllSubString(line, "ascii_art_color ") == "random") {
     					return color();
-    				} else {
+    				}  else {
     					return atoi(EraseAllSubString(line, "ascii_art_color ").c_str());
     				}
     			} else {

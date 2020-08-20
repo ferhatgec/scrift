@@ -1332,8 +1332,10 @@ int main(integer argc, char** argv) {
     } else {
     	filefunction->CreateSettingsFileFunction(); // Directory is "/home/<username>/<dot>scrift_settings"
     	logsystem->AllofThem();
-    	asciifunction *ascii = new asciifunction;
-    	ascii->Allofthem();
+	if(runsyntax->ASCIIColor() == -1) {} else {
+    		std::unique_ptr<asciifunction> ascii(new asciifunction);
+    		ascii->Allofthem();
+	}
     	uid_t fuid = geteuid();
     	struct passwd *pass = getpwuid(fuid);
     	BOLD_MAGENTA_COLOR
