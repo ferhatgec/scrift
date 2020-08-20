@@ -79,27 +79,28 @@ const std::string compilation_time = __TIME__;
 static std::string SetNameToString;
 static std::string SetNameString;
 
-FContributors *contributors_lists = new FContributors();
-FMain *main_function = new FMain();
-FCommand *main_ = new FCommand();
-fhelp *helpstr = new fhelp;
-FStructure *terminalstr = new FStructure();
-fkernel *kernel = new fkernel;
-FCDFunction *cdfunction = new FCDFunction();
-FMKDirFunction *mkdirfunction = new FMKDirFunction();
-FCreateFileFunction *filefunction = new FCreateFileFunction();
-FGetUsername *userhostname = new FGetUsername();
-fhomefunction *homefunction = new fhomefunction;
-FLSFunction *listdirectoryfunction = new FLSFunction();
-FRunFunction *runfunction = new FRunFunction();
-FReadFileFunction *readfilefunction = new FReadFileFunction();
-faddtextfunction *fileaddtextfunction = new faddtextfunction;
-FeLog *logsystem = new FeLog();
-FRemoveFileFunction *removefile = new FRemoveFileFunction();
-FClearFileFunction *clearfile = new FClearFileFunction();
-FSettings *runsyntax = new FSettings();
-FLanguage *scriftlang = new FLanguage();
-FHistory *history = new FHistory();
+/* Classes */
+std::unique_ptr<FMain> main_function(new FMain);
+std::unique_ptr<FCommand> main_(new FCommand);
+std::unique_ptr<FStructure> terminalstr(new FStructure);
+std::unique_ptr<FCDFunction> cdfunction(new FCDFunction);
+std::unique_ptr<FMKDirFunction> mkdirfunction(new FMKDirFunction);
+std::unique_ptr<FCreateFileFunction> filefunction(new FCreateFileFunction);
+std::unique_ptr<FLSFunction> listdirectoryfunction(new FLSFunction);
+std::unique_ptr<FRunFunction> runfunction(new FRunFunction);
+std::unique_ptr<FReadFileFunction> readfilefunction(new FReadFileFunction);
+std::unique_ptr<FeLog> logsystem(new FeLog);
+std::unique_ptr<FRemoveFileFunction> removefile(new FRemoveFileFunction);
+std::unique_ptr<FSettings> runsyntax(new FSettings);
+std::unique_ptr<FLanguage> scriftlang(new FLanguage);
+std::unique_ptr<FHistory> history(new FHistory);
+
+/* Structures */
+std::unique_ptr<faddtextfunction> fileaddtextfunction(new faddtextfunction);
+std::unique_ptr<fhelp> helpstr(new fhelp);
+std::unique_ptr<fhomefunction> homefunction(new fhomefunction);
+
+/* Keywords */
 ScriftKeywords keywords;
 FTemplate temp;
 
@@ -112,27 +113,7 @@ cursorp cursorpos;
 FMain::FMain() { }
 
 
-FMain::~FMain() {
-    delete terminalstr,
-    helpstr,
-    kernel,
-    main_,
-    mkdirfunction,
-    filefunction, 
-    userhostname,
-    main_function,
-    homefunction,
-    listdirectoryfunction,
-    runfunction,
-    readfilefunction,
-    fileaddtextfunction,
-    removefile,
-    contributors_lists,
-    clearfile,
-    runsyntax,
-    scriftlang,
-    history;
-}
+FMain::~FMain() {}
 
 
 void RemovePrintedChar(int value) {
@@ -140,8 +121,7 @@ void RemovePrintedChar(int value) {
 	do {
 		std::cout << "\b";
 		rvalue++;
-	}
-	while(rvalue != value);	
+	} while(rvalue != value);	
 	return;
 }
 
@@ -649,7 +629,7 @@ void InputFunction() {
         		std::cout << WBOLD_YELLOW_COLOR << "contr" << WBLACK_COLOR;
         	}
         	if(getchar() == '\n') {
-        		slashn
+			std::unique_ptr<FContributors> contributors_lists(new FContributors);
         		contributors_lists->AllOfThem();
         		slashn
         	}
@@ -1086,6 +1066,7 @@ void InputFunction() {
 	  		std::cout << WBOLD_RED_COLOR << "rmv" << WBOLD_YELLOW_COLOR << "settings" << WBLACK_COLOR;
        	}
 	  	if(getchar() == '\n') {
+			std::unique_ptr<FClearFileFunction> clearfile(new FClearFileFunction);
           		clearfile->ClearSettingsFunction();
           	}
           	history->WriteHistory(main_function->_h_str);
@@ -1205,7 +1186,8 @@ void InputFunction() {
        	}
 		if(getchar() == '\n') {
 			BOLD_CYAN_COLOR
-			userhostname->InitUsername();
+			FGetUsername userhostname;
+			userhostname.InitUsername();
 			BLACK_COLOR
 			slashn
 		}
