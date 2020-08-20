@@ -134,6 +134,7 @@ public:
 	    std::cout << "EasyMorse - Morse Code Converter" << std::endl;
 	    char key;
 	    bool loop = true;
+	    int len;
 	    while(loop) {
 	    	std::string input;
 	        bool toMorse=true;
@@ -142,7 +143,8 @@ public:
 	        std::string sub;
 	        std::cout << "Type a word or morse code(using - and .): " << std::endl;
 	        std::getline(std::cin, input);
-	        if(input.length() == 0) {
+		len = input.length();
+	        if(len == 0) {
 	        	return;
 	        } else {
 	        if(input[1]=='.' || input[1]=='-') {
@@ -152,7 +154,7 @@ public:
 	            toMorse=true;
 	        }
 	        if(toMorse) {
-	            for(int i=0;i<input.length();i++) {
+	            for(int i=0;i < len; i++) {
 	                if(i!=0) {
 	                    output+=" ";
 	                }
@@ -160,13 +162,13 @@ public:
 	            }
 	        }
 	        else {
-	            for(int i = 0;i<=input.length();i++) {
+	            for(int i = 0;i <= len; i++) {
 	                if(input[i]==' ') {
 	                    sub = input.substr(node,i-node);
 	                    output+=morseToChar(sub);
 	                    node = i+1;
 	                }
-	                if(i==input.length()-1) {
+	                if(i == len-1) {
 	                    sub = input.substr(node,i+1-node);
 	                    output+=morseToChar(sub);
 	                    node = i+1;

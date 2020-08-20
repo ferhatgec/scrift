@@ -51,8 +51,8 @@ namespace stringtools {
 	
 	static int Count(std::string s, char ch) {
   		int count = 0;
-
-	 	for (int i = 0; i < s.size(); i++)
+		int size = s.size();
+	 	for (int i = 0; i < size; i++)
     			if (s[i] == ch) count++;
 
   		return count;

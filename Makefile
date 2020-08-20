@@ -21,8 +21,8 @@ INCLUDELIB = ./Library/
 INCLUDEDIR = ./include/
 CFLAGS = -Wall -I$(INCLUDELIB) -I$(INCLUDEDIR)
 
-GCC = gcc -std=c++17
-GPP = g++
+GCC = gcc
+GPP = g++ -std=c++17
 COMP = g++ -c
 
 # CLEAN

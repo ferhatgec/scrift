@@ -35,7 +35,6 @@
 
 namespace filesys = std::experimental::filesystem;
 static FKeyword keyword;
-static FSettings settings;
 static FCommand *command;
 
 FCommand::FCommand() { }
@@ -48,11 +47,11 @@ FCommand::remove_character(char * _str, char ptr) {
         return;
 
     char * _pstr = _str;
-    while(*_str)
-    {
+    while(*_str) {
         if(*_str != ptr)
             *_pstr++ = *_str;
-    _str++;
+
+    	_str++;
     }
     *_pstr = '\0';    
 }
