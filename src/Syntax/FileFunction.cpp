@@ -91,6 +91,7 @@ FCDFunction::CDFunctionInit(std::string name) {
 	    		if(FileExists(new_name) == true) {
             		    std::strcpy(command->_file_path_cd_function, new_name.c_str());
 	    		    chdir(new_name.c_str());
+			    fmain->SetTitle();
             		} else {
             		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "scrift : "); 
 			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), new_name.c_str());
@@ -137,7 +138,8 @@ FCDFunction::CDFunctionInit(std::string name) {
             	if(FileExists(path) == true) {
             	    chdir(name.c_str());
 		    char *path(&fsplusplus::GetCurrentWorkingDir()[0]);
-                    std::strcpy(command->_file_path_cd_function, path);	            	
+                    std::strcpy(command->_file_path_cd_function, path);	  
+		    fmain->SetTitle();          	
 		}  else {
             	    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "scrift : "); 
 		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), name.c_str());

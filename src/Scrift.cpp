@@ -247,7 +247,8 @@ std::string currentDateTime() {
 /*
 	Terminal title.
 */
-void SetTitle() {
+void 
+FMain::SetTitle() {
 	std::cout << "\e]2; " << "Scrift: " << pass->pw_name << "@" << main_->_file_path_cd_function << "\a";
 }
 
@@ -1063,6 +1064,7 @@ void InputFunction() {
         		}
         		std::strcpy(main_->_file_path_cd_function, test_string.c_str());
         		chdir(test_string.c_str());
+			main_function->SetTitle();
         		logsystem->WriteLog(main_->_file_path_cd_function);
         	}
         	history->WriteHistory(main_function->_h_str);
@@ -1409,9 +1411,10 @@ int main(integer argc, char** argv) {
 
 	/* Terminal. */	
 	terminalstr->Terminal(); 
-	
+
+	/* Dynamic titles. */
+	main_function->SetTitle();
     	while(argc = 2) {
-    	    SetTitle();
 	    /* InputFunction() */
     	    main_function->Shell();
     	}

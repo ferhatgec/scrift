@@ -44,12 +44,18 @@ class FMain {
 public:
     FMain();
     ~FMain();
+    /* Dynamic titles. */
+    void SetTitle();
+    
+    /* Shell */
     void Shell();
-    bool _home;
+    
+    /* Input, directory variables. */
     std::string header_string;
     std::string str;
     std::string _h_str;
     std::string strfor_h_str;
+    bool _home;
 };
 
 #endif // SCRIFT_HPP
