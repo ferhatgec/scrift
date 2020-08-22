@@ -37,7 +37,7 @@
 #endif
 
 
-// Source
+/* Source */
 #include <src/Syntax/CommandFunc.h>
 #include <src/Scrift.hpp>
 #include <src/Keywords/ScriftKeywords.hpp>
@@ -58,24 +58,27 @@
 #include <src/Syntax/History.hpp>
 #include <src/Syntax/Template.hpp>
 
+/* Fetcheya */
+#include <src/Fetcheya/Fetcheya.hpp>
+
 #include <Library/Keywords.hpp>
 
-// Libraries
+/* Libraries */
 #include <InputPlusPlus.h>
 #include <EmojiPlusPlus.h>
 #include <Colorized.hpp>
 #include <EasyMorse.hpp>
 
-// Variables
+/* Variables */
 using namespace FileFunction;
 
 const std::string compilation_date = __DATE__;
 const std::string compilation_time = __TIME__;
 
-// Definitions
+/* Definitions */
 #define ESC 033 
 
-// For Environment
+/* For Environment */
 static std::string SetNameToString;
 static std::string SetNameString;
 
@@ -402,7 +405,23 @@ void InputFunction() {
        	 	main_function->_h_str.erase();
         	terminalstr->Terminal();   
        	 	return;
-    	} else if(main_function->_h_str == keywords.Random) {
+    	} else if(main_function->_h_str == keywords.Fetcheya) {
+		RemovePrintedChar(keywords.Fetcheya.length() - 1);
+		if(runsyntax->Theme() == "default") 
+			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "fetcheya");
+		else if(runsyntax->Theme() == "classic")
+			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "fetcheya");
+		else
+			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "fetcheya");
+		if(getchar() == '\n') {
+			Fetcheya fetch;
+			fetch.RunFetcheya();
+		}		
+		history->WriteHistory(main_function->_h_str);
+		main_function->_h_str.erase();
+		terminalstr->Terminal();
+		return;
+	} else if(main_function->_h_str == keywords.Random) {
     		RemovePrintedChar(keywords.Random.length() - 1);
     		if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_BLUE_COLOR << "random " << WBLACK_COLOR;

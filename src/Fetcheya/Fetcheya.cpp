@@ -20,6 +20,8 @@
 #include <src/synflang.hpp>
 #include <src/Fetcheya/Colors.h>
 #include <src/Fetcheya/Logos.h>
+#include <src/Fetcheya/Fetcheya.hpp>
+#include <src/Syntax/Settings.hpp>
 
 // Libraries 
 #include <Colorized.hpp>
@@ -33,7 +35,7 @@
 	#include <sys/sysinfo.h>
 #endif
 
-std::string ftime(__TIME__); // Convert
+static std::string ftime(__TIME__); // Convert
 std::string Ws("				     ");
 class systemInfo {
 public:
@@ -241,7 +243,27 @@ void Parse(int p) {
 	} else { printf("\n"); }
 }
 
-int main() {
+void
+Fetcheya::RunFetcheya() {
+	systemInfo systemInfo;
+	unsigned short int x = 0;
+	char** logo = OSLogo();
+	if(control != true) {
+		for(x = 0; x < 16; x++) {
+			printf("%s", logo[x]);
+			Parse(x);
+		}
+	} else {
+		for(x = 0; x < 16; x++) {
+			Parse(x);
+		}
+	}
+	std::cout << Ws;
+	systemInfo.Test16bitColours();
+	printf("\n\n");
+}
+
+/*int main() {
 	int a = 0;
 	systemInfo systemInfo;
 	unsigned short int x = 0;                              
@@ -260,4 +282,4 @@ int main() {
 	systemInfo.Test16bitColours();
 	printf("\n\n");
 	return F_OK;
-}
+}*/

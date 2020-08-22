@@ -4,6 +4,7 @@
 # Distributed under the terms of the MIT License.
 #
 #
+
 GCFLAGS=-std=c++11 -O2 -g -Wall $(shell pkg-config --cflags ncursesw)
 GLDFLAGS=$(shell pkg-config --libs ncursesw)
 
@@ -31,6 +32,9 @@ CLEAN = *.o
 HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o RunFunction.o \
 Log.o History.o Branch.o Template.o Settings.o
 
+FETCHEYAFILE = Logos.o Fetcheya.o
+
+# Platform
 ifeq ($(OS),Windows_NT)
 	echo Windows_NT is not supported!
 	#CLEAN := del $(CLEAN)
@@ -40,10 +44,11 @@ else
 	CLEANALL := rm -f $(CLEANALL)
 endif
 
+# Build
+all: conio headersfile fetchfile edifor main clean
 
-all: conio headersfile edifor fetcheya main clean
-
-allp: headersfile mainc ediforc fetcheyac date clean 
+# Build & Install
+allp: headersfile fetchfile mainc ediforc date clean 
 
 removeall: uninstall cleanall
 
@@ -62,8 +67,11 @@ push:
 
 nall: cleanall
 
+# Scrift's Core.
 headersfile: $(HEADERFILE)
 
+# Integrated Fetcheya into Scrift's Core
+fetchfile: $(FETCHEYAFILE)
 
 conio: $(SRCLIBDIREC)FConio.c
 	$(GCC) -c -Wno-unused-function -Wno-unused-value $(SRCLIBDIREC)FConio.c -o fconio.o
@@ -71,21 +79,25 @@ conio: $(SRCLIBDIREC)FConio.c
 %.o: $(SRCSYNTAXDIREC)%.cpp
 	$(GPP) -Wno-unused-function -Wno-unused-value $(CFLAGS) -c $< -o $@
 
+%.o: $(SRCFETCHEYADIREC)%.cpp
+	$(GPP) -Wno-unused-function -Wno-unused-value $(CFLAGS) -c $< -o $@
 
+# Main Build
 main: $(SRCDIREC)Scrift.cpp
-	$(GPP) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) -o scrift
+	$(GPP) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) $(FETCHEYAFILE) -o scrift
 	echo Scrift building successfully!
 
+# Main Build & Install
 mainc: $(SRCDIREC)Scrift.cpp
-	$(GPP) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) -o /bin/scrift
+	$(GPP) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) $(FETCHEYAFILE) -o /bin/scrift
 	echo Scrift building successfully in Bin Directory!
 
-# Edifor
+# Edifor Build
 edifor:
 	$(GCC) $(CFLAGS) $(SRCEDIFORDIREC)Edifor.c -o edifor
 	echo Edifor building successfully!
 
-# Edifor
+# Edifor Build & Install
 ediforc:
 	$(GCC) $(CFLAGS) $(SRCEDIFORDIREC)Edifor.c -o /bin/edifor
 	echo Edifor building successfully in Bin Directory!
@@ -110,15 +122,15 @@ date: $(SRCAPPSDIREC)/FDate/FDate.cpp
 	$(GPP)  $(SRCAPPSDIREC)/FDate/FDate.cpp -o $(PREFIX)fdate 
 	echo FDate building successfully in Bin Directory!
 
-# Fetcheya
-fetcheya: $(SRCFETCHEYADIREC)Fetcheya.cpp
-	$(GPP) $(CFLAGS) $(SRCFETCHEYADIREC)Logos.cpp $(SRCFETCHEYADIREC)Fetcheya.cpp -o fetcheya
-	echo Fetcheya building successfully!
+# Fetcheya Build
+#fetcheya: $(SRCFETCHEYADIREC)Fetcheya.cpp
+#	$(GPP) $(CFLAGS) $(SRCFETCHEYADIREC)Logos.cpp $(SRCFETCHEYADIREC)Fetcheya.cpp -o fetcheya
+#	echo Fetcheya building successfully!
 
-# Fetcheya
-fetcheyac: $(SRCFETCHEYADIREC)Fetcheya.cpp
-	$(GPP) $(CFLAGS) $(SRCFETCHEYADIREC)Logos.cpp $(SRCFETCHEYADIREC)Fetcheya.cpp -o $(PREFIX)fetcheya
-	echo Fetcheya building successfully in Bin Directory!
+# Fetcheya Build & Install
+#fetcheyac: $(SRCFETCHEYADIREC)Fetcheya.cpp
+#	$(GPP) $(CFLAGS) $(SRCFETCHEYADIREC)Logos.cpp $(SRCFETCHEYADIREC)Fetcheya.cpp -o $(PREFIX)fetcheya
+#	echo Fetcheya building successfully in Bin Directory!
 
 uninstall:
 	rm -f /bin/scrift
