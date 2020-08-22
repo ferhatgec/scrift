@@ -107,6 +107,13 @@ std::unique_ptr<fhomefunction> homefunction(new fhomefunction);
 ScriftKeywords keywords;
 FTemplate temp;
 
+/*
+	Get username.
+*/
+
+uid_t fuid = geteuid();
+struct passwd *pass = getpwuid(fuid);
+
 typedef struct CursorPos {
     int x = 0;
 } cursorp;
@@ -131,8 +138,10 @@ void RemovePrintedChar(int value) {
 int factorial(int n);
 int space = 0;
 std::string ftime(compilation_time); // Convert
+
 int input_value = 0;
-    // Get Between String    
+
+// Get Between String    
 void GetBtwString(std::string oStr, std::string sStr1, std::string sStr2, std::string &rStr) {  
     int start = oStr.find(sStr1);   
     if (start >= 0) {       
@@ -147,9 +156,7 @@ void GetBtwString(std::string oStr, std::string sStr1, std::string sStr2, std::s
        rStr = "error"; 
 }  
 
-std::string VersionGenerator() {
-	return "scriftv" + scriftlang->EraseAllSubString(ftime, ":");
-}
+std::string VersionGenerator() { return "scriftv" + scriftlang->EraseAllSubString(ftime, ":"); }
 
 void Space(int space, std::string sign, bool theme) {
 	if(theme == true) {
@@ -237,6 +244,16 @@ std::string currentDateTime() {
     return buf;
 }
 
+/*
+	Terminal title.
+*/
+void SetTitle() {
+	std::cout << "\e]2; " << "Scrift: " << pass->pw_name << "@" << main_->_file_path_cd_function << "\a";
+}
+
+/*
+	Cursor.
+*/
 void moveCursor(std::ostream& os, int col, int row) {
   os << "\033[" << col << ";" << row << "H";
 }
@@ -249,10 +266,27 @@ std::string AsciiGenFreeBrain(int len) {
 	return rtr;
 }
 
+/*
+	Foreground color.
+*/
 void textbackground(int color) {
 	printf ("%c[%dm", ESC, 40+color);
 }
 
+void PrintUsername() {	
+    	BOLD_MAGENTA_COLOR
+    	printlnf("Welcome ");
+    	BOLD_CYAN_COLOR
+    	printlnf(pass->pw_name);
+    	BOLD_BLUE_COLOR
+    	std::cout << " " << emojiplusplus::EmojiString(runsyntax->FWelcomeEmoji()) << "\n";
+    	BLACK_COLOR
+}
+
+
+/*
+	Uptime.
+*/
 std::string GetUptime() {
 	#ifdef __FreeBSD__
 	return "null";
@@ -289,7 +323,9 @@ std::string GetUptime() {
 	#endif
 }
 
-
+/*
+	Input && Interpreter.
+*/
 void InputFunction() {
 	textbackground(runsyntax->BackgroundColor());
 	std::string sign;
@@ -1333,14 +1369,19 @@ FMain::Shell() {
 }
 
 int main(integer argc, char** argv) {
-    std::string copy_arg, reg;
-    setlocale(LC_ALL, "");
+    std::string copy_arg, reg; /* Get arg. */
+    setlocale(LC_ALL, ""); /* Locale */
+    
+    /* Happy new year! */	
     if(currentDateTime().substr(4, 6) == "-01-01") {
     	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "Happy new year!");
     	std::cout << " " << emojiplusplus::EmojiString(":balloon:") << " - ";
     	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "Scrift\n");
     }
 
+    /*
+	Copy.
+    */
     if(argc > 1) {
 	for(int i = 1; i < argc; i++) {
 		std::string arg(argv[i]);
@@ -1348,44 +1389,49 @@ int main(integer argc, char** argv) {
 		copy_arg = arg;
 	}
     } else {
-    	filefunction->CreateSettingsFileFunction(); // Directory is "/home/<username>/<dot>scrift_settings"
-    	logsystem->AllofThem();
+    	filefunction->CreateSettingsFileFunction(); /* Directory is "/home/<username>/<dot>scrift_settings" */
+
+    	logsystem->AllofThem(); /* FeLog start signal. */
+
 	if(runsyntax->ASCIIColor() == -1) {} else {
     		std::unique_ptr<asciifunction> ascii(new asciifunction);
     		ascii->Allofthem();
 	}
-    	uid_t fuid = geteuid();
-    	struct passwd *pass = getpwuid(fuid);
-    	BOLD_MAGENTA_COLOR
-    	printlnf("Welcome ");
-    	BOLD_CYAN_COLOR
-    	printlnf(pass->pw_name);
-    	BOLD_BLUE_COLOR
-    	std::cout << " " << emojiplusplus::EmojiString(runsyntax->FWelcomeEmoji()) << "\n";
-    	BLACK_COLOR
+	
+	/* Welcome <username> (emoji) */
+	PrintUsername();
+	
+	/* History start signal */
     	history->AllofThem();
-    	logsystem->WriteLog("Launching hello function.. - ");
+    	
+	logsystem->WriteLog("Launching Welcome() function.. - ");	
 	helpstr->Welcome();
+
+	/* Terminal. */	
 	terminalstr->Terminal(); 
+	
     	while(argc = 2) {
-    	    std::cout << "\e]2; " << "Scrift: " << pass->pw_name << "@" << main_->_file_path_cd_function << "\a";
+    	    SetTitle();
+	    /* InputFunction() */
     	    main_function->Shell();
     	}
+	/* Exit. */
     	history->WriteAllHistory();
     }
 
     if(reg.substr(0, 2) == "--") {
-	if(strstr(reg.c_str(), "--b")) {
+	if(strstr(reg.c_str(), "--b")) { /* Interpreter for Scrift's language. */
 		scriftlang->ReadFunc(copy_arg + ".scr");
-	} else if(reg == "--help" || reg == "--h") {
+	} else if(reg == "--help" || reg == "--h") { /* Print HelpFunction() */
 		BOLD_RED_COLOR
 		helpstr->HelpFunction();
 		BLACK_COLOR
-		exit(EXIT_SUCCESS);
-	} else if(reg == "--version" || reg == "--v") {
-		PrintVersion();
-		exit(EXIT_SUCCESS);
+		exit(EXIT_SUCCESS); /* exit */
+	} else if(reg == "--version" || reg == "--v") { /* Print Scrift's Version */
+		PrintVersion(); 
+		exit(EXIT_SUCCESS); /* exit */
 	}
     }
+
     return F_OK;
 }
