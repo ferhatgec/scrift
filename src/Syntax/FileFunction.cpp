@@ -17,6 +17,7 @@
 #include <dirent.h>
 #include <fstream>
 #include <vector>
+#include <memory>
 
 #include <src/Syntax/CommandFunc.h>
 #include <src/Scrift.hpp>
@@ -35,36 +36,50 @@
 
 using namespace FileFunction;
 
-// FileFunction
-FRunFunction *filerunfunction = new FRunFunction();
-asciifunction *ascii = new asciifunction;
-FeLog *filelog = new FeLog();
-FSettings *settings = new FSettings();
-FCommand *command = new FCommand();
-FMain *fmain = new FMain();
-FCDFunction *fcdfunction = new FCDFunction;
+/*
+	Classes
+*/
+std::unique_ptr<FRunFunction> filerunfunction(new FRunFunction);
+std::unique_ptr<FeLog> filelog(new FeLog);
+std::unique_ptr<FSettings> settings(new FSettings);
+std::unique_ptr<FCommand> command(new FCommand);
+std::unique_ptr<FMain> fmain(new FMain);
+std::unique_ptr<FCDFunction> fcdfunction(new FCDFunction);
+
+/*
+	Structures.
+*/
+std::unique_ptr<asciifunction> ascii(new asciifunction);
 
 struct stat filestat;
 struct dirent *entryname;
-
 
 fchar* file_name;
 fchar* file_directory;
 std::string path_directory;
 std::string file_directory_string;
 
-// FCDFUNCTION
-FCDFunction::FCDFunction() {
-
-}
+FCDFunction::FCDFunction() {}
 
 
 bool
 FCDFunction::FileExists(const std::string &Filename) {
-    return access(Filename.c_str(), 0 ) == 0;
+    return access(Filename.c_str(), 0) == 0;
 }
 
-
+/*
+	fr #env
+	cd #env
+	-------	
+	fr dir
+	cd dir
+	-------
+	fr ../../
+	cd ../../
+	-------
+	fr /usr/
+	cd /usr/
+*/
 void
 FCDFunction::CDFunctionInit(std::string name) {
     if(name != "") {
@@ -220,6 +235,7 @@ FCreateFileFunction::CreateSettingsFileFunction() {
     	file << "ascii_art_color random\n";
     	file << "scrift_theme default\n";
     	file << "input_customize ▶\n";
+	file << "welcome_message yes\n";
     	file.close();
     } else {
     }
@@ -240,6 +256,7 @@ FClearFileFunction::ClearSettingsFunction() {
     	file << "ascii_art_color random\n";
     	file << "scrift_theme default\n";
     	file << "input_customize ▶\n";
+	file << "welcome_message yes\n";
     } else {
         CreateSettingsFileFunction();
     }
@@ -295,7 +312,7 @@ FFindFileFunction::FindWithoutPrint(std::string name) {
     DIR *directory;
     directory = opendir(command->_file_path_cd_function);
     if(directory == NULL) {
-        std::cout << "ERR: DIRECTORY OR FILE NOT FOUND OR NULL\n";
+        std::cout << "Error: Directory not found.\n";
     }
     while ((entryname = readdir(directory))) {
         stat(entryname->d_name, &filestat);
@@ -324,7 +341,7 @@ FFindFileFunction::FindFile(std::string name) {
     DIR *directory;
     directory = opendir(command->_file_path_cd_function);
     if(directory == NULL) {
-        std::cout << "ERR: DIRECTORY OR FILE NOT FOUND OR NULL\n";
+        std::cout << "Error: Directory not found.\n";
         return;
     }
     while ((entryname = readdir(directory))) {
@@ -372,13 +389,13 @@ faddtextfunction::AppendLine(std::string filepathw) {
     std::ofstream file;
     file.open(filepath_with_path, std::ios::out | std::ios::app);
     if(file.fail()) {
-        std::cout << "FAIL";
+        std::cout << "Fail.";
     }
 
     file.exceptions(file.exceptions() | std::ios::failbit | std::ifstream::badbit);
 
     file << line << std::endl;
-    printlnf("Done\n");
+    printlnf("Done.\n");
 }
 
 

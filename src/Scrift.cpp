@@ -97,10 +97,10 @@ std::unique_ptr<FRemoveFileFunction> removefile(new FRemoveFileFunction);
 std::unique_ptr<FSettings> runsyntax(new FSettings);
 std::unique_ptr<FLanguage> scriftlang(new FLanguage);
 std::unique_ptr<FHistory> history(new FHistory);
+std::unique_ptr<FHelpFunction> helpstr(new FHelpFunction);
 
 /* Structures */
 std::unique_ptr<faddtextfunction> fileaddtextfunction(new faddtextfunction);
-std::unique_ptr<fhelp> helpstr(new fhelp);
 std::unique_ptr<fhomefunction> homefunction(new fhomefunction);
 
 /* Keywords */
@@ -325,7 +325,7 @@ void InputFunction() {
         		std::cout << WBOLD_YELLOW_COLOR << "help" << WBLACK_COLOR;
        		}
         	if(getchar() == '\n') {
-        		helpstr->help();
+        		helpstr->HelpFunction();
         	}
         	history->WriteHistory(main_function->_h_str);
         	main_function->_h_str.erase();
@@ -1255,7 +1255,7 @@ void InputFunction() {
 	  		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "welcome");
 	       	}
       		if(getchar() == '\n') {
-      	  		 helpstr->hello();
+      	  		 helpstr->Welcome();
       	  	}
         	history->WriteHistory(main_function->_h_str);
          	main_function->_h_str.erase();
@@ -1365,8 +1365,8 @@ int main(integer argc, char** argv) {
     	BLACK_COLOR
     	history->AllofThem();
     	logsystem->WriteLog("Launching hello function.. - ");
-    	helpstr->hello();
-    	terminalstr->Terminal(); 
+	helpstr->Welcome();
+	terminalstr->Terminal(); 
     	while(argc = 2) {
     	    std::cout << "\e]2; " << "Scrift: " << pass->pw_name << "@" << main_->_file_path_cd_function << "\a";
     	    main_function->Shell();
@@ -1379,7 +1379,7 @@ int main(integer argc, char** argv) {
 		scriftlang->ReadFunc(copy_arg + ".scr");
 	} else if(reg == "--help" || reg == "--h") {
 		BOLD_RED_COLOR
-		helpstr->help();
+		helpstr->HelpFunction();
 		BLACK_COLOR
 		exit(EXIT_SUCCESS);
 	} else if(reg == "--version" || reg == "--v") {

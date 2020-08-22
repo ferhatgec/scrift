@@ -30,7 +30,7 @@ COMP = g++ -c
 CLEANALL = scrift /Games/Castle/castle
 CLEAN = *.o
 HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o RunFunction.o \
-Log.o History.o Branch.o Template.o Settings.o
+Log.o History.o Branch.o Template.o Settings.o HelpFunction.o
 
 FETCHEYAFILE = Logos.o Fetcheya.o
 

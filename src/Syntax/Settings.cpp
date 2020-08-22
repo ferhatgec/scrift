@@ -43,6 +43,7 @@ std::string GPath() {
 
 std::ifstream freadfile(GPath());
 
+
 /*
 	<emoji> emoji: Shows emoji.
 */

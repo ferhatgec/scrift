@@ -13,10 +13,17 @@
 
 class FSettings {
 public:
+	/*
+		theme, path etc.
+	*/
 	std::string Path();
 	std::string InputCustomize();
 	std::string Theme();
 	std::string FWelcomeEmoji();
+	
+	/*
+		color option etc.
+	*/	
 	int BackgroundColor();
 	int ASCIIColor();
 	int color();
