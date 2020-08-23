@@ -17,6 +17,7 @@
 #include <src/Scrift.hpp>
 
 // Libraries
+#include <FileSystemPlusPlus.h>
 #include <StringTools.h>
 #include <Colorized.hpp>
 #include <StringTools.h>
@@ -159,21 +160,14 @@ FSettings::BackgroundColor() {
 */
 std::string 
 FSettings::Theme() {
-    std::string line;
-    if(freadfile.is_open()) {
-    	while(std::getline(freadfile, line)) {
-    		if(line.rfind("scrift_theme", 4) == 0) {
-    			if(stringtools::EraseAllSubString(line, "scrift_theme ") == "default")
-    				return "default";	
-    			else if(stringtools::EraseAllSubString(line, "scrift_theme ") == "classic")
-    				return "classic";
-    			else 
-    				return "default";
-    		} else {
-    			createfile->CreateSettingsFileFunction();
-    		} 
-    	}
-    }
+    std::string line = fsplusplus::FindStringWithReturn(Path(), "scrift_theme");
+    if(strstr(line.c_str(), "default"))
+	return "default";
+    else if(strstr(line.c_str(), "classic"))
+	return "classic";
+    else
+	return "default";
+
     return "default";
 }
 
