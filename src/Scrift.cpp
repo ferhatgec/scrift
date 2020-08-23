@@ -280,7 +280,7 @@ void PrintUsername() {
     	BOLD_CYAN_COLOR
     	printlnf(pass->pw_name);
     	BOLD_BLUE_COLOR
-    	std::cout << " " << emojiplusplus::EmojiString(runsyntax->FWelcomeEmoji()) << "\n";
+    	std::cout << " " << emojiplusplus::EmojiString(runsyntax->FWelcomeEmoji());
     	BLACK_COLOR
 }
 

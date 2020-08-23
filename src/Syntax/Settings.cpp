@@ -89,17 +89,8 @@ FSettings::GitBranch() {
 */
 std::string 
 FSettings::FWelcomeEmoji() {
-    std::string line;
-    std::string ftest;
-    if(freadfile.is_open()) {
-    	while(std::getline(freadfile, line)) {
-    		if(line.rfind("welcome_emoji", 0) == 0)
-    			return stringtools::EraseAllSubString(line, "welcome_emoji ");
-    		else
-    			createfile->CreateSettingsFileFunction(); 
-    	}
-    }
-    return ":thinking_face:";
+    std::string line = fsplusplus::FindStringWithReturn(Path(), "welcome_emoji");
+    return stringtools::EraseAllSubString(line, "welcome_emoji ");
 }
 
 /*
@@ -107,24 +98,13 @@ FSettings::FWelcomeEmoji() {
 */
 int 
 FSettings::FeLogCleaner() {
-   std::string line;
-   std::string ftest;
-    if(freadfile.is_open()) {
-    	while(std::getline(freadfile, line)) {
-    		if(line.rfind("felog_cleaner", 0) == 0) {
-    			if(atoi(stringtools::EraseAllSubString(line, "felog_cleaner ").c_str()) <= 5) {
-    				BOLD_RED_COLOR
-    				printlnf("Please give 5 or higher value for felog_cleaner.\n");
-    				BLACK_COLOR
-    				return 20;
-    			} else {
-    				return atoi(stringtools::EraseAllSubString(line, "felog_cleaner ").c_str());
-    			}
-    		} else {
-    			createfile->CreateSettingsFileFunction();
-    		} 
-    	}
-    }
+   std::string line = fsplusplus::FindStringWithReturn(Path(), "felog_cleaner");
+
+   if(atoi(stringtools::EraseAllSubString(line, "felog_cleaner ").c_str()) <= 5) {
+	colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), "felog_cleaner : Give 5 or higher value.\n");
+   	return 20;
+   } else return atoi(stringtools::EraseAllSubString(line, "felog_cleaner ").c_str());
+
     return 100;
 }
 
@@ -154,43 +134,28 @@ FSettings::color() {
 */
 int 
 FSettings::ASCIIColor() {
-    std::string line;
-    if(freadfile.is_open()) {
-    	while(std::getline(freadfile, line)) {
-    		if(line.rfind("ascii_art_color", 0) == 0) {
-    			if(stringtools::EraseAllSubString(line, "ascii_art_color ") == "no_thanks") {
-				return -1;
-			} else if(stringtools::EraseAllSubString(line, "ascii_art_color ") != "random" && 
-			atoi(stringtools::EraseAllSubString(line, "ascii_art_color ").c_str()) <= 29) {
-    				BOLD_RED_COLOR
-    				printlnf("Give 30 or higher value for ascii_art_color.\n");
-    				BLACK_COLOR
-    				return 34;
-    			} else if(stringtools::EraseAllSubString(line, "ascii_art_color ") == "random") {
-    				return color();
-    			} else {
-    				return atoi(stringtools::EraseAllSubString(line, "ascii_art_color ").c_str());
-    			}
-    		} else {
-    			createfile->CreateSettingsFileFunction();
-    		} 
-    	}
+    std::string line = fsplusplus::FindStringWithReturn(Path(), "ascii_art_color");
+    if(strstr(line.c_str(), "no_thanks")) {
+	return -1;
+    } else if(strstr(line.c_str(), "random")) {
+	return color();
+    } else if(atoi(stringtools::EraseAllSubString(line, "ascii_art_color ").c_str()) <= 29) {
+	colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), "ascii_art_color : Give 30 or higher value.\n");
+	return 34;
+    } else {
+	return atoi(stringtools::EraseAllSubString(line, "ascii_art_color ").c_str());
     }
+
     return 34;
 }
     
+/*
+	Background color.
+*/
 int 
 FSettings::BackgroundColor() {
-    std::string line;
-    if(freadfile.is_open()) {
-    	while(std::getline(freadfile, line)) {
-    		if(line.rfind("bg_color") == 0)
-    			return atoi(stringtools::EraseAllSubString(line, "bg_color ").c_str());
-    		else
-    			createfile->CreateSettingsFileFunction(); 
-    	}
-    }
-    return 12;
+    std::string line = fsplusplus::FindStringWithReturn(Path(), "bg_color");
+    return atoi(stringtools::EraseAllSubString(line, "bg_color ").c_str());
 }
 
 /*
@@ -215,12 +180,7 @@ FSettings::Theme() {
 */
 std::string 
 FSettings::InputCustomize() {
-    std::string line;
-    if(freadfile.is_open()) {
-    	while(std::getline(freadfile, line)) {
-    		if(line.find("input_customize") == 0)
-    			return stringtools::EraseAllSubString(line, "input_customize ");
-    	}
-    }
-    return "▶";
+    std::string line = fsplusplus::FindStringWithReturn(Path(), "input_customize");
+    line = stringtools::EraseAllSubString(line, "input_customize ");
+    return stringtools::EraseAllSubString(line, "\n");
 }
