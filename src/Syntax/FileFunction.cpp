@@ -238,6 +238,7 @@ FCreateFileFunction::CreateSettingsFileFunction() {
     	file << "scrift_theme default\n";
     	file << "input_customize ▶\n";
 	file << "welcome_message yes\n";
+	file << "local_git_branch yes\n";
     	file.close();
     } else {
     }
@@ -259,6 +260,7 @@ FClearFileFunction::ClearSettingsFunction() {
     	file << "scrift_theme default\n";
     	file << "input_customize ▶\n";
 	file << "welcome_message yes\n";
+	file << "local_git_branch yes\n";
     } else {
         CreateSettingsFileFunction();
     }

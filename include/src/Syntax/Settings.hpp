@@ -14,10 +14,11 @@
 class FSettings {
 public:
 	/*
-		welcome message etc.
+		welcome message, local git branches etc.
 	*/
 	bool WelcomeMessage();
-	
+	bool GitBranch();
+
 	/*
 		theme, path etc.
 	*/

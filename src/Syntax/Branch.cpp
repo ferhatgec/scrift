@@ -7,6 +7,8 @@
 
 #include <src/Syntax/Branch.hpp>
 #include <src/Syntax/FileFunction.hpp>
+#include <src/Syntax/Settings.hpp>
+
 #include <ExecutePlusPlus.hpp>
 #include <FileSystemPlusPlus.h>
 
@@ -19,7 +21,9 @@ FBranch::GetGitBranch() {
 		if(strstr(branch.c_str(), "fatal")) {
 			return "";
 		} else {
-			return "[" + branch + "] ";
+			FSettings set;
+			if(set.GitBranch() == true)
+				return "[" + branch + "] ";
 		}
 	}
 	return "";

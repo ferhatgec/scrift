@@ -65,6 +65,24 @@ FSettings::WelcomeMessage() {
 	return true;
 }
 
+/*
+	local_git_branch yes
+		... [develop]
+	
+	local_git_branch no_thanks
+		...
+*/
+
+bool
+FSettings::GitBranch() {
+	std::string line = fsplusplus::FindStringWithReturn(Path(), "local_git_branch");
+	if(strstr(line.c_str(), "no_thanks"))
+		return false;
+	else
+		return true;
+
+	return true;
+}
 
 /*
 	<emoji> emoji: Shows emoji.
