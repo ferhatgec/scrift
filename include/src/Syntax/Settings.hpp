@@ -14,6 +14,11 @@
 class FSettings {
 public:
 	/*
+		welcome message etc.
+	*/
+	bool WelcomeMessage();
+	
+	/*
 		theme, path etc.
 	*/
 	std::string Path();

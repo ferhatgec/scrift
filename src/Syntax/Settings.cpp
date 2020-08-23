@@ -45,6 +45,27 @@ std::string GPath() {
 std::ifstream freadfile(GPath());
 
 
+/*	
+	welcome_message yes: Shows Welcome message
+		* Welcome to Fegeya Scrift Terminal 
+		* Fegeya Scrift licensed with MIT License 
+		* Copyright (c) 2020 Ferhat Gecdogan
+ 
+	welcome_message no_thanks: 
+*/
+
+bool 
+FSettings::WelcomeMessage() {
+	std::string line = fsplusplus::FindStringWithReturn(Path(), "welcome_message");
+	if(strstr(line.c_str(), "no_thanks"))
+		return false;
+ 	else
+		return true;
+
+	return true;
+}
+
+
 /*
 	<emoji> emoji: Shows emoji.
 */

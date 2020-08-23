@@ -1405,9 +1405,12 @@ int main(integer argc, char** argv) {
 	
 	/* History start signal */
     	history->AllofThem();
-    	
-	logsystem->WriteLog("Launching Welcome() function.. - ");	
-	helpstr->Welcome();
+	
+	/* Welcome message. */    	
+	if(runsyntax->WelcomeMessage() == true) {
+		logsystem->WriteLog("Launching Welcome() function.. - ");	
+		helpstr->Welcome();
+	}
 
 	/* Terminal. */	
 	terminalstr->Terminal(); 
