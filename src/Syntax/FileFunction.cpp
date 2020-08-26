@@ -49,7 +49,7 @@ std::unique_ptr<FCDFunction> fcdfunction(new FCDFunction);
 /*
 	Structures.
 */
-std::unique_ptr<asciifunction> ascii(new asciifunction);
+std::unique_ptr<FASCIIFunction> ascii(new FASCIIFunction);
 
 struct stat filestat;
 struct dirent *entryname;
@@ -270,22 +270,20 @@ FClearFileFunction::ClearSettingsFunction() {
 void
 FCreateFileFunction::CreateASCIIFileFunction() {
     if(ascii->InitFile() != true) {
-    file_directory_string.append(getenv("HOME"));
-    file_directory_string.append(slash);
-    file_directory_string.append(".scrift_ascii");
-    command->chartostring(file_directory_string, file_directory);
-    std::ofstream file(file_directory_string);
-    file << " ███████╗ ██████╗██████╗ ██╗███████╗████████╗ 	\n";
-    file << " ██╔════╝██╔════╝██╔══██╗██║██╔════╝╚══██╔══╝ 	\n";
-    file << " ███████╗██║     ██████╔╝██║█████╗     ██║	\n";   
-    file << " ╚════██║██║     ██╔══██╗██║██╔══╝     ██║	\n";   
-    file << " ███████║╚██████╗██║  ██║██║██║        ██║	\n";   
-    file << " ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝	\n";   
-    file.close();
-    }
-    else {
-        printlnf("Good luck!\n");
-    }
+	std::string path;
+    	path.append(getenv("HOME"));
+    	path.append(slash);
+    	path.append(".scrift_ascii");
+    	//command->chartostring(file_directory_string, file_directory);
+    	std::ofstream file(path, std::ios::app);
+    	file << " ███████╗ ██████╗██████╗ ██╗███████╗████████╗ 	\n";
+    	file << " ██╔════╝██╔════╝██╔══██╗██║██╔════╝╚══██╔══╝ 	\n";
+    	file << " ███████╗██║     ██████╔╝██║█████╗     ██║	\n";   
+    	file << " ╚════██║██║     ██╔══██╗██║██╔══╝     ██║	\n";   
+    	file << " ███████║╚██████╗██║  ██║██║██║        ██║	\n";   
+    	file << " ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝	\n";   
+   	file.close();
+    } else { }
 }
 
 void

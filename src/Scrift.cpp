@@ -1396,7 +1396,7 @@ int main(integer argc, char** argv) {
     	logsystem->AllofThem(); /* FeLog start signal. */
 
 	if(runsyntax->ASCIIColor() == -1) {} else {
-    		std::unique_ptr<asciifunction> ascii(new asciifunction);
+    		std::unique_ptr<FASCIIFunction> ascii(new FASCIIFunction);
     		ascii->Allofthem();
 	}
 	
