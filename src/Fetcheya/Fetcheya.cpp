@@ -197,50 +197,93 @@ private:
 
 void Parse(int p) {
 	systemInfo systemInfo;
-	if(p == 2) {
-		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), systemInfo.getUsername().c_str());
-		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), "@");  
-		colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), (systemInfo.getHostname()).c_str());
-		printf("\n");		
-	} else if(p == 3) {	
-		for(int i = 0; i != systemInfo.getUserHostLength() + 1; i++) {
-			std::cout << "\033[1;36m" << "▂" << "\033[1;31m";
-		}
-		printf("\n"); 
-	} else if(p == 4) {
-		std::cout << "\033[1;36m" << "Scrift Version: " << "\033[01;33m" <<  SCRIFT_VERSION << 
-		WBOLD_YELLOW_COLOR << hyphen << WBOLD_CYAN_COLOR << SCRIFT_STATUS << std::endl;             
-	} else if(p == 5) {
-		std::cout << "\033[1;34m" << "Build: " << "\033[01;33m" << FETCHEYA_VERSION << "-" <<
-		FETCHEYA_STATUS << "-" << "fetcheyav" << systemInfo.EraseAllSubString(ftime, ":") << std::endl;
-	} else if(p == 6) {
-		#ifdef __FreeBSD__
-			std::cout << "\033[1;31m" << "OS Name:" << "\033[1;36m" << " " << "FreeBSD" << std::endl;
-		#else
-			std::cout << "\033[1;31m" << "OS Name:" << "\033[1;36m" << " " << fsplusplus::ReadOSName() << std::endl;
-		#endif
-	} else if(p == 7) {
-		std::cout << "\033[1;36m" << "Architecture:" << "\033[1;33m" << " " << systemInfo.getArch() << std::endl;
-	} else if(p == 8) {
-		std::cout << "\033[1;32m" << "Hostname:" << "\033[1;35m" << " " << systemInfo.getHostname() << std::endl;
-	} else if(p == 9) {
-		std::cout << "\033[1;34m" << "Kernel Name:" << "\033[1;35m" << " " <<  systemInfo.getSystem() << std::endl;
-	} else if(p == 10) {
-		std::cout << "\033[01;33m" << "Kernel Release:" << "\033[1;34m" << " "  << systemInfo.getKernel() << std::endl;
-	} else if(p == 11) {
-		std::cout << "\033[1;35m" << "CPU:" << "\033[1;31m" << " ";
-		systemInfo.getCPU();
-	} else if(p == 12) {
-		std::cout << "\033[1;34m" << "Uptime:" << "\033[01;33m" << " "  <<  systemInfo.getUptime() << std::endl;	
-	} else if(p == 13) {
-		std::cout << "\033[1;35m" << "Terminal:" << "\033[1;32m" << " "  << systemInfo.getTerm() << std::endl;
-	} else if(p == 14) {
-		std::cout << "\033[1;36m" << "Shell:" << "\033[1;31m" << " " << systemInfo.getShell() << std::endl;
-	} else if(p == 15) {
-		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), "Desktop Env: ");
-		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), systemInfo.getDe().c_str());	
-		std::cout << "\n";
-	} else { printf("\n"); }
+	FSettings setting;
+	if(setting.Theme() == "classic") { /* Classic (uncolorized) */
+		if(p == 2) {
+			colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), systemInfo.getUsername().c_str());
+			std::cout << "@" << systemInfo.getHostname() << "\n";
+		} else if(p == 3) {	
+			for(int i = 0; i != systemInfo.getUserHostLength() + 1; i++) {
+				std::cout << "▂";
+			}
+			std::cout << "\n"; 
+		} else if(p == 4) {
+			std::cout << WBOLD_LIGHT_WHITE_COLOR << "Scrift Version: " <<  SCRIFT_VERSION << hyphen << SCRIFT_STATUS << std::endl;             
+		} else if(p == 5) {
+			std::cout << WBOLD_LIGHT_WHITE_COLOR << "Build: " << FETCHEYA_VERSION << "-" <<
+			FETCHEYA_STATUS << "-" << "fetcheyav" << systemInfo.EraseAllSubString(ftime, ":") << std::endl;
+		} else if(p == 6) {
+			#ifdef __FreeBSD__
+				std::cout << WBOLD_LIGHT_WHITE_COLOR << "OS Name: " << "FreeBSD" << std::endl;
+			#else
+				std::cout << WBOLD_LIGHT_WHITE_COLOR << "OS Name: " << fsplusplus::ReadOSName() << std::endl;
+			#endif
+		} else if(p == 7) {
+			std::cout << WBOLD_LIGHT_WHITE_COLOR << "Architecture: " << systemInfo.getArch() << std::endl;
+		} else if(p == 8) {
+			std::cout << WBOLD_LIGHT_WHITE_COLOR << "Hostname: " << systemInfo.getHostname() << std::endl;
+		} else if(p == 9) {
+			std::cout << WBOLD_LIGHT_WHITE_COLOR << "Kernel Name: " << systemInfo.getSystem() << std::endl;
+		} else if(p == 10) {
+			std::cout << WBOLD_LIGHT_WHITE_COLOR << "Kernel Release: "  << systemInfo.getKernel() << std::endl;
+		} else if(p == 11) {
+			std::cout << WBOLD_LIGHT_WHITE_COLOR << "CPU: ";
+			systemInfo.getCPU();
+		} else if(p == 12) {
+			std::cout << WBOLD_LIGHT_WHITE_COLOR << "Uptime: " << systemInfo.getUptime() << std::endl;	
+		} else if(p == 13) {
+			std::cout << WBOLD_LIGHT_WHITE_COLOR << "Terminal: " << systemInfo.getTerm() << std::endl;
+		} else if(p == 14) {
+			std::cout << WBOLD_LIGHT_WHITE_COLOR << "Shell: " << systemInfo.getShell() << std::endl;
+		} else if(p == 15) {
+			std::cout << WBOLD_LIGHT_WHITE_COLOR << "Desktop Env: " << systemInfo.getDe() << std::endl;
+		} else { std::cout << "\n"; }
+	} else { /* Default or another theme. */
+		if(p == 2) {
+			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), systemInfo.getUsername().c_str());
+			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), "@");  
+			colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), (systemInfo.getHostname()).c_str());
+			printf("\n");		
+		} else if(p == 3) {	
+			for(int i = 0; i != systemInfo.getUserHostLength() + 1; i++) {
+				std::cout << "\033[1;36m" << "▂" << "\033[1;31m";
+			}
+			printf("\n"); 
+		} else if(p == 4) {
+			std::cout << "\033[1;36m" << "Scrift Version: " << "\033[01;33m" <<  SCRIFT_VERSION << 
+			WBOLD_YELLOW_COLOR << hyphen << WBOLD_CYAN_COLOR << SCRIFT_STATUS << std::endl;             
+		} else if(p == 5) {
+			std::cout << "\033[1;34m" << "Build: " << "\033[01;33m" << FETCHEYA_VERSION << "-" <<
+			FETCHEYA_STATUS << "-" << "fetcheyav" << systemInfo.EraseAllSubString(ftime, ":") << std::endl;
+		} else if(p == 6) {
+			#ifdef __FreeBSD__
+				std::cout << "\033[1;31m" << "OS Name:" << "\033[1;36m" << " " << "FreeBSD" << std::endl;
+			#else
+				std::cout << "\033[1;31m" << "OS Name:" << "\033[1;36m" << " " << fsplusplus::ReadOSName() << std::endl;
+			#endif
+		} else if(p == 7) {
+			std::cout << "\033[1;36m" << "Architecture:" << "\033[1;33m" << " " << systemInfo.getArch() << std::endl;
+		} else if(p == 8) {
+			std::cout << "\033[1;32m" << "Hostname:" << "\033[1;35m" << " " << systemInfo.getHostname() << std::endl;
+		} else if(p == 9) {
+			std::cout << "\033[1;34m" << "Kernel Name:" << "\033[1;35m" << " " <<  systemInfo.getSystem() << std::endl;
+		} else if(p == 10) {
+			std::cout << "\033[01;33m" << "Kernel Release:" << "\033[1;34m" << " "  << systemInfo.getKernel() << std::endl;
+		} else if(p == 11) {
+			std::cout << "\033[1;35m" << "CPU:" << "\033[1;31m" << " ";
+			systemInfo.getCPU();
+		} else if(p == 12) {
+			std::cout << "\033[1;34m" << "Uptime:" << "\033[01;33m" << " "  <<  systemInfo.getUptime() << std::endl;	
+		} else if(p == 13) {
+			std::cout << "\033[1;35m" << "Terminal:" << "\033[1;32m" << " "  << systemInfo.getTerm() << std::endl;
+		} else if(p == 14) {
+			std::cout << "\033[1;36m" << "Shell:" << "\033[1;31m" << " " << systemInfo.getShell() << std::endl;
+		} else if(p == 15) {
+			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), "Desktop Env: ");
+			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), systemInfo.getDe().c_str());	
+			std::cout << "\n";
+		} else { printf("\n"); }
+	}
 }
 
 void
