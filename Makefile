@@ -5,33 +5,55 @@
 #
 #
 
+# For Castle
 GCFLAGS=-std=c++11 -O2 -g -Wall $(shell pkg-config --cflags ncursesw)
 GLDFLAGS=$(shell pkg-config --libs ncursesw)
 
-# PATHS 
+# Apps
 SRCAPPSDIREC = ./Apps/
+
+# Libraries
 SRCLIBDIREC = ./Library/
+
+# Scrift's Syntax
 SRCSYNTAXDIREC = ./src/Syntax/
+
+# Fetcheya
 SRCFETCHEYADIREC = ./src/Fetcheya/
+
+# Edifor
 SRCEDIFORDIREC = ./src/Edifor/
+
+# Games
 GAMESDIREC = ./Games/
+
+# Source
 SRCDIREC = ./src/
+
+# Prefix
 PREFIX = /bin/
 
 INCLUDELIB = ./Library/
 INCLUDEDIR = ./include/
+
+# Include flags etc.
 CFLAGS = -Wall -I$(INCLUDELIB) -I$(INCLUDEDIR)
 
 GCC = gcc
 GPP = g++ -std=c++17
 COMP = g++ -c
 
-# CLEAN
+# Clean all
 CLEANALL = scrift /Games/Castle/castle
+
+# Clean object files
 CLEAN = *.o
+
+# Scrift's Syntax objects
 HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o RunFunction.o \
 Log.o History.o Branch.o Template.o Settings.o HelpFunction.o ASCIIFunction.o
 
+# Fetcheya's objects
 FETCHEYAFILE = Logos.o Fetcheya.o
 
 # Platform
@@ -50,13 +72,16 @@ all: conio headersfile fetchfile edifor main clean
 # Build & Install
 allp: headersfile fetchfile mainc ediforc date clean 
 
+# Remove & Clean all
 removeall: uninstall cleanall
 
-
+# Build & Run
 runall: all run
 
+# For me & developers
 gra: runall git
 
+# Git
 git:
 	git add .
 	git commit -a
@@ -65,20 +90,23 @@ git:
 push:
 	git push origin master
 
+# Only clean all
 nall: cleanall
 
 # Scrift's Core.
 headersfile: $(HEADERFILE)
 
-# Integrated Fetcheya into Scrift's Core
+# Integrated Fetcheya
 fetchfile: $(FETCHEYAFILE)
 
 conio: $(SRCLIBDIREC)FConio.c
 	$(GCC) -c -Wno-unused-function -Wno-unused-value $(SRCLIBDIREC)FConio.c -o fconio.o
 
+# Syntax 
 %.o: $(SRCSYNTAXDIREC)%.cpp
 	$(GPP) -Wno-unused-function -Wno-unused-value $(CFLAGS) -c $< -o $@
 
+# Fetcheya
 %.o: $(SRCFETCHEYADIREC)%.cpp
 	$(GPP) -Wno-unused-function -Wno-unused-value $(CFLAGS) -c $< -o $@
 
@@ -122,6 +150,7 @@ date: $(SRCAPPSDIREC)/FDate/FDate.cpp
 	$(GPP)  $(SRCAPPSDIREC)/FDate/FDate.cpp -o $(PREFIX)fdate 
 	echo FDate building successfully in Bin Directory!
 
+# Integrated Scrift's core.
 # Fetcheya Build
 #fetcheya: $(SRCFETCHEYADIREC)Fetcheya.cpp
 #	$(GPP) $(CFLAGS) $(SRCFETCHEYADIREC)Logos.cpp $(SRCFETCHEYADIREC)Fetcheya.cpp -o fetcheya
@@ -132,6 +161,7 @@ date: $(SRCAPPSDIREC)/FDate/FDate.cpp
 #	$(GPP) $(CFLAGS) $(SRCFETCHEYADIREC)Logos.cpp $(SRCFETCHEYADIREC)Fetcheya.cpp -o $(PREFIX)fetcheya
 #	echo Fetcheya building successfully in Bin Directory!
 
+# Remove Scrift.
 uninstall:
 	rm -f /bin/scrift
 	rm -f /bin/edifor
@@ -141,11 +171,15 @@ uninstall:
 	rm -f /bin/pong
 	rm -f /bin/tictactoe
 	
+# Run Scrift
 run:
 	./scrift
+
+# Clean object files
 clean:
 		$(CLEAN)
 
+# Clean object files and Scrift, Fetcheya.
 cleanall:
 		echo Cleaning build directory!
 		$(CLEANALL)
