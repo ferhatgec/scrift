@@ -1193,7 +1193,6 @@ void InputFunction() {
        		}
         	if(getchar() == '\n') {
         		readfilefunction->ReadSettingsFunction();
-        		slashn
         	}
         	history->WriteHistory(main_function->_h_str);
         	main_function->_h_str.erase();
