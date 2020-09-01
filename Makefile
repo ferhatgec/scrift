@@ -67,7 +67,7 @@ else
 endif
 
 # Build
-all: conio headersfile fetchfile edifor main clean
+all: conio headersfile fetchfile edifor main datec clean
 
 # Build & Install
 allp: headersfile fetchfile mainc ediforc date clean 
@@ -145,7 +145,13 @@ pong: $(GAMESDIREC)/Pong/Pong.cpp
 	$(GPP) -Wall $(GAMESDIREC)/Pong/Pong.cpp -o $(PREFIX)pong -lncurses
 	echo Pong building successfully in Bin Directory!
 
+# Calendar & Converter Build
 # Calendar
+datec: $(SRCAPPSDIREC)/FDate/FDate.cpp
+	$(GPP)  $(SRCAPPSDIREC)/FDate/FDate.cpp -o fdate 
+	echo FDate building successfully!
+
+# Calendar & Converter & Build & Install
 date: $(SRCAPPSDIREC)/FDate/FDate.cpp
 	$(GPP)  $(SRCAPPSDIREC)/FDate/FDate.cpp -o $(PREFIX)fdate 
 	echo FDate building successfully in Bin Directory!

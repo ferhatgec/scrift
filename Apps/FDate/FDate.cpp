@@ -18,90 +18,72 @@
 // Library
 #include "../../Library/Colorized.hpp"
 
-using namespace std;
 int getEpochDifference();
 bool isLeapYear(int);
+
 void UNIXTimeToNormalTime(time_t epoch){
-   cout<<"Converting UNIX Time to normal time..."<<endl; 
-   struct tm UTCTime; /*struct tm is a structure used to hold the time and date.*/
+   std::cout << "Converting UNIX Time to normal time...\n"; 
+
+   struct tm UTCTime; /* struct tm is a structure used to hold the time and date. */
+
    char buffer[80];
-   UTCTime = *localtime(&epoch); //The value of timer is broken up into the structure tm and expressed in the local time zone.
-   strftime(buffer /*C style string that these infos will be copied to.*/, sizeof(buffer)/*Maximum number of characters to be copied to ptr, including the terminating null-character.*/, "%d-%m-%Y %H:%M:%S", &UTCTime);
+   UTCTime = *localtime(&epoch); /* The value of timer is broken up into the structure tm and expressed in the local time zone. */
+   strftime(buffer, sizeof(buffer), "%d-%m-%Y %H:%M:%S", &UTCTime);
    
-   cout<<"Your epoch belongs to this date : (DD/MM/YYYY HH:MM:SS) "<<buffer<<endl;
-}
-int NormalTimeToUNIXTime(int gun=0,int ay=0, int yil=0, int saat=0, int dakika=0, int saniye=0){
-
-
-   return (((yil-1970) * 31104000)+((ay)*2592000)+((gun)*86400)+((saat)*3600)+((dakika)*60)+(saniye));
-
+   std::cout << "Your epoch belongs to this date : (DD/MM/YYYY HH:MM:SS) " << buffer << "\n";
 }
 
-int getMonth()
-{
+int NormalTimeToUNIXTime(int day,int month, int year, int hour, int minute, int second){
+   return (((year-1970) * 31104000)+((month)*2592000)+((day)*86400)+((hour)*3600)+((minute)*60)+(second));
+}
+
+int getMonth() {
    int month = 0;
-   cout << "Enter a month number: ";
-   cin >> month;
+   std::cout << "Enter a month number: ";
+   std::cin >> month;
 
-   while (month < 1 || month > 12)
-   {
-      cout << WBOLD_RED_COLOR << "Month must be between 1 and 12.\n"
-           << "Enter a month number: ";
-      cin >> month;
+   if (month < 1 || month > 12) {
+	std::cout << WBOLD_RED_COLOR << "Month must be between 1 and 12.\n";
+        exit(EXIT_SUCCESS);
    }
-   
+
    return month;
 }
 
 
-int getYear()
-{
+int getYear() {
    int year = 0;
-   cout << "Enter year: ";
-   cin >> year;
+   std::cout << "Enter year: ";
+   std::cin >> year;
 
-   while (year < 1758)
-   {
-      cout << WBOLD_RED_COLOR << "Year must be 1758 or later.\n"
-           << "Enter year: ";
-      cin >> year;
-   }
+   if (year < 1758) {
+   	std::cout << WBOLD_RED_COLOR << "Year must be 1758 or later.\n";
+        exit(EXIT_SUCCESS);
+   } 
    
    return year;
 }
 
 
-bool isLeapYear(int year)
-{
+bool isLeapYear(int year) {
    return (year % 400 == 0) || ((year % 100 != 0) && (year % 4 == 0));
 }
 
 
-int numDaysYear(int year)
-{
+int numDaysYear(int year) {
    return (365 + isLeapYear(year));
 }
 
 
-int numDaysMonth(int year, int month)
-{
+int numDaysMonth(int year, int month) {
    int daysMonth = 0;
    if (month == 2 && isLeapYear(year))
-   {
       daysMonth = 29;
-   }
-   
    else if (month == 1 || month == 3 || month == 5 || month == 7 ||
             month == 8 || month == 10 || month == 12)
-   {
       daysMonth = 31;
-   }
-   
    else if (month == 4 || month == 6 || month == 9 || month == 11)
-   {
       daysMonth = 30;
-   }
-   
    else
       daysMonth = 28;
 
@@ -109,77 +91,71 @@ int numDaysMonth(int year, int month)
 }
 
 
-int computeOffset(int year, int month)
-{
+int computeOffset(int year, int month) {
    int offset = 0;
    int count = 0;;
-   for (int iYear = 1758; iYear < year; iYear++)
-   {
+   for (int iYear = 1758; iYear < year; iYear++) {
      count += (365 + isLeapYear(iYear));
      /*offset = (offset + 365 + isLeapYear(year - 1)) % 7;*/
    }
-   //cout << count << endl;
+
+   /* std::cout << count << "\n"; */
 
    offset = count;
 
    count = 0;
-   for (int iMonth = 1; iMonth < month; iMonth++)
-   {
+   for (int iMonth = 1; iMonth < month; iMonth++) {
      count += numDaysMonth(year, iMonth);
      /*offset = (offset + numDaysMonth(year, iMonth)) % 7;*/
    }
-   //cout << count;
+   // std::cout << count;
 
    offset += count;
    return (offset % 7);
 }
 
 
-void displayHeader(int year, int month)
-{
-   cout << endl;
+void displayHeader(int year, int month) {
+   std::cout << "\n";
    if (month == 1)
-      cout << WBOLD_YELLOW_COLOR << "January " << year << endl;
+      std::cout << WBOLD_YELLOW_COLOR << "January " << year << "\n";
    else if (month == 2)
-      cout << WBOLD_RED_COLOR << "February " << year << endl;
+      std::cout << WBOLD_RED_COLOR << "February " << year << "\n";
    else if (month == 3)
-      cout << WBOLD_GREEN_COLOR << "March " << year << endl;
+      std::cout << WBOLD_GREEN_COLOR << "March " << year << "\n";
    else if (month == 4)
-      cout << WBOLD_BLUE_COLOR << "April " << year << endl;
+      std::cout << WBOLD_BLUE_COLOR << "April " << year << "\n";
    else if (month == 5)
-      cout << WBOLD_GREEN_COLOR << "May " << year << endl;
+      std::cout << WBOLD_GREEN_COLOR << "May " << year << "\n";
    else if (month == 6)
-      cout << WBOLD_YELLOW_COLOR << "June " << year << endl;
+      std::cout << WBOLD_YELLOW_COLOR << "June " << year << "\n";
    else if (month == 7)
-      cout << WBOLD_YELLOW_COLOR << "July " << year << endl;
+      std::cout << WBOLD_YELLOW_COLOR << "July " << year << "\n";
    else if (month == 8)
-      cout << WBOLD_BLUE_COLOR <<  "August " << year << endl;
+      std::cout << WBOLD_BLUE_COLOR <<  "August " << year << "\n";
    else if (month == 9)
-      cout << WBOLD_MAGENTA_COLOR << "September " << year << endl;
+      std::cout << WBOLD_MAGENTA_COLOR << "September " << year << "\n";
    else if (month == 10)
-      cout << WBOLD_CYAN_COLOR << "October " << year << endl;
+      std::cout << WBOLD_CYAN_COLOR << "October " << year << "\n";
    else if (month == 11)
-      cout << WBOLD_RED_COLOR << "November " << year << endl;
+      std::cout << WBOLD_RED_COLOR << "November " << year << "\n";
    else
-      cout << WBOLD_GREEN_COLOR << "December " << year << endl;
+      std::cout << WBOLD_GREEN_COLOR << "December " << year << "\n";
    return;
 }
 
-void displayTable(int numDays, int offset, int year, int month)
-{
+void displayTable(int numDays, int offset, int year, int month) {
    int day = 0;
-   cout << WBOLD_GREEN_COLOR  << "  Su  Mo  Tu  We  Th  Fr  Sa\n";
+   std::cout << WBOLD_GREEN_COLOR  << "  Su  Mo  Tu  We  Th  Fr  Sa\n";
 
    day = ((offset + 1) % 6);
-   cout << setw((day - 2) * 4 + 6);
+   std::cout << std::setw((day - 2) * 4 + 6);
 
-   for (int dayOfWeek = 1; dayOfWeek <= numDaysMonth(year, month); dayOfWeek++)
-   {
-      cout << "  " << WBOLD_MAGENTA_COLOR << setw(2) << dayOfWeek;
+   for (int dayOfWeek = 1; dayOfWeek <= numDaysMonth(year, month); dayOfWeek++) {
+      std::cout << "  " << WBOLD_MAGENTA_COLOR << std::setw(2) << dayOfWeek;
       ++day;
-      if (day == 8)
-      {
-         cout << endl;
+      if (day == 8) {
+         std::cout << "\n";
          day = 1;
       }
    }
@@ -187,108 +163,94 @@ void displayTable(int numDays, int offset, int year, int month)
 }
 
 
-void display(int year, int month, int offset)
-{
+void display(int year, int month, int offset) {
    int numDays = numDaysMonth(year, month);
    displayHeader(year, month);
    displayTable(numDays, offset, year, month);
-   cout << endl;   
+   std::cout << "\n";   
 }
-int getEpochDifference(){ //Returns the epoch value between current date and 1/1/1970. Simple.
 
+int getEpochDifference() { /* Returns the epoch value between current date and 1/1/1970. Simple. */
    return time(NULL);
-
 }
 
-int main(int argc, char* argv[])
-{
-   cout<<WBOLD_GREEN_COLOR<<"Welcome to FDate!"<<endl<<endl;
+/*
+	--currentUNIX
+	--fromUNIX
+	--toUNIX
+*/
+int main(int argc, char* argv[]) {
+   std::cout << WBOLD_GREEN_COLOR << "Welcome to FDate!\n\n";
 
-   if(strcmp(argv[argc-1],"-currentUNIX") == 0){
+   if(strcmp(argv[argc-1],"--currentUNIX") == 0){
+      std::cout << WBOLD_RED_COLOR << "Current UNIX Time is : " << getEpochDifference() << "\n\n" << 
+      	WBOLD_MAGENTA_COLOR << "Run FDate with --help parameter to see all available parameters.\n\n";
 
-      cout<<WBOLD_RED_COLOR<<"Current UNIX Time is : "<<getEpochDifference()<<endl<<endl;
-
-      cout<<WBOLD_MAGENTA_COLOR<<"Run FDate with -help parameter to see all available parameters."<<endl<<endl;
       exit(EXIT_SUCCESS);
-
-   }
-   else if(strcmp(argv[argc-1],"-fromUNIX") == 0){
-
+   } else if(strcmp(argv[argc-1],"--fromUNIX") == 0){
          int unixTimestamp;
-         cout<<WBOLD_YELLOW_COLOR<<"Enter the UNIX time that you want to convert to real date."<<endl;
-         cin>>unixTimestamp;
+         std::cout << WBOLD_YELLOW_COLOR << "Enter the UNIX time that you want to convert to real date.\n";
+         std::cin >> unixTimestamp;
          UNIXTimeToNormalTime(unixTimestamp);
          exit(EXIT_SUCCESS);
-
-
-   }
-   else if(strcmp(argv[argc-1],"-toUNIX") == 0){
+   } else if(strcmp(argv[argc-1],"--toUNIX") == 0){
          int dd,mm,yyyy,hh,minute,ss;
-         cout<<WBOLD_CYAN_COLOR<<"Enter the date that you want to convert to UNIX date. (DD/MM/YYYY) "<<endl;
-         cout<<"Day : ";
-         cin>>dd;
-            if(dd < 1 || dd > 31){
-
-         cout<<WBOLD_RED_COLOR<<"Day entry is wrong. Aborting."<<endl;
-         exit(0);
-   }
-         cout<<"Month : ";
-         cin>>mm;
-            if(mm < 1 || mm > 12){
-
-         cout<<WBOLD_RED_COLOR<<"Month entry is wrong. Aborting."<<endl;
-         exit(0);
-   }
-         cout<<"Year : ";
-         cin>>yyyy;
-            if(yyyy < 1970 || yyyy >= 2038){
-
-         cout<<WBOLD_RED_COLOR<<"Year entry is wrong. Aborting."<<endl;
-         exit(0);
-   }
-         cout<<"Hour : ";
-         cin>>hh;
-            if(hh < 0 || hh > 23){
-
-         cout<<WBOLD_RED_COLOR<<"Hour entry is wrong. Aborting."<<endl;
-         exit(0);
-   }
-         cout<<"Minute : ";
-         cin>>mm;
-            if(mm < 0 || mm > 59){
-
-         cout<<WBOLD_RED_COLOR<<"Minute entry is wrong. Aborting."<<endl;
-         exit(0);
-   }
-         cout<<"Second : ";
-         cin>>ss;
-            if(ss < 0 || ss > 59){
-
-         cout<<WBOLD_RED_COLOR<<"Seconds entry is wrong. Aborting."<<endl;
-         exit(0);
-   }
-         cout<<"The date you entered belongs to this epoch : "<<NormalTimeToUNIXTime(dd,mm,yyyy,hh,minute,ss)<<endl;
+         std::cout << WBOLD_CYAN_COLOR << "Enter the date that you want to convert to UNIX date. (DD/MM/YYYY) \n";
+         std::cout << "Day : ";
+         std::cin >> dd;
+         
+	 if(dd < 1 || dd > 31) {
+        	std::cout << WBOLD_RED_COLOR << "Day entry is wrong. Aborted.\n";
+         	exit(0);
+   	 }
+         std::cout << "Month : ";
+         std::cin >> mm;
+         if(mm < 1 || mm > 12) {
+         	std::cout<<WBOLD_RED_COLOR<<"Month entry is wrong. Aborted.\n";
+        	exit(0);
+   	 }
+         std::cout << "Year : ";
+         std::cin >> yyyy;
+         if(yyyy < 1970 || yyyy >= 2038) {
+         	std::cout << WBOLD_RED_COLOR << "Year entry is wrong. Aborted.\n";
+         	exit(0);
+   	 }
+         std::cout << "Hour : ";
+         std::cin >> hh;
+         if(hh < 0 || hh > 23) {
+         	std::cout << WBOLD_RED_COLOR << "Hour entry is wrong. Aborted.\n";
+         	exit(0);
+   	 }
+         std::cout << "Minute : ";
+         std::cin >> mm;
+         if(mm < 0 || mm > 59) {
+         	std::cout << WBOLD_RED_COLOR << "Minute entry is wrong. Aborted.\n";
+         	exit(0);
+   	 }
+         std::cout << "Second : ";
+         std::cin >> ss;
+         if(ss < 0 || ss > 59) {
+         	std::cout << WBOLD_RED_COLOR << "Seconds entry is wrong. Aborted\n";
+         	exit(0);
+   	 }
+         
+	 std::cout << "The date you entered belongs to this epoch : " << NormalTimeToUNIXTime(dd,mm,yyyy,hh,minute,ss) << "\n";
          exit(EXIT_SUCCESS);
+   	} else if(strcmp(argv[argc-1],"--help") == 0){
+         	std::cout << "\n";
+         	std::cout << "Available parameters are : \n-toUNIX (converts UTC clock to UNIX clock.)\n" << 
+			"-fromUNIX (converts UNIX Clock to UTC.)\n-currentUNIX (displays current UNIX Clock.)\n\n" << WBOLD_YELLOW_COLOR <<
+			"You can launch the FDate without parameters also. That will display a calendar of the month that you've entered.\n";
+         	exit(EXIT_SUCCESS);
+   	}
 
-   }
-   else if(strcmp(argv[argc-1],"-help") == 0){
+   	int offset, month, year;
 
-         cout<<endl<<"***************FDate Help***************"<<endl<<endl<<endl;
-         cout<<"Available parameters are : "<<endl<<"-toUNIX (converts UTC clock to UNIX clock.)"<<endl<<"-fromUNIX (converts UNIX Clock to UTC.)"<<endl<<"-currentUNIX (displays current UNIX Clock.)"<<endl<<endl;
-         cout<<WBOLD_YELLOW_COLOR<<"You can launch the FDate without parameters also. That will display a calendar of the month that you've entered."<<endl;
+   	month = getMonth();
+   	year = getYear();
+   	offset = computeOffset(year, month);
 
-         exit(EXIT_SUCCESS);
-   }
+   	display(year, month, offset);
 
-   int offset;
-   int month;
-   int year;
-
-   month = getMonth();
-   year = getYear();
-   offset = computeOffset(year, month);
-
-   display(year, month, offset);
-
-   return 0;
+   	return 0;
 }
