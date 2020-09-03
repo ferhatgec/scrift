@@ -40,6 +40,12 @@ namespace fsplusplus {
   		return current_working_dir;
 	}
 
+
+	static bool IsExistFile(std::string path) {
+    		struct stat buffer;
+    		return (stat(path.c_str(), &buffer) == 0);
+	}
+
 	static void List() {
 	    DIR *directory;
 	    struct dirent *entryname;
