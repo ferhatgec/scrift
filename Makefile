@@ -53,9 +53,6 @@ CLEAN = *.o
 HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o RunFunction.o \
 Log.o History.o Branch.o Template.o Settings.o HelpFunction.o ASCIIFunction.o
 
-# Fetcheya's objects
-FETCHEYAFILE = Logos.o Fetcheya.o
-
 # Platform
 ifeq ($(OS),Windows_NT)
 	echo Windows_NT is not supported!
@@ -67,10 +64,10 @@ else
 endif
 
 # Build
-all: conio headersfile fetchfile edifor main datec clean
+all: conio headersfile edifor main datec clean
 
 # Build & Install
-allp: headersfile fetchfile mainc ediforc date clean 
+allp: headersfile mainc ediforc date clean 
 
 # Remove & Clean all
 removeall: uninstall cleanall
@@ -96,18 +93,12 @@ nall: cleanall
 # Scrift's Core.
 headersfile: $(HEADERFILE)
 
-# Integrated Fetcheya
-fetchfile: $(FETCHEYAFILE)
 
 conio: $(SRCLIBDIREC)FConio.c
 	$(GCC) -c -Wno-unused-function -Wno-unused-value $(SRCLIBDIREC)FConio.c -o fconio.o
 
 # Syntax 
 %.o: $(SRCSYNTAXDIREC)%.cpp
-	$(GPP) -Wno-unused-function -Wno-unused-value $(CFLAGS) -c $< -o $@
-
-# Fetcheya
-%.o: $(SRCFETCHEYADIREC)%.cpp
 	$(GPP) -Wno-unused-function -Wno-unused-value $(CFLAGS) -c $< -o $@
 
 # Main Build

@@ -58,9 +58,6 @@
 #include <src/Syntax/History.hpp>
 #include <src/Syntax/Template.hpp>
 
-/* Fetcheya */
-#include <src/Fetcheya/Fetcheya.hpp>
-
 #include <Library/Keywords.hpp>
 
 /* Libraries */
@@ -68,6 +65,8 @@
 #include <EmojiPlusPlus.h>
 #include <Colorized.hpp>
 #include <EasyMorse.hpp>
+#include <ExecutePlusPlus.hpp>
+#include <FileSystemPlusPlus.h>
 
 /* Variables */
 using namespace FileFunction;
@@ -451,9 +450,42 @@ void InputFunction() {
 		else
 			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "fetcheya");
 		if(getchar() == '\n') {
-			Fetcheya fetch;
-			fetch.RunFetcheya();
-		}		
+			if(fsplusplus::IsExistFile("/bin/fetcheya") == false) {
+				if (getuid()) {
+					std::cout << "Use this command as super user.\n";		
+				} else {
+				std::cout << "Fetcheya is not installed.\nDo you want to install Fetcheya from source? (y/n)\n";	
+				char input = getchar();
+				if(input == 'y' || input == 'Y') {
+					ExecutePlusPlus exec;
+					std::string output = exec.ExecWithOutput("git");
+					if(strstr(output.c_str(), "usage: git [--version] [--help]")) {
+						chdir(getenv("HOME"));
+						exec.RunFunction("git clone https://github.com/ferhatgec/fetcheya.git");
+						output = exec.ExecWithOutput("g++ --h");
+						if(strstr(output.c_str(), "Usage: g++ [options] file.")) {
+							output = exec.ExecWithOutput("gcc --h");
+							if(strstr(output.c_str(), "Usage: gcc [options] file.")) {
+								std::string path(getenv("HOME"));
+								path.append("/fetcheya");
+								chdir(path.c_str());
+								exec.RunFunction("sh install.sh");
+							} else {
+								std::cout << "GCC not found. Aborted.\n";
+							}
+						} else {
+							std::cout << "G++ not found. Aborted.\n";						
+						}
+					}
+				} else {
+					std::cout << "Aborted.\n";		
+				}
+				}
+			} else {
+				runfunction->RunFunction("fetcheya");
+			}
+		}
+				
 		history->WriteHistory(main_function->_h_str);
 		main_function->_h_str.erase();
 		terminalstr->Terminal();
