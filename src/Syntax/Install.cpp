@@ -31,14 +31,11 @@ FInstall::InstallFetcheya() {
 			std::cout << "Fetcheya is not installed.\nDo you want to install Fetcheya from source? (y/n) : ";	
 			char input = getchar();
 			if(input == 'y' || input == 'Y') {
-				std::string output = exec.ExecWithOutput("git");
-				if(strstr(output.c_str(), "usage: git [--version] [--help]")) {
+				if(fsplusplus::IsExistFile("/bin/git") == true) {
 					chdir(getenv("HOME"));
 					exec.RunFunction("git clone https://github.com/ferhatgec/fetcheya.git");
-					output = exec.ExecWithOutput("g++ --h");
-					if(strstr(output.c_str(), "Usage: g++ [options] file.")) {
-						output = exec.ExecWithOutput("gcc --h");
-						if(strstr(output.c_str(), "Usage: gcc [options] file.")) {
+					if(fsplusplus::IsExistFile("/bin/g++") == true) {
+						if(fsplusplus::IsExistFile("/bin/gcc") == true) {
 							std::string path(getenv("HOME"));
 							path.append("/fetcheya");
 							std::cout << "Directory changed. : " << getenv("HOME") << "/fetcheya\n";
@@ -50,10 +47,11 @@ FInstall::InstallFetcheya() {
 								std::cout << "Installed!\n";
 							}
 						} else
-							std::cout << "GCC not found. Aborted.\n";
+							std::cout << "gcc not found. Aborted.\n";
 					} else
-						std::cout << "G++ not found. Aborted.\n";						
-				}
+						std::cout << "g++ not found. Aborted.\n";						
+				} else
+					std::cout << "git not found. Aborted.\n";
 			} else
 				std::cout << "Aborted.\n";	
 		#endif
