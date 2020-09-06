@@ -53,11 +53,12 @@ FHelpFunction::HelpFunction() {
 	printlnf("[Output]\n");
         BOLD_GREEN_COLOR
         printlnf(" * printlnf || echo <arg> : Shows <arg> [#environment]\n"
-	    " * emoji <arg> : Shows <emoji> (e.g: :thinking_face:)\n\n");
+	    " * emoji <arg> : Show <emoji> (e.g: :thinking_face:)\n\n");
 	BOLD_LIGHT_MAGENTA_COLOR
 	printlnf("[Execute]\n");
         BOLD_RED_COLOR
-        printlnf(" * scr <argument> : Execute <argument>\n\n");
+        printlnf(" * scr <argument> : Execute <argument>\n"
+            " * fpi <arg> <app> : Run Fegeya Package Installer\n\n");
 	BOLD_LIGHT_RED_COLOR
 	printlnf("[Path]\n");
         BOLD_YELLOW_COLOR
@@ -72,7 +73,7 @@ FHelpFunction::HelpFunction() {
             " * ffind <file, folder> : Find files and directories in path\n"
             " * rmvfile <file, folder> : Remove file, folder in path\n"
             " * setname <name> : Set environment name\n"
-            " * setto <value> : Sets environment value.\n"
+            " * setto <value> : Set environment value.\n"
             " * back : Going to back directory\n\n");
 	BOLD_LIGHT_CYAN_COLOR
 	printlnf("[Generate]\n");
