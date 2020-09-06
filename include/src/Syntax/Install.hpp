@@ -15,6 +15,7 @@ class FInstall {
 public:
 	void InstallFetcheya();
 	void InstallFlaScript();
+	void InstallCopyboard();
 	
 	void FegeyaPackageInstaller(std::string); /* Arg */
 };
