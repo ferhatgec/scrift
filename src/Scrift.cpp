@@ -57,6 +57,8 @@
 #include <src/Syntax/Language.hpp>
 #include <src/Syntax/History.hpp>
 #include <src/Syntax/Template.hpp>
+#include <src/Syntax/Install.hpp>
+
 
 #include <Library/Keywords.hpp>
 
@@ -425,22 +427,22 @@ void InputFunction() {
         	terminalstr->Terminal();
         	return;
         } else if(main_function->_h_str.rfind(keywords.DeleteText, 0) == 0) {
-       	 	logsystem->WriteLog("Launching deletetext function.. - ");
-       	 	RemovePrintedChar(keywords.DeleteText.length() - 1);
-       	 	if(runsyntax->Theme() == "default")  {
+        	logsystem->WriteLog("Launching deletetext function.. - ");
+       	RemovePrintedChar(keywords.DeleteText.length() - 1);
+       	if(runsyntax->Theme() == "default")
         		std::cout << WBOLD_RED_COLOR << "delete" << WBOLD_YELLOW_COLOR << "text ";
-       	        } else if(runsyntax->Theme() == "classic") {
-       		 	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "deletetext ");
-       	 	} else {
+       	else if(runsyntax->Theme() == "classic")
+       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "deletetext ");
+		else
         		std::cout << WBOLD_RED_COLOR << "delete" << WBOLD_YELLOW_COLOR << "text ";	
-        	}
+        	
         	BOLD_BLUE_COLOR
         	std::getline(std::cin, main_function->_h_str);
-       	 	fileaddtextfunction->DeleteLine(main_function->_h_str);
-       	 	history->WriteHistory(main_function->_h_str);
-       	 	main_function->_h_str.erase();
+       	fileaddtextfunction->DeleteLine(main_function->_h_str);
+       	history->WriteHistory(main_function->_h_str);
+       	main_function->_h_str.erase();
         	terminalstr->Terminal();   
-       	 	return;
+       	return;
     	} else if(main_function->_h_str == keywords.Fetcheya) {
 		RemovePrintedChar(keywords.Fetcheya.length() - 1);
 		if(runsyntax->Theme() == "default") 
@@ -451,39 +453,10 @@ void InputFunction() {
 			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "fetcheya");
 		if(getchar() == '\n') {
 			if(fsplusplus::IsExistFile("/bin/fetcheya") == false) {
-				if (getuid()) {
-					std::cout << "Use this command as super user.\n";		
-				} else {
-				std::cout << "Fetcheya is not installed.\nDo you want to install Fetcheya from source? (y/n)\n";	
-				char input = getchar();
-				if(input == 'y' || input == 'Y') {
-					ExecutePlusPlus exec;
-					std::string output = exec.ExecWithOutput("git");
-					if(strstr(output.c_str(), "usage: git [--version] [--help]")) {
-						chdir(getenv("HOME"));
-						exec.RunFunction("git clone https://github.com/ferhatgec/fetcheya.git");
-						output = exec.ExecWithOutput("g++ --h");
-						if(strstr(output.c_str(), "Usage: g++ [options] file.")) {
-							output = exec.ExecWithOutput("gcc --h");
-							if(strstr(output.c_str(), "Usage: gcc [options] file.")) {
-								std::string path(getenv("HOME"));
-								path.append("/fetcheya");
-								chdir(path.c_str());
-								exec.RunFunction("sh install.sh");
-							} else {
-								std::cout << "GCC not found. Aborted.\n";
-							}
-						} else {
-							std::cout << "G++ not found. Aborted.\n";						
-						}
-					}
-				} else {
-					std::cout << "Aborted.\n";		
-				}
-				}
-			} else {
+				FInstall fetcheya_install;
+				fetcheya_install.InstallFetcheya();
+			} else
 				runfunction->RunFunction("fetcheya");
-			}
 		}
 				
 		history->WriteHistory(main_function->_h_str);
@@ -492,13 +465,13 @@ void InputFunction() {
 		return;
 	} else if(main_function->_h_str == keywords.Random) {
     		RemovePrintedChar(keywords.Random.length() - 1);
-    		if(runsyntax->Theme() == "default")  {
+    		if(runsyntax->Theme() == "default")
         		std::cout << WBOLD_BLUE_COLOR << "random " << WBLACK_COLOR;
-       		} else if(runsyntax->Theme() == "classic") {
-       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "random ");
-       		} else {
+       	else if(runsyntax->Theme() == "classic")
+       		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "random ");
+       	else
         		std::cout << WBOLD_BLUE_COLOR << "random " << WBLACK_COLOR;
-        	}
+
     		int number;
     		BOLD_CYAN_COLOR
     		std::cin >> number;
