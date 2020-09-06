@@ -9,10 +9,12 @@
 #define INSTALL_HPP
 
 #include <iostream>
+#include <cstring>
 
 class FInstall {
 public:
 	void InstallFetcheya();
+	void FegeyaPackageInstaller(std::string); /* Arg */
 };
 
 #endif // LINKER_HPP

@@ -461,7 +461,7 @@ void InputFunction() {
        	main_function->_h_str.erase();
         	terminalstr->Terminal();   
        	return;
-    	} else if(main_function->_h_str == keywords.Fetcheya) {
+    	} /* else if(main_function->_h_str == keywords.Fetcheya) {
 		RemovePrintedChar(keywords.Fetcheya.length() - 1);
 		if(runsyntax->Theme() == "default") 
 			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "fetcheya");
@@ -481,7 +481,7 @@ void InputFunction() {
 		main_function->_h_str.erase();
 		terminalstr->Terminal();
 		return;
-	} else if(main_function->_h_str == keywords.Random) {
+	} */else if(main_function->_h_str == keywords.Random) {
     		RemovePrintedChar(keywords.Random.length() - 1);
     		if(runsyntax->Theme() == "default")
         		std::cout << WBOLD_BLUE_COLOR << "random " << WBLACK_COLOR;
@@ -1362,8 +1362,14 @@ void InputFunction() {
 			cursorpos.x = 0;
 			slashn
 			if(main_function->_h_str == "\n") {} else {
-				std::string copy(main_function->_h_str);
-        			runfunction->RunFunction(copy);
+				if(strstr(main_function->_h_str.c_str(), keywords.Fpi.c_str())) {
+					/* fpi --i */
+					FInstall fetcheya_install;
+					fetcheya_install.FegeyaPackageInstaller(main_function->_h_str);
+    				} else {				 
+					std::string copy(main_function->_h_str);
+        				runfunction->RunFunction(copy);
+        			}
         		}
         		main_function->_h_str.erase();
         		terminalstr->Terminal(); 

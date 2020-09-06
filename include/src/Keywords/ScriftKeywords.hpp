@@ -8,35 +8,33 @@
 #ifndef SCRIFT_KEYWORDS_HPP
 #define SCRIFT_KEYWORDS_HPP
 
-#include "../Scrift.hpp"
-#include "../synflang.hpp"
+#include <iostream>
+#include <cstring>
 
 struct ScriftKeywords {
 public:
-	// Commands
-	
-	// Help
+	/* Help */
 	std::string Help = "help";
 	std::string Help_Short = "-h";
 	std::string Help_Short_Biggest = "-H";
 	std::string Help_Big = "Help";
 	std::string Help_Biggest = "HELP";
 	 
-	// GitLink
+	/* GitLink */
 	std::string GitLink = "gitlink";
 	std::string GitLink_Big = "GitLink";
 	
-	// Edifor
+	/* Edifor */
 	std::string Edifor = "edifor";
 	
-	// Contributors
+	/* Contributors */
 	std::string Cont = "cont";
 	std::string Cont_Big = "Cont";
 	std::string Contr = "contr";
 	std::string Contributors = "contributors";
 	std::string Contributors_Big = "Contributors";
 	
-	// Quotation Marks
+	/* Quotation Marks */
 	std::string FeLog = "felog";
 	std::string Show_Log = "show_log";
 	std::string FeLog_Big = "FeLog";
@@ -44,7 +42,7 @@ public:
 	std::string FeLog_Biggest = "FELOG";
 	std::string Show_Log_Big = "Show_Log";
 	
-	// Clear Log
+	/* Clear Log */
 	std::string ClearLog = "clear_log";
 	std::string FeLogClear = "felog --clear";
 	std::string Clear_Log_Big = "Clear_Log";
@@ -52,43 +50,43 @@ public:
 	std::string FeLogClearBig = "FeLog --Clear";
 	std::string FeLogClearBiggest = "FELOG --CLEAR";
 	
-	// GetDev
+	/* GetDev */
 	std::string GetDev = "getdev";
 	
-	// Add Text
+	/* Add Text */
 	std::string AddText = "addtext";
 	
-	// Castle
+	/* Castle */
 	std::string Castle = "castle";
 	std::string FCastle = "fcastle";
 	
-	// Remove File
+	/* Remove File */
 	std::string RemoveFile = "rmvfile";
 	
-	// Delete Text
+	/* Delete Text */
 	std::string DeleteText = "deletetext";
 	
-	// MKDir 
+	/* MKDir  */
 	std::string MKDir = "mkdir";
 	
-	// Create
+	/* Create */
 	std::string Create = "create";
 	
-	// ReadText 
+	/* ReadText  */
 	std::string ReadText = "readtext";
 	
-	// Run
+	/* Run */
 	std::string RunDotSlash = "./";
 	std::string RunST = "st";
 	
-	// Fr
+	/* Fr */
 	std::string Fr = "fr";
 	std::string Cd = "cd";
 	
-	// Back
+	/* Back */
  	std::string Back = "back";
  	
- 	// Home
+ 	/* Home */
  	std::string Home = "home";
  	std::string Default = "default";
  	std::string Home_Big = "Home";
@@ -96,18 +94,18 @@ public:
  	std::string Default_Big = "Default";
  	std::string Default_Biggest = "DEFAULT";
  	
- 	// Scrift
+ 	/* Scrift */
  	std::string Scrift = "fscrift";
  	
- 	// Create Scrift Project 
+ 	/* Create Scrift Project  */
  	std::string CreateScriftProject = "create scrift_project";
  	
  	
- 	// Test Settings
+ 	/* Test Settings */
  	std::string TestSettings = "testsettings";
  	std::string ScrLang = "scrlang";
  	
- 	// List Dir
+ 	/* List Dir */
  	std::string Lsd = "dls";
  	std::string Lsdir = "lsdir";
  	std::string ls_d = "ls -d";
@@ -115,16 +113,16 @@ public:
  	std::string Lsdir_Biggest = "LSDIR";
  	std::string Lsdir_Big = "Ls_Dir";
 	
-	// Show Settings 
+	/* Show Settings */
 	std::string ShowSettings = "show_settings";
 	std::string Settings = "settings";
 	
-	// Clear Settings 
+	/* Clear Settings */
 	std::string Clear_Settings = "rmvsettings";
 	std::string DeleteSettings = "deletesettings";
 	
 	
-	// List
+	/* List */
 	std::string Ls = "ls";
 	std::string Dir = "dir";
 	std::string Ls_Biggest = "LS";
@@ -132,10 +130,10 @@ public:
 	std::string Ls_Big = "Ls";
 	std::string Dir_Big = "Dir";
 	
-	// List Objects
+	/* List Objects */
 	std::string LsObject = "objls";
 	
-	// List File 
+	/* List File */ 
 	std::string Lsf = "fls";
 	std::string Lsfile = "lsfile";
 	std::string Ls_f = "ls -f";
@@ -143,125 +141,128 @@ public:
 	std::string Lsfile_Biggest = "LSFILE";
 	std::string Ls_File = "Ls File";
 	
-	// Create Text 
+	/* Create Text */ 
 	std::string CreateText = "ctxt";
 	
-	// Printlnf
+	/* Printlnf */
 	std::string Printlnf = "printlnf";
 	std::string Echo = "echo";
 
-	// Clear
+	/* Clear */
 	std::string Clear = "clear";
 	std::string Clear___ = "clear!!!";
 	
-	// Close
+	/* Close */
 	std::string Exit = "exit";
 	std::string Close = "cls";
 	
-	// Username 
+	/* Username */
 	std::string Username = "username";
 	std::string UName = "uname";
 	
-	// History
+	/* History */
 	std::string History = "history";
 	std::string FHist = "fhist";
 	
-	// Clear History
+	/* Clear History */
 	std::string Clear_History = "rmvhistory";
 	std::string History_Cleaner = "history_cleaner";
 	
-	// Scr
+	/* Scr */
 	std::string Scr = "scr";
 	
-	// Randomize String
+	/* Randomize String */
 	std::string RandomizeString = "rstr";
 	
-	// Pause
+	/* Pause */
 	std::string Pause = "pause";
 	
-	// Version
+	/* Version */
 	std::string Version = "version";
 	std::string _V = "-v";
 	
-	// Fetcheya
+	/* Fetcheya */
 	std::string Fetcheya = "fetcheya";
 	std::string _f = "-f";
 	
-	// Set Locale System
+	/* Set Locale System */
 	std::string SetLocaleSystem = "setlocale_system";
 	
-	// Environment
+	/* Environment */
 	std::string SetName = "setname";
 	std::string SetTo = "setto";
 	
-	// Arrow Sign
+	/* Arrow Sign */
 	std::string ArrowSign = "->";	
 	std::string Enter = "\n";
 	
-	// IP
+	/* IP */
 	std::string IP = "ip";
 	std::string MyIP = "myip";
 	
-	// Scrift Run In Path 
+	/* Scrift Run In Path */
 	std::string Scrp = "scrp";
 	
-	// Now
+	/* Now */
 	std::string Now = "now";
 	std::string DateNow = "datenow";
 	
-	// Find 
+	/* Find */ 
 	std::string Find = "ffind";
 	std::string Find_Big = "Ffind";
 	std::string Find_Biggest = "FFIND";
 	
-	// FName 
+	/* FName */
 	std::string KName = "kname";
 	
-	// Emoji
+ 	/* Emoji */
 	std::string Emoji = "emoji";
 
-	// Random
+	/* Random */
 	std::string Random = "random";
 	
-	// Set 
+	/* Set */
 	std::string Set = "fset";
 	
-	// Square and Sqrt (square root)
+	/* Square and Sqrt (square root) */
 	std::string SquareofNumber = "square";
 	std::string SquareRootofNumber = "sqrt";
 	
-	// Factorial
+	/* Factorial */
 	std::string Factorial = "fact";
 	
-	// Set Background Color
+	/* Set Background Color */
 	std::string SetBgColor = "fset bg";
 		
-	// Template
+	/* Template */
 	std::string LanguageTemplate = "template";	
 		
-	// Welcome 
+	/* Welcome */
 	std::string Welcome = "welcome";
 		
-	// Uptime
+	/* Uptime */
 	std::string Uptime = "uptime";
 	
-	// My ASCII Art
+	/* My ASCII Art */
 	std::string MyASCIIArt = "asciiart";
 	
-	// Morse
+	/* Morse */
 	std::string Morse = "morse";
 	std::string MorseinMorseCode = "-- --- .-. ... .";
 	
-	// Uninstall
+	/* Uninstall */
 	std::string Uninstall = "uninstall";
 	
-	// FreeBrain Generator
+	/* FreeBrain Generator */
 	std::string FreeBrainGen = "genfrbr";
 	
-	// Parse
+	/* Parse */
 	std::string Parse = "parse";
 	
-	// Whitespace
+	/* Fegeya package installer */
+	std::string Fpi = "fpi";
+	
+	/* Whitespace */
 	std::string Whitespace = " ";
 };
 
