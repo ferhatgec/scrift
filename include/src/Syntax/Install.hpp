@@ -14,6 +14,8 @@
 class FInstall {
 public:
 	void InstallFetcheya();
+	void InstallFlaScript();
+	
 	void FegeyaPackageInstaller(std::string); /* Arg */
 };
 

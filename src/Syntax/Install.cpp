@@ -65,6 +65,51 @@ FInstall::InstallFetcheya() {
 	}
 }
 
+void
+FInstall::InstallFlaScript() {
+	ExecutePlusPlus exec;
+	if(fsplusplus::IsExistFile("/bin/fla") == false) {
+		#ifdef __FreeBSD__
+			std::cout << "Use this command as super user.\n";
+		#else		
+			std::cout << "FlaScript is not installed.\nDo you want to install FlaScript from source? (y/n) : ";	
+			char input = getchar();
+			if(input == 'y' || input == 'Y') {
+				if(fsplusplus::IsExistFile("/bin/git") == true) {
+					chdir(getenv("HOME"));
+					exec.RunFunction("git clone https://github.com/ferhatgec/flascript.git");
+					if(fsplusplus::IsExistFile("/bin/g++") == true) {
+						if(fsplusplus::IsExistFile("/bin/gcc") == true) {
+							std::string path(getenv("HOME"));
+							path.append("/flascript");
+							std::cout << "Directory changed. : " << getenv("HOME") << "/flascript\n";
+							chdir(path.c_str());
+							std::cout << "Installing..\n";
+							exec.RunFunction("sudo sh install.sh");
+							
+							if(fsplusplus::IsExistFile("/bin/fla") == true) {
+								std::cout << "\nInstalled!\n";
+							}
+						} else
+							std::cout << "gcc not found. Aborted.\n";
+					} else
+						std::cout << "g++ not found. Aborted.\n";						
+				} else
+					std::cout << "git not found. Aborted.\n";
+			} else
+				std::cout << "Aborted.\n";	
+		#endif
+	} else {
+		std::cout << "FlaScript is already installed\nWould you like to run it? (y/n) : "; 
+		char input = getchar();
+		if(input == 'y' || input == 'Y')
+			exec.RunFunction("fla");
+		else
+			std::cout << "Aborted.\n";
+	}
+}
+
+
 /*
 	Simple git-based package installer for Fegeya Community's applications. (Build & Install)
 */
@@ -76,6 +121,8 @@ FInstall::FegeyaPackageInstaller(std::string arg) {
 		arg = stringtools::EraseAllSubString(arg, "fpi --i ");
 		if(strstr(arg.c_str(), "fetcheya")) {
 			InstallFetcheya();
+		} else if(strstr(arg.c_str(), "flascript")) {
+			InstallFlaScript();
 		}
 	}
 }
