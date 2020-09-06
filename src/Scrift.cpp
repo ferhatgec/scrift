@@ -36,43 +36,43 @@
 	#include <sys/sysinfo.h>
 #endif
 
-
 /* Source */
-#include <src/Syntax/CommandFunc.h>
-#include <src/Scrift.hpp>
-#include <src/Keywords/ScriftKeywords.hpp>
-#include <src/synflang.hpp>
-#include <src/Syntax/Log.hpp>
-#include <src/Syntax/FileFunction.hpp>
-#include <src/Syntax/PrintErrorFunction.hpp>
-#include <src/Syntax/KernelName.hpp>
-#include <src/Syntax/HelpFunction.hpp>
-#include <src/Syntax/GetNameFunction.hpp>
-#include <src/Syntax/RunFunction.hpp>
-#include <src/Syntax/Test.hpp>
-#include <src/Syntax/ASCIIFunction.hpp>
-#include <src/Syntax/DeveloperMode.hpp>
-#include <src/Syntax/Contributors.hpp>
-#include <src/Syntax/Settings.hpp>
-#include <src/Syntax/Language.hpp>
-#include <src/Syntax/History.hpp>
-#include <src/Syntax/Template.hpp>
-#include <src/Syntax/Install.hpp>
+#include <src/Syntax/CommandFunc.h> /* For rstr, printlnf etc. */
+#include <src/Scrift.hpp> /* Scrift main */
+#include <src/Keywords/ScriftKeywords.hpp> /* Shell keywords */
+#include <src/synflang.hpp> /* Some definitions */
+#include <src/Syntax/Log.hpp> /* FeLog */
+#include <src/Syntax/FileFunction.hpp> /* All file I/O functions, variables. */
+#include <src/Syntax/PrintErrorFunction.hpp> /* Under the construction */
+#include <src/Syntax/KernelName.hpp> /* Get kernel name */
+#include <src/Syntax/HelpFunction.hpp> /* HelpFunction(), Welcome() etc. */
+#include <src/Syntax/GetNameFunction.hpp> /* Terminal */
+#include <src/Syntax/RunFunction.hpp> /* Command execution */
+#include <src/Syntax/Test.hpp> /* Test. */
+#include <src/Syntax/ASCIIFunction.hpp> /* ASCII */
+#include <src/Syntax/DeveloperMode.hpp> /* Under the construction */
+#include <src/Syntax/Contributors.hpp> /* Contributors etc. */
+#include <src/Syntax/Settings.hpp> /* Settings */
+#include <src/Syntax/Language.hpp> /* Under the construction. Scripting language */
+#include <src/Syntax/History.hpp> /* History */
+#include <src/Syntax/Template.hpp> /* 'Hello world' example for a lot of languages */
+#include <src/Syntax/Install.hpp> /* Simple build & install package installer for Fegeya Community's applications */
 
 
 #include <Library/Keywords.hpp>
 
 /* Libraries */
-#include <InputPlusPlus.h>
-#include <EmojiPlusPlus.h>
-#include <Colorized.hpp>
-#include <EasyMorse.hpp>
-#include <ExecutePlusPlus.hpp>
-#include <FileSystemPlusPlus.h>
+#include <InputPlusPlus.h> /* For key-codes */
+#include <EmojiPlusPlus.h> /* Emoji? */ 
+#include <Colorized.hpp> /* Color library */
+#include <EasyMorse.hpp> /* Morse-String to String-Morse converter library. */
+#include <ExecutePlusPlus.hpp> /* Command execution library */
+#include <FileSystemPlusPlus.h> /* File I/O library. */ 
 
-/* Variables */
+/* FileFunction namespace */
 using namespace FileFunction;
 
+/* Variables */
 const std::string compilation_date = __DATE__;
 const std::string compilation_time = __TIME__;
 
@@ -80,8 +80,7 @@ const std::string compilation_time = __TIME__;
 #define ESC 033 
 
 /* For Environment */
-static std::string SetNameToString;
-static std::string SetNameString;
+static std::string SetNameToString, SetNameString;
 
 /* Classes */
 std::unique_ptr<FMain> main_function(new FMain);
@@ -121,7 +120,7 @@ typedef struct CursorPos {
 
 cursorp cursorpos;
 
-FMain::FMain() { }
+FMain::FMain() {}
 
 
 FMain::~FMain() {}
@@ -136,13 +135,11 @@ void RemovePrintedChar(int value) {
 	return;
 }
 
-int factorial(int n);
-int space = 0;
+int space = 0, input_value = 0;
+
 std::string ftime(compilation_time); // Convert
 
-int input_value = 0;
-
-// Get Between String    
+/* TODO: Remove this and replace with GetBetweenString of StringTools library. Get Between String */    
 void GetBtwString(std::string oStr, std::string sStr1, std::string sStr2, std::string &rStr) {  
     int start = oStr.find(sStr1);   
     if (start >= 0) {       
@@ -159,6 +156,7 @@ void GetBtwString(std::string oStr, std::string sStr1, std::string sStr2, std::s
 
 std::string VersionGenerator() { return "scriftv" + scriftlang->EraseAllSubString(ftime, ":"); }
 
+/* For input colorizing */
 void Space(int space, std::string sign, bool theme) {
 	if(theme == true) {
 		colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), sign.c_str());
@@ -188,19 +186,27 @@ void Space(int space, std::string sign, bool theme) {
 void PrintVersion() {
 	BOLD_MAGENTA_COLOR
         printlnf("Fegeya Scrift Version: ");
+    	/* Version */
     	BOLD_GREEN_COLOR
     	printlnf(SCRIFT_VERSION);
+    	/* - */
     	BOLD_YELLOW_COLOR
     	printhyphen // printlnf("-");
+    	/* Status */
     	BOLD_CYAN_COLOR
     	printlnf(SCRIFT_STATUS);
+    	/* - */
     	BOLD_BLUE_COLOR
     	printhyphen // printlnf("-");
+    	/* VersionGenerator */
     	BOLD_MAGENTA_COLOR
     	printlnf(VersionGenerator().c_str());
+    	/* Newline */
     	slashn
+    	/* Copyright */
     	BOLD_RED_COLOR
     	printlnf("Copyright (c) 2020 ");
+    	/* Author */
     	BOLD_BLUE_COLOR
     	printlnf("Ferhat Gecdogan \n");
     	BOLD_YELLOW_COLOR
@@ -211,6 +217,7 @@ void PrintVersion() {
     	slashn
 }
 
+/* Square root converter. */
 int sqrti(int x) {
     union { float f; int x; } v; 
 
@@ -222,6 +229,7 @@ int sqrti(int x) {
     return (int)v.f;
 }
 
+/* Factorial */
 int factorial(int n) {
     if(n > 1)
         return n * factorial(n - 1);
@@ -229,12 +237,14 @@ int factorial(int n) {
         return 1;
 }
 
+/* Integer to String */
 std::string IntToString(int a) {
     	std::ostringstream temp;
     	temp << a;
     	return temp.str();
 }
 
+/* For 'Happy new year' */
 std::string currentDateTime() {
     // return "2020-01-01-12:34:67:00"; For Test.
     time_t     now = time(0);
@@ -260,6 +270,7 @@ void moveCursor(std::ostream& os, int col, int row) {
   os << "\033[" << col << ";" << row << "H";
 }
 
+/* ASCII Code generator for FreeBrain */
 std::string AsciiGenFreeBrain(int len) {
 	std::string rtr = "~";
 	for(int i = 0; i != len; i++) {
@@ -275,6 +286,7 @@ void textbackground(int color) {
 	printf ("%c[%dm", ESC, 40+color);
 }
 
+/* Username, emoji */
 void PrintUsername() {	
     	BOLD_MAGENTA_COLOR
     	printlnf("Welcome ");
@@ -291,7 +303,7 @@ void PrintUsername() {
 */
 std::string GetUptime() {
 	#ifdef __FreeBSD__
-	return "null";
+		return "null";
 	#else 
 	double uptime, uptimeMinutes, uptimeHour, uptimeDay;
 	int initialUptime, uptimeMinutesWhole, uptimeHourWhole, uptimeDayWhole;
@@ -329,6 +341,7 @@ std::string GetUptime() {
 	Input && Interpreter.
 */
 void InputFunction() {
+	/* Foreground color */
 	textbackground(runsyntax->BackgroundColor());
 	std::string sign;
         struct termios t;
@@ -337,22 +350,27 @@ void InputFunction() {
         t.c_lflag&=~ECHO+~ICANON;
         tcsetattr(0,TCSANOW,&t);
         fflush(stdout);
-        c=getchar();
+        c=getchar(); /* Input per key */
         t.c_lflag|=ICANON+ECHO;
         tcsetattr(0,TCSANOW,&t);
+        
+        /* Cursor position */
         cursorpos.x = main_function->_h_str.length();
+        
+        /* Backspace, Enter detection. */
         if(c == BACKSPACE) {
 		if(cursorpos.x >= 1) {
 			cursorpos.x -= 1;
 			// Under the Construction
      			main_function->_h_str.erase(main_function->_h_str.end() - 1);
      			std::cout << '\b' << " " << '\b';
-		} else {
-		}
+		} else {}
 		return;
      	} else {
         	main_function->_h_str.push_back(c);
         }
+        
+        /* Statements */
         if(main_function->_h_str == keywords.Help) {
 		RemovePrintedChar(keywords.Help.length() - 1);
 		if(runsyntax->Theme() == "default")  {
