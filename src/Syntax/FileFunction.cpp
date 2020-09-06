@@ -84,7 +84,7 @@ void
 FCDFunction::CDFunctionInit(std::string name) {
     if(name != "") {
         if(fmain->_home != true) {
-	    if(name.rfind("#") == 0) {
+	    if(strstr(name.c_str(), "#")) {
 	    	name = stringtools::EraseAllSubString(name, "#");
 	    	std::string new_name(getenv(name.c_str()));
 	    	if(new_name.rfind("/") == 0) {
@@ -127,18 +127,18 @@ FCDFunction::CDFunctionInit(std::string name) {
             		return;
 	    	} else {
 		std::string path;
-	    	if(command->_file_path_cd_function == "/") {
+	    	/*if(command->_file_path_cd_function == "/") {
 			path.append(command->_file_path_cd_function);
 			path.append(name);				    		
-		} else {
+		} else {*/
             		path.append(command->_file_path_cd_function);
             		path.append("/");
             		path.append(name);
-            	}
+            	//}
             	if(FileExists(path) == true) {
             	    chdir(name.c_str());
-		    char *path(&fsplusplus::GetCurrentWorkingDir()[0]);
-                    std::strcpy(command->_file_path_cd_function, path);	  
+		    //char *path(&fsplusplus::GetCurrentWorkingDir()[0]);
+                    std::strcpy(command->_file_path_cd_function, &fsplusplus::GetCurrentWorkingDir()[0]);	  
 		    fmain->SetTitle();          	
 		}  else {
             	    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "scrift : "); 

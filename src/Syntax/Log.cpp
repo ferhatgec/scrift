@@ -21,7 +21,7 @@ FCommand *commandlog = new FCommand();
 std::string filepath_with_path;
 FeLog::FeLog(){}
 
-FeLog::~FeLog(){ delete commandlog; }
+FeLog::~FeLog(){  }
 
 func
 FeLog::ClearLog() {

@@ -30,12 +30,12 @@ FStructure::~FStructure() {
 
 void
 FGetUsername::InitUsername() {
-    //#ifdef __linux__ 
+    //#ifdef __linux__
     if(password) {
         printlnf(password->pw_name);
     }
-   //#else 
-   // slashn 
+   //#else
+   // slashn
    // printlnf("Fegeya Fusion Username: 'user'");
    // #endif
 }
@@ -46,7 +46,7 @@ FGetUsername::GetUsername() {
 }
 
 
-void 
+void
 FGetUsername::InitHostname() {
     fchar hostname_buffer[256];
     gethostname(hostname_buffer, sizeof(hostname_buffer));
