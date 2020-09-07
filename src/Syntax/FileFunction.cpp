@@ -70,7 +70,7 @@ FCDFunction::FileExists(const std::string &Filename) {
 /*
 	fr #env
 	cd #env
-	-------	
+	-------
 	fr dir
 	cd dir
 	-------
@@ -93,7 +93,7 @@ FCDFunction::CDFunctionInit(std::string name) {
 	    		    chdir(new_name.c_str());
 			    fmain->SetTitle();
             		} else {
-            		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "scrift : "); 
+            		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "scrift : ");
 			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), new_name.c_str());
 			    colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), " : This directory is not exist!\n");
             		    return;
@@ -108,7 +108,7 @@ FCDFunction::CDFunctionInit(std::string name) {
             		    std::strcat(command->_file_path_cd_function, new_name.c_str());
             		    chdir(new_name.c_str());
             		} else {
-            		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "scrift : "); 
+            		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "scrift : ");
 			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), new_name.c_str());
 			    colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), " : This directory is not exist!\n");
             		    return;
@@ -120,7 +120,7 @@ FCDFunction::CDFunctionInit(std::string name) {
 	    		    std::strcpy(command->_file_path_cd_function, name.c_str());
 	    		    chdir(name.c_str());
             		} else {
-            		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "scrift : "); 
+            		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "scrift : ");
 			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), name.c_str());
 			    colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), " : This directory is not exist!\n");
             		}
@@ -129,7 +129,7 @@ FCDFunction::CDFunctionInit(std::string name) {
 		std::string path;
 	    	/*if(command->_file_path_cd_function == "/") {
 			path.append(command->_file_path_cd_function);
-			path.append(name);				    		
+			path.append(name);
 		} else {*/
             		path.append(command->_file_path_cd_function);
             		path.append("/");
@@ -138,10 +138,10 @@ FCDFunction::CDFunctionInit(std::string name) {
             	if(FileExists(path) == true) {
             	    chdir(name.c_str());
 		    //char *path(&fsplusplus::GetCurrentWorkingDir()[0]);
-                    std::strcpy(command->_file_path_cd_function, &fsplusplus::GetCurrentWorkingDir()[0]);	  
-		    fmain->SetTitle();          	
+                    std::strcpy(command->_file_path_cd_function, &fsplusplus::GetCurrentWorkingDir()[0]);
+		    fmain->SetTitle();
 		}  else {
-            	    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "scrift : "); 
+            	    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "scrift : ");
 		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), name.c_str());
 		    colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), " : This directory is not exist!\n");
             	    return;
@@ -239,6 +239,7 @@ FCreateFileFunction::CreateSettingsFileFunction() {
     	file << "input_customize ▶\n";
 	file << "welcome_message yes\n";
 	file << "local_git_branch yes\n";
+        file << "scrift_setup yes\n";
     	file.close();
     } else {
     }
@@ -261,6 +262,7 @@ FClearFileFunction::ClearSettingsFunction() {
     	file << "input_customize ▶\n";
 	file << "welcome_message yes\n";
 	file << "local_git_branch yes\n";
+        file << "scrift_setup yes\n";
     } else {
         CreateSettingsFileFunction();
     }
@@ -278,17 +280,17 @@ FCreateFileFunction::CreateASCIIFileFunction() {
     	std::ofstream file(path, std::ios::app);
     	file << " ███████╗ ██████╗██████╗ ██╗███████╗████████╗ 	\n";
     	file << " ██╔════╝██╔════╝██╔══██╗██║██╔════╝╚══██╔══╝ 	\n";
-    	file << " ███████╗██║     ██████╔╝██║█████╗     ██║	\n";   
-    	file << " ╚════██║██║     ██╔══██╗██║██╔══╝     ██║	\n";   
-    	file << " ███████║╚██████╗██║  ██║██║██║        ██║	\n";   
-    	file << " ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝	\n";   
+    	file << " ███████╗██║     ██████╔╝██║█████╗     ██║	\n";
+    	file << " ╚════██║██║     ██╔══██╗██║██╔══╝     ██║	\n";
+    	file << " ███████║╚██████╗██║  ██║██║██║        ██║	\n";
+    	file << " ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝	\n";
    	file.close();
     } else { }
 }
 
 void
 FReadFileFunction::ReadHistoryFileFunction() {
-    int line_number = 0;	
+    int line_number = 0;
     std::string line;
     std::string path;
     path.append(getenv("HOME"));
@@ -309,7 +311,7 @@ FReadFileFunction::ReadHistoryFileFunction() {
     }
 }
 
-std::string 
+std::string
 FFindFileFunction::FindWithoutPrint(std::string name) {
     DIR *directory;
     directory = opendir(command->_file_path_cd_function);
@@ -324,11 +326,11 @@ FFindFileFunction::FindWithoutPrint(std::string name) {
             // Null
             } else if(strstr(entryname->d_name, "..")){
 	    // Null
-	    } else if(strstr(entryname->d_name, name.c_str())) { 
-	    	//std::string clone_entry(entryname->d_name); 
+	    } else if(strstr(entryname->d_name, name.c_str())) {
+	    	//std::string clone_entry(entryname->d_name);
             	return entryname->d_name;
             }
-        } 
+        }
         else if(strstr(entryname->d_name, name.c_str())){
             // Null
         }
@@ -354,7 +356,7 @@ FFindFileFunction::FindFile(std::string name) {
             // Null
             } else if(strstr(entryname->d_name, "..")){
 	    // Null
-	    } else if(strstr(entryname->d_name, name.c_str())) {  
+	    } else if(strstr(entryname->d_name, name.c_str())) {
             	printlnf("%4s: %s\n", "[Dir]", entryname->d_name);
             }
         } else if(strstr(entryname->d_name, "Elitefile")) {
@@ -366,11 +368,11 @@ FFindFileFunction::FindFile(std::string name) {
 	    if(strstr(entryname->d_name, name.c_str())) {
 	    	colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "");
             	printlnf("%4s: %s\n", "FeLog*", entryname->d_name);
-	    }	
+	    }
 	} else if(strstr(entryname->d_name, ".scrift_ascii")) {
-	    if(strstr(entryname->d_name, name.c_str())) {			    
+	    if(strstr(entryname->d_name, name.c_str())) {
 		colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "");
-            	printlnf("%4s: %s\n", "Ascii Art*", entryname->d_name);	
+            	printlnf("%4s: %s\n", "Ascii Art*", entryname->d_name);
 	    }
 	} else if(strstr(entryname->d_name, ".scrift_settings")) {
 	    if(strstr(entryname->d_name, name.c_str())) {
@@ -381,13 +383,13 @@ FFindFileFunction::FindFile(std::string name) {
 	    if(strstr(entryname->d_name, name.c_str())) {
             	colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "");
             	printlnf("%4s: %s\n", "History*", entryname->d_name);
-	    }	
+	    }
 	} else if(strstr(entryname->d_name, ".scr")) {
             if(strstr(entryname->d_name, name.c_str())) {
             	BOLD_GREEN_COLOR
             	printlnf("%4s: %s\n", "[Scrift]", entryname->d_name);
 	    }
-        } else if(strstr(entryname->d_name, ".cpp") || strstr(entryname->d_name, ".hpp") || 
+        } else if(strstr(entryname->d_name, ".cpp") || strstr(entryname->d_name, ".hpp") ||
 	strstr(entryname->d_name, ".cxx") || strstr(entryname->d_name, ".hxx") || strstr(entryname->d_name, ".cc") || strstr(entryname->d_name, ".hh")) {
             if(strstr(entryname->d_name, name.c_str())) {
 		BOLD_CYAN_COLOR
@@ -397,12 +399,12 @@ FFindFileFunction::FindFile(std::string name) {
 	    if(strstr(entryname->d_name, name.c_str())) {
 	    	BOLD_BLUE_COLOR
             	printlnf("%4s: %s\n", "[C]", entryname->d_name);
-	    }		
+	    }
 	} else if(strstr(entryname->d_name, "CMakeLists.txt")) {
 	    if(strstr(entryname->d_name, name.c_str())) {
 	    	BOLD_MAGENTA_COLOR
             	printlnf("%4s: %s\n", "[CMake]", entryname->d_name);
-	    }	
+	    }
 	} else if(strstr(entryname->d_name, ".sh")) {
 	    if(strstr(entryname->d_name, name.c_str())) {
 	    	BOLD_GREEN_COLOR
@@ -412,17 +414,17 @@ FFindFileFunction::FindFile(std::string name) {
 	    if(strstr(entryname->d_name, name.c_str())) {
 	    	BOLD_BLUE_COLOR
             	printlnf("%4s: %s\n", "[Python]", entryname->d_name);
-	    }	
+	    }
 	} else if(strstr(entryname->d_name, ".fls") || strstr(entryname->d_name, ".flsh")) {
 	    if(strstr(entryname->d_name, name.c_str())) {
 		colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "");
 	    	printlnf("%4s: %s\n", "[FlaScript]", entryname->d_name);
 	    }
 	} else if(strstr(entryname->d_name, ".md")) {
-	    if(strstr(entryname->d_name, name.c_str())) {		    
+	    if(strstr(entryname->d_name, name.c_str())) {
 		BOLD_YELLOW_COLOR
         	printlnf("%4s: %s\n", "[Markdown]", entryname->d_name);
-	    }	
+	    }
 	} else if(strstr(entryname->d_name, ".frbr")) {
      	    if(strstr(entryname->d_name, name.c_str())) {
 		colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "");
@@ -437,32 +439,32 @@ FFindFileFunction::FindFile(std::string name) {
 	    if(strstr(entryname->d_name, name.c_str())) {
 	    	colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "");
 	    	printlnf("%4s: %s\n", "[Jpg]", entryname->d_name);
-	    }	
+	    }
 	} else if(strstr(entryname->d_name, ".gif")) {
-	    if(strstr(entryname->d_name, name.c_str())) {	            
+	    if(strstr(entryname->d_name, name.c_str())) {
 		colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "");
 	    	printlnf("%4s: %s\n", "[Gif]", entryname->d_name);
 	    }
 	} else if(strstr(entryname->d_name, ".html") || strstr(entryname->d_name, ".htm")) {
-	    if(strstr(entryname->d_name, name.c_str())) {		    
+	    if(strstr(entryname->d_name, name.c_str())) {
 		colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "");
             	printlnf("%4s: %s\n", "[Html]", entryname->d_name);
 	    }
 	} else if(strstr(entryname->d_name, ".rs") || strstr(entryname->d_name, ".rslib")) {
-	    if(strstr(entryname->d_name, name.c_str())) {		    
+	    if(strstr(entryname->d_name, name.c_str())) {
 		colorized::PrintWhReset(colorized::Colorize(BOLD, YELLOW).c_str(), "");
 	    	printlnf("%4s: %s\n", "[Rust]", entryname->d_name);
 	    }
 	} else if(strstr(entryname->d_name, ".lua")) {
-	    if(strstr(entryname->d_name, name.c_str())) {	  	    
+	    if(strstr(entryname->d_name, name.c_str())) {
 		colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLACK).c_str(), "");
 	    	printlnf("%4s: %s\n", "[Lua]", entryname->d_name);
 	    }
 	} else if(strstr(entryname->d_name, ".inclink")) {
-	    if(strstr(entryname->d_name, name.c_str())) {		    
+	    if(strstr(entryname->d_name, name.c_str())) {
 		colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "");
-		printlnf("%4s: %s\n", "[includeLink]", entryname->d_name);			
-	    }		
+		printlnf("%4s: %s\n", "[includeLink]", entryname->d_name);
+	    }
 	} else {
             BOLD_YELLOW_COLOR
             printlnf("%4s: %s\n", "[File]", entryname->d_name);
@@ -529,7 +531,7 @@ FClearFileFunction::ClearFeLogFunction() {
     file.close();
 }
 
-void 
+void
 FReadFileFunction::ReadFeLogFunctionWithoutPrint() {
 	int a = 0;
 	std::string line;
@@ -541,9 +543,9 @@ FReadFileFunction::ReadFeLogFunctionWithoutPrint() {
 		if(a >= settings->FeLogCleaner()) {
 			FClearFileFunction clearlog;
 			clearlog.ClearFeLogFunction();
-		} 
+		}
 		readfile.close();
-	} else { 
+	} else {
 		filelog->AllofThem();
 	}
 }
@@ -666,9 +668,9 @@ FLSFunction::GetObjects() {
     	if(entryname->d_type == DT_DIR) {
     		BOLD_RED_COLOR
     		if(strstr(entryname->d_name, ".")) {
-    		
+
     		} else if(strstr(entryname->d_name, "..")) {
-    		
+
     		} else {
    			printlnf("%4s: %s\n", "[Dir]", entryname->d_name);
 		}
@@ -683,7 +685,7 @@ FLSFunction::GetObjects() {
     return "null";
 }
 
-void 
+void
 FLSFunction::ListObjectFunction() {
     DIR *directory;
     directory = opendir("/bin/");
@@ -692,9 +694,9 @@ FLSFunction::ListObjectFunction() {
     	if(entryname->d_type == DT_DIR) {
     		BOLD_RED_COLOR
     		if(strstr(entryname->d_name, ".")) {
-    		
+
     		} else if(strstr(entryname->d_name, "..")) {
-    		
+
     		} else {
    			printlnf("%4s: %s\n", "[Dir]", entryname->d_name);
 		}
@@ -716,7 +718,7 @@ FLSFunction::ListArgumentObjectFunction(std::string argument) {
     	if(entryname->d_type == DT_DIR) {
     		BOLD_RED_COLOR
     		if(strstr(entryname->d_name, ".")) {
-    		
+
     		} else if(strstr(entryname->d_name, "..")) { } else if(strstr(entryname->d_name, argument.c_str())) {
    			return true;
 		} else { }
@@ -748,7 +750,7 @@ FLSFunction::LSFunction(std::string arg) {
             // Null
             } else if(strstr(entryname->d_name, "..")){
 	    // Null
-	    } else {  
+	    } else {
             	printlnf("%4s: %s\n", "[Dir]", entryname->d_name);
             }
         } else if(strstr(entryname->d_name, "Elitefile")) {
@@ -756,16 +758,16 @@ FLSFunction::LSFunction(std::string arg) {
             printlnf("%4s: %s\n", "[Elitebuild]", entryname->d_name);
         } else if(strstr(entryname->d_name, ".scrift_log")) {
 	    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "");
-	    printlnf("%4s: %s\n", "FeLog*", entryname->d_name);	
+	    printlnf("%4s: %s\n", "FeLog*", entryname->d_name);
 	} else if(strstr(entryname->d_name, ".scrift_ascii")) {
 	    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "");
-	    printlnf("%4s: %s\n", "Ascii Art*", entryname->d_name);	
+	    printlnf("%4s: %s\n", "Ascii Art*", entryname->d_name);
 	} else if(strstr(entryname->d_name, ".scrift_settings")) {
 	    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "");
-	    printlnf("%4s: %s\n", "Settings*", entryname->d_name);	
+	    printlnf("%4s: %s\n", "Settings*", entryname->d_name);
 	} else if(strstr(entryname->d_name, ".scrift_history")) {
 	    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "");
-	    printlnf("%4s: %s\n", "History*", entryname->d_name);	
+	    printlnf("%4s: %s\n", "History*", entryname->d_name);
 	} else if(strstr(entryname->d_name, ".scr")) {
             BOLD_GREEN_COLOR
             printlnf("%4s: %s\n", "[Scrift]", entryname->d_name);
@@ -774,10 +776,10 @@ FLSFunction::LSFunction(std::string arg) {
             printlnf("%4s: %s\n", "[C++]", entryname->d_name);
 	} else if(strstr(entryname->d_name, ".c") || strstr(entryname->d_name, ".h")) {
 	    BOLD_BLUE_COLOR
-            printlnf("%4s: %s\n", "[C]", entryname->d_name);		
+            printlnf("%4s: %s\n", "[C]", entryname->d_name);
 	} else if(strstr(entryname->d_name, "CMakeLists.txt")) {
 	    BOLD_MAGENTA_COLOR
-            printlnf("%4s: %s\n", "[CMake]", entryname->d_name);	
+            printlnf("%4s: %s\n", "[CMake]", entryname->d_name);
 	} else if(strstr(entryname->d_name, ".sh")) {
 	    BOLD_GREEN_COLOR
             printlnf("%4s: %s\n", "[Bash]", entryname->d_name);
@@ -810,10 +812,10 @@ FLSFunction::LSFunction(std::string arg) {
 	    printlnf("%4s: %s\n", "[Rust]", entryname->d_name);
 	} else if(strstr(entryname->d_name, ".lua")) {
 	    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLACK).c_str(), "");
-	    printlnf("%4s: %s\n", "[Lua]", entryname->d_name);	
+	    printlnf("%4s: %s\n", "[Lua]", entryname->d_name);
 	} else if(strstr(entryname->d_name, ".inclink")) {
 	    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "");
-	    printlnf("%4s: %s\n", "[includeLink]", entryname->d_name);			
+	    printlnf("%4s: %s\n", "[includeLink]", entryname->d_name);
 	} else {
             BOLD_YELLOW_COLOR
             printlnf("%4s: %s\n", "[File]", entryname->d_name);
@@ -846,4 +848,3 @@ FRemoveFileFunction::DeleteFile(std::string file) {
 FCreateFileFunction::~FCreateFileFunction() {}
 
 FCDFunction::~FCDFunction() {}
-

@@ -18,6 +18,7 @@ public:
 	*/
 	bool WelcomeMessage();
 	bool GitBranch();
+	bool Setup();
 
 	/*
 		theme, path etc.
@@ -26,10 +27,10 @@ public:
 	std::string InputCustomize();
 	std::string Theme();
 	std::string FWelcomeEmoji();
-	
+
 	/*
 		color option etc.
-	*/	
+	*/
 	int BackgroundColor();
 	int ASCIIColor();
 	int color();

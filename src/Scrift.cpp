@@ -31,8 +31,9 @@
 #include <sys/ioctl.h>
 #include <termios.h>
 #include <stdbool.h>
+#include <thread>
 
-#ifndef __FreeBSD__	
+#ifndef __FreeBSD__
 	#include <sys/sysinfo.h>
 #endif
 
@@ -57,17 +58,17 @@
 #include <src/Syntax/History.hpp> /* History */
 #include <src/Syntax/Template.hpp> /* 'Hello world' example for a lot of languages */
 #include <src/Syntax/Install.hpp> /* Simple build & install package installer for Fegeya Community's applications */
-
+#include <src/Syntax/Setup.hpp> /* Scrift Configuration & Setup */
 
 #include <Library/Keywords.hpp>
 
 /* Libraries */
 #include <InputPlusPlus.h> /* For key-codes */
-#include <EmojiPlusPlus.h> /* Emoji? */ 
+#include <EmojiPlusPlus.h> /* Emoji? */
 #include <Colorized.hpp> /* Color library */
 #include <EasyMorse.hpp> /* Morse-String to String-Morse converter library. */
 #include <ExecutePlusPlus.hpp> /* Command execution library */
-#include <FileSystemPlusPlus.h> /* File I/O library. */ 
+#include <FileSystemPlusPlus.h> /* File I/O library. */
 
 /* FileFunction namespace */
 using namespace FileFunction;
@@ -77,7 +78,7 @@ const std::string compilation_date = __DATE__;
 const std::string compilation_time = __TIME__;
 
 /* Definitions */
-#define ESC 033 
+#define ESC 033
 
 /* For Environment */
 static std::string SetNameToString, SetNameString;
@@ -98,6 +99,7 @@ std::unique_ptr<FSettings> runsyntax(new FSettings);
 std::unique_ptr<FLanguage> scriftlang(new FLanguage);
 std::unique_ptr<FHistory> history(new FHistory);
 std::unique_ptr<FHelpFunction> helpstr(new FHelpFunction);
+std::unique_ptr<FSetup> setup(new FSetup);
 
 /* Structures */
 std::unique_ptr<faddtextfunction> fileaddtextfunction(new faddtextfunction);
@@ -131,7 +133,7 @@ void RemovePrintedChar(int value) {
 	do {
 		std::cout << "\b";
 		rvalue++;
-	} while(rvalue != value);	
+	} while(rvalue != value);
 	return;
 }
 
@@ -139,20 +141,20 @@ int space = 0, input_value = 0;
 
 std::string ftime(compilation_time); // Convert
 
-/* TODO: Remove this and replace with GetBetweenString of StringTools library. Get Between String */    
-void GetBtwString(std::string oStr, std::string sStr1, std::string sStr2, std::string &rStr) {  
-    int start = oStr.find(sStr1);   
-    if (start >= 0) {       
-      std::string tstr = oStr.substr(start + sStr1.length());        
-      int stop = tstr.find(sStr2);      
-      if (stop >1)          
+/* TODO: Remove this and replace with GetBetweenString of StringTools library. Get Between String */
+void GetBtwString(std::string oStr, std::string sStr1, std::string sStr2, std::string &rStr) {
+    int start = oStr.find(sStr1);
+    if (start >= 0) {
+      std::string tstr = oStr.substr(start + sStr1.length());
+      int stop = tstr.find(sStr2);
+      if (stop >1)
         rStr = oStr.substr(start + sStr1.length(), stop);
       else
-        rStr ="error";  
+        rStr ="error";
     }
     else
-       rStr = "error"; 
-}  
+       rStr = "error";
+}
 
 std::string VersionGenerator() { return "scriftv" + scriftlang->EraseAllSubString(ftime, ":"); }
 
@@ -219,11 +221,11 @@ void PrintVersion() {
 
 /* Square root converter. */
 int sqrti(int x) {
-    union { float f; int x; } v; 
+    union { float f; int x; } v;
 
     // convert to float
     v.f = (float)x;
-    v.x  -= 1 << 23; // subtract 2^m 
+    v.x  -= 1 << 23; // subtract 2^m
     v.x >>= 1;       // divide by 2
     v.x  += 1 << 29; // add ((b + 1) / 2) * 2^m
     return (int)v.f;
@@ -258,7 +260,7 @@ std::string currentDateTime() {
 /*
 	Terminal title.
 */
-void 
+void
 FMain::SetTitle() {
 	std::cout << "\e]2; " << "Scrift: " << pass->pw_name << "@" << main_->_file_path_cd_function << "\a";
 }
@@ -287,7 +289,7 @@ void textbackground(int color) {
 }
 
 /* Username, emoji */
-void PrintUsername() {	
+void PrintUsername() {
     	BOLD_MAGENTA_COLOR
     	printlnf("Welcome ");
     	BOLD_CYAN_COLOR
@@ -304,7 +306,7 @@ void PrintUsername() {
 std::string GetUptime() {
 	#ifdef __FreeBSD__
 		return "null";
-	#else 
+	#else
 	double uptime, uptimeMinutes, uptimeHour, uptimeDay;
 	int initialUptime, uptimeMinutesWhole, uptimeHourWhole, uptimeDayWhole;
 	std::string uptimeString;
@@ -353,10 +355,10 @@ void InputFunction() {
         c=getchar(); /* Input per key */
         t.c_lflag|=ICANON+ECHO;
         tcsetattr(0,TCSANOW,&t);
-        
+
         /* Cursor position */
         cursorpos.x = main_function->_h_str.length();
-        
+
         /* Backspace, Enter detection. */
         if(c == BACKSPACE) {
 		if(cursorpos.x >= 1) {
@@ -369,7 +371,7 @@ void InputFunction() {
      	} else {
         	main_function->_h_str.push_back(c);
         }
-        
+
         /* Statements */
         if(main_function->_h_str == keywords.Help) {
 		RemovePrintedChar(keywords.Help.length() - 1);
@@ -386,7 +388,7 @@ void InputFunction() {
         	history->WriteHistory(main_function->_h_str);
         	main_function->_h_str.erase();
         	terminalstr->Terminal();
-        	return; 
+        	return;
         } else if(main_function->_h_str == keywords.Lsd) {
         	std::string input;
                 RemovePrintedChar(keywords.Lsd.length() - 1);
@@ -404,10 +406,10 @@ void InputFunction() {
           		main_->list_direc(true, ".");
           	} else {
           		main_->list_direc(true, input);
-          	}  
+          	}
         	history->WriteHistory(main_function->_h_str);
          	main_function->_h_str.erase();
-        	terminalstr->Terminal();       	
+        	terminalstr->Terminal();
         	return;
         } else if(main_function->_h_str == keywords.Create) {
         	RemovePrintedChar(keywords.Create.length() - 1);
@@ -418,15 +420,15 @@ void InputFunction() {
        			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "create scrift_project");
        		} else {
         		std::cout << WBOLD_BLUE_COLOR << "create" << WBLACK_COLOR;
-       			std::cout << WBOLD_CYAN_COLOR << " scrift_project";	
+       			std::cout << WBOLD_CYAN_COLOR << " scrift_project";
         	}
         	BOLD_MAGENTA_COLOR
         	std::getline(std::cin, main_function->_h_str);
         	BLACK_COLOR
         	filefunction->CreateScriftFile(main_function->_h_str);
-        	history->WriteHistory(main_function->_h_str); 
+        	history->WriteHistory(main_function->_h_str);
         	main_function->_h_str.erase();
-        	terminalstr->Terminal();  
+        	terminalstr->Terminal();
         	return;
         } else if(main_function->_h_str == keywords.LanguageTemplate) {
         	RemovePrintedChar(keywords.LanguageTemplate.length() - 1);
@@ -435,7 +437,7 @@ void InputFunction() {
        		} else if(runsyntax->Theme() == "classic") {
        			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "template");
        		} else {
-        		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "template");	
+        		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "template");
         	}
         	if(getchar() == '\n') {
         		temp.LangTemplate();
@@ -452,18 +454,18 @@ void InputFunction() {
        	else if(runsyntax->Theme() == "classic")
        		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "deletetext ");
 		else
-        		std::cout << WBOLD_RED_COLOR << "delete" << WBOLD_YELLOW_COLOR << "text ";	
-        	
+        		std::cout << WBOLD_RED_COLOR << "delete" << WBOLD_YELLOW_COLOR << "text ";
+
         	BOLD_BLUE_COLOR
         	std::getline(std::cin, main_function->_h_str);
        	fileaddtextfunction->DeleteLine(main_function->_h_str);
        	history->WriteHistory(main_function->_h_str);
        	main_function->_h_str.erase();
-        	terminalstr->Terminal();   
+        	terminalstr->Terminal();
        	return;
     	} /* else if(main_function->_h_str == keywords.Fetcheya) {
 		RemovePrintedChar(keywords.Fetcheya.length() - 1);
-		if(runsyntax->Theme() == "default") 
+		if(runsyntax->Theme() == "default")
 			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "fetcheya");
 		else if(runsyntax->Theme() == "classic")
 			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "fetcheya");
@@ -476,7 +478,7 @@ void InputFunction() {
 			} else
 				runfunction->RunFunction("fetcheya");
 		}
-				
+
 		history->WriteHistory(main_function->_h_str);
 		main_function->_h_str.erase();
 		terminalstr->Terminal();
@@ -560,10 +562,10 @@ void InputFunction() {
           		main_->list_file(true, ".");
           	} else {
 			main_->list_file(true, input);
-          	}  
+          	}
         	history->WriteHistory(main_function->_h_str);
         	main_function->_h_str.erase();
-        	terminalstr->Terminal(); 
+        	terminalstr->Terminal();
         	return;
     	} else if(main_function->_h_str == keywords.Factorial) {
     		std::string input;
@@ -578,11 +580,11 @@ void InputFunction() {
         	colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), " ");
           	std::cin >> input;
           	if(atoi(input.c_str()) < 0) {
-			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "n must be > or = to 0");          	
+			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "n must be > or = to 0");
           	} else {
 			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), std::to_string(factorial(atoi(input.c_str()))).c_str());
         	}
-                BLACK_COLOR 	
+                BLACK_COLOR
         	history->WriteHistory(main_function->_h_str);
         	main_function->_h_str.erase();
         	return;
@@ -597,8 +599,8 @@ void InputFunction() {
 		}
 		if(getchar() == '\n') {
 			colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), (GetUptime() + "\n").c_str());
-		} 
-		
+		}
+
 		history->WriteHistory(main_function->_h_str);
 		main_function->_h_str.erase();
 		terminalstr->Terminal();
@@ -616,8 +618,8 @@ void InputFunction() {
         	std::getline(std::cin, main_function->_h_str);
         	BLACK_COLOR
 		readfilefunction->ReadFileFunction(main_function->_h_str);
-		history->WriteHistory(keywords.ReadText + " " +main_function->_h_str);		
-		main_function->_h_str.erase();		
+		history->WriteHistory(keywords.ReadText + " " +main_function->_h_str);
+		main_function->_h_str.erase();
 		terminalstr->Terminal();
 		return;
 	} else if(main_function->_h_str == keywords.GitLink) {
@@ -634,7 +636,7 @@ void InputFunction() {
         	}
         	history->WriteHistory(main_function->_h_str);
         	main_function->_h_str.erase();
-        	terminalstr->Terminal(); 
+        	terminalstr->Terminal();
         	return;
         } else if(main_function->_h_str.rfind(keywords.CreateText, 0) == 0) {
         	logsystem->WriteLog("Launching ctxt function..\n");
@@ -652,7 +654,7 @@ void InputFunction() {
         	filefunction->CreateFileFunctionInit(main_function->_h_str);
         	history->WriteHistory(main_function->_h_str);
           	main_function->_h_str.erase();
-        	terminalstr->Terminal();      	
+        	terminalstr->Terminal();
         	return;
         } else if(main_function->_h_str == keywords.Pause) {
                 logsystem->WriteLog("Launching pause function.. - ");
@@ -664,7 +666,7 @@ void InputFunction() {
        		} else {
         		std::cout << WBOLD_MAGENTA_COLOR << "pause" << WBLACK_COLOR;
         	}
-        	if(getchar() == '\n') {                	          
+        	if(getchar() == '\n') {
         		BOLD_BLUE_COLOR
         		printlnf("Enter the continue...");
         		BLACK_COLOR
@@ -678,7 +680,7 @@ void InputFunction() {
         	}
         	history->WriteHistory(main_function->_h_str);
         	main_function->_h_str.erase();
-        	terminalstr->Terminal(); 
+        	terminalstr->Terminal();
         	return;
     	} else if(main_function->_h_str == keywords.KName) {
         	RemovePrintedChar(keywords.KName.length() - 1);
@@ -695,7 +697,7 @@ void InputFunction() {
     		}
     		history->WriteHistory(main_function->_h_str);
     		main_function->_h_str.erase();
-    		terminalstr->Terminal(); 
+    		terminalstr->Terminal();
     		return;
         } else if(main_function->_h_str == keywords.Contr) {
                 RemovePrintedChar(keywords.Contr.length() - 1);
@@ -713,10 +715,10 @@ void InputFunction() {
         	}
         	history->WriteHistory(main_function->_h_str);
         	main_function->_h_str.erase();
-        	terminalstr->Terminal(); 
+        	terminalstr->Terminal();
         	return;
         } else if(main_function->_h_str == keywords.LsObject) {
-                RemovePrintedChar(keywords.LsObject.length() - 1); 
+                RemovePrintedChar(keywords.LsObject.length() - 1);
         	if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_MAGENTA_COLOR << "obj" << WBOLD_YELLOW_COLOR << "ls" << WBLACK_COLOR;
        		} else if(runsyntax->Theme() == "classic") {
@@ -724,12 +726,12 @@ void InputFunction() {
        		} else {
         		std::cout << WBOLD_MAGENTA_COLOR << "obj" << WBOLD_YELLOW_COLOR << "ls" << WBLACK_COLOR;
         	}
-        	if(getchar() == '\n') {   	
+        	if(getchar() == '\n') {
     			listdirectoryfunction->ListObjectFunction();
     		}
         	history->WriteHistory(main_function->_h_str);
         	main_function->_h_str.erase();
-        	terminalstr->Terminal();     		
+        	terminalstr->Terminal();
     		return;
     	} else if(main_function->_h_str.find(keywords.SetName, 0) == 0) {
         	RemovePrintedChar(keywords.SetName.length() - 1);
@@ -742,11 +744,11 @@ void InputFunction() {
         	}
 		BOLD_LIGHT_CYAN_COLOR
         	std::getline(std::cin, main_function->_h_str);
-		BLACK_COLOR        	
+		BLACK_COLOR
 		SetNameString = scriftlang->EraseAllSubString(main_function->_h_str, keywords.SetName + keywords.Whitespace);
         	history->WriteHistory(main_function->_h_str);
         	main_function->_h_str.erase();
-        	terminalstr->Terminal(); 
+        	terminalstr->Terminal();
         	return;
         } else if(main_function->_h_str.find(keywords.SetTo, 0) == 0) {
         	RemovePrintedChar(keywords.SetTo.length() - 1);
@@ -756,15 +758,15 @@ void InputFunction() {
        			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "setto ");
        		} else {
 			std::cout << WBOLD_CYAN_COLOR << "setto " << WBLACK_COLOR;
-        	}      	
+        	}
 		BOLD_LIGHT_BLUE_COLOR
         	std::getline(std::cin, main_function->_h_str);
-		BLACK_COLOR    		
+		BLACK_COLOR
 		SetNameToString = scriftlang->EraseAllSubString(main_function->_h_str, keywords.SetTo + keywords.Whitespace);
     		setenv(SetNameString.c_str(), SetNameToString.c_str(), true);
         	history->WriteHistory(main_function->_h_str);
     		main_function->_h_str.erase();
-    		terminalstr->Terminal(); 
+    		terminalstr->Terminal();
         	return;
     	} else if(main_function->_h_str == keywords.Now) {
     	        RemovePrintedChar(keywords.Now.length() - 1);
@@ -783,7 +785,7 @@ void InputFunction() {
     		}
         	history->WriteHistory(keywords.Now);
     		main_function->_h_str.erase();
-    		terminalstr->Terminal(); 
+    		terminalstr->Terminal();
         	return;
     	} else if(main_function->_h_str == keywords.Printlnf || main_function->_h_str == keywords.Echo){
         	logsystem->WriteLog("Launching printlnf function.. - ");
@@ -802,7 +804,7 @@ void InputFunction() {
         	slashn
         	history->WriteHistory(main_function->_h_str);
         	main_function->_h_str.erase();
-        	terminalstr->Terminal(); 
+        	terminalstr->Terminal();
         	return;
        } else if(main_function->_h_str == keywords.ClearLog) {
             	RemovePrintedChar(keywords.ClearLog.length() - 1);
@@ -897,14 +899,14 @@ void InputFunction() {
        			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "rmvfile ");
        		} else {
 			std::cout << WBOLD_RED_COLOR << "rmv" << WBOLD_MAGENTA_COLOR << "file " << WBLACK_COLOR;
-        	}        	
+        	}
         	BOLD_CYAN_COLOR
         	std::cin >> main_function->_h_str;
         	BLACK_COLOR
         	removefile->DeleteFile(scriftlang->EraseAllSubString(main_function->_h_str, keywords.RemoveFile + keywords.Whitespace));
         	history->WriteHistory(main_function->_h_str);
           	main_function->_h_str.erase();
-        	return;      	
+        	return;
         }  else if(main_function->_h_str == keywords.Scr) {
         	logsystem->WriteLog("Erasing _h_str function.. - ");
         	RemovePrintedChar(keywords.Scr.length() - 1);
@@ -914,14 +916,14 @@ void InputFunction() {
        			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "scr ");
        		} else {
 			std::cout << WBOLD_GREEN_COLOR << "scr " << WBLACK_COLOR;
-        	}        	
+        	}
         	BOLD_CYAN_COLOR
         	std::getline(std::cin, main_function->_h_str);
         	BLACK_COLOR
-        	runfunction->RunFunction(main_function->_h_str);	
+        	runfunction->RunFunction(main_function->_h_str);
        		main_function->_h_str.erase();
         	history->WriteHistory(main_function->_h_str);
-       		terminalstr->Terminal(); 
+       		terminalstr->Terminal();
        		return;
        } else if(main_function->_h_str == keywords.FeLog) {
           	std::cout<<"\b";
@@ -932,7 +934,7 @@ void InputFunction() {
        			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), " felog");
        		} else {
 			std::cout << WBOLD_YELLOW_COLOR << " felog" << WBLACK_COLOR;
-        	}        	
+        	}
         	if(getchar() == '\n') {
         		slashn
        			logsystem->WriteLog("Launching felog function.. - ");
@@ -940,8 +942,8 @@ void InputFunction() {
         	}
         	history->WriteHistory(main_function->_h_str);
         	main_function->_h_str.erase();
-        	terminalstr->Terminal(); 
-        	return;  
+        	terminalstr->Terminal();
+        	return;
        } else if(main_function->_h_str.rfind(keywords.Find, 0) == 0) {
           	RemovePrintedChar(keywords.Find.length() - 1);
    		FFindFileFunction *find = new FFindFileFunction();
@@ -975,17 +977,17 @@ void InputFunction() {
         	history->WriteHistory(main_function->_h_str);
           	main_function->_h_str.erase();
           	BLACK_COLOR
-          	terminalstr->Terminal(); 
+          	terminalstr->Terminal();
    		return;
        } else if(main_function->_h_str.find(keywords.Emoji) == 0) {
        		RemovePrintedChar(keywords.Emoji.length() - 1);
        		if(runsyntax->Theme() == "default")  {
-        		std::cout << WBOLD_BLUE_COLOR << "emoji " << WBLACK_COLOR; 
+        		std::cout << WBOLD_BLUE_COLOR << "emoji " << WBLACK_COLOR;
        		} else if(runsyntax->Theme() == "classic") {
        			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "emoji ");
        		} else {
-       			std::cout << WBOLD_BLUE_COLOR << "emoji " << WBLACK_COLOR; 
-        	}       	
+       			std::cout << WBOLD_BLUE_COLOR << "emoji " << WBLACK_COLOR;
+        	}
        		BOLD_CYAN_COLOR
        		std::getline(std::cin, main_function->_h_str);
      		std::cout << emojiplusplus::EmojiString(main_function->_h_str) << "\n";
@@ -1006,13 +1008,13 @@ void InputFunction() {
         	std::getline(std::cin, main_function->_h_str);
         	BLACK_COLOR
         	if(main_function->_h_str.length() == 0) {
-			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "scrift : ./ : Is a directory.\n"); 
-		} else if(strstr(main_function->_h_str.c_str(), ".scr")) { 
+			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "scrift : ./ : Is a directory.\n");
+		} else if(strstr(main_function->_h_str.c_str(), ".scr")) {
 			scriftlang->ReadFunc(main_function->_h_str);
 		} else  {
 			runfunction->RunFunction("./" + main_function->_h_str);
 		}
-        	
+
         	history->WriteHistory(main_function->_h_str);
       		main_function->_h_str.erase();
       		terminalstr->Terminal();
@@ -1027,13 +1029,13 @@ void InputFunction() {
        		} else {
        			std::cout << WBOLD_YELLOW_COLOR << "ip" << WBLACK_COLOR;
        		}
-       	
+
 		if(getchar() == '\n') {
        			main_->getIPAddress();
         		history->WriteHistory(main_function->_h_str);
        		}
        		main_function->_h_str.erase();
-       		terminalstr->Terminal(); 
+       		terminalstr->Terminal();
        		return;
       } else if(main_function->_h_str == keywords.Clear_History) {
       		RemovePrintedChar(keywords.Clear_History.length() - 1);
@@ -1051,7 +1053,7 @@ void InputFunction() {
       		main_function->_h_str.erase();
       		terminalstr->Terminal();
       		return;
-      } else if(main_function->_h_str == keywords.History) {                                       
+      } else if(main_function->_h_str == keywords.History) {
         	logsystem->WriteLog("Calling ReadHistoryFileFunction - ");
          	RemovePrintedChar(keywords.History.length() - 1);
          	if(runsyntax->Theme() == "default")  {
@@ -1066,7 +1068,7 @@ void InputFunction() {
         	}
         	history->WriteHistory(main_function->_h_str);
     		main_function->_h_str.erase();
-    		terminalstr->Terminal(); 	
+    		terminalstr->Terminal();
     		return;
     } else if(main_function->_h_str == keywords.Back) {
           	logsystem->WriteLog("Launching back function.. - ");
@@ -1092,7 +1094,7 @@ void InputFunction() {
         	}
         	history->WriteHistory(main_function->_h_str);
        		main_function->_h_str.erase();
-       		terminalstr->Terminal(); 
+       		terminalstr->Terminal();
        		return;
      } else if(main_function->_h_str == keywords.Ls) {
           	std::string input;
@@ -1112,7 +1114,7 @@ void InputFunction() {
           		listdirectoryfunction->LSFunction(".");
           	} else {
           		listdirectoryfunction->LSFunction(input);
-          	}  	
+          	}
           	history->WriteHistory(main_function->_h_str);
       	  	main_function->_h_str.erase();
       	  	terminalstr->Terminal();
@@ -1170,7 +1172,7 @@ void InputFunction() {
        		main_function->_h_str.erase();
        		terminalstr->Terminal();
        		return;
-     } else if(main_function->_h_str == keywords.Close || main_function->_h_str == keywords.Exit)  {                                      
+     } else if(main_function->_h_str == keywords.Close || main_function->_h_str == keywords.Exit)  {
         	logsystem->WriteLog("Exit signal.. - ");
           	RemovePrintedChar(main_function->_h_str.length() - 1);
           	if(runsyntax->Theme() == "default")  {
@@ -1206,7 +1208,7 @@ void InputFunction() {
        		return;
      } else if(main_function->_h_str == keywords.Settings) {
      		logsystem->WriteLog("Calling ReadSettingsFunction.. - ");
-    		RemovePrintedChar(keywords.Settings.length() - 1);	
+    		RemovePrintedChar(keywords.Settings.length() - 1);
     		if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_YELLOW_COLOR << "settings" << WBLACK_COLOR;
        		} else if(runsyntax->Theme() == "classic") {
@@ -1221,8 +1223,8 @@ void InputFunction() {
         	main_function->_h_str.erase();
         	terminalstr->Terminal();
         	return;
-    } else if(main_function->_h_str == keywords.Clear) { 
-         	logsystem->WriteLog("Launching clear function.. - ");                                    
+    } else if(main_function->_h_str == keywords.Clear) {
+         	logsystem->WriteLog("Launching clear function.. - ");
       		RemovePrintedChar(keywords.Clear.length() - 1);
       		if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_YELLOW_COLOR << "clear" << WBLACK_COLOR;
@@ -1269,12 +1271,12 @@ void InputFunction() {
 			BLACK_COLOR
 			slashn
 		}
-		history->WriteHistory(main_function->_h_str);	
+		history->WriteHistory(main_function->_h_str);
 		main_function->_h_str.erase();
 		terminalstr->Terminal();
 		return;
-     } else if(main_function->_h_str == keywords.Version)  {          
-                RemovePrintedChar(keywords.Version.length() - 1);  
+     } else if(main_function->_h_str == keywords.Version)  {
+                RemovePrintedChar(keywords.Version.length() - 1);
                 if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_YELLOW_COLOR << "version" << WBLACK_COLOR;
 	       	} else if(runsyntax->Theme() == "classic") {
@@ -1340,10 +1342,10 @@ void InputFunction() {
      } else {
 		sign.push_back(c);
      		if(c == ARROW_UP) {
-     			 
+
      		} else if(c == ARROW_DOWN) {
-     			
-     		} if(c == ARROW_RIGHT) { 
+
+     		} if(c == ARROW_RIGHT) {
      			std::cout << "\033[1C";
      			cursorpos.x += 1;
      		} else if(c == ARROW_LEFT) {
@@ -1366,13 +1368,13 @@ void InputFunction() {
 					/* fpi --i */
 					FInstall fetcheya_install;
 					fetcheya_install.FegeyaPackageInstaller(main_function->_h_str);
-    				} else {				 
+    				} else {
 					std::string copy(main_function->_h_str);
         				runfunction->RunFunction(copy);
         			}
         		}
         		main_function->_h_str.erase();
-        		terminalstr->Terminal(); 
+        		terminalstr->Terminal();
         		return;
         	} else {
 			//std::cout << "CURSORPOS" << cursorpos.x;
@@ -1393,7 +1395,7 @@ void InputFunction() {
 }
 
 void
-FMain::Shell() {	
+FMain::Shell() {
     readfilefunction->ReadFeLogFunctionWithoutPrint();
     InputFunction();
 }
@@ -1401,8 +1403,8 @@ FMain::Shell() {
 int main(integer argc, char** argv) {
     std::string copy_arg, reg; /* Get arg. */
     setlocale(LC_ALL, ""); /* Locale */
-    
-    /* Happy new year! */	
+
+    /* Happy new year! */
     if(currentDateTime().substr(4, 6) == "-01-01") {
     	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "Happy new year!");
     	std::cout << " " << emojiplusplus::EmojiString(":balloon:") << " - ";
@@ -1423,25 +1425,41 @@ int main(integer argc, char** argv) {
 
     	logsystem->AllofThem(); /* FeLog start signal. */
 
+	/* Customization & Setup instruction. */
+	if(runsyntax->Setup() == true) {
+		/* ExecutePlusPlus exec; */
+		setup->Config();
+		/* if(fsplusplus::IsExistFile("/bin/scrift") == true) {
+			#ifdef _WIN32
+		   	   #elif __APPLE__
+		   	   #else
+
+			GNU/Linux, FreeBSD, (maybe) Unix, Unix-Like systems.
+			std::thread relaunch([](){ system("scrift"); });
+			 #endif
+			relaunch.detach();
+		 } */
+	}
+
 	if(runsyntax->ASCIIColor() == -1) {} else {
     		std::unique_ptr<FASCIIFunction> ascii(new FASCIIFunction);
     		ascii->Allofthem();
 	}
-	
+
 	/* Welcome <username> (emoji) */
 	PrintUsername();
-	
+
 	/* History start signal */
     	history->AllofThem();
-	
-	/* Welcome message. */    	
+
+	/* Welcome message. */
 	if(runsyntax->WelcomeMessage() == true) {
-		logsystem->WriteLog("Launching Welcome() function.. - ");	
+		logsystem->WriteLog("Launching Welcome() function.. - ");
 		helpstr->Welcome();
 	}
 
-	/* Terminal. */	
-	terminalstr->Terminal(); 
+	/* Terminal. */
+	terminalstr->Terminal();
 
 	/* Dynamic titles. */
 	main_function->SetTitle();
@@ -1462,7 +1480,7 @@ int main(integer argc, char** argv) {
 		BLACK_COLOR
 		exit(EXIT_SUCCESS); /* exit */
 	} else if(reg == "--version" || reg == "--v") { /* Print Scrift's Version */
-		PrintVersion(); 
+		PrintVersion();
 		exit(EXIT_SUCCESS); /* exit */
 	}
     }

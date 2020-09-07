@@ -52,7 +52,7 @@ CLEAN = *.o
 # Scrift's Syntax objects
 HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o RunFunction.o \
 Log.o History.o Branch.o Template.o Settings.o HelpFunction.o ASCIIFunction.o \
-Install.o
+Install.o Setup.o
 
 # Platform
 ifeq ($(OS),Windows_NT)
@@ -68,7 +68,7 @@ endif
 all: conio headersfile edifor main datec clean
 
 # Build & Install
-allp: headersfile mainc ediforc date clean 
+allp: headersfile mainc ediforc date clean
 
 # Remove & Clean all
 removeall: uninstall cleanall
@@ -98,7 +98,7 @@ headersfile: $(HEADERFILE)
 conio: $(SRCLIBDIREC)FConio.c
 	$(GCC) -c -Wno-unused-function -Wno-unused-value $(SRCLIBDIREC)FConio.c -o fconio.o
 
-# Syntax 
+# Syntax
 %.o: $(SRCSYNTAXDIREC)%.cpp
 	$(GPP) -Wno-unused-function -Wno-unused-value $(CFLAGS) -c $< -o $@
 
@@ -129,10 +129,10 @@ castle: $(GAMESDIREC)/Castle/Castle.hpp
 
 # TicTacToe
 tictactoe: $(GAMESDIREC)/TicTacToe/TicTacToeMain.cpp
-	$(GPP) -Wall $(GAMESDIREC)/TicTacToe/TicTacToeMain.cpp $(GAMESDIREC)/TicTacToe/tictactoe.cpp -o $(PREFIX)tictactoe 
+	$(GPP) -Wall $(GAMESDIREC)/TicTacToe/TicTacToeMain.cpp $(GAMESDIREC)/TicTacToe/tictactoe.cpp -o $(PREFIX)tictactoe
 	echo TicTacToe building successfully in Bin Directory!
-	
-# Pong	
+
+# Pong
 pong: $(GAMESDIREC)/Pong/Pong.cpp
 	$(GPP) -Wall $(GAMESDIREC)/Pong/Pong.cpp -o $(PREFIX)pong -lncurses
 	echo Pong building successfully in Bin Directory!
@@ -140,12 +140,12 @@ pong: $(GAMESDIREC)/Pong/Pong.cpp
 # Calendar & Converter Build
 # Calendar
 datec: $(SRCAPPSDIREC)/FDate/FDate.cpp
-	$(GPP)  $(SRCAPPSDIREC)/FDate/FDate.cpp -o fdate 
+	$(GPP)  $(SRCAPPSDIREC)/FDate/FDate.cpp -o fdate
 	echo FDate building successfully!
 
 # Calendar & Converter & Build & Install
 date: $(SRCAPPSDIREC)/FDate/FDate.cpp
-	$(GPP)  $(SRCAPPSDIREC)/FDate/FDate.cpp -o $(PREFIX)fdate 
+	$(GPP)  $(SRCAPPSDIREC)/FDate/FDate.cpp -o $(PREFIX)fdate
 	echo FDate building successfully in Bin Directory!
 
 # Integrated Scrift's core.
@@ -168,7 +168,7 @@ uninstall:
 	rm -f /bin/fdate
 	rm -f /bin/pong
 	rm -f /bin/tictactoe
-	
+
 # Run Scrift
 run:
 	./scrift
