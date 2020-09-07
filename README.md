@@ -67,7 +67,7 @@
  $# fscrift install // For Scrift
 ```
 ```
- $# sudo make allp // Linux and Unix-like systems.
+ $# sudo make install // Linux and Unix-like systems.
 ```
 
 ## Change Shell
