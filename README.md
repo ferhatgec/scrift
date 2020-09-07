@@ -14,6 +14,8 @@
 - Auto-Whitespace
 - Auto-Completer (not ended)
 - Customizable
+- Package Installer for Fegeya Community's applications.
+- Configuration application without text editor :^)
 - Faster than other shell (e.g. Bash)
 - Integrated Own Emoji library (see [Emoji++](https://github.com/FerhatGec/emojiplusplus)) :airplane:
 - Integrated Own Color library (see [Colorized](https://github.com/FerhatGec/colorized)) :satisfied:
@@ -21,7 +23,8 @@
 - Integrated Scrift based system information tool (see [Fetcheya](https://github.com/FerhatGec/fetcheya)) :open_mouth:
 - Integrated Scrift based Text Editor (Edifor) :open_mouth:
 - ASCII Art (with Color option) :open_mouth:
-- History 
+- History
+- Different syntax to other shells.
 - Template for programming language
 - Welcome message 
 - Scripting language :open_mouth:
