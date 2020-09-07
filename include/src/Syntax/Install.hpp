@@ -17,7 +17,8 @@ public:
 	void InstallFlaScript();
 	void InstallCopyboard();
 	void InstallFegeyaList(); /* Lsf */
-
+	void InstallFreeBrain();
+	
 	void FegeyaPackageInstaller(std::string); /* Arg */
 };
 

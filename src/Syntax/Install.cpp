@@ -45,9 +45,10 @@ FInstall::InstallFetcheya() {
 							std::cout << "Installing..\n";
 							exec.RunFunction("sudo sh install.sh");
 
-							if(fsplusplus::IsExistFile("/bin/fetcheya") == true) {
+							if(fsplusplus::IsExistFile("/bin/fetcheya") == true)
 								std::cout << "Installed!\n";
-							}
+							else
+								std::cout << "Could not install.\n";
 						} else
 							std::cout << "gcc not found. Aborted.\n";
 					} else
@@ -89,9 +90,10 @@ FInstall::InstallFlaScript() {
 							std::cout << "Installing..\n";
 							exec.RunFunction("sudo sh install.sh");
 
-							if(fsplusplus::IsExistFile("/bin/fla") == true) {
+							if(fsplusplus::IsExistFile("/bin/fla") == true)
 								std::cout << "\nInstalled!\n";
-							}
+							else
+								std::cout << "Could not install.\n";
 						} else
 							std::cout << "gcc not found. Aborted.\n";
 					} else
@@ -133,10 +135,10 @@ FInstall::InstallCopyboard() {
 							std::cout << "Installing..\n";
 							exec.RunFunction("sudo sh install.sh");
 
-							if(fsplusplus::IsExistFile("/bin/copyboard") == true) {
+							if(fsplusplus::IsExistFile("/bin/copyboard") == true)
 								std::cout << "\nInstalled!\n";
-							} else
-								std::cout << "Could not load.\n";
+							else
+								std::cout << "Could not install.\n";
 						} else
 							std::cout << "gcc not found. Aborted.\n";
 					} else
@@ -178,10 +180,10 @@ FInstall::InstallFegeyaList() {
 							std::cout << "Installing..\n";
 							exec.RunFunction("sudo sh install.sh");
 
-							if(fsplusplus::IsExistFile("/bin/lsf") == true) {
+							if(fsplusplus::IsExistFile("/bin/lsf") == true)
 								std::cout << "\nInstalled!\n";
-							} else
-								std::cout << "Could not load.\n";
+						        else
+								std::cout << "Could not install.\n";
 						} else
 							std::cout << "gcc not found. Aborted.\n";
 					} else
@@ -201,6 +203,52 @@ FInstall::InstallFegeyaList() {
 	}
 }
 
+void
+FInstall::InstallFreeBrain() {
+	ExecutePlusPlus exec;
+	if(fsplusplus::IsExistFile("/bin/freebr") == false) {
+		#ifdef __FreeBSD__
+			std::cout << "Use this command as super user.\n";
+		#else
+			std::cout << "FreeBrain (freebr) is not installed.\nDo you want to install FreeBrain (freebr) from source? (y/n) : ";
+			char input = getchar();
+			if(input == 'y' || input == 'Y') {
+				if(fsplusplus::IsExistFile("/bin/git") == true) {
+					chdir(getenv("HOME"));
+					exec.RunFunction("git clone https://github.com/ferhatgec/freebrain.git");
+					if(fsplusplus::IsExistFile("/bin/g++") == true) {
+						if(fsplusplus::IsExistFile("/bin/gcc") == true) {
+							std::string path(getenv("HOME"));
+							path.append("/freebrain");
+							std::cout << "Directory changed. : " << getenv("HOME") << "/freebrain\n";
+							chdir(path.c_str());
+							std::cout << "Installing..\n";
+							exec.RunFunction("sudo sh install.sh");
+
+							if(fsplusplus::IsExistFile("/bin/freebr") == true)
+								std::cout << "\nInstalled!\n";
+							else
+								std::cout << "Could not install.\n";
+						} else
+							std::cout << "gcc not found. Aborted.\n";
+					} else
+						std::cout << "g++ not found. Aborted.\n";
+				} else
+					std::cout << "git not found. Aborted.\n";
+			} else
+				std::cout << "Aborted.\n";
+		#endif
+	} else {
+		std::cout << "FreeBrain (freebr) is already installed\nWould you like to run it? (y/n) : ";
+		char input = getchar();
+		if(input == 'y' || input == 'Y')
+			exec.RunFunction("freebr");
+		else
+			std::cout << "Aborted.\n";
+	}
+}
+
+
 /*
 	Simple git-based package installer for Fegeya Community's applications. (Build & Install)
 */
@@ -214,6 +262,7 @@ FInstall::FegeyaPackageInstaller(std::string arg) {
 		else if(strstr(arg.c_str(), "flascript")) InstallFlaScript();
 		else if(strstr(arg.c_str(), "copyboard")) InstallCopyboard();
 		else if(strstr(arg.c_str(), "lsf")) InstallFegeyaList();
+		else if(strstr(arg.c_str(), "freebrain")) InstallFreeBrain();
 		else
 			std::cout << "No match for this argument : " << arg + "\n";
 	} else
@@ -221,5 +270,6 @@ FInstall::FegeyaPackageInstaller(std::string arg) {
 }
 
 void HelpFunction() {
-	std::cout << "Fegeya Package Installer (fpi)\nUsage: fpi [--i] <app>\n<app> : fetcheya, flascript, copyboard, lsf\n";
+	std::cout << "Fegeya Package Installer (fpi)\nUsage: fpi [--i] <app>\n<app> :\n* fetcheya\n* flascript (fla)\n* copyboard\n*" <<
+		" lsf\n* freebrain (freebr)\n";
 }
