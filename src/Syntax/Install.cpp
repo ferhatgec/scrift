@@ -29,8 +29,8 @@ FInstall::InstallFetcheya() {
 	if(fsplusplus::IsExistFile("/bin/fetcheya") == false) {
 		#ifdef __FreeBSD__
 			std::cout << "Use this command as super user.\n";
-		#else		
-			std::cout << "Fetcheya is not installed.\nDo you want to install Fetcheya from source? (y/n) : ";	
+		#else
+			std::cout << "Fetcheya is not installed.\nDo you want to install Fetcheya from source? (y/n) : ";
 			char input = getchar();
 			if(input == 'y' || input == 'Y') {
 				if(fsplusplus::IsExistFile("/bin/git") == true) {
@@ -44,21 +44,21 @@ FInstall::InstallFetcheya() {
 							chdir(path.c_str());
 							std::cout << "Installing..\n";
 							exec.RunFunction("sudo sh install.sh");
-							
+
 							if(fsplusplus::IsExistFile("/bin/fetcheya") == true) {
 								std::cout << "Installed!\n";
 							}
 						} else
 							std::cout << "gcc not found. Aborted.\n";
 					} else
-						std::cout << "g++ not found. Aborted.\n";						
+						std::cout << "g++ not found. Aborted.\n";
 				} else
 					std::cout << "git not found. Aborted.\n";
 			} else
-				std::cout << "Aborted.\n";	
+				std::cout << "Aborted.\n";
 		#endif
 	} else {
-		std::cout << "Fetcheya is already installed\nWould you like to run it? (y/n) : "; 
+		std::cout << "Fetcheya is already installed\nWould you like to run it? (y/n) : ";
 		char input = getchar();
 		if(input == 'y' || input == 'Y')
 			exec.RunFunction("fetcheya");
@@ -73,8 +73,8 @@ FInstall::InstallFlaScript() {
 	if(fsplusplus::IsExistFile("/bin/fla") == false) {
 		#ifdef __FreeBSD__
 			std::cout << "Use this command as super user.\n";
-		#else		
-			std::cout << "FlaScript is not installed.\nDo you want to install FlaScript from source? (y/n) : ";	
+		#else
+			std::cout << "FlaScript is not installed.\nDo you want to install FlaScript from source? (y/n) : ";
 			char input = getchar();
 			if(input == 'y' || input == 'Y') {
 				if(fsplusplus::IsExistFile("/bin/git") == true) {
@@ -88,21 +88,21 @@ FInstall::InstallFlaScript() {
 							chdir(path.c_str());
 							std::cout << "Installing..\n";
 							exec.RunFunction("sudo sh install.sh");
-							
+
 							if(fsplusplus::IsExistFile("/bin/fla") == true) {
 								std::cout << "\nInstalled!\n";
 							}
 						} else
 							std::cout << "gcc not found. Aborted.\n";
 					} else
-						std::cout << "g++ not found. Aborted.\n";						
+						std::cout << "g++ not found. Aborted.\n";
 				} else
 					std::cout << "git not found. Aborted.\n";
 			} else
-				std::cout << "Aborted.\n";	
+				std::cout << "Aborted.\n";
 		#endif
 	} else {
-		std::cout << "FlaScript is already installed\nWould you like to run it? (y/n) : "; 
+		std::cout << "FlaScript is already installed\nWould you like to run it? (y/n) : ";
 		char input = getchar();
 		if(input == 'y' || input == 'Y')
 			exec.RunFunction("fla");
@@ -117,8 +117,8 @@ FInstall::InstallCopyboard() {
 	if(fsplusplus::IsExistFile("/bin/copyboard") == false) {
 		#ifdef __FreeBSD__
 			std::cout << "Use this command as super user.\n";
-		#else		
-			std::cout << "Copyboard is not installed.\nDo you want to install Copyboard from source? (y/n) : ";	
+		#else
+			std::cout << "Copyboard is not installed.\nDo you want to install Copyboard from source? (y/n) : ";
 			char input = getchar();
 			if(input == 'y' || input == 'Y') {
 				if(fsplusplus::IsExistFile("/bin/git") == true) {
@@ -132,7 +132,7 @@ FInstall::InstallCopyboard() {
 							chdir(path.c_str());
 							std::cout << "Installing..\n";
 							exec.RunFunction("sudo sh install.sh");
-							
+
 							if(fsplusplus::IsExistFile("/bin/copyboard") == true) {
 								std::cout << "\nInstalled!\n";
 							} else
@@ -140,17 +140,62 @@ FInstall::InstallCopyboard() {
 						} else
 							std::cout << "gcc not found. Aborted.\n";
 					} else
-						std::cout << "g++ not found. Aborted.\n";						
+						std::cout << "g++ not found. Aborted.\n";
 				} else
 					std::cout << "git not found. Aborted.\n";
 			} else
-				std::cout << "Aborted.\n";	
+				std::cout << "Aborted.\n";
 		#endif
 	} else {
-		std::cout << "Copyboard is already installed\nWould you like to run it? (y/n) : "; 
+		std::cout << "Copyboard is already installed\nWould you like to run it? (y/n) : ";
 		char input = getchar();
 		if(input == 'y' || input == 'Y')
 			exec.RunFunction("copyboard");
+		else
+			std::cout << "Aborted.\n";
+	}
+}
+
+void
+FInstall::InstallFegeyaList() {
+	ExecutePlusPlus exec;
+	if(fsplusplus::IsExistFile("/bin/lsf") == false) {
+		#ifdef __FreeBSD__
+			std::cout << "Use this command as super user.\n";
+		#else
+			std::cout << "Fegeya List (lsf) is not installed.\nDo you want to install Fegeya List (lsf) from source? (y/n) : ";
+			char input = getchar();
+			if(input == 'y' || input == 'Y') {
+				if(fsplusplus::IsExistFile("/bin/git") == true) {
+					chdir(getenv("HOME"));
+					exec.RunFunction("git clone https://github.com/ferhatgec/lsf.git");
+					if(fsplusplus::IsExistFile("/bin/g++") == true) {
+						if(fsplusplus::IsExistFile("/bin/gcc") == true) {
+							std::string path(getenv("HOME"));
+							path.append("/lsf");
+							std::cout << "Directory changed. : " << getenv("HOME") << "/lsf\n";
+							chdir(path.c_str());
+							std::cout << "Installing..\n";
+							exec.RunFunction("sudo sh install.sh");
+
+							if(fsplusplus::IsExistFile("/bin/lsf") == true) {
+								std::cout << "\nInstalled!\n";
+							} else
+								std::cout << "Could not load.\n";
+						} else
+							std::cout << "gcc not found. Aborted.\n";
+					} else
+						std::cout << "g++ not found. Aborted.\n";
+				} else
+					std::cout << "git not found. Aborted.\n";
+			} else
+				std::cout << "Aborted.\n";
+		#endif
+	} else {
+		std::cout << "Fegeya List (lsf) is already installed\nWould you like to run it? (y/n) : ";
+		char input = getchar();
+		if(input == 'y' || input == 'Y')
+			exec.RunFunction("lsf");
 		else
 			std::cout << "Aborted.\n";
 	}
@@ -168,6 +213,7 @@ FInstall::FegeyaPackageInstaller(std::string arg) {
 		if(strstr(arg.c_str(), "fetcheya")) InstallFetcheya();
 		else if(strstr(arg.c_str(), "flascript")) InstallFlaScript();
 		else if(strstr(arg.c_str(), "copyboard")) InstallCopyboard();
+		else if(strstr(arg.c_str(), "lsf")) InstallFegeyaList();
 		else
 			std::cout << "No match for this argument : " << arg + "\n";
 	} else
@@ -175,5 +221,5 @@ FInstall::FegeyaPackageInstaller(std::string arg) {
 }
 
 void HelpFunction() {
-	std::cout << "Fegeya Package Installer (fpi)\nUsage: fpi [--i] <app>\n<app> : fetcheya, flascript, copyboard\n";
+	std::cout << "Fegeya Package Installer (fpi)\nUsage: fpi [--i] <app>\n<app> : fetcheya, flascript, copyboard, lsf\n";
 }

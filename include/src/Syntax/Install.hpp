@@ -16,7 +16,8 @@ public:
 	void InstallFetcheya();
 	void InstallFlaScript();
 	void InstallCopyboard();
-	
+	void InstallFegeyaList(); /* Lsf */
+
 	void FegeyaPackageInstaller(std::string); /* Arg */
 };
 
