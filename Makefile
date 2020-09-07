@@ -68,7 +68,7 @@ endif
 all: conio headersfile edifor main datec clean
 
 # Build & Install
-allp: headersfile mainc ediforc date clean
+install: headersfile mainc ediforc date clean
 
 # Remove & Clean all
 removeall: uninstall cleanall

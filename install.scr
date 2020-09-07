@@ -1,11 +1,1 @@
-#*  MIT License
-*   Customizable ScriftLang Build File
-*   Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
-*   Distributed under the terms of the MIT License.
-*# 
-
-(green)printlnf("Building, wait...");
-slashn
-(green)printlnf("Calling make");
-slashn
-system("sudo make allp");
+system("sudo make install");
