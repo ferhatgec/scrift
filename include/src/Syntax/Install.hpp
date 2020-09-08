@@ -18,7 +18,7 @@ public:
 	void InstallCopyboard();
 	void InstallFegeyaList(); /* Lsf */
 	void InstallFreeBrain();
-	
+	void InstallBrainfuckPlusPlus(); /* Brainfuck Implementation */
 	void FegeyaPackageInstaller(std::string); /* Arg */
 };
 
