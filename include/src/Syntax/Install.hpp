@@ -13,12 +13,16 @@
 
 class FInstall {
 public:
-	void InstallFetcheya();
-	void InstallFlaScript();
-	void InstallCopyboard();
-	void InstallFegeyaList(); /* Lsf */
-	void InstallFreeBrain();
-	void InstallBrainfuckPlusPlus(); /* Brainfuck Implementation */
+	void InstallFetcheya(int); /* int : Uninstall */
+	void InstallFlaScript(int);
+	void InstallCopyboard(int);
+	void InstallFegeyaList(int); /* Lsf */
+	void InstallFreeBrain(int);
+	void InstallBrainfuckPlusPlus(int); /* Brainfuck Implementation */
+
+
+	void InstallFunction(std::string, int); /* Arg, Type */
+	void UnInstallFunction(std::string, int); /* Arg, Type */
 	void FegeyaPackageInstaller(std::string); /* Arg */
 };
 
