@@ -17,6 +17,9 @@
 #include <ExecutePlusPlus.hpp>
 #include <StringTools.h>
 
+#define IS_EXIST(x) std::cout << x << " already installed\nWould you like to run it? (y/n) : ";
+#define IS_NOT_EXIST(x) std::cout << x << " is not installed.\nDo you want to install " << x << " from source? (y/n) : ";
+
 void HelpFunction();
 
 /*
@@ -30,7 +33,7 @@ FInstall::InstallFetcheya() {
 		#ifdef __FreeBSD__
 			std::cout << "Use this command as super user.\n";
 		#else
-			std::cout << "Fetcheya is not installed.\nDo you want to install Fetcheya from source? (y/n) : ";
+			IS_NOT_EXIST("Fetcheya")
 			char input = getchar();
 			if(input == 'y' || input == 'Y') {
 				if(fsplusplus::IsExistFile("/bin/git") == true) {
@@ -59,7 +62,7 @@ FInstall::InstallFetcheya() {
 				std::cout << "Aborted.\n";
 		#endif
 	} else {
-		std::cout << "Fetcheya is already installed\nWould you like to run it? (y/n) : ";
+		IS_EXIST("Fetcheya")
 		char input = getchar();
 		if(input == 'y' || input == 'Y')
 			exec.RunFunction("fetcheya");
@@ -75,7 +78,7 @@ FInstall::InstallFlaScript() {
 		#ifdef __FreeBSD__
 			std::cout << "Use this command as super user.\n";
 		#else
-			std::cout << "FlaScript is not installed.\nDo you want to install FlaScript from source? (y/n) : ";
+			IS_NOT_EXIST("FlaScript (fla)")
 			char input = getchar();
 			if(input == 'y' || input == 'Y') {
 				if(fsplusplus::IsExistFile("/bin/git") == true) {
@@ -104,7 +107,7 @@ FInstall::InstallFlaScript() {
 				std::cout << "Aborted.\n";
 		#endif
 	} else {
-		std::cout << "FlaScript is already installed\nWould you like to run it? (y/n) : ";
+		IS_NOT_EXIST("FlaScript (fla)")
 		char input = getchar();
 		if(input == 'y' || input == 'Y')
 			exec.RunFunction("fla");
@@ -120,7 +123,7 @@ FInstall::InstallCopyboard() {
 		#ifdef __FreeBSD__
 			std::cout << "Use this command as super user.\n";
 		#else
-			std::cout << "Copyboard is not installed.\nDo you want to install Copyboard from source? (y/n) : ";
+			IS_NOT_EXIST("Copyboard")
 			char input = getchar();
 			if(input == 'y' || input == 'Y') {
 				if(fsplusplus::IsExistFile("/bin/git") == true) {
@@ -149,7 +152,7 @@ FInstall::InstallCopyboard() {
 				std::cout << "Aborted.\n";
 		#endif
 	} else {
-		std::cout << "Copyboard is already installed\nWould you like to run it? (y/n) : ";
+		IS_EXIST("Copyboard")
 		char input = getchar();
 		if(input == 'y' || input == 'Y')
 			exec.RunFunction("copyboard");
@@ -165,7 +168,7 @@ FInstall::InstallFegeyaList() {
 		#ifdef __FreeBSD__
 			std::cout << "Use this command as super user.\n";
 		#else
-			std::cout << "Fegeya List (lsf) is not installed.\nDo you want to install Fegeya List (lsf) from source? (y/n) : ";
+			IS_NOT_EXIST("Fegeya List (lsf)")
 			char input = getchar();
 			if(input == 'y' || input == 'Y') {
 				if(fsplusplus::IsExistFile("/bin/git") == true) {
@@ -194,7 +197,7 @@ FInstall::InstallFegeyaList() {
 				std::cout << "Aborted.\n";
 		#endif
 	} else {
-		std::cout << "Fegeya List (lsf) is already installed\nWould you like to run it? (y/n) : ";
+		IS_NOT_EXIST("Fegeya List (lsf)")
 		char input = getchar();
 		if(input == 'y' || input == 'Y')
 			exec.RunFunction("lsf");
@@ -210,7 +213,7 @@ FInstall::InstallFreeBrain() {
 		#ifdef __FreeBSD__
 			std::cout << "Use this command as super user.\n";
 		#else
-			std::cout << "FreeBrain (freebr) is not installed.\nDo you want to install FreeBrain (freebr) from source? (y/n) : ";
+			IS_NOT_EXIST("FreeBrain (freebr)")
 			char input = getchar();
 			if(input == 'y' || input == 'Y') {
 				if(fsplusplus::IsExistFile("/bin/git") == true) {
@@ -239,7 +242,7 @@ FInstall::InstallFreeBrain() {
 				std::cout << "Aborted.\n";
 		#endif
 	} else {
-		std::cout << "FreeBrain (freebr) is already installed\nWould you like to run it? (y/n) : ";
+		IS_EXIST("FreeBrain (freebr)")
 		char input = getchar();
 		if(input == 'y' || input == 'Y')
 			exec.RunFunction("freebr");
@@ -255,8 +258,7 @@ FInstall::InstallBrainfuckPlusPlus() {
 		#ifdef __FreeBSD__
 			std::cout << "Use this command as super user.\n";
 		#else
-			std::cout << "BrainfuckPlusPlus (bfc) is not installed.\n" <<
-				"Do you want to install BrainfuckPlusPlus (bfc) from source? (y/n) : ";
+			IS_NOT_EXIST("BrainfuckPlusPlus (bfc)")
 			char input = getchar();
 			if(input == 'y' || input == 'Y') {
 				if(fsplusplus::IsExistFile("/bin/git") == true) {
@@ -285,7 +287,7 @@ FInstall::InstallBrainfuckPlusPlus() {
 				std::cout << "Aborted.\n";
 		#endif
 	} else {
-		std::cout << "BrainfuckPlusPlus (bfc) is already installed\nWould you like to run it? (y/n) : ";
+		IS_EXIST("BrainfuckPlusPlus (bfc)")
 		char input = getchar();
 		if(input == 'y' || input == 'Y')
 			exec.RunFunction("bfc");
