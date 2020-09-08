@@ -41,7 +41,7 @@ void HelpFunction();
 /*
 	int
 		uninstall = 0 : Install
-		uninstall = 1 : UninstallInstallFunction
+		uninstall = 1 : Uninstall
 */
 void
 FInstall::InstallFetcheya(int uninstall) {
@@ -426,7 +426,7 @@ FInstall::FegeyaPackageInstaller(std::string arg) {
 }
 
 void HelpFunction() {
-	std::cout << "Fegeya Package Installer (fpi)\nUsage: fpi [--i] <app>\n<app> :\n* fetcheya\n* flascript (fla)\n* copyboard\n*" <<
+	std::cout << "Fegeya Package Installer (fpi)\nUsage: fpi [--i --install || --uni --uninstall] <app>\n<app> :\n* fetcheya\n* flascript (fla)\n* copyboard\n*" <<
 		" lsf\n* freebrain (freebr)\n* brainfuckplusplus (bfc)\n";
 }
 
