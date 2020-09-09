@@ -69,6 +69,7 @@
 #include <EasyMorse.hpp> /* Morse-String to String-Morse converter library. */
 #include <ExecutePlusPlus.hpp> /* Command execution library */
 #include <FileSystemPlusPlus.h> /* File I/O library. */
+#include <StringTools.h> /* Functions for STL String */
 
 /* FileFunction namespace */
 using namespace FileFunction;
@@ -995,31 +996,7 @@ void InputFunction() {
        		main_function->_h_str.erase();
        		terminalstr->Terminal();
        		return;
-       } else if(main_function->_h_str.find(keywords.RunDotSlash, 0) == 0) {
-          	RemovePrintedChar(keywords.RunDotSlash.length() - 1);
-        	if(runsyntax->Theme() == "default")  {
-        		std::cout << WBOLD_MAGENTA_COLOR << "." << WBOLD_BLUE_COLOR << "/" << WBLACK_COLOR;
-       		} else if(runsyntax->Theme() == "classic") {
-       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "./");
-       		} else {
-       			std::cout << WBOLD_MAGENTA_COLOR << "." << WBOLD_BLUE_COLOR << "/" << WBLACK_COLOR;
-        	}
-        	BOLD_LIGHT_MAGENTA_COLOR
-        	std::getline(std::cin, main_function->_h_str);
-        	BLACK_COLOR
-        	if(main_function->_h_str.length() == 0) {
-			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "scrift : ./ : Is a directory.\n");
-		} else if(strstr(main_function->_h_str.c_str(), ".scr")) {
-			scriftlang->ReadFunc(main_function->_h_str);
-		} else  {
-			runfunction->RunFunction("./" + main_function->_h_str);
-		}
-
-        	history->WriteHistory(main_function->_h_str);
-      		main_function->_h_str.erase();
-      		terminalstr->Terminal();
-          	return;
-      } else if(main_function->_h_str == keywords.IP) {
+       } else if(main_function->_h_str == keywords.IP) {
           	logsystem->WriteLog("Launching ip function.. - ");
           	RemovePrintedChar(keywords.IP.length() - 1);
           	if(runsyntax->Theme() == "default")  {
@@ -1275,7 +1252,32 @@ void InputFunction() {
 		main_function->_h_str.erase();
 		terminalstr->Terminal();
 		return;
-     } else if(main_function->_h_str == keywords.Version)  {
+     } /* else if(main_function->_h_str.find(keywords.RunDotSlash, 0) == 0) {
+          	RemovePrintedChar(keywords.RunDotSlash.length() - 1);
+        	if(runsyntax->Theme() == "default")  {
+        		std::cout << WBOLD_MAGENTA_COLOR << "." << WBOLD_BLUE_COLOR << "/" << WBLACK_COLOR;
+       		} else if(runsyntax->Theme() == "classic") {
+       			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), "./");
+       		} else {
+       			std::cout << WBOLD_MAGENTA_COLOR << "." << WBOLD_BLUE_COLOR << "/" << WBLACK_COLOR;
+        	}
+        	BOLD_LIGHT_MAGENTA_COLOR
+        	std::getline(std::cin, main_function->_h_str);
+        	BLACK_COLOR
+                std::cout << main_function->_h_str << main_function->_h_str.length();
+        	if(main_function->_h_str.length() == 0) {
+			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "scrift : ./ : Is a directory.\n");
+		} else if(strstr(main_function->_h_str.c_str(), ".scr")) {
+			scriftlang->ReadFunc(main_function->_h_str);
+		} else  {
+			runfunction->RunFunction("./" + main_function->_h_str);
+		}
+
+        	history->WriteHistory(main_function->_h_str);
+      		main_function->_h_str.erase();
+      		terminalstr->Terminal();
+          	return;
+      } */else if(main_function->_h_str == keywords.Version)  {
                 RemovePrintedChar(keywords.Version.length() - 1);
                 if(runsyntax->Theme() == "default")  {
         		std::cout << WBOLD_YELLOW_COLOR << "version" << WBLACK_COLOR;
@@ -1368,7 +1370,17 @@ void InputFunction() {
 					/* fpi --i */
 					FInstall fetcheya_install;
 					fetcheya_install.FegeyaPackageInstaller(main_function->_h_str);
-    				} else {
+    				} else if(strstr(main_function->_h_str.c_str(), keywords.RunDotSlash.c_str())) {
+          	                        /* ./make.scr ./scrift */
+        	                        if(main_function->_h_str == "./\n") {
+			                        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), 
+                                                        "scrift : ./ : Is a directory.\n");
+                                        } else if(strstr(main_function->_h_str.c_str(), ".scr")) {
+                                                main_function->_h_str.erase(0, 2).pop_back(); /* Erase ./ and last character (newline) */
+	        		                scriftlang->ReadFunc(main_function->_h_str); 
+                                        } else
+			                        runfunction->RunFunction(main_function->_h_str);
+                                } else {
 					std::string copy(main_function->_h_str);
         				runfunction->RunFunction(copy);
         			}
