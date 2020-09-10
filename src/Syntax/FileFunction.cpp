@@ -466,9 +466,11 @@ FFindFileFunction::FindFile(std::string name) {
 		printlnf("%4s: %s\n", "[includeLink]", entryname->d_name);
 	    }
 	} else {
-            BOLD_YELLOW_COLOR
-            printlnf("%4s: %s\n", "[File]", entryname->d_name);
-        }
+			if(strstr(entryname->d_name, name.c_str())) {
+            	BOLD_YELLOW_COLOR
+            	printlnf("%4s: %s\n", "[File]", entryname->d_name);
+			}
+		}
         BLACK_COLOR // Reset
     }
     closedir(directory);
