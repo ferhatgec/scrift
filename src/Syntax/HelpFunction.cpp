@@ -23,6 +23,7 @@ FHelpFunction::HelpFunction() {
         printlnf("[General]\n");
 	BOLD_CYAN_COLOR
 	printlnf(" * username : Show username\n"
+            " * config : Configure Scrift.\n"
             " * castle : Scrift game.\n"
             " * gitlink : Show GitHub link.\n"
             " * welcome : Show welcome message\n"

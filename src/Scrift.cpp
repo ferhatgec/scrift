@@ -891,6 +891,12 @@ void CodeExecution(std::string arg) {
                 */
                 std::cout << main_->FName() << "\n";
                 return;
+        } else if(arg == keywords.Config + "\n") {
+                /* config
+                        Configure .scrift_settings file.
+                */
+                setup->Config();
+                return;
         } else if(arg == keywords.GitLink + "\n") {
         	/* gitlink
                         Show project's GitHub link

@@ -262,6 +262,9 @@ public:
 	/* Fegeya package installer */
 	std::string Fpi = "fpi";
 	
+	/* Setup && Config */
+	std::string Config = "config";
+	
 	/* Whitespace */
 	std::string Whitespace = " ";
 };
