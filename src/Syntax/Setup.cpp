@@ -63,7 +63,7 @@ FSetup::Stage1() {
         colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(),
                 "You want to pass Configuration? (y | n)\n -> ");
 
-        LIGHT_WHITE_COLOR
+        BOLD_LIGHT_WHITE_COLOR
         std::cin >> pass;
         if(pass == "n" || pass == "NO" || pass == "no" || pass == "No" || pass == "no_thanks") {
 
@@ -71,7 +71,7 @@ FSetup::Stage1() {
                 colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
                         "FeLog Cleaner [50, 100, 300] (Default: Once every 100 lines)\n -> ");
 
-                LIGHT_WHITE_COLOR
+                BOLD_BOLD_LIGHT_WHITE_COLOR
                 std::cin >> felog_clean_line;
 
                 /* Pass */
@@ -82,7 +82,7 @@ FSetup::Stage1() {
                 colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
                         "Welcome Emoji [:bike:, :question:, :bug: etc.] (Default :thinking_face:)\n -> ");
 
-                LIGHT_WHITE_COLOR
+                BOLD_LIGHT_WHITE_COLOR
                 std::cin >> welcome_emoji;
 
                 /* Pass */
@@ -93,7 +93,7 @@ FSetup::Stage1() {
                 colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
                         "Background Color [0,1,2,3,4,5,6,7] (Default : 12)\n -> ");
 
-                LIGHT_WHITE_COLOR
+                BOLD_LIGHT_WHITE_COLOR
                 std::cin >> bg_color;
 
                 /* Pass */
@@ -103,7 +103,7 @@ FSetup::Stage1() {
                 colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
                         "ASCII Art Color [colornumber, no_thanks, random] (Default: random)\n -> ");
 
-                LIGHT_WHITE_COLOR
+                BOLD_LIGHT_WHITE_COLOR
                 std::cin >> ascii_art_color;
 
                 /* Pass */
@@ -113,7 +113,7 @@ FSetup::Stage1() {
                 colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
                         "Scrift Theme [default, classic]\n -> ");
 
-                LIGHT_WHITE_COLOR
+                BOLD_LIGHT_WHITE_COLOR
                 std::cin >> scrift_theme;
 
                 /* Pass */
@@ -123,7 +123,7 @@ FSetup::Stage1() {
                 colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
                         "Input Customization [▶, #>, $# etc.] (Default: ▶)\n -> ");
 
-                LIGHT_WHITE_COLOR
+                BOLD_LIGHT_WHITE_COLOR
                 std::cin >> input_customize;
 
                 /* Pass */
@@ -133,7 +133,7 @@ FSetup::Stage1() {
                 colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
                         "Welcome Message [yes, no_thanks] (Default: yes)\n -> ");
 
-                LIGHT_WHITE_COLOR
+                BOLD_LIGHT_WHITE_COLOR
                 std::cin >> welcome_message;
 
                 /* Pass */
@@ -143,7 +143,7 @@ FSetup::Stage1() {
                 colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
                         "Local Git Branch Detection [yes, no_thanks] (Default: yes)\n -> ");
 
-                LIGHT_WHITE_COLOR
+                BOLD_LIGHT_WHITE_COLOR
                 std::cin >> local_git_branch;
 
                 /* Pass */
