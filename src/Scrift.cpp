@@ -736,7 +736,11 @@ void CodeExecution(std::string arg) {
                 arg = stringtools::EraseAllSubString(arg,
                         keywords.SquareofNumber + " ");
    		arg.pop_back();
-                std::cout << atoi(arg.c_str()) * atoi(arg.c_str()) << "\n";
+
+                colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), 
+                                std::to_string(atoi(arg.c_str()) * atoi(arg.c_str())).c_str());
+
+                std::cout << "\n";
                 return;
         } else if(strstr(arg.c_str(), keywords.SquareRootofNumber.c_str())) {
                 /* sqrt
@@ -748,8 +752,12 @@ void CodeExecution(std::string arg) {
                 arg.pop_back();
    		
                 /* If statement */
-                (atoi(arg.c_str()) <= - 1) ? std::cout << "Hmm." : std::cout << sqrti(atoi(arg.c_str()));
-                
+                if(atoi(arg.c_str()) <= - 1) 
+                        std::cout << "Hmm.";
+                else
+                        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), 
+                                std::to_string(sqrti(atoi(arg.c_str()))).c_str());
+
                 std::cout << "\n";
                 return;
         } else if(arg == keywords.Clear_History + "\n") {
@@ -1029,54 +1037,46 @@ void InputFunction() {
         	main_function->_h_str.push_back(c);
         }
 
-        /* Statements 
-         else { */
-		sign.push_back(c);
-     		/*if(c == ARROW_UP) {
+	sign.push_back(c);
 
-     		} else if(c == ARROW_DOWN) {
-
-     		} */if(c == ARROW_RIGHT) {
+        if(c == ARROW_RIGHT) {
      			std::cout << "\033[1C";
      			cursorpos.x += 1;
-     		} else if(c == ARROW_LEFT) {
-     			if(cursorpos.x >= 2) {
-		        	std::cout << "\033[1D";
-		        	cursorpos.x -= 1;
-		        } else
-		        	return;
-		        
-		} else if(c == 32) {
-			printlnf(" ");
-			space++;
-		} else if(c == '\n') {
-			space = 0;
-			input_value++;
-			cursorpos.x = 0;
-			slashn
+     	} else if(c == ARROW_LEFT) {
+     		if(cursorpos.x >= 2) {
+	        	std::cout << "\033[1D";
+	        	cursorpos.x -= 1;
+	        } else
+	        	return;        
+	} else if(c == 32) {
+		printlnf(" ");
+		space++;
+	} else if(c == '\n') {
+		space = 0;
+		input_value++;
+		cursorpos.x = 0;
+		slashn
 			
-                        if(main_function->_h_str != "\n")
-                                CodeExecution(main_function->_h_str);
+                if(main_function->_h_str != "\n")
+                        CodeExecution(main_function->_h_str);
                         
-        		main_function->_h_str.erase();
-        		terminalstr->Terminal();
-        		return;
-        	} else {
-			//std::cout << "CURSORPOS" << cursorpos.x;
-			//std::cout << cursorpos.x;
-			if(runsyntax->Theme() == "default")
-				Space(space, sign, false);
-	       		else if(runsyntax->Theme() == "classic")
-	       			Space(space, sign, true);
-	       		else
-	  			Space(space, sign, false);
+        	main_function->_h_str.erase();
+        	terminalstr->Terminal();
+        	return;
+        } else {
+		/* Color scheme option (Different with terminal's color.) */
+                if(runsyntax->Theme() == "default")
+			Space(space, sign, false);
+	       	else if(runsyntax->Theme() == "classic")
+	       		Space(space, sign, true);
+	       	else
+	  		Space(space, sign, false);
 	       		
-        		cursorpos.x += 1;
-        		return;
-        	}
-        	//std::cout << cursorpos.x;
-        	sign.erase();
+        	cursorpos.x += 1;
+        	return;
+        }
         
+        sign.erase();
 }
 
 void
@@ -1114,16 +1114,6 @@ int main(integer argc, char** argv) {
 	if(runsyntax->Setup() == true) {
 		/* ExecutePlusPlus exec; */
 		setup->Config();
-		/* if(fsplusplus::IsExistFile("/bin/scrift") == true) {
-			#ifdef _WIN32
-		   	   #elif __APPLE__
-		   	   #else
-
-			GNU/Linux, FreeBSD, (maybe) Unix, Unix-Like systems.
-			std::thread relaunch([](){ system("scrift"); });
-			 #endif
-			relaunch.detach();
-		 } */
 	}
 
 	if(runsyntax->ASCIIColor() == -1) {} else {
