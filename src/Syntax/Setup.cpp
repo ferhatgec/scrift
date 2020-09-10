@@ -36,7 +36,8 @@
 /*
         Welcome message, checking etc.
 */
-bool
+
+void
 FSetup::Stage1() {
         /* Setting variables */
         std::string pass, felog_clean_line, welcome_emoji, bg_color,
@@ -71,7 +72,7 @@ FSetup::Stage1() {
                 colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
                         "FeLog Cleaner [50, 100, 300] (Default: Once every 100 lines)\n -> ");
 
-                BOLD_BOLD_LIGHT_WHITE_COLOR
+                BOLD_LIGHT_WHITE_COLOR
                 std::cin >> felog_clean_line;
 
                 /* Pass */
@@ -179,6 +180,9 @@ FSetup::Stage1() {
         colorized::PrintWith(colorized::Colorize(BOLD, GREEN).c_str(),
                 "Good luck!\n");
 }
+
+
+
 
 void
 FSetup::Config() {

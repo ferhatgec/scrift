@@ -13,7 +13,7 @@
 
 class FSetup {
 public:
-        bool Stage1();
+        void Stage1();
 
 	void Config(); /* Settings (.scrift_settings) */
 };
