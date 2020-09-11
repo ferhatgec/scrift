@@ -18,7 +18,7 @@ FBranch::GetGitBranch() {
 	if(branch != "null") {
 		ExecutePlusPlus exec;
 		branch = exec.ExecWithOutput("git branch | grep \"^\*\" | sed 's/^..//'");
-		if(strstr(branch.c_str(), "fatal")) {
+		if(strstr(branch.c_str(), "fatal") || branch.length() == 0) {
 			return "";
 		} else {
 			FSettings set;
