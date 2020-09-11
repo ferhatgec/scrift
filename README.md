@@ -4,7 +4,10 @@
 
 ![Scrift](docs/resource/ScriftBanner.png)
 
+![GitHub closed issues](https://img.shields.io/github/issues-closed/ferhatgec/scrift)
+![GitHub issues](https://img.shields.io/github/issues/ferhatgec/scrift)
 [![Build Status](https://dev.azure.com/ferhatgectao/scrift-lang/_apis/build/status/FerhatGec.scrift-lang?branchName=master)](https://dev.azure.com/ferhatgectao/scrift-lang/_build/latest?definitionId=1&branchName=master)
+![GitHub](https://img.shields.io/github/license/ferhatgec/scrift)
 
 # Features 
 - User-friendly shell interface.
