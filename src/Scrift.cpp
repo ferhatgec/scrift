@@ -341,7 +341,7 @@ std::string GetUptime() {
 }
 
 void CodeExecution(std::string arg) {
-        if(strstr(arg.c_str(), (keywords.Scr + " ").c_str())) {
+        if(arg.rfind(keywords.Scr, 0) == 0) {
         	/* scr
                         scr echo hello
                         Use Non-Scrift commands without conflict
@@ -351,7 +351,7 @@ void CodeExecution(std::string arg) {
                 arg.pop_back();
                 runfunction->RunFunction(arg);
                 return;
-       	} else if(strstr(arg.c_str(), keywords.Printlnf.c_str())){
+       	} else if(arg.rfind(keywords.Printlnf, 0) == 0){
         	/* printlnf
                         printlnf Hello, world!
                         printlnf #HOME
@@ -369,7 +369,7 @@ void CodeExecution(std::string arg) {
                 }
                 std::cout << "\n";
                 return;
-        } else if(strstr(arg.c_str(), keywords.Echo.c_str())){
+        } else if(arg.rfind(keywords.Echo, 0) == 0) {
         	/* echo
                         echo Hello, world!
                         echo #HOME
@@ -387,7 +387,7 @@ void CodeExecution(std::string arg) {
                 }
                 std::cout << "\n";
                 return;
-        } else if(strstr(arg.c_str(), keywords.Fpi.c_str())) {
+        } else if(arg.rfind(keywords.Fpi, 0) == 0) {
 		/* 
                         fpi --i || --install
                         fpi --uni || --uninstall
@@ -395,7 +395,7 @@ void CodeExecution(std::string arg) {
 		FInstall fetcheya_install;
 		fetcheya_install.FegeyaPackageInstaller(arg);
                 return;
-	} else if(strstr(arg.c_str(), keywords.FreeBrainGen.c_str())) {
+	} else if(arg.rfind(keywords.FreeBrainGen, 0) == 0) {
                	/* genfrbr
                         genfrbr 3
                         
@@ -415,7 +415,7 @@ void CodeExecution(std::string arg) {
                                         (AsciiGenFreeBrain(atoi(arg.c_str())) + "\n").c_str());
                 }
                 return;
-        } else if(strstr(arg.c_str(), keywords.Fr.c_str())) {
+        } else if(arg.rfind(keywords.Fr, 0) == 0) {
                 /* fr
                         fr /home
                         fr ../../
@@ -434,7 +434,7 @@ void CodeExecution(std::string arg) {
                         cdfunction->CDFunctionInit(arg);
                 }
                 return;
-        } else if(strstr(arg.c_str(), keywords.Cd.c_str())) {
+        } else if(arg.rfind(keywords.Cd, 0) == 0) {
                 /* cd
                         cd /home
                         cd ../../
@@ -454,7 +454,7 @@ void CodeExecution(std::string arg) {
                         cdfunction->CDFunctionInit(arg);
                 }
                 return;
-        } else if(strstr(arg.c_str(), keywords.RunDotSlash.c_str())) {
+        } else if(arg.rfind(keywords.RunDotSlash, 0) == 0) {
                 /* ./
                         ./make.scr 
                         ./scrift 
@@ -493,7 +493,7 @@ void CodeExecution(std::string arg) {
                 path_string.erase();
                 test_string.erase();
                 return;
-        } else if(strstr(arg.c_str(), keywords.Lsf.c_str())) {
+        } else if(arg.rfind(keywords.Lsf, 0) == 0) {
                 /* fls
                         fls
                         fls src 
@@ -511,7 +511,7 @@ void CodeExecution(std::string arg) {
 			main_->list_file(true, arg);
           	}
                 return;  
-    	} else if(strstr(arg.c_str(), keywords.Lsd.c_str())) {
+    	} else if(arg.rfind(keywords.Lsd, 0) == 0) {
                 /* dls
                         dls
                         dls src 
@@ -536,7 +536,7 @@ void CodeExecution(std::string arg) {
     		
                 listdirectoryfunction->ListObjectFunction();
                 return;
-    	} else if(strstr(arg.c_str(), keywords.Find.c_str())) {
+    	} else if(arg.rfind(keywords.Find, 0) == 0) {
           	/* ffind
                         ffind sr
 
@@ -569,7 +569,7 @@ void CodeExecution(std::string arg) {
           	
           	listdirectoryfunction->LSFunction(".");
                 return;
-        } else if(strstr(arg.c_str(), keywords.Ls.c_str())) {
+        } else if(arg.rfind(keywords.Ls, 0) == 0) {
                 /* ls
                         ls 
                         ls src
@@ -587,8 +587,7 @@ void CodeExecution(std::string arg) {
           		listdirectoryfunction->LSFunction(arg);
           	}
                 return;                  
-        } else if(strstr(arg.c_str(), keywords.Scrift.c_str())) {
-                std::cout << "coout!";
+        } else if(arg.rfind(keywords.Scrift, 0) == 0) {
                 /* fscrift
                         fscrift make 
                         fscrift make.scr
@@ -608,7 +607,7 @@ void CodeExecution(std::string arg) {
                 }
 
                 return;
-        } else if(strstr(arg.c_str(), keywords.MKDir.c_str())) {
+        } else if(arg.rfind(keywords.MKDir, 0) == 0) {
         	/* mkdir
                         mkdir scrift
                         Create directory
@@ -625,7 +624,7 @@ void CodeExecution(std::string arg) {
                 }
 
                 return;
-   	} else if(strstr(arg.c_str(), keywords.ReadText.c_str())) {
+   	} else if(arg.rfind(keywords.ReadText, 0) == 0) {
 		/* readtext
                         readtext file
                         
@@ -642,7 +641,7 @@ void CodeExecution(std::string arg) {
                 }
 
                 return;
-	} else if(strstr(arg.c_str(), keywords.SetName.c_str())) {
+	} else if(arg.rfind(keywords.SetName, 0) == 0) {
 		/* setname
                         setname home_path
 
@@ -678,7 +677,7 @@ void CodeExecution(std::string arg) {
                 }
 
                 return;
-        } else if(strstr(arg.c_str(), keywords.Random.c_str())) {
+        } else if(arg.rfind(keywords.Random, 0) == 0) {
                 /* random
                         random 15 
 
@@ -720,7 +719,7 @@ void CodeExecution(std::string arg) {
                 */
                 std::cout << "\033c";
                 return;
-        } else if(strstr(arg.c_str(), keywords.RemoveFile.c_str())) {
+        } else if(arg.rfind(keywords.RemoveFile, 0) == 0) {
    	        /* rmvfile
                         rmvfile Scrift.cpp
                 */
@@ -729,7 +728,7 @@ void CodeExecution(std::string arg) {
                 arg.pop_back();
                 removefile->DeleteFile(arg);
                 return;
-        } else if(strstr(arg.c_str(), keywords.SquareofNumber.c_str())) {
+        } else if(arg.rfind(keywords.SquareofNumber, 0) == 0) {
                 /* square
                         Calculate square
                 */
@@ -742,7 +741,7 @@ void CodeExecution(std::string arg) {
 
                 std::cout << "\n";
                 return;
-        } else if(strstr(arg.c_str(), keywords.SquareRootofNumber.c_str())) {
+        } else if(arg.rfind(keywords.SquareRootofNumber, 0) == 0) {
                 /* sqrt
                         Calculate square root
                 */
@@ -780,7 +779,7 @@ void CodeExecution(std::string arg) {
        		logsystem->ClearLog();
        		std::cout << "Done.\n";
                 return;                       
-        } else if(strstr(arg.c_str(), keywords.Factorial.c_str())) {
+        } else if(arg.rfind(keywords.Factorial, 0) == 0) {
           	/* fact
                         fact 4
 
@@ -822,7 +821,7 @@ void CodeExecution(std::string arg) {
                 */
         	temp.LangTemplate();
                 return;
-        } else if(strstr(arg.c_str(), keywords.RandomizeString.c_str())) {
+        } else if(arg.rfind(keywords.RandomizeString, 0) == 0) {
         	/* rstr
                         rstr 12
                         Create and print randomize string
@@ -842,14 +841,14 @@ void CodeExecution(std::string arg) {
                 homefunction->GetHome();
        		slashn
                 return;
-        } else if(strstr(arg.c_str(), keywords.AddText.c_str())) {
+        } else if(arg.rfind(keywords.AddText, 0) == 0) {
                 /* addtext      
                         Append string to file
                 */
                 arg = stringtools::EraseAllSubString(arg,
                         keywords.AddText + "\n");
         	fileaddtextfunction->AppendLine(arg);
-        } else if(strstr(arg.c_str(), keywords.Emoji.c_str())) {
+        } else if(arg.rfind(keywords.Emoji, 0) == 0) {
        		/* emoji
                         emoji :thinking_face:
                         
@@ -862,7 +861,7 @@ void CodeExecution(std::string arg) {
                         std::cout << emojiplusplus::EmojiString(arg) << "\n";
                 }
                 return;
-        } else if(strstr(arg.c_str(), keywords.CreateText.c_str())) {
+        } else if(arg.rfind(keywords.CreateText, 0) == 0) {
                 /*
                         TODO: Fix seg. fault.
                 */
@@ -927,7 +926,7 @@ void CodeExecution(std::string arg) {
                 	goto returni;
                 
                 return;
-    	} if(strstr(arg.c_str(), keywords.DeleteText.c_str())) {
+    	} if(arg.rfind(keywords.DeleteText, 0) == 0) {
         	/* deletetext
                         Remove text file
                 */
