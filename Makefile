@@ -39,8 +39,8 @@ INCLUDEDIR = ./include/
 # Include flags etc.
 CFLAGS = -Wall -I$(INCLUDELIB) -I$(INCLUDEDIR)
 
-GCC = gcc
-GPP = g++ -std=c++17
+GCC = cc
+COMPILER = c++ -std=c++17
 COMP = g++ -c
 
 # Clean all
@@ -100,16 +100,16 @@ conio: $(SRCLIBDIREC)FConio.c
 
 # Syntax
 %.o: $(SRCSYNTAXDIREC)%.cpp
-	$(GPP) -Wno-unused-function -Wno-unused-value $(CFLAGS) -c $< -o $@
+	$(COMPILER) -Wno-unused-function -Wno-unused-value $(CFLAGS) -c $< -o $@
 
 # Main Build
 main: $(SRCDIREC)Scrift.cpp
-	$(GPP) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) $(FETCHEYAFILE) -o scrift
+	$(COMPILER) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) $(FETCHEYAFILE) -o scrift
 	echo Scrift building successfully!
 
 # Main Build & Install
 mainc: $(SRCDIREC)Scrift.cpp
-	$(GPP) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) $(FETCHEYAFILE) -o /bin/scrift
+	$(COMPILER) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) $(FETCHEYAFILE) -o /bin/scrift
 	echo Scrift building successfully in Bin Directory!
 
 # Edifor Build
@@ -124,39 +124,39 @@ ediforc:
 
 # Castle
 castle: $(GAMESDIREC)/Castle/Castle.hpp
-	$(GPP) $(GCFLAGS) $(GAMESDIREC)/Castle/Castle.cpp -o $(PREFIX)castle $(GLDFLAGS)
+	$(COMPILER) $(GCFLAGS) $(GAMESDIREC)/Castle/Castle.cpp -o $(PREFIX)castle $(GLDFLAGS)
 	echo Castle building successfully in Bin Directory
 
 # TicTacToe
 tictactoe: $(GAMESDIREC)/TicTacToe/TicTacToeMain.cpp
-	$(GPP) -Wall $(GAMESDIREC)/TicTacToe/TicTacToeMain.cpp $(GAMESDIREC)/TicTacToe/tictactoe.cpp -o $(PREFIX)tictactoe
+	$(COMPILER) -Wall $(GAMESDIREC)/TicTacToe/TicTacToeMain.cpp $(GAMESDIREC)/TicTacToe/tictactoe.cpp -o $(PREFIX)tictactoe
 	echo TicTacToe building successfully in Bin Directory!
 
 # Pong
 pong: $(GAMESDIREC)/Pong/Pong.cpp
-	$(GPP) -Wall $(GAMESDIREC)/Pong/Pong.cpp -o $(PREFIX)pong -lncurses
+	$(COMPILER) -Wall $(GAMESDIREC)/Pong/Pong.cpp -o $(PREFIX)pong -lncurses
 	echo Pong building successfully in Bin Directory!
 
 # Calendar & Converter Build
 # Calendar
 datec: $(SRCAPPSDIREC)/FDate/FDate.cpp
-	$(GPP)  $(SRCAPPSDIREC)/FDate/FDate.cpp -o fdate
+	$(COMPILER)  $(SRCAPPSDIREC)/FDate/FDate.cpp -o fdate
 	echo FDate building successfully!
 
 # Calendar & Converter & Build & Install
 date: $(SRCAPPSDIREC)/FDate/FDate.cpp
-	$(GPP)  $(SRCAPPSDIREC)/FDate/FDate.cpp -o $(PREFIX)fdate
+	$(COMPILER)  $(SRCAPPSDIREC)/FDate/FDate.cpp -o $(PREFIX)fdate
 	echo FDate building successfully in Bin Directory!
 
 # Integrated Scrift's core.
 # Fetcheya Build
 #fetcheya: $(SRCFETCHEYADIREC)Fetcheya.cpp
-#	$(GPP) $(CFLAGS) $(SRCFETCHEYADIREC)Logos.cpp $(SRCFETCHEYADIREC)Fetcheya.cpp -o fetcheya
+#	$(COMPILER) $(CFLAGS) $(SRCFETCHEYADIREC)Logos.cpp $(SRCFETCHEYADIREC)Fetcheya.cpp -o fetcheya
 #	echo Fetcheya building successfully!
 
 # Fetcheya Build & Install
 #fetcheyac: $(SRCFETCHEYADIREC)Fetcheya.cpp
-#	$(GPP) $(CFLAGS) $(SRCFETCHEYADIREC)Logos.cpp $(SRCFETCHEYADIREC)Fetcheya.cpp -o $(PREFIX)fetcheya
+#	$(COMPILER) $(CFLAGS) $(SRCFETCHEYADIREC)Logos.cpp $(SRCFETCHEYADIREC)Fetcheya.cpp -o $(PREFIX)fetcheya
 #	echo Fetcheya building successfully in Bin Directory!
 
 # Remove Scrift.

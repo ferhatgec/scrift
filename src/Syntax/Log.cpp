@@ -14,7 +14,6 @@
 #include <src/Syntax/FileFunction.hpp>
 #include <src/Scrift.hpp>
 #include <src/Syntax/CommandFunc.h>
-// #include <Syntax/PrintErrorFunction.hpp>
 
 std::ofstream file;
 FCommand *commandlog = new FCommand();

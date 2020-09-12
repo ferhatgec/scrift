@@ -13,7 +13,6 @@
 #include "ASCIIFunction.hpp"
 #include "FileFunction.hpp"
 #include "MkdirFunction.hpp"
-#include "PrintErrorFunction.hpp"
 #include "RunFunction.hpp"
 
 class FTest {

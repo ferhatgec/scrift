@@ -15,7 +15,6 @@
 #include <src/Syntax/Log.hpp>
 #include <src/Syntax/FileFunction.hpp> 
 #include <src/Syntax/CommandFunc.h>
-// #include <Syntax/PrintErrorFunction.hpp>
 
 FeLog *loghistory = new FeLog();
 std::ofstream historyfile;

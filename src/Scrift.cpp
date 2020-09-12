@@ -44,7 +44,6 @@
 #include <src/synflang.hpp> /* Some definitions */
 #include <src/Syntax/Log.hpp> /* FeLog */
 #include <src/Syntax/FileFunction.hpp> /* All file I/O functions, variables. */
-#include <src/Syntax/PrintErrorFunction.hpp> /* Under the construction */
 #include <src/Syntax/KernelName.hpp> /* Get kernel name */
 #include <src/Syntax/HelpFunction.hpp> /* HelpFunction(), Welcome() etc. */
 #include <src/Syntax/GetNameFunction.hpp> /* Terminal */

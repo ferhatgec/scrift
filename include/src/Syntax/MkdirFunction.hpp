@@ -7,10 +7,6 @@
 
 #ifndef MKDIR_FUNCTION_HPP
 #define MKDIR_FUNCTION_HPP
-#include "../synflang.hpp"
-#include "../Scrift.hpp"
-#include "PrintErrorFunction.hpp"
-
 
 
 #endif // MKDIR_FUNCTION_HPP
