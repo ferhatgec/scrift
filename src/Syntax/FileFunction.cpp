@@ -240,6 +240,7 @@ FCreateFileFunction::CreateSettingsFileFunction() {
 	file << "welcome_message yes\n";
 	file << "local_git_branch yes\n";
         file << "scrift_setup yes\n";
+	file << "auto_clear 40\n";
     	file.close();
     } else {
     }
@@ -263,6 +264,7 @@ FClearFileFunction::ClearSettingsFunction() {
 	file << "welcome_message yes\n";
 	file << "local_git_branch yes\n";
         file << "scrift_setup yes\n";
+	file << "auto_clear 40\n";
     } else {
         CreateSettingsFileFunction();
     }

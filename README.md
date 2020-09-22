@@ -16,6 +16,7 @@
 - Display Git branches.
 - Auto-Whitespace
 - Auto-Completer (not ended)
+- Auto terminal buffer clear.
 - Customizable
 - Package Installer for Fegeya Community's applications.
 - Configuration application without text editor :^)

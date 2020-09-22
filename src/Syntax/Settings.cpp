@@ -174,6 +174,15 @@ FSettings::BackgroundColor() {
 }
 
 /*
+	Auto clear for terminal buffer.
+*/
+int
+FSettings::Clear() {
+	std::string line = fsplusplus::FindStringWithReturn(Path(), "auto_clear");
+	return atoi(stringtools::EraseAllSubString(line, "auto_clear ").c_str());
+}
+
+/*
 	default: input color is a lot of colors!
 	classic: input color is light white.
 */

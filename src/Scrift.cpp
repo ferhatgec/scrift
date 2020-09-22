@@ -137,7 +137,7 @@ void RemovePrintedChar(int value) {
 	return;
 }
 
-int space = 0, input_value = 0;
+int space = 0, input_value = 0, scrift_line = 0;
 
 std::string ftime(compilation_time); // Convert
 
@@ -716,6 +716,7 @@ void CodeExecution(std::string arg) {
       	  	/* clear
                         Clear terminal buffer
                 */
+                scrift_line = 0;
                 std::cout << "\033c";
                 return;
         } else if(arg.rfind(keywords.RemoveFile, 0) == 0) {
@@ -1012,6 +1013,11 @@ void CodeExecution(std::string arg) {
 	Input && Interpreter.
 */
 void InputFunction() {
+        if(scrift_line >= runsyntax->Clear()) {
+                std::cout << "\033c";
+                scrift_line = 0;
+        }
+
 	/* Foreground color */
 	textbackground(runsyntax->BackgroundColor());
 	std::string sign;
@@ -1058,6 +1064,7 @@ void InputFunction() {
 	} else if(c == '\n') {
 		space = 0;
 		input_value++;
+                scrift_line++;
 		cursorpos.x = 0;
 		slashn
 			

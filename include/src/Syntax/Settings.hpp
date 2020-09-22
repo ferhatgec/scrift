@@ -36,6 +36,7 @@ public:
 	int color();
 	int random(int, int);
 	int FeLogCleaner();
+	int Clear();
 };
 
 #endif // SETTINGS_HPP

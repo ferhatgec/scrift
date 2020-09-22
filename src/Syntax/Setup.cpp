@@ -42,7 +42,7 @@ FSetup::Stage1() {
         /* Setting variables */
         std::string pass, felog_clean_line, welcome_emoji, bg_color,
                 ascii_art_color, scrift_theme, input_customize,
-                welcome_message, local_git_branch, scrift_setup;
+                welcome_message, local_git_branch, scrift_setup, auto_clear;
 
         /* Welcome
           FHelpFunction welcome;
@@ -150,6 +150,16 @@ FSetup::Stage1() {
                 /* Pass */
                 if(local_git_branch == "n" || local_git_branch == "N") local_git_branch = "yes";
 
+                /* Local Git Branch */
+                colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
+                        "Auto terminal buffer clear (line) [10, 20, no_thanks] (Default: 40)\n -> ");
+
+                BOLD_LIGHT_WHITE_COLOR
+                std::cin >> auto_clear;
+
+                /* Auto buffer clear */
+                if(auto_clear == "n" || auto_clear == "N") auto_clear = "40";
+
                 colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(),
                         "Erasing old settings data.\n");
         } else {
@@ -161,6 +171,7 @@ FSetup::Stage1() {
                 input_customize = "▶";
                 welcome_message = "yes";
                 local_git_branch = "yes";
+                auto_clear = "40";
         }
 
         std::ofstream erase_settings;
@@ -176,13 +187,12 @@ FSetup::Stage1() {
 	erase_settings << "welcome_message " + welcome_message + "\n";
 	erase_settings << "local_git_branch " + local_git_branch + "\n";
         erase_settings << "scrift_setup no_thanks\n";
+        erase_settings << "auto_clear " + auto_clear + "\n";
         erase_settings.close();
+
         colorized::PrintWith(colorized::Colorize(BOLD, GREEN).c_str(),
                 "Good luck!\n");
 }
-
-
-
 
 void
 FSetup::Config() {
