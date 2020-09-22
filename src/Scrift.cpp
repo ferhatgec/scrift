@@ -1015,6 +1015,7 @@ void CodeExecution(std::string arg) {
 void InputFunction() {
         if(scrift_line >= runsyntax->Clear()) {
                 std::cout << "\033c";
+                terminalstr->Terminal();
                 scrift_line = 0;
         }
 

@@ -179,7 +179,19 @@ FSettings::BackgroundColor() {
 int
 FSettings::Clear() {
 	std::string line = fsplusplus::FindStringWithReturn(Path(), "auto_clear");
-	return atoi(stringtools::EraseAllSubString(line, "auto_clear ").c_str());
+	line = stringtools::EraseAllSubString(line, "auto_clear ");
+
+	if(strstr(line.c_str(), "no_thanks"))
+		return 2147483647;
+	else {
+		int val = atoi(line.c_str());
+		if(val >= 2)
+			return val;
+		else
+			return 40;
+	}
+
+	return 40;
 }
 
 /*
