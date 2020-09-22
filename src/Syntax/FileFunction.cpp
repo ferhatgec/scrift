@@ -265,6 +265,7 @@ FClearFileFunction::ClearSettingsFunction() {
 	file << "local_git_branch yes\n";
         file << "scrift_setup yes\n";
 	file << "auto_clear 40\n";
+	file.close();
     } else {
         CreateSettingsFileFunction();
     }
