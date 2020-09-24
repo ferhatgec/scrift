@@ -62,7 +62,7 @@ FSetup::Stage1() {
         colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "for pass any question\n");
 
         colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(),
-                "You want to pass Configuration? (y | n)\n -> ");
+                "Do you want to pass Configuration? (y | n)\n -> ");
 
         BOLD_LIGHT_WHITE_COLOR
         std::cin >> pass;
