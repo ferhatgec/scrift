@@ -270,7 +270,7 @@ std::string IntToString(int a) {
 }
 
 /* For 'Happy new year' */
-std::string currentDateTime() {
+std::string FMain::Time() {
     // return "2020-01-01-12:34:67:00"; For Test.
     time_t     now = time(0);
     struct tm  tstruct;
@@ -1039,7 +1039,7 @@ void CodeExecution(std::string arg) {
                 Show current time
             */
             BOLD_LIGHT_WHITE_COLOR
-    		std::cout << currentDateTime() << "\n";
+    		std::cout << main_function->Time() << "\n";
     		BLACK_COLOR
             
             return;                    
@@ -1202,7 +1202,7 @@ int main(integer argc, char** argv) {
     setlocale(LC_ALL, ""); /* Locale */
 
     /* Happy new year! */
-    if(currentDateTime().substr(4, 6) == "-01-01") {
+    if(main_function->Time().substr(4, 6) == "-01-01") {
     	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "Happy new year!");
     	std::cout << " " << emojiplusplus::EmojiString(":balloon:") << " - ";
     	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "Scrift\n");

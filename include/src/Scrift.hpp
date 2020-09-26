@@ -50,6 +50,8 @@ public:
     /* Shell */
     void Shell();
     
+    std::string Time();
+
     /* Input, directory variables. */
     std::string header_string;
     std::string str;

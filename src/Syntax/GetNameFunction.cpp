@@ -12,11 +12,13 @@
 #include <src/Syntax/CommandFunc.h>
 #include <src/Syntax/GetNameFunction.hpp>
 #include <src/Syntax/Branch.hpp>
+#include <src/Syntax/Tools.hpp>
 
 // Library
 #include <Colorized.hpp>
 
 FBranch br;
+FTools tools;
 FCommand *terminal = new FCommand();
 FSettings *fsettings = new FSettings();
 FStructure::FStructure() { }
@@ -71,8 +73,10 @@ FStructure::Terminal() {
     std::cout << terminal->_file_path_cd_function << " ";
     BOLD_CYAN_COLOR
     std::cout << GetBranch();
+    BOLD_LIGHT_YELLOW_COLOR
+    tools.Clock();
     BOLD_RED_COLOR
     // std::cout << "$# ";
-    std::cout << customize << " ";
+    std::cout << " " << customize << " ";
     BLACK_COLOR
 }
