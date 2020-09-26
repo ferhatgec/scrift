@@ -48,9 +48,9 @@ FInstall::InstallFetcheya(int uninstall) {
 	ExecutePlusPlus exec;
 	/* Check is exist? */
 	if(fsplusplus::IsExistFile("/bin/fetcheya") == false) {
-		if(uninstall == 1) {
+		if(uninstall == 1)
 			CANNOT_BE_REMOVED("Fetcheya")
-		} else {
+		else {
 			IS_NOT_EXIST("Fetcheya")
 			char input = getchar();
 			if(input == 'y' || input == 'Y') {
@@ -66,9 +66,9 @@ FInstall::InstallFetcheya(int uninstall) {
 							std::cout << "Installing..\n";
 
 							#ifdef __FreeBSD__
-								 if (getuid())
+								if (getuid())
 									IS_NOT_SUPER_USER("Fetcheya")
-								 else
+								else
 								 	exec.RunFunction("sh install.sh");
 							#else
 								exec.RunFunction("sudo sh install.sh");

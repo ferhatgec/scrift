@@ -74,10 +74,8 @@ int ProcessString(char* str, char** parsed, char** parsedpipe) {
         ParseSpace(strpiped[0], parsed);
         ParseSpace(strpiped[1], parsedpipe);
 
-    } else {
-
+    } else
         ParseSpace(str, parsed);
-    }
 
     return 1 + piped;
 }
@@ -87,7 +85,7 @@ void ExecuteArgs(char** parsed) {
     pid_t pid = fork();
 
     if (pid == -1) {
-   	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "scrift : Failed forking child..\n");
+   	    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "scrift : Failed forking child..\n");
         return;
     } else if (pid == 0) {
         if (execvp(parsed[0], parsed) < 0) {
@@ -127,8 +125,8 @@ void ExecuteArgsPiped(char** parsed, char** parsedpipe) {
 
         if (execvp(parsed[0], parsed) < 0) {
             colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "scrift : ");
-		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), parsed[0]);
-		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), " : first command not found..\n");
+		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), parsed[0]);
+		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), " : first command not found..\n");
             exit(0);
         }
     } else {
@@ -147,9 +145,9 @@ void ExecuteArgsPiped(char** parsed, char** parsedpipe) {
             dup2(pipefd[0], STDIN_FILENO);
             close(pipefd[0]);
             if (execvp(parsedpipe[0], parsedpipe) < 0) {
-		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "scrift : ");
-		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), parsed[0]);
-		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), " : second command not found..\n");
+		        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "scrift : ");
+		        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), parsed[0]);
+		        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), " : second command not found..\n");
                 exit(0);
             }
         } else {
@@ -165,24 +163,21 @@ FRunFunction::RunFunction(std::string name) {
     strcpy(inputString, stringtools::EraseAllSubString(name, "\n").c_str());
     execFlag = ProcessString(inputString,
         parsedArgs, parsedArgsPiped);
-    if (strstr(name.c_str(), "|")) {
-          ExecuteArgsPiped(parsedArgs, parsedArgsPiped);
-    } else {
-          ExecuteArgs(parsedArgs);
-    }
+    if (strstr(name.c_str(), "|"))
+        ExecuteArgsPiped(parsedArgs, parsedArgsPiped);
+    else
+        ExecuteArgs(parsedArgs);
 }
 
 
 void
-FRunFunction::RunBinFunction(std::string name)
-{
+FRunFunction::RunBinFunction(std::string name) {
     directory = "/bin/";
     system(directory.c_str());
 }
 
 void
-FRunFunction::RunGMakeFunction(std::string name)
-{
+FRunFunction::RunGMakeFunction(std::string name) {
     FCommand *command = new FCommand();
     directory = "/usr/bin" + name;
     directory.append(command->_file_path_cd_function);
@@ -191,8 +186,7 @@ FRunFunction::RunGMakeFunction(std::string name)
 
 // For Fegeya Fusion and *nix
 void
-FRunFunction::RunJamFunction(std::string name)
-{
+FRunFunction::RunJamFunction(std::string name) {
     directory = "/usr/local/bin/jam " + name; // read-only!
     system(directory.c_str()); // jam + function
 }

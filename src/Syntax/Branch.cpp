@@ -15,16 +15,18 @@
 std::string
 FBranch::GetGitBranch() {
 	std::string branch(fsplusplus::ListDirectoryWithReturn(".git"));
+	
 	if(branch != "null") {
 		ExecutePlusPlus exec;
 		branch = exec.ExecWithOutput("git branch | grep \"^\*\" | sed 's/^..//'");
-		if(strstr(branch.c_str(), "fatal") || branch.length() == 0) {
+		if(strstr(branch.c_str(), "fatal") || branch.length() == 0)
 			return "";
-		} else {
+		else {
 			FSettings set;
 			if(set.GitBranch() == true)
 				return "[" + branch + "] ";
 		}
 	}
+
 	return "";
 }

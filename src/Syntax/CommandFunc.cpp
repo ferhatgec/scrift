@@ -78,115 +78,127 @@ void
 FCommand::echo_printlnf(std::string name) { 
     if(name != "") {
         WHITE_COLOR
-        if(name.rfind("#USER") == 0) {        
+        if(name.rfind("#USER") == 0)      
             keyword.EndWithUser();
-        } else if(name.rfind("#PATH") == 0) {
+        else if(name.rfind("#PATH") == 0)
             keyword.EndWithPath();
-        } else if(name[0] == '#') {
-		name = name.erase(0, 1);
+        else if(name[0] == '#') {
+		    name = name.erase(0, 1);
         	const char* env = getenv(name.c_str());
-		if(env != NULL) {
-			std::cout << env;
-		} else {
-			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "scrift : This Environment not found. ");
-			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "Use:\n");
-			colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), "setname ");
-			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), name.c_str());
-			colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(), "\nsetto ");
-			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "<variable>");
-		}
-        } else {
+		
+            if(env != NULL)
+			    std::cout << env;
+		    else {
+			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "scrift : This Environment not found. ");
+			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "Use:\n");
+			    colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), "setname ");
+			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), name.c_str());
+			    colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(), "\nsetto ");
+			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "<variable>");
+		    }
+        } else
         	std::cout << emojiplusplus::EmojiString(name);
-        }
+        
         BLACK_COLOR
     }
 }
 
 void
 FCommand::_set_locale() {
-        BOLD_MAGENTA_COLOR
-        printlnf("Set up -> Your system language");// setlocale(LC_CTYPE, NULL);
-        BLACK_COLOR // reset
-        setlocale(LC_CTYPE, NULL); // FOR UNIX AND FUSION
-        printlnf(" \n"); 
+    BOLD_MAGENTA_COLOR
+    printlnf("Set up -> Your system language");// setlocale(LC_CTYPE, NULL);
+    BLACK_COLOR // reset
+    
+    setlocale(LC_CTYPE, NULL); // FOR UNIX AND FUSION
+    printlnf(" \n"); 
 }
 
 
 void
 FCommand::list_direc(boolean _home, std::string arg) {
-        integer files = 0;
-        struct stat filestat;
-        struct dirent *entry;
-        DIR *dir;
-	if(_home != false && arg.rfind("#") == 0) {
+    integer files = 0;
+    struct stat filestat;
+    struct dirent *entry;
+    DIR *dir;
+	
+    if(_home != false && arg.rfind("#") == 0) {
 		arg = stringtools::EraseAllSubString(arg, "#");
-    		dir = opendir((command->_file_path_cd_function, "/", getenv(arg.c_str())));
+    	dir = opendir((command->_file_path_cd_function, "/", getenv(arg.c_str())));
 	} else {
-        	if(_home != false) {dir = opendir((_file_path_cd_function, arg.c_str())); /*For Linux and *nix*/
-        	} else if(_home == false) {
+        if(_home != false)
+            dir = opendir((_file_path_cd_function, arg.c_str())); /*For Linux and *nix*/
+        else if(_home == false)
         	    dir = opendir(getenv("HOME"));
-        	}
-        }
-        if (dir == NULL) {
-            printlnf("Directory not found.");
-            return;
-        }
-        while ((entry = readdir(dir))) {
-            files++;
-            stat(entry->d_name,&filestat);
-            if(entry->d_type == DT_DIR) {
-            	if(strstr(entry->d_name, ".")) {
-
-		} else if(strstr(entry->d_name, "..")) {
-		
-		} else {	
-                	BOLD_RED_COLOR
-                	printf("%4s: %s\n","[Dir]",entry->d_name); 
+    }
+    
+    if (dir == NULL) {
+        printlnf("Directory not found.");
+        return;
+    }
+    
+    while ((entry = readdir(dir))) {
+        files++;
+        stat(entry->d_name,&filestat);
+        if(entry->d_type == DT_DIR) {
+        	if(strstr(entry->d_name, ".")) {} 
+            else if(strstr(entry->d_name, "..")) {} 
+            else {	
+                BOLD_RED_COLOR
+                printf("%4s: %s\n","[Dir]",entry->d_name); 
             	}
-            }
-            BLACK_COLOR
         }
-        closedir(dir);
+        
+        BLACK_COLOR
+    }
+    
+    closedir(dir);
 }
 
 void 
 FCommand::list_file(boolean _home, std::string arg) {
-        integer files = 0;
-        struct stat filestat;
-        struct dirent *entry;
-        DIR *dir;
-	if(_home != false && arg.rfind("#") == 0) {
+    integer files = 0;
+    struct stat filestat;
+    struct dirent *entry;
+    DIR *dir;
+	
+    if(_home != false && arg.rfind("#") == 0) {
 		arg = stringtools::EraseAllSubString(arg, "#");
-    		std::string new_name(getenv(arg.c_str()));
-    		dir = opendir((command->_file_path_cd_function, "/", new_name.c_str()));
+    	std::string new_name(getenv(arg.c_str()));
+    	dir = opendir((command->_file_path_cd_function, "/", new_name.c_str()));
 	} else {
-        	if(_home != false) {dir = opendir((_file_path_cd_function, arg.c_str())); /*For Linux and *nix*/
-        	} else if(_home == false) {
-        	    dir = opendir(getenv("HOME"));
-        	}
-        }
-        if (dir == NULL) {
-            RED_COLOR
-            std::cout << "Directory not found.\n";
-            BLACK_COLOR
-            return;
-        }
-        while ((entry = readdir(dir))) {
-            files++;
-            remove_character(entry->d_name, '.');
-            remove_character(entry->d_name, '..');
-            //printf("%d", entry->d_type, "\n");
-            //printf("%d");
-          //  printf("\033[0;34m");
-            stat(entry->d_name,&filestat);
-            if(entry->d_type == DT_DIR) {
-            } else{
-                BOLD_YELLOW_COLOR
-                printf("%4s: %s\n","[File]",entry->d_name);
-            } 
-            BLACK_COLOR
-        }
-        closedir(dir);
+        if(_home != false)
+            dir = opendir((_file_path_cd_function, arg.c_str())); /*For Linux and *nix*/
+        else if(_home == false)
+        	dir = opendir(getenv("HOME"));
+    }
+        
+    if (dir == NULL) {
+        RED_COLOR
+        std::cout << "Directory not found.\n";
+        BLACK_COLOR
+        
+        return;
+    }
+    
+    while ((entry = readdir(dir))) {
+        files++;
+        remove_character(entry->d_name, '.');
+        remove_character(entry->d_name, '..');
+        
+        //printf("%d", entry->d_type, "\n");
+        //printf("%d");
+        //  printf("\033[0;34m");
+        stat(entry->d_name,&filestat);
+        if(entry->d_type == DT_DIR) {} 
+        else {
+            BOLD_YELLOW_COLOR
+            printf("%4s: %s\n","[File]",entry->d_name);
+        } 
+        
+        BLACK_COLOR
+    }
+    
+    closedir(dir);
 }
 
 
@@ -198,12 +210,13 @@ FCommand::chartostring(std::string const & s, char *a) {
 
 void
 FCommand::plus_num(uinteger64 first_num, uinteger64 sec_num) {
-        printlnf("First number: ");
-        std::cin >> first_num;
-        printlnf("Second number ");
-        std::cin >> sec_num;
-        uinteger64 fs_num = sec_num + first_num;
-        std::cout << fs_num << "\n";
+    printlnf("First number: ");
+    
+    std::cin >> first_num;
+    printlnf("Second number ");
+    std::cin >> sec_num;
+    uinteger64 fs_num = sec_num + first_num;
+    std::cout << fs_num << "\n";
 }
 
 
@@ -214,6 +227,7 @@ FCommand::_generated_hash_string(integer size) {
         auto d = rand() % 40 + '0';
         str.push_back(d);
     }
+    
     for (integer i = 0; i < size; i++) {
     	BOLD_CYAN_COLOR
         std::cout << str[i];
@@ -223,12 +237,11 @@ FCommand::_generated_hash_string(integer size) {
 
 void
 FCommand::getIPAddress() {
-   int sock = socket(PF_INET, SOCK_DGRAM, 0);
+    int sock = socket(PF_INET, SOCK_DGRAM, 0);
     sockaddr_in loopback;
 
-    if (sock == -1) {
+    if (sock == -1) 
         std::cerr << "Could not socket\n";
-    }
 
     std::memset(&loopback, 0, sizeof(loopback));
     loopback.sin_family = AF_INET;
@@ -241,6 +254,7 @@ FCommand::getIPAddress() {
     }
 
     socklen_t addrlen = sizeof(loopback);
+    
     if (getsockname(sock, reinterpret_cast<sockaddr*>(&loopback), &addrlen) == -1) {
         close(sock);
         std::cerr << "Could not getsockname\n";
@@ -249,9 +263,9 @@ FCommand::getIPAddress() {
     close(sock);
 
     char buf[INET_ADDRSTRLEN];
-    if (inet_ntop(AF_INET, &loopback.sin_addr, buf, INET_ADDRSTRLEN) == 0x0) {
+    if (inet_ntop(AF_INET, &loopback.sin_addr, buf, INET_ADDRSTRLEN) == 0x0)
         std::cerr << "Could not inet_ntop\n";
-    } else {
+    else {
         std::cout << WBOLD_GREEN_COLOR << "Local ip address: ";
         std::cout << WBOLD_YELLOW_COLOR << buf << "\n";
     }
@@ -259,13 +273,13 @@ FCommand::getIPAddress() {
 
 void
 FCommand::printerror(fchar *err_str, integer8 err_number, fchar * _error_code) {
-        RED_COLOR
-        printlnf(err_str);
-        slashn 
-        std::cout << err_number;
-        slashn
-        printlnf(_error_code);
-        BLACK_COLOR // reset
+    RED_COLOR
+    printlnf(err_str);
+    slashn 
+    std::cout << err_number;
+    slashn
+    printlnf(_error_code);
+    BLACK_COLOR // reset
 }
 
 void

@@ -58,9 +58,10 @@ FHistory::WriteAllHistory() {
     filepath_with_path.append(".scrift_history");
     std::ofstream file;
     file.open(filepath_with_path, std::ios::out | std::ios::app);
-    if(file.fail()) {
+    
+    if(file.fail())
         printlnf("ERROR\n");
-    }
+    
 
     file.exceptions(file.exceptions() | std::ios::failbit | std::ifstream::badbit);
 
@@ -87,9 +88,8 @@ FHistory::IsExist() {
 
 func 
 FHistory::AllofThem() {
-    if(IsExist() != true) {
+    if(IsExist() != true)
     	CreateFile();
-    }
     else {
         printlnf("FHistory file is exists\n");
         loghistory->WriteLog("FHistory file is exists! - ");

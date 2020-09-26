@@ -30,14 +30,8 @@ FStructure::~FStructure() {
 
 void
 FGetUsername::InitUsername() {
-    //#ifdef __linux__
-    if(password) {
+    if(password)
         printlnf(password->pw_name);
-    }
-   //#else
-   // slashn
-   // printlnf("Fegeya Fusion Username: 'user'");
-   // #endif
 }
 
 void
@@ -56,11 +50,13 @@ FGetUsername::InitHostname() {
 std::string GetBranch() {
 	std::string branch = br.GetGitBranch();
 	branch.erase(std::remove(branch.begin(), branch.end(), '\n'), branch.end());
-	return branch;
+	
+    return branch;
 }
 
 std::string uname(password->pw_name);
 std::string customize = fsettings->InputCustomize();
+
 void
 FStructure::Terminal() {
     BOLD_BLUE_COLOR

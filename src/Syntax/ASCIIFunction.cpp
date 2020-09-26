@@ -31,10 +31,10 @@ FASCIIFunction::InitFile() {
 void 
 FASCIIFunction::GenerateString()  {
    if(InitFile() == true) {
-	FeLog logfunc;	
-	logfunc.WriteLog("ASCIIFile is exists! Nice - ");
+	   FeLog logfunc;	
+	   logfunc.WriteLog("ASCIIFile is exists! Nice - ");
    } else {
-	FileFunction::FCreateFileFunction createfilefunc;
+	   FileFunction::FCreateFileFunction createfilefunc;
    	createfilefunc.CreateASCIIFileFunction();
    }
 }  

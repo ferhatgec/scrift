@@ -25,36 +25,36 @@ FTemplate::LangTemplate() {
 	BOLD_BLUE_COLOR
 	std::getline(std::cin, lang);
 	BLACK_COLOR
-	if(lang == "cpp") {
+	
+	if(lang == "cpp")
 		fsplusplus::CreateFile(name, CPlusPlusTemplate());
-	} else if(lang == "c") {
+	else if(lang == "c")
 		fsplusplus::CreateFile(name, CTemplate());
-	} else if(lang == "go") {
+	else if(lang == "go")
 		fsplusplus::CreateFile(name, GoTemplate());
-	} else if(lang == "flascript") {
+	else if(lang == "flascript")
 		fsplusplus::CreateFile(name, FlaScriptTemplate());
-	} else if(lang == "python") {
+	else if(lang == "python")
 		fsplusplus::CreateFile(name, PythonTemplate());
-	} else if(lang == "haskell") {
+	else if(lang == "haskell")
 		fsplusplus::CreateFile(name, HaskellTemplate());
-	} else if(lang == "dart") {
+	else if(lang == "dart")
 		fsplusplus::CreateFile(name, DartTemplate());
-	} else if(lang == "lua") {
+	else if(lang == "lua")
 		fsplusplus::CreateFile(name, LuaTemplate());
-	} else if(lang == "rust") {
+	else if(lang == "rust")
 		fsplusplus::CreateFile(name, RustTemplate());
-	} else if(lang =="bash") {
+	else if(lang =="bash")
 		fsplusplus::CreateFile(name, BashTemplate());
-	} else if(lang == "csharp") {
+	else if(lang == "csharp")
 		fsplusplus::CreateFile(name, CSharpTemplate());
-	} else if(lang == "freebrain") {
+	else if(lang == "freebrain")
 		fsplusplus::CreateFile(name, FreeBrainTemplate());
-	} else if(lang == "brainfuck") {
+	else if(lang == "brainfuck")
 		fsplusplus::CreateFile(name, BrainfuckTemplate());
-	} else if(lang == "d") {
+	else if(lang == "d")
 		fsplusplus::CreateFile(name, DLangTemplate());
-	} else {
-		fsplusplus::CreateFile(name, "Sorry, this is not available for Scrift, Try again later... Or create pull request for Template.cpp and Template.hpp\n\nhttps://github.com/FerhatGec/scrift");
-	}
+	else
+		fsplusplus::CreateFile(name, "Sorry, this is not available for Scrift, Try again later... Or create pull request for Template.cpp and Template.hpp\n\nhttps://github.com/ferhatgec/scrift");
 }
 

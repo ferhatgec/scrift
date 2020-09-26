@@ -90,13 +90,13 @@ FSettings::GitBranch() {
 */
 bool
 FSettings::Setup() {
-        std::string line = fsplusplus::FindStringWithReturn(Path(), "scrift_setup");
-        if(strstr(line.c_str(), "yes"))
-                return true;
-        else
-                return false;
-
+    std::string line = fsplusplus::FindStringWithReturn(Path(), "scrift_setup");
+    if(strstr(line.c_str(), "yes"))
         return true;
+    else
+        return false;
+
+    return true;
 }
 
 /*
@@ -113,12 +113,13 @@ FSettings::FWelcomeEmoji() {
 */
 int
 FSettings::FeLogCleaner() {
-   std::string line = fsplusplus::FindStringWithReturn(Path(), "felog_cleaner");
+	std::string line = fsplusplus::FindStringWithReturn(Path(), "felog_cleaner");
 
-   if(atoi(stringtools::EraseAllSubString(line, "felog_cleaner ").c_str()) <= 5) {
-	colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), "felog_cleaner : Give 5 or higher value.\n");
-   	return 20;
-   } else return atoi(stringtools::EraseAllSubString(line, "felog_cleaner ").c_str());
+   	if(atoi(stringtools::EraseAllSubString(line, "felog_cleaner ").c_str()) <= 5) {
+		colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), "felog_cleaner : Give 5 or higher value.\n");
+   		return 20;
+   	} else 
+		return atoi(stringtools::EraseAllSubString(line, "felog_cleaner ").c_str());
 
     return 100;
 }
@@ -150,17 +151,16 @@ FSettings::color() {
 int
 FSettings::ASCIIColor() {
     std::string line = fsplusplus::FindStringWithReturn(Path(), "ascii_art_color");
-    if(strstr(line.c_str(), "no_thanks")) {
-	return -1;
-    } else if(strstr(line.c_str(), "random")) {
-	return color();
-    } else if(atoi(stringtools::EraseAllSubString(line, "ascii_art_color ").c_str()) <= 29) {
-	colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), "ascii_art_color : Give 30 or higher value.\n");
-	return 34;
-    } else {
-	return atoi(stringtools::EraseAllSubString(line, "ascii_art_color ").c_str());
-    }
-
+    if(strstr(line.c_str(), "no_thanks"))
+		return -1;
+    else if(strstr(line.c_str(), "random"))
+		return color();
+    else if(atoi(stringtools::EraseAllSubString(line, "ascii_art_color ").c_str()) <= 29) {
+		colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), "ascii_art_color : Give 30 or higher value.\n");
+		return 34;
+    } else
+		return atoi(stringtools::EraseAllSubString(line, "ascii_art_color ").c_str());
+    
     return 34;
 }
 
@@ -202,11 +202,11 @@ std::string
 FSettings::Theme() {
     std::string line = fsplusplus::FindStringWithReturn(Path(), "scrift_theme");
     if(strstr(line.c_str(), "default"))
-	return "default";
+		return "default";
     else if(strstr(line.c_str(), "classic"))
-	return "classic";
+		return "classic";
     else
-	return "default";
+		return "default";
 
     return "default";
 }

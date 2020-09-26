@@ -54,9 +54,9 @@ FeLog::WriteLog(fstr filepathw) {
     filepath_with_path.append(".scrift_log");
     std::ofstream file;
     file.open(filepath_with_path, std::ios::out | std::ios::app);
-    if(file.fail()) {
+    if(file.fail())
         printlnf("ERROR\n");
-    }
+    
 
     file.exceptions(file.exceptions() | std::ios::failbit | std::ifstream::badbit);
 
@@ -94,9 +94,8 @@ FeLog::IsExist() {
 
 func 
 FeLog::AllofThem() {
-    if(IsExist() != true) {
-    CreateFile();
-    }
+    if(IsExist() != true)
+        CreateFile();
     else {
         printlnf("FeLog file is exists\n");
         WriteLog("FeLog file is exists! - ");
