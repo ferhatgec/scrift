@@ -76,7 +76,8 @@
 
 ## Change Shell
 ```
- $# sudo chsh -s /bin/scrift <username> // Ubuntu, Debian, Fedora, FreeBSD etc.
+ $# sudo chsh -s /bin/scrift
+ $# sudo chsh -s /bin/scrift <username>
 ```
 
 ## Use Edifor for Git (Default Editor)
