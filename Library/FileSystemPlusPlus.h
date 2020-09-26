@@ -417,10 +417,9 @@ namespace fsplusplus {
 			if(strstr(line.c_str(), str.c_str()))
 				return line + "\n";
         	}
-        	readfile.close();
-    	} else {
-        	printf("Unable to open file\n");
-    	}
+        		readfile.close();
+    		}
+
     		return "null";
     	}
 
@@ -449,7 +448,7 @@ namespace fsplusplus {
                  printf("%4s %s\n", "[File]", entryname->d_name);
             }
             }
-   	 closedir(directory);
+   	 			closedir(directory);
     	}
     	
 	// Get Between String    
