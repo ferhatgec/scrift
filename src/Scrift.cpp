@@ -138,6 +138,21 @@ void RemovePrintedChar(int value) {
 	return;
 }
 
+int kbhit (void) {
+    struct timeval tv;
+    fd_set rdfs;
+ 
+    tv.tv_sec = 0;
+    tv.tv_usec = 0;
+ 
+    FD_ZERO(&rdfs);
+    FD_SET (STDIN_FILENO, &rdfs);
+ 
+    select(STDIN_FILENO+1, &rdfs, NULL, NULL, &tv);
+  
+    return FD_ISSET(STDIN_FILENO, &rdfs);
+}
+
 int space = 0, input_value = 0, scrift_line = 0;
 
 std::string ftime(compilation_time); // Convert
@@ -1089,6 +1104,7 @@ void CodeExecution(std::string arg) {
 	Input && Interpreter.
 */
 void InputFunction() {
+    setlocale(LC_ALL, "");
     if(scrift_line >= runsyntax->Clear()) {
         std::cout << "\033c";
         terminalstr->Terminal();
@@ -1126,19 +1142,25 @@ void InputFunction() {
 
 	sign.push_back(c);
 
-    if(c == ARROW_RIGHT) {
-     	std::cout << "\033[1C";
-     	cursorpos.x += 1;
-    } else if(c == ARROW_LEFT) {
-     	if(cursorpos.x >= 2) {
-	        std::cout << "\033[1D";
-	        cursorpos.x -= 1;
-	    } else
-	        return;        
-	} else if(c == 32) {
-		printlnf(" ");
+    if(kbhit()) {
+        if(c == ARROW_RIGHT) {
+     	    std::cout << "\033[1C";
+     	    cursorpos.x += 1;
+        } else if(c == ARROW_LEFT) {
+     	    if(cursorpos.x >= 2) {
+	            std::cout << "\033[1D";
+	            cursorpos.x -= 1;
+	        } else
+	            return;        
+	    }
+    } 
+    
+    if(c == 32) {
+		//printlnf(" ");
 		space++;
-	} else if(c == '\n') {
+	}
+    
+    if(c == '\n') {
 		space = 0;
 		input_value++;
         scrift_line++;
