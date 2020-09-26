@@ -24,7 +24,7 @@ FBranch::GetGitBranch() {
 		else {
 			FSettings set;
 			if(set.GitBranch() == true)
-				return "[" + branch + "] ";
+				return "⎇  " + branch + " ";
 		}
 	}
 
