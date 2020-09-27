@@ -13,34 +13,68 @@
 
 void FTools::Clock() {
     FMain main;
-    std::string time = main.Time();
-    time = time.erase(0, 11);
-    time = time.substr(0, 2);
+    std::string time = main.Time().erase(0, 11).substr(0, 2);
+    int _half_time = atoi(main.Time().substr(14, 17).c_str());
 
     if(time == "01")
-        std::cout << "🕐";
+        if(_half_time >= 30)
+            std::cout << "🕜";
+        else 
+            std::cout << "🕐";
     else if(time == "02")
-        std::cout << "🕑";
+        if(_half_time >= 30)
+            std::cout << "🕝";
+        else 
+            std::cout << "🕑";
     else if(time == "03")
-        std::cout << "🕒";
+        if(_half_time >= 30)
+            std::cout << "🕞";
+        else
+            std::cout << "🕒";
     else if(time == "04")
-        std::cout << "🕓";
+        if(_half_time >= 30)
+            std::cout << "🕟";
+        else
+            std::cout << "🕓";
     else if(time == "05")
-        std::cout << "🕔";
+        if(_half_time >= 30)
+            std::cout << "🕠";
+        else 
+            std::cout << "🕔";
     else if(time == "06")
-        std::cout << "🕕";
+        if(_half_time >= 30)
+            std::cout << "🕡";
+        else 
+            std::cout << "🕕";
     else if(time == "07")
-        std::cout << "🕖";
+        if(_half_time >= 30)
+            std::cout << "🕢";
+        else 
+            std::cout << "🕖";
     else if(time == "08")
-        std::cout << "🕗";
+        if(_half_time >= 30)
+            std::cout << "🕣";
+        else 
+            std::cout << "🕗";
     else if(time == "09")
-        std::cout << "🕘";
+        if(_half_time >= 30)
+            std::cout << "🕤";
+        else 
+            std::cout << "🕘";
     else if(time == "10")
-        std::cout << "🕙";
+        if(_half_time >= 30)
+            std::cout << "🕥";
+        else 
+            std::cout << "🕙";
     else if(time == "11")
-        std::cout << "🕚";
+        if(_half_time >= 30)
+            std::cout << "🕦";
+        else 
+            std::cout << "🕚";
     else if(time == "00")
-        std::cout << "🕛";
+        if(_half_time >= 30)
+            std::cout << "🕧";
+        else 
+            std::cout << "🕛";
     else std::cout << "";
 }
-
