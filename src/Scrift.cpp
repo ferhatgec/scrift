@@ -591,6 +591,21 @@ void CodeExecution(std::string arg) {
             }
             
             return;
+        } else if(arg.rfind(keywords.Output, 0) == 0) {
+            /*  output
+                output <command>
+
+                Get output of inputted command
+            */
+            if(arg == keywords.Output + "\n") {}
+            else {
+                ExecutePlusPlus exec;
+                arg = stringtools::EraseAllSubString(arg, keywords.Output + " ");
+                arg.pop_back();
+                std::cout << exec.ExecWithOutput(arg);
+            }
+
+            return;
         } else if(arg == keywords.Close + "\n" ||
             arg == keywords.Exit + "\n")  {
             /*  close, exit

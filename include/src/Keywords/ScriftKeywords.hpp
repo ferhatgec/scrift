@@ -265,6 +265,9 @@ public:
 	/* Setup && Config */
 	std::string Config = "config";
 	
+	/* Output of command */
+	std::string Output = "output";
+	
 	/* Whitespace */
 	std::string Whitespace = " ";
 };
