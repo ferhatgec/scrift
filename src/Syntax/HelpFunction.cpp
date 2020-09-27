@@ -54,6 +54,7 @@ FHelpFunction::HelpFunction() {
 	printlnf("[Output]\n");
         BOLD_GREEN_COLOR
         printlnf(" * printlnf || echo <arg> : Shows <arg> [#environment]\n"
+        " * output <command> : Print output of inputted command.\n"
 	    " * emoji <arg> : Show <emoji> (e.g: :thinking_face:)\n\n");
 	BOLD_LIGHT_MAGENTA_COLOR
 	printlnf("[Execute]\n");
