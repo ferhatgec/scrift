@@ -17,10 +17,10 @@
 - Auto-Whitespace
 - Auto-Completer (not ended)
 - Auto terminal buffer clear.
-- Customizable
+- Customizable (Prompt and more!)
 - Package Installer for Fegeya Community's applications.
 - Configuration application without text editor :^)
-- Faster than other shell (e.g. Bash)
+- Fast and stable.
 - Integrated Own Emoji library (see [Emoji++](https://github.com/FerhatGec/emojiplusplus)) :airplane:
 - Integrated Own Color library (see [Colorized](https://github.com/FerhatGec/colorized)) :satisfied:
 - Integrated Log system (FeLog) :open_mouth:
@@ -29,7 +29,7 @@
 - ASCII Art (with Color option) :open_mouth:
 - History
 - Unicode clock system. 🕒
-- Different syntax to other shells.
+- Different syntax than other shells.
 - Template for programming language
 - Welcome message 
 - Scripting language :open_mouth:
