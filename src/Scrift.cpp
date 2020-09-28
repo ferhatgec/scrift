@@ -924,8 +924,7 @@ void CodeExecution(std::string arg) {
                 Change directory as HOME environment
             */
             homefunction->GetHome();
-       		slashn
-            
+
             return;
         } else if(arg.rfind(keywords.AddText, 0) == 0) {
             /*  addtext      
