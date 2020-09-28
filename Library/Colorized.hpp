@@ -107,7 +107,7 @@
 // Default bold** color definitions
 #define BOLD_RED_COLOR printf("\033[1;31m");
 #define BOLD_GREEN_COLOR printf("\033[1;32m");
-#define BOLD_YELLOW_COLOR printf("\033[01;33m");
+#define BOLD_YELLOW_COLOR printf("\033[1;33m");
 #define BOLD_BLUE_COLOR printf("\033[1;34m");
 #define BOLD_MAGENTA_COLOR printf("\033[1;35m");
 #define BOLD_CYAN_COLOR printf("\033[1;36m");

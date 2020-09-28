@@ -23,8 +23,9 @@ FBranch::GetGitBranch() {
 			return "";
 		else {
 			FSettings set;
+			branch.pop_back();
 			if(set.GitBranch() == true)
-				return "⎇  " + branch + " ";
+				return "⎇  " + branch;
 		}
 	}
 

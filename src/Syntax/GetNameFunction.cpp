@@ -61,7 +61,7 @@ std::string customize = fsettings->InputCustomize();
 
 void
 FStructure::Terminal() {
-    BOLD_BLUE_COLOR
+/*    BOLD_BLUE_COLOR
     std::cout << uname;
     BOLD_CYAN_COLOR
     std::cout << "@";
@@ -78,5 +78,6 @@ FStructure::Terminal() {
     BOLD_RED_COLOR
     // std::cout << "$# ";
     std::cout << " " << customize << " ";
-    BLACK_COLOR
+    BLACK_COLOR*/
+    fsettings->Customize();
 }

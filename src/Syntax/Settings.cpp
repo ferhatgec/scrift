@@ -10,6 +10,9 @@
 #include <ctime>
 #include <memory>
 
+#include <src/Syntax/Tools.hpp>
+#include <src/Syntax/Branch.hpp>
+#include <src/Syntax/GetNameFunction.hpp>
 #include <src/Syntax/Settings.hpp>
 #include <src/Syntax/FileFunction.hpp>
 #include <src/Syntax/Log.hpp>
@@ -219,4 +222,55 @@ FSettings::InputCustomize() {
     std::string line = fsplusplus::FindStringWithReturn(Path(), "input_customize");
     line = stringtools::EraseAllSubString(line, "input_customize ");
     return stringtools::EraseAllSubString(line, "\n");
+}
+
+std::string 
+FSettings::Sign(std::string _command) {
+    std::string line = fsplusplus::FindStringWithReturn(Path(), _command);
+    line = stringtools::EraseAllSubString(line, _command + " ");
+    return stringtools::EraseAllSubString(line, "\n");
+}
+
+/*
+	Customize your Scrift prompt.
+*/
+void
+FSettings::Customize() {
+	std::string check, color, _color;
+	std::string line = fsplusplus::FindStringWithReturn(Path(), "[PROMPT]");
+	line = stringtools::EraseAllSubString(line , "[PROMPT] ");
+	FGetUsername get;
+	do {
+		stringtools::GetBtwString(line, "@", "@", check);
+		stringtools::GetBtwString(line, "@[", "]", color);
+		_color = "\033[" + color;
+
+		if(check == "username")
+			std::cout << _color << getpwuid(geteuid())->pw_name;
+		else if(check == "hostname") {
+			std::cout << _color;
+			get.InitHostname();
+		} else if(check == "sign_1")
+			std::cout << _color << Sign(check);
+		else if(check == "sign_2")
+			std::cout << _color << Sign(check);
+		else if(check == "directory")
+			std::cout << _color << fsplusplus::GetCurrentWorkingDir();
+		else if(check == "branch") {
+			FBranch branch;
+			std::cout << _color << branch.GetGitBranch();
+		} else if(check == "clock") {
+			FTools tl;
+			std::cout << _color << " "; tl.Clock();
+		} else if(check == "input_sign")
+			std::cout << _color << InputCustomize();
+		else if(check == "whitespace" || check == "whspace")
+			std::cout << " ";
+		else if(check == "newline")
+			std::cout << "\n";
+		else
+			std::cout << " ";
+
+		line = stringtools::EraseAllSubString(line, "@" + check + "@[" + color + "]");
+	} while(check != "error" && color != "error");
 }

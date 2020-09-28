@@ -27,6 +27,7 @@ public:
 	std::string InputCustomize();
 	std::string Theme();
 	std::string FWelcomeEmoji();
+	std::string Sign(std::string);
 
 	/*
 		color option etc.
@@ -37,6 +38,9 @@ public:
 	int random(int, int);
 	int FeLogCleaner();
 	int Clear();
+
+	/* Customize */
+	void Customize();
 };
 
 #endif // SETTINGS_HPP

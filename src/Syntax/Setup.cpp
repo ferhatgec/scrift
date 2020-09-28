@@ -43,7 +43,7 @@ FSetup::Stage1() {
     /* Setting variables */
     std::string pass, felog_clean_line, welcome_emoji, bg_color,
         ascii_art_color, scrift_theme, input_customize,
-        welcome_message, local_git_branch, scrift_setup, auto_clear;
+        welcome_message, local_git_branch, scrift_setup, auto_clear, sign_1, sign_2;
 
     /*  Welcome
         FHelpFunction welcome;
@@ -159,8 +159,34 @@ FSetup::Stage1() {
         /* Auto buffer clear */
         if(auto_clear == "n" || auto_clear == "N") auto_clear = "40";
 
-            colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(),
-                "Erasing old settings data.\n");
+        /* Sign_1 */
+        colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
+            "Sign 1 (ferhatgec[@]fegeya) [@, ~, #, &]\n -> ");
+
+        BOLD_LIGHT_WHITE_COLOR
+        std::cin >> sign_1;
+
+        if(sign_1 == "n" || sign_1 == "N") sign_1 == "@";
+
+        /* Sign 2 */
+        colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
+            "Sign 2 (@fegeya[:~]/home/) [:~, ~>, +_]\n -> ");
+        
+        BOLD_LIGHT_WHITE_COLOR
+        std::cin >> sign_2;
+
+        if(sign_2 == "n" || sign_2 == "N") sign_2 == ":~";
+        
+        /* Tip */
+        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_GREEN).c_str(),
+            "Tip: You can change Scrift's prompt (.scrift_settings)\n");
+        
+        /* Example */
+        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_GREEN).c_str(),
+            "Example: @definition@[color]\n");
+
+        colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(),
+            "Erasing old settings data.\n");
     } else {
         felog_clean_line = "100";
         welcome_emoji = ":thinking_face:";
@@ -171,13 +197,15 @@ FSetup::Stage1() {
         welcome_message = "yes";
         local_git_branch = "yes";
         auto_clear = "40";
+        sign_1 = "@";
+        sign_2 = ":~";
     }
 
     std::ofstream erase_settings;
     erase_settings.open(Path().c_str(), std::ofstream::out | std::ofstream::trunc);
     erase_settings.close();
     erase_settings.open(Path().c_str(), std::ios_base::app); // append instead of overwrite
-    erase_settings << "felog_cleaner " + felog_clean_line + "\n";
+    erase_settings << "[CUSTOMIZE]\nfelog_cleaner " + felog_clean_line + "\n";
     erase_settings << "welcome_emoji " + welcome_emoji + "\n";
     erase_settings << "bg_color " + bg_color + "\n";
     erase_settings << "ascii_art_color " + ascii_art_color + "\n";
@@ -187,6 +215,10 @@ FSetup::Stage1() {
 	erase_settings << "local_git_branch " + local_git_branch + "\n";
     erase_settings << "scrift_setup no_thanks\n";
     erase_settings << "auto_clear " + auto_clear + "\n";
+    erase_settings << "sign_1 " + sign_1 + "\n";
+    erase_settings << "sign_2 " + sign_2 + "\n";
+    erase_settings << "\n[PROMPT] @username@[1;34m] @sign_1@[1;36m] @hostname@[1;35m] @sign_2@[1;36m] @directory@[1;33m] @whitespace@[1;36m] @branch@[1;36m] @clock@[1;93m] @whspace@[1;36m] @input_sign@[1;31m]";
+    
     erase_settings.close();
 
     colorized::PrintWith(colorized::Colorize(BOLD, GREEN).c_str(),

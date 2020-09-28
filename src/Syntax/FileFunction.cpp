@@ -239,7 +239,7 @@ FCreateFileFunction::CreateSettingsFileFunction() {
     	pathfile.append("/");
     	pathfile.append(".scrift_settings");
     	std::ofstream file(pathfile, std::ios::app);
-    	file << "felog_cleaner 100\n";
+    	file << "[CUSTOMIZE]\nfelog_cleaner 100\n";
     	file << "welcome_emoji :thinking_face:\n";
     	file << "bg_color 12\n";
     	file << "ascii_art_color random\n";
@@ -249,6 +249,9 @@ FCreateFileFunction::CreateSettingsFileFunction() {
 		file << "local_git_branch yes\n";
         file << "scrift_setup yes\n";
 		file << "auto_clear 40\n";
+		file << "sign_1 @\n";
+		file << "sign_2 :~\n";
+		file << "\n[PROMPT] @username@[1;34m] @sign_1@[1;36m] @hostname@[1;35m] @sign_2@[1;36m] @directory@[1;33m] @whitespace@[1;36m] @branch@[1;36m] @clock@[1;93m] @whspace@[1;36m] @input_sign@[1;31m]";
     	file.close();
     }
 }
@@ -262,7 +265,7 @@ FClearFileFunction::ClearSettingsFunction() {
         path.append("/");
         path.append(".scrift_settings");
         std::ofstream file(path); // App = Append
-        file << "felog_cleaner 100\n";
+        file << "[CUSTOMIZE]\nfelog_cleaner 100\n";
     	file << "welcome_emoji :thinking_face:\n";
     	file << "bg_color 12\n";
     	file << "ascii_art_color random\n";
@@ -272,6 +275,9 @@ FClearFileFunction::ClearSettingsFunction() {
 		file << "local_git_branch yes\n";
         file << "scrift_setup yes\n";
 		file << "auto_clear 40\n";
+		file << "sign_1 @\n";
+		file << "sign_2 :~\n";
+		file << "\n[PROMPT] @username@[1;34m] @sign_1@[1;36m] @hostname@[1;35m] @sign_2@[1;36m] @directory@[1;33m] @whitespace@[1;36m] @branch@[1;36m] @clock@[1;93m] @whspace@[1;36m] @input_sign@[1;31m]";
 		file.close();
     } else
         CreateSettingsFileFunction();
