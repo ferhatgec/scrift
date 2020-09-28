@@ -30,7 +30,7 @@
 #define hyphen "-"
 
 #define SCRIFT_VERSION "0.1.8"
-#define SCRIFT_STATUS "beta-1"
+#define SCRIFT_STATUS "beta-2"
 
 
 // Input Definitions
