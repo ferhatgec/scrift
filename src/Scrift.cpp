@@ -288,6 +288,10 @@ FMain::SetTitle() {
 	std::cout << "\e]2; " << "Scrift: " << pass->pw_name << "@" << main_->_file_path_cd_function << "\a";
 }
 
+static void SetTitleAs(std::string _str) {
+	std::cout << "\e]2; " << _str << "\a";
+}
+
 /*
 	Cursor.
 */
@@ -791,7 +795,26 @@ void CodeExecution(std::string arg) {
             std::cout << "\033c";
             
             return;
-        } else if(arg.rfind(keywords.RemoveFile, 0) == 0) {
+        } else if(arg.rfind(keywords.Title, 0) == 0) {
+			/* title
+				title Hello, terminal.
+
+				Change title of terminal header bar (or titlebar)
+			*/
+			
+			/* TODO:
+				Support environments..
+			*/
+				
+			arg = stringtools::EraseAllSubString(arg, 
+				keywords.Title + " ");
+
+			arg.pop_back();
+			
+			SetTitleAs(arg);
+			
+			return;
+		} else if(arg.rfind(keywords.RemoveFile, 0) == 0) {
    	        /*  rmvfile
                 rmvfile Scrift.cpp
             */

@@ -52,14 +52,15 @@ FHelpFunction::HelpFunction() {
         " * ip : Show local-IP\n\n");
 	BOLD_LIGHT_YELLOW_COLOR
 	printlnf("[Output]\n");
-        BOLD_GREEN_COLOR
-        printlnf(" * printlnf || echo <arg> : Shows <arg> [#environment]\n"
+	BOLD_GREEN_COLOR
+	printlnf(" * printlnf || echo <arg> : Shows <arg> [#environment]\n"
         " * output <command> : Print output of inputted command.\n"
+        " * title <string> : Change title of terminal header-bar (title-bar).\n" 
 	    " * emoji <arg> : Show <emoji> (e.g: :thinking_face:)\n\n");
 	BOLD_LIGHT_MAGENTA_COLOR
 	printlnf("[Execute]\n");
-        BOLD_RED_COLOR
-        printlnf(" * scr <argument> : Execute <argument>\n"
+	BOLD_RED_COLOR
+	printlnf(" * scr <argument> : Execute <argument>\n"
             " * fpi <arg> <app> : Run Fegeya Package Installer\n\n");
 	BOLD_LIGHT_RED_COLOR
 	printlnf("[Path]\n");
@@ -89,7 +90,7 @@ FHelpFunction::HelpFunction() {
 	printlnf(" * fact : Print factorial\n"
 	    " * sqrt : Print Square root\n"
 	    " * square : Print Square\n");
-        BLACK_COLOR
+	BLACK_COLOR
 }
 
 void 

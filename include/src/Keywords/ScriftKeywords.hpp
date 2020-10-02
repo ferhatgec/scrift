@@ -268,6 +268,9 @@ public:
 	/* Output of command */
 	std::string Output = "output";
 	
+	/* Change title of terminal header */
+	std::string Title = "title";
+	
 	/* Whitespace */
 	std::string Whitespace = " ";
 };
