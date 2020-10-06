@@ -462,7 +462,7 @@ void CodeExecution(std::string arg) {
             */
             if(arg == keywords.Fr + " --h\n")
                 std::cout << "Usage: fr path || dir\n";
-            else if(arg == keywords.Fr + "\n") {}
+            else if(arg == keywords.Fr + "\n" || arg == keywords.Fr + " #\n") {}
             else {
                 arg = stringtools::EraseAllSubString(arg,
                     keywords.Fr + " ");
@@ -482,7 +482,7 @@ void CodeExecution(std::string arg) {
             */
             if(arg == keywords.Cd + " --h\n")
           	    std::cout << "Usage: cd path || dir\n";
-            else if(arg == keywords.Fr + "\n") {} 
+            else if(arg == keywords.Cd + "\n" || arg == keywords.Cd + " #\n") {} 
             else {
                 arg = stringtools::EraseAllSubString(arg,
                     keywords.Cd + " ");
