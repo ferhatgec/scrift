@@ -10,8 +10,10 @@
 #include <iomanip>
 #include <unistd.h>
 
-#include <src/Syntax/Install.hpp>
+
 #include <src/Scrift.hpp>
+#include <src/Syntax/Install.hpp>
+#include <src/Syntax/RunFunction.hpp>
 
 // Libraries
 #include <FileSystemPlusPlus.h>
@@ -468,4 +470,21 @@ FInstall::UnInstallFunction(std::string arg, int type) {
 	else if(strstr(arg.c_str(), "brainfuckplusplus")) InstallBrainfuckPlusPlus(1);
 	else
 		std::cout << "No match for this argument : " << arg + "\n";
+}
+
+void
+FInstall::Check(std::string arg) {
+	FRunFunction run;
+	if(arg.length() > 1) {
+		arg.pop_back();
+		if(arg == "fetcheya" || arg == "flascript" || arg == "copyboard" ||
+			arg == "lsf" || arg == "freebrain" || arg == "brainfuckplusplus") {
+				if(fsplusplus::IsExistFile("/bin/" + arg) == true)
+					run.RunFunction(arg);
+				else {
+					arg = "fpi --i " + arg;
+					InstallFunction(arg, 1);
+				}
+		} else run.RunFunction(arg);
+	} else run.RunFunction(arg);
 }

@@ -1132,9 +1132,10 @@ void CodeExecution(std::string arg) {
         		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "\nAborted.\n");
     	
             return;    
-        } else
-                runfunction->RunFunction(arg);
-        
+        } else {
+        	FInstall _run;
+            _run.Check(arg);
+        }
 }
 
 /*

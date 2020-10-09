@@ -24,6 +24,8 @@ public:
 	void InstallFunction(std::string, int); /* Arg, Type */
 	void UnInstallFunction(std::string, int); /* Arg, Type */
 	void FegeyaPackageInstaller(std::string); /* Arg */
+	
+	void Check(std::string);
 };
 
 #endif // LINKER_HPP
