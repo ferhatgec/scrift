@@ -56,7 +56,7 @@ FInstall::InstallFetcheya(int uninstall) {
 			IS_NOT_EXIST("Fetcheya")
 			char input = getchar();
 			if(input == 'y' || input == 'Y') {
-				if(fsplusplus::IsExistFile("/bin/git") == true) {
+				if(fsplusplus::IsExistFile("/bin/git") == true || fsplusplus::IsExistFile("/usr/bin/git") == true) {
 					chdir(getenv("HOME"));
 					exec.RunFunction("git clone https://github.com/ferhatgec/fetcheya.git");
 					if(fsplusplus::IsExistFile("/bin/g++") == true) {
@@ -122,7 +122,7 @@ FInstall::InstallFlaScript(int uninstall) {
 			IS_NOT_EXIST("FlaScript (fla)")
 			char input = getchar();
 			if(input == 'y' || input == 'Y') {
-				if(fsplusplus::IsExistFile("/bin/git") == true) {
+				if(fsplusplus::IsExistFile("/bin/git") == true || fsplusplus::IsExistFile("/usr/bin/git") == true) {
 					chdir(getenv("HOME"));
 					exec.RunFunction("git clone https://github.com/ferhatgec/flascript.git"); /* Clone repo */
 					if(fsplusplus::IsExistFile("/bin/g++") == true) {
@@ -186,7 +186,7 @@ FInstall::InstallCopyboard(int uninstall) {
 			IS_NOT_EXIST("Copyboard")
 			char input = getchar();
 			if(input == 'y' || input == 'Y') {
-				if(fsplusplus::IsExistFile("/bin/git") == true) {
+				if(fsplusplus::IsExistFile("/bin/git") == true || fsplusplus::IsExistFile("/usr/bin/git") == true) {
 					chdir(getenv("HOME"));
 					exec.RunFunction("git clone https://github.com/ferhatgec/copyboard.git");
 					if(fsplusplus::IsExistFile("/bin/g++") == true) {
@@ -251,7 +251,7 @@ FInstall::InstallFegeyaList(int uninstall) {
 			IS_NOT_EXIST("Fegeya List (lsf)")
 			char input = getchar();
 			if(input == 'y' || input == 'Y') {
-				if(fsplusplus::IsExistFile("/bin/git") == true) {
+				if(fsplusplus::IsExistFile("/bin/git") == true || fsplusplus::IsExistFile("/usr/bin/git") == true) {
 					chdir(getenv("HOME"));
 					exec.RunFunction("git clone https://github.com/ferhatgec/lsf.git");
 					if(fsplusplus::IsExistFile("/bin/g++") == true) {
@@ -303,7 +303,7 @@ FInstall::InstallFreeBrain(int uninstall) {
 			IS_NOT_EXIST("FreeBrain (freebr)")
 			char input = getchar();
 			if(input == 'y' || input == 'Y') {
-				if(fsplusplus::IsExistFile("/bin/git") == true) {
+				if(fsplusplus::IsExistFile("/bin/git") == true || fsplusplus::IsExistFile("/usr/bin/git") == true) {
 					chdir(getenv("HOME"));
 					exec.RunFunction("git clone https://github.com/ferhatgec/freebrain.git");
 					if(fsplusplus::IsExistFile("/bin/g++") == true) {
@@ -355,7 +355,7 @@ FInstall::InstallBrainfuckPlusPlus(int uninstall) {
 			IS_NOT_EXIST("BrainfuckPlusPlus (bfc)")
 			char input = getchar();
 			if(input == 'y' || input == 'Y') {
-				if(fsplusplus::IsExistFile("/bin/git") == true) {
+				if(fsplusplus::IsExistFile("/bin/git") == true || fsplusplus::IsExistFile("/usr/bin/git") == true) {
 					chdir(getenv("HOME"));
 					exec.RunFunction("git clone https://github.com/ferhatgec/brainfuckplusplus.git");
 					if(fsplusplus::IsExistFile("/bin/g++") == true) {
