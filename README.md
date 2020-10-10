@@ -77,9 +77,10 @@
 
 ## Change Shell
 ```
- $# sudo chsh -s /bin/scrift
- $# sudo chsh -s /bin/scrift <username>
+ $# chsh -s /bin/scrift <username>
 ```
+
+Note: You should add ``/bin/scrift`` and ``/usr/bin/scrift`` in ``/etc/shells`` file.
 
 ## Use Edifor for Git (Default Editor)
 ```
