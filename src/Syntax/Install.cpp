@@ -131,8 +131,11 @@ FInstall::FegeyaPackageInstaller(std::string arg) {
 }
 
 void HelpFunction() {
-	std::cout << "Fegeya Package Installer (fpi)\nUsage: fpi [--i --install || --uni --uninstall] <app>\n<app> :\n* fetcheya\n* flascript (fla)\n* copyboard\n*" <<
-		" lsf\n* freebrain (freebr)\n* brainfuckplusplus (bfc)\n";
+	std::cout << "Fegeya Package Installer (fpi)\n" << 
+	"Usage: fpi [--i --install || --uni --uninstall] <app>\n<app> :\n" <<
+	"* fetcheya\n" << "* flascript (fla)\n" << "* copyboard\n" <<
+	"* lsf\n" << "* freebrain (freebr)\n" << "* brainfuckplusplus (bfc)\n" << 
+	"* generafor\n";
 }
 
 void
@@ -161,6 +164,9 @@ FInstall::InstallFunction(std::string arg, int type) {
 	else if(strstr(arg.c_str(), "brainfuckplusplus")) 
 		Install(STR("Fegeya Brainfuck++"), STR("https://github.com/ferhatgec/brainfuckplusplus.git"), STR("brainfuckplusplus"), 
 			STR("bfc"), 0);
+	else if(strstr(arg.c_str(), "generafor"))
+		Install(STR("Fegeya Generafor"), STR("https://github.com/ferhatgec/generafor.git"), STR("generafor"), 
+			STR("generafor"), 0);
 	else
 		std::cout << "No match for this argument : " << arg + "\n";
 }
@@ -191,6 +197,9 @@ FInstall::UnInstallFunction(std::string arg, int type) {
 	else if(strstr(arg.c_str(), "brainfuckplusplus")) 
 		Install(STR("Fegeya Brainfuck++"), STR("https://github.com/ferhatgec/brainfuckplusplus.git"), STR("brainfuckplusplus"), 
 			STR("bfc"), 1);
+	else if(strstr(arg.c_str(), "generafor"))
+		Install(STR("Fegeya Generafor"), STR("https://github.com/ferhatgec/generafor.git"), STR("generafor"), 
+			STR("generafor"), 1);
 	else
 		std::cout << "No match for this argument : " << arg + "\n";
 }
