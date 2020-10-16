@@ -13,13 +13,7 @@
 
 class FInstall {
 public:
-	void InstallFetcheya(int); /* int : Uninstall */
-	void InstallFlaScript(int);
-	void InstallCopyboard(int);
-	void InstallFegeyaList(int); /* Lsf */
-	void InstallFreeBrain(int);
-	void InstallBrainfuckPlusPlus(int); /* Brainfuck Implementation */
-
+	void Install(std::string name, std::string repository, std::string object, std::string folder, int type); /* int : Uninstall */
 
 	void InstallFunction(std::string, int); /* Arg, Type */
 	void UnInstallFunction(std::string, int); /* Arg, Type */

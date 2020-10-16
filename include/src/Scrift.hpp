@@ -40,6 +40,11 @@
 #define ARROW_DOWN  66
 #define BACKSPACE 127
 
+inline std::string STR(const char* _ch) {
+	return (std::string)_ch;
+}
+
+
 class FMain {
 public:
     FMain();

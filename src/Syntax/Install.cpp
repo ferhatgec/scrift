@@ -46,37 +46,37 @@ void HelpFunction();
 		uninstall = 1 : Uninstall
 */
 void
-FInstall::InstallFetcheya(int uninstall) {
+FInstall::Install(std::string name, std::string repository, std::string object, std::string folder, int uninstall) {
 	ExecutePlusPlus exec;
 	/* Check is exist? */
-	if(fsplusplus::IsExistFile("/bin/fetcheya") == false) {
+	if(fsplusplus::IsExistFile("/bin/" + object) == false) {
 		if(uninstall == 1)
-			CANNOT_BE_REMOVED("Fetcheya")
+			CANNOT_BE_REMOVED(name)
 		else {
-			IS_NOT_EXIST("Fetcheya")
+			IS_NOT_EXIST(name)
 			char input = getchar();
 			if(input == 'y' || input == 'Y') {
 				if(fsplusplus::IsExistFile("/bin/git") == true || fsplusplus::IsExistFile("/usr/bin/git") == true) {
 					chdir(getenv("HOME"));
-					exec.RunFunction("git clone https://github.com/ferhatgec/fetcheya.git");
+					exec.RunFunction("git clone " + repository);
 					if(fsplusplus::IsExistFile("/bin/g++") == true) {
 						if(fsplusplus::IsExistFile("/bin/gcc") == true) {
 							std::string path(getenv("HOME"));
-							path.append("/fetcheya");
+							path.append("/" + folder);
 							std::cout << "Directory changed. : " << path << "\n";
 							chdir(path.c_str());
 							std::cout << "Installing..\n";
 
 							#ifdef __FreeBSD__
 								if (getuid())
-									IS_NOT_SUPER_USER("Fetcheya")
+									IS_NOT_SUPER_USER(name)
 								else
 								 	exec.RunFunction("sh install.sh");
 							#else
 								exec.RunFunction("sudo sh install.sh");
 							#endif
 
-							if(fsplusplus::IsExistFile("/bin/fetcheya") == true)
+							if(fsplusplus::IsExistFile("/bin/" + object) == true)
 								std::cout << "Installed!\n";
 							else
 								std::cout << "Could not install.\n";
@@ -91,318 +91,21 @@ FInstall::InstallFetcheya(int uninstall) {
 		}
 	} else {
 		if(uninstall == 1) {
-			UNINSTALL("Fetcheya")
+			UNINSTALL(name)
 			char input = getchar();
 			if(input == 'y' || input == 'Y') {
-				exec.RunFunction("sudo rm -f /bin/fetcheya");
-				if(fsplusplus::IsExistFile("/bin/fetcheya") == false)
+				exec.RunFunction("sudo rm -f /bin/" + object);
+				if(fsplusplus::IsExistFile("/bin/" + object) == false)
 					std::cout << "Removed!\n";
 				else
 					std::cout << "Could not remove.\n";
 			} else
 				std::cout << "Aborted.\n";
 		} else {
-			IS_EXIST("Fetcheya")
+			IS_EXIST(name)
 			char input = getchar();
 			if(input == 'y' || input == 'Y')
-				exec.RunFunction("fetcheya");
-			else
-				std::cout << "Aborted.\n";
-		}
-	}
-}
-
-void
-FInstall::InstallFlaScript(int uninstall) {
-	ExecutePlusPlus exec;
-	if(fsplusplus::IsExistFile("/bin/fla") == false) {
-		if(uninstall == 1) {
-			CANNOT_BE_REMOVED("FlaScript (fla)")
-		} else {
-			IS_NOT_EXIST("FlaScript (fla)")
-			char input = getchar();
-			if(input == 'y' || input == 'Y') {
-				if(fsplusplus::IsExistFile("/bin/git") == true || fsplusplus::IsExistFile("/usr/bin/git") == true) {
-					chdir(getenv("HOME"));
-					exec.RunFunction("git clone https://github.com/ferhatgec/flascript.git"); /* Clone repo */
-					if(fsplusplus::IsExistFile("/bin/g++") == true) {
-						if(fsplusplus::IsExistFile("/bin/gcc") == true) {
-							std::string path(getenv("HOME"));
-							path.append("/flascript");
-							std::cout << "Directory changed. : " << path << "\n";
-							chdir(path.c_str());
-							std::cout << "Installing..\n";
-							#ifdef __FreeBSD__
-								 if (getuid())
-									IS_NOT_SUPER_USER("FlaScript (fla)")
-								 else
-								 	exec.RunFunction("sh install.sh");
-							#else
-								exec.RunFunction("sudo sh install.sh"); /* Run Shell script */
-							#endif
-							if(fsplusplus::IsExistFile("/bin/fla") == true)
-								std::cout << "\nInstalled!\n";
-							else
-								std::cout << "Could not install.\n";
-						} else
-							IS_NOT_FOUND("gcc")
-					} else
-						IS_NOT_FOUND("g++")
-				} else
-					IS_NOT_FOUND("git")
-			} else
-				std::cout << "Aborted.\n";
-		}
-	} else {
-		if(uninstall == 1) {
-			UNINSTALL("FlaScript (fla)")
-			char input = getchar();
-			if(input == 'y' || input == 'Y') {
-				exec.RunFunction("sudo rm -f /bin/fla");
-				if(fsplusplus::IsExistFile("/bin/fla") == false)
-					std::cout << "Removed!\n";
-				else
-					std::cout << "Could not remove.\n";
-			} else
-				std::cout << "Aborted.\n";
-		} else {
-			IS_EXIST("FlaScript (fla)")
-			char input = getchar();
-			if(input == 'y' || input == 'Y')
-				exec.RunFunction("fla");
-			else
-				std::cout << "Aborted.\n";
-		}
-	}
-}
-
-void
-FInstall::InstallCopyboard(int uninstall) {
-	ExecutePlusPlus exec;
-	if(fsplusplus::IsExistFile("/bin/copyboard") == false) {
-		if(uninstall == 1) {
-			CANNOT_BE_REMOVED("Copyboard")
-		} else {
-			IS_NOT_EXIST("Copyboard")
-			char input = getchar();
-			if(input == 'y' || input == 'Y') {
-				if(fsplusplus::IsExistFile("/bin/git") == true || fsplusplus::IsExistFile("/usr/bin/git") == true) {
-					chdir(getenv("HOME"));
-					exec.RunFunction("git clone https://github.com/ferhatgec/copyboard.git");
-					if(fsplusplus::IsExistFile("/bin/g++") == true) {
-						if(fsplusplus::IsExistFile("/bin/gcc") == true) {
-							std::string path(getenv("HOME"));
-							path.append("/copyboard");
-							std::cout << "Directory changed. : " << path << "\n";
-							chdir(path.c_str());
-							std::cout << "Installing..\n";
-							#ifdef __FreeBSD__
-								 if (getuid())
-									IS_NOT_SUPER_USER("Copyboard")
-								 else
-								 	exec.RunFunction("sh install.sh");
-							#else
-								exec.RunFunction("sudo sh install.sh");
-							#endif
-
-							if(fsplusplus::IsExistFile("/bin/copyboard") == true)
-								std::cout << "\nInstalled!\n";
-							else
-								std::cout << "Could not install.\n";
-						} else
-							IS_NOT_FOUND("gcc")
-					} else
-						IS_NOT_FOUND("g++")
-				} else
-					IS_NOT_FOUND("git")
-			} else
-				std::cout << "Aborted.\n";
-		}
-	} else {
-		if(uninstall == 1) {
-			UNINSTALL("Copyboard")
-			char input = getchar();
-			if(input == 'y' || input == 'Y') {
-				exec.RunFunction("sudo rm -f /bin/copyboard");
-				if(fsplusplus::IsExistFile("/bin/copyboard") == false)
-					std::cout << "Removed!\n";
-				else
-					std::cout << "Could not remove.\n";
-			} else
-				std::cout << "Aborted.\n";
-		} else {
-			IS_EXIST("Copyboard")
-			char input = getchar();
-			if(input == 'y' || input == 'Y')
-				exec.RunFunction("copyboard");
-			else
-				std::cout << "Aborted.\n";
-		}
-	}
-}
-
-void
-FInstall::InstallFegeyaList(int uninstall) {
-	ExecutePlusPlus exec;
-	if(fsplusplus::IsExistFile("/bin/lsf") == false) {
-		if(uninstall == 1) {
-			CANNOT_BE_REMOVED("Fegeya List (lsf)")
-		} else {
-			IS_NOT_EXIST("Fegeya List (lsf)")
-			char input = getchar();
-			if(input == 'y' || input == 'Y') {
-				if(fsplusplus::IsExistFile("/bin/git") == true || fsplusplus::IsExistFile("/usr/bin/git") == true) {
-					chdir(getenv("HOME"));
-					exec.RunFunction("git clone https://github.com/ferhatgec/lsf.git");
-					if(fsplusplus::IsExistFile("/bin/g++") == true) {
-						if(fsplusplus::IsExistFile("/bin/gcc") == true) {
-							std::string path(getenv("HOME"));
-							path.append("/lsf");
-							std::cout << "Directory changed. : " << path << "\n";
-							chdir(path.c_str());
-							std::cout << "Installing..\n";
-							#ifdef __FreeBSD__
-								 if (getuid())
-									IS_NOT_SUPER_USER("Fegeya List (lsf)")
-								 else
-								 	exec.RunFunction("sh install.sh");
-							#else
-								exec.RunFunction("sudo sh install.sh");
-							#endif
-
-							if(fsplusplus::IsExistFile("/bin/lsf") == true)
-								std::cout << "\nInstalled!\n";
-						        else
-								std::cout << "Could not install.\n";
-						} else
-							IS_NOT_FOUND("gcc")
-					} else
-						IS_NOT_FOUND("g++")
-				} else
-					IS_NOT_FOUND("git")
-			} else
-				std::cout << "Aborted.\n";
-		}
-	} else {
-		IS_EXIST("Fegeya List (lsf)")
-		char input = getchar();
-		if(input == 'y' || input == 'Y')
-			exec.RunFunction("lsf");
-		else
-			std::cout << "Aborted.\n";
-	}
-}
-
-void
-FInstall::InstallFreeBrain(int uninstall) {
-	ExecutePlusPlus exec;
-	if(fsplusplus::IsExistFile("/bin/freebr") == false) {
-		if(uninstall == 1) {
-			CANNOT_BE_REMOVED("FreeBrain (freebr)")
-		} else {
-			IS_NOT_EXIST("FreeBrain (freebr)")
-			char input = getchar();
-			if(input == 'y' || input == 'Y') {
-				if(fsplusplus::IsExistFile("/bin/git") == true || fsplusplus::IsExistFile("/usr/bin/git") == true) {
-					chdir(getenv("HOME"));
-					exec.RunFunction("git clone https://github.com/ferhatgec/freebrain.git");
-					if(fsplusplus::IsExistFile("/bin/g++") == true) {
-						if(fsplusplus::IsExistFile("/bin/gcc") == true) {
-							std::string path(getenv("HOME"));
-							path.append("/freebrain");
-							std::cout << "Directory changed. : " << path << "\n";
-							chdir(path.c_str());
-							std::cout << "Installing..\n";
-							#ifdef __FreeBSD__
-								 if (getuid())
-									IS_NOT_SUPER_USER("FreeBrain (freebr)")
-								 else
-								 	exec.RunFunction("sh install.sh");
-							#else
-								exec.RunFunction("sudo sh install.sh");
-							#endif
-
-							if(fsplusplus::IsExistFile("/bin/freebr") == true)
-								std::cout << "\nInstalled!\n";
-							else
-								std::cout << "Could not install.\n";
-						} else
-							IS_NOT_FOUND("gcc")
-					} else
-						IS_NOT_FOUND("g++")
-				} else
-					IS_NOT_FOUND("git")
-			} else
-				std::cout << "Aborted.\n";
-		}
-	} else {
-		IS_EXIST("FreeBrain (freebr)")
-		char input = getchar();
-		if(input == 'y' || input == 'Y')
-			exec.RunFunction("freebr");
-		else
-			std::cout << "Aborted.\n";
-	}
-}
-
-void
-FInstall::InstallBrainfuckPlusPlus(int uninstall) {
-	ExecutePlusPlus exec;
-	if(fsplusplus::IsExistFile("/bin/bfc") == false) {
-		if(uninstall == 1) {
-			CANNOT_BE_REMOVED("BrainfuckPlusPlus (bfc)")
-		} else {
-			IS_NOT_EXIST("BrainfuckPlusPlus (bfc)")
-			char input = getchar();
-			if(input == 'y' || input == 'Y') {
-				if(fsplusplus::IsExistFile("/bin/git") == true || fsplusplus::IsExistFile("/usr/bin/git") == true) {
-					chdir(getenv("HOME"));
-					exec.RunFunction("git clone https://github.com/ferhatgec/brainfuckplusplus.git");
-					if(fsplusplus::IsExistFile("/bin/g++") == true) {
-						if(fsplusplus::IsExistFile("/bin/gcc") == true) {
-							std::string path(getenv("HOME"));
-							path.append("/brainfuckplusplus");
-							std::cout << "Directory changed. : " << path << "\n";
-							chdir(path.c_str());
-							std::cout << "Installing..\n";
-							#ifdef __FreeBSD__
-								 if (getuid())
-									IS_NOT_SUPER_USER("BrainfuckPlusPlus (bfc)")
-								 else
-									exec.RunFunction("sh install.sh");
-							#else
-								exec.RunFunction("sudo sh install.sh");
-							#endif
-							if(fsplusplus::IsExistFile("/bin/bfc") == true)
-								std::cout << "\nInstalled!\n";
-							else
-								std::cout << "Could not install.\n";
-						} else
-							IS_NOT_FOUND("gcc")
-					} else
-						IS_NOT_FOUND("g++")
-				} else
-					IS_NOT_FOUND("git")
-			} else
-				std::cout << "Aborted.\n";
-		}
-	}  else {
-		if(uninstall == 1) {
-			UNINSTALL("BrainfuckPlusPlus (bfc)")
-			char input = getchar();
-			if(input == 'y' || input == 'Y') {
-				exec.RunFunction("sudo rm -f /bin/bfc");
-				if(fsplusplus::IsExistFile("/bin/bfc") == false)
-					std::cout << "Removed!\n";
-				else
-					std::cout << "Could not remove.\n";
-			} else
-				std::cout << "Aborted.\n";
-		} else {
-			IS_EXIST("BrainfuckPlusPlus (bfc)")
-			char input = getchar();
-			if(input == 'y' || input == 'Y')
-				exec.RunFunction("bfc");
+				exec.RunFunction(object);
 			else
 				std::cout << "Aborted.\n";
 		}
@@ -442,12 +145,22 @@ FInstall::InstallFunction(std::string arg, int type) {
 	else
 		HelpFunction();
 
-	if(strstr(arg.c_str(), "fetcheya")) InstallFetcheya(0);
-	else if(strstr(arg.c_str(), "flascript")) InstallFlaScript(0);
-	else if(strstr(arg.c_str(), "copyboard")) InstallCopyboard(0);
-	else if(strstr(arg.c_str(), "lsf")) InstallFegeyaList(0);
-	else if(strstr(arg.c_str(), "freebrain")) InstallFreeBrain(0);
-	else if(strstr(arg.c_str(), "brainfuckplusplus")) InstallBrainfuckPlusPlus(0);
+	if(strstr(arg.c_str(), "fetcheya")) 
+		Install(STR("Fegeya Fetcheya"), STR("https://github.com/ferhatgec/fetcheya.git"), STR("fetcheya"), STR("fetcheya"), 0);
+	else if(strstr(arg.c_str(), "flascript")) 
+		Install(STR("Fegeya FlaScript (fla)"), STR("https://github.com/ferhatgec/flascript.git"), STR("fla"), 
+			STR("flascript"), 0);
+	else if(strstr(arg.c_str(), "copyboard")) 
+		Install(STR("Fegeya Copyboard"), STR("https://github.com/ferhatgec/copyboard.git"), STR("copyboard"), 
+			STR("copyboard"), 0);
+	else if(strstr(arg.c_str(), "lsf")) 
+		Install(STR("Fegeya List"), STR("https://github.com/ferhatgec/lsf.git"), STR("lsf"), STR("lsf"), 0);
+	else if(strstr(arg.c_str(), "freebrain")) 
+		Install(STR("Fegeya FreeBrain"), STR("https://github.com/ferhatgec/freebrain.git"), STR("fetcheya"), 
+			STR("freebr"), 0);
+	else if(strstr(arg.c_str(), "brainfuckplusplus")) 
+		Install(STR("Fegeya Brainfuck++"), STR("https://github.com/ferhatgec/brainfuckplusplus.git"), STR("brainfuckplusplus"), 
+			STR("bfc"), 0);
 	else
 		std::cout << "No match for this argument : " << arg + "\n";
 }
@@ -462,12 +175,22 @@ FInstall::UnInstallFunction(std::string arg, int type) {
 	else
 		HelpFunction();
 
-	if(strstr(arg.c_str(), "fetcheya")) InstallFetcheya(1);
-	else if(strstr(arg.c_str(), "flascript")) InstallFlaScript(1);
-	else if(strstr(arg.c_str(), "copyboard")) InstallCopyboard(1);
-	else if(strstr(arg.c_str(), "lsf")) InstallFegeyaList(1);
-	else if(strstr(arg.c_str(), "freebrain")) InstallFreeBrain(1);
-	else if(strstr(arg.c_str(), "brainfuckplusplus")) InstallBrainfuckPlusPlus(1);
+	if(strstr(arg.c_str(), "fetcheya")) 
+		Install(STR("Fegeya Fetcheya"), STR("https://github.com/ferhatgec/fetcheya.git"), STR("fetcheya"), STR("fetcheya"), 1);
+	else if(strstr(arg.c_str(), "flascript")) 
+		Install(STR("Fegeya FlaScript (fla)"), STR("https://github.com/ferhatgec/flascript.git"), STR("fla"), 
+			STR("flascript"), 1);
+	else if(strstr(arg.c_str(), "copyboard")) 
+		Install(STR("Fegeya Copyboard"), STR("https://github.com/ferhatgec/copyboard.git"), STR("copyboard"), 
+			STR("copyboard"), 1);
+	else if(strstr(arg.c_str(), "lsf")) 
+		Install(STR("Fegeya List"), STR("https://github.com/ferhatgec/lsf.git"), STR("lsf"), STR("lsf"), 1);
+	else if(strstr(arg.c_str(), "freebrain")) 
+		Install(STR("Fegeya FreeBrain"), STR("https://github.com/ferhatgec/freebrain.git"), STR("fetcheya"), 
+			STR("freebr"), 1);
+	else if(strstr(arg.c_str(), "brainfuckplusplus")) 
+		Install(STR("Fegeya Brainfuck++"), STR("https://github.com/ferhatgec/brainfuckplusplus.git"), STR("brainfuckplusplus"), 
+			STR("bfc"), 1);
 	else
 		std::cout << "No match for this argument : " << arg + "\n";
 }
