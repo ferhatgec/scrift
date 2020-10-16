@@ -22,4 +22,4 @@ public:
 	void Check(std::string);
 };
 
-#endif // LINKER_HPP
+#endif // INSTALL_HPP
