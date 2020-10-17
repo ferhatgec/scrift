@@ -372,6 +372,8 @@ std::string GetUptime() {
 }
 
 void CodeExecution(std::string arg) {
+    history->WriteHistory(arg);
+    
     if(arg.rfind(keywords.Scr, 0) == 0) {
         /*  scr
             scr echo hello

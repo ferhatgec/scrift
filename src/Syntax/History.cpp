@@ -47,7 +47,7 @@ FHistory::TimeFunction() {
 
 func
 FHistory::WriteHistory(fstr filepathw) {
-	if(filepathw.length() != 0) {history_text.append(filepathw + "\n");}
+	if(filepathw.length() != 0) {history_text.append(filepathw);}
 }
 
 void 
@@ -65,7 +65,7 @@ FHistory::WriteAllHistory() {
 
     file.exceptions(file.exceptions() | std::ios::failbit | std::ifstream::badbit);
 
-    file << history_text << "\n";
+    file << history_text;
 }
 
 
