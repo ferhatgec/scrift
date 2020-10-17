@@ -806,13 +806,24 @@ void CodeExecution(std::string arg) {
 				Support environments..
 			*/
 				
-			arg = stringtools::EraseAllSubString(arg, 
-				keywords.Title + " ");
-
-			arg.pop_back();
+			if(arg != keywords.Title + "\n") { 
+				arg = stringtools::EraseAllSubString(arg, 
+					keywords.Title + " ");
 			
-			SetTitleAs(arg);
-			
+				if(arg[0] == '#') {
+					arg = arg.erase(0, 1);
+					
+					if(arg.length() > 1)
+						arg.pop_back();
+					
+					const char* env = getenv(arg.c_str());
+					
+					if(env != NULL)
+						arg = STR(env);						
+				} else arg.pop_back();
+				
+				SetTitleAs(arg);
+			}
 			return;
 		} else if(arg.rfind(keywords.RemoveFile, 0) == 0) {
    	        /*  rmvfile
