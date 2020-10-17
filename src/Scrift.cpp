@@ -810,7 +810,7 @@ void CodeExecution(std::string arg) {
 				arg = stringtools::EraseAllSubString(arg, 
 					keywords.Title + " ");
 			
-				if(arg[0] == '#') {
+				if(arg[0] == '#' || arg[0] == '$') {
 					arg = arg.erase(0, 1);
 					
 					if(arg.length() > 1)
