@@ -1282,14 +1282,15 @@ int main(integer argc, char** argv) {
     		ascii->Allofthem();
 	    }
 
-	    /* Welcome <username> (emoji) */
-	    PrintUsername();
+		/* Welcome <username> (emoji) */
+	    if(runsyntax->WelcomeMessage() == 1 || runsyntax->WelcomeMessage() == 2)  
+	    	PrintUsername();
 
 	    /* History start signal */
     	history->AllofThem();
 
 	    /* Welcome message. */
-	    if(runsyntax->WelcomeMessage() == true) {
+	    if(runsyntax->WelcomeMessage() == 1) {
 		    logsystem->WriteLog("Launching Welcome() function.. - ");
 		    helpstr->Welcome();
 	    }

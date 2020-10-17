@@ -57,15 +57,17 @@ std::ifstream freadfile(GPath());
 	welcome_message no_thanks:
 */
 
-bool
+int
 FSettings::WelcomeMessage() {
 	std::string line = fsplusplus::FindStringWithReturn(Path(), "welcome_message");
-	if(strstr(line.c_str(), "no_thanks"))
-		return false;
+	if(strstr(line.c_str(), "no_thanks_all"))
+		return 0;
+ 	else if(strstr(line.c_str(), "no_thanks"))
+		return 2;
  	else
-		return true;
+		return 1;
 
-	return true;
+	return 1;
 }
 
 /*

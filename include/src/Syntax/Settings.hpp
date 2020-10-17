@@ -16,7 +16,6 @@ public:
 	/*
 		welcome message, local git branches etc.
 	*/
-	bool WelcomeMessage();
 	bool GitBranch();
 	bool Setup();
 
@@ -32,13 +31,14 @@ public:
 	/*
 		color option etc.
 	*/
+	int WelcomeMessage();
 	int BackgroundColor();
 	int ASCIIColor();
 	int color();
 	int random(int, int);
 	int FeLogCleaner();
 	int Clear();
-
+		
 	/* Customize */
 	void Customize();
 };
