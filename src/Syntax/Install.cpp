@@ -159,11 +159,11 @@ FInstall::InstallFunction(std::string arg, int type) {
 	else if(strstr(arg.c_str(), "lsf")) 
 		Install(STR("Fegeya List"), STR("https://github.com/ferhatgec/lsf.git"), STR("lsf"), STR("lsf"), 0);
 	else if(strstr(arg.c_str(), "freebrain")) 
-		Install(STR("Fegeya FreeBrain"), STR("https://github.com/ferhatgec/freebrain.git"), STR("freebrain"), 
-			STR("freebr"), 0);
+		Install(STR("Fegeya FreeBrain"), STR("https://github.com/ferhatgec/freebrain.git"), STR("freebr"), 
+			STR("freebrain"), 0);
 	else if(strstr(arg.c_str(), "brainfuckplusplus")) 
-		Install(STR("Fegeya Brainfuck++"), STR("https://github.com/ferhatgec/brainfuckplusplus.git"), STR("brainfuckplusplus"), 
-			STR("bfc"), 0);
+		Install(STR("Fegeya Brainfuck++"), STR("https://github.com/ferhatgec/brainfuckplusplus.git"), STR("bfcss"), 
+			STR("brainfuckplusplus"), 0);
 	else if(strstr(arg.c_str(), "generafor"))
 		Install(STR("Fegeya Generafor"), STR("https://github.com/ferhatgec/generafor.git"), STR("generafor"), 
 			STR("generafor"), 0);
@@ -192,11 +192,11 @@ FInstall::UnInstallFunction(std::string arg, int type) {
 	else if(strstr(arg.c_str(), "lsf")) 
 		Install(STR("Fegeya List"), STR("https://github.com/ferhatgec/lsf.git"), STR("lsf"), STR("lsf"), 1);
 	else if(strstr(arg.c_str(), "freebrain")) 
-		Install(STR("Fegeya FreeBrain"), STR("https://github.com/ferhatgec/freebrain.git"), STR("freebrain"), 
-			STR("freebr"), 1);
+		Install(STR("Fegeya FreeBrain"), STR("https://github.com/ferhatgec/freebrain.git"), STR("freebr"), 
+			STR("freebrain"), 1);
 	else if(strstr(arg.c_str(), "brainfuckplusplus")) 
-		Install(STR("Fegeya Brainfuck++"), STR("https://github.com/ferhatgec/brainfuckplusplus.git"), STR("brainfuckplusplus"), 
-			STR("bfc"), 1);
+		Install(STR("Fegeya Brainfuck++"), STR("https://github.com/ferhatgec/brainfuckplusplus.git"), STR("bfc"), 
+			STR("brainfuckplusplus"), 1);
 	else if(strstr(arg.c_str(), "generafor"))
 		Install(STR("Fegeya Generafor"), STR("https://github.com/ferhatgec/generafor.git"), STR("generafor"), 
 			STR("generafor"), 1);
