@@ -617,7 +617,6 @@ void CodeExecution(std::string arg) {
             /*  close, exit
                 Exit.
             */
-        	history->WriteHistory(arg);
         	history->WriteAllHistory();
         	arg.erase();
           	
