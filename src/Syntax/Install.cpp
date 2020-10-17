@@ -159,7 +159,7 @@ FInstall::InstallFunction(std::string arg, int type) {
 	else if(strstr(arg.c_str(), "lsf")) 
 		Install(STR("Fegeya List"), STR("https://github.com/ferhatgec/lsf.git"), STR("lsf"), STR("lsf"), 0);
 	else if(strstr(arg.c_str(), "freebrain")) 
-		Install(STR("Fegeya FreeBrain"), STR("https://github.com/ferhatgec/freebrain.git"), STR("fetcheya"), 
+		Install(STR("Fegeya FreeBrain"), STR("https://github.com/ferhatgec/freebrain.git"), STR("freebrain"), 
 			STR("freebr"), 0);
 	else if(strstr(arg.c_str(), "brainfuckplusplus")) 
 		Install(STR("Fegeya Brainfuck++"), STR("https://github.com/ferhatgec/brainfuckplusplus.git"), STR("brainfuckplusplus"), 
@@ -192,7 +192,7 @@ FInstall::UnInstallFunction(std::string arg, int type) {
 	else if(strstr(arg.c_str(), "lsf")) 
 		Install(STR("Fegeya List"), STR("https://github.com/ferhatgec/lsf.git"), STR("lsf"), STR("lsf"), 1);
 	else if(strstr(arg.c_str(), "freebrain")) 
-		Install(STR("Fegeya FreeBrain"), STR("https://github.com/ferhatgec/freebrain.git"), STR("fetcheya"), 
+		Install(STR("Fegeya FreeBrain"), STR("https://github.com/ferhatgec/freebrain.git"), STR("freebrain"), 
 			STR("freebr"), 1);
 	else if(strstr(arg.c_str(), "brainfuckplusplus")) 
 		Install(STR("Fegeya Brainfuck++"), STR("https://github.com/ferhatgec/brainfuckplusplus.git"), STR("brainfuckplusplus"), 
@@ -210,7 +210,8 @@ FInstall::Check(std::string arg) {
 	if(arg.length() > 1) {
 		arg.pop_back();
 		if(arg == "fetcheya" || arg == "flascript" || arg == "copyboard" ||
-			arg == "lsf" || arg == "freebrain" || arg == "brainfuckplusplus") {
+			arg == "lsf" || arg == "freebrain" || arg == "brainfuckplusplus" || 
+			arg == "generafor") {
 				if(fsplusplus::IsExistFile("/bin/" + arg) == true)
 					run.RunFunction(arg);
 				else {

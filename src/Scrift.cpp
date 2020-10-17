@@ -452,7 +452,7 @@ void CodeExecution(std::string arg) {
             }
             
             return;
-        } else if(arg.rfind(keywords.Fr, 0) == 0) {
+        } else if(arg.rfind(keywords.Fr + " ", 0) == 0) {
             /*  fr
                 fr /home
                 fr ../../
