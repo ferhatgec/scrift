@@ -135,7 +135,7 @@ void HelpFunction() {
 	"Usage: fpi [--i --install || --uni --uninstall] <app>\n<app> :\n" <<
 	"* fetcheya\n" << "* flascript (fla)\n" << "* copyboard\n" <<
 	"* lsf\n" << "* freebrain (freebr)\n" << "* brainfuckplusplus (bfc)\n" << 
-	"* generafor\n";
+	"* generafor\n" << "* desktof\n";
 }
 
 void
@@ -167,6 +167,9 @@ FInstall::InstallFunction(std::string arg, int type) {
 	else if(strstr(arg.c_str(), "generafor"))
 		Install(STR("Fegeya Generafor"), STR("https://github.com/ferhatgec/generafor.git"), STR("generafor"), 
 			STR("generafor"), 0);
+	else if(strstr(arg.c_str(), "desktof"))
+		Install(STR("Fegeya Desktof"), STR("https://github.com/ferhatgec/desktof.git"), STR("desktof"), 
+			STR("desktof"), 0);
 	else
 		std::cout << "No match for this argument : " << arg + "\n";
 }
@@ -200,6 +203,9 @@ FInstall::UnInstallFunction(std::string arg, int type) {
 	else if(strstr(arg.c_str(), "generafor"))
 		Install(STR("Fegeya Generafor"), STR("https://github.com/ferhatgec/generafor.git"), STR("generafor"), 
 			STR("generafor"), 1);
+	else if(strstr(arg.c_str(), "desktof"))
+		Install(STR("Fegeya Desktof"), STR("https://github.com/ferhatgec/desktof.git"), STR("desktof"), 
+			STR("desktof"), 1);
 	else
 		std::cout << "No match for this argument : " << arg + "\n";
 }
@@ -211,7 +217,7 @@ FInstall::Check(std::string arg) {
 		arg.pop_back();
 		if(arg == "fetcheya" || arg == "flascript" || arg == "copyboard" ||
 			arg == "lsf" || arg == "freebrain" || arg == "brainfuckplusplus" || 
-			arg == "generafor") {
+			arg == "generafor" || arg == "desktof") {
 				if(fsplusplus::IsExistFile("/bin/" + arg) == true)
 					run.RunFunction(arg);
 				else {
