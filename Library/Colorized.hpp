@@ -180,6 +180,10 @@ namespace colorized {
     	std::cout << color <<  text <<  WBLACK_COLOR;
     }
 
+    static void PrintWith(const char* color, std::string text) {
+    	std::cout << color <<  text <<  WBLACK_COLOR;
+    }	
+
     static void PrintWhReset(const char* color, const char* text) {
     	std::cout << color << text;
     }

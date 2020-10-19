@@ -19,6 +19,7 @@
 #include <FileSystemPlusPlus.h>
 #include <ExecutePlusPlus.hpp>
 #include <StringTools.h>
+#include <Colorized.hpp>
 
 /* Definitions */
 #define IS_EXIST(x) std::cout << x << " already installed\nWould you like to run it? (y/n) : ";
@@ -130,12 +131,27 @@ FInstall::FegeyaPackageInstaller(std::string arg) {
 		HelpFunction();
 }
 
+void Check_Installed(std::string data, std::string object) {
+	if(fsplusplus::IsExistFile("/bin/" + object) == true)
+		colorized::PrintWith(colorized::Colorize(BOLD, GREEN).c_str(), 
+			data + " ✅\n");
+	else
+		colorized::PrintWith(colorized::Colorize(BOLD, GREEN).c_str(), 
+			data + " ❎\n");
+}
+
 void HelpFunction() {
 	std::cout << "Fegeya Package Installer (fpi)\n" << 
-	"Usage: fpi [--i --install || --uni --uninstall] <app>\n<app> :\n" <<
-	"* fetcheya\n" << "* flascript (fla)\n" << "* copyboard\n" <<
-	"* lsf\n" << "* freebrain (freebr)\n" << "* brainfuckplusplus (bfc)\n" << 
-	"* generafor\n" << "* desktof\n";
+	"Usage: fpi [--i --install || --uni --uninstall] <app>\n<app> :\n";
+	
+	Check_Installed("fetcheya", "fetcheya");
+	Check_Installed("flascript", "fla");
+	Check_Installed("copyboard", "copyboard");
+	Check_Installed("lsf", "lsf");
+	Check_Installed("freebrain", "freebr");
+	Check_Installed("brainfuckplusplus", "bfc");
+	Check_Installed("generafor", "generafor");
+	Check_Installed("desktof", "desktof");
 }
 
 void
