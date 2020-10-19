@@ -152,6 +152,7 @@ void HelpFunction() {
 	Check_Installed("brainfuckplusplus", "bfc");
 	Check_Installed("generafor", "generafor");
 	Check_Installed("desktof", "desktof");
+	Check_Installed("translatfe", "tlatfe");
 }
 
 void
@@ -186,6 +187,9 @@ FInstall::InstallFunction(std::string arg, int type) {
 	else if(strstr(arg.c_str(), "desktof"))
 		Install(STR("Fegeya Desktof"), STR("https://github.com/ferhatgec/desktof.git"), STR("desktof"), 
 			STR("desktof"), 0);
+	else if(strstr(arg.c_str(), "translatfe"))
+		Install(STR("Fegeya Translatfe"), STR("https://github.com/ferhatgec/translatfe.git"), STR("tlatfe"), 
+			STR("translatfe"), 0);
 	else
 		std::cout << "No match for this argument : " << arg + "\n";
 }
@@ -222,6 +226,9 @@ FInstall::UnInstallFunction(std::string arg, int type) {
 	else if(strstr(arg.c_str(), "desktof"))
 		Install(STR("Fegeya Desktof"), STR("https://github.com/ferhatgec/desktof.git"), STR("desktof"), 
 			STR("desktof"), 1);
+	else if(strstr(arg.c_str(), "translatfe"))
+		Install(STR("Fegeya Translatfe"), STR("https://github.com/ferhatgec/translatfe.git"), STR("tlatfe"), 
+			STR("translatfe"), 1);
 	else
 		std::cout << "No match for this argument : " << arg + "\n";
 }
@@ -233,7 +240,7 @@ FInstall::Check(std::string arg) {
 		arg.pop_back();
 		if(arg == "fetcheya" || arg == "flascript" || arg == "copyboard" ||
 			arg == "lsf" || arg == "freebrain" || arg == "brainfuckplusplus" || 
-			arg == "generafor" || arg == "desktof") {
+			arg == "generafor" || arg == "desktof" || "translatfe") {
 				if(fsplusplus::IsExistFile("/bin/" + arg) == true)
 					run.RunFunction(arg);
 				else {
