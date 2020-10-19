@@ -74,6 +74,14 @@ public:
 	std::string OdinTemplate() {
 		return "package main\n\nimport \"core:fmt\"\nmain :: proc() {\nfmt.println(\"Hello, Odin!\");\n}\n";
 	}
+	
+	std::string FishTemplate() {
+		return "#!/usr/bin/env fish\necho \"Hello, Fish!\"\n";
+	}
+	
+	std::string WrenTemplate() {
+		return "IO.print(\"Hello, Wren!\")\n";
+	}
 };
 
 #endif // LINKER_HPP
