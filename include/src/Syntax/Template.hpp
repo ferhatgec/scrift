@@ -51,6 +51,10 @@ public:
 		return "fn main() {\nprintln!(\"Hello Rust!\");\n}";
 	}
 	
+	std::string RubyTemplate() {
+		return "#!/usr/bin/env ruby\nputs \"Hello, Ruby!\"\n";
+	}
+	
 	std::string BashTemplate() {
 		return "#!/bin/bash\necho \"Hello Bash!\"";
 	}
