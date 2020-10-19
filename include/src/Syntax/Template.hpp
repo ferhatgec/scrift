@@ -82,6 +82,10 @@ public:
 	std::string WrenTemplate() {
 		return "IO.print(\"Hello, Wren!\")\n";
 	}
+	
+	std::string HolyCTemplate() {
+		return "\"Rest in peace, Terry Davis.\";\n";
+	}
 };
 
 #endif // LINKER_HPP
