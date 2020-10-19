@@ -240,7 +240,7 @@ FInstall::Check(std::string arg) {
 		arg.pop_back();
 		if(arg == "fetcheya" || arg == "flascript" || arg == "copyboard" ||
 			arg == "lsf" || arg == "freebrain" || arg == "brainfuckplusplus" || 
-			arg == "generafor" || arg == "desktof" || "translatfe") {
+			arg == "generafor" || arg == "desktof" || arg == "translatfe") {
 				if(fsplusplus::IsExistFile("/bin/" + arg) == true)
 					run.RunFunction(arg);
 				else {
