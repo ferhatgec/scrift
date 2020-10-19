@@ -28,7 +28,7 @@ public:
 	}
 	
 	std::string FlaScriptTemplate() {
-		return "main() -> main {\nprint(string) -> \"Hello FlaScript!\"\n}";
+		return "main() -> main {\nprint(string) -> \"Hello FlaScript!\"\n} main;";
 	}
 	
 	std::string PythonTemplate() {
@@ -69,6 +69,10 @@ public:
 	
 	std::string DLangTemplate() {
 		return "import std.stdio;\n\nvoid main()\n{\n	 writefln(\"Hello, D!\");\n}";
+	}
+	
+	std::string OdinTemplate() {
+		return "package main\n\nimport \"core:fmt\"\nmain :: proc() {\nfmt.println(\"Hello, Odin!\");\n}\n";
 	}
 };
 

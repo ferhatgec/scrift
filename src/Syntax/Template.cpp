@@ -54,6 +54,8 @@ FTemplate::LangTemplate() {
 		fsplusplus::CreateFile(name, BrainfuckTemplate());
 	else if(lang == "d")
 		fsplusplus::CreateFile(name, DLangTemplate());
+	else if(lang == "odin")
+		fsplusplus::CreateFile(name, OdinTemplate());
 	else
 		fsplusplus::CreateFile(name, "Sorry, this is not available for Scrift, Try again later... Or create pull request for Template.cpp and Template.hpp\n\nhttps://github.com/ferhatgec/scrift");
 }
