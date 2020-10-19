@@ -67,6 +67,8 @@ FTemplate::LangTemplate() {
 		fsplusplus::CreateFile(name, WrenTemplate());
 	else if(lang == "holyc")
 		fsplusplus::CreateFile(name, HolyCTemplate());
+	else if(lang == "elixir")
+		fsplusplus::CreateFile(name, ElixirTemplate());
 	else
 		fsplusplus::CreateFile(name, "Sorry, this is not available for Scrift, Try again later... Or create pull request for Template.cpp and Template.hpp\n\nhttps://github.com/ferhatgec/scrift");
 }

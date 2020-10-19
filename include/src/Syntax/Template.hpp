@@ -90,6 +90,10 @@ public:
 	std::string HolyCTemplate() {
 		return "\"Rest in peace, Terry Davis.\";\n";
 	}
+	
+	std::string ElixirTemplate() {
+		return "#!/usr/bin/env elixir\nIO.puts \"Hello World\"\n";
+	}
 };
 
 #endif // LINKER_HPP
