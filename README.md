@@ -1,3 +1,6 @@
+<img src="docs/resource/Scrift_Logo.png" align="left"
+     alt="Fegeya Scrift logo by @ferhatgec" width="60" height="60">
+     
 # Fegeya Scrift
 
 ## Scrift is new generation shell and scripting language project.
@@ -30,7 +33,7 @@
 - History
 - Unicode clock system. 🕒
 - Different syntax than other shells.
-- Template for programming language
+- Template for programming languages.
 - Welcome message 
 - Scripting language :open_mouth:
 - Calendar 
@@ -90,4 +93,4 @@ Note: You should add ``/bin/scrift`` and ``/usr/bin/scrift`` in ``/etc/shells`` 
  $# sh default_git_editor.sh // For GNU/Linux, FreeBSD etc.
 ```
 
-#### Scrift licensed under the terms of MIT License.
+#### Fegeya Scrift licensed under the terms of MIT License.
