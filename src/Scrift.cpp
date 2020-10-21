@@ -1048,7 +1048,7 @@ void CodeExecution(std::string arg) {
                 Wait for enter key input.
             */
             BOLD_BLUE_COLOR
-        	std::cout << "Enter the continue...";
+        	std::cout << "Press enter to contiune.";
         	
             returni:if(std::cin.get() == '\n') {
                 	BOLD_GREEN_COLOR
