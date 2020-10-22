@@ -105,6 +105,21 @@ FSettings::Setup() {
 }
 
 /*
+        date_info yes
+        date_info no
+*/
+bool
+FSettings::Date() {
+    std::string line = fsplusplus::FindStringWithReturn(Path(), "date_info");
+    if(strstr(line.c_str(), "yes"))
+        return true;
+    else
+        return false;
+
+    return true;
+}
+
+/*
 	<emoji> emoji: Shows emoji.
 */
 std::string

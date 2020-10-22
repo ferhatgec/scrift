@@ -1280,7 +1280,8 @@ int main(integer argc, char** argv) {
 		    setup->Config();
 	    }
 
-        date_tools->Date();
+        if(runsyntax->Date() == true)
+            date_tools->Date();
 
 	    if(runsyntax->ASCIIColor() == -1) {} else {
     		std::unique_ptr<FASCIIFunction> ascii(new FASCIIFunction);

@@ -215,6 +215,7 @@ FSetup::Stage1() {
 	erase_settings << "local_git_branch " + local_git_branch + "\n";
     erase_settings << "scrift_setup no_thanks\n";
     erase_settings << "auto_clear " + auto_clear + "\n";
+    erase_settings << "date_info yes\n";
     erase_settings << "sign_1 " + sign_1 + "\n";
     erase_settings << "sign_2 " + sign_2 + "\n";
     erase_settings << "\n[PROMPT] @username@[1;34m] @sign_1@[1;36m] @hostname@[1;35m] @sign_2@[1;36m] @directory@[1;33m] @whitespace@[1;36m] @branch@[1;36m] @clock@[1;93m] @whspace@[1;36m] @input_sign@[1;31m]";

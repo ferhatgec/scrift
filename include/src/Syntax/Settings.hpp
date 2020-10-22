@@ -18,6 +18,7 @@ public:
 	*/
 	bool GitBranch();
 	bool Setup();
+	bool Date();
 
 	/*
 		theme, path etc.

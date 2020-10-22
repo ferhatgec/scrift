@@ -249,6 +249,7 @@ FCreateFileFunction::CreateSettingsFileFunction() {
 		file << "local_git_branch yes\n";
         file << "scrift_setup yes\n";
 		file << "auto_clear 40\n";
+		file << "date_info yes\n";
 		file << "sign_1 @\n";
 		file << "sign_2 :~\n";
 		file << "\n[PROMPT] @username@[1;34m] @sign_1@[1;36m] @hostname@[1;35m] @sign_2@[1;36m] @directory@[1;33m] @whitespace@[1;36m] @branch@[1;36m] @clock@[1;93m] @whspace@[1;36m] @input_sign@[1;31m]";
@@ -275,6 +276,7 @@ FClearFileFunction::ClearSettingsFunction() {
 		file << "local_git_branch yes\n";
         file << "scrift_setup yes\n";
 		file << "auto_clear 40\n";
+		file << "date_info yes\n";
 		file << "sign_1 @\n";
 		file << "sign_2 :~\n";
 		file << "\n[PROMPT] @username@[1;34m] @sign_1@[1;36m] @hostname@[1;35m] @sign_2@[1;36m] @directory@[1;33m] @whitespace@[1;36m] @branch@[1;36m] @clock@[1;93m] @whspace@[1;36m] @input_sign@[1;31m]";
