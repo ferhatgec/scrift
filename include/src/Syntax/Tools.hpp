@@ -13,6 +13,7 @@
 class FTools {
 public:
     void Clock();
+    void Date();
 };
 
 #endif // TOOLS_HPP

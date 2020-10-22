@@ -58,6 +58,7 @@
 #include <src/Syntax/Template.hpp> /* 'Hello world' example for a lot of languages */
 #include <src/Syntax/Install.hpp> /* Simple build & install package installer for Fegeya Community's applications */
 #include <src/Syntax/Setup.hpp> /* Scrift Configuration & Setup */
+#include <src/Syntax/Tools.hpp>
 
 #include <Library/Keywords.hpp>
 
@@ -100,6 +101,7 @@ std::unique_ptr<FLanguage> scriftlang(new FLanguage);
 std::unique_ptr<FHistory> history(new FHistory);
 std::unique_ptr<FHelpFunction> helpstr(new FHelpFunction);
 std::unique_ptr<FSetup> setup(new FSetup);
+std::unique_ptr<FTools> date_tools(new FTools);
 
 /* Structures */
 std::unique_ptr<faddtextfunction> fileaddtextfunction(new faddtextfunction);
@@ -1277,6 +1279,8 @@ int main(integer argc, char** argv) {
 		    /* ExecutePlusPlus exec; */
 		    setup->Config();
 	    }
+
+        date_tools->Date();
 
 	    if(runsyntax->ASCIIColor() == -1) {} else {
     		std::unique_ptr<FASCIIFunction> ascii(new FASCIIFunction);

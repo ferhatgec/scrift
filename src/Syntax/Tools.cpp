@@ -11,6 +11,8 @@
 #include <src/Scrift.hpp>
 #include <src/Syntax/Tools.hpp>
 
+#include <Colorized.hpp>
+
 void FTools::Clock() {
     FMain main;
     std::string time = main.Time().erase(0, 11).substr(0, 2);
@@ -77,4 +79,36 @@ void FTools::Clock() {
         else 
             std::cout << "🕛";
     else std::cout << "";
+}
+
+void FTools::Date() {
+    FMain main;
+    std::string time = main.Time().substr(0, 10);
+
+    time = time.erase(0, 5);
+
+
+    BOLD_LIGHT_WHITE_COLOR
+    if(time == "10-12")
+        std::cout << "Today, Dennis Ritchie's death date.\n";
+    else if(time == "04-04")
+        std::cout << "Today, Microsoft's foundation date.\n";
+    else if(time == "05-02")
+        std::cout << "Today, Ferhat Gecdogan's born date.\n";
+    else if(time == "06-07")
+        std::cout << "Today, Alan Turing's death date.\n";
+    else if(time == "06-23")
+        std::cout << "Today, Alan Turing's born date.\n";
+    else if(time == "12-30")
+        std::cout << "Today, Bjarne Stroustrup's born date.\n";
+    else if(time == "03-16")
+        std::cout << "Today, Richard Stallman's born date.\n";
+    else if(time == "12-28")
+        std::cout << "Today, Linus B. Torvald's born date.\n";
+    else if(time == "05-11")
+        std::cout << "Today, Richard Feynman's born date.\n";
+    else if(time == "02-15")
+        std::cout << "Today, Richard Feynman's death date.\n";
+
+    BLACK_COLOR
 }
