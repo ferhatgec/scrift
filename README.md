@@ -31,6 +31,7 @@
 - Integrated Scrift based Text Editor (Edifor) :open_mouth:
 - ASCII Art (with Color option) :open_mouth:
 - History
+- Date information.
 - Unicode clock system. 🕒
 - Different syntax than other shells.
 - Template for programming languages.
