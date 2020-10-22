@@ -109,6 +109,14 @@ void FTools::Date() {
         std::cout << "Today, Richard Feynman's born date.\n";
     else if(time == "02-15")
         std::cout << "Today, Richard Feynman's death date.\n";
+    else if(time == "02-01")
+        std::cout << "Today, Werner Heisenberg's death date.\n";
+    else if(time == "01-04")
+        std::cout << "Today, Erwin Schrodinger's death date.\n";
+    else if(time == "03-14")
+        std::cout << "Today, Albert Einstein's born date.\n";
+    else if(time == "04-18")
+        std::cout << "Today, Albert Einstein's death date.\n";
 
     BLACK_COLOR
 }
