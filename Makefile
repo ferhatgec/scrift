@@ -101,64 +101,54 @@ conio: $(SRCLIBDIREC)FConio.c
 # Syntax
 %.o: $(SRCSYNTAXDIREC)%.cpp
 	$(COMPILER) -Wno-unused-function -Wno-unused-value $(CFLAGS) -c $< -o $@
-
+	echo [SUCCESS] $@
+		
 # Main Build
 main: $(SRCDIREC)Scrift.cpp
 	$(COMPILER) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) $(FETCHEYAFILE) -o scrift
-	echo Scrift building successfully!
+	echo [SUCCESS] Scrift
 
 # Main Build & Install
 mainc: $(SRCDIREC)Scrift.cpp
 	$(COMPILER) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) $(FETCHEYAFILE) -o /bin/scrift
-	echo Scrift building successfully in Bin Directory!
+	echo [SUCCESS] Scrift [bin]
 
 # Edifor Build
 edifor:
 	$(GCC) $(CFLAGS) $(SRCEDIFORDIREC)Edifor.c -o edifor
-	echo Edifor building successfully!
-
+	echo [SUCCESS] Edifor
+	
 # Edifor Build & Install
 ediforc:
 	$(GCC) $(CFLAGS) $(SRCEDIFORDIREC)Edifor.c -o /bin/edifor
-	echo Edifor building successfully in Bin Directory!
+	echo [SUCCESS] Edifor [bin]
 
 # Castle
 castle: $(GAMESDIREC)/Castle/Castle.hpp
 	$(COMPILER) $(GCFLAGS) $(GAMESDIREC)/Castle/Castle.cpp -o $(PREFIX)castle $(GLDFLAGS)
-	echo Castle building successfully in Bin Directory
-
+	echo [SUCCESS] Castle [bin]
+	
 # TicTacToe
 tictactoe: $(GAMESDIREC)/TicTacToe/TicTacToeMain.cpp
 	$(COMPILER) -Wall $(GAMESDIREC)/TicTacToe/TicTacToeMain.cpp $(GAMESDIREC)/TicTacToe/tictactoe.cpp -o $(PREFIX)tictactoe
-	echo TicTacToe building successfully in Bin Directory!
-
+	echo [SUCCESS] TicTacToe [bin]
+	
 # Pong
 pong: $(GAMESDIREC)/Pong/Pong.cpp
 	$(COMPILER) -Wall $(GAMESDIREC)/Pong/Pong.cpp -o $(PREFIX)pong -lncurses
-	echo Pong building successfully in Bin Directory!
+	echo [SUCCESS] Pong [bin]
 
 # Calendar & Converter Build
 # Calendar
 datec: $(SRCAPPSDIREC)/FDate/FDate.cpp
 	$(COMPILER)  $(SRCAPPSDIREC)/FDate/FDate.cpp -o fdate
-	echo FDate building successfully!
-
+	echo [SUCCESS] FDate
+	
 # Calendar & Converter & Build & Install
 date: $(SRCAPPSDIREC)/FDate/FDate.cpp
 	$(COMPILER)  $(SRCAPPSDIREC)/FDate/FDate.cpp -o $(PREFIX)fdate
-	echo FDate building successfully in Bin Directory!
-
-# Integrated Scrift's core.
-# Fetcheya Build
-#fetcheya: $(SRCFETCHEYADIREC)Fetcheya.cpp
-#	$(COMPILER) $(CFLAGS) $(SRCFETCHEYADIREC)Logos.cpp $(SRCFETCHEYADIREC)Fetcheya.cpp -o fetcheya
-#	echo Fetcheya building successfully!
-
-# Fetcheya Build & Install
-#fetcheyac: $(SRCFETCHEYADIREC)Fetcheya.cpp
-#	$(COMPILER) $(CFLAGS) $(SRCFETCHEYADIREC)Logos.cpp $(SRCFETCHEYADIREC)Fetcheya.cpp -o $(PREFIX)fetcheya
-#	echo Fetcheya building successfully in Bin Directory!
-
+	echo [SUCCESS] FDate[bin]
+	
 # Remove Scrift.
 uninstall:
 	rm -f /bin/scrift
@@ -179,5 +169,5 @@ clean:
 
 # Clean object files and Scrift, Fetcheya.
 cleanall:
-		echo Cleaning build directory!
+		echo [SUCCESS] Clean
 		$(CLEANALL)
