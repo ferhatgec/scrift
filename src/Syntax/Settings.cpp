@@ -285,8 +285,8 @@ FSettings::Customize() {
 			std::cout << " ";
 		else if(check == "newline")
 			std::cout << "\n";
-		else
-			std::cout << " ";
+		else if(strstr(check.c_str(), "sign")) 
+			std::cout << _color << Sign(check);
 
 		line = stringtools::EraseAllSubString(line, "@" + check + "@[" + color + "]");
 	} while(check != "error" && color != "error");
