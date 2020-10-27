@@ -68,7 +68,7 @@ endif
 all: conio headersfile edifor main datec clean
 
 # Build & Install
-install: headersfile mainc ediforc date clean
+install: headersfile mainc ediforc date clean run
 
 # Remove & Clean all
 removeall: uninstall cleanall
@@ -163,6 +163,10 @@ uninstall:
 run:
 	./scrift
 
+
+runc:
+	scrift
+	
 # Clean object files
 clean:
 		$(CLEAN)

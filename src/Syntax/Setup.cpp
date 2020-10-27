@@ -127,7 +127,7 @@ FSetup::Stage1() {
         std::cin >> input_customize;
 
         /* Pass */
-        if(input_customize == "n" || input_customize == "N") input_customize = "▶";
+        if(input_customize == "n" || input_customize == "N") input_customize = "▶ ";
 
         /* Welcome Message */
         colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
@@ -193,7 +193,7 @@ FSetup::Stage1() {
         bg_color = "12";
         ascii_art_color = "random";
         scrift_theme = "default";
-        input_customize = "▶";
+        input_customize = "▶ ";
         welcome_message = "yes";
         local_git_branch = "yes";
         auto_clear = "40";

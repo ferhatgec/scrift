@@ -244,7 +244,7 @@ FCreateFileFunction::CreateSettingsFileFunction() {
     	file << "bg_color 12\n";
     	file << "ascii_art_color random\n";
     	file << "scrift_theme default\n";
-    	file << "input_customize ▶\n";
+    	file << "input_customize ▶ \n";
 		file << "welcome_message yes\n";
 		file << "local_git_branch yes\n";
         file << "scrift_setup yes\n";
@@ -271,7 +271,7 @@ FClearFileFunction::ClearSettingsFunction() {
     	file << "bg_color 12\n";
     	file << "ascii_art_color random\n";
     	file << "scrift_theme default\n";
-    	file << "input_customize ▶\n";
+    	file << "input_customize ▶ \n";
 		file << "welcome_message yes\n";
 		file << "local_git_branch yes\n";
         file << "scrift_setup yes\n";
