@@ -936,12 +936,17 @@ void CodeExecution(std::string arg) {
             readfilefunction->ReadSettingsFunction();
             
             return;
-        } else if(arg == keywords.LanguageTemplate + "\n") {
-            /*  template
+        } else if(arg.rfind(keywords.LanguageTemplate, 0) == 0) {
+            /*  template test.fls
                 Create 'Hello, language' template.
             */
-        	temp.LangTemplate();
-            
+            arg = stringtools::EraseAllSubString(arg,
+                keywords.LanguageTemplate + " ");
+                
+            arg.pop_back();
+
+        	temp.LangTemplate(arg);
+                
             return;
         } else if(arg.rfind(keywords.RandomizeString, 0) == 0) {
         	/*  rstr

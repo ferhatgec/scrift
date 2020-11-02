@@ -14,60 +14,49 @@
 // Libraries
 #include <FileSystemPlusPlus.h>
 #include <Colorized.hpp>
+#include <StringTools.h>
 
 void
-FTemplate::LangTemplate() {
-	std::string name, lang;
-	colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), "File name: ");
-	
-	BOLD_CYAN_COLOR
-	std::getline(std::cin, name);
-	colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(), 
-		"Template (e.g. c, cpp, go, flascript, freebrain, rust, bash, d, python): ");
-		
-	BOLD_BLUE_COLOR
-	std::getline(std::cin, lang);
-	BLACK_COLOR
-	
-	if(lang == "cpp")
+FTemplate::LangTemplate(std::string name) {
+    if(strstr(name.c_str(), ".cpp"))
 		fsplusplus::CreateFile(name, CPlusPlusTemplate());
-	else if(lang == "c")
+	else if(strstr(name.c_str(), ".cpp"))
 		fsplusplus::CreateFile(name, CTemplate());
-	else if(lang == "go")
+	else if(strstr(name.c_str(), ".go"))
 		fsplusplus::CreateFile(name, GoTemplate());
-	else if(lang == "flascript")
+	else if(strstr(name.c_str(), ".fls"))
 		fsplusplus::CreateFile(name, FlaScriptTemplate());
-	else if(lang == "python")
+	else if(strstr(name.c_str(), ".py"))
 		fsplusplus::CreateFile(name, PythonTemplate());
-	else if(lang == "haskell")
+	else if(strstr(name.c_str(), ".hs"))
 		fsplusplus::CreateFile(name, HaskellTemplate());
-	else if(lang == "dart")
+	else if(strstr(name.c_str(), ".dart"))
 		fsplusplus::CreateFile(name, DartTemplate());
-	else if(lang == "lua")
+	else if(strstr(name.c_str(), ".lua"))
 		fsplusplus::CreateFile(name, LuaTemplate());
-	else if(lang == "rust")
+	else if(strstr(name.c_str(), ".rs"))
 		fsplusplus::CreateFile(name, RustTemplate());
-	else if(lang == "ruby")
+	else if(strstr(name.c_str(), ".rb"))
 		fsplusplus::CreateFile(name, RubyTemplate());
-	else if(lang =="bash")
+	else if(strstr(name.c_str(), ".bash"))
 		fsplusplus::CreateFile(name, BashTemplate());
-	else if(lang == "csharp")
+	else if(strstr(name.c_str(), ".cs"))
 		fsplusplus::CreateFile(name, CSharpTemplate());
-	else if(lang == "freebrain")
+	else if(strstr(name.c_str(), ".frbr"))
 		fsplusplus::CreateFile(name, FreeBrainTemplate());
-	else if(lang == "brainfuck")
+	else if(strstr(name.c_str(), ".bf"))
 		fsplusplus::CreateFile(name, BrainfuckTemplate());
-	else if(lang == "d")
+	else if(strstr(name.c_str(), ".d"))
 		fsplusplus::CreateFile(name, DLangTemplate());
-	else if(lang == "odin")
+	else if(strstr(name.c_str(), ".odin"))
 		fsplusplus::CreateFile(name, OdinTemplate());
-	else if(lang == "fish")
+	else if(strstr(name.c_str(), ".fish"))
 		fsplusplus::CreateFile(name, FishTemplate());
-	else if(lang == "wren")
+	else if(strstr(name.c_str(), ".wren"))
 		fsplusplus::CreateFile(name, WrenTemplate());
-	else if(lang == "holyc")
+	else if(strstr(name.c_str(), ".hc"))
 		fsplusplus::CreateFile(name, HolyCTemplate());
-	else if(lang == "elixir")
+	else if(strstr(name.c_str(), ".ex"))
 		fsplusplus::CreateFile(name, ElixirTemplate());
 	else
 		fsplusplus::CreateFile(name, "Sorry, this is not available for Scrift, Try again later... Or create pull request for Template.cpp and Template.hpp\n\nhttps://github.com/ferhatgec/scrift");
