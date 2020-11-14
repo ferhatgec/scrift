@@ -57,7 +57,7 @@ FSetup::Stage1() {
                         "Thank you for choosing Fegeya Scrift!\n");
 
 
-    /* Information */
+    /* Information */ 
     colorized::PrintWith(colorized::Colorize(BOLD, YELLOW).c_str(), "Fegeya Scrift Configuration & Setup\n");
     colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "Press ");
     colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "'n' ");
@@ -111,13 +111,15 @@ FSetup::Stage1() {
 
         /* Scrift Theme */
         colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
-            "Scrift Theme [default, classic]\n -> ");
+            "Scrift Theme [default, classic, halloween 🎃]\n -> ");
 
         BOLD_LIGHT_WHITE_COLOR
         std::cin >> scrift_theme;
 
         /* Pass */
         if(scrift_theme == "n" || scrift_theme == "N") scrift_theme = "default";
+		
+		if(scrift_theme == "🎃") scrift_theme = "halloween";
 
         /* Input Customization */
         colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
