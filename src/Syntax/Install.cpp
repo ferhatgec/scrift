@@ -31,6 +31,9 @@
 #define CANNOT_BE_REMOVED(x) std::cout << "Really? " << x << " is not installed. Cannot be removed.\n";
 #define UNINSTALL(x) std::cout << "Do you want to uninstall " << x << "? (y/n) : ";
 
+static std::string installed = " ✅\n";
+static std::string uninstalled = " ❎\n";
+
 void HelpFunction();
 
 /*
@@ -134,10 +137,10 @@ FInstall::FegeyaPackageInstaller(std::string arg) {
 void Check_Installed(std::string data, std::string object) {
 	if(fsplusplus::IsExistFile("/bin/" + object) == true)
 		colorized::PrintWith(colorized::Colorize(BOLD, GREEN).c_str(), 
-			data + " ✅\n");
+			(data + installed).c_str());
 	else
 		colorized::PrintWith(colorized::Colorize(BOLD, GREEN).c_str(), 
-			data + " ❎\n");
+			(data + uninstalled).c_str());
 }
 
 void HelpFunction() {

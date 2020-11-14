@@ -176,10 +176,15 @@ void GetBtwString(std::string oStr, std::string sStr1, std::string sStr2, std::s
 std::string VersionGenerator() { return "scriftv" + scriftlang->EraseAllSubString(ftime, ":"); }
 
 /* For input colorizing */
-void Space(int space, std::string sign, bool theme) {
-	if(theme == true)
+void Space(int space, std::string sign, unsigned theme) {
+	if(theme == 1) /* Classic (White & Black) theme */
 		colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), sign.c_str());
-	else
+	else if(theme == 2) { /* Halloween theme */
+		RESETW
+		if(space % 2) printfc({255, 154, 0}, sign);
+		else if(space % 3) printfc({247, 95, 28}, sign);
+		else printfc({0, 0, 0}, sign);
+	} else /* Colorized theme */
 		if(space == 1 || space % 1)
 			colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), sign.c_str());
 		else if(space % 2 || space == 2)
@@ -1234,11 +1239,13 @@ void InputFunction() {
     } else {
 		/* Color scheme option (Different with terminal's color.) */
         if(runsyntax->Theme() == "default")
-			Space(space, sign, false);
+			Space(space, sign, 0);
 	    else if(runsyntax->Theme() == "classic")
-	       	Space(space, sign, true);
+	       	Space(space, sign, 1);
+	    else if(runsyntax->Theme() == "halloween")
+	    	Space(space, sign, 2);
 	    else
-	  	    Space(space, sign, false);
+	  	    Space(space, sign, 0);
 	       		
         cursorpos.x += 1;
         

@@ -225,6 +225,8 @@ FSettings::Theme() {
 		return "default";
     else if(strstr(line.c_str(), "classic"))
 		return "classic";
+    else if(strstr(line.c_str(), "halloween"))
+    	return "halloween";
     else
 		return "default";
 

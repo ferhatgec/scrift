@@ -1,5 +1,5 @@
 /* MIT License
-# Forked from https://github.com/FerhatGec/colorized
+#
 # Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
 # Distributed under the terms of the MIT License.
 #
@@ -8,11 +8,11 @@
 #ifndef COLORIZED_HPP
 #define COLORIZED_HPP
 
-#include <iostream>
 #include <cstring>
+#include <iostream>
 #include <sstream>
 
-#define ESC 033 
+#define ESC 033
 
 // Default Background color definitions
 #define DEFAULT 39
@@ -50,25 +50,7 @@
 #define FLIGHT_BLUE 104
 #define FLIGHT_MAGENTA 105
 #define FLIGHT_CYAN 106
-#define FWHITE 107   
-
-// Default Set Type Definitions
-#define SDEFAULT 0
-#define BOLD 1
-#define DIM 2
-#define UNDERLINED 4
-#define BLINK 5
-#define REVERSE 7
-#define HIDDEN 8
-
-// Default Unset Type Definitions  
-#define UALL 0
-#define UBOLD 21
-#define UDIM 22
-#define UUNDERLINED 24
-#define UBLINK 25
-#define UREVERSE 27
-#define UHIDDEN 28
+#define FWHITE 107
 
 #define DEFAULT 39
 #define BLACK 30
@@ -88,41 +70,42 @@
 #define LIGHT_CYAN 96
 #define LIGHT_WHITE 97
 
-
-#define RED_COLOR printf("\033[0;31m");
-#define GREEN_COLOR printf("\033[0;32m");
-#define YELLOW_COLOR printf("\033[0;33m");
-#define BLUE_COLOR printf("\033[0;34m");
-#define MAGENTA_COLOR printf("\033[0;35m");
-#define CYAN_COLOR printf("\033[0;36m");
-#define LIGHT_BLACK_COLOR printf("\033[0;90m");
-#define LIGHT_RED_COLOR printf("\033[0;91m");
-#define LIGHT_GREEN_COLOR printf("\033[0;92m");
-#define LIGHT_YELLOW_COLOR printf("\033[0;93m");
-#define LIGHT_BLUE_COLOR printf("\033[0;94m");
-#define LIGHT_MAGENTA_COLOR printf("\033[0;95m");
-#define LIGHT_CYAN_COLOR printf("\033[0;96m");
-#define LIGHT_WHITE_COLOR printf("\033[0;97m");
+#define RED_COLOR std::cout << "\033[0;31m";
+#define GREEN_COLOR std::cout << "\033[0;32m";
+#define YELLOW_COLOR std::cout << "\033[0;33m";
+#define BLUE_COLOR std::cout << "\033[0;34m";
+#define MAGENTA_COLOR std::cout << "\033[0;35m";
+#define CYAN_COLOR std::cout << "\033[0;36m";
+#define LIGHT_BLACK_COLOR std::cout << "\033[0;90m";
+#define LIGHT_RED_COLOR std::cout << "\033[0;91m";
+#define LIGHT_GREEN_COLOR std::cout << "\033[0;92m";
+#define LIGHT_YELLOW_COLOR std::cout << "\033[0;93m";
+#define LIGHT_BLUE_COLOR std::cout << "\033[0;94m";
+#define LIGHT_MAGENTA_COLOR std::cout << "\033[0;95m";
+#define LIGHT_CYAN_COLOR std::cout << "\033[0;96m";
+#define LIGHT_WHITE_COLOR std::cout << "\033[0;97m";
 
 // Default bold** color definitions
-#define BOLD_RED_COLOR printf("\033[1;31m");
-#define BOLD_GREEN_COLOR printf("\033[1;32m");
-#define BOLD_YELLOW_COLOR printf("\033[1;33m");
-#define BOLD_BLUE_COLOR printf("\033[1;34m");
-#define BOLD_MAGENTA_COLOR printf("\033[1;35m");
-#define BOLD_CYAN_COLOR printf("\033[1;36m");
-#define BOLD_LIGHT_BLACK_COLOR printf("\033[1;90m");
-#define BOLD_LIGHT_RED_COLOR printf("\033[1;91m");
-#define BOLD_LIGHT_GREEN_COLOR printf("\033[1;92m");
-#define BOLD_LIGHT_YELLOW_COLOR printf("\033[1;93m");
-#define BOLD_LIGHT_BLUE_COLOR printf("\033[1;94m");
-#define BOLD_LIGHT_MAGENTA_COLOR printf("\033[1;95m");
-#define BOLD_LIGHT_CYAN_COLOR printf("\033[1;96m");
-#define BOLD_LIGHT_WHITE_COLOR printf("\033[1;97m");
+#define BOLD_RED_COLOR std::cout << "\033[1;31m";
+#define BOLD_GREEN_COLOR std::cout << "\033[1;32m";
+#define BOLD_YELLOW_COLOR std::cout << "\033[01;33m";
+#define BOLD_BLUE_COLOR std::cout << "\033[1;34m";
+#define BOLD_MAGENTA_COLOR std::cout << "\033[1;35m";
+#define BOLD_CYAN_COLOR std::cout << "\033[1;36m";
+#define BOLD_LIGHT_BLACK_COLOR std::cout << "\033[1;90m";
+#define BOLD_LIGHT_RED_COLOR std::cout << "\033[1;91m";
+#define BOLD_LIGHT_GREEN_COLOR std::cout << "\033[1;92m";
+#define BOLD_LIGHT_YELLOW_COLOR std::cout << "\033[1;93m";
+#define BOLD_LIGHT_BLUE_COLOR std::cout << "\033[1;94m";
+#define BOLD_LIGHT_MAGENTA_COLOR std::cout << "\033[1;95m";
+#define BOLD_LIGHT_CYAN_COLOR std::cout << "\033[1;96m";
+#define BOLD_LIGHT_WHITE_COLOR std::cout << "\033[1;97m";
 
-// Reset (BLACK)
-#define BLACK_COLOR printf("\033[0m");
-#define WHITE_COLOR printf("\033[1;37m");
+#define RESETB std::cout << "\033[0m";
+#define RESETW std::cout << "\033[1;37m";
+
+#define BLACK_COLOR std::cout << "\033[0m";
+#define WHITE_COLOR std::cout << "\033[1;37m";
 
 // Default color definitions without printlnf
 #define WRED_COLOR "\033[0;31m"
@@ -165,9 +148,117 @@ static std::string Templatestr("\033[");
 // Reset (BLACK)
 #define WBLACK_COLOR "\033[0m"
 
+enum TYPE : int {
+ 	LIGHT = 0,
+  	BOLD = 1,
+  	DIM = 2,
+  	UNDERLINED = 4,
+  	BLINK = 5,
+  	REVERSE = 7,
+  	HIDDEN = 8,
+  	UALL = 0,
+  	UBOLD = 21,
+  	UDIM = 22,
+  	UUNDERLINED = 24,
+  	UBLINK = 25,
+  	UREVERSE = 27,
+  	UHIDDEN = 28
+};
+
+typedef struct COLOR {
+  	unsigned short R;
+  	unsigned short G;
+  	unsigned short B;
+} COLOR;
+
+typedef struct TCOLOR {
+  	TYPE type;
+  	int color;
+} TCOLOR;
+
+static COLOR fromRGB(unsigned short r, unsigned short g, unsigned short b) {
+	return COLOR{r, g, b};
+}
+
+static TCOLOR fromT(TYPE type, int color) { return TCOLOR{type, color}; }
+
+static std::string toANSICode(COLOR color) {
+  	std::stringstream str;
+  	str << "\033[38;2;";
+  	str << color.R;
+  	str << ";";
+  	str << color.G;
+  	str << ";";
+  	str << color.B;
+  	str << "m";
+  	std::string val = str.str();
+	return val;
+}
+
+static std::string toANSIFCode(COLOR color) {
+  	std::stringstream str;
+  	str << "\033[48;2;";
+  	str << color.R;
+  	str << ";";
+  	str << color.G;
+  	str << ";";
+  	str << color.B;
+  	str << "m";
+  	std::string val = str.str();
+	return val;
+}
+
+static std::string toANSICode(TYPE type, int color) {
+  	return Templatestr + std::to_string(type) + Semicolonstr +
+         std::to_string(color) + Markstr;
+}
+
+static std::string toANSICode(TCOLOR color) {
+  	return toANSICode(color.type, color.color);
+}
+
+static void textBackground(int color) { std::cout << "%c[%dm" << ESC << 40 + color; }
+
+static void setColor(COLOR color) { std::cout << toANSICode(color); }
+
+static void setFColor(COLOR color) { std::cout << toANSIFCode(color); }
+
+static void setColor(TYPE type, int color) { std::cout << toANSICode(type, color); }
+
+static void setColor(TCOLOR color) { setColor(color.type, color.color); }
+
+static void printfc(const TYPE type, int color, bool reset, std::string msg) {
+  	setColor(type, color);
+  	std::cout << msg;
+
+  	if (reset) RESETB
+}
+
+static void printfc(const TCOLOR color, bool reset, std::string msg) {
+ 	printfc(color.type, color.color, reset, msg);
+}
+
+static void printfc(const COLOR color, bool reset, std::string msg) {
+  	setColor(color);
+  	std::cout << msg;
+  	
+	if (reset) RESETB
+}
+
+static void printfc(const TYPE type, int color, std::string msg) {
+  	printfc(type, color, 1, msg);
+}
+
+static void printfc(const TCOLOR color, std::string msg) {
+  	printfc(color.type, color.color, msg);
+}
+
+static void printfc(const COLOR color, std::string msg) { printfc(color, 1, msg); }
+
+
 namespace colorized {
     static void TextBackground(int color) {
-	printf("%c[%dm", ESC, 40+color);
+		std::cout << "%c[%dm" << ESC << 40 + color;
     }
         
     static std::string IntToString(int a) {
@@ -177,12 +268,8 @@ namespace colorized {
     }
     
     static void PrintWith(const char* color, const char* text) {
-    	std::cout << color <<  text <<  WBLACK_COLOR;
+   		std::cout << color << text << WBLACK_COLOR;
     }
-
-    static void PrintWith(const char* color, std::string text) {
-    	std::cout << color <<  text <<  WBLACK_COLOR;
-    }	
 
     static void PrintWhReset(const char* color, const char* text) {
     	std::cout << color << text;
@@ -191,6 +278,11 @@ namespace colorized {
     static std::string Colorize(int type, int color) {
     	return Templatestr + IntToString(type) + Semicolonstr + IntToString(color) + Markstr;
     }
+    
+    static const char* ColorizeChar(int type, int color) {
+    	std::string conv(Templatestr + IntToString(type) + Semicolonstr + IntToString(color) + Markstr);
+    	std::cout << conv;
+    	return conv.c_str();
+    }
 }
-
-#endif // COLORIZED_HPP
+#endif  // COLORIZED_HPP
