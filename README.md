@@ -15,7 +15,7 @@
 # Features 
 - User-friendly shell interface.
 - Color highlighter
-- Theme option (Classic, Default and more.)
+- Theme option (Classic, Default, Halloween 🎃 and more.)
 - Display Git branches.
 - Auto-Whitespace
 - Auto-Completer (not ended)
