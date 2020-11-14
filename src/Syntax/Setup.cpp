@@ -193,7 +193,7 @@ FSetup::Stage1() {
         bg_color = "12";
         ascii_art_color = "random";
         scrift_theme = "default";
-        input_customize = "▶ ";
+        input_customize = "▶";
         welcome_message = "yes";
         local_git_branch = "yes";
         auto_clear = "40";
@@ -210,7 +210,7 @@ FSetup::Stage1() {
     erase_settings << "bg_color " + bg_color + "\n";
     erase_settings << "ascii_art_color " + ascii_art_color + "\n";
     erase_settings << "scrift_theme " + scrift_theme +"\n";
-    erase_settings << "input_customize " + input_customize + "\n";
+    erase_settings << "input_customize " + input_customize + " \n";
 	erase_settings << "welcome_message " + welcome_message + "\n";
 	erase_settings << "local_git_branch " + local_git_branch + "\n";
     erase_settings << "scrift_setup no_thanks\n";
