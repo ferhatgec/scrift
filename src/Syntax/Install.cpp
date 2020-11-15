@@ -130,6 +130,8 @@ FInstall::FegeyaPackageInstaller(std::string arg) {
 		UnInstallFunction(arg, 1);
  	else if(strstr(arg.c_str(), "--uni "))
 		UnInstallFunction(arg, 2);
+	else if(strstr(arg.c_str(), "--info "))
+		InfoFunction(arg);
 	else
 		HelpFunction();
 }
@@ -145,7 +147,7 @@ void Check_Installed(std::string data, std::string object) {
 
 void HelpFunction() {
 	std::cout << "Fegeya Package Installer (fpi)\n" << 
-	"Usage: fpi [--i --install || --uni --uninstall] <app>\n<app> :\n";
+	"Usage: fpi [--i --install || --uni --uninstall | --info] <app>\n<app> :\n";
 	
 	Check_Installed("fetcheya", "fetcheya");
 	Check_Installed("flascript", "fla");
@@ -255,6 +257,50 @@ FInstall::UnInstallFunction(std::string arg, int type) {
 			STR("fisk"), 1);
 	else
 		std::cout << "No match for this argument : " << arg + "\n";
+}
+
+void 
+FInstall::InfoFunction(std::string arg) {
+	arg = stringtools::EraseAllSubString(arg, "fpi --info ");
+	
+	if(strstr(arg.c_str(), "fetcheya")) 
+		Info(STR("Fegeya Fetcheya"), STR("Colorized & Cool* System-Information-Tool"), STR("Ferhat Gecdogan"));
+	else if(strstr(arg.c_str(), "flascript")) 
+		Info(STR("Fegeya FlaScript"), STR("Functional, new generation programming language."), STR("Ferhat Gecdogan"));
+	else if(strstr(arg.c_str(), "copyboard")) 
+		Info(STR("Fegeya Copyboard"), STR("Simple CLI copy-todo list manager."), STR("Ferhat Gecdogan"));
+	else if(strstr(arg.c_str(), "lsf")) 
+		Info(STR("Fegeya List"), STR("Same 'ls', 'fls', 'dls' from Scrift."), STR("Ferhat Gecdogan"));
+	else if(strstr(arg.c_str(), "freebrain")) 
+		Info(STR("Fegeya FreeBrain"), STR("Esoteric language & next generation antidote against Brainf*ck."), STR("Ferhat Gecdogan"));
+	else if(strstr(arg.c_str(), "brainfuckplusplus")) 
+		Info(STR("Fegeya Brainfuck++"), STR("Brainfuck interpreter, Bf-to-C compiler & library."), STR("Ferhat Gecdogan"));
+	else if(strstr(arg.c_str(), "generafor"))
+		Info(STR("Fegeya Generafor"), STR("Website to application generator."), STR("Ferhat Gecdogan"));
+	else if(strstr(arg.c_str(), "desktof"))
+		Info(STR("Fegeya Desktof"), STR("CLI Desktop file parser."), STR("Ferhat Gecdogan"));
+	else if(strstr(arg.c_str(), "translatfe"))
+		Info(STR("Fegeya Translatfe"), STR("Really simple language translator engine."), STR("Ferhat Gecdogan"));
+	else if(strstr(arg.c_str(), "colocat"))
+		Info(STR("Fegeya Colocat"), STR("Colorized 'cat' implementation."), STR("Ferhat Gecdogan"));
+	else if(strstr(arg.c_str(), "pls"))
+		Info(STR("Fegeya Please"), STR("Cross-platform package installer, manager(?), searcher."), STR("Ferhat Gecdogan"));
+	else if(strstr(arg.c_str(), "fisk"))
+		Info(STR("Fegeya Fisk"), STR("CLI Disk analyzer."), STR("Ferhat Gecdogan"));
+	else
+		std::cout << "No match for this argument : " << arg + "\n";
+}
+
+void 
+FInstall::Info(std::string app, std::string desc, std::string author) {
+	/* Name of app */
+	std::cout << "App: " << app + "\n";
+	
+	/* Description of app */
+	std::cout << "Desc: " << desc + "\n";
+	
+	/* Author of app */
+	std::cout << "Author: " << author + "\n"; 
 }
 
 void

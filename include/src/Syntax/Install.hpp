@@ -18,8 +18,10 @@ public:
 	void InstallFunction(std::string, int); /* Arg, Type */
 	void UnInstallFunction(std::string, int); /* Arg, Type */
 	void FegeyaPackageInstaller(std::string); /* Arg */
+	void InfoFunction(std::string arg);
 	
-	void Check(std::string);
+	void Check(std::string arg);
+	void Info(std::string app, std::string desc, std::string author);
 };
 
 #endif // INSTALL_HPP
