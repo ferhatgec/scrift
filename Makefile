@@ -18,6 +18,9 @@ SRCLIBDIREC = ./Library/
 # Scrift's Syntax
 SRCSYNTAXDIREC = ./src/Syntax/
 
+# Fpi
+SRCFPIDIREC = ./src/Fpi/
+
 # Fetcheya
 SRCFETCHEYADIREC = ./src/Fetcheya/
 
@@ -50,9 +53,21 @@ CLEANALL = scrift /Games/Castle/castle
 CLEAN = *.o
 
 # Scrift's Syntax objects
-HEADERFILE = CommandFunc.o GetNameFunction.o FileFunction.o RunFunction.o \
-Log.o History.o Branch.o Template.o Settings.o HelpFunction.o ASCIIFunction.o \
-Install.o Setup.o Tools.o
+HEADERFILE = CommandFunc.o \
+			 GetNameFunction.o \
+			 FileFunction.o \
+			 RunFunction.o \
+			 Log.o \
+			 History.o \
+			 Branch.o \
+			 Template.o \
+			 Settings.o \
+			 HelpFunction.o \
+			 ASCIIFunction.o \
+			 Setup.o \
+			 Tools.o
+
+FPIFILE = Core.o
 
 # Platform
 ifeq ($(OS),Windows_NT)
@@ -65,10 +80,10 @@ else
 endif
 
 # Build
-all: conio headersfile edifor main datec clean
+all: conio headersfile fpifile edifor main datec clean
 
 # Build & Install
-install: headersfile mainc ediforc date clean
+install: headersfile fpifile mainc ediforc date clean
 
 # Remove & Clean all
 removeall: uninstall cleanall
@@ -94,6 +109,8 @@ nall: cleanall
 # Scrift's Core.
 headersfile: $(HEADERFILE)
 
+# Fpi
+fpifile: $(FPIFILE)
 
 conio: $(SRCLIBDIREC)FConio.c
 	$(GCC) -c -Wno-unused-function -Wno-unused-value $(SRCLIBDIREC)FConio.c -o fconio.o
@@ -102,15 +119,19 @@ conio: $(SRCLIBDIREC)FConio.c
 %.o: $(SRCSYNTAXDIREC)%.cpp
 	$(COMPILER) -Wno-unused-function -Wno-unused-value $(CFLAGS) -c $< -o $@
 	echo [SUCCESS] $@
-		
+
+%.o: $(SRCFPIDIREC)%.cpp
+	$(COMPILER) -Wno-unused-function -Wno-unused-value $(CFLAGS) -c $< -o $@
+	echo [SUCCESS] $@
+	
 # Main Build
 main: $(SRCDIREC)Scrift.cpp
-	$(COMPILER) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) $(FETCHEYAFILE) -o scrift
+	$(COMPILER) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) $(FPIFILE) $(FETCHEYAFILE) -o scrift
 	echo [SUCCESS] Scrift
 
 # Main Build & Install
 mainc: $(SRCDIREC)Scrift.cpp
-	$(COMPILER) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) $(FETCHEYAFILE) -o /bin/scrift
+	$(COMPILER) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) $(FPIFILE) $(FETCHEYAFILE) -o /bin/scrift
 	echo [SUCCESS] Scrift [bin]
 
 # Edifor Build

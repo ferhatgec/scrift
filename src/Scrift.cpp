@@ -56,11 +56,14 @@
 #include <src/Syntax/Language.hpp> /* Under the construction. Scripting language */
 #include <src/Syntax/History.hpp> /* History */
 #include <src/Syntax/Template.hpp> /* 'Hello world' example for a lot of languages */
-#include <src/Syntax/Install.hpp> /* Simple build & install package installer for Fegeya Community's applications */
 #include <src/Syntax/Setup.hpp> /* Scrift Configuration & Setup */
 #include <src/Syntax/Tools.hpp>
 
 #include <Library/Keywords.hpp>
+
+/* Fpi */
+/* Simple build & install package installer for Fegeya Community's applications */
+#include <src/Fpi/Core.hpp> 
 
 /* Libraries */
 #include <InputPlusPlus.h> /* For key-codes */

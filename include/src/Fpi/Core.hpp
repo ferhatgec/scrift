@@ -5,8 +5,8 @@
 #
 # */
 
-#ifndef INSTALL_HPP
-#define INSTALL_HPP
+#ifndef CORE_HPP
+#define CORE_HPP
 
 #include <iostream>
 #include <cstring>
@@ -24,4 +24,4 @@ public:
 	void Info(std::string app, std::string desc, std::string author);
 };
 
-#endif // INSTALL_HPP
+#endif // CORE_HPP

@@ -12,8 +12,9 @@
 
 
 #include <src/Scrift.hpp>
-#include <src/Syntax/Install.hpp>
 #include <src/Syntax/RunFunction.hpp>
+
+#include <src/Fpi/Core.hpp>
 
 // Libraries
 #include <FileSystemPlusPlus.h>
