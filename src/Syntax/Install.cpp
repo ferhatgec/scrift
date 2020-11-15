@@ -146,8 +146,11 @@ void Check_Installed(std::string data, std::string object) {
 }
 
 void HelpFunction() {
-	std::cout << "Fegeya Package Installer (fpi)\n" << 
-	"Usage: fpi [--i --install || --uni --uninstall | --info] <app>\n<app> :\n";
+	RESETW printfc({8, 199, 107}, "Fegeya Package Installer ");
+	
+	RESETW printfc({245, 178, 7}, "(fpi)\n");
+	 
+	RESETW printfc({6, 140, 75}, "Usage: fpi [--i --install || --uni --uninstall | --info] app\n");
 	
 	Check_Installed("fetcheya", "fetcheya");
 	Check_Installed("flascript", "fla");
