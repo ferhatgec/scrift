@@ -1170,6 +1170,9 @@ void CodeExecution(std::string arg) {
 */
 void InputFunction() {
     setlocale(LC_ALL, "");
+    
+    if(fsplusplus::IsExistFile(STR(getenv("HOME")) + "/.scrift_settings") != true) setup->Config();
+    	
     if(scrift_line >= runsyntax->Clear()) {
         std::cout << "\033c";
         terminalstr->Terminal();
@@ -1234,7 +1237,7 @@ void InputFunction() {
 			
         if(main_function->_h_str != "\n")
             CodeExecution(main_function->_h_str);
-                        
+		
         main_function->_h_str.erase();
         terminalstr->Terminal();
         	

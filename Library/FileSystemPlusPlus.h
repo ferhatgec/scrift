@@ -45,7 +45,7 @@ namespace fsplusplus {
     		struct stat buffer;
     		return (stat(path.c_str(), &buffer) == 0);
 	}
-
+	
 	static void List() {
 	    DIR *directory;
 	    struct dirent *entryname;
