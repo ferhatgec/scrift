@@ -32,8 +32,8 @@
 #define CANNOT_BE_REMOVED(x) std::cout << "Really? " << x << " is not installed. Cannot be removed.\n";
 #define UNINSTALL(x) std::cout << "Do you want to uninstall " << x << "? (y/n) : ";
 
-static std::string installed = " ✅\n";
-static std::string uninstalled = " ❎\n";
+static std::string installed = "✅ ";
+static std::string uninstalled = "❎ ";
 
 void HelpFunction();
 
@@ -137,14 +137,18 @@ FInstall::FegeyaPackageInstaller(std::string arg) {
 		HelpFunction();
 }
 
-void Check_Installed(std::string data, std::string object) {
-	if(fsplusplus::IsExistFile("/bin/" + object) == true)
-		colorized::PrintWith(colorized::Colorize(BOLD, GREEN).c_str(), 
-			(data + installed).c_str());
-	else
-		colorized::PrintWith(colorized::Colorize(BOLD, GREEN).c_str(), 
-			(data + uninstalled).c_str());
+void Check_Installed(std::string name, std::string data, std::string object) {
+	if(fsplusplus::IsExistFile("/bin/" + object) == true) {
+		std::cout << installed << WBOLD_GREEN_COLOR << name + " ";
+		
+		RESETW printfc({160, 255, 8}, "(" + data + ")\n");
+	} else {
+		std::cout << uninstalled << WBOLD_GREEN_COLOR << name + " ";
+		
+		RESETW printfc({245, 178, 7}, "(" + data + ")\n");
+	}
 }
+
 
 void HelpFunction() {
 	RESETW printfc({8, 199, 107}, "Fegeya Package Installer ");
@@ -153,18 +157,18 @@ void HelpFunction() {
 	 
 	RESETW printfc({6, 140, 75}, "Usage: fpi [--i --install || --uni --uninstall | --info] app\n");
 	
-	Check_Installed("fetcheya", "fetcheya");
-	Check_Installed("flascript", "fla");
-	Check_Installed("copyboard", "copyboard");
-	Check_Installed("lsf", "lsf");
-	Check_Installed("freebrain", "freebr");
-	Check_Installed("brainfuckplusplus", "bfc");
-	Check_Installed("generafor", "generafor");
-	Check_Installed("desktof", "desktof");
-	Check_Installed("translatfe", "tlatfe");
-	Check_Installed("colocat", "colocat");
-	Check_Installed("pls", "pls");
-	Check_Installed("fisk", "fisk");
+	Check_Installed("Fegeya Fetcheya", "fetcheya", "fetcheya");
+	Check_Installed("Fegeya FlaScript", "flascript", "fla");
+	Check_Installed("Fegeya CopyBoard", "copyboard", "copyboard");
+	Check_Installed("Fegeya Lsf", "lsf", "lsf");
+	Check_Installed("Fegeya FreeBrain", "freebrain", "freebr");
+	Check_Installed("Fegeya Brainfuck++", "brainfuckplusplus", "bfc");
+	Check_Installed("Fegeya Generafor", "generafor", "generafor");
+	Check_Installed("Fegeya Desktof", "desktof", "desktof");
+	Check_Installed("Fegeya Translatfe", "translatfe", "tlatfe");
+	Check_Installed("Fegeya Colocat", "colocat", "colocat");
+	Check_Installed("Fegeya Please", "pls", "pls");
+	Check_Installed("Fegeya Fisk", "fisk", "fisk");
 }
 
 void
