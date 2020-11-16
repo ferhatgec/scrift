@@ -21,7 +21,7 @@
 - Auto-Completer (not ended)
 - Auto terminal buffer clear.
 - Customizable (Prompt and more!)
-- Package Installer for Fegeya Community's applications.
+- Package Manager (fpi)
 - Configuration application without text editor :^)
 - Fast and stable.
 - Integrated Own Emoji library (see [Emoji++](https://github.com/FerhatGec/emojiplusplus)) :airplane:
