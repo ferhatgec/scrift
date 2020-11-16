@@ -226,19 +226,28 @@ FInstall::InfoFunction(std::string arg) {
 	
 	parser.ParseRepositoryFile(arg);
 	
-	Info(parser.app_name, parser.app_desc, parser.app_author);
+	Info(parser);
 }
 
-void 
-FInstall::Info(std::string app, std::string desc, std::string author) {
-	/* Name of app */
-	std::cout << "App: " << app + "\n";
+void
+FInstall::Info(FParser &package) {
+	/* Name of package */
+	std::cout << "App: " << package.app_name + "\n";
 	
-	/* Description of app */
-	std::cout << "Desc: " << desc + "\n";
+	/* Description of package */
+	std::cout << "Desc: " << package.app_desc + "\n";
 	
-	/* Author of app */
-	std::cout << "Author: " << author + "\n"; 
+	/* Author of package */
+	std::cout << "Author: " << package.app_author + "\n"; 
+
+	/* License of package */
+	std::cout << "License: " << package.app_license + "\n";
+	
+	/* Executable file of package */
+	std::cout << "File: " << package.app_exec + "\n";
+	
+	/* Repository of package */
+	std::cout << "Repository: " << package.app_repo + "\n";
 }
 
 void

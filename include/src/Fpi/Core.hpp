@@ -11,6 +11,8 @@
 #include <iostream>
 #include <cstring>
 
+#include "Parser.hpp"
+
 class FInstall {
 public:
 	void Install(std::string name, std::string repository, std::string object, std::string folder, int type); /* int : Uninstall */
@@ -21,7 +23,7 @@ public:
 	void InfoFunction(std::string arg);
 	
 	void Check(std::string arg);
-	void Info(std::string app, std::string desc, std::string author);
+	void Info(FParser &package);
 
 	void UpdatePackageList();
 };
