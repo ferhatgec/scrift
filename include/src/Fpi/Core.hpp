@@ -22,6 +22,8 @@ public:
 	
 	void Check(std::string arg);
 	void Info(std::string app, std::string desc, std::string author);
+
+	void UpdatePackageList();
 };
 
 #endif // CORE_HPP

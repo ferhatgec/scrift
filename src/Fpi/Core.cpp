@@ -9,7 +9,7 @@
 #include <cstdlib>
 #include <iomanip>
 #include <unistd.h>
-
+#include <filesystem>
 
 #include <src/Scrift.hpp>
 #include <src/Syntax/RunFunction.hpp>
@@ -135,6 +135,8 @@ FInstall::FegeyaPackageInstaller(std::string arg) {
 		UnInstallFunction(arg, 1);
 	else if(strstr(arg.c_str(), "--info "))
 		InfoFunction(arg);
+	else if(strstr(arg.c_str(), "--update"))
+		UpdatePackageList();
 	else
 		HelpFunction();
 }
@@ -157,7 +159,7 @@ void HelpFunction() {
 	
 	RESETW printfc({245, 178, 7}, "(fpi)\n");
 	 
-	RESETW printfc({6, 140, 75}, "Usage: fpi [--i --install || --uni --uninstall | --info] app\n");
+	RESETW printfc({6, 140, 75}, "Usage: fpi [--i --install || --uni --uninstall | --info | --update] app\n");
 }
 
 void
@@ -237,6 +239,26 @@ FInstall::Info(std::string app, std::string desc, std::string author) {
 	
 	/* Author of app */
 	std::cout << "Author: " << author + "\n"; 
+}
+
+void
+FInstall::UpdatePackageList() {
+	FGet get;
+	
+	if(fsplusplus::IsExistFile(STR(getenv("HOME")) + "/fpi_repository/repository/") != true) {
+		std::cout << "Fetching from DEFAULT_FPI_REPOSITORY...";
+			
+		get.FetchRepositoryData(STR(DEFAULT_FPI_REPOSITORY));
+	} else {
+		std::cout << "Is this ok? (y/N) : ";
+		char ok = getchar();
+	
+		if(ok == 'y' || ok == 'Y') {
+			std::filesystem::remove_all(STR(getenv("HOME")) + "/fpi_repository/");
+			
+			get.FetchRepositoryData(STR(DEFAULT_FPI_REPOSITORY));
+		} else std::cout << "Aborted.\n";
+	}
 }
 
 void
