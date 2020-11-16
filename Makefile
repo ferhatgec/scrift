@@ -67,7 +67,9 @@ HEADERFILE = CommandFunc.o \
 			 Setup.o \
 			 Tools.o
 
-FPIFILE = Core.o
+FPIFILE = Core.o \
+		  Get.o \
+		  Parser.o
 
 # Platform
 ifeq ($(OS),Windows_NT)
