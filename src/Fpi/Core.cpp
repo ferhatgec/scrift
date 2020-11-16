@@ -130,9 +130,9 @@ FInstall::FegeyaPackageInstaller(std::string arg) {
 	else if(strstr(arg.c_str(), "--install "))
 		InstallFunction(arg, 2);
 	else if(strstr(arg.c_str(), "--uninstall "))
-		UnInstallFunction(arg, 1);
- 	else if(strstr(arg.c_str(), "--uni "))
 		UnInstallFunction(arg, 2);
+ 	else if(strstr(arg.c_str(), "--uni "))
+		UnInstallFunction(arg, 1);
 	else if(strstr(arg.c_str(), "--info "))
 		InfoFunction(arg);
 	else
@@ -188,7 +188,16 @@ FInstall::InstallFunction(std::string arg, int type) {
 
 void
 FInstall::UnInstallFunction(std::string arg, int type) {
+	FParser parser;
+	
 	std::cout << "Checking..\n";
+	
+	if(fsplusplus::IsExistFile(STR(getenv("HOME")) + "/fpi_repository/repository/") != true) {
+		FGet get;
+		
+		get.FetchRepositoryData(STR(DEFAULT_FPI_REPOSITORY));
+	}
+	
 	if(type == 1) /* fpi --uni */
 		arg = stringtools::EraseAllSubString(arg, "fpi --uni ");
 	else if(type == 2) /* fpi --uninstall */
@@ -196,74 +205,26 @@ FInstall::UnInstallFunction(std::string arg, int type) {
 	else
 		HelpFunction();
 
-	if(strstr(arg.c_str(), "fetcheya")) 
-		Install(STR("Fegeya Fetcheya"), STR("https://github.com/ferhatgec/fetcheya.git"), STR("fetcheya"), STR("fetcheya"), 1);
-	else if(strstr(arg.c_str(), "flascript")) 
-		Install(STR("Fegeya FlaScript (fla)"), STR("https://github.com/ferhatgec/flascript.git"), STR("fla"), 
-			STR("flascript"), 1);
-	else if(strstr(arg.c_str(), "copyboard")) 
-		Install(STR("Fegeya Copyboard"), STR("https://github.com/ferhatgec/copyboard.git"), STR("copyboard"), 
-			STR("copyboard"), 1);
-	else if(strstr(arg.c_str(), "lsf")) 
-		Install(STR("Fegeya List"), STR("https://github.com/ferhatgec/lsf.git"), STR("lsf"), STR("lsf"), 1);
-	else if(strstr(arg.c_str(), "freebrain")) 
-		Install(STR("Fegeya FreeBrain"), STR("https://github.com/ferhatgec/freebrain.git"), STR("freebr"), 
-			STR("freebrain"), 1);
-	else if(strstr(arg.c_str(), "brainfuckplusplus")) 
-		Install(STR("Fegeya Brainfuck++"), STR("https://github.com/ferhatgec/brainfuckplusplus.git"), STR("bfc"), 
-			STR("brainfuckplusplus"), 1);
-	else if(strstr(arg.c_str(), "generafor"))
-		Install(STR("Fegeya Generafor"), STR("https://github.com/ferhatgec/generafor.git"), STR("generafor"), 
-			STR("generafor"), 1);
-	else if(strstr(arg.c_str(), "desktof"))
-		Install(STR("Fegeya Desktof"), STR("https://github.com/ferhatgec/desktof.git"), STR("desktof"), 
-			STR("desktof"), 1);
-	else if(strstr(arg.c_str(), "translatfe"))
-		Install(STR("Fegeya Translatfe"), STR("https://github.com/ferhatgec/translatfe.git"), STR("tlatfe"), 
-			STR("translatfe"), 1);
-	else if(strstr(arg.c_str(), "colocat"))
-		Install(STR("Fegeya Colocat"), STR("https://github.com/ferhatgec/colocat.git"), STR("colocat"), 
-			STR("colocat"), 1);
-	else if(strstr(arg.c_str(), "pls"))
-		Install(STR("Fegeya Please"), STR("https://github.com/ferhatgec/pls.git"), STR("pls"), 
-			STR("pls"), 1);
-	else if(strstr(arg.c_str(), "fisk"))
-		Install(STR("Fegeya Fisk"), STR("https://github.com/ferhatgec/fisk.git"), STR("fisk"), 
-			STR("fisk"), 1);
-	else
-		std::cout << "No match for this argument : " << arg + "\n";
+	parser.ParseRepositoryFile(arg);
+	
+	Install(parser.app_name, parser.app_repo, parser.app_exec, parser.app_folder, 1); 
 }
 
 void 
 FInstall::InfoFunction(std::string arg) {
+	FParser parser;
+	
+	if(fsplusplus::IsExistFile(STR(getenv("HOME")) + "/fpi_repository/repository/") != true) {
+		FGet get;
+		
+		get.FetchRepositoryData(STR(DEFAULT_FPI_REPOSITORY));
+	}
+	
 	arg = stringtools::EraseAllSubString(arg, "fpi --info ");
 	
-	if(strstr(arg.c_str(), "fetcheya")) 
-		Info(STR("Fegeya Fetcheya"), STR("Colorized & Cool* System-Information-Tool"), STR("Ferhat Gecdogan"));
-	else if(strstr(arg.c_str(), "flascript")) 
-		Info(STR("Fegeya FlaScript"), STR("Functional, new generation programming language."), STR("Ferhat Gecdogan"));
-	else if(strstr(arg.c_str(), "copyboard")) 
-		Info(STR("Fegeya Copyboard"), STR("Simple CLI copy-todo list manager."), STR("Ferhat Gecdogan"));
-	else if(strstr(arg.c_str(), "lsf")) 
-		Info(STR("Fegeya List"), STR("Same 'ls', 'fls', 'dls' from Scrift."), STR("Ferhat Gecdogan"));
-	else if(strstr(arg.c_str(), "freebrain")) 
-		Info(STR("Fegeya FreeBrain"), STR("Esoteric language & next generation antidote against Brainf*ck."), STR("Ferhat Gecdogan"));
-	else if(strstr(arg.c_str(), "brainfuckplusplus")) 
-		Info(STR("Fegeya Brainfuck++"), STR("Brainfuck interpreter, Bf-to-C compiler & library."), STR("Ferhat Gecdogan"));
-	else if(strstr(arg.c_str(), "generafor"))
-		Info(STR("Fegeya Generafor"), STR("Website to application generator."), STR("Ferhat Gecdogan"));
-	else if(strstr(arg.c_str(), "desktof"))
-		Info(STR("Fegeya Desktof"), STR("CLI Desktop file parser."), STR("Ferhat Gecdogan"));
-	else if(strstr(arg.c_str(), "translatfe"))
-		Info(STR("Fegeya Translatfe"), STR("Really simple language translator engine."), STR("Ferhat Gecdogan"));
-	else if(strstr(arg.c_str(), "colocat"))
-		Info(STR("Fegeya Colocat"), STR("Colorized 'cat' implementation."), STR("Ferhat Gecdogan"));
-	else if(strstr(arg.c_str(), "pls"))
-		Info(STR("Fegeya Please"), STR("Cross-platform package installer, manager(?), searcher."), STR("Ferhat Gecdogan"));
-	else if(strstr(arg.c_str(), "fisk"))
-		Info(STR("Fegeya Fisk"), STR("CLI Disk analyzer."), STR("Ferhat Gecdogan"));
-	else
-		std::cout << "No match for this argument : " << arg + "\n";
+	parser.ParseRepositoryFile(arg);
+	
+	Info(parser.app_name, parser.app_desc, parser.app_author);
 }
 
 void 
