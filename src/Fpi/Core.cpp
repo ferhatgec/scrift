@@ -87,6 +87,13 @@ FInstall::Install(std::string name, std::string repository, std::string object, 
 								std::cout << "Installed!\n";
 							else
 								std::cout << "Could not install.\n";
+						
+							chdir(getenv("HOME"));
+								
+							std::cout << "Cleaning..\n";
+							
+							std::filesystem::remove_all(STR(getenv("HOME")) + "/" + folder);
+						
 						} else
 							IS_NOT_FOUND("gcc")
 					} else
