@@ -23,6 +23,7 @@
 #include <ExecutePlusPlus.hpp>
 #include <StringTools.h>
 #include <Colorized.hpp>
+#include <IntelligenTUI.hpp>
 
 /* Definitions */
 #define IS_EXIST(x) std::cout << x << " already installed\nWould you like to run it? (y/n) : ";
@@ -65,16 +66,20 @@ FInstall::Install(std::string name, std::string repository, std::string object, 
 			if(input == 'y' || input == 'Y') {
 				if(fsplusplus::IsExistFile("/bin/git") == true || fsplusplus::IsExistFile("/usr/bin/git") == true) {
 					chdir(getenv("HOME"));
+					
 					system((STR("git clone ") + repository + STR(" &>/dev/null")).c_str());
+					
+					IntelligenTUI::ProgressBar(std::clog, 20, "", "=");
 					
 					if(fsplusplus::IsExistFile("/bin/g++") == true) {
 						if(fsplusplus::IsExistFile("/bin/gcc") == true) {
 							std::string path(getenv("HOME"));
 							path.append("/" + folder);
-							std::cout << "Directory changed. : " << path << "\n";
+							
 							chdir(path.c_str());
-							std::cout << "Installing..\n";
-
+							
+							IntelligenTUI::ProgressBar(std::clog, 20, "", "=");
+							
 							#ifdef __FreeBSD__
 								if (getuid())
 									IS_NOT_SUPER_USER(name)
@@ -95,6 +100,7 @@ FInstall::Install(std::string name, std::string repository, std::string object, 
 							
 							std::filesystem::remove_all(STR(getenv("HOME")) + "/" + folder);
 						
+							IntelligenTUI::ProgressBar(std::clog, 10, "", "=");
 						} else
 							IS_NOT_FOUND("gcc")
 					} else
