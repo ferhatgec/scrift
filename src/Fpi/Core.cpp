@@ -65,7 +65,8 @@ FInstall::Install(std::string name, std::string repository, std::string object, 
 			if(input == 'y' || input == 'Y') {
 				if(fsplusplus::IsExistFile("/bin/git") == true || fsplusplus::IsExistFile("/usr/bin/git") == true) {
 					chdir(getenv("HOME"));
-					exec.RunFunction("git clone " + repository);
+					system((STR("git clone ") + repository + STR(" &>/dev/null")).c_str());
+					
 					if(fsplusplus::IsExistFile("/bin/g++") == true) {
 						if(fsplusplus::IsExistFile("/bin/gcc") == true) {
 							std::string path(getenv("HOME"));
@@ -78,9 +79,9 @@ FInstall::Install(std::string name, std::string repository, std::string object, 
 								if (getuid())
 									IS_NOT_SUPER_USER(name)
 								else
-								 	exec.RunFunction("sh install.sh");
+								 	system("sh install.sh");
 							#else
-								exec.RunFunction("sudo sh install.sh");
+								system("sudo sh install.sh &>/dev/null");
 							#endif
 
 							if(fsplusplus::IsExistFile("/bin/" + object) == true)
