@@ -11,10 +11,11 @@
 #include <iostream>
 #include <cstring>
 
+#define FPM_REPOSITORY "https://github.com/ferhatgec/fpm.git"
+
 class FSetup {
 public:
-        void Stage1();
-
+	void Stage1();
 	void Config(); /* Settings (.scrift_settings) */
 };
 

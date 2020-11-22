@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <iomanip>
 #include <fstream>
+#include <filesystem>
 
 #include <src/Scrift.hpp>
 #include <src/Syntax/HelpFunction.hpp>
@@ -179,6 +180,44 @@ FSetup::Stage1() {
 
         if(sign_2 == "n" || sign_2 == "N") sign_2 == ":~";
         
+        /* Check Is Fpm available */
+        
+        if(fsplusplus::IsExistFile("/bin/fpm") != true) {
+        	colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
+            "Do you want to install fpm (Fegeya Package Manager) from source? (Y/n) \n -> ");
+        
+        	char ch;
+        	
+        	BOLD_LIGHT_WHITE_COLOR
+        	std::cin >> ch;
+        	
+        	if(ch == 'n' || ch == 'N') std::cout << "Ok!\n"; 
+        	else {
+        		const std::string old_path = fsplusplus::GetCurrentWorkingDir();
+        		
+        		ExecutePlusPlus exec;
+        		
+        		/* Clone repository */
+        		exec.RunFunction("git clone " + STR(FPM_REPOSITORY) + " " + STR(getenv("HOME")) + "/scrift_fpm");
+        		
+        		/* Change directory with $HOME/scrift_fpm */
+        		chdir((STR(getenv("HOME")) + "/scrift_fpm").c_str());
+        		
+        		/* Install Fpm */
+        		exec.RunFunction("sudo sh install.sh");
+        	
+        		/* Return old path */
+        		chdir(old_path.c_str());	
+        	
+        		/* Cleaning */
+        		std::filesystem::remove_all(STR(getenv("HOME")) + "/scrift_fpm/");
+        		
+        		if(fsplusplus::IsExistFile("/bin/fpm") == true) {
+        			std::cout << "Fpm installed!\n";
+        		}
+        	}
+        }
+        
         /* Tip */
         colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_GREEN).c_str(),
             "Tip: You can change Scrift's prompt (.scrift_settings)\n");
@@ -225,7 +264,7 @@ FSetup::Stage1() {
     erase_settings.close();
 
     colorized::PrintWith(colorized::Colorize(BOLD, GREEN).c_str(),
-        "Good luck!\n");
+        "Good luck!");
 }
 
 void
