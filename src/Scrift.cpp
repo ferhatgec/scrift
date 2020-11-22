@@ -61,10 +61,6 @@
 
 #include <Library/Keywords.hpp>
 
-/* Fpi */
-/* Simple build & install package installer for Fegeya Community's applications */
-#include <src/Fpi/Core.hpp> 
-
 /* Libraries */
 #include <InputPlusPlus.h> /* For key-codes */
 #include <EmojiPlusPlus.h> /* Emoji? */
@@ -440,8 +436,7 @@ void CodeExecution(std::string arg) {
                 fpi --i || --install
                 fpi --uni || --uninstall
             */
-		    FInstall fetcheya_install;
-		    fetcheya_install.FegeyaPackageInstaller(arg);
+            std::cout << "Fpi is deprecated, use 'fpm' instead.\n";
             return;
 	    } else if(arg.rfind(keywords.FreeBrainGen, 0) == 0) {
             /* genfrbr
@@ -1160,8 +1155,7 @@ void CodeExecution(std::string arg) {
     	
             return;    
         } else {
-        	FInstall _run;
-            _run.Check(arg);
+			runfunction->RunFunction(arg);
         }
 }
 

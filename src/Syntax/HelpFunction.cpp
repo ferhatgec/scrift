@@ -61,7 +61,7 @@ FHelpFunction::HelpFunction() {
 	printlnf("[Execute]\n");
 	BOLD_RED_COLOR
 	printlnf(" * scr <argument> : Execute <argument>\n"
-            " * fpi <arg> <app> : Run Fegeya Package Installer\n\n");
+            " * fpm <arg> <app> : Run Fegeya Package Manager\n\n");
 	BOLD_LIGHT_RED_COLOR
 	printlnf("[Path]\n");
         BOLD_YELLOW_COLOR

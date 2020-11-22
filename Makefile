@@ -18,9 +18,6 @@ SRCLIBDIREC = ./Library/
 # Scrift's Syntax
 SRCSYNTAXDIREC = ./src/Syntax/
 
-# Fpi
-SRCFPIDIREC = ./src/Fpi/
-
 # Fetcheya
 SRCFETCHEYADIREC = ./src/Fetcheya/
 
@@ -67,10 +64,6 @@ HEADERFILE = CommandFunc.o \
 			 Setup.o \
 			 Tools.o
 
-FPIFILE = Core.o \
-		  Get.o \
-		  Parser.o
-
 # Platform
 ifeq ($(OS),Windows_NT)
 	echo Windows_NT is not supported!
@@ -82,10 +75,10 @@ else
 endif
 
 # Build
-all: conio headersfile fpifile edifor main datec clean
+all: fpm conio headersfile edifor main datec clean
 
 # Build & Install
-install: headersfile fpifile mainc ediforc date clean
+install: fpmc headersfile mainc ediforc date clean
 
 # Remove & Clean all
 removeall: uninstall cleanall
@@ -95,6 +88,15 @@ runall: all run
 
 # For me & developers
 gra: runall git
+
+# Get Fpm (Fegeya Package Manager)
+fpm:
+	sh init/get_fpm.sh
+
+# Install Fpm (Fegeya Package Manager)
+fpmc:
+	sh init/get_fpm.sh
+	sh init/install_fpm.sh
 
 # Git
 git:
@@ -111,9 +113,6 @@ nall: cleanall
 # Scrift's Core.
 headersfile: $(HEADERFILE)
 
-# Fpi
-fpifile: $(FPIFILE)
-
 conio: $(SRCLIBDIREC)FConio.c
 	$(GCC) -c -Wno-unused-function -Wno-unused-value $(SRCLIBDIREC)FConio.c -o fconio.o
 
@@ -121,19 +120,15 @@ conio: $(SRCLIBDIREC)FConio.c
 %.o: $(SRCSYNTAXDIREC)%.cpp
 	$(COMPILER) -Wno-unused-function -Wno-unused-value $(CFLAGS) -c $< -o $@
 	echo [SUCCESS] $@
-
-%.o: $(SRCFPIDIREC)%.cpp
-	$(COMPILER) -Wno-unused-function -Wno-unused-value $(CFLAGS) -c $< -o $@
-	echo [SUCCESS] $@
 	
 # Main Build
 main: $(SRCDIREC)Scrift.cpp
-	$(COMPILER) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) $(FPIFILE) $(FETCHEYAFILE) -o scrift
+	$(COMPILER) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) $(FETCHEYAFILE) -o scrift
 	echo [SUCCESS] Scrift
 
 # Main Build & Install
 mainc: $(SRCDIREC)Scrift.cpp
-	$(COMPILER) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) $(FPIFILE) $(FETCHEYAFILE) -o /bin/scrift
+	$(COMPILER) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) $(FETCHEYAFILE) -o /bin/scrift
 	echo [SUCCESS] Scrift [bin]
 
 # Edifor Build
