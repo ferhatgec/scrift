@@ -8,16 +8,16 @@
 #ifndef SCRIFT_HPP
 #define SCRIFT_HPP
 
-#include <stdlib.h>
+#include <cstdlib>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
-#include <stdio.h>
 #include <fstream>
-#include <cstring>
-#include <string.h>
+#include <string>
+
 #include "synflang.hpp"
 #include "Syntax/CommandFunc.h"
+#include "Syntax/Locale.hpp"
 
 #define slashn printlnf("\n");
 
@@ -49,11 +49,12 @@ class FMain {
 public:
     FMain();
     ~FMain();
+    
     /* Dynamic titles. */
     void SetTitle();
     
     /* Shell */
-    void Shell();
+    void Shell(slocale_t &locale);
     
     std::string Time();
 

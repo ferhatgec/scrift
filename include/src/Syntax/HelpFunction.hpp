@@ -10,9 +10,11 @@
 
 #include <iostream>
 
+#include <src/Syntax/Locale.hpp>
+
 class FHelpFunction {
 public:
-    void HelpFunction();
+    void HelpFunction(slocale_t &locale);
 
     void Welcome();
 

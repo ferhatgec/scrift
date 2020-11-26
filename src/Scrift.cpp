@@ -58,6 +58,7 @@
 #include <src/Syntax/Template.hpp> /* 'Hello world' example for a lot of languages */
 #include <src/Syntax/Setup.hpp> /* Scrift Configuration & Setup */
 #include <src/Syntax/Tools.hpp>
+#include <src/Syntax/Locale.hpp>
 
 #include <Library/Keywords.hpp>
 
@@ -101,6 +102,7 @@ std::unique_ptr<FHistory> history(new FHistory);
 std::unique_ptr<FHelpFunction> helpstr(new FHelpFunction);
 std::unique_ptr<FSetup> setup(new FSetup);
 std::unique_ptr<FTools> date_tools(new FTools);
+std::unique_ptr<FLocale> set_locale(new FLocale);
 
 /* Structures */
 std::unique_ptr<faddtextfunction> fileaddtextfunction(new faddtextfunction);
@@ -377,7 +379,7 @@ std::string GetUptime() {
 	#endif
 }
 
-void CodeExecution(std::string arg) {
+void CodeExecution(std::string arg, slocale_t &locale) {
     history->WriteHistory(arg);
     
     if(arg.rfind(keywords.Scr, 0) == 0) {
@@ -780,7 +782,7 @@ void CodeExecution(std::string arg) {
         	/*  help
                 List all commands.
             */
-            helpstr->HelpFunction();
+            helpstr->HelpFunction(locale);
             
             return;
         } else if(arg == keywords.Version + "\n")  {
@@ -1167,9 +1169,7 @@ void CodeExecution(std::string arg) {
 /*
 	Input && Interpreter.
 */
-void InputFunction() {
-    setlocale(LC_ALL, "");
-    
+void InputFunction(slocale_t &locale) {
     if(fsplusplus::IsExistFile(STR(getenv("HOME")) + "/.scrift_settings") != true) setup->Config();
     	
     if(scrift_line >= runsyntax->Clear()) {
@@ -1235,7 +1235,7 @@ void InputFunction() {
 		slashn
 			
         if(main_function->_h_str != "\n")
-            CodeExecution(main_function->_h_str);
+            CodeExecution(main_function->_h_str, locale);
 		
         main_function->_h_str.erase();
         terminalstr->Terminal();
@@ -1261,15 +1261,15 @@ void InputFunction() {
 }
 
 void
-FMain::Shell() {
+FMain::Shell(slocale_t &locale) {
     readfilefunction->ReadFeLogFunctionWithoutPrint();
-    InputFunction();
+    InputFunction(locale);
 }
 
 int main(integer argc, char** argv) {
     std::string copy_arg, reg; /* Get arg. */
-    setlocale(LC_ALL, ""); /* Locale */
-
+	slocale_t locale = set_locale->Set();
+	
     /* Happy new year! */
     if(main_function->Time().substr(4, 6) == "-01-01") {
     	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "Happy new year!");
@@ -1325,7 +1325,7 @@ int main(integer argc, char** argv) {
 	    main_function->SetTitle();
     	while(argc = 2) {
 	        /* InputFunction() */
-    	    main_function->Shell();
+    	    main_function->Shell(locale);
     	}
 	    
         /* Exit. */
@@ -1337,7 +1337,7 @@ int main(integer argc, char** argv) {
 		    scriftlang->ReadFunc(copy_arg + ".scr");
 	    else if(reg == "--help" || reg == "--h") { /* Print HelpFunction() */
 		    BOLD_RED_COLOR
-		    helpstr->HelpFunction();
+		    helpstr->HelpFunction(locale);
 		    BLACK_COLOR
 		
             exit(EXIT_SUCCESS); /* exit */

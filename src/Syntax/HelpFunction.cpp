@@ -6,50 +6,56 @@
 # */
 
 #include <iostream>
+
 #include <src/Scrift.hpp>
 #include <src/synflang.hpp>
 #include <src/Syntax/RunFunction.hpp>
 #include <src/Syntax/CommandFunc.h>
 #include <src/Syntax/HelpFunction.hpp>
+#include <src/Syntax/Locale.hpp>
 
 // Library
 #include <Colorized.hpp>
 
 void
-FHelpFunction::HelpFunction() {
+FHelpFunction::HelpFunction(slocale_t &locale) {
 	BOLD_GREEN_COLOR
-    printlnf("Scrift Functions && Arguments\n\n");
+    std::cout << "Scrift Functions && Arguments\n\n";
+	
 	BOLD_LIGHT_BLUE_COLOR
     printlnf("[General]\n");
 	BOLD_CYAN_COLOR
-	printlnf(" * username : Show username\n"
-        " * config : Configure Scrift.\n"
-        " * castle : Scrift game.\n"
-        " * gitlink : Show GitHub link.\n"
-        " * welcome : Show welcome message\n"
-        " * contr : Show contributors\n"
-        " * fscrift <file> : Interpret <file>\n"
-        " * clear_log : Clear FeLog\n"
-        " * history : Show Scrift history.\n"
-        " * rmvhistory : Clear Scrift history\n"
-        " * rmvsettings : Clear settings\n"
-        " * settings : Show settings\n"
-        " * fetcheya : Show system-info-tool\n"
-        " * version : Show version and license\n"
-        " * now : Show time\n"
-	    " * uptime : Show uptime\n"
-	    " * asciiart : Show ASCII Art\n"
-        " * template : Create language template\n"
-        " * fdate : Show calendar\n"
-        " * readtext <file> : Read <file>\n"
-     	" * felog : Show your FeLog.\n"
-        " * edifor : Open Edifor\n"
-	    " * addtext <file> : Add text in <file>\n"
-        " * ctxt <name> : Create text file\n"
-        " * pause : Stop Scrift\n"
-        " * cls || exit : Close Scrift\n"
-        " * clear : Clear Scrift buffer\n"
-        " * ip : Show local-IP\n\n");
+	
+	std::cout << 
+	" * username       : " << locale.cmd_username   << 
+    " * config         : " << locale.cmd_config     <<
+    " * castle         : " << locale.cmd_castle     <<
+    " * gitlink        : " << locale.cmd_gitlink	<<
+    " * welcome        : " << locale.cmd_welcome	<<
+    " * contr          : " << locale.cmd_contr	    <<
+    " * fscrift <file> : " << locale.cmd_fscrift    <<
+    " * clear_log      : " << locale.cmd_clearlog   <<
+    " * history        : " << locale.cmd_history	<<
+    " * rmvhistory     : " << locale.cmd_rmvhistory <<
+    " * rmvsettings    : " << locale.cmd_rmvsttngs  <<
+    " * settings       : " << locale.cmd_settings   <<
+    " * fetcheya       : " << locale.cmd_fetcheya   <<
+    " * version        : " << locale.cmd_version    <<
+    " * now            : " << locale.cmd_now        <<
+	" * uptime         : " << locale.cmd_uptime     <<
+	" * asciiart       : " << locale.cmd_asciiart   <<
+    " * template       : " << locale.cmd_template   <<
+    " * fdate          : " << locale.cmd_calendar   <<
+    " * readtext <file>: " << locale.cmd_readtext   <<
+    " * felog          : " << locale.cmd_felog	    <<
+    " * edifor         : " << locale.cmd_edifor	    <<
+	" * addtext <file> : " << locale.cmd_addtext	<<
+    " * ctxt <name>    : " << locale.cmd_ctxt	    <<
+    " * pause          : " << locale.cmd_pause	    <<
+    " * cls || exit    : " << locale.cmd_cls        <<
+    " * clear          : " << locale.cmd_clear 	    <<
+    " * ip             : " << locale.cmd_ip;
+	
 	BOLD_LIGHT_YELLOW_COLOR
 	printlnf("[Output]\n");
 	BOLD_GREEN_COLOR
