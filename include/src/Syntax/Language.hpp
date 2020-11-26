@@ -23,9 +23,13 @@
 // Library
 #include "../../../Library/Colorized.hpp"
 
+/* TODO:
+	- Rewrite in Language/ folder.
+*/
+
 class FLanguage {
 	FCommand *command = new FCommand();
-        FRunFunction *run = new FRunFunction();  
+       FRunFunction *run = new FRunFunction();  
         LexerKeywords keyword;
 public:
     // Keywords
@@ -47,7 +51,7 @@ public:
     std::string line;
     
     // For Float function
-    float floatvar;
+    float floatvar = 0.0f;
 
     // Path
     std::string path;

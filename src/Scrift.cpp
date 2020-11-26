@@ -336,7 +336,9 @@ void PrintUsername() {
 }
 
 
-/*
+/* TODO:
+	- Use TimePlusPlus library.
+	
 	Uptime.
 */
 std::string GetUptime() {
@@ -345,7 +347,7 @@ std::string GetUptime() {
 	#else
 	
     double uptime, uptimeMinutes, uptimeHour, uptimeDay;
-	int initialUptime, uptimeMinutesWhole, uptimeHourWhole, uptimeDayWhole;
+	int uptimeMinutesWhole, uptimeHourWhole, uptimeDayWhole;
 	
     std::string uptimeString;
 	std::stringstream uptimeStream;
@@ -1297,18 +1299,20 @@ int main(integer argc, char** argv) {
 		    setup->Config();
 	    }
 
-        if(runsyntax->Date() == true)
+        if(runsyntax->Date() == true) {
             date_tools->Date();
-
-	    if(runsyntax->ASCIIColor() == -1) {} else {
+		}
+		
+	    if(runsyntax->ASCIIColor() != -1) {
     		std::unique_ptr<FASCIIFunction> ascii(new FASCIIFunction);
     		ascii->Allofthem();
 	    }
 
 		/* Welcome <username> (emoji) */
-	    if(runsyntax->WelcomeMessage() == 1 || runsyntax->WelcomeMessage() == 2)  
+	    if(runsyntax->WelcomeMessage() == 1 || runsyntax->WelcomeMessage() == 2) {  
 	    	PrintUsername();
-
+		}
+		
 	    /* History start signal */
     	history->AllofThem();
 
@@ -1323,7 +1327,8 @@ int main(integer argc, char** argv) {
 
 	    /* Dynamic titles. */
 	    main_function->SetTitle();
-    	while(argc = 2) {
+	    
+    	while(argc) {
 	        /* InputFunction() */
     	    main_function->Shell(locale);
     	}
@@ -1333,9 +1338,9 @@ int main(integer argc, char** argv) {
     }
 
     if(reg.substr(0, 2) == "--") {
-	    if(strstr(reg.c_str(), "--b")) /* Interpreter for Scrift's language. */
+	    if(strstr(reg.c_str(), "--b")) { /* Interpreter for Scrift's language. */
 		    scriftlang->ReadFunc(copy_arg + ".scr");
-	    else if(reg == "--help" || reg == "--h") { /* Print HelpFunction() */
+	    } else if(reg == "--help" || reg == "--h") { /* Print HelpFunction() */
 		    BOLD_RED_COLOR
 		    helpstr->HelpFunction(locale);
 		    BLACK_COLOR
