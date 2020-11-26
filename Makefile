@@ -123,12 +123,12 @@ conio: $(SRCLIBDIREC)FConio.c
 	
 # Main Build
 main: $(SRCDIREC)Scrift.cpp
-	$(COMPILER) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) $(FETCHEYAFILE) -o scrift
+	$(COMPILER) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) -o scrift
 	echo [SUCCESS] Scrift
 
 # Main Build & Install
 mainc: $(SRCDIREC)Scrift.cpp
-	$(COMPILER) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) $(FETCHEYAFILE) -o /bin/scrift
+	$(COMPILER) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) -o /bin/scrift
 	echo [SUCCESS] Scrift [bin]
 
 # Edifor Build
