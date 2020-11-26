@@ -437,6 +437,11 @@ void CodeExecution(std::string arg) {
                 fpi --uni || --uninstall
             */
             std::cout << "Fpi is deprecated, use 'fpm' instead.\n";
+            
+            if(fsplusplus::IsExistFile("/bin/fpm") != true) {
+            	std::cout << "Oops! Fpm is not to be installed!\n";
+            }
+            
             return;
 	    } else if(arg.rfind(keywords.FreeBrainGen, 0) == 0) {
             /* genfrbr
