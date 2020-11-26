@@ -20,10 +20,10 @@
 void
 FHelpFunction::HelpFunction(slocale_t &locale) {
 	BOLD_GREEN_COLOR
-    std::cout << "Scrift Functions && Arguments\n\n";
+    std::cout << locale.header_help;
 	
-	BOLD_LIGHT_BLUE_COLOR
-    printlnf("[General]\n");
+	BOLD_LIGHT_BLUE_COLOR 
+	std::cout << locale.header_general; 
 	BOLD_CYAN_COLOR
 	
 	std::cout << 
@@ -57,45 +57,60 @@ FHelpFunction::HelpFunction(slocale_t &locale) {
     " * ip             : " << locale.cmd_ip;
 	
 	BOLD_LIGHT_YELLOW_COLOR
-	printlnf("[Output]\n");
+	std::cout << locale.header_output; 
 	BOLD_GREEN_COLOR
-	printlnf(" * printlnf || echo <arg> : Shows <arg> [#environment]\n"
-        " * output <command> : Print output of inputted command.\n"
-        " * title <string> : Change title of terminal header-bar (title-bar).\n" 
-	    " * emoji <arg> : Show <emoji> (e.g: :thinking_face:)\n\n");
+	
+	std::cout << 
+	" * printlnf | echo <arg> : " << locale.cmd_echo   <<
+    " * output <command>      : " << locale.cmd_output <<
+    " * title <string>        : " << locale.cmd_title  << 
+	" * emoji <arg>           : " << locale.cmd_emoji;
+	
 	BOLD_LIGHT_MAGENTA_COLOR
-	printlnf("[Execute]\n");
+	std::cout << locale.header_execute;
 	BOLD_RED_COLOR
-	printlnf(" * scr <argument> : Execute <argument>\n"
-            " * fpm <arg> <app> : Run Fegeya Package Manager\n\n");
+	
+	std::cout << 
+	" * scr <argument>   : " << locale.cmd_scr <<
+    " * fpm <arg> <pack> : " << locale.cmd_fpm;
+
 	BOLD_LIGHT_RED_COLOR
-	printlnf("[Path]\n");
-        BOLD_YELLOW_COLOR
-        printlnf(" * home : /home/<username>\n"
-	    " * create <name> : Create <name>scr file\n"
-        " * objls : List installed objects\n"
-        " * fls : List only files (#<env>)\n"
-        " * dls : List only folders (#<env>)\n"
-        " * ls <folder> : List dir (#<env>)\n"
-        " * fr || cd <folder> : Change dir (#<env>)\n"
-        " * mkdir <foldername> : Create folder\n"
-        " * ffind <file, folder> : Find files and directories in path\n"
-        " * rmvfile <file, folder> : Remove file, folder in path\n"
-        " * setname <name> : Set environment name\n"
-        " * setto <value> : Set environment value.\n"
-        " * back : Going to back directory\n\n");
+	std::cout << locale.header_path;
+    BOLD_YELLOW_COLOR
+        
+    std::cout << 
+    " * home : /home/<username>\n"
+	" * create <name> : Create <name>scr file\n"
+	" * objls : List installed objects\n"
+    " * fls : List only files (#<env>)\n"
+    " * dls : List only folders (#<env>)\n"
+    " * ls <folder> : List dir (#<env>)\n"
+    " * fr || cd <folder> : Change dir (#<env>)\n"
+    " * mkdir <foldername> : Create folder\n"
+    " * ffind <file, folder> : Find files and directories in path\n"
+    " * rmvfile <file, folder> : Remove file, folder in path\n"
+    " * setname <name> : Set environment name\n"
+    " * setto <value> : Set environment value.\n"
+    " * back : Going to back directory\n\n";
+        
 	BOLD_LIGHT_CYAN_COLOR
-	printlnf("[Generate]\n");
+	std::cout << "[Generate]\n";
 	BOLD_LIGHT_MAGENTA_COLOR
-	printlnf(" * genfrbr <value> : Generate FreeBrain keycode\n"
-	    " * morse : Generate morse, string\n"
-	    " * rstr <number> : Generate random string\n\n");
+	
+	std::cout <<
+	" * genfrbr <value> : Generate FreeBrain keycode\n"
+	" * morse : Generate morse, string\n"
+	" * rstr <number> : Generate random string\n\n";
+	    
 	BOLD_LIGHT_GREEN_COLOR
-	printlnf("[Math]\n");
+	std::cout << "[Math]\n";
 	BOLD_CYAN_COLOR
-	printlnf(" * fact : Print factorial\n"
-	    " * sqrt : Print Square root\n"
-	    " * square : Print Square\n");
+	
+	std::cout << 
+	" * fact : Print factorial\n"
+	" * sqrt : Print Square root\n"
+	" * square : Print Square\n";
+	    
 	BLACK_COLOR
 }
 

@@ -16,9 +16,15 @@ FLocale::Set() {
 	slocale_def_t lang;
 	slocale_t locale;
 	
-	locale.language = STR(getenv("LANG"));
+	locale.language = "tr_TR.UTF-8"; //STR(getenv("LANG"));
 	
 	if(locale.language == lang.locale_tr) {
+		locale.header_help	  = "Scrift Fonksiyonları ve Argümanları\n\n";
+		locale.header_general = "[Genel]\n";
+		locale.header_output  = "[Çıktı]\n";
+		locale.header_execute = "[Yürüt]\n";
+		locale.header_path 	  = "[Yol]\n";
+		
 		locale.cmd_username	  = "Kullanıcı adını göster.\n";
 		locale.cmd_config	  = "Scrift'i özelleştir.\n";
 		locale.cmd_castle 	  = "Scriftin oyunu.\n";
@@ -47,6 +53,14 @@ FLocale::Set() {
 		locale.cmd_cls		  = "Scrift'i kapat.\n";
 		locale.cmd_clear	  = "Scrift'in arabelleğini temizle.\n"; 
 		locale.cmd_ip		  = "Yerel IP adresini göster.\n";
+		
+		locale.cmd_echo		  = "<arg> [$#environment]'i yazdır.\n";	
+		locale.cmd_output	  = "Girilen komutun çıktısını yazdırır\n";
+		locale.cmd_title	  = "Uçbirimin başlığını değiştir.\n";
+		locale.cmd_emoji	  = "Emoji yazdır (orn: :thinking_face:)\n\n";
+		
+		locale.cmd_scr		  = "<argument>'i yürüt.\n";
+		locale.cmd_fpm		  = "Fegeya Paket Yöneticisini çalıştır\n\n";
 	}
 	
 	return locale;

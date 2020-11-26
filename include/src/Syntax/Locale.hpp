@@ -19,7 +19,13 @@ typedef struct {
 
 typedef struct {
 	std::string language		= "en_EN.UTF-8";
-			
+	
+	std::string header_help	    = "Scrift Functions && Arguments\n\n";
+	std::string header_general  = "[General]\n";
+	std::string header_output	= "[Output]\n";
+	std::string header_execute	= "[Execute]\n";
+	std::string header_path		= "[Path]\n";
+	
 	std::string cmd_username    = "Show username.\n";
 	std::string cmd_config	    = "Configure Scrift.\n";
 	std::string cmd_castle	    = "Scrift's game.\n";
@@ -48,6 +54,14 @@ typedef struct {
 	std::string	cmd_cls			= "Close Scrift.\n";
 	std::string	cmd_clear		= "Clear Scrift's buffer.\n";
 	std::string	cmd_ip			= "Show local-IP address.\n";
+	
+	std::string cmd_echo		= "Show <arg> [$#environment].\n";
+	std::string cmd_output	    = "Print output of inputted command.\n";
+	std::string cmd_title		= "Change title of terminal header-bar (title-bar).\n";
+	std::string cmd_emoji	    = "Show <emoji> (e.g: :thinking_face:)\n\n";
+	
+	std::string cmd_scr			= "Execute <argument>\n";
+	std::string cmd_fpm			= "Run Fegeya Package Manager\n\n";
 } slocale_t;
 
 class FLocale {
