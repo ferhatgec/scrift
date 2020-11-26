@@ -16,7 +16,7 @@ FLocale::Set() {
 	slocale_def_t lang;
 	slocale_t locale;
 	
-	locale.language = "tr_TR.UTF-8"; //STR(getenv("LANG"));
+	locale.language = STR(getenv("LANG"));
 	
 	if(locale.language == lang.locale_tr) {
 		locale.header_help	  = "Scrift Fonksiyonları ve Argümanları\n\n";
