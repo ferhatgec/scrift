@@ -28,6 +28,7 @@
 #include <src/Syntax/Log.hpp>
 #include <src/Syntax/Settings.hpp>
 #include <src/Syntax/ASCIIFunction.hpp>
+#include <src/Syntax/Locale.hpp>
 
 // Library
 #include <Colorized.hpp>
@@ -81,7 +82,7 @@ FCDFunction::FileExists(const std::string &Filename) {
 	cd /usr/
 */
 void
-FCDFunction::CDFunctionInit(std::string name) {
+FCDFunction::CDFunctionInit(std::string name, slocale_t &locale) {
     if(name != "") {
         if(fmain->_home != true) {
 	    	if(strstr(name.c_str(), "#")) {
@@ -95,7 +96,7 @@ FCDFunction::CDFunctionInit(std::string name) {
             		} else {
             		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "scrift : ");
 			    		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), new_name.c_str());
-			    		colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), " : This directory is not exist!\n");
+			    		colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), locale.dir_not_exist.c_str());
             		    
 						return;
             		}
@@ -112,7 +113,7 @@ FCDFunction::CDFunctionInit(std::string name) {
             		} else {
             		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "scrift : ");
 			    		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), new_name.c_str());
-			    		colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), " : This directory is not exist!\n");
+			    		colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), locale.dir_not_exist.c_str());
             		    
 						return;
             		}
@@ -125,7 +126,7 @@ FCDFunction::CDFunctionInit(std::string name) {
             		} else {
             		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "scrift : ");
 			    		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), name.c_str());
-				    	colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), " : This directory is not exist!\n");
+				    	colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), locale.dir_not_exist.c_str());
             		}
             		
 					return;
@@ -147,7 +148,7 @@ FCDFunction::CDFunctionInit(std::string name) {
 					} else {
             	    	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "scrift : ");
 				    	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), name.c_str());
-		    			colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), " : This directory is not exist!\n");
+		    			colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), locale.dir_not_exist.c_str());
             	    
 						return;
             		}

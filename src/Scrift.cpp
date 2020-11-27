@@ -484,7 +484,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
                     keywords.Fr + " ");
                 
                 arg.pop_back();
-                cdfunction->CDFunctionInit(arg);
+                cdfunction->CDFunctionInit(arg, locale);
             }
             
             return;
@@ -504,7 +504,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
                     keywords.Cd + " ");
 
                 arg.pop_back();
-                cdfunction->CDFunctionInit(arg);
+                cdfunction->CDFunctionInit(arg, locale);
             }
             
             return;
