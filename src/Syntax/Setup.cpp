@@ -264,7 +264,7 @@ FSetup::Stage1() {
     erase_settings.close();
 
     colorized::PrintWith(colorized::Colorize(BOLD, GREEN).c_str(),
-        "Good luck!");
+        "Good luck!\n");
 }
 
 void
