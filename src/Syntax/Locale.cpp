@@ -27,7 +27,7 @@ FLocale::Set() {
 	    
         locale.cmd_username   = "Kullanıcı adını göster.\n";
         locale.cmd_config     = "Scrift'i özelleştir.\n";
-        locale.cmd_castle     = "Scriftin oyunu.\n";
+        locale.cmd_castle     = "Scrift'in içinde oynayabileceğiniz Castle oyunu.\n";
         locale.cmd_gitlink    = "GitHub linkini göster.\n";
         locale.cmd_welcome    = "Hoşgeldiniz mesajını göster.\n";
         locale.cmd_contr      = "Katkı sağlayanları göster.\n";
