@@ -83,7 +83,9 @@ const std::string compilation_time = __TIME__;
 
 /* For Environment */
 static std::string SetNameToString, SetNameString;
-
+char c;
+static struct termios oldtio, newtio;
+ 
 /* Classes */
 std::unique_ptr<FMain> main_function(new FMain);
 std::unique_ptr<FCommand> main_(new FCommand);
@@ -111,6 +113,9 @@ std::unique_ptr<fhomefunction> homefunction(new fhomefunction);
 /* Keywords */
 ScriftKeywords keywords;
 FTemplate temp;
+
+
+unsigned line = 0;
 
 /*
 	Get username.
@@ -286,6 +291,38 @@ std::string FMain::Time() {
     tstruct = *localtime(&now);
     strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct);
     return buf;
+}
+
+/* Read specific line from history */
+std::string GetSpecificHistoryLine(unsigned line) {
+	std::ifstream history_file(STR(getenv("HOME")) + STR("/.scrift_history"));
+	
+	unsigned __line = 0;
+	
+	std::string data = "";
+	
+	while(getline(history_file, data)) {
+		if(line == __line) {
+			return data;
+		}
+		
+		__line++;
+	}
+
+	history_file.close();
+	return data;
+}
+
+unsigned GetTotalHistoryLine() {
+	std::ifstream history_file(STR(getenv("HOME")) + STR("/.scrift_history"));
+	
+	std::string line;
+	unsigned i;
+	for (i = 0; std::getline(history_file, line); ++i)
+    ;
+
+	history_file.close();    
+    return i;
 }
 
 /*
@@ -1183,51 +1220,84 @@ void InputFunction(slocale_t &locale) {
 	/* Foreground color */
 	textbackground(runsyntax->BackgroundColor());
 	std::string sign;
-    struct termios t;
-    int c;
-    tcgetattr(0,&t);
-    t.c_lflag&=~ECHO+~ICANON;
-    tcsetattr(0,TCSANOW,&t);
-    fflush(stdout);
-    c = getchar(); /* Input per key */
-    t.c_lflag|=ICANON+ECHO;
-    tcsetattr(0,TCSANOW,&t);
+    
+    tcgetattr(0, &oldtio);
+    newtio = oldtio;
+    newtio.c_lflag &= ~ICANON;
+    newtio.c_lflag &= ~ECHO;
+    tcsetattr(0, TCSANOW, &newtio);
+	fflush(stdout);
+	c = getchar();
 
+	if(c == 32) {
+		space++;
+		cursorpos.x += 1;
+	}
+	
+	if(c == BACKSPACE) {
+	    if(main_function->_h_str.length() >= 1) {
+			cursorpos.x -= 1;
+		    main_function->_h_str.erase(main_function->_h_str.end() - 1);
+     			
+     		if(main_function->_h_str.length() > 1)
+     			std::cout << "\b \b";
+     	}
+    }
+    
+	if (c == 27) {
+        c = getchar();
+        c = getchar();
+            
+		if(c == ARROW_UP) {
+			if(line != 0) {
+				line--;
+			
+				for(unsigned i = 0; i < main_function->_h_str.length(); i++) {
+					std::cout << "\b \b" << std::flush;				
+				}
+				
+				main_function->_h_str = GetSpecificHistoryLine(line);
+				
+				std::cout << main_function->_h_str;
+			}
+		}
+		
+		if(c == ARROW_DOWN) {
+			if(line < GetTotalHistoryLine()) {
+				line++;
+			
+				for(unsigned i = 0; i < main_function->_h_str.length(); i++) {
+					std::cout << "\b \b" << std::flush;				
+				}
+				
+				main_function->_h_str = GetSpecificHistoryLine(line);
+			
+				std::cout << main_function->_h_str;
+			}
+		}
+		
+		if(c == ARROW_LEFT) {
+			//if(cursorpos.x >= 2) {
+	        //    std::cout << "\033[1D";
+	        //   cursorpos.x -= 1;
+	        //}
+		}
+				
+		if(c == ARROW_RIGHT) {
+     	    //std::cout << "\033[1B";
+     	    //cursorpos.x += 1;
+		}
+    } else if(c != 9) {
+    	main_function->_h_str.push_back(c);
+		sign.push_back(c);
+		cursorpos.x += 1;
+    }
+
+	
+    tcsetattr(0, TCSANOW, &oldtio);
+	
     /* Cursor position */
     cursorpos.x = main_function->_h_str.length();
-
-    /* Backspace, Enter detection. */
-    if(c == BACKSPACE) {
-	    if(cursorpos.x >= 1) {
-		    cursorpos.x -= 1;
-			// Under the Construction
-     		main_function->_h_str.erase(main_function->_h_str.end() - 1);
-     		std::cout << '\b' << " " << '\b';
-		} else {}
-		
-        return;
-    } else
-        	main_function->_h_str.push_back(c);
-
-	sign.push_back(c);
-
-    if(kbhit()) {
-        if(c == ARROW_RIGHT) {
-     	    std::cout << "\033[1C";
-     	    cursorpos.x += 1;
-        } else if(c == ARROW_LEFT) {
-     	    if(cursorpos.x >= 2) {
-	            std::cout << "\033[1D";
-	            cursorpos.x -= 1;
-	        } else
-	            return;        
-	    }
-    } 
-    
-    if(c == 32) {
-		//printlnf(" ");
-		space++;
-	}
     
     if(c == '\n') {
 		space = 0;
@@ -1238,6 +1308,7 @@ void InputFunction(slocale_t &locale) {
 			
         if(main_function->_h_str != "\n")
             CodeExecution(main_function->_h_str, locale);
+	
 		
         main_function->_h_str.erase();
         terminalstr->Terminal();
@@ -1316,6 +1387,8 @@ int main(integer argc, char** argv) {
 	    /* History start signal */
     	history->AllofThem();
 
+		line = GetTotalHistoryLine();
+		
 	    /* Welcome message. */
 	    if(runsyntax->WelcomeMessage() == 1) {
 		    logsystem->WriteLog("Launching Welcome() function.. - ");
