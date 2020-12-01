@@ -1232,6 +1232,9 @@ void InputFunction(slocale_t &locale) {
 	if(c == 32) {
 		space++;
 		cursorpos.x += 1;
+		std::cout << " " << std::flush;
+		
+		main_function->_h_str.append(" ");
 	} else if(c == 127 || c == 8) {
 	    if(main_function->_h_str.length() >= 1) {
 			cursorpos.x -= 1;
