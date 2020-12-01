@@ -1238,9 +1238,8 @@ void InputFunction(slocale_t &locale) {
 	    if(main_function->_h_str.length() >= 1) {
 			cursorpos.x -= 1;
 		    main_function->_h_str.erase(main_function->_h_str.end() - 1);
-     			
-     		if(main_function->_h_str.length() > 1)
-     			std::cout << "\b \b";
+
+			std::cout << "\b \b";
      	}
     }
     
@@ -1305,7 +1304,12 @@ void InputFunction(slocale_t &locale) {
         scrift_line++;
 		cursorpos.x = 0;
 		slashn
-			
+		
+		/* Parse input */
+		if(main_function->_h_str[0] == ' ') {
+			main_function->_h_str = stringtools::ltrim(main_function->_h_str);
+		}
+		
         if(main_function->_h_str != "\n")
             CodeExecution(main_function->_h_str, locale);
 	

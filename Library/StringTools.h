@@ -85,6 +85,11 @@ namespace stringtools {
     		else
        		rStr = "error"; 
 	}
+	
+	inline std::string& ltrim(std::string& s, const char* t = " \t\n\r\f\v") {
+    	s.erase(0, s.find_first_not_of(t));
+    	return s;
+	}
 }
 
 #endif // STRING_TOOLS_HPP
