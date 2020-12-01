@@ -1232,18 +1232,14 @@ void InputFunction(slocale_t &locale) {
 	if(c == 32) {
 		space++;
 		cursorpos.x += 1;
-	}
-	
-	if(c == BACKSPACE) {
+	} else if(c == 127 || c == 8) {
 	    if(main_function->_h_str.length() >= 1) {
 			cursorpos.x -= 1;
-		    main_function->_h_str.erase(main_function->_h_str.end() - 1);
+		    main_function->_h_str.pop_back();
 
-			std::cout << "\b \b";
+			std::cout << "\b \b" << std::flush;
      	}
-    }
-    
-	if (c == 27) {
+    } else if(c == 27) {
         c = getchar();
         c = getchar();
             
