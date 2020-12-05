@@ -1309,9 +1309,11 @@ void InputFunction(slocale_t &locale) {
 			main_function->_h_str = stringtools::ltrim(main_function->_h_str);
 		}
 		
-        if(main_function->_h_str != "\n")
+        if(main_function->_h_str != "\n") {
             CodeExecution(main_function->_h_str, locale);
-	
+			history->WriteAllHistory();
+			line = GetTotalHistoryLine();
+		}
 		
         main_function->_h_str.erase();
         terminalstr->Terminal();
