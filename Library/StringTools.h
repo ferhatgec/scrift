@@ -86,9 +86,24 @@ namespace stringtools {
        		rStr = "error"; 
 	}
 	
-	inline std::string& ltrim(std::string& s, const char* t = " \t\n\r\f\v") {
+	static inline std::string& ltrim(std::string& s, const char* t = " \t\n\r\f\v") {
     	s.erase(0, s.find_first_not_of(t));
     	return s;
+	}
+	
+	static std::string getFirstCommand(std::string str) {
+    	std::string word = "";
+    	if(!strstr(str.c_str(), " ")) return str;
+    	
+    	for(auto x : str) {
+        	if (x == ' ') {
+            	break;
+        	} else {
+            	word = word + x;
+        	}
+    	}
+    	
+    	return word;
 	}
 }
 

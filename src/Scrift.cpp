@@ -183,36 +183,28 @@ std::string VersionGenerator() { return "scriftv" + scriftlang->EraseAllSubStrin
 
 /* For input colorizing */
 void Space(int space, std::string sign, unsigned theme) {
-	if(theme == 1) /* Classic (White & Black) theme */
-		colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), sign.c_str());
-	else if(theme == 2) { /* Halloween theme */
+    if(theme == 1) /* Classic (White & Black) theme */
+        colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), sign.c_str());
+    else if(theme == 2) { /* Halloween theme */
 		RESETW
-		if(space % 2) printfc({255, 154, 0}, sign);
-		else if(space % 3) printfc({247, 95, 28}, sign);
-		else printfc({0, 0, 0}, sign);
+        if(space % 2) printfc({255, 154, 0}, sign);
+        else if(space % 3) printfc({247, 95, 28}, sign);
+        else printfc({0, 0, 0}, sign);
 	} else /* Colorized theme */
-		if(space == 1 || space % 1)
-			colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), sign.c_str());
-		else if(space % 2 || space == 2)
-			colorized::PrintWith(colorized::Colorize(BOLD, MAGENTA).c_str(), sign.c_str());
-		else if(space % 3 || space == 3)
-			colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), sign.c_str());
-		else if(space % 4 || space == 4)
-			colorized::PrintWith(colorized::Colorize(BOLD, YELLOW).c_str(), sign.c_str());
-		else if(space % 5)
-			colorized::PrintWith(colorized::Colorize(BOLD, GREEN).c_str(), sign.c_str());
-		else if(space % 6 || space == 6)
-			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), sign.c_str());
-		else if(space % 7 || space == 7)
-			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), sign.c_str());
-		else if(space % 7 || space == 7)
-			colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), sign.c_str());
-		else if(space == 0)
-			std::cout << WBOLD_CYAN_COLOR << sign << WBLACK_COLOR;
+        if(space == 1 || space % 1)      colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), sign.c_str());
+        else if(space % 2 || space == 2) colorized::PrintWith(colorized::Colorize(BOLD, MAGENTA).c_str(), sign.c_str());
+        else if(space % 3 || space == 3) colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), sign.c_str());
+        else if(space % 4 || space == 4) colorized::PrintWith(colorized::Colorize(BOLD, YELLOW).c_str(), sign.c_str());
+        else if(space % 5)               colorized::PrintWith(colorized::Colorize(BOLD, GREEN).c_str(), sign.c_str());
+        else if(space % 6 || space == 6) colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), sign.c_str());
+        else if(space % 7 || space == 7) colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), sign.c_str());
+        else if(space % 7 || space == 7) colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), sign.c_str());
+        else if(space == 0)
+            std::cout << WBOLD_CYAN_COLOR << sign << WBLACK_COLOR;
 }
 
 void PrintVersion() {
-	BOLD_MAGENTA_COLOR
+    BOLD_MAGENTA_COLOR
     printlnf("Fegeya Scrift Version: ");
     	
     /* Version */
@@ -1256,7 +1248,13 @@ void InputFunction(slocale_t &locale) {
 				
 				main_function->_h_str = GetSpecificHistoryLine(line);
 				
-				std::cout << main_function->_h_str;
+				if(fsplusplus::IsExistFile("/bin/" + stringtools::getFirstCommand(main_function->_h_str)) == true) {
+					std::cout << WBOLD_GREEN_COLOR << main_function->_h_str;
+				} else {
+					std::cout << WBOLD_RED_COLOR  << main_function->_h_str;
+				}
+				
+				BLACK_COLOR
 			}
 		}
 		
@@ -1270,7 +1268,13 @@ void InputFunction(slocale_t &locale) {
 				
 				main_function->_h_str = GetSpecificHistoryLine(line);
 			
-				std::cout << main_function->_h_str;
+				if(fsplusplus::IsExistFile("/bin/" + stringtools::getFirstCommand(main_function->_h_str)) == true) {
+					std::cout << WBOLD_GREEN_COLOR << main_function->_h_str;
+				} else {
+					std::cout << WBOLD_RED_COLOR   << main_function->_h_str;
+				}
+				
+				BLACK_COLOR
 			}
 		}
 		
