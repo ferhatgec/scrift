@@ -411,8 +411,6 @@ std::string GetUptime() {
 }
 
 void CodeExecution(std::string arg, slocale_t &locale) {
-    history->WriteHistory(arg);
-    
     if(arg.rfind(keywords.Scr, 0) == 0) {
         /*  scr
             scr echo hello
@@ -660,7 +658,6 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             /*  close, exit
                 Exit.
             */
-        	history->WriteAllHistory();
         	arg.erase();
           	
             exit(EXIT_SUCCESS);
@@ -1315,7 +1312,7 @@ void InputFunction(slocale_t &locale) {
 		
         if(main_function->_h_str != "\n") {
             CodeExecution(main_function->_h_str, locale);
-			history->WriteAllHistory();
+			history->WriteInHistory(main_function->_h_str);
 			line = GetTotalHistoryLine();
 		}
 		
@@ -1414,9 +1411,6 @@ int main(integer argc, char** argv) {
 	        /* InputFunction() */
     	    main_function->Shell(locale);
     	}
-	    
-        /* Exit. */
-    	history->WriteAllHistory();
     }
 
     if(reg.substr(0, 2) == "--") {

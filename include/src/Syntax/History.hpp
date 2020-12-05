@@ -14,13 +14,19 @@ class FHistory {
 public:
     FHistory();
     ~FHistory();
+   
     bool IsExist();   
     const std::string TimeFunction();
+   
     void CreateFile();
+   
     void WriteAllHistory();
-    void WriteHistory(fstr);
+    void WriteHistory(std::string element);
+   
     void ClearHistory();
     void AllofThem();
+    
+    void WriteInHistory(std::string element);
 };
 
 

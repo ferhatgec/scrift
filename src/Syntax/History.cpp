@@ -68,6 +68,26 @@ FHistory::WriteAllHistory() {
     file << history_text;
 }
 
+void 
+FHistory::WriteInHistory(std::string element) {
+    std::string filepath_with_path;
+    filepath_with_path.append(getenv("HOME"));
+    filepath_with_path.append(slash);
+    filepath_with_path.append(".scrift_history");
+    
+    std::ofstream file;
+    file.open(filepath_with_path, std::ios::out | std::ios::app);
+    
+    if(file.fail())
+        std::cout << "[history]: error\n";
+    
+
+    file.exceptions(file.exceptions() | std::ios::failbit | std::ifstream::badbit);
+
+    file << element;
+    
+    file.close();
+}
 
 func
 FHistory::CreateFile() {   
