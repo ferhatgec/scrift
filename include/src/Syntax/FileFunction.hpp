@@ -82,6 +82,9 @@ namespace FileFunction {
         bool ListArgumentObjectFunction(std::string);
         void ListObjectFunction();
         void LSFunction(std::string);
+        void ParseListing(std::string file);
+        std::string GetFileExtension(const std::string& file);
+        
         std::string GetObjects();
     };
 

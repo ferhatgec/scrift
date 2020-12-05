@@ -37,9 +37,26 @@
 
 using namespace FileFunction;
 
-/*
-	Classes
-*/
+#define WBRED      "\033[1;31m"
+#define WBGREEN    "\033[1;32m"
+#define WBYELLOW   "\033[01;33m"
+#define WBBLUE     "\033[1;34m"
+#define WBMAGENTA  "\033[1;35m"
+#define WBCYAN     "\033[1;36m"
+
+// Light colors
+#define WBLBLACK   "\033[1;90m"
+#define WBLRED     "\033[1;91m"
+#define WBLGREEN   "\033[1;92m"
+#define WBLYELLOW  "\033[1;93m"
+#define WBLBLUE    "\033[1;94m"
+#define WBLMAGENTA "\033[1;95m"
+#define WBLCYAN    "\033[1;96m"
+#define WBLWHITE   "\033[1;97m"
+
+#define WBWHITE    "\033[1;37m"
+
+// Classes
 std::unique_ptr<FRunFunction> filerunfunction(new FRunFunction);
 std::unique_ptr<FeLog> filelog(new FeLog);
 std::unique_ptr<FSettings> settings(new FSettings);
@@ -761,79 +778,69 @@ FLSFunction::LSFunction(std::string arg) {
             if(strstr(entryname->d_name, ".")) {} 
 			else if(strstr(entryname->d_name, "..")) {} 
 			else
-            	printlnf("%4s: %s\n", "[Dir]", entryname->d_name);
-        } else if(strstr(entryname->d_name, "Elitefile")) {
-            BOLD_BLUE_COLOR
-            printlnf("%4s: %s\n", "[Elitebuild]", entryname->d_name);
-        } else if(strstr(entryname->d_name, ".scrift_log")) {
-	    	colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "");
-	    	printlnf("%4s: %s\n", "FeLog*", entryname->d_name);
-		} else if(strstr(entryname->d_name, ".scrift_ascii")) {
-	    	colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "");
-	    	printlnf("%4s: %s\n", "Ascii Art*", entryname->d_name);
-		} else if(strstr(entryname->d_name, ".scrift_settings")) {
-	    	colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "");
-	    	printlnf("%4s: %s\n", "Settings*", entryname->d_name);
-		} else if(strstr(entryname->d_name, ".scrift_history")) {
-	    	colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "");
-	    	printlnf("%4s: %s\n", "History*", entryname->d_name);
-		} else if(strstr(entryname->d_name, ".scr")) {
-            BOLD_GREEN_COLOR
-            printlnf("%4s: %s\n", "[Scrift]", entryname->d_name);
-        } else if(strstr(entryname->d_name, ".cpp") || strstr(entryname->d_name, ".hpp") || strstr(entryname->d_name, ".cxx") || strstr(entryname->d_name, ".hxx") || strstr(entryname->d_name, ".cc") || strstr(entryname->d_name, ".hh")) {
-	    	BOLD_CYAN_COLOR
-            printlnf("%4s: %s\n", "[C++]", entryname->d_name);
-		} else if(strstr(entryname->d_name, ".c") || strstr(entryname->d_name, ".h")) {
-	    	BOLD_BLUE_COLOR
-            printlnf("%4s: %s\n", "[C]", entryname->d_name);
-		} else if(strstr(entryname->d_name, "CMakeLists.txt")) {
-	    	BOLD_MAGENTA_COLOR
-            printlnf("%4s: %s\n", "[CMake]", entryname->d_name);
-		} else if(strstr(entryname->d_name, ".sh")) {
-	    	BOLD_GREEN_COLOR
-            printlnf("%4s: %s\n", "[Bash]", entryname->d_name);
-		} else if(strstr(entryname->d_name, ".py")) {
-	    	BOLD_BLUE_COLOR
-            printlnf("%4s: %s\n", "[Python]", entryname->d_name);
-		} else if(strstr(entryname->d_name, ".fls") || strstr(entryname->d_name, ".flsh")) {
-		    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "");
-	    	printlnf("%4s: %s\n", "[FlaScript]", entryname->d_name);
-		} else if(strstr(entryname->d_name, ".md")) {
-	    	BOLD_YELLOW_COLOR
-            printlnf("%4s: %s\n", "[Markdown]", entryname->d_name);
-		} else if(strstr(entryname->d_name, ".frbr")) {
-	    	colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "");
-	    	printlnf("%4s: %s\n", "[FreeBrain]", entryname->d_name);
-		} else if(strstr(entryname->d_name, ".png")) {
-	    	colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "");
-		    printlnf("%4s: %s\n", "[Png]", entryname->d_name);
-		} else if(strstr(entryname->d_name, ".jpg") || strstr(entryname->d_name, ".jpeg")) {
-	    	colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "");
-	    	printlnf("%4s: %s\n", "[Jpg]", entryname->d_name);
-		} else if(strstr(entryname->d_name, ".gif")) {
-	    	colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "");
-	    	printlnf("%4s: %s\n", "[Gif]", entryname->d_name);
-		} else if(strstr(entryname->d_name, ".html") || strstr(entryname->d_name, ".htm")) {
-	    	colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "");
-	    	printlnf("%4s: %s\n", "[Html]", entryname->d_name);
-		} else if(strstr(entryname->d_name, ".rs") || strstr(entryname->d_name, ".rslib")) {
-	    	colorized::PrintWhReset(colorized::Colorize(BOLD, YELLOW).c_str(), "");
-	    	printlnf("%4s: %s\n", "[Rust]", entryname->d_name);
-		} else if(strstr(entryname->d_name, ".lua")) {
-	    	colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLACK).c_str(), "");
-	    	printlnf("%4s: %s\n", "[Lua]", entryname->d_name);
-		} else if(strstr(entryname->d_name, ".inclink")) {
-	    	colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "");
-	    	printlnf("%4s: %s\n", "[includeLink]", entryname->d_name);
-		} else {
-            BOLD_YELLOW_COLOR
-            printlnf("%4s: %s\n", "[File]", entryname->d_name);
+            	std::cout << WBLBLUE << "[Direc]:  " << WBLWHITE << entryname->d_name << "\n";
+        } else {
+        	ParseListing((std::string)entryname->d_name);
         }
 
         BLACK_COLOR // Reset
     }
 
     closedir(directory);
+}
+
+//8
+/* Under the FileFunction namespace */
+void
+FLSFunction::ParseListing(std::string file) {
+    if(file == "Elitefile")             std::cout << WBBLUE    << "[Elite]:   " << WBWHITE << file;
+    else if(file == "CMakeLists.txt")   std::cout << WBMAGENTA << "[CMake]:   " << WBWHITE << file; 
+    else {
+    	std::string entry = GetFileExtension(file);
+    	
+        if(entry == "scrift_log")           std::cout << WBLYELLOW << "FeLog*    "   << WBWHITE << file; 
+        else if(entry == "scrift_ascii")    std::cout << WBLYELLOW << "Ascii*    "   << WBWHITE << file;
+        else if(entry == "scrift_settings") std::cout << WBLYELLOW << "Settings* "   << WBWHITE << file;
+        else if(entry == "scrift_history")  std::cout << WBLYELLOW << "History*  "   << WBWHITE << file;  
+        else if(entry == "scr")    std::cout << WBGREEN  << "[Scrift]: "<< WBWHITE  << file; 
+        else if(entry == "cpp" 
+    	    ||  entry == "hpp" 
+    	    ||  entry == "cxx" 
+    	    ||  entry == "hxx" 
+    	    ||  entry == "cc" 
+    	    ||  entry == "hh")     std::cout << WBCYAN  << "[C++]:    "    << WBWHITE << file;
+	    else if(entry == "c"  
+		    || entry  == "h")      std::cout << WBBLUE  << "[C]:      "    << WBWHITE << file;
+	    else if(entry == "bash")   std::cout << WBGREEN << "[Bash]:   "    << WBWHITE << file;
+	    else if(entry == "sh")     std::cout << WBLGREEN<< "[Shell]:  "    << WBWHITE << file;
+	    else if(entry == "py")     std::cout << WBBLUE  << "[Python]: "    << WBWHITE << file;
+	    else if(entry == "fls" 
+		    || entry  == "flsh")   std::cout << WBLYELLOW  << "[Fla]:    " << WBWHITE << file;
+	    else if(entry == "md")     std::cout << WBYELLOW   << "[Mrkdwn]: " << WBWHITE << file;
+	    else if(entry == "frbr")   std::cout << WBLMAGENTA << "[FrBrn]:  " << WBWHITE << file; 
+	    else if(entry == "png")    std::cout << WBLBLUE    << "[Png]:    " << WBWHITE << file;
+	    else if(entry == "jpg" 
+		    || entry  == "jpeg")   std::cout << WBLBLUE  << "[Jpg]:    "   << WBWHITE << file;
+	    else if(entry == "gif")    std::cout << WBLBLUE  << "[Gif]:    "   << WBWHITE << file;
+	    else if(entry == "html" 
+		    || entry  == "htm")    std::cout << WBLRED   << "[Html]:   "   << WBWHITE << file;
+	    else if(entry == "rs" 
+		    || entry  == "rslib")  std::cout << WBYELLOW << "[Rust]:   "   << WBWHITE << file;
+	    else if(entry == "lua")    std::cout << WBLBLACK << "[Lua]:    "   << WBWHITE << file;
+	    else if(entry == "inclink")std::cout << WBLYELLOW<< "[incLnk]: "   << WBWHITE << file;
+	    else {
+		    std::cout << WBYELLOW << "[File]:   " << WBWHITE << file;
+	    }
+    }
+	
+	std::cout << "\n";
+}
+
+std::string 
+FLSFunction::GetFileExtension(const std::string& file) {
+    if(file.find_last_of(".") != std::string::npos) return file.substr(file.find_last_of(".") + 1);
+    
+    return "";
 }
 
 
