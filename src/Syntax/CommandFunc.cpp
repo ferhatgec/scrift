@@ -132,7 +132,7 @@ FCommand::list_direc(boolean _home, std::string arg) {
     }
     
     if (dir == NULL) {
-        printlnf("Directory not found.");
+        std::cout << WBLWHITE << "Directory not found.\n";
         return;
     }
     
@@ -143,9 +143,8 @@ FCommand::list_direc(boolean _home, std::string arg) {
         	if(strstr(entry->d_name, ".")) {} 
             else if(strstr(entry->d_name, "..")) {} 
             else {	
-                BOLD_RED_COLOR
-                printf("%4s: %s\n","[Dir]",entry->d_name); 
-            	}
+        		std::cout << WBLBLUE << "[Direc]:  " << WBLWHITE << entry->d_name << "\n";        
+            }
         }
         
         BLACK_COLOR
@@ -173,10 +172,7 @@ FCommand::list_file(boolean _home, std::string arg) {
     }
         
     if (dir == NULL) {
-        RED_COLOR
-        std::cout << "Directory not found.\n";
-        BLACK_COLOR
-        
+        std::cout << WBLWHITE << "Directory not found.\n";
         return;
     }
     
@@ -185,14 +181,10 @@ FCommand::list_file(boolean _home, std::string arg) {
         remove_character(entry->d_name, '.');
         remove_character(entry->d_name, '..');
         
-        //printf("%d", entry->d_type, "\n");
-        //printf("%d");
-        //  printf("\033[0;34m");
         stat(entry->d_name,&filestat);
         if(entry->d_type == DT_DIR) {} 
         else {
-            BOLD_YELLOW_COLOR
-            printf("%4s: %s\n","[File]",entry->d_name);
+            std::cout << WBYELLOW << "[File]:   " << WBWHITE << entry->d_name << "\n";
         } 
         
         BLACK_COLOR

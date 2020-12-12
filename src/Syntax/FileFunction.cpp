@@ -37,25 +37,6 @@
 
 using namespace FileFunction;
 
-#define WBRED      "\033[1;31m"
-#define WBGREEN    "\033[1;32m"
-#define WBYELLOW   "\033[01;33m"
-#define WBBLUE     "\033[1;34m"
-#define WBMAGENTA  "\033[1;35m"
-#define WBCYAN     "\033[1;36m"
-
-// Light colors
-#define WBLBLACK   "\033[1;90m"
-#define WBLRED     "\033[1;91m"
-#define WBLGREEN   "\033[1;92m"
-#define WBLYELLOW  "\033[1;93m"
-#define WBLBLUE    "\033[1;94m"
-#define WBLMAGENTA "\033[1;95m"
-#define WBLCYAN    "\033[1;96m"
-#define WBLWHITE   "\033[1;97m"
-
-#define WBWHITE    "\033[1;37m"
-
 // Classes
 std::unique_ptr<FRunFunction> filerunfunction(new FRunFunction);
 std::unique_ptr<FeLog> filelog(new FeLog);
