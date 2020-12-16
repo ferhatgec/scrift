@@ -54,7 +54,8 @@ typedef struct {
     std::string	cmd_cls         = "Close Scrift.\n";
     std::string	cmd_clear       = "Clear Scrift's buffer.\n";
     std::string	cmd_ip          = "Show local-IP address.\n";
-
+    std::string cmd_incognito   = "Switch to incognito mode (on - off)\n\n";
+	
     std::string cmd_echo        = "Show <arg> [$#environment].\n";
     std::string cmd_output      = "Print output of inputted command.\n";
     std::string cmd_title       = "Change title of terminal header-bar (title-bar).\n";

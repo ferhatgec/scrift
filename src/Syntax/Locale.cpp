@@ -53,7 +53,8 @@ FLocale::Set() {
         locale.cmd_cls        = "Scrift'i kapat.\n";
         locale.cmd_clear      = "Scrift'in arabelleğini temizle.\n"; 
         locale.cmd_ip         = "Yerel IP adresini göster.\n";
-
+        locale.cmd_incognito  = "Gizli moda geç (on - off)\n\n"; 
+        
         locale.cmd_echo       = "<arg> [$#environment]'i yazdır.\n";	
         locale.cmd_output     = "Girilen komutun çıktısını yazdırır\n";
         locale.cmd_title      = "Uçbirimin başlığını değiştir.\n";

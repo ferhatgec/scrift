@@ -54,7 +54,8 @@ FHelpFunction::HelpFunction(slocale_t &locale) {
     " * pause          : " << locale.cmd_pause	    <<
     " * cls || exit    : " << locale.cmd_cls        <<
     " * clear          : " << locale.cmd_clear 	    <<
-    " * ip             : " << locale.cmd_ip;
+    " * ip             : " << locale.cmd_ip         <<
+    " * incognito      : " << locale.cmd_incognito;
 	
 	BOLD_LIGHT_YELLOW_COLOR
 	std::cout << locale.header_output; 
