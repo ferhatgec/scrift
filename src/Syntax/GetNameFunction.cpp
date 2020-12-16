@@ -60,24 +60,6 @@ std::string uname(password->pw_name);
 std::string customize = fsettings->InputCustomize();
 
 void
-FStructure::Terminal() {
-/*    BOLD_BLUE_COLOR
-    std::cout << uname;
-    BOLD_CYAN_COLOR
-    std::cout << "@";
-    BOLD_MAGENTA_COLOR
-    usr.InitHostname();
-    BOLD_CYAN_COLOR
-    std::cout << ":~";
-    BOLD_YELLOW_COLOR
-    std::cout << terminal->_file_path_cd_function << " ";
-    BOLD_CYAN_COLOR
-    std::cout << GetBranch();
-    BOLD_LIGHT_YELLOW_COLOR
-    tools.Clock();
-    BOLD_RED_COLOR
-    // std::cout << "$# ";
-    std::cout << " " << customize << " ";
-    BLACK_COLOR*/
-    fsettings->Customize();
+FStructure::Terminal(bool incognito) {
+    fsettings->Customize(incognito);
 }

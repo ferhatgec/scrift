@@ -271,6 +271,9 @@ public:
 	/* Change title of terminal header */
 	std::string Title = "title";
 	
+	/* Incognito mode for history */
+	std::string Incognito = "incognito";
+	
 	/* Whitespace */
 	std::string Whitespace = " ";
 };

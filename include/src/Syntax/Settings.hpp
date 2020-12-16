@@ -41,7 +41,7 @@ public:
 	int Clear();
 		
 	/* Customize */
-	void Customize();
+	void Customize(bool incognito);
 };
 
 #endif // SETTINGS_HPP

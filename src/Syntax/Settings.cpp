@@ -254,42 +254,58 @@ FSettings::Sign(std::string _command) {
 	Customize your Scrift prompt.
 */
 void
-FSettings::Customize() {
+FSettings::Customize(bool incognito) {
 	std::string check, color, _color;
+	
+	/* get [PROMPT] line */
 	std::string line = fsplusplus::FindStringWithReturn(Path(), "[PROMPT]");
+	
+	/* erase [PROMPT] */
 	line = stringtools::EraseAllSubString(line , "[PROMPT] ");
+	
 	FGetUsername get;
+	
 	do {
+		/* get 'check' variable */
 		stringtools::GetBtwString(line, "@", "@", check);
+		
+		/* get color */
 		stringtools::GetBtwString(line, "@[", "]", color);
+		
+		/* convert to escape sequence */
 		_color = "\033[" + color;
 
+		/* check */
 		if(check == "username")
 			std::cout << _color << getpwuid(geteuid())->pw_name;
 		else if(check == "hostname") {
 			std::cout << _color;
 			get.InitHostname();
-		} else if(check == "sign_1")
+		} else if(check == "sign_1") {
 			std::cout << _color << Sign(check);
-		else if(check == "sign_2")
+		} else if(check == "sign_2") {
 			std::cout << _color << Sign(check);
-		else if(check == "directory")
+		} else if(check == "directory") {
 			std::cout << _color << fsplusplus::GetCurrentWorkingDir();
-		else if(check == "branch") {
+		} else if(check == "branch") {
 			FBranch branch;
 			std::cout << _color << branch.GetGitBranch();
 		} else if(check == "clock") {
 			FTools tl;
 			std::cout << _color << " "; tl.Clock();
-		} else if(check == "input_sign")
+		} else if(check == "input_sign") {
 			std::cout << _color << InputCustomize();
-		else if(check == "whitespace" || check == "whspace")
+		} else if(check == "whitespace" || check == "whspace") {
 			std::cout << " ";
-		else if(check == "newline")
+		} else if(check == "newline") {
 			std::cout << "\n";
-		else if(strstr(check.c_str(), "sign")) 
+		} else if(check == "incognito") {
+			if(incognito == true) 
+				std::cout << "🕵️";
+		} else if(strstr(check.c_str(), "sign")) 
 			std::cout << _color << Sign(check);
 
+		/* erase controlled definition */
 		line = stringtools::EraseAllSubString(line, "@" + check + "@[" + color + "]");
 	} while(check != "error" && color != "error");
 }

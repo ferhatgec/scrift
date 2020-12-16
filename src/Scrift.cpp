@@ -82,9 +82,13 @@ const std::string compilation_time = __TIME__;
 #define ESC 033
 
 /* For Environment */
-static std::string SetNameToString, SetNameString;
+static std::string SetNameToString, 
+                   SetNameString;
 char c;
-static struct termios oldtio, newtio;
+bool incognito = false;
+
+static struct termios oldtio,
+                      newtio;
  
 /* Classes */
 std::unique_ptr<FMain> main_function(new FMain);
@@ -1045,6 +1049,22 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             filefunction->CreateFileFunctionInit(arg);
             
             return;
+        } else if(arg.rfind(keywords.Incognito, 0) == 0) {
+        	if(arg == keywords.Incognito + "\n") {
+        		incognito = true;
+        	} else {
+        		arg = stringtools::EraseAllSubString(arg, keywords.Incognito + " ");
+        		
+        		arg.pop_back();
+        		
+        		if(arg == "on") {
+        			incognito = true;
+        		} else if(arg == "off") {
+        			incognito = false;
+        		}
+        	}
+        	
+        	return;
         } else if(arg == keywords.FeLog + "\n") {
           	/* felog
                 Show FeLog
@@ -1202,7 +1222,7 @@ void InputFunction(slocale_t &locale) {
     	
     if(scrift_line >= runsyntax->Clear()) {
         std::cout << "\033c";
-        terminalstr->Terminal();
+        terminalstr->Terminal(incognito);
         scrift_line = 0;
     }
 
@@ -1312,12 +1332,15 @@ void InputFunction(slocale_t &locale) {
 		
         if(main_function->_h_str != "\n") {
             CodeExecution(main_function->_h_str, locale);
-			history->WriteInHistory(main_function->_h_str);
+            
+            if(incognito != true)
+				history->WriteInHistory(main_function->_h_str);
+			
 			line = GetTotalHistoryLine();
 		}
 		
         main_function->_h_str.erase();
-        terminalstr->Terminal();
+        terminalstr->Terminal(incognito);
         	
         return;
     } else {
@@ -1402,7 +1425,7 @@ int main(integer argc, char** argv) {
 	    }
 
 	    /* Terminal. */
-	    terminalstr->Terminal();
+	    terminalstr->Terminal(incognito);
 
 	    /* Dynamic titles. */
 	    main_function->SetTitle();

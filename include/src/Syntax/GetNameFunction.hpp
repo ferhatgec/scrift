@@ -22,6 +22,6 @@ class FStructure : public FGetUsername {
 public:
     FStructure();
     ~FStructure();
-    void Terminal();
+    void Terminal(bool incognito);
 };
 #endif // GET_NAME_FUNCTION_HPP
