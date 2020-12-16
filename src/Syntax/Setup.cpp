@@ -234,7 +234,7 @@ FSetup::Stage1() {
         bg_color = "12";
         ascii_art_color = "random";
         scrift_theme = "default";
-        input_customize = "▶";
+        input_customize = "$#";
         welcome_message = "yes";
         local_git_branch = "yes";
         auto_clear = "40";
@@ -259,7 +259,7 @@ FSetup::Stage1() {
     erase_settings << "date_info yes\n";
     erase_settings << "sign_1 " + sign_1 + "\n";
     erase_settings << "sign_2 " + sign_2 + "\n";
-    erase_settings << "\n[PROMPT] @username@[1;34m] @sign_1@[1;36m] @hostname@[1;35m] @sign_2@[1;36m] @directory@[1;33m] @whitespace@[1;36m] @branch@[1;36m] @clock@[1;93m] @whspace@[1;36m] @input_sign@[1;31m]";
+    erase_settings << "\n[PROMPT] @username@[1;34m] @sign_1@[1;36m] @hostname@[1;35m] @sign_2@[1;36m] @directory@[1;33m] @whitespace@[1;36m] @branch@[1;36m] @clock@[1;93m] @whspace@[1;36m] @incognito@[1;96m] @newline@[1;95m] @input_sign@[1;31m]";
     
     erase_settings.close();
 
