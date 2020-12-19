@@ -24,6 +24,7 @@
 - Package Manager (fpi)
 - Configuration application without text editor :^)
 - Fast and stable.
+- Incognito mode. 🕵️
 - Integrated Own Emoji library (see [Emoji++](https://github.com/FerhatGec/emojiplusplus)) :airplane:
 - Integrated Own Color library (see [Colorized](https://github.com/FerhatGec/colorized)) :satisfied:
 - Integrated Log system (FeLog) :open_mouth:
