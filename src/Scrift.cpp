@@ -239,7 +239,7 @@ void PrintVersion() {
     	
     /* Author */
     BOLD_BLUE_COLOR
-    printlnf("Ferhat Gecdogan \n");
+    printlnf("Ferhat Geçdoğan \n");
     	
     BOLD_YELLOW_COLOR
     printlnf("All Rights Reserved. \n");
