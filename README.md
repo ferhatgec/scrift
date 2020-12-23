@@ -20,6 +20,7 @@
 - Auto-Whitespace
 - Auto-Completer (not ended)
 - Auto terminal buffer clear.
+- Aliases
 - Customizable (Prompt and more!)
 - Package Manager (fpi)
 - Configuration application without text editor :^)
