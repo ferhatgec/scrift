@@ -363,7 +363,12 @@ namespace fsplusplus {
     	
     static std::string ReadFileWithReturn(std::string file) {
 		std::string line, data;
-        std::ifstream readfile((fsplusplus::GetCurrentWorkingDir() + "/" + file).c_str());
+
+        if(file[0] != '/') {
+            file = fsplusplus::GetCurrentWorkingDir() + "/" + file;
+        }
+
+        std::ifstream readfile(file.c_str());
     	
     	if(readfile.is_open()) {
         	while (std::getline(readfile, line)) data.append(line + "\n");
@@ -473,8 +478,12 @@ namespace fsplusplus {
 	
 	static void CreateFile(std::string name, std::string input) {
         std::string path;
-        path.append(fsplusplus::GetCurrentWorkingDir());
-        path.append("/");
+
+        if(name[0] != '/') {
+            path.append(fsplusplus::GetCurrentWorkingDir());
+            path.append("/");
+        }
+
         path.append(name);
     
         std::ofstream file(path, std::ios::app);
@@ -485,10 +494,14 @@ namespace fsplusplus {
 	
 	static void CreateFileWithoutAppend(std::string name) {
 		std::string path;
-    	path.append(fsplusplus::GetCurrentWorkingDir());
-        path.append("/");
+
+        if(name[0] != '/') {
+            path.append(fsplusplus::GetCurrentWorkingDir());
+            path.append("/");
+        }
+
         path.append(name);
-    	
+
         std::ofstream file(path);
         
         file.close();

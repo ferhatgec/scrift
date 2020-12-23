@@ -90,7 +90,17 @@ namespace stringtools {
     	s.erase(0, s.find_first_not_of(t));
     	return s;
 	}
-	
+
+    /* From FlaScript's StringTools replacement */
+    static std::string EraseSub(std::string & mainString, const std::string & erase) {
+		size_t pos = std::string::npos;
+
+   		if((pos = mainString.find(erase)) != std::string::npos)
+        		mainString.erase(pos, erase.length());
+
+  		return mainString;
+  	}
+
 	static std::string getFirstCommand(std::string str) {
     	std::string word = "";
     	if(!strstr(str.c_str(), " ")) return str;

@@ -63,7 +63,8 @@ HEADERFILE = CommandFunc.o \
 			 ASCIIFunction.o \
 			 Setup.o \
 			 Tools.o \
-			 Locale.o
+			 Locale.o \
+			 Alias.o
 
 # Platform
 ifeq ($(OS),Windows_NT)
