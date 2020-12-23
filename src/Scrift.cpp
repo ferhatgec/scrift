@@ -811,6 +811,8 @@ void CodeExecution(std::string arg, slocale_t &locale) {
 		    colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), 
                 (GetUptime()).c_str());
             
+            std::cout << "\n";
+            
             return;
     	} else if(arg == keywords.Clear) {
       	  	/*  clear
