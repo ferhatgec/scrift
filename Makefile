@@ -21,9 +21,6 @@ SRCSYNTAXDIREC = ./src/Syntax/
 # Fetcheya
 SRCFETCHEYADIREC = ./src/Fetcheya/
 
-# Edifor
-SRCEDIFORDIREC = ./src/Edifor/
-
 # Games
 GAMESDIREC = ./Games/
 
@@ -77,10 +74,10 @@ else
 endif
 
 # Build
-all: fpm conio headersfile edifor main datec clean
+all: fpm conio headersfile main datec clean
 
 # Build & Install
-install: fpmc headersfile mainc ediforc date clean
+install: fpmc headersfile mainc date clean
 
 # Remove & Clean all
 removeall: uninstall cleanall
@@ -133,16 +130,6 @@ mainc: $(SRCDIREC)Scrift.cpp
 	$(COMPILER) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) -o /bin/scrift
 	echo [SUCCESS] Scrift [bin]
 
-# Edifor Build
-edifor:
-	$(GCC) $(CFLAGS) $(SRCEDIFORDIREC)Edifor.c -o edifor
-	echo [SUCCESS] Edifor
-	
-# Edifor Build & Install
-ediforc:
-	$(GCC) $(CFLAGS) $(SRCEDIFORDIREC)Edifor.c -o /bin/edifor
-	echo [SUCCESS] Edifor [bin]
-
 # Castle
 castle: $(GAMESDIREC)/Castle/Castle.hpp
 	$(COMPILER) $(GCFLAGS) $(GAMESDIREC)/Castle/Castle.cpp -o $(PREFIX)castle $(GLDFLAGS)
@@ -172,7 +159,6 @@ date: $(SRCAPPSDIREC)/FDate/FDate.cpp
 # Remove Scrift.
 uninstall:
 	rm -f /bin/scrift
-	rm -f /bin/edifor
 	rm -f /bin/castle
 	rm -f /src/Games/Castle/castle
 	rm -f /bin/fdate
