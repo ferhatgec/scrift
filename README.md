@@ -22,14 +22,14 @@
 - Auto terminal buffer clear.
 - Aliases
 - Customizable (Prompt and more!)
-- Package Manager (fpi)
+- Package Manager (see [Fpm](https://github.com/ferhatgec/fpm)) :package:
 - Configuration application without text editor :^)
 - Fast and stable.
 - Incognito mode. 🕵️
-- Integrated Own Emoji library (see [Emoji++](https://github.com/FerhatGec/emojiplusplus)) :airplane:
-- Integrated Own Color library (see [Colorized](https://github.com/FerhatGec/colorized)) :satisfied:
+- Integrated Own Emoji library (see [Emoji++](https://github.com/ferhatgec/emojiplusplus)) :airplane:
+- Integrated Own Color library (see [Colorized](https://github.com/ferhatgec/colorized)) :satisfied:
 - Integrated Log system (FeLog) :open_mouth:
-- Integrated Scrift based system information tool (see [Fetcheya](https://github.com/FerhatGec/fetcheya)) :open_mouth:
+- Integrated Scrift based system information tool (see [Fetcheya](https://github.com/ferhatgec/fetcheya)) :open_mouth:
 - Integrated Scrift based Text Editor (Edifor) :open_mouth:
 - ASCII Art (with Color option) :open_mouth:
 - History
