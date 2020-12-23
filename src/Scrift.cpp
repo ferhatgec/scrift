@@ -1303,7 +1303,7 @@ void InputFunction(slocale_t &locale) {
             CodeExecution(main_function->_h_str, locale);
             
             if(incognito != true)
-				history->WriteInHistory(main_function->_h_str);
+				history->WriteInHistory(main_function->_h_str + "\n");
 			
 			line = GetTotalHistoryLine();
 		}
