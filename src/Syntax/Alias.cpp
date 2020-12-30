@@ -36,6 +36,49 @@ FAlias::Parse(std::string inputted_command) {
 
     return data;
 }
+
+void
+FAlias::AddAlias(std::string name, std::string replacement) {
+    std::string data = fsplusplus::FindStringWithReturn(STR(getenv("HOME")) + "/.scrift_aliases",
+        name + "='");
+    
+    
+    if(data == "null") {
+        std::ofstream alias;
+        
+        alias.open((STR(getenv("HOME")) + "/.scrift_aliases").c_str(), std::ios_base::app); // append instead of overwrite
+    
+        alias << name + "='" + replacement + "'\n";
+    
+        alias.close();
+    
+        return;
+    }
+    
+    std::ifstream readfile(STR(getenv("HOME")) + "/.scrift_aliases");
+    
+    std::string line, _repl_data;
+
+    /* Read file line-by-line with alias replacement */ 
+    if(readfile.is_open()) {
+        while (std::getline(readfile, line)) {
+            if(line == data) {
+                line = name + "='" + replacement + "'";
+            }
+            
+            _repl_data.append(line + "\n");
+        }
+    }
+    
+    readfile.close();
+    
+    std::remove((STR(getenv("HOME")) + "/.scrift_aliases").c_str());
+    
+    fsplusplus::CreateFile(STR(getenv("HOME")) + "/.scrift_aliases", _repl_data);
+    
+}
+
+
 void
 FAlias::Init() {
     if(fsplusplus::IsExistFile(STR(getenv("HOME")) + "/.scrift_aliases") == false) {

@@ -146,7 +146,7 @@ void RemovePrintedChar(int value) {
 	return;
 }
 
-int kbhit (void) {
+int kbhit() {
     struct timeval tv;
     fd_set rdfs;
  
@@ -771,6 +771,34 @@ void CodeExecution(std::string arg, slocale_t &locale) {
     		    setenv(SetNameString.c_str(), SetNameToString.c_str(), true);
             }
 
+            return;
+        } else if(arg.rfind(keywords.Alias, 0) == 0) {
+            /* alias
+               alias a='echo aaa'
+               
+               Set or change alias
+            */
+            if(arg == keywords.Alias) {
+                readfilefunction->ReadAliasFunction();
+            } else {
+                arg = stringtools::EraseAllSubString(arg, keywords.Alias + " ");
+                
+                std::string name, replacement;
+                
+                for(unsigned i = 0; arg[i] != '\0'; i++) {
+                    if(arg[i] != '=') {
+                        name.push_back((char)arg[i]);
+                    } else {
+                        break;
+                    }
+                }
+                
+                replacement = stringtools::GetBetweenString(arg, 
+                    name + "='", "'");
+
+                alias->AddAlias(name, replacement);
+            }
+            
             return;
         } else if(arg.rfind(keywords.Random, 0) == 0) {
             /*  random

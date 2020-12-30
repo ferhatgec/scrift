@@ -384,7 +384,7 @@ namespace fsplusplus {
     	
     	if(readfile.is_open()) {
         	while (std::getline(readfile, line))
-        		if(strstr(line.c_str(), str.c_str())) return line + "\n";
+        		if(strstr(line.c_str(), str.c_str())) return line;
     	}
 		
     	return "null";

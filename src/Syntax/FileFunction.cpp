@@ -586,6 +586,9 @@ FReadFileFunction::ReadFeLogFunction() {
         filelog->AllofThem();
 }
 
+/* TODO:
+  * Remove DRY codes.
+*/
 void
 FReadFileFunction::ReadFileFunction(fstr filename) {
     std::string line;
@@ -644,6 +647,28 @@ FReadFileFunction::ReadASCIIFunction() {
         std::cout << "Unable to open file\n";
     
 }
+
+void
+FReadFileFunction::ReadAliasFunction() {
+    std::string line;
+    std::string path;
+    path.append(getenv("HOME"));
+    path.append("/");
+    path.append(".scrift_aliases");
+    
+    std::ifstream readfile(path);
+    if(readfile.is_open()) {
+        while (std::getline(readfile, line)) {
+            colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_GREEN).c_str(), line.c_str());
+            slashn
+        }
+
+        readfile.close();
+    } else
+        std::cout << "Unable to open file\n";
+    
+}
+
 // FHOMEFUNCTION
 void
 fhomefunction::GetHome() {

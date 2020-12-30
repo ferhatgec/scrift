@@ -49,11 +49,14 @@ namespace FileFunction {
         FReadFileFunction();
         ~FReadFileFunction();
      
+     	/* TODO: Remove DRY codes */
         void ReadFeLogFunctionWithoutPrint();
         void ReadHistoryFileFunction();
         void ReadSettingsFunction();
         void ReadASCIIFunction();
         void ReadFeLogFunction();
+        void ReadAliasFunction();
+        
         void ReadFileFunction(std::string);
     };
 

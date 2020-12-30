@@ -274,6 +274,9 @@ public:
 	/* Incognito mode for history */
 	std::string Incognito = "incognito";
 	
+	/* Set or change alias */
+	std::string Alias = "alias";
+	
 	/* Whitespace */
 	std::string Whitespace = " ";
 };
