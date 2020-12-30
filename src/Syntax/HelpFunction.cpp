@@ -55,7 +55,8 @@ FHelpFunction::HelpFunction(slocale_t &locale) {
     " * cls || exit    : " << locale.cmd_cls        <<
     " * clear          : " << locale.cmd_clear 	    <<
     " * ip             : " << locale.cmd_ip         <<
-    " * incognito      : " << locale.cmd_incognito;
+    " * incognito      : " << locale.cmd_incognito  <<
+    " * alias          : " << "Set or change aliases.\n\n";
 	
 	BOLD_LIGHT_YELLOW_COLOR
 	std::cout << locale.header_output; 

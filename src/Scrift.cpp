@@ -780,6 +780,8 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             */
             if(arg == keywords.Alias) {
                 readfilefunction->ReadAliasFunction();
+            } else if(arg == keywords.Alias + " --h") {
+                std::cout << "Usage: alias name='command'\n";
             } else {
                 arg = stringtools::EraseAllSubString(arg, keywords.Alias + " ");
                 
