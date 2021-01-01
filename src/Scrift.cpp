@@ -1,6 +1,6 @@
 /* MIT License
 #
-# Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
+# Copyright (c) 2020-2021 Ferhat Geçdoğan All Rights Reserved.
 # Distributed under the terms of the MIT License.
 #
 # */
@@ -231,7 +231,7 @@ void PrintVersion() {
     
     /* Copyright */
     BOLD_RED_COLOR
-    printlnf("Copyright (c) 2020 ");
+    printlnf("Copyright (c) 2020-2021 ");
     	
     /* Author */
     BOLD_BLUE_COLOR
