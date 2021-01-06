@@ -61,7 +61,8 @@ FLocale::Set() {
         locale.cmd_emoji      = "Emoji yazdır (orn: :thinking_face:)\n\n";
 
         locale.cmd_scr        = "<argument>'i yürüt.\n";
-        locale.cmd_fpm        = "Fegeya Paket Yöneticisini çalıştır\n\n";
+        locale.cmd_fpm        = "Fegeya Paket Yöneticisini çalıştır.\n";
+        locale.cmd_previous   = "Önceki komutu getir ve yürüt.\n\n";
         
         locale.dir_not_exist  = " : Bu dizin ortalıkta yok!\n";
     }

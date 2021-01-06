@@ -74,7 +74,8 @@ FHelpFunction::HelpFunction(slocale_t &locale) {
 	
 	std::cout << 
 	" * scr <argument>   : " << locale.cmd_scr <<
-    " * fpm <arg> <pack> : " << locale.cmd_fpm;
+    " * fpm <arg> <pack> : " << locale.cmd_fpm <<
+    " * !!               : " << locale.cmd_previous;
 
 	BOLD_LIGHT_RED_COLOR
 	std::cout << locale.header_path;

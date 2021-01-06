@@ -62,7 +62,9 @@ typedef struct {
     std::string cmd_emoji       = "Show <emoji> (e.g: :thinking_face:)\n\n";
     
     std::string cmd_scr         = "Execute <argument>\n";
-    std::string cmd_fpm         = "Run Fegeya Package Manager\n\n";
+    std::string cmd_fpm         = "Run Fegeya Package Manager\n";
+    std::string cmd_previous    = "Get & execute previous command\n\n";
+
     
     std::string dir_not_exist   = " : This directory is not exist!\n";
 } slocale_t;
