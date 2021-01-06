@@ -78,7 +78,8 @@ const std::string compilation_time = __TIME__;
 
 /* For Environment */
 static std::string SetNameToString, 
-                   SetNameString;
+                   SetNameString,
+                   previous_command;
 char c;
 bool incognito = false;
 
@@ -834,6 +835,17 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             PrintVersion();
             
             return;
+        } else if(arg == keywords.Previous) {
+            /* !!
+               Get & execute previous command
+            */
+            if(previous_command != "") {
+                std::cout << previous_command << "\n";
+
+                CodeExecution(previous_command, locale);
+            }
+
+            return;
         } else if(arg == keywords.Uptime) {
             /*  uptime
                 Show uptime
@@ -1332,6 +1344,10 @@ void InputFunction(slocale_t &locale) {
         if(main_function->_h_str != "\n") {
             main_function->_h_str.pop_back();
 
+            if(main_function->_h_str != "!!") {
+                previous_command  = main_function->_h_str;
+            }
+
             CodeExecution(main_function->_h_str, locale);
             
             if(incognito != true)
@@ -1428,6 +1444,11 @@ int main(integer argc, char** argv) {
 		    logsystem->WriteLog("Launching Welcome() function.. - ");
 		    helpstr->Welcome();
 	    }
+
+	    /* Get latest command from .scrift_history */
+	    if(line > 1) {
+	        previous_command = GetSpecificHistoryLine(line - 1);
+        }
 
 	    /* Terminal. */
 	    terminalstr->Terminal(incognito);

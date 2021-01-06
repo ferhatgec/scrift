@@ -277,6 +277,9 @@ public:
 	/* Set or change alias */
 	std::string Alias = "alias";
 	
+	/* Get previous command without arrow keys */
+	std::string Previous = "!!";
+	
 	/* Whitespace */
 	std::string Whitespace = " ";
 };
