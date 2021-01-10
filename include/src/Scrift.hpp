@@ -1,6 +1,6 @@
 /* MIT License
 #
-# Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
+# Copyright (c) 2020-2021 Ferhat Geçdoğan All Rights Reserved.
 # Distributed under the terms of the MIT License.
 #
 # */
@@ -18,6 +18,8 @@
 #include "synflang.hpp"
 #include "Syntax/CommandFunc.h"
 #include "Syntax/Locale.hpp"
+
+#define COPYRIGHT_YEAR "2020-2021"
 
 #define slashn printlnf("\n");
 

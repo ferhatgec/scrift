@@ -206,18 +206,19 @@ void Space(int space, std::string sign, unsigned theme) {
 
 void PrintVersion() {
     BOLD_MAGENTA_COLOR
-    printlnf("Fegeya Scrift Version: ");
+    std::cout << "Fegeya Scrift Version: ";
     	
     /* Version */
     BOLD_GREEN_COLOR
-    printlnf(SCRIFT_VERSION);
-    /* - */
+    std::cout << SCRIFT_VERSION;
+    
+	/* - */
     BOLD_YELLOW_COLOR
     printhyphen // printlnf("-");
     
     /* Status */
     BOLD_CYAN_COLOR
-    printlnf(SCRIFT_STATUS);
+    std::cout << SCRIFT_STATUS;
     
     /* - */
     BOLD_BLUE_COLOR
@@ -225,25 +226,26 @@ void PrintVersion() {
     
     /* VersionGenerator */
     BOLD_MAGENTA_COLOR
-    printlnf(VersionGenerator().c_str());
+    std::cout << VersionGenerator();
     	
     /* Newline */
     slashn
     
     /* Copyright */
     BOLD_RED_COLOR
-    printlnf("Copyright (c) 2020-2021 ");
-    	
+    std::cout << "Copyright (c) " << COPYRIGHT_YEAR << " ";
+
     /* Author */
     BOLD_BLUE_COLOR
-    printlnf("Ferhat Geçdoğan \n");
+    std::cout << "Ferhat Geçdoğan ";
     	
     BOLD_YELLOW_COLOR
-    printlnf("All Rights Reserved. \n");
+    std::cout << "All Rights Reserved. \n";
     
     BOLD_CYAN_COLOR
-	printlnf("Distributed under the terms of the MIT License.");
+	std::cout << "Distributed under the terms of the MIT License.";
 	BLACK_COLOR
+
     slashn
 }
 
@@ -361,7 +363,7 @@ void PrintUsername() {
     BOLD_CYAN_COLOR
     printlnf(pass->pw_name);
     BOLD_BLUE_COLOR
-    std::cout << " " << emojiplusplus::EmojiString(runsyntax->FWelcomeEmoji());
+    std::cout << " " << emojiplusplus::EmojiString(runsyntax->FWelcomeEmoji()) << "\n";
     BLACK_COLOR
 }
 

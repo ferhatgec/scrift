@@ -1,6 +1,6 @@
 /* MIT License
 #
-# Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
+# Copyright (c) 2020-2021 Ferhat Geçdoğan All Rights Reserved.
 # Distributed under the terms of the MIT License.
 #
 # */
@@ -127,9 +127,9 @@ FHelpFunction::Welcome() {
 	colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "Scrift ");
 	colorized::PrintWhReset(colorized::Colorize(BOLD, YELLOW).c_str(), "licensed with ");
     colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_GREEN).c_str(), "MIT License \n");
-    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "Copyright (c)");
-    colorized::PrintWhReset(colorized::Colorize(BOLD, MAGENTA).c_str(), " 2020 ");
-    colorized::PrintWith(colorized::Colorize(BOLD, YELLOW).c_str(), "Ferhat Gecdogan\n");
+    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "Copyright (c) ");
+    colorized::PrintWhReset(colorized::Colorize(BOLD, MAGENTA).c_str(), COPYRIGHT_YEAR);
+    colorized::PrintWith(colorized::Colorize(BOLD, YELLOW).c_str(), " Ferhat Geçdoğan\n");
 }
 
 void 
