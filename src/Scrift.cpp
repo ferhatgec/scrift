@@ -54,6 +54,7 @@
 #include <src/Syntax/Tools.hpp>
 #include <src/Syntax/Locale.hpp>
 #include <src/Syntax/Alias.hpp>
+#include <src/Syntax/Validation.hpp>
 
 #include <Library/Keywords.hpp>
 
@@ -106,6 +107,7 @@ std::unique_ptr<FSetup> setup(new FSetup);
 std::unique_ptr<FTools> date_tools(new FTools);
 std::unique_ptr<FLocale> set_locale(new FLocale);
 std::unique_ptr<FAlias> alias(new FAlias);
+std::unique_ptr<FValidation> validation(new FValidation);
 
 /* Structures */
 std::unique_ptr<faddtextfunction> fileaddtextfunction(new faddtextfunction);
@@ -1350,12 +1352,21 @@ void InputFunction(slocale_t &locale) {
                 previous_command  = main_function->_h_str;
             }
 
-            CodeExecution(main_function->_h_str, locale);
+            if(validation->Validate(main_function->_h_str) == WEBSITE) {
+                /* TODO: Implement some of the xdg-utils */
+                runfunction->RunFunction("xdg-open " + main_function->_h_str);
+
+                BOLD_LIGHT_WHITE_COLOR
+                std::cout << "Hmm, I guess '" + main_function->_h_str + "' was a website.\n";
+                BLACK_COLOR
+            } else {
+                CodeExecution(main_function->_h_str, locale);
             
-            if(incognito != true)
-				history->WriteInHistory(main_function->_h_str + "\n");
-			
-			line = GetTotalHistoryLine();
+                if(incognito != true)
+                    history->WriteInHistory(main_function->_h_str + "\n");
+
+			    line = GetTotalHistoryLine();
+		    }
 		}
 		
         main_function->_h_str.erase();

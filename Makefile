@@ -47,21 +47,22 @@ CLEANALL = scrift /Games/Castle/castle
 CLEAN = *.o
 
 # Scrift's Syntax objects
-HEADERFILE = CommandFunc.o \
-			 GetNameFunction.o \
-			 FileFunction.o \
-			 RunFunction.o \
-			 Log.o \
-			 History.o \
-			 Branch.o \
-			 Template.o \
-			 Settings.o \
-			 HelpFunction.o \
-			 ASCIIFunction.o \
-			 Setup.o \
-			 Tools.o \
-			 Locale.o \
-			 Alias.o
+HEADERFILE = CommandFunc.o     \
+             GetNameFunction.o \
+             FileFunction.o    \
+             RunFunction.o     \
+             Log.o             \
+             History.o         \
+             Branch.o          \
+             Template.o        \
+             Settings.o        \
+             HelpFunction.o    \
+             ASCIIFunction.o   \
+             Setup.o           \
+             Tools.o           \
+             Locale.o          \
+             Alias.o           \
+             Validation.o      \
 
 # Platform
 ifeq ($(OS),Windows_NT)

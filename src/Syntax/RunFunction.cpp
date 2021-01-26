@@ -24,6 +24,10 @@
 #define MAXCOM 1000
 #define MAXLIST 100
 
+/*
+* TODO: Clean C-like variable types, code blocks & replace with latest version of ExecutePlusPlus.
+*/
+
 char inputString[1000], *parsedArgs[100];
 char* parsedArgsPiped[MAXLIST];
 int execFlag = 0;
