@@ -5,28 +5,39 @@
 #
 # */
 
+#include <iostream>
+#include <string>
+#include <filesystem>
+
 #include <src/Syntax/Branch.hpp>
 #include <src/Syntax/FileFunction.hpp>
 #include <src/Syntax/Settings.hpp>
 
 #include <ExecutePlusPlus.hpp>
-#include <FileSystemPlusPlus.h>
+#include <StringTools.h>
 
 std::string
 FBranch::GetGitBranch() {
-	std::string branch(fsplusplus::ListDirectoryWithReturn(".git"));
-	
-	if(branch != "null") {
-		ExecutePlusPlus exec;
+    std::string branch;
+
+    ExecutePlusPlus exec;
+
+    if(std::filesystem::exists(".git")) {
 		branch = exec.ExecWithOutput("git branch | grep \"^\*\" | sed 's/^..//'");
-		if(strstr(branch.c_str(), "fatal") || branch.length() == 0)
-			return "";
-		else {
-			FSettings set;
-			branch.pop_back();
-			if(set.GitBranch() == true)
-				return "⎇  " + branch;
-		}
+    } else if(std::filesystem::exists(".hg")) {
+        /* It's too slow! */
+        branch = exec.ExecWithOutput("hg branch");
+    }
+
+    if(stringtools::Find(branch, "fatal") || branch.length() == 0) {
+        return "";
+    } else {
+        FSettings set;
+
+        branch.pop_back();
+
+        if(set.GitBranch() == true)
+            return "⎇  " + branch;
 	}
 
 	return "";

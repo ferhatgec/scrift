@@ -136,6 +136,16 @@ namespace stringtools {
     	
     	return word;
 	}
+
+  static bool Find(std::string &data, std::string substring) {
+  		size_t check = data.find(substring);
+
+		if (check != std::string::npos) return true; /* Found */
+		else
+			return false; /* Not found */
+
+		return false;
+	}
 }
 
 #endif // STRING_TOOLS_HPP
