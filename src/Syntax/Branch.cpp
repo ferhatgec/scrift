@@ -23,7 +23,7 @@ FBranch::GetGitBranch() {
     ExecutePlusPlus exec;
 
     if(std::filesystem::exists(".git")) {
-		branch = exec.ExecWithOutput("git branch | grep \"^\*\" | sed 's/^..//'");
+		branch = exec.ExecWithOutput("git branch | grep \"^\\*\" | sed 's/^..//'");
     } else if(std::filesystem::exists(".hg")) {
         /* It's too slow! */
         branch = exec.ExecWithOutput("hg branch");
