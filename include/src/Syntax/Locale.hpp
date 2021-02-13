@@ -55,6 +55,7 @@ typedef struct {
     std::string	cmd_clear       = "Clear Scrift's buffer.\n";
     std::string	cmd_ip          = "Show local-IP address.\n";
     std::string cmd_incognito   = "Switch to incognito mode (on - off)\n";
+    std::string cmd_res         = "Show resolution size.\n";
 	
     std::string cmd_echo        = "Show <arg> [$#environment].\n";
     std::string cmd_output      = "Print output of inputted command.\n";

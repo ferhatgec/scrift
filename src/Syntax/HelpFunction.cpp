@@ -56,6 +56,7 @@ FHelpFunction::HelpFunction(slocale_t &locale) {
     " * clear          : " << locale.cmd_clear 	    <<
     " * ip             : " << locale.cmd_ip         <<
     " * incognito      : " << locale.cmd_incognito  <<
+    " * res <file>     : " << locale.cmd_res        <<
     " * alias          : " << "Set or change aliases.\n\n";
 	
 	BOLD_LIGHT_YELLOW_COLOR
