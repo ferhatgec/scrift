@@ -42,7 +42,6 @@
 #include <src/Syntax/HelpFunction.hpp> /* HelpFunction(), Welcome() etc. */
 #include <src/Syntax/GetNameFunction.hpp> /* Terminal */
 #include <src/Syntax/RunFunction.hpp> /* Command execution */
-#include <src/Syntax/Test.hpp> /* Test. */
 #include <src/Syntax/ASCIIFunction.hpp> /* ASCII */
 #include <src/Syntax/DeveloperMode.hpp> /* Under the construction */
 #include <src/Syntax/Contributors.hpp> /* Contributors etc. */
@@ -415,6 +414,10 @@ std::string GetUptime() {
 	#endif
 }
 
+/* TODO:
+   * Add GetFirstCommand() function that gives first argument of input.
+   * Use StringTools::Find()
+*/
 void CodeExecution(std::string arg, slocale_t &locale) {
     if(arg.rfind(keywords.Scr, 0) == 0) {
         /*  scr
@@ -723,6 +726,18 @@ void CodeExecution(std::string arg, slocale_t &locale) {
                     mkdirfunction->MKDirFunctionInit(arg);
                 }
             }
+
+            return;
+   	    } else if(arg.rfind(keywords.Resolution, 0) == 0) {
+   	        /* res
+   	           res file.(jpg, png)
+
+               Resolution size information tool.
+            */
+
+            arg = stringtools::EraseAllSubString(arg, keywords.Resolution + " ");
+
+            date_tools->ResolutionSizeInfo(arg);
 
             return;
    	    } else if(arg.rfind(keywords.ReadText, 0) == 0) {

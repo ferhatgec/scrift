@@ -15,14 +15,18 @@
 #include <src/Scrift.hpp>
 #include <src/Syntax/CommandFunc.h>
 
+/* TODO:
+   * Clear.
+*/
+
 std::ofstream file;
 FCommand *commandlog = new FCommand();
 std::string filepath_with_path;
-FeLog::FeLog(){}
 
-FeLog::~FeLog(){  }
+FeLog::FeLog()  {}
+FeLog::~FeLog() {}
 
-func
+void
 FeLog::ClearLog() {
     std::string path;
     path.append(getenv("HOME"));
@@ -46,8 +50,7 @@ FeLog::TimeFunction() {
 }
 
 
-func
-FeLog::WriteLog(fstr filepathw) {
+void FeLog::WriteLog(fstr filepathw) {
     std::string filepath_with_path;
     filepath_with_path.append(getenv("HOME"));
     filepath_with_path.append(slash);
@@ -67,10 +70,7 @@ FeLog::WriteLog(fstr filepathw) {
 }
 
 
-
-
-func
-FeLog::CreateFile() {   
+void FeLog::CreateFile() {
     std::string path;
     path.append(getenv("HOME"));
     path.append(slash);
@@ -82,17 +82,14 @@ FeLog::CreateFile() {
     file.close();
 }   
 
-func 
-FeLog::InitFile() {}
-
-boolean
+bool
 FeLog::IsExist() {
     struct stat buffer;
     return (stat(filepath_with_path.c_str(), &buffer) == 0);
 }
 
 
-func 
+void
 FeLog::AllofThem() {
     if(IsExist() != true)
         CreateFile();

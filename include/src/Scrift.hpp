@@ -24,7 +24,6 @@
 #define slashn printlnf("\n");
 
 #define typest typedef struct
-#define func void
 #define fstr std::string
 #define destructor ~
 

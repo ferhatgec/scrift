@@ -15,7 +15,6 @@
 #include "CommandFunc.h"
 #include "ASCIIFunction.hpp"
 #include "KernelName.hpp"
-#include "Test.hpp"
 #include "MkdirFunction.hpp"
 #include "HelpFunction.hpp"
 

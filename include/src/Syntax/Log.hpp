@@ -10,21 +10,23 @@
 
 #include "../Scrift.hpp"
 
+/* TODO:
+   * Clear.
+*/
 class FeLog {
 public:
     FeLog();
     ~FeLog();
-    virtual func CreateFile();
-    virtual func InitFile();
+
+    void CreateFile();
+    void InitFile();
+    void WriteLog(fstr);
+    void ClearLog();
+    void AllofThem();
+
     const std::string TimeFunction();
-    virtual func WriteLog(fstr);
-    virtual boolean IsExist();
-    virtual func ClearLog();
-    virtual func AllofThem();
+
+    bool IsExist();
 };
-
-
-
-
 
 #endif // LOG_HPP 

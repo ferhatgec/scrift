@@ -280,6 +280,8 @@ public:
 	/* Get previous command without arrow keys */
 	std::string Previous = "!!";
 	
+	std::string Resolution = "res";
+	
 	/* Whitespace */
 	std::string Whitespace = " ";
 };

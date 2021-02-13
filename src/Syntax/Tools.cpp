@@ -6,7 +6,10 @@
 # */
 
 #include <iostream>
-#include <cstring>
+#include <string>
+#include <fstream>
+#include <filesystem>
+#include <arpa/inet.h>
 
 #include <src/Scrift.hpp>
 #include <src/Syntax/Tools.hpp>
@@ -119,4 +122,64 @@ void FTools::Date() {
         std::cout << "Today, Albert Einstein's death date.\n";
 
     BLACK_COLOR
+}
+
+void FTools::ResolutionSizeInfo(std::string file) {
+    std::string extension = std::filesystem::path(file).extension();
+
+    auto iter = std::find(ext.begin(), ext.end(), extension);
+
+    if(iter != ext.end()) {
+        res_t data_info;
+
+        /* :& */
+        if(extension == ".jpg"
+            || extension == ".jpeg") data_info = JPEGInfo(file);
+        else if(extension == ".png") data_info = PNGInfo(file);
+
+        BOLD_LIGHT_YELLOW_COLOR std::cout << "Width: ";
+        BOLD_LIGHT_RED_COLOR    std::cout << data_info.width;
+
+        BOLD_LIGHT_YELLOW_COLOR std::cout << "\nHeight: ";
+        BOLD_LIGHT_RED_COLOR    std::cout << data_info.height << "\n";
+    }
+}
+
+res_t FTools::JPEGInfo(std::string& file) {
+    std::ifstream readfile(file, std::ifstream::binary);
+
+    res_t data_info;
+
+    std::string data((std::istreambuf_iterator<char>(readfile)),
+                    (std::istreambuf_iterator<char>()));
+
+    unsigned char* marker = reinterpret_cast<unsigned char*>(&data[0]);
+
+    unsigned i = 0;
+
+    for(;;) {
+        if((unsigned short)marker[i] == 0xFF && (unsigned short)marker[i + 1] == 0xC0) break;
+
+        ++i;
+    }
+
+    data_info.width  = static_cast<unsigned short>(marker[i + 8]);
+    data_info.height = static_cast<unsigned short>(marker[i + 6]);
+
+    return data_info;
+}
+
+res_t FTools::PNGInfo (std::string& file) {
+    std::ifstream readfile(file);
+
+    res_t data_info;
+
+    readfile.seekg(16);
+    readfile.read(reinterpret_cast<char *>(&data_info.width), 4);
+    readfile.read(reinterpret_cast<char *>(&data_info.height), 4);
+
+    data_info.width = ntohl(data_info.width);
+    data_info.height= ntohl(data_info.height);
+
+    return data_info;
 }

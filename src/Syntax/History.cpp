@@ -16,13 +16,16 @@
 #include <src/Syntax/FileFunction.hpp> 
 #include <src/Syntax/CommandFunc.h>
 
+/* TODO:
+   * Clear.
+*/
 FeLog *loghistory = new FeLog();
 std::ofstream historyfile;
 std::string filepath_history, history_text;
 
 FHistory::FHistory() { }
 
-func
+void
 FHistory::ClearHistory() {
     std::string path;
     path.append(getenv("HOME"));
@@ -45,9 +48,9 @@ FHistory::TimeFunction() {
 }
 
 
-func
+void
 FHistory::WriteHistory(fstr filepathw) {
-	if(filepathw.length() != 0) {history_text.append(filepathw);}
+	if(filepathw.length() != 0) history_text.append(filepathw);
 }
 
 void 
@@ -89,7 +92,7 @@ FHistory::WriteInHistory(std::string element) {
     file.close();
 }
 
-func
+void
 FHistory::CreateFile() {   
     std::string path;
     path.append(getenv("HOME"));
@@ -99,14 +102,14 @@ FHistory::CreateFile() {
     historyfile.close();
 }   
 
-boolean
+bool
 FHistory::IsExist() {
     struct stat buffer;
     return (stat(filepath_history.c_str(), &buffer) == 0);
 }
 
 
-func 
+void
 FHistory::AllofThem() {
     if(IsExist() != true)
     	CreateFile();
