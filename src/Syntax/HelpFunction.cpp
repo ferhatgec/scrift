@@ -19,15 +19,15 @@
 
 void
 FHelpFunction::HelpFunction(slocale_t &locale) {
-	BOLD_GREEN_COLOR
+    BOLD_GREEN_COLOR
     std::cout << locale.header_help;
-	
-	BOLD_LIGHT_BLUE_COLOR 
-	std::cout << locale.header_general; 
-	BOLD_CYAN_COLOR
-	
-	std::cout << 
-	" * username       : " << locale.cmd_username   << 
+    
+    BOLD_LIGHT_BLUE_COLOR 
+    std::cout << locale.header_general; 
+    BOLD_CYAN_COLOR
+    
+    std::cout << 
+    " * username       : " << locale.cmd_username   << 
     " * config         : " << locale.cmd_config     <<
     " * castle         : " << locale.cmd_castle     <<
     " * gitlink        : " << locale.cmd_gitlink	<<
@@ -42,14 +42,14 @@ FHelpFunction::HelpFunction(slocale_t &locale) {
     " * fetcheya       : " << locale.cmd_fetcheya   <<
     " * version        : " << locale.cmd_version    <<
     " * now            : " << locale.cmd_now        <<
-	" * uptime         : " << locale.cmd_uptime     <<
-	" * asciiart       : " << locale.cmd_asciiart   <<
+    " * uptime         : " << locale.cmd_uptime     <<
+    " * asciiart       : " << locale.cmd_asciiart   <<
     " * template       : " << locale.cmd_template   <<
     " * fdate          : " << locale.cmd_calendar   <<
     " * readtext <file>: " << locale.cmd_readtext   <<
     " * felog          : " << locale.cmd_felog	    <<
     " * edifor         : " << locale.cmd_edifor	    <<
-	" * addtext <file> : " << locale.cmd_addtext	<<
+    " * addtext <file> : " << locale.cmd_addtext	<<
     " * ctxt <name>    : " << locale.cmd_ctxt	    <<
     " * pause          : " << locale.cmd_pause	    <<
     " * cls || exit    : " << locale.cmd_cls        <<
@@ -58,75 +58,75 @@ FHelpFunction::HelpFunction(slocale_t &locale) {
     " * incognito      : " << locale.cmd_incognito  <<
     " * res <file>     : " << locale.cmd_res        <<
     " * alias          : " << "Set or change aliases.\n\n";
-	
-	BOLD_LIGHT_YELLOW_COLOR
-	std::cout << locale.header_output; 
-	BOLD_GREEN_COLOR
-	
-	std::cout << 
-	" * printlnf | echo <arg> : " << locale.cmd_echo   <<
+    
+    BOLD_LIGHT_YELLOW_COLOR
+    std::cout << locale.header_output; 
+    BOLD_GREEN_COLOR
+    
+    std::cout << 
+    " * printlnf | echo <arg> : " << locale.cmd_echo   <<
     " * output <command>      : " << locale.cmd_output <<
     " * title <string>        : " << locale.cmd_title  << 
-	" * emoji <arg>           : " << locale.cmd_emoji;
-	
-	BOLD_LIGHT_MAGENTA_COLOR
-	std::cout << locale.header_execute;
-	BOLD_RED_COLOR
-	
-	std::cout << 
-	" * scr <argument>   : " << locale.cmd_scr <<
+    " * emoji <arg>           : " << locale.cmd_emoji;
+    
+    BOLD_LIGHT_MAGENTA_COLOR
+    std::cout << locale.header_execute;
+    BOLD_RED_COLOR
+    
+    std::cout << 
+    " * scr <argument>   : " << locale.cmd_scr <<
     " * fpm <arg> <pack> : " << locale.cmd_fpm <<
     " * !!               : " << locale.cmd_previous;
-
-	BOLD_LIGHT_RED_COLOR
-	std::cout << locale.header_path;
+    
+    BOLD_LIGHT_RED_COLOR
+    std::cout << locale.header_path;
     BOLD_YELLOW_COLOR
         
     std::cout << 
-    " * home : /home/<username>\n"
-	" * create <name> : Create <name>scr file\n"
-	" * objls : List installed objects\n"
-    " * fls : List only files (#<env>)\n"
-    " * dls : List only folders (#<env>)\n"
-    " * ls <folder> : List dir (#<env>)\n"
-    " * fr || cd <folder> : Change dir (#<env>)\n"
-    " * mkdir <foldername> : Create folder\n"
-    " * ffind <file, folder> : Find files and directories in path\n"
+    " * home                   : /home/<username>\n"
+    " * create <name>          : Create <name>scr file\n"
+    " * objls                  : List installed objects\n"
+    " * fls                    : List only files (#<env>)\n"
+    " * dls                    : List only folders (#<env>)\n"
+    " * ls <folder>            : List dir (#<env>)\n"
+    " * fr || cd <folder>      : Change dir (#<env>)\n"
+    " * mkdir <foldername>     : Create folder\n"
+    " * ffind <file, folder>   : Find files and directories in path\n"
     " * rmvfile <file, folder> : Remove file, folder in path\n"
-    " * setname <name> : Set environment name\n"
-    " * setto <value> : Set environment value.\n"
-    " * back : Going to back directory\n\n";
+    " * setname <name>         : Set environment name\n"
+    " * setto <value>          : Set environment value.\n"
+    " * back                   : Going to back directory\n\n";
         
-	BOLD_LIGHT_CYAN_COLOR
-	std::cout << "[Generate]\n";
-	BOLD_LIGHT_MAGENTA_COLOR
-	
-	std::cout <<
-	" * genfrbr <value> : Generate FreeBrain keycode\n"
-	" * morse : Generate morse, string\n"
-	" * rstr <number> : Generate random string\n\n";
-	    
-	BOLD_LIGHT_GREEN_COLOR
-	std::cout << "[Math]\n";
-	BOLD_CYAN_COLOR
-	
-	std::cout << 
-	" * fact : Print factorial\n"
-	" * sqrt : Print Square root\n"
-	" * square : Print Square\n";
-	    
-	BLACK_COLOR
+    BOLD_LIGHT_CYAN_COLOR
+    std::cout << "[Generate]\n";
+    BOLD_LIGHT_MAGENTA_COLOR
+    
+    std::cout <<
+    " * genfrbr <value> : Generate FreeBrain keycode\n"
+    " * morse           : Generate morse, string\n"
+    " * rstr <number>   : Generate random string\n\n";
+        
+    BOLD_LIGHT_GREEN_COLOR
+    std::cout << "[Math]\n";
+    BOLD_CYAN_COLOR
+    
+    std::cout << 
+    " * fact   : Print factorial\n"
+    " * sqrt   : Print Square root\n"
+    " * square : Print Square\n";
+        
+    BLACK_COLOR
 }
 
 void 
 FHelpFunction::Welcome() {
-	colorized::PrintWhReset(colorized::Colorize(BOLD, BLUE).c_str(), "Welcome to ");
+    colorized::PrintWhReset(colorized::Colorize(BOLD, BLUE).c_str(), "Welcome to ");
     colorized::PrintWhReset(colorized::Colorize(BOLD, GREEN).c_str(), "Fegeya ");
     colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "Scrift ");
     colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), "Terminal \n");
     colorized::PrintWhReset(colorized::Colorize(BOLD, GREEN).c_str(), "Fegeya ");
-	colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "Scrift ");
-	colorized::PrintWhReset(colorized::Colorize(BOLD, YELLOW).c_str(), "licensed with ");
+    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "Scrift ");
+    colorized::PrintWhReset(colorized::Colorize(BOLD, YELLOW).c_str(), "licensed with ");
     colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_GREEN).c_str(), "MIT License \n");
     colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "Copyright (c) ");
     colorized::PrintWhReset(colorized::Colorize(BOLD, MAGENTA).c_str(), COPYRIGHT_YEAR);
@@ -135,7 +135,7 @@ FHelpFunction::Welcome() {
 
 void 
 FHelpFunction::GitLink() {
-	BOLD_YELLOW_COLOR
+    BOLD_YELLOW_COLOR
     printlnf("[1] https://github.com/ferhatgec\n");
     BOLD_BLUE_COLOR
     printlnf("[2] https://github.com/ferhatgec/scrift-lang\n");
