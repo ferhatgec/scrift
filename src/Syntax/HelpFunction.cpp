@@ -17,6 +17,10 @@
 // Library
 #include <Colorized.hpp>
 
+#define PUT_COMMAND(color, command, description)                    \
+    std::cout << color << " * " << command << WLIGHT_WHITE_COLOR << " : " << WBOLD_LIGHT_WHITE_COLOR << description; \
+    RESETW
+
 void
 FHelpFunction::HelpFunction(slocale_t &locale) {
     BOLD_GREEN_COLOR
@@ -24,96 +28,84 @@ FHelpFunction::HelpFunction(slocale_t &locale) {
     
     BOLD_LIGHT_BLUE_COLOR 
     std::cout << locale.header_general; 
-    BOLD_CYAN_COLOR
     
-    std::cout << 
-    " * username       : " << locale.cmd_username   << 
-    " * config         : " << locale.cmd_config     <<
-    " * castle         : " << locale.cmd_castle     <<
-    " * gitlink        : " << locale.cmd_gitlink	<<
-    " * welcome        : " << locale.cmd_welcome	<<
-    " * contr          : " << locale.cmd_contr	    <<
-    " * fscrift <file> : " << locale.cmd_fscrift    <<
-    " * clear_log      : " << locale.cmd_clearlog   <<
-    " * history        : " << locale.cmd_history	<<
-    " * rmvhistory     : " << locale.cmd_rmvhistory <<
-    " * rmvsettings    : " << locale.cmd_rmvsttngs  <<
-    " * settings       : " << locale.cmd_settings   <<
-    " * fetcheya       : " << locale.cmd_fetcheya   <<
-    " * version        : " << locale.cmd_version    <<
-    " * now            : " << locale.cmd_now        <<
-    " * uptime         : " << locale.cmd_uptime     <<
-    " * asciiart       : " << locale.cmd_asciiart   <<
-    " * template       : " << locale.cmd_template   <<
-    " * fdate          : " << locale.cmd_calendar   <<
-    " * readtext <file>: " << locale.cmd_readtext   <<
-    " * felog          : " << locale.cmd_felog	    <<
-    " * edifor         : " << locale.cmd_edifor	    <<
-    " * addtext <file> : " << locale.cmd_addtext	<<
-    " * ctxt <name>    : " << locale.cmd_ctxt	    <<
-    " * pause          : " << locale.cmd_pause	    <<
-    " * cls || exit    : " << locale.cmd_cls        <<
-    " * clear          : " << locale.cmd_clear 	    <<
-    " * ip             : " << locale.cmd_ip         <<
-    " * incognito      : " << locale.cmd_incognito  <<
-    " * res <file>     : " << locale.cmd_res        <<
-    " * alias          : " << "Set or change aliases.\n\n";
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "username       ", locale.cmd_username)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "config         ", locale.cmd_config)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "castle         ", locale.cmd_castle)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "gitlink        ", locale.cmd_gitlink)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "welcome        ", locale.cmd_welcome)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "contr          ", locale.cmd_contr)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "fscrift <file> ", locale.cmd_fscrift)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "clear_log      ", locale.cmd_clearlog)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "history        ", locale.cmd_history)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "rmvhistory     ", locale.cmd_rmvhistory)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "rmvsettings    ", locale.cmd_rmvsttngs)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "settings       ", locale.cmd_settings)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "fetcheya       ", locale.cmd_fetcheya)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "version        ", locale.cmd_version)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "now            ", locale.cmd_now)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "uptime         ", locale.cmd_uptime)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "asciiart       ", locale.cmd_asciiart)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "template       ", locale.cmd_template)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "fdate          ", locale.cmd_calendar)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "readtext <file>", locale.cmd_readtext)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "felog          ", locale.cmd_felog)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "edifor         ", locale.cmd_edifor)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "addtext <file> ", locale.cmd_addtext)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "ctxt <name>    ", locale.cmd_ctxt)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "pause          ", locale.cmd_pause)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "cls || exit    ", locale.cmd_cls)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "clear          ", locale.cmd_clear)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "ip             ", locale.cmd_ip)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "incognito      ", locale.cmd_incognito)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "res <file>     ", locale.cmd_res)
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "alias          ", "Set or change aliases.\n\n")
     
     BOLD_LIGHT_YELLOW_COLOR
     std::cout << locale.header_output; 
-    BOLD_GREEN_COLOR
-    
-    std::cout << 
-    " * printlnf | echo <arg> : " << locale.cmd_echo   <<
-    " * output <command>      : " << locale.cmd_output <<
-    " * title <string>        : " << locale.cmd_title  << 
-    " * emoji <arg>           : " << locale.cmd_emoji;
+ 
+    PUT_COMMAND(WBOLD_GREEN_COLOR, "printlnf | echo <arg>", locale.cmd_echo)
+    PUT_COMMAND(WBOLD_GREEN_COLOR, "output <command>     ", locale.cmd_output)
+    PUT_COMMAND(WBOLD_GREEN_COLOR, "title <string>       ", locale.cmd_title) 
+    PUT_COMMAND(WBOLD_GREEN_COLOR, "emoji <arg>          ", locale.cmd_emoji)
     
     BOLD_LIGHT_MAGENTA_COLOR
     std::cout << locale.header_execute;
-    BOLD_RED_COLOR
-    
-    std::cout << 
-    " * scr <argument>   : " << locale.cmd_scr <<
-    " * fpm <arg> <pack> : " << locale.cmd_fpm <<
-    " * !!               : " << locale.cmd_previous;
+
+    PUT_COMMAND(WBOLD_RED_COLOR, "scr <argument>  ", locale.cmd_scr)
+    PUT_COMMAND(WBOLD_RED_COLOR, "fpm <arg> <pack>", locale.cmd_fpm)
+    PUT_COMMAND(WBOLD_RED_COLOR, "!!              ", locale.cmd_previous)
     
     BOLD_LIGHT_RED_COLOR
     std::cout << locale.header_path;
-    BOLD_YELLOW_COLOR
-        
-    std::cout << 
-    " * home                   : /home/<username>\n"
-    " * create <name>          : Create <name>scr file\n"
-    " * objls                  : List installed objects\n"
-    " * fls                    : List only files (#<env>)\n"
-    " * dls                    : List only folders (#<env>)\n"
-    " * ls <folder>            : List dir (#<env>)\n"
-    " * fr || cd <folder>      : Change dir (#<env>)\n"
-    " * mkdir <foldername>     : Create folder\n"
-    " * ffind <file, folder>   : Find files and directories in path\n"
-    " * rmvfile <file, folder> : Remove file, folder in path\n"
-    " * setname <name>         : Set environment name\n"
-    " * setto <value>          : Set environment value.\n"
-    " * back                   : Going to back directory\n\n";
+
+    PUT_COMMAND(WBOLD_YELLOW_COLOR, "home                  ", "/home/<username>\n")
+    PUT_COMMAND(WBOLD_YELLOW_COLOR, "create <name>         ", "Create <name>scr file\n")
+    PUT_COMMAND(WBOLD_YELLOW_COLOR, "objls                 ", "List installed objects\n")
+    PUT_COMMAND(WBOLD_YELLOW_COLOR, "fls                   ", "List only files (#<env>)\n")
+    PUT_COMMAND(WBOLD_YELLOW_COLOR, "dls                   ", "List only folders (#<env>)\n")
+    PUT_COMMAND(WBOLD_YELLOW_COLOR, "ls <folder>           ", "List dir (#<env>)\n")
+    PUT_COMMAND(WBOLD_YELLOW_COLOR, "fr || cd <folder>     ", "Change dir (#<env>)\n")
+    PUT_COMMAND(WBOLD_YELLOW_COLOR, "mkdir <foldername>    ", "Create folder\n")
+    PUT_COMMAND(WBOLD_YELLOW_COLOR, "ffind <file, folder>  ", "Find files and directories in path\n")
+    PUT_COMMAND(WBOLD_YELLOW_COLOR, "rmvfile <file, folder>", "Remove file, folder in path\n")
+    PUT_COMMAND(WBOLD_YELLOW_COLOR, "setname <name>        ", "Set environment name\n")
+    PUT_COMMAND(WBOLD_YELLOW_COLOR, "setto <value>         ", "Set environment value.\n")
+    PUT_COMMAND(WBOLD_YELLOW_COLOR, "back                  ", "Going to back directory\n\n")
         
     BOLD_LIGHT_CYAN_COLOR
     std::cout << "[Generate]\n";
-    BOLD_LIGHT_MAGENTA_COLOR
-    
-    std::cout <<
-    " * genfrbr <value> : Generate FreeBrain keycode\n"
-    " * morse           : Generate morse, string\n"
-    " * rstr <number>   : Generate random string\n\n";
+
+    PUT_COMMAND(WBOLD_LIGHT_MAGENTA_COLOR, "genfrbr <value>", "Generate FreeBrain keycode\n")
+    PUT_COMMAND(WBOLD_LIGHT_MAGENTA_COLOR, "morse          ", "Generate morse, string\n")
+    PUT_COMMAND(WBOLD_LIGHT_MAGENTA_COLOR, "rstr <number>  ", "Generate random string\n\n")
         
     BOLD_LIGHT_GREEN_COLOR
     std::cout << "[Math]\n";
-    BOLD_CYAN_COLOR
     
-    std::cout << 
-    " * fact   : Print factorial\n"
-    " * sqrt   : Print Square root\n"
-    " * square : Print Square\n";
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "fact  ", "Print factorial\n")
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "sqrt  ", "Print square root\n")
+    PUT_COMMAND(WBOLD_CYAN_COLOR, "square", "Print square\n")
         
     BLACK_COLOR
 }
@@ -145,7 +137,7 @@ FHelpFunction::GitLink() {
     printlnf("[4] https://github.com/ferhatgec/edifor\n");
 	BLACK_COLOR       	
 	/*BOLD_MAGENTA_COLOR
-	printlnf("Select (ESC to cancel) : ");
+	printlnf("Select (ESC to cancel)");
 	int a = getchar();
 	FRunFunction fn;
 	if(a == '1') {
