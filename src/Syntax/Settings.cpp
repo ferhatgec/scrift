@@ -240,6 +240,7 @@ std::string
 FSettings::InputCustomize() {
     std::string line = fsplusplus::FindStringWithReturn(Path(), "input_customize");
     line = stringtools::EraseAllSubString(line, "input_customize ");
+
     return stringtools::EraseAllSubString(line, "\n");
 }
 

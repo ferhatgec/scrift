@@ -23,15 +23,14 @@ std::string
 FAlias::Parse(std::string inputted_command) {
     Init();
 
-
     std::string data = fsplusplus::FindStringWithReturn(STR(getenv("HOME")) + "/.scrift_aliases",
-        (stringtools::getFirstCommand(inputted_command) + "='"));
+        (stringtools::GetFirstArg(inputted_command) + "='"));
 
-    data = stringtools::GetBetweenString(data, stringtools::getFirstCommand(inputted_command)    + "='", "'");
+    data = stringtools::GetBetweenString(data, stringtools::GetFirstArg(inputted_command)    + "='", "'");
 
     if(data.find("#<<")) {
         stringtools::replaceAll(data, "#<<",
-            inputted_command.erase(0, stringtools::getFirstCommand(inputted_command).length() + 1));
+            inputted_command.erase(0, stringtools::GetFirstArg(inputted_command).length() + 1));
     }
 
     return data;

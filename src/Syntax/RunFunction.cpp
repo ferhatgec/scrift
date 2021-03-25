@@ -168,7 +168,7 @@ FRunFunction::RunFunction(std::string command) {
     execFlag = ProcessString(inputString,
         parsedArgs, parsedArgsPiped);
 
-    if (command.find("|")) {
+    if (command.find("|") == 0) {
         ExecuteArgsPiped(parsedArgs, parsedArgsPiped);
     } else {
         ExecuteArgs(parsedArgs);

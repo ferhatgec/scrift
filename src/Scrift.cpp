@@ -414,7 +414,6 @@ std::string GetUptime() {
 }
 
 /* TODO:
-   * Add GetFirstCommand() function that gives first argument of input.
    * Use StringTools::Find()
 */
 void CodeExecution(std::string arg, slocale_t &locale) {
@@ -1296,7 +1295,7 @@ void InputFunction(slocale_t &locale) {
 				
 				main_function->_h_str = GetSpecificHistoryLine(line);
 				
-				if(fsplusplus::IsExistFile("/bin/" + stringtools::getFirstCommand(main_function->_h_str)) == true) {
+				if(fsplusplus::IsExistFile("/bin/" + stringtools::GetFirstArg(main_function->_h_str)) == true) {
 					std::cout << WBOLD_GREEN_COLOR << main_function->_h_str;
 				} else {
 					std::cout << WBOLD_RED_COLOR  << main_function->_h_str;
@@ -1316,7 +1315,7 @@ void InputFunction(slocale_t &locale) {
 				
 				main_function->_h_str = GetSpecificHistoryLine(line);
 			
-				if(fsplusplus::IsExistFile("/bin/" + stringtools::getFirstCommand(main_function->_h_str)) == true) {
+				if(fsplusplus::IsExistFile("/bin/" + stringtools::GetFirstArg(main_function->_h_str)) == true) {
 					std::cout << WBOLD_GREEN_COLOR << main_function->_h_str;
 				} else {
 					std::cout << WBOLD_RED_COLOR   << main_function->_h_str;

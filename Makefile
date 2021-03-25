@@ -75,8 +75,11 @@ removeall: uninstall cleanall
 # Build & Run
 runall:    all run
 
+libraries:
+	bash init/get_libraries.sh
+
 # Get Fpm (Fegeya Package Manager)
-fpm:
+fpm: libraries
 	sh init/get_fpm.sh
 
 # Install Fpm (Fegeya Package Manager)
