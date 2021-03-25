@@ -8,12 +8,12 @@
 #ifndef BRANCH_HPP
 #define BRANCH_HPP
 
-#include <cstring>
 #include <iostream>
+#include <string>
 
 class FBranch {
 public:
-	static std::string GetGitBranch(); 
+	std::string GetGitBranch();
 };
 
 #endif // BRANCH_HPP

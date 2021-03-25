@@ -1,6 +1,6 @@
 /* MIT License
 #
-# Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
+# Copyright (c) 2020-2021 Ferhat Geçdoğan All Rights Reserved.
 # Distributed under the terms of the MIT License.
 #
 # */
@@ -14,12 +14,7 @@
 namespace FileFunction {
     class FCDFunction : public FGetUsername {
     public:
-        FCDFunction();
-        ~FCDFunction();
-    
-    	/* TODO: Will be removed */
-        bool FileExists(const std::string &);
-        void CDFunctionInit(std::string name, slocale_t &locale);
+    	void CDFunctionInit(std::string name, slocale_t &locale);
     };
 
     class FMKDirFunction : public FCDFunction {

@@ -16,7 +16,7 @@
 #include <string>
 
 #include "synflang.hpp"
-#include "Syntax/CommandFunc.h"
+#include "Syntax/CommandFunc.hpp"
 #include "Syntax/Locale.hpp"
 
 #define COPYRIGHT_YEAR "2020-2021"

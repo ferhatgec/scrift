@@ -14,7 +14,7 @@
 #include <src/Syntax/History.hpp>
 #include <src/Syntax/Log.hpp>
 #include <src/Syntax/FileFunction.hpp> 
-#include <src/Syntax/CommandFunc.h>
+#include <src/Syntax/CommandFunc.hpp>
 
 /* TODO:
    * Clear.
@@ -29,8 +29,8 @@ void
 FHistory::ClearHistory() {
     std::string path;
     path.append(getenv("HOME"));
-    path.append(slash);
-    path.append(".scrift_history");
+
+    path.append("/.scrift_history");
     historyfile.open(path); // append
     historyfile << "rmvhistory\n";
     historyfile.close();
@@ -57,8 +57,8 @@ void
 FHistory::WriteAllHistory() {
     std::string filepath_with_path;
     filepath_with_path.append(getenv("HOME"));
-    filepath_with_path.append(slash);
-    filepath_with_path.append(".scrift_history");
+
+    filepath_with_path.append("/.scrift_history");
     std::ofstream file;
     file.open(filepath_with_path, std::ios::out | std::ios::app);
     
@@ -75,8 +75,8 @@ void
 FHistory::WriteInHistory(std::string element) {
     std::string filepath_with_path;
     filepath_with_path.append(getenv("HOME"));
-    filepath_with_path.append(slash);
-    filepath_with_path.append(".scrift_history");
+
+    filepath_with_path.append("/.scrift_history");
     
     std::ofstream file;
     file.open(filepath_with_path, std::ios::out | std::ios::app);
@@ -96,8 +96,8 @@ void
 FHistory::CreateFile() {   
     std::string path;
     path.append(getenv("HOME"));
-    path.append(slash);
-    path.append(".scrift_history");
+
+    path.append("/.scrift_history");
     historyfile.open(path, std::ios::app);
     historyfile.close();
 }   

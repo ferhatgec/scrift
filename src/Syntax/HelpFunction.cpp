@@ -10,7 +10,7 @@
 #include <src/Scrift.hpp>
 #include <src/synflang.hpp>
 #include <src/Syntax/RunFunction.hpp>
-#include <src/Syntax/CommandFunc.h>
+#include <src/Syntax/CommandFunc.hpp>
 #include <src/Syntax/HelpFunction.hpp>
 #include <src/Syntax/Locale.hpp>
 

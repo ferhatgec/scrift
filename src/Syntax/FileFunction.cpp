@@ -5,21 +5,21 @@
 #
 # */
 
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <stdio.h>
+
 #include <iostream>
-#include <unistd.h>
-#include <pwd.h>
-#include <unistd.h>
-#include <sys/stat.h>
-#include <dirent.h>
 #include <fstream>
 #include <vector>
 #include <memory>
+#include <filesystem>
 
-#include <src/Syntax/CommandFunc.h>
+#include <dirent.h>
+#include <pwd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <cstdlib>
+
+#include <src/Syntax/CommandFunc.hpp>
 #include <src/Scrift.hpp>
 #include <src/Syntax/RunFunction.hpp>
 #include <src/Syntax/GetNameFunction.hpp>
@@ -39,32 +39,24 @@ using namespace FileFunction;
 
 // Classes
 std::unique_ptr<FRunFunction> filerunfunction(new FRunFunction);
-std::unique_ptr<FeLog> filelog(new FeLog);
-std::unique_ptr<FSettings> settings(new FSettings);
-std::unique_ptr<FCommand> command(new FCommand);
-std::unique_ptr<FMain> fmain(new FMain);
-std::unique_ptr<FCDFunction> fcdfunction(new FCDFunction);
+std::unique_ptr<FeLog>        filelog(new FeLog);
+std::unique_ptr<FSettings>    settings(new FSettings);
+std::unique_ptr<FCommand>     command(new FCommand);
+std::unique_ptr<FMain>        fmain(new FMain);
+std::unique_ptr<FCDFunction>  fcdfunction(new FCDFunction);
 
-/*
-	Structures.
-*/
+// Structures
 std::unique_ptr<FASCIIFunction> ascii(new FASCIIFunction);
 
+struct dirent* entryname;
+
+std::string file_name,
+            file_directory,
+            path_directory,
+            file_directory_string;
+
+
 struct stat filestat;
-struct dirent *entryname;
-
-fchar* file_name;
-fchar* file_directory;
-std::string path_directory;
-std::string file_directory_string;
-
-FCDFunction::FCDFunction() {}
-
-
-bool
-FCDFunction::FileExists(const std::string &Filename) {
-    return access(Filename.c_str(), 0) == 0;
-}
 
 /*
 	fr #env
@@ -87,8 +79,9 @@ FCDFunction::CDFunctionInit(std::string name, slocale_t &locale) {
 	    		name = stringtools::EraseAllSubString(name, "#");
 	    		std::string new_name(getenv(name.c_str()));
 	    		if(new_name.rfind("/") == 0) {
-	    			if(FileExists(new_name) == true) {
-            		    std::strcpy(command->_file_path_cd_function, new_name.c_str());
+	    			if(std::filesystem::exists(new_name)) {
+            		    // TODO: Remove
+	    			    std::strcpy(command->_file_path_cd_function, new_name.c_str());
 	    		    	chdir(new_name.c_str());
 			    		fmain->SetTitle();
             		} else {
@@ -104,7 +97,8 @@ FCDFunction::CDFunctionInit(std::string name, slocale_t &locale) {
             		path.append("/");
             		path.append(new_name);
             		
-					if(FileExists(path) == true) {
+					if(std::filesystem::exists(path)) {
+					    // Remove
             		    std::strcat(command->_file_path_cd_function, "/");
             		    std::strcat(command->_file_path_cd_function, new_name.c_str());
             		    chdir(new_name.c_str());
@@ -118,7 +112,8 @@ FCDFunction::CDFunctionInit(std::string name, slocale_t &locale) {
             	}
 	   	 	} else {
 	    		if(name.rfind("/") == 0) {
-	    			if(FileExists(name) == true) {
+	    			if(std::filesystem::exists(name)) {
+	    			    // TODO: Remove
 	    		    	std::strcpy(command->_file_path_cd_function, name.c_str());
 	    		    	chdir(name.c_str());
             		} else {
@@ -130,18 +125,17 @@ FCDFunction::CDFunctionInit(std::string name, slocale_t &locale) {
 					return;
 	    		} else {
 					std::string path;
-	    			/*if(command->_file_path_cd_function == "/") {
-					path.append(command->_file_path_cd_function);
-					path.append(name);
-					} else {*/
+
             		path.append(command->_file_path_cd_function);
             		path.append("/");
             		path.append(name);
-            		//}
-            		if(FileExists(path) == true) {
+
+            		if(std::filesystem::exists(path)) {
             	    	chdir(name.c_str());
-		    			//char *path(&fsplusplus::GetCurrentWorkingDir()[0]);
-                    	std::strcpy(command->_file_path_cd_function, &fsplusplus::GetCurrentWorkingDir()[0]);
+
+            	    	// TODO: Remove
+            	    	std::strcpy(command->_file_path_cd_function, &fsplusplus::GetCurrentWorkingDir()[0]);
+
 		    			fmain->SetTitle();
 					} else {
             	    	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "scrift : ");
@@ -192,9 +186,9 @@ FCreateFileFunction::CreateScriftFile(std::string pathname) {
     std::string path;
     
 	path.append(command->_file_path_cd_function);
-    path.append(slash);
+    path.append("\n");
     path.append(pathname);
-    path.append(scrift);
+    path.append(".scr");
     std::ofstream file(path, std::ios::app);
     file << "printlnf(\"This Scrift file created by Scrift.\");\n";
     BOLD_GREEN_COLOR
@@ -206,14 +200,17 @@ FCreateFileFunction::CreateScriftFile(std::string pathname) {
 void
 FCreateFileFunction::CreateFileFunctionInit(fstr name) {
     file_directory_string.append(command->_file_path_cd_function);
-    file_directory_string.append(slash);
+    file_directory_string.append("/");
     file_directory_string.append(name.c_str());
-    file_directory_string.append(txt);
-    command->chartostring(file_directory_string, file_directory);
+    file_directory_string.append(".txt");
+
     std::ofstream file(file_directory_string, std::ios::app);
+
     file << "This file created in Scrift";
     BOLD_GREEN_COLOR
+
     printlnf("File created successfuly\n");
+
     BLACK_COLOR
     file.close();
 }
@@ -290,9 +287,8 @@ FCreateFileFunction::CreateASCIIFileFunction() {
     if(ascii->InitFile() != true) {
 		std::string path;
     	path.append(getenv("HOME"));
-    	path.append(slash);
-    	path.append(".scrift_ascii");
-    	//command->chartostring(file_directory_string, file_directory);
+    	path.append("/.scrift_ascii");
+
     	std::ofstream file(path, std::ios::app);
     	file << " ███████╗ ██████╗██████╗ ██╗███████╗████████╗ 	\n";
     	file << " ██╔════╝██╔════╝██╔══██╗██║██╔════╝╚══██╔══╝ 	\n";
@@ -310,8 +306,7 @@ FReadFileFunction::ReadHistoryFileFunction() {
     std::string line;
     std::string path;
     path.append(getenv("HOME"));
-    path.append(slash);
-    path.append(".scrift_history");
+    path.append("/.scrift_history");
     std::ifstream readfile(path);
     if(readfile.is_open()) {
         while(std::getline(readfile, line)) {
@@ -504,7 +499,7 @@ faddtextfunction::AppendLine(std::string filepathw) {
     filepath_with_path.append(command->_file_path_cd_function);
     filepath_with_path.append("/");
     filepath_with_path.append(filepathw);
-    filepath_with_path.append(txt);
+    filepath_with_path.append(".txt");
 
     printlnf("Text : ");
     std::getline(std::cin, line);
@@ -533,8 +528,7 @@ FClearFileFunction::ClearFeLogFunction() {
     std::ofstream file;
     std::string path;
     path.append(getenv("HOME"));
-    path.append(slash);
-    path.append(".scrift_log");
+    path.append("/.scrift_log");
     file.open(path); // append
     file << "FeLog Cleared.. \n";
     file.close();
@@ -564,8 +558,8 @@ FReadFileFunction::ReadFeLogFunction() {
     std::string line;
     std::string path;
     path.append(getenv("HOME"));
-    path.append(slash);
-    path.append(".scrift_log");
+    path.append("/.scrift_log");
+
     std::ifstream readfile(path);
     if(readfile.is_open()) {
         while(std::getline(readfile, line)) {
@@ -870,5 +864,3 @@ FRemoveFileFunction::DeleteFile(std::string file) {
 
 
 FCreateFileFunction::~FCreateFileFunction() {}
-
-FCDFunction::~FCDFunction() {}

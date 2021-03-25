@@ -13,7 +13,7 @@
 #include <src/Syntax/Log.hpp>
 #include <src/Syntax/FileFunction.hpp>
 #include <src/Scrift.hpp>
-#include <src/Syntax/CommandFunc.h>
+#include <src/Syntax/CommandFunc.hpp>
 
 /* TODO:
    * Clear.
@@ -30,8 +30,7 @@ void
 FeLog::ClearLog() {
     std::string path;
     path.append(getenv("HOME"));
-    path.append(slash);
-    path.append(".scrift_log");
+    path.append("/.scrift_log");
     file.open(path); // append
     file << "FeLog Cleared.. \n";
     file << TimeFunction() << "\n";
@@ -53,8 +52,7 @@ FeLog::TimeFunction() {
 void FeLog::WriteLog(fstr filepathw) {
     std::string filepath_with_path;
     filepath_with_path.append(getenv("HOME"));
-    filepath_with_path.append(slash);
-    filepath_with_path.append(".scrift_log");
+    filepath_with_path.append("/.scrift_log");
     std::ofstream file;
     file.open(filepath_with_path, std::ios::out | std::ios::app);
     if(file.fail())
@@ -73,8 +71,8 @@ void FeLog::WriteLog(fstr filepathw) {
 void FeLog::CreateFile() {
     std::string path;
     path.append(getenv("HOME"));
-    path.append(slash);
-    path.append(".scrift_log");
+
+    path.append("/.scrift_log");
 
     file.open(path, std::ios::app);
     file << "FeLog Started. ";

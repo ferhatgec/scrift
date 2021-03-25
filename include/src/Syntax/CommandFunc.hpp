@@ -1,12 +1,12 @@
 /* MIT License
 #
-# Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
+# Copyright (c) 2020-2021 Ferhat Geçdoğan All Rights Reserved.
 # Distributed under the terms of the MIT License.
 #
 # */
 
-#ifndef COMMAND_FUNC_H
-#define COMMAND_FUNC_H
+#ifndef COMMAND_FUNC_HPP
+#define COMMAND_FUNC_HPP
 
 
 #include "../Scrift.hpp"
@@ -22,32 +22,15 @@
 #include <string.h>
 #include <arpa/inet.h>
 
-#define MAIN_ALL 6
-#define slash "/"
-#define txt ".txt"
-#define scrift ".scr"
-
-#ifdef WINDOWS
-#include <direct.h>
-#define GetCurrentDir _getcwd
-#else
 #include <unistd.h>
 #define GetCurrentDir getcwd
-#endif
 
-
-class FCommand { /* getting public variables and functions*/
+class FCommand {
 public:
     FCommand();
     ~FCommand();
-    void _set_locale();
 
-    std::string GetCurrentWorkingDir(void) {
-  	char buff[FILENAME_MAX];
-  	GetCurrentDir( buff, FILENAME_MAX );
-  	std::string current_working_dir(buff);
-  	return current_working_dir;
-    }
+    void _set_locale();
 
     // FName
     std::string FName();
@@ -69,4 +52,4 @@ public:
 };
 
 
-#endif // COMMAND_FUNC_H
+#endif // COMMAND_FUNC_HPP

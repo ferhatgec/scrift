@@ -22,11 +22,11 @@ INCLUDELIB = $(SRCLIBDIREC)
 INCLUDEDIR = ./include/
 
 # Include flags etc.
-CPPFLAGS   = -I$(INCLUDELIB) -I$(INCLUDEDIR)
+CPPFLAGS   = -lstdc++fs -I$(INCLUDELIB) -I$(INCLUDEDIR)
 
 GCC      = cc
 CPP      = c++
-STANDARD = -std=c++17
+STANDARD = -std=c++2a
 
 COMPILER = $(CPP) $(STANDARD)
 COMP     = $(GCC)

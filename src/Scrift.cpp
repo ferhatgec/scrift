@@ -32,18 +32,16 @@
 #endif
 
 /* Source */
-#include <src/Syntax/CommandFunc.h> /* For rstr, printlnf etc. */
+#include <src/Syntax/CommandFunc.hpp> /* For rstr, printlnf etc. */
 #include <src/Scrift.hpp> /* Scrift main */
 #include <src/Keywords/ScriftKeywords.hpp> /* Shell keywords */
 #include <src/synflang.hpp> /* Some definitions */
 #include <src/Syntax/Log.hpp> /* FeLog */
 #include <src/Syntax/FileFunction.hpp> /* All file I/O functions, variables. */
-#include <src/Syntax/KernelName.hpp> /* Get kernel name */
 #include <src/Syntax/HelpFunction.hpp> /* HelpFunction(), Welcome() etc. */
 #include <src/Syntax/GetNameFunction.hpp> /* Terminal */
 #include <src/Syntax/RunFunction.hpp> /* Command execution */
 #include <src/Syntax/ASCIIFunction.hpp> /* ASCII */
-#include <src/Syntax/DeveloperMode.hpp> /* Under the construction */
 #include <src/Syntax/Contributors.hpp> /* Contributors etc. */
 #include <src/Syntax/Settings.hpp> /* Settings */
 #include <src/Syntax/History.hpp> /* History */

@@ -9,7 +9,7 @@
 #include <algorithm>
 #include <pwd.h>
 #include <src/Syntax/Settings.hpp>
-#include <src/Syntax/CommandFunc.h>
+#include <src/Syntax/CommandFunc.hpp>
 #include <src/Syntax/GetNameFunction.hpp>
 #include <src/Syntax/Branch.hpp>
 #include <src/Syntax/Tools.hpp>

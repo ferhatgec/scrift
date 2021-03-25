@@ -12,7 +12,7 @@
 #include "Log.hpp"
 #include "../Scrift.hpp"
 #include "GetNameFunction.hpp"
-#include "CommandFunc.h"
+#include "CommandFunc.hpp"
 #include "ASCIIFunction.hpp"
 #include "KernelName.hpp"
 #include "MkdirFunction.hpp"

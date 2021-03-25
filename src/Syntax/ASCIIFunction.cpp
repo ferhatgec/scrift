@@ -6,36 +6,36 @@
 # */
 
 #include <iostream>
-#include <cstring>
-#include <pwd.h>
+#include <string>
+#include <filesystem>
 
-#include <src/Syntax/FileFunction.hpp>
-#include <src/Syntax/ASCIIFunction.hpp>
 #include <src/synflang.hpp>
 #include <src/Scrift.hpp>
 #include <src/Syntax/Log.hpp>
+#include <src/Syntax/FileFunction.hpp>
+#include <src/Syntax/ASCIIFunction.hpp>
 
-/* Library */
+// C++20 STL standards are not supports 'constexpr basic_string' yet.
+#define scrift_ascii_filename ".scrift_ascii"
+
+// Library
+#include <FileSystemPlusPlus.h>
 #include <Colorized.hpp>
 
-inline bool 
-FASCIIFunction::InitFile() {
-   struct stat buffer;
-   std::string path;
-   path.append(getenv("HOME"));
-   path.append("/");
-   path.append(".scrift_ascii");   
-   return (stat (path.c_str(), &buffer) == 0); 
+bool FASCIIFunction::InitFile() {
+   return std::filesystem::exists(std::basic_string(getenv("HOME")) + "/" + std::basic_string(scrift_ascii_filename));
 }
 
 void 
 FASCIIFunction::GenerateString()  {
-   if(InitFile() == true) {
-	   FeLog logfunc;	
+    // TODO: Clean-up.
+    if(InitFile()) {
+	   FeLog logfunc;
 	   logfunc.WriteLog("ASCIIFile is exists! Nice - ");
-   } else {
+   }
+   else {
 	   FileFunction::FCreateFileFunction createfilefunc;
-   	createfilefunc.CreateASCIIFileFunction();
+	   createfilefunc.CreateASCIIFileFunction();
    }
 }  
 

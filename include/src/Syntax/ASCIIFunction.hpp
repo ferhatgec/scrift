@@ -9,11 +9,12 @@
 #define ASCII_FUNCTION_HPP
 
 #include <iostream>
-#include <cstring>
+#include <string>
 
 class FASCIIFunction {
 public:
-    inline boolean InitFile();
+    bool InitFile();
+
     void GenerateString();
     void Allofthem();
 };

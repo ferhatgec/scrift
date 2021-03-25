@@ -14,7 +14,7 @@
 
 #include <src/Scrift.hpp>
 #include <src/Syntax/RunFunction.hpp>
-#include <src/Syntax/CommandFunc.h>
+#include <src/Syntax/CommandFunc.hpp>
 
 // Libraries
 #include <StringTools.h>

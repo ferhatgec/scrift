@@ -24,7 +24,7 @@
 #include <src/Scrift.hpp>
 #include <src/synflang.hpp>
 #include <src/Syntax/GetNameFunction.hpp>
-#include <src/Syntax/CommandFunc.h>
+#include <src/Syntax/CommandFunc.hpp>
 #include <src/Syntax/Settings.hpp>
 
 // Libraries
