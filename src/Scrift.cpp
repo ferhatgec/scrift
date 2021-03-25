@@ -6,26 +6,16 @@
 # */
 
 #include <iostream>
-#include <sstream>
-#include <fstream>
-#include <memory>
 #include <cstdlib>
 #include <ctime>
 #include <cstdio>
 #include <vector>
-#include <algorithm>
 #include <string>
-#include <clocale>
 #include <cstdarg>
 #include <thread>
-#include <dirent.h>
 #include <sys/types.h>
-#include <sys/stat.h>
 #include <unistd.h>
-#include <sys/ioctl.h>
 #include <termios.h>
-#include <errno.h>
-#include <fcntl.h>
 
 #ifndef __FreeBSD__
 	#include <sys/sysinfo.h>
@@ -53,8 +43,7 @@
 #include <src/Syntax/Validation.hpp>
 
 
-/* Libraries */
-#include <InputPlusPlus.h> /* For key-codes */
+// Libraries
 #include <EmojiPlusPlus.h> /* Emoji? */
 #include <Colorized.hpp> /* Color library */
 #include <EasyMorse.hpp> /* Morse-String to String-Morse converter library. */
@@ -65,8 +54,7 @@
 /* FileFunction namespace */
 using namespace FileFunction;
 
-/* Variables */
-const std::string compilation_date = __DATE__;
+// Variables
 const std::string compilation_time = __TIME__;
 
 /* Definitions */
@@ -127,77 +115,37 @@ typedef struct CursorPos {
 
 cursorp cursorpos;
 
-FMain::FMain() {}
+FMain::FMain() = default;
 
 
-FMain::~FMain() {}
-
-
-void RemovePrintedChar(int value) {
-	int rvalue = 0;
-	do {
-		std::cout << "\b";
-		rvalue++;
-	} while(rvalue != value);
-
-	return;
-}
-
-int kbhit() {
-    struct timeval tv;
-    fd_set rdfs;
- 
-    tv.tv_sec = 0;
-    tv.tv_usec = 0;
- 
-    FD_ZERO(&rdfs);
-    FD_SET (STDIN_FILENO, &rdfs);
- 
-    select(STDIN_FILENO+1, &rdfs, NULL, NULL, &tv);
-  
-    return FD_ISSET(STDIN_FILENO, &rdfs);
-}
+FMain::~FMain() = default;
 
 int space = 0, input_value = 0, scrift_line = 0;
 
 std::string ftime(compilation_time); // Convert
-
-/* TODO: Remove this and replace with GetBetweenString of StringTools library. Get Between String */
-void GetBtwString(std::string oStr, std::string sStr1, std::string sStr2, std::string &rStr) {
-    int start = oStr.find(sStr1);
-    if (start >= 0) {
-      std::string tstr = oStr.substr(start + sStr1.length());
-      int stop = tstr.find(sStr2);
-      if (stop >1)
-        rStr = oStr.substr(start + sStr1.length(), stop);
-      else
-        rStr ="error";
-    } else
-       rStr = "error";
-}
 
 std::string VersionGenerator() {
     return "scriftv" + stringtools::EraseAllSubString(ftime, ":");
 }
 
 /* For input colorizing */
-void Space(int space, std::string sign, unsigned theme) {
+void Space(int space, const std::string& sign, unsigned theme) {
     if(theme == 1) /* Classic (White & Black) theme */
-        colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_WHITE).c_str(), sign.c_str());
+        colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_WHITE), sign.c_str());
     else if(theme == 2) { /* Halloween theme */
 		RESETW
         if(space % 2) printfc({255, 154, 0}, sign);
         else if(space % 3) printfc({247, 95, 28}, sign);
         else printfc({0, 0, 0}, sign);
 	} else /* Colorized theme */
-        if(space == 1 || space % 1)      colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), sign.c_str());
-        else if(space % 2 || space == 2) colorized::PrintWith(colorized::Colorize(BOLD, MAGENTA).c_str(), sign.c_str());
-        else if(space % 3 || space == 3) colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), sign.c_str());
-        else if(space % 4 || space == 4) colorized::PrintWith(colorized::Colorize(BOLD, YELLOW).c_str(), sign.c_str());
-        else if(space % 5)               colorized::PrintWith(colorized::Colorize(BOLD, GREEN).c_str(), sign.c_str());
-        else if(space % 6 || space == 6) colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), sign.c_str());
-        else if(space % 7 || space == 7) colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), sign.c_str());
-        else if(space % 7 || space == 7) colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), sign.c_str());
+        if(space == 1 || space % 1)      colorized::PrintWith(colorized::Colorize(BOLD, RED), sign.c_str());
+        else if(space % 2 || space == 2) colorized::PrintWith(colorized::Colorize(BOLD, MAGENTA), sign.c_str());
+        else if(space % 3 || space == 3) colorized::PrintWith(colorized::Colorize(BOLD, BLUE), sign.c_str());
+        else if(space % 4 || space == 4) colorized::PrintWith(colorized::Colorize(BOLD, YELLOW), sign.c_str());
+        else if(space % 5)               colorized::PrintWith(colorized::Colorize(BOLD, GREEN), sign.c_str());
+        else if(space % 6 || space == 6) colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA), sign.c_str());
+        else if(space % 7 || space == 7) colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN), sign.c_str());
+        else if(space % 7 || space == 7) colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), sign.c_str());
         else if(space == 0)
             std::cout << WBOLD_CYAN_COLOR << sign << WBLACK_COLOR;
 }
@@ -249,7 +197,7 @@ void PrintVersion() {
 
 /* Square root converter. */
 int sqrti(int x) {
-    union { float f; int x; } v;
+    union { float f; int x; } v{};
 
     // convert to float
     v.f = (float)x;
@@ -268,18 +216,11 @@ int factorial(int n) {
         return 1;
 }
 
-/* Integer to String */
-std::string IntToString(int a) {
-    std::ostringstream temp;
-    temp << a;
-    return temp.str();
-}
-
 /* For 'Happy new year' */
 std::string FMain::Time() {
     // return "2020-01-01-12:34:67:00"; For Test.
-    time_t     now = time(0);
-    struct tm  tstruct;
+    time_t     now = time(nullptr);
+    struct tm  tstruct{};
     char       buf[80];
     tstruct = *localtime(&now);
     strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct);
@@ -290,16 +231,16 @@ std::string FMain::Time() {
 std::string GetSpecificHistoryLine(unsigned line) {
 	std::ifstream history_file(STR(getenv("HOME")) + STR("/.scrift_history"));
 	
-	unsigned __line = 0;
+	unsigned _line = 0;
 	
-	std::string data = "";
+	std::string data;
 	
 	while(getline(history_file, data)) {
-		if(line == __line) {
+		if(line == _line) {
 			return data;
 		}
 		
-		__line++;
+		_line++;
 	}
 
 	history_file.close();
@@ -328,13 +269,6 @@ FMain::SetTitle() {
 
 static void SetTitleAs(std::string _str) {
 	std::cout << "\e]2; " << _str << "\a";
-}
-
-/*
-	Cursor.
-*/
-void moveCursor(std::ostream& os, int col, int row) {
-    os << "\033[" << col << ";" << row << "H";
 }
 
 /* ASCII Code generator for FreeBrain */
@@ -382,7 +316,7 @@ std::string GetUptime() {
     std::string uptimeString;
 	std::stringstream uptimeStream;
 	
-    struct sysinfo info;
+    struct sysinfo info{};
 	
     sysinfo(&info);
 	uptime = info.uptime;
@@ -470,7 +404,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             */
             std::cout << "Fpi is deprecated, use 'fpm' instead.\n";
             
-            if(fsplusplus::IsExistFile("/bin/fpm") != true) {
+            if(!fsplusplus::IsExistFile("/bin/fpm")) {
             	std::cout << "Oops! Fpm is not to be installed!\n";
             }
             
@@ -489,8 +423,8 @@ void CodeExecution(std::string arg, slocale_t &locale) {
                     /* Add negative value generator */
                     std::cout << "~";
                 else
-                    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), 
-                        (AsciiGenFreeBrain(atoi(arg.c_str()))).c_str());
+                    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE),
+                        (AsciiGenFreeBrain(atoi(arg.c_str()))) + "\n");
             }
             
             return;
@@ -541,7 +475,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
                 Command execution 
             */
             if(arg == keywords.RunDotSlash) {
-                colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), 
+                colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED),
                     "scrift : ./ : Is a directory.\n");
             } /*else if(strstr(arg.c_str(), ".scr")) {
                 arg = stringtools::EraseAllSubString(arg,
@@ -563,10 +497,11 @@ void CodeExecution(std::string arg, slocale_t &locale) {
         	std::size_t test = path_string.find_last_of("/\\");
         	std::string test_string = path_string.substr(0, test);
 
-        	if(test_string == "")
+        	if(test_string.empty())
         		test_string.append("/");
         	
-        	std::strcpy(main_->_file_path_cd_function, test_string.c_str());
+        	main_->_file_path_cd_function = test_string;
+
         	chdir(test_string.c_str());
 		    main_function->SetTitle();
             
@@ -655,7 +590,6 @@ void CodeExecution(std::string arg, slocale_t &locale) {
         	arg.erase();
           	
             exit(EXIT_SUCCESS);
-            return;
         } else if(arg == keywords.Ls) {
             /*  ls
                 ls 
@@ -839,7 +773,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
 
             return;
     	} else if(arg == keywords.Help) {
-        	/*  help
+        	/*  helpss
                 List all commands.
             */
             helpstr->HelpFunction(locale);
@@ -856,7 +790,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             /* !!
                Get & execute previous command
             */
-            if(previous_command != "") {
+            if(previous_command.empty()) {
                 std::cout << previous_command << "\n";
 
                 CodeExecution(previous_command, locale);
@@ -867,7 +801,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             /*  uptime
                 Show uptime
             */
-		    colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), 
+		    colorized::PrintWith(colorized::Colorize(BOLD, BLUE),
                 (GetUptime()).c_str());
             
             std::cout << "\n";
@@ -901,7 +835,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
 					
 					const char* env = getenv(arg.c_str());
 					
-					if(env != NULL)
+					if(env != nullptr)
 						arg = STR(env);						
 				}
 				
@@ -925,7 +859,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             arg = stringtools::EraseAllSubString(arg,
                 keywords.SquareofNumber + " ");
 
-            colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), 
+            colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA),
             std::to_string(atoi(arg.c_str()) * atoi(arg.c_str())).c_str());
 
             std::cout << "\n";
@@ -942,7 +876,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             if(atoi(arg.c_str()) <= - 1) 
                 std::cout << "Hmm.";
             else
-                colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), 
+                colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA),
             
             std::to_string(sqrti(atoi(arg.c_str()))).c_str());
 
@@ -983,10 +917,10 @@ void CodeExecution(std::string arg, slocale_t &locale) {
                     keywords.Factorial + " ");
 
           	    if(atoi(arg.c_str()) < 0)
-			        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), 
+			        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED),
                         "n must be > or = to 0");
           	    else
-			        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), 
+			        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA),
                 
                 std::to_string(factorial(atoi(arg.c_str()))).c_str());
             }
@@ -1147,15 +1081,6 @@ void CodeExecution(std::string arg, slocale_t &locale) {
                 	goto returni;
                 
             return;
-    	} if(arg.rfind(keywords.DeleteText, 0) == 0) {
-        	/*  deletetext
-                Remove text file
-            */
-            arg = stringtools::EraseAllSubString(arg,
-                keywords.DeleteText + " ");
-            
-            fileaddtextfunction->DeleteLine(arg);
-            return;
     	} else if(arg == keywords.Welcome) {
             /*  welcome
                 Show welcome function
@@ -1207,30 +1132,25 @@ void CodeExecution(std::string arg, slocale_t &locale) {
                 Remove Scrift from PC
             */
             std::string option;
-        	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "Remove with tools? (Fetcheya, Edifor etc.) : ");
+        	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA), "Remove with tools? (Fetcheya, Edifor etc.) : ");
         	BOLD_CYAN_COLOR
         	std::cin >> option;
         	BLACK_COLOR
         	
             if(option == "y" || option == "Y") {
         		system("sudo rm -f /bin/fetcheya");
-  			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "Fetcheya has been removed.\n");
+  			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA), "Fetcheya has been removed.\n");
         		system("sudo rm -f /bin/edifor");
-        		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_GREEN).c_str(), "Edifor has been removed\n");
-        		system("sudo rm -f /bin/castle");
-        		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), "Castle has been removed\n");
-        		system("sudo rm -f /bin/fdate");
-        		system("sudo rm -f /bin/tictactoe");
-        		system("sudo rm -f /bin/pong");
+
         		system("sudo rm -f /bin/scrift");
-        		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "Note: Select a shell and restart, because Scrift has been deleted\n");
-        		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_GREEN).c_str(), "Goodbye!\n");
+        		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE), "Note: Select a shell and restart, because Scrift has been deleted\n");
+        		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_GREEN), "Goodbye!\n");
         	} else if(option == "n" || option == "N") {
         		system("sudo rm -f /bin/scrift");
-        		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), "Note: Select a shell and restart, because Scrift has been deleted\n");
-        		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_GREEN).c_str(), "Goodbye!\n");
+        		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN), "Note: Select a shell and restart, because Scrift has been deleted\n");
+        		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_GREEN), "Goodbye!\n");
         	} else
-        		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "\nAborted.\n");
+        		colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), "\nAborted.\n");
     	
             return;    
         } else {
@@ -1246,7 +1166,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
 	Input && Interpreter.
 */
 void InputFunction(slocale_t &locale) {
-    if(fsplusplus::IsExistFile(STR(getenv("HOME")) + "/.scrift_settings") != true) setup->Config();
+    if(!fsplusplus::IsExistFile(STR(getenv("HOME")) + "/.scrift_settings")) setup->Config();
     	
     if(scrift_line >= runsyntax->Clear()) {
         std::cout << "\033c";
@@ -1293,7 +1213,7 @@ void InputFunction(slocale_t &locale) {
 				
 				main_function->_h_str = GetSpecificHistoryLine(line);
 				
-				if(fsplusplus::IsExistFile("/bin/" + stringtools::GetFirstArg(main_function->_h_str)) == true) {
+				if(fsplusplus::IsExistFile("/bin/" + stringtools::GetFirstArg(main_function->_h_str))) {
 					std::cout << WBOLD_GREEN_COLOR << main_function->_h_str;
 				} else {
 					std::cout << WBOLD_RED_COLOR  << main_function->_h_str;
@@ -1313,7 +1233,7 @@ void InputFunction(slocale_t &locale) {
 				
 				main_function->_h_str = GetSpecificHistoryLine(line);
 			
-				if(fsplusplus::IsExistFile("/bin/" + stringtools::GetFirstArg(main_function->_h_str)) == true) {
+				if(fsplusplus::IsExistFile("/bin/" + stringtools::GetFirstArg(main_function->_h_str))) {
 					std::cout << WBOLD_GREEN_COLOR << main_function->_h_str;
 				} else {
 					std::cout << WBOLD_RED_COLOR   << main_function->_h_str;
@@ -1375,7 +1295,7 @@ void InputFunction(slocale_t &locale) {
             } else {
                 CodeExecution(main_function->_h_str, locale);
             
-                if(incognito != true)
+                if(!incognito)
                     history->WriteInHistory(main_function->_h_str + "\n");
 
 			    line = GetTotalHistoryLine();
@@ -1401,13 +1321,10 @@ void InputFunction(slocale_t &locale) {
         
     	return;
     }
-        
-    sign.erase();
 }
 
 void
 FMain::Shell(slocale_t &locale) {
-    readfilefunction->ReadFeLogFunctionWithoutPrint();
     InputFunction(locale);
 }
 
@@ -1417,9 +1334,9 @@ int main(integer argc, char** argv) {
 	
     /* Happy new year! */
     if(main_function->Time().substr(4, 6) == "-01-01") {
-    	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "Happy new year!");
+    	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE), "Happy new year!");
     	std::cout << " " << emojiplusplus::EmojiString(":balloon:") << " - ";
-    	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "Scrift\n");
+    	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_YELLOW), "Scrift\n");
     }
 
     /*
@@ -1429,20 +1346,19 @@ int main(integer argc, char** argv) {
 	    for(int i = 1; i < argc; i++) {
 		    std::string arg(argv[i]);
 		    reg = argv[1];
-		    copy_arg = arg;
-	    }
+        }
     } else {
     	filefunction->CreateSettingsFileFunction(); /* Directory is "/home/<username>/<dot>scrift_settings" */
 
     	logsystem->AllofThem(); /* FeLog start signal. */
 
 	    /* Customization & Setup instruction. */
-	    if(runsyntax->Setup() == true) {
+	    if(runsyntax->Setup()) {
 		    /* ExecutePlusPlus exec; */
 		    setup->Config();
 	    }
 
-        if(runsyntax->Date() == true) {
+        if(runsyntax->Date()) {
             date_tools->Date();
 		}
 		

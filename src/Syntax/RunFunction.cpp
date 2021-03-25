@@ -10,17 +10,12 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <pwd.h>
 
-#include <src/Scrift.hpp>
 #include <src/Syntax/RunFunction.hpp>
-#include <src/Syntax/CommandFunc.hpp>
-
 // Libraries
 #include <StringTools.h>
 #include <Colorized.hpp>
 
-#define MAXCOM 1000
 #define MAXLIST 100
 
 /*
@@ -29,24 +24,23 @@
 
 char inputString[1000], *parsedArgs[100];
 char* parsedArgsPiped[MAXLIST];
-int execFlag = 0;
 
 std::string directory;
 
-FRunFunction::FRunFunction() { }
+FRunFunction::FRunFunction() = default;
 
 
-FRunFunction::~FRunFunction() { }
+FRunFunction::~FRunFunction() = default;
 
 int ParsePipe(char* str, char** strpiped) {
     int i;
     for (i = 0; i < 2; i++) {
         strpiped[i] = strsep(&str, "|");
-        if (strpiped[i] == NULL)
+        if (strpiped[i] == nullptr)
             break;
     }
 
-    if (strpiped[1] == NULL)
+    if (strpiped[1] == nullptr)
         return 0; // returns zero if no pipe is found.
     else {
         return 1;
@@ -59,7 +53,7 @@ void ParseSpace(char* str, char** parsed) {
     for (i = 0; i < MAXLIST; i++) {
         parsed[i] = strsep(&str, " ");
 
-        if (parsed[i] == NULL)
+        if (parsed[i] == nullptr)
             break;
         if (strlen(parsed[i]) == 0)
             i--;
@@ -69,7 +63,7 @@ void ParseSpace(char* str, char** parsed) {
 int ProcessString(char* str, char** parsed, char** parsedpipe) {
 
     char* strpiped[2];
-    int piped = 0;
+    int piped;
 
     piped = ParsePipe(str, strpiped);
 
@@ -88,18 +82,18 @@ void ExecuteArgs(char** parsed) {
     pid_t pid = fork();
 
     if (pid == -1) {
-   	    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "scrift : Failed forking child..\n");
+   	    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), "scrift : Failed forking child..\n");
         return;
     } else if (pid == 0) {
         if (execvp(parsed[0], parsed) < 0) {
-            colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "scrift : ");
-            colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), parsed[0]);
-            colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), " : command not found..\n");
+            colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), "scrift : ");
+            colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), parsed[0]);
+            colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), " : command not found..\n");
         }
         exit(0);
     } else {
         // waiting for child to terminate
-        wait(NULL);
+        wait(nullptr);
         return;
     }
 }
@@ -110,12 +104,12 @@ void ExecuteArgsPiped(char** parsed, char** parsedpipe) {
     pid_t p1, p2;
 
     if (pipe(pipefd) < 0) {
-     	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "scrift : Pipe could not be initialized\n");
+     	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), "scrift : Pipe could not be initialized\n");
         return;
     }
     p1 = fork();
     if (p1 < 0) {
-        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "scrift : Could not fork.\n");
+        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), "scrift : Could not fork.\n");
         return;
     }
 
@@ -127,9 +121,9 @@ void ExecuteArgsPiped(char** parsed, char** parsedpipe) {
         close(pipefd[1]);
 
         if (execvp(parsed[0], parsed) < 0) {
-            colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "scrift : ");
-		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), parsed[0]);
-		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), " : first command not found..\n");
+            colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), "scrift : ");
+		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), parsed[0]);
+		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), " : first command not found..\n");
             exit(0);
         }
     } else {
@@ -137,7 +131,7 @@ void ExecuteArgsPiped(char** parsed, char** parsedpipe) {
         p2 = fork();
 
         if (p2 < 0) {
-            colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "scrift : Could not fork.\n");
+            colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), "scrift : Could not fork.\n");
             return;
         }
 
@@ -148,15 +142,15 @@ void ExecuteArgsPiped(char** parsed, char** parsedpipe) {
             dup2(pipefd[0], STDIN_FILENO);
             close(pipefd[0]);
             if (execvp(parsedpipe[0], parsedpipe) < 0) {
-		        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "scrift : ");
-		        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), parsed[0]);
-		        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), " : second command not found..\n");
+		        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), "scrift : ");
+		        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), parsed[0]);
+		        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), " : second command not found..\n");
                 exit(0);
             }
         } else {
             // parent executing, waiting for two children
-            wait(NULL);
-            wait(NULL);
+            wait(nullptr);
+            wait(nullptr);
         }
     }
 }
@@ -165,10 +159,10 @@ void
 FRunFunction::RunFunction(std::string command) {
     strcpy(inputString, stringtools::EraseAllSubString(command, "\n").c_str());
 
-    execFlag = ProcessString(inputString,
-        parsedArgs, parsedArgsPiped);
+    ProcessString(inputString,
+                  parsedArgs, parsedArgsPiped);
 
-    if (command.find("|") == 0) {
+    if (command.find('|') == 0) {
         ExecuteArgsPiped(parsedArgs, parsedArgsPiped);
     } else {
         ExecuteArgs(parsedArgs);

@@ -24,7 +24,7 @@ public:
     void ClearLog();
     void AllofThem();
 
-    const std::string TimeFunction();
+    std::string TimeFunction();
 
     bool IsExist();
 };

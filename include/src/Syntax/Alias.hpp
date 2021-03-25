@@ -15,7 +15,7 @@ class FAlias {
 public:
 	std::string Parse(std::string inputted_command);
 	
-	void AddAlias(std::string name, std::string replacement);	
+	void AddAlias(const std::string& name, const std::string& replacement);
 	
 	void Init();
 };

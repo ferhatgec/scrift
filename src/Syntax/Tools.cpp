@@ -153,7 +153,7 @@ res_t FTools::JPEGInfo(std::string& file) {
     std::string data((std::istreambuf_iterator<char>(readfile)),
                     (std::istreambuf_iterator<char>()));
 
-    unsigned char* marker = reinterpret_cast<unsigned char*>(&data[0]);
+    auto* marker = reinterpret_cast<unsigned char*>(&data[0]);
 
     unsigned i = 0;
 

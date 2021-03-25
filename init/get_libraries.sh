@@ -3,6 +3,7 @@
 FETCH=curl
 URL="https://raw.githubusercontent.com/ferhatgec/"
 
+# shellcheck disable=SC2164
 cd library
 
 function is_exists {

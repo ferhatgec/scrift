@@ -7,18 +7,15 @@
 
 #include <iostream>
 #include <cstdlib>
-#include <iomanip>
 #include <fstream>
 #include <filesystem>
 
 #include <src/Scrift.hpp>
-#include <src/Syntax/HelpFunction.hpp>
 #include <src/Syntax/Setup.hpp>
 
 // Libraries
 #include <FileSystemPlusPlus.h>
 #include <ExecutePlusPlus.hpp>
-#include <StringTools.h>
 #include <Colorized.hpp>
 
 /*
@@ -51,27 +48,27 @@ FSetup::Stage1() {
         welcome.Welcome();
     */
 
-    colorized::PrintWhReset(colorized::Colorize(BOLD, MAGENTA).c_str(), "Welcome!\n");
+    colorized::PrintWhReset(colorized::Colorize(BOLD, MAGENTA), "Welcome!\n");
     
-    if(fsplusplus::IsExistFile("/bin/scrift") == true)
-        colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(),
+    if(fsplusplus::IsExistFile("/bin/scrift"))
+        colorized::PrintWith(colorized::Colorize(BOLD, BLUE),
                         "Thank you for choosing Fegeya Scrift!\n");
 
 
     /* Information */ 
-    colorized::PrintWith(colorized::Colorize(BOLD, YELLOW).c_str(), "Fegeya Scrift Configuration & Setup\n");
-    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "Press ");
-    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "'n' ");
-    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "for pass any question\n");
+    colorized::PrintWith(colorized::Colorize(BOLD, YELLOW), "Fegeya Scrift Configuration & Setup\n");
+    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA), "Press ");
+    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE), "'n' ");
+    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA), "for pass any question\n");
 
-    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(),
+    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA),
         "Do you want to pass Configuration? (y | n)\n -> ");
 
     BOLD_LIGHT_WHITE_COLOR
     std::cin >> pass;
     if(pass == "n" || pass == "NO" || pass == "no" || pass == "No" || pass == "no_thanks") {
         /* FeLog Cleaner */
-        colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
+        colorized::PrintWith(colorized::Colorize(BOLD, CYAN),
             "FeLog Cleaner [50, 100, 300] (Default: Once every 100 lines)\n -> ");
 
         BOLD_LIGHT_WHITE_COLOR
@@ -81,7 +78,7 @@ FSetup::Stage1() {
         if(felog_clean_line == "n" || felog_clean_line == "N") felog_clean_line = "100";
 
         /* Welcome Emoji */
-        colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
+        colorized::PrintWith(colorized::Colorize(BOLD, CYAN),
             "Welcome Emoji [:bike:, :question:, :bug: etc.] (Default :thinking_face:)\n -> ");
 
         BOLD_LIGHT_WHITE_COLOR
@@ -91,7 +88,7 @@ FSetup::Stage1() {
         if(welcome_emoji == "n" || welcome_emoji == "N") welcome_emoji = ":thinking_face:";
 
         /* Background Color */
-        colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
+        colorized::PrintWith(colorized::Colorize(BOLD, CYAN),
             "Background Color [0,1,2,3,4,5,6,7] (Default : 12)\n -> ");
 
         BOLD_LIGHT_WHITE_COLOR
@@ -101,7 +98,7 @@ FSetup::Stage1() {
         if(bg_color == "n" || bg_color == "N") bg_color = "12";
 
         /* ASCII Art Color */
-        colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
+        colorized::PrintWith(colorized::Colorize(BOLD, CYAN),
             "ASCII Art Color [colornumber, no_thanks, random] (Default: random)\n -> ");
 
         BOLD_LIGHT_WHITE_COLOR
@@ -111,7 +108,7 @@ FSetup::Stage1() {
         if(ascii_art_color == "n" || ascii_art_color == "N") ascii_art_color = "random";
 
         /* Scrift Theme */
-        colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
+        colorized::PrintWith(colorized::Colorize(BOLD, CYAN),
             "Scrift Theme [default, classic, halloween 🎃]\n -> ");
 
         BOLD_LIGHT_WHITE_COLOR
@@ -123,7 +120,7 @@ FSetup::Stage1() {
 		if(scrift_theme == "🎃") scrift_theme = "halloween";
 
         /* Input Customization */
-        colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
+        colorized::PrintWith(colorized::Colorize(BOLD, CYAN),
             "Input Customization [▶, #>, $# etc.] (Default: ▶)\n -> ");
 
         BOLD_LIGHT_WHITE_COLOR
@@ -133,7 +130,7 @@ FSetup::Stage1() {
         if(input_customize == "n" || input_customize == "N") input_customize = "▶ ";
 
         /* Welcome Message */
-        colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
+        colorized::PrintWith(colorized::Colorize(BOLD, CYAN),
             "Welcome Message [yes, no_thanks] (Default: yes)\n -> ");
 
         BOLD_LIGHT_WHITE_COLOR
@@ -143,7 +140,7 @@ FSetup::Stage1() {
         if(welcome_message == "n" || welcome_message == "N") welcome_message = "yes";
 
         /* Local Git Branch */
-        colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
+        colorized::PrintWith(colorized::Colorize(BOLD, CYAN),
             "Local Git Branch Detection [yes, no_thanks] (Default: yes)\n -> ");
 
         BOLD_LIGHT_WHITE_COLOR
@@ -153,7 +150,7 @@ FSetup::Stage1() {
         if(local_git_branch == "n" || local_git_branch == "N") local_git_branch = "yes";
 
         /* Local Git Branch */
-        colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
+        colorized::PrintWith(colorized::Colorize(BOLD, CYAN),
             "Auto terminal buffer clear (line) [10, 20, no_thanks] (Default: 40)\n -> ");
 
         BOLD_LIGHT_WHITE_COLOR
@@ -163,27 +160,27 @@ FSetup::Stage1() {
         if(auto_clear == "n" || auto_clear == "N") auto_clear = "40";
 
         /* Sign_1 */
-        colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
+        colorized::PrintWith(colorized::Colorize(BOLD, CYAN),
             "Sign 1 (ferhatgec[@]fegeya) [@, ~, #, &]\n -> ");
 
         BOLD_LIGHT_WHITE_COLOR
         std::cin >> sign_1;
 
-        if(sign_1 == "n" || sign_1 == "N") sign_1 == "@";
+        if(sign_1 == "n" || sign_1 == "N") sign_1 = "@";
 
         /* Sign 2 */
-        colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
+        colorized::PrintWith(colorized::Colorize(BOLD, CYAN),
             "Sign 2 (@fegeya[:~]/home/) [:~, ~>, +_]\n -> ");
         
         BOLD_LIGHT_WHITE_COLOR
         std::cin >> sign_2;
 
-        if(sign_2 == "n" || sign_2 == "N") sign_2 == ":~";
+        if(sign_2 == "n" || sign_2 == "N") sign_2 = ":~";
         
         /* Check Is Fpm available */
         
-        if(fsplusplus::IsExistFile("/bin/fpm") != true) {
-        	colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(),
+        if(!fsplusplus::IsExistFile("/bin/fpm")) {
+        	colorized::PrintWith(colorized::Colorize(BOLD, CYAN),
             "Do you want to install fpm (Fegeya Package Manager) from source? (Y/n) \n -> ");
         
         	char ch;
@@ -212,21 +209,21 @@ FSetup::Stage1() {
         		/* Cleaning */
         		std::filesystem::remove_all(STR(getenv("HOME")) + "/scrift_fpm/");
         		
-        		if(fsplusplus::IsExistFile("/bin/fpm") == true) {
+        		if(fsplusplus::IsExistFile("/bin/fpm")) {
         			std::cout << "Fpm installed!\n";
         		}
         	}
         }
         
         /* Tip */
-        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_GREEN).c_str(),
+        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_GREEN),
             "Tip: You can change Scrift's prompt (.scrift_settings)\n");
         
         /* Example */
-        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_GREEN).c_str(),
+        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_GREEN),
             "Example: @definition@[color]\n");
 
-        colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(),
+        colorized::PrintWith(colorized::Colorize(BOLD, RED),
             "Erasing old settings data.\n");
     } else {
         felog_clean_line = "100";
@@ -263,7 +260,7 @@ FSetup::Stage1() {
     
     erase_settings.close();
 
-    colorized::PrintWith(colorized::Colorize(BOLD, GREEN).c_str(),
+    colorized::PrintWith(colorized::Colorize(BOLD, GREEN),
         "Good luck!\n");
 }
 

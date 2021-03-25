@@ -13,7 +13,7 @@
 class FGetUsername {
 public:
     void InitUsername();
-    void GetUsername();
+
     void InitHostname();
 };
 

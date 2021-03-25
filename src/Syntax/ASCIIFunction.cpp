@@ -5,12 +5,9 @@
 #
 # */
 
-#include <iostream>
 #include <string>
 #include <filesystem>
 
-#include <src/synflang.hpp>
-#include <src/Scrift.hpp>
 #include <src/Syntax/Log.hpp>
 #include <src/Syntax/FileFunction.hpp>
 #include <src/Syntax/ASCIIFunction.hpp>
@@ -19,9 +16,6 @@
 #define scrift_ascii_filename ".scrift_ascii"
 
 // Library
-#include <FileSystemPlusPlus.h>
-#include <Colorized.hpp>
-
 bool FASCIIFunction::InitFile() {
    return std::filesystem::exists(std::basic_string(getenv("HOME")) + "/" + std::basic_string(scrift_ascii_filename));
 }

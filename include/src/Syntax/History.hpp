@@ -15,18 +15,14 @@ public:
     FHistory();
     ~FHistory();
    
-    bool IsExist();   
-    const std::string TimeFunction();
-   
+    bool IsExist();
+
     void CreateFile();
-   
-    void WriteAllHistory();
-    void WriteHistory(std::string element);
-   
+
     void ClearHistory();
     void AllofThem();
     
-    void WriteInHistory(std::string element);
+    void WriteInHistory(const std::string& element);
 };
 
 

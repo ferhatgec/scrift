@@ -6,22 +6,18 @@
 # */
 
 #include <iostream>
-#include <algorithm>
 #include <pwd.h>
 #include <src/Syntax/Settings.hpp>
 #include <src/Syntax/CommandFunc.hpp>
 #include <src/Syntax/GetNameFunction.hpp>
-#include <src/Syntax/Branch.hpp>
 #include <src/Syntax/Tools.hpp>
 
 // Library
-#include <Colorized.hpp>
 
-FBranch br;
 FTools tools;
 FCommand *terminal = new FCommand();
 FSettings *fsettings = new FSettings();
-FStructure::FStructure() { }
+FStructure::FStructure() = default;
 FGetUsername usr;
 uid_t uid = geteuid();
 struct passwd *password = getpwuid(uid);
@@ -36,11 +32,6 @@ FGetUsername::InitUsername() {
         printlnf(password->pw_name);
 }
 
-void
-FGetUsername::GetUsername() {
-    InitUsername();
-}
-
 
 void
 FGetUsername::InitHostname() {
@@ -49,15 +40,7 @@ FGetUsername::InitHostname() {
     printlnf("%s", hostname_buffer);
 }
 
-std::string GetBranch() {
-	std::string branch = br.GetGitBranch();
-	branch.erase(std::remove(branch.begin(), branch.end(), '\n'), branch.end());
-	
-    return branch;
-}
-
 std::string uname(password->pw_name);
-std::string customize = fsettings->InputCustomize();
 
 void
 FStructure::Terminal(bool incognito) {

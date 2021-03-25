@@ -9,8 +9,6 @@
 
 #include <src/Scrift.hpp>
 #include <src/synflang.hpp>
-#include <src/Syntax/RunFunction.hpp>
-#include <src/Syntax/CommandFunc.hpp>
 #include <src/Syntax/HelpFunction.hpp>
 #include <src/Syntax/Locale.hpp>
 
@@ -112,17 +110,17 @@ FHelpFunction::HelpFunction(slocale_t &locale) {
 
 void 
 FHelpFunction::Welcome() {
-    colorized::PrintWhReset(colorized::Colorize(BOLD, BLUE).c_str(), "Welcome to ");
-    colorized::PrintWhReset(colorized::Colorize(BOLD, GREEN).c_str(), "Fegeya ");
-    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "Scrift ");
-    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), "Terminal \n");
-    colorized::PrintWhReset(colorized::Colorize(BOLD, GREEN).c_str(), "Fegeya ");
-    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLUE).c_str(), "Scrift ");
-    colorized::PrintWhReset(colorized::Colorize(BOLD, YELLOW).c_str(), "licensed with ");
-    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_GREEN).c_str(), "MIT License \n");
-    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "Copyright (c) ");
-    colorized::PrintWhReset(colorized::Colorize(BOLD, MAGENTA).c_str(), COPYRIGHT_YEAR);
-    colorized::PrintWith(colorized::Colorize(BOLD, YELLOW).c_str(), " Ferhat Geçdoğan\n");
+    colorized::PrintWhReset(colorized::Colorize(BOLD, BLUE), "Welcome to ");
+    colorized::PrintWhReset(colorized::Colorize(BOLD, GREEN), "Fegeya ");
+    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLUE), "Scrift ");
+    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_CYAN), "Terminal \n");
+    colorized::PrintWhReset(colorized::Colorize(BOLD, GREEN), "Fegeya ");
+    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_BLUE), "Scrift ");
+    colorized::PrintWhReset(colorized::Colorize(BOLD, YELLOW), "licensed with ");
+    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_GREEN), "MIT License \n");
+    colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_MAGENTA), "Copyright (c) ");
+    colorized::PrintWhReset(colorized::Colorize(BOLD, MAGENTA), COPYRIGHT_YEAR);
+    colorized::PrintWith(colorized::Colorize(BOLD, YELLOW), " Ferhat Geçdoğan\n");
 }
 
 void 

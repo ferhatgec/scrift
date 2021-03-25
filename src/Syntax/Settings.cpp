@@ -8,26 +8,16 @@
 #include <iostream>
 #include <pwd.h>
 #include <ctime>
-#include <memory>
 
 #include <src/Syntax/Tools.hpp>
 #include <src/Syntax/Branch.hpp>
 #include <src/Syntax/GetNameFunction.hpp>
 #include <src/Syntax/Settings.hpp>
-#include <src/Syntax/FileFunction.hpp>
-#include <src/Syntax/Log.hpp>
-#include <src/synflang.hpp>
-#include <src/Scrift.hpp>
 
 // Libraries
 #include <FileSystemPlusPlus.h>
 #include <StringTools.h>
 #include <Colorized.hpp>
-#include <StringTools.h>
-
-std::unique_ptr<FileFunction::FCreateFileFunction> createfile(new FileFunction::FCreateFileFunction);
-std::unique_ptr<FileFunction::FReadFileFunction> readfile(new FileFunction::FReadFileFunction);
-
 
 /*
 	.scrift_settings
@@ -39,13 +29,6 @@ FSettings::Path() {
     Path.append("/");
     return Path.append(".scrift_settings");
 }
-
-std::string GPath() {
-	FSettings pth;
-	return pth.Path();
-}
-
-std::ifstream freadfile(GPath());
 
 
 /*
@@ -136,7 +119,7 @@ FSettings::FeLogCleaner() {
 	std::string line = fsplusplus::FindStringWithReturn(Path(), "felog_cleaner");
 
    	if(atoi(stringtools::EraseAllSubString(line, "felog_cleaner ").c_str()) <= 5) {
-		colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), "felog_cleaner : Give 5 or higher value.\n");
+		colorized::PrintWith(colorized::Colorize(BOLD, RED), "felog_cleaner : Give 5 or higher value.\n");
    		return 20;
    	} else 
 		return atoi(stringtools::EraseAllSubString(line, "felog_cleaner ").c_str());
@@ -146,7 +129,7 @@ FSettings::FeLogCleaner() {
 
 int
 FSettings::random(int min_num, int max_num) {
-    srand(time(0));
+    srand(time(nullptr));
     return rand() % (max_num - min_num + 1 ) + min_num;
 }
 
@@ -176,7 +159,7 @@ FSettings::ASCIIColor() {
     else if(strstr(line.c_str(), "random"))
 		return color();
     else if(atoi(stringtools::EraseAllSubString(line, "ascii_art_color ").c_str()) <= 29) {
-		colorized::PrintWith(colorized::Colorize(BOLD, RED).c_str(), "ascii_art_color : Give 30 or higher value.\n");
+		colorized::PrintWith(colorized::Colorize(BOLD, RED), "ascii_art_color : Give 30 or higher value.\n");
 		return 34;
     } else
 		return atoi(stringtools::EraseAllSubString(line, "ascii_art_color ").c_str());
@@ -301,7 +284,7 @@ FSettings::Customize(bool incognito) {
 		} else if(check == "newline") {
 			std::cout << "\n";
 		} else if(check == "incognito") {
-			if(incognito == true) 
+			if(incognito)
 				std::cout << "🕵️";
 		} else if(strstr(check.c_str(), "sign")) 
 			std::cout << _color << Sign(check);

@@ -6,25 +6,17 @@
 # */
 
 #include <sys/utsname.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include <cstdlib>
+#include <cstdio>
 #include <dirent.h>
 #include <sys/stat.h>
 #include <unistd.h>
-#include <limits.h>
-#include <pwd.h>
-#include <string.h>
-#include <experimental/filesystem>
 #include <sys/socket.h>
-#include <sys/ioctl.h>
 #include <netinet/in.h>
-#include <net/if.h>
 #include <arpa/inet.h>
 
 #include <src/Scrift.hpp>
 #include <src/synflang.hpp>
-#include <src/Syntax/GetNameFunction.hpp>
-#include <src/Syntax/CommandFunc.hpp>
 #include <src/Syntax/Settings.hpp>
 
 // Libraries
@@ -32,16 +24,15 @@
 #include <Colorized.hpp>
 #include <StringTools.h>
 
-namespace filesys = std::experimental::filesystem;
 static FCommand *command;
 
-FCommand::FCommand() { }
+FCommand::FCommand() = default;
 
-FCommand::~FCommand() { }
+FCommand::~FCommand() = default;
 
 void 
 FCommand::remove_character(char * _str, char ptr) {
-    if(_str == NULL)
+    if(_str == nullptr)
         return;
 
     char * _pstr = _str;
@@ -57,7 +48,7 @@ FCommand::remove_character(char * _str, char ptr) {
 
 std::string
 FCommand::FName() {
-	struct utsname buf;
+	struct utsname buf{};
 
 	if(!uname(&buf)) { //Get name and information about current kernel.
 		WHITE_COLOR
@@ -74,7 +65,7 @@ FCommand::FName() {
 
 void
 FCommand::echo_printlnf(std::string name) { 
-    if(name != "") {
+    if(name.empty()) {
         WHITE_COLOR
         if(name.rfind("#USER") == 0) {
             std::cout << getenv("USER") << "\n";
@@ -84,15 +75,15 @@ FCommand::echo_printlnf(std::string name) {
 		    name = name.erase(0, 1);
         	const char* env = getenv(name.c_str());
 		
-            if(env != NULL)
+            if(env != nullptr)
 			    std::cout << env;
 		    else {
-			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), "scrift : This Environment not found. ");
-			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "Use:\n");
-			    colorized::PrintWith(colorized::Colorize(BOLD, BLUE).c_str(), "setname ");
-			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN).c_str(), name.c_str());
-			    colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(), "\nsetto ");
-			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_YELLOW).c_str(), "<variable>");
+			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), "scrift : This Environment not found. ");
+			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA), "Use:\n");
+			    colorized::PrintWith(colorized::Colorize(BOLD, BLUE), "setname ");
+			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN), name.c_str());
+			    colorized::PrintWith(colorized::Colorize(BOLD, CYAN), "\nsetto ");
+			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_YELLOW), "<variable>");
 		    }
         } else
         	std::cout << emojiplusplus::EmojiString(name);
@@ -101,35 +92,24 @@ FCommand::echo_printlnf(std::string name) {
     }
 }
 
-void
-FCommand::_set_locale() {
-    BOLD_MAGENTA_COLOR
-    printlnf("Set up -> Your system language");// setlocale(LC_CTYPE, NULL);
-    BLACK_COLOR // reset
-    
-    setlocale(LC_CTYPE, NULL); // FOR UNIX AND FUSION
-    printlnf(" \n"); 
-}
-
 
 void
 FCommand::list_direc(boolean _home, std::string arg) {
     integer files = 0;
-    struct stat filestat;
+    struct stat filestat{};
     struct dirent *entry;
     DIR *dir;
 	
-    if(_home != false && arg.rfind("#") == 0) {
+    if(_home && arg.rfind('#') == 0) {
 		arg = stringtools::EraseAllSubString(arg, "#");
     	dir = opendir((command->_file_path_cd_function, "/", getenv(arg.c_str())));
 	} else {
-        if(_home != false)
+        if(_home)
             dir = opendir((_file_path_cd_function, arg.c_str())); /*For Linux and *nix*/
-        else if(_home == false)
-        	    dir = opendir(getenv("HOME"));
+        else dir = opendir(getenv("HOME"));
     }
     
-    if (dir == NULL) {
+    if (dir == nullptr) {
         std::cout << WBLWHITE << "Directory not found.\n";
         return;
     }
@@ -154,22 +134,21 @@ FCommand::list_direc(boolean _home, std::string arg) {
 void 
 FCommand::list_file(boolean _home, std::string arg) {
     integer files = 0;
-    struct stat filestat;
+    struct stat filestat{};
     struct dirent *entry;
     DIR *dir;
 	
-    if(_home != false && arg.rfind("#") == 0) {
+    if(_home && arg.rfind('#') == 0) {
 		arg = stringtools::EraseAllSubString(arg, "#");
     	std::string new_name(getenv(arg.c_str()));
     	dir = opendir((command->_file_path_cd_function, "/", new_name.c_str()));
 	} else {
-        if(_home != false)
+        if(_home)
             dir = opendir((_file_path_cd_function, arg.c_str())); /*For Linux and *nix*/
-        else if(_home == false)
-        	dir = opendir(getenv("HOME"));
+        else dir = opendir(getenv("HOME"));
     }
         
-    if (dir == NULL) {
+    if (dir == nullptr) {
         std::cout << WBLWHITE << "Directory not found.\n";
         return;
     }
@@ -192,24 +171,6 @@ FCommand::list_file(boolean _home, std::string arg) {
 }
 
 
-std::string 
-FCommand::chartostring(std::string const & s, char *a) {
-    return s + a;
-}
-
-
-void
-FCommand::plus_num(uinteger64 first_num, uinteger64 sec_num) {
-    printlnf("First number: ");
-    
-    std::cin >> first_num;
-    printlnf("Second number ");
-    std::cin >> sec_num;
-    uinteger64 fs_num = sec_num + first_num;
-    std::cout << fs_num << "\n";
-}
-
-
 void
 FCommand::_generated_hash_string(integer size) {
     std::string str;
@@ -228,7 +189,7 @@ FCommand::_generated_hash_string(integer size) {
 void
 FCommand::getIPAddress() {
     int sock = socket(PF_INET, SOCK_DGRAM, 0);
-    sockaddr_in loopback;
+    sockaddr_in loopback{};
 
     if (sock == -1) 
         std::cerr << "Could not socket\n";
@@ -253,7 +214,7 @@ FCommand::getIPAddress() {
     close(sock);
 
     char buf[INET_ADDRSTRLEN];
-    if (inet_ntop(AF_INET, &loopback.sin_addr, buf, INET_ADDRSTRLEN) == 0x0)
+    if (inet_ntop(AF_INET, &loopback.sin_addr, buf, INET_ADDRSTRLEN) == nullptr)
         std::cerr << "Could not inet_ntop\n";
     else {
         std::cout << WBOLD_GREEN_COLOR << "Local ip address: ";
@@ -261,20 +222,3 @@ FCommand::getIPAddress() {
     }
 }
 
-void
-FCommand::printerror(fchar *err_str, integer8 err_number, fchar * _error_code) {
-    RED_COLOR
-    printlnf(err_str);
-    slashn 
-    std::cout << err_number;
-    slashn
-    printlnf(_error_code);
-    BLACK_COLOR // reset
-}
-
-void
-FCommand::_n_supported_() {
-    RED_COLOR
-    std::cout << "This OS is not supported.\n";
-    BLACK_COLOR // reset
-}

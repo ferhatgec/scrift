@@ -5,13 +5,12 @@
 #
 # */
 
-#include <iostream>
 #include <string>
 
 #include <src/Syntax/Validation.hpp>
 
 SCRIFT_VALIDATION
-FValidation::Validate(std::string command) {
+FValidation::Validate(const std::string& command) {
     /* :& */
     if(command.substr(0, 8) == "https://") {
         return WEBSITE;

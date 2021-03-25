@@ -13,7 +13,7 @@
 
 class FTemplate {
 public:
-	void LangTemplate(std::string file);
+	void LangTemplate(const std::string& file);
 	
 	std::string CPlusPlusTemplate() {
 		return "#include <iostream>\n\nint main(int argc, char** argv) {\nstd::cout << \"Hello C++!\";\nreturn 0;\n}";

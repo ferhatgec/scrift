@@ -19,33 +19,21 @@ namespace FileFunction {
 
     class FMKDirFunction : public FCDFunction {
     public:
-        FMKDirFunction();
-        ~FMKDirFunction();
-    
-        void MKDirFunctionInit(std::string);
+        void MKDirFunctionInit(const std::string&);
     };
 
     class FCreateFileFunction : public FMKDirFunction {
     public:
-        FCreateFileFunction();
-        ~FCreateFileFunction();
-    
-    	/* TODO: Will be removed */ 
-        bool IsExistFile(std::string);
-    
         void CreateASCIIFileFunction();
-        void CreateScriftFile(std::string);
-        void CreateFileFunctionInit(std::string);
+        void CreateScriftFile(const std::string&);
+        void CreateFileFunctionInit(const std::string&);
         void CreateSettingsFileFunction();
     };
 
     class FReadFileFunction : public FCreateFileFunction {
     public:
-        FReadFileFunction();
-        ~FReadFileFunction();
-     
-     	/* TODO: Remove DRY codes */
-        void ReadFeLogFunctionWithoutPrint();
+        std::string ReadFile(const std::string& filename);
+
         void ReadHistoryFileFunction();
         void ReadSettingsFunction();
         void ReadASCIIFunction();
@@ -58,11 +46,9 @@ namespace FileFunction {
 
     class FFindFileFunction : public FReadFileFunction {
     public:
-        FFindFileFunction() { }
-	    ~FFindFileFunction() { }
-	
-	    void FindFile(std::string);
-	    std::string FindWithoutPrint(std::string);
+	    void FindFile(const std::string&);
+
+	    std::string FindWithoutPrint(const std::string& name);
     };
 
 
@@ -74,35 +60,34 @@ namespace FileFunction {
 
     class FLSFunction : public FCDFunction {
     public:
-        FLSFunction();
-        ~FLSFunction();
-    
-        bool ListArgumentObjectFunction(std::string);
+        bool ListArgumentObjectFunction(const std::string&);
+
         void ListObjectFunction();
         void LSFunction(std::string);
-        void ParseListing(std::string file);
+
+        void ParseListing(const std::string& filename, const std::string& extension);
+
         std::string GetFileExtension(const std::string& file);
         
-        std::string GetObjects();
+        void GetObjects();
     };
 
     class FRemoveFileFunction : public FCDFunction {
     public:
-        void DeleteFile(std::string);
+        void DeleteFile(const std::string& file);
     };
 
 
     typedef struct {
     public:
-        static void AppendLine(std::string);
-        static void DeleteLine(std::string);
+        static void AppendLine(const std::string&);
     } faddtextfunction;
 
     typedef struct {
     public:
-        std::string CurrentDirectory(void);
+        std::string CurrentDirectory();
         void GetHome();
     } fhomefunction;
-};
+}
 
 #endif // FILE_FUNCTION_HPP

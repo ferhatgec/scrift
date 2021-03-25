@@ -6,18 +6,15 @@
 # */
 
 #include <iostream>
-#include <cstdlib>
 
 #include <src/Syntax/Template.hpp>
-#include <src/Scrift.hpp>
 
 // Libraries
 #include <FileSystemPlusPlus.h>
-#include <Colorized.hpp>
 #include <StringTools.h>
 
 void
-FTemplate::LangTemplate(std::string name) {
+FTemplate::LangTemplate(const std::string& name) {
     if(strstr(name.c_str(), ".cpp"))
 		fsplusplus::CreateFile(name, CPlusPlusTemplate());
 	else if(strstr(name.c_str(), ".cpp"))

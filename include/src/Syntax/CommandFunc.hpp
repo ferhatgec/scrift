@@ -11,15 +11,15 @@
 
 #include "../Scrift.hpp"
 #include <unistd.h>
-#include <limits.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <locale.h>
-#include <stddef.h>
+#include <climits>
+#include <cstdio>
+#include <cstdlib>
+#include <clocale>
+#include <cstddef>
 #include <cstdlib>
 #include <ifaddrs.h>
 #include <netinet/in.h>
-#include <string.h>
+#include <cstring>
 #include <arpa/inet.h>
 
 #include <unistd.h>
@@ -30,25 +30,21 @@ public:
     FCommand();
     ~FCommand();
 
-    void _set_locale();
-
     // FName
-    std::string FName();
+    static std::string FName();
 
     // Directory
     void list_file(boolean, std::string);
     void list_direc(boolean, std::string);
-    std::string chartostring(std::string const &, fchar * );
-    void plus_num(uinteger64, uinteger64);
-    void _generated_hash_string(integer);
-    void getIPAddress();
-    void printerror(fchar *, integer8, fchar * );
-    void _n_supported_();
+
+    static void _generated_hash_string(integer);
+    static void getIPAddress();
+
     void echo_printlnf(std::string);
-    void remove_character(char * , char );
-    struct dirent *direntfunction;
-    char *_file_path_cd_function = getenv("PWD");
-    char *_home_dir = getenv("HOME");
+    static void remove_character(char * , char );
+
+    std::string _file_path_cd_function = getenv("PWD");
+
 };
 
 

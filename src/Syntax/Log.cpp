@@ -7,24 +7,20 @@
 
 #include <sys/stat.h>
 #include <ctime>
-#include <cstdio>
-#include <pwd.h>
 
 #include <src/Syntax/Log.hpp>
 #include <src/Syntax/FileFunction.hpp>
 #include <src/Scrift.hpp>
-#include <src/Syntax/CommandFunc.hpp>
 
 /* TODO:
    * Clear.
 */
 
 std::ofstream file;
-FCommand *commandlog = new FCommand();
 std::string filepath_with_path;
 
-FeLog::FeLog()  {}
-FeLog::~FeLog() {}
+FeLog::FeLog()  = default;
+FeLog::~FeLog() = default;
 
 void
 FeLog::ClearLog() {
@@ -38,10 +34,10 @@ FeLog::ClearLog() {
 }
 
 
-const std::string
+std::string
 FeLog::TimeFunction() {
-    time_t nowtime = time(0);
-    struct tm tstruct;
+    time_t nowtime = time(nullptr);
+    struct tm tstruct{};
     char    buff[80];
     tstruct = *localtime(&nowtime);
     std::strftime(buff, sizeof(buff), "%Y-%M-%d.%X", &tstruct);
@@ -82,14 +78,14 @@ void FeLog::CreateFile() {
 
 bool
 FeLog::IsExist() {
-    struct stat buffer;
+    struct stat buffer{};
     return (stat(filepath_with_path.c_str(), &buffer) == 0);
 }
 
 
 void
 FeLog::AllofThem() {
-    if(IsExist() != true)
+    if(!IsExist())
         CreateFile();
     else {
         printlnf("FeLog file is exists\n");

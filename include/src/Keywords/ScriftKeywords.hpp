@@ -16,9 +16,11 @@ public:
 	/* Help */
 	std::string Help = "help";
 	std::string Help_Short = "-h";
+
+	// Use to_upper() and to_lower() instead.
 	std::string Help_Short_Biggest = "-H";
-	std::string Help_Big = "Help";
-	std::string Help_Biggest = "HELP";
+    std::string Help_Big = "Help";
+    std::string Help_Biggest = "HELP";
 	 
 	/* GitLink */
 	std::string GitLink = "gitlink";

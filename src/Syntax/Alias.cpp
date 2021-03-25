@@ -7,7 +7,6 @@
 
 #include <iostream>
 #include <string>
-#include <sstream>
 
 #include <src/Scrift.hpp>
 #include <src/Syntax/Alias.hpp>
@@ -37,7 +36,7 @@ FAlias::Parse(std::string inputted_command) {
 }
 
 void
-FAlias::AddAlias(std::string name, std::string replacement) {
+FAlias::AddAlias(const std::string& name, const std::string& replacement) {
     std::string data = fsplusplus::FindStringWithReturn(STR(getenv("HOME")) + "/.scrift_aliases",
         name + "='");
     
@@ -80,7 +79,7 @@ FAlias::AddAlias(std::string name, std::string replacement) {
 
 void
 FAlias::Init() {
-    if(fsplusplus::IsExistFile(STR(getenv("HOME")) + "/.scrift_aliases") == false) {
+    if(!fsplusplus::IsExistFile(STR(getenv("HOME")) + "/.scrift_aliases")) {
         fsplusplus::CreateFile(STR(getenv("HOME")) + "/.scrift_aliases", "hello='echo Hello, Scrift!'\n");
     }
 }

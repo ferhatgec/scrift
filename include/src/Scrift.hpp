@@ -23,12 +23,9 @@
 
 #define slashn printlnf("\n");
 
-#define typest typedef struct
 #define fstr std::string
-#define destructor ~
 
 #define printhyphen printlnf("-");
-#define hyphen "-"
 
 #define SCRIFT_VERSION "0.1.9"
 #define SCRIFT_STATUS "beta-1"
@@ -76,14 +73,14 @@ public:
     /* Shell */
     void Shell(slocale_t &locale);
     
-    std::string Time();
+    static std::string Time();
 
-    /* Input, directory variables. */
+    // Input, directory variables.
     std::string header_string;
     std::string str;
     std::string _h_str;
     std::string strfor_h_str;
-    bool _home;
+    bool _home{};
 };
 
 #endif // SCRIFT_HPP
