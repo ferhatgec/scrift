@@ -14,7 +14,6 @@
 
 #include <src/Scrift.hpp>
 #include <src/Syntax/RunFunction.hpp>
-#include <src/Syntax/Language.hpp>
 #include <src/Syntax/CommandFunc.h>
 
 // Libraries
@@ -163,36 +162,15 @@ void ExecuteArgsPiped(char** parsed, char** parsedpipe) {
 }
 
 void
-FRunFunction::RunFunction(std::string name) {
-    strcpy(inputString, stringtools::EraseAllSubString(name, "\n").c_str());
+FRunFunction::RunFunction(std::string command) {
+    strcpy(inputString, stringtools::EraseAllSubString(command, "\n").c_str());
+
     execFlag = ProcessString(inputString,
         parsedArgs, parsedArgsPiped);
-    if (strstr(name.c_str(), "|"))
+
+    if (command.find("|")) {
         ExecuteArgsPiped(parsedArgs, parsedArgsPiped);
-    else
+    } else {
         ExecuteArgs(parsedArgs);
+    }
 }
-
-
-void
-FRunFunction::RunBinFunction(std::string name) {
-    directory = "/bin/";
-    system(directory.c_str());
-}
-
-void
-FRunFunction::RunGMakeFunction(std::string name) {
-    FCommand *command = new FCommand();
-    directory = "/usr/bin" + name;
-    directory.append(command->_file_path_cd_function);
-    system(directory.c_str());
-}
-
-// For Fegeya Fusion and *nix
-void
-FRunFunction::RunJamFunction(std::string name) {
-    directory = "/usr/local/bin/jam " + name; // read-only!
-    system(directory.c_str()); // jam + function
-}
-
-// For Fegeya Fusion and *nix

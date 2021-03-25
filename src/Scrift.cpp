@@ -46,7 +46,6 @@
 #include <src/Syntax/DeveloperMode.hpp> /* Under the construction */
 #include <src/Syntax/Contributors.hpp> /* Contributors etc. */
 #include <src/Syntax/Settings.hpp> /* Settings */
-#include <src/Syntax/Language.hpp> /* Under the construction. Scripting language */
 #include <src/Syntax/History.hpp> /* History */
 #include <src/Syntax/Template.hpp> /* 'Hello world' example for a lot of languages */
 #include <src/Syntax/Setup.hpp> /* Scrift Configuration & Setup */
@@ -98,7 +97,6 @@ std::unique_ptr<FReadFileFunction> readfilefunction(new FReadFileFunction);
 std::unique_ptr<FeLog> logsystem(new FeLog);
 std::unique_ptr<FRemoveFileFunction> removefile(new FRemoveFileFunction);
 std::unique_ptr<FSettings> runsyntax(new FSettings);
-std::unique_ptr<FLanguage> scriftlang(new FLanguage);
 std::unique_ptr<FHistory> history(new FHistory);
 std::unique_ptr<FHelpFunction> helpstr(new FHelpFunction);
 std::unique_ptr<FSetup> setup(new FSetup);
@@ -180,7 +178,9 @@ void GetBtwString(std::string oStr, std::string sStr1, std::string sStr2, std::s
        rStr = "error";
 }
 
-std::string VersionGenerator() { return "scriftv" + scriftlang->EraseAllSubString(ftime, ":"); }
+std::string VersionGenerator() {
+    return "scriftv" + stringtools::EraseAllSubString(ftime, ":");
+}
 
 /* For input colorizing */
 void Space(int space, std::string sign, unsigned theme) {
@@ -546,12 +546,12 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             if(arg == keywords.RunDotSlash) {
                 colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED).c_str(), 
                     "scrift : ./ : Is a directory.\n");
-            } else if(strstr(arg.c_str(), ".scr")) {
+            } /*else if(strstr(arg.c_str(), ".scr")) {
                 arg = stringtools::EraseAllSubString(arg,
                     keywords.RunDotSlash);
 
                 scriftlang->ReadFunc(arg);
-            } else
+            } */else
                 runfunction->RunFunction(arg);
                 
             return;
@@ -698,7 +698,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
                 fscrift make.scr
 
                 ScriftSL interpreter.
-            */
+
         	if(arg == keywords.Scrift || arg == keywords.Scrift + " --h\n") {
                 std::cout << "Usage: fscrift file | file.scr\n";
             } else if(strstr(arg.c_str(), ".scr")) {
@@ -708,6 +708,8 @@ void CodeExecution(std::string arg, slocale_t &locale) {
                 arg = stringtools::EraseAllSubString(arg.erase(0, 7), " ");
                 scriftlang->ReadFunc(arg + ".scr");
             }
+            */
+            std::cout << "Work-in-progress\n";
 
             return;
         } else if(arg.rfind(keywords.MKDir, 0) == 0) {
@@ -1490,9 +1492,7 @@ int main(integer argc, char** argv) {
     }
 
     if(reg.substr(0, 2) == "--") {
-	    if(strstr(reg.c_str(), "--b")) { /* Interpreter for Scrift's language. */
-		    scriftlang->ReadFunc(copy_arg + ".scr");
-	    } else if(reg == "--help" || reg == "--h") { /* Print HelpFunction() */
+	    if(reg == "--help" || reg == "--h") { /* Print HelpFunction() */
 		    BOLD_RED_COLOR
 		    helpstr->HelpFunction(locale);
 		    BLACK_COLOR

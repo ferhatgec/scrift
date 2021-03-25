@@ -8,13 +8,12 @@
 SOURCE       = ./src/
 INSTALLATION = /bin/
 OUTPUT       = scrift
-FDATE_OUTPUT = fdate
 
 # Apps
 SRCAPPSDIREC = ./Apps/
 
 # Libraries
-SRCLIBDIREC = ./Library/
+SRCLIBDIREC = ./library/
 
 # Scrift's Syntax
 SRCSYNTAXDIREC = $(SOURCE)Syntax/
@@ -33,7 +32,7 @@ COMPILER = $(CPP) $(STANDARD)
 COMP     = $(GCC)
 
 # Clean all
-CLEANALL = $(OUTPUT) $(FDATE_OUTPUT)
+CLEANALL = $(OUTPUT)
 
 # Clean object files
 CLEAN = *.o
@@ -65,10 +64,10 @@ else
 endif
 
 # Build
-all:     fpm  headersfile main  date clean
+all:     fpm  headersfile main  clean
 
 # Build & Install
-install: fpmc headersfile mainc datec clean
+install: fpmc headersfile mainc clean
 
 # Remove & Clean all
 removeall: uninstall cleanall
@@ -102,21 +101,9 @@ mainc: $(SOURCE)Scrift.cpp
 	$(COMPILER) $(CPPFLAGS) $< $(HEADERFILE) -o $(INSTALLATION)$(OUTPUT)
 	echo Scrift [Install]
 
-# Calendar
-date: $(SRCAPPSDIREC)/FDate/FDate.cpp
-	$(COMPILER) $(SRCAPPSDIREC)/FDate/FDate.cpp -o $(FDATE_OUTPUT)
-	echo FDate.cpp
-	
-
-# Calendar & Converter & Build & Install
-datec: $(SRCAPPSDIREC)/FDate/FDate.cpp
-	$(COMPILER) $(SRCAPPSDIREC)/FDate/FDate.cpp -o $(INSTALLATION)$(FDATE_OUTPUT)
-	echo FDate.cpp [Install]
-
 # Remove Scrift.
 uninstall:
 	rm -f $(INSTALLATION)$(OUTPUT)
-	rm -f $(INSTALLATION)$(FDATE_OUTPUT)
 
 # Run Scrift
 run:

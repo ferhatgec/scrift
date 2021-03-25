@@ -8,11 +8,12 @@
 #ifndef CONTRIBUTORS_HPP
 #define CONTRIBUTORS_HPP
 
-#include "Log.hpp"
 #include "../Scrift.hpp"
 
+#include "Log.hpp"
+
 // Library
-#include "../../../Library/Colorized.hpp"
+#include <Colorized.hpp>
 
 class FContributors {
 public:
@@ -27,35 +28,35 @@ public:
 void
 FContributors::ShellContributors() {
     BOLD_GREEN_COLOR
-    printlnf("Scrift Contributors:\n");
+    std::cout << "Scrift Contributors:\n";
     BLACK_COLOR
 }
 
 void
 FContributors::FeedbackContributors() {
     BOLD_GREEN_COLOR
-    printlnf("Feedback Contributors:\n");
+    std::cout << "Feedback Contributors:\n";
     BLACK_COLOR
 }
 
 void
 FContributors::TestingContributors() {
     BOLD_GREEN_COLOR
-    printlnf("Testing Contributors:\n");
+    std::cout << "Testing Contributors:\n";
     BLACK_COLOR
 }
 
 void
 FContributors::DonateContributors() {
     BOLD_GREEN_COLOR
-    printlnf("Donate Contributors:\n");
+    std::cout << "Donate Contributors:\n";
     BLACK_COLOR
 }
 
 void
 FContributors::Sponsors() {
     BOLD_GREEN_COLOR
-    printlnf("Sponsors:");
+    std::cout << "Sponsors:";
     BLACK_COLOR
 }
 
