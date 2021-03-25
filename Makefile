@@ -5,6 +5,11 @@
 #
 #
 
+SOURCE       = ./src/
+INSTALLATION = /bin/
+OUTPUT       = scrift
+FDATE_OUTPUT = fdate
+
 # Apps
 SRCAPPSDIREC = ./Apps/
 
@@ -12,20 +17,13 @@ SRCAPPSDIREC = ./Apps/
 SRCLIBDIREC = ./Library/
 
 # Scrift's Syntax
-SRCSYNTAXDIREC = ./src/Syntax/
+SRCSYNTAXDIREC = $(SOURCE)Syntax/
 
-# Source
-SRCDIREC = ./src/
-
-# Prefix
-PREFIX = /bin/
-
-INCLUDELIB = ./Library/
+INCLUDELIB = $(SRCLIBDIREC)
 INCLUDEDIR = ./include/
 
 # Include flags etc.
-CFLAGS   = -Wall -I$(INCLUDELIB) -I$(INCLUDEDIR)
-CPPFLAGS = -Wno-unused-function -Wno-unused-value
+CPPFLAGS   = -I$(INCLUDELIB) -I$(INCLUDEDIR)
 
 GCC      = cc
 CPP      = c++
@@ -35,7 +33,7 @@ COMPILER = $(CPP) $(STANDARD)
 COMP     = $(GCC)
 
 # Clean all
-CLEANALL = scrift
+CLEANALL = $(OUTPUT) $(FDATE_OUTPUT)
 
 # Clean object files
 CLEAN = *.o
@@ -59,94 +57,76 @@ HEADERFILE = CommandFunc.o     \
              Validation.o      \
 
 # Platform
-ifeq ($(OS),Windows_NT)
+ifeq ($(OS), Windows_NT)
 	echo Windows_NT is not supported!
-	#CLEAN := del $(CLEAN)
-	#CLEANALL := del $(CLEANALL)
 else
-	CLEAN := rm -f $(CLEAN)
+	CLEAN    := rm -f $(CLEAN)
 	CLEANALL := rm -f $(CLEANALL)
 endif
 
 # Build
-all: fpm headersfile main datec clean
+all:     fpm  headersfile main  date clean
 
 # Build & Install
-install: fpmc headersfile mainc date clean
+install: fpmc headersfile mainc datec clean
 
 # Remove & Clean all
 removeall: uninstall cleanall
 
 # Build & Run
-runall: all run
-
-# For me & developers
-gra: runall git
+runall:    all run
 
 # Get Fpm (Fegeya Package Manager)
 fpm:
 	sh init/get_fpm.sh
 
 # Install Fpm (Fegeya Package Manager)
-fpmc:
-	sh init/get_fpm.sh
+fpmc: fpm
 	sh init/install_fpm.sh
-
-# Git
-git:
-	git add .
-	git commit -a
-	git push origin master
-
-push:
-	git push origin master
-
-# Only clean all
-nall: cleanall
 
 # Scrift's Core.
 headersfile: $(HEADERFILE)
 
 # Syntax
 %.o: $(SRCSYNTAXDIREC)%.cpp
-	$(COMPILER) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
-	echo [SUCCESS] $@
+	$(COMPILER) $(CPPFLAGS) -c $< -o $@
+	echo $@
 	
 # Main Build
-main: $(SRCDIREC)Scrift.cpp
-	$(COMPILER) $(CFLAGS) $(CPPFLAGS) $< $(HEADERFILE) -o scrift
-	echo [SUCCESS] Scrift
+main: $(SOURCE)Scrift.cpp
+	$(COMPILER) $(CPPFLAGS) $< $(HEADERFILE) -o $(OUTPUT)
+	echo Scrift.cpp
 
 # Main Build & Install
-mainc: $(SRCDIREC)Scrift.cpp
-	$(COMPILER) $(CFLAGS) $(CPPFLAGS) $< $(HEADERFILE) -o /bin/scrift
-	echo [SUCCESS] Scrift [bin]
+mainc: $(SOURCE)Scrift.cpp
+	$(COMPILER) $(CPPFLAGS) $< $(HEADERFILE) -o $(INSTALLATION)$(OUTPUT)
+	echo Scrift [Install]
 
-# Calendar & Converter Build
 # Calendar
-datec: $(SRCAPPSDIREC)/FDate/FDate.cpp
-	$(COMPILER)  $(SRCAPPSDIREC)/FDate/FDate.cpp -o fdate
-	echo [SUCCESS] FDate
-	
-# Calendar & Converter & Build & Install
 date: $(SRCAPPSDIREC)/FDate/FDate.cpp
-	$(COMPILER)  $(SRCAPPSDIREC)/FDate/FDate.cpp -o $(PREFIX)fdate
-	echo [SUCCESS] FDate[bin]
+	$(COMPILER) $(SRCAPPSDIREC)/FDate/FDate.cpp -o $(FDATE_OUTPUT)
+	echo FDate.cpp
 	
+
+# Calendar & Converter & Build & Install
+datec: $(SRCAPPSDIREC)/FDate/FDate.cpp
+	$(COMPILER) $(SRCAPPSDIREC)/FDate/FDate.cpp -o $(INSTALLATION)$(FDATE_OUTPUT)
+	echo FDate.cpp [Install]
+
 # Remove Scrift.
 uninstall:
-	rm -f /bin/scrift
-	rm -f /bin/fdate
+	rm -f $(INSTALLATION)$(OUTPUT)
+	rm -f $(INSTALLATION)$(FDATE_OUTPUT)
 
 # Run Scrift
 run:
-	./scrift
-	
+	./$(OUTPUT)
+
 # Clean object files
 clean:
-		$(CLEAN)
+	$(CLEAN)
 
 # Clean object files and Scrift.
 cleanall:
-		echo [SUCCESS] Clean
-		$(CLEANALL)
+	echo Clean
+	$(CLEANALL)
