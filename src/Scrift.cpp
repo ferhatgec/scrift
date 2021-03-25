@@ -55,7 +55,6 @@
 #include <src/Syntax/Alias.hpp>
 #include <src/Syntax/Validation.hpp>
 
-#include <Library/Keywords.hpp>
 
 /* Libraries */
 #include <InputPlusPlus.h> /* For key-codes */

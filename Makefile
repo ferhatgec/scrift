@@ -1,13 +1,9 @@
 # MIT License
 #
-# Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
+# Copyright (c) 2020-2021 Ferhat Geçdoğan All Rights Reserved.
 # Distributed under the terms of the MIT License.
 #
 #
-
-# For Castle
-GCFLAGS=-std=c++11 -O2 -g -Wall $(shell pkg-config --cflags ncursesw)
-GLDFLAGS=$(shell pkg-config --libs ncursesw)
 
 # Apps
 SRCAPPSDIREC = ./Apps/
@@ -17,12 +13,6 @@ SRCLIBDIREC = ./Library/
 
 # Scrift's Syntax
 SRCSYNTAXDIREC = ./src/Syntax/
-
-# Fetcheya
-SRCFETCHEYADIREC = ./src/Fetcheya/
-
-# Games
-GAMESDIREC = ./Games/
 
 # Source
 SRCDIREC = ./src/
@@ -34,14 +24,18 @@ INCLUDELIB = ./Library/
 INCLUDEDIR = ./include/
 
 # Include flags etc.
-CFLAGS = -Wall -I$(INCLUDELIB) -I$(INCLUDEDIR)
+CFLAGS   = -Wall -I$(INCLUDELIB) -I$(INCLUDEDIR)
+CPPFLAGS = -Wno-unused-function -Wno-unused-value
 
-GCC = cc
-COMPILER = c++ -std=c++17
-COMP = g++ -c
+GCC      = cc
+CPP      = c++
+STANDARD = -std=c++17
+
+COMPILER = $(CPP) $(STANDARD)
+COMP     = $(GCC)
 
 # Clean all
-CLEANALL = scrift /Games/Castle/castle
+CLEANALL = scrift
 
 # Clean object files
 CLEAN = *.o
@@ -75,7 +69,7 @@ else
 endif
 
 # Build
-all: fpm conio headersfile main datec clean
+all: fpm headersfile main datec clean
 
 # Build & Install
 install: fpmc headersfile mainc date clean
@@ -113,38 +107,20 @@ nall: cleanall
 # Scrift's Core.
 headersfile: $(HEADERFILE)
 
-conio: $(SRCLIBDIREC)FConio.c
-	$(GCC) -c -Wno-unused-function -Wno-unused-value $(SRCLIBDIREC)FConio.c -o fconio.o
-
 # Syntax
 %.o: $(SRCSYNTAXDIREC)%.cpp
-	$(COMPILER) -Wno-unused-function -Wno-unused-value $(CFLAGS) -c $< -o $@
+	$(COMPILER) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 	echo [SUCCESS] $@
 	
 # Main Build
 main: $(SRCDIREC)Scrift.cpp
-	$(COMPILER) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) -o scrift
+	$(COMPILER) $(CFLAGS) $(CPPFLAGS) $< $(HEADERFILE) -o scrift
 	echo [SUCCESS] Scrift
 
 # Main Build & Install
 mainc: $(SRCDIREC)Scrift.cpp
-	$(COMPILER) $(CFLAGS) -Wno-unused-function -Wno-unused-value $< $(HEADERFILE) -o /bin/scrift
+	$(COMPILER) $(CFLAGS) $(CPPFLAGS) $< $(HEADERFILE) -o /bin/scrift
 	echo [SUCCESS] Scrift [bin]
-
-# Castle
-castle: $(GAMESDIREC)/Castle/Castle.hpp
-	$(COMPILER) $(GCFLAGS) $(GAMESDIREC)/Castle/Castle.cpp -o $(PREFIX)castle $(GLDFLAGS)
-	echo [SUCCESS] Castle [bin]
-	
-# TicTacToe
-tictactoe: $(GAMESDIREC)/TicTacToe/TicTacToeMain.cpp
-	$(COMPILER) -Wall $(GAMESDIREC)/TicTacToe/TicTacToeMain.cpp $(GAMESDIREC)/TicTacToe/tictactoe.cpp -o $(PREFIX)tictactoe
-	echo [SUCCESS] TicTacToe [bin]
-	
-# Pong
-pong: $(GAMESDIREC)/Pong/Pong.cpp
-	$(COMPILER) -Wall $(GAMESDIREC)/Pong/Pong.cpp -o $(PREFIX)pong -lncurses
-	echo [SUCCESS] Pong [bin]
 
 # Calendar & Converter Build
 # Calendar
@@ -160,11 +136,7 @@ date: $(SRCAPPSDIREC)/FDate/FDate.cpp
 # Remove Scrift.
 uninstall:
 	rm -f /bin/scrift
-	rm -f /bin/castle
-	rm -f /src/Games/Castle/castle
 	rm -f /bin/fdate
-	rm -f /bin/pong
-	rm -f /bin/tictactoe
 
 # Run Scrift
 run:
@@ -174,7 +146,7 @@ run:
 clean:
 		$(CLEAN)
 
-# Clean object files and Scrift, Fetcheya.
+# Clean object files and Scrift.
 cleanall:
 		echo [SUCCESS] Clean
 		$(CLEANALL)

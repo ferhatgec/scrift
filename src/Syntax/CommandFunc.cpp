@@ -26,7 +26,6 @@
 #include <src/Syntax/GetNameFunction.hpp>
 #include <src/Syntax/CommandFunc.h>
 #include <src/Syntax/Settings.hpp>
-#include <Library/Keywords.hpp>
 
 // Libraries
 #include <EmojiPlusPlus.h>
@@ -34,7 +33,6 @@
 #include <StringTools.h>
 
 namespace filesys = std::experimental::filesystem;
-static FKeyword keyword;
 static FCommand *command;
 
 FCommand::FCommand() { }
@@ -78,11 +76,11 @@ void
 FCommand::echo_printlnf(std::string name) { 
     if(name != "") {
         WHITE_COLOR
-        if(name.rfind("#USER") == 0)      
-            keyword.EndWithUser();
-        else if(name.rfind("#PATH") == 0)
-            keyword.EndWithPath();
-        else if(name[0] == '#') {
+        if(name.rfind("#USER") == 0) {
+            std::cout << getenv("USER") << "\n";
+        } else if(name.rfind("#PATH") == 0) {
+            std::cout << getenv("PWD")  << "\n";
+        } else if(name[0] == '#') {
 		    name = name.erase(0, 1);
         	const char* env = getenv(name.c_str());
 		
