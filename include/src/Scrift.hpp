@@ -16,6 +16,9 @@
 #include <string>
 
 #include "synflang.hpp"
+
+#include "Keywords/ScriftKeywords.hpp"
+
 #include "Syntax/CommandFunc.hpp"
 #include "Syntax/Locale.hpp"
 
@@ -63,16 +66,21 @@ inline std::string STR(const char* _ch) {
 
 
 class FMain {
+    bool is_similar = false;
 public:
     FMain();
     ~FMain();
-    
-    /* Dynamic titles. */
+
+    bool CommandMatch(std::string command, std::string token) noexcept;
+
+    void CodeExecution(std::string arg, slocale_t &locale)           ;
+
+        /* Dynamic titles. */
     void SetTitle();
     
     /* Shell */
     void Shell(slocale_t &locale);
-    
+
     static std::string Time();
 
     // Input, directory variables.

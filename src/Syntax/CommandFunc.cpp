@@ -65,7 +65,7 @@ FCommand::FName() {
 
 void
 FCommand::echo_printlnf(std::string name) { 
-    if(name.empty()) {
+    if(!name.empty()) {
         WHITE_COLOR
         if(name.rfind("#USER") == 0) {
             std::cout << getenv("USER") << "\n";
