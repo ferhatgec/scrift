@@ -290,12 +290,14 @@ void textbackground(int color) {
 
 /* Username, emoji */
 void PrintUsername() {
-    BOLD_MAGENTA_COLOR
-    printlnf("Welcome ");
-    BOLD_CYAN_COLOR
-    printlnf(pass->pw_name);
-    BOLD_BLUE_COLOR
-    std::cout << " " << emojiplusplus::EmojiString(runsyntax->FWelcomeEmoji()) << "\n";
+    std::cout << WBMAGENTA
+              << "Welcome "
+              << WBCYAN
+              << pass->pw_name
+              << WBBLUE
+              << " "
+              << emojiplusplus::EmojiString(runsyntax->FWelcomeEmoji());
+
     BLACK_COLOR
 }
 
@@ -349,7 +351,9 @@ std::string GetUptime() {
    * Use StringTools::Find()
 */
 void CodeExecution(std::string arg, slocale_t &locale) {
-    if(arg.rfind(keywords.Scr, 0) == 0) {
+    std::string command = stringtools::GetFirstArg(arg);
+
+    if(command == keywords.Scr) {
         /*  scr
             scr echo hello
             Use Non-Scrift commands without conflict
@@ -359,7 +363,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
         
         runfunction->RunFunction(arg);
         return;
-    } else if(arg.rfind(keywords.Printlnf, 0) == 0){
+    } else if(command == keywords.Printlnf){
         /*  printlnf
             printlnf Hello, world!
             printlnf #HOME
@@ -378,7 +382,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
         
         std::cout << "\n";
         return;
-        } else if(arg.rfind(keywords.Echo, 0) == 0) {
+        } else if(command == keywords.Echo) {
         	/*  echo
                 echo Hello, world!
                 echo #HOME
@@ -397,7 +401,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             
             std::cout << "\n";
             return;
-        } else if(arg.rfind(keywords.Fpi, 0) == 0) {
+        } else if(command == keywords.Fpi) {
 		    /* 
                 fpi --i || --install
                 fpi --uni || --uninstall
@@ -409,7 +413,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             }
             
             return;
-	    } else if(arg.rfind(keywords.FreeBrainGen, 0) == 0) {
+	    } else if(command == keywords.FreeBrainGen) {
             /* genfrbr
                 genfrbr 3
                         
@@ -428,7 +432,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             }
             
             return;
-        } else if(arg.rfind(keywords.Fr + " ", 0) == 0) {
+        } else if(command == keywords.Fr + " ") {
             /*  fr
                 fr /home
                 fr ../../
@@ -447,7 +451,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             }
             
             return;
-        } else if(arg.rfind(keywords.Cd, 0) == 0) {
+        } else if(command == keywords.Cd) {
             /*  cd
                 cd /home
                 cd ../../
@@ -467,7 +471,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             }
             
             return;
-        } else if(arg.rfind(keywords.RunDotSlash, 0) == 0) {
+        } else if(command == keywords.RunDotSlash) {
             /*  ./
                 ./make.scr 
                 ./scrift 
@@ -509,7 +513,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             test_string.erase();
             
             return;
-        } else if(arg.rfind(keywords.Lsf, 0) == 0) {
+        } else if(command == keywords.Lsf) {
             /*  fls
                 fls
                 fls src 
@@ -528,7 +532,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
           	}
             
             return;  
-    	} else if(arg.rfind(keywords.Lsd, 0) == 0) {
+    	} else if(command == keywords.Lsd) {
             /*  dls
                 dls
                 dls src 
@@ -554,7 +558,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
     		
             listdirectoryfunction->ListObjectFunction();
             return;
-    	} else if(arg.rfind(keywords.Find, 0) == 0) {
+    	} else if(command == keywords.Find) {
           	/*  ffind
                 ffind sr
 
@@ -568,7 +572,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             }
             
             return;
-        } else if(arg.rfind(keywords.Output, 0) == 0) {
+        } else if(command == keywords.Output) {
             /*  output
                 output <command>
 
@@ -600,7 +604,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
           	
           	listdirectoryfunction->LSFunction(".");
             return;
-        } else if(arg.rfind(keywords.Ls, 0) == 0) {
+        } else if(command == keywords.Ls) {
             /*  ls
                 ls 
                 ls src
@@ -623,7 +627,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
           	}
             
             return;                  
-        } else if(arg.rfind(keywords.Scrift, 0) == 0) {
+        } else if(command == keywords.Scrift) {
             /*  fscrift
                 fscrift make 
                 fscrift make.scr
@@ -643,7 +647,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             std::cout << "Work-in-progress\n";
 
             return;
-        } else if(arg.rfind(keywords.MKDir, 0) == 0) {
+        } else if(command == keywords.MKDir) {
         	/*  mkdir
                 mkdir scrift
                 Create directory
@@ -660,7 +664,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             }
 
             return;
-   	    } else if(arg.rfind(keywords.Resolution, 0) == 0) {
+   	    } else if(command == keywords.Resolution) {
    	        /* res
    	           res file.(jpg, png)
 
@@ -672,7 +676,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             date_tools->ResolutionSizeInfo(arg);
 
             return;
-   	    } else if(arg.rfind(keywords.ReadText, 0) == 0) {
+   	    } else if(command == keywords.ReadText) {
 		    /*  readtext
                 readtext file
                         
@@ -689,7 +693,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             }
 
             return;
-	    } else if(arg.rfind(keywords.SetName, 0) == 0) {
+	    } else if(command == keywords.SetName) {
 		    /*  setname
                 setname home_path
 
@@ -706,7 +710,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             }
 
             return;
-        } else if(arg.find(keywords.SetTo, 0) == 0) {
+        } else if(command == keywords.SetTo) {
 		    /*  setto
                 setto /home/ferhatgec/
 
@@ -724,7 +728,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             }
 
             return;
-        } else if(arg.rfind(keywords.Alias, 0) == 0) {
+        } else if(command == keywords.Alias) {
             /* alias
                alias a='echo aaa'
                
@@ -754,7 +758,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             }
             
             return;
-        } else if(arg.rfind(keywords.Random, 0) == 0) {
+        } else if(command == keywords.Random) {
             /*  random
                 random 15 
 
@@ -767,7 +771,8 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             else {
                 arg = stringtools::EraseAllSubString(arg,
                     keywords.Random + " ");
-                
+
+                // TODO: Use C++11's random library.
                 std::cout << rand()%(atoi(arg.c_str())+1);
             }
 
@@ -815,7 +820,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             std::cout << "\033c";
             
             return;
-        } else if(arg.rfind(keywords.Title, 0) == 0) {
+        } else if(command == keywords.Title) {
 			/* title
 				title Hello, terminal.
 
@@ -842,7 +847,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
 				SetTitleAs(arg);
 			}
 			return;
-		} else if(arg.rfind(keywords.RemoveFile, 0) == 0) {
+		} else if(command == keywords.RemoveFile) {
    	        /*  rmvfile
                 rmvfile Scrift.cpp
             */
@@ -852,7 +857,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             removefile->DeleteFile(arg);
             
             return;
-        } else if(arg.rfind(keywords.SquareofNumber, 0) == 0) {
+        } else if(command == keywords.SquareofNumber) {
             /*  square
                 Calculate square
             */
@@ -865,7 +870,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             std::cout << "\n";
             
             return;
-        } else if(arg.rfind(keywords.SquareRootofNumber, 0) == 0) {
+        } else if(command == keywords.SquareRootofNumber) {
             /*  sqrt
                 Calculate square root
             */
@@ -906,7 +911,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
        		std::cout << "Done.\n";
             
             return;                       
-        } else if(arg.rfind(keywords.Factorial, 0) == 0) {
+        } else if(command == keywords.Factorial) {
           	/*  fact
                 fact 4
 
@@ -943,7 +948,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             readfilefunction->ReadSettingsFunction();
             
             return;
-        } else if(arg.rfind(keywords.LanguageTemplate, 0) == 0) {
+        } else if(command == keywords.LanguageTemplate) {
             /*  template test.fls
                 Create 'Hello, language' template.
             */
@@ -953,7 +958,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
         	temp.LangTemplate(arg);
                 
             return;
-        } else if(arg.rfind(keywords.RandomizeString, 0) == 0) {
+        } else if(command == keywords.RandomizeString) {
         	/*  rstr
                 rstr 12
                 Create and print randomize string
@@ -972,7 +977,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             homefunction->GetHome();
 
             return;
-        } else if(arg.rfind(keywords.AddText, 0) == 0) {
+        } else if(command == keywords.AddText) {
             /*  addtext      
                 Append string to file
             */
@@ -980,7 +985,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
                 keywords.AddText);
         	
             fileaddtextfunction->AppendLine(arg);
-        } else if(arg.rfind(keywords.Emoji, 0) == 0) {
+        } else if(command == keywords.Emoji) {
        		/*  emoji
                 emoji :thinking_face:
                         
@@ -994,7 +999,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             }
             
             return;
-        } else if(arg.rfind(keywords.CreateText, 0) == 0) {
+        } else if(command == keywords.CreateText) {
             /*
                 TODO: Fix seg. fault.
             */
@@ -1009,7 +1014,7 @@ void CodeExecution(std::string arg, slocale_t &locale) {
             filefunction->CreateFileFunctionInit(arg);
             
             return;
-        } else if(arg.rfind(keywords.Incognito, 0) == 0) {
+        } else if(command == keywords.Incognito) {
         	if(arg == keywords.Incognito) {
         		incognito = true;
         	} else {
