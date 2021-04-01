@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <string>
+#include <filesystem>
 
 #include <src/Scrift.hpp>
 #include <src/Syntax/Alias.hpp>
@@ -22,7 +23,7 @@ std::string
 FAlias::Parse(std::string inputted_command) {
     Init();
 
-    std::string data = fsplusplus::FindStringWithReturn(STR(getenv("HOME")) + "/.scrift_aliases",
+    std::string data = fsplusplus::FindStringWithReturn(std::basic_string(getenv("HOME")) + "/.scrift_aliases",
         (stringtools::GetFirstArg(inputted_command) + "='"));
 
     data = stringtools::GetBetweenString(data, stringtools::GetFirstArg(inputted_command)    + "='", "'");
@@ -37,14 +38,14 @@ FAlias::Parse(std::string inputted_command) {
 
 void
 FAlias::AddAlias(const std::string& name, const std::string& replacement) {
-    std::string data = fsplusplus::FindStringWithReturn(STR(getenv("HOME")) + "/.scrift_aliases",
+    std::string data = fsplusplus::FindStringWithReturn(std::basic_string(getenv("HOME")) + "/.scrift_aliases",
         name + "='");
     
     
     if(data == "null") {
         std::ofstream alias;
         
-        alias.open((STR(getenv("HOME")) + "/.scrift_aliases").c_str(), std::ios_base::app); // append instead of overwrite
+        alias.open((std::basic_string(getenv("HOME")) + "/.scrift_aliases").c_str(), std::ios_base::app); // append instead of overwrite
     
         alias << name + "='" + replacement + "'\n";
     
@@ -53,7 +54,7 @@ FAlias::AddAlias(const std::string& name, const std::string& replacement) {
         return;
     }
     
-    std::ifstream readfile(STR(getenv("HOME")) + "/.scrift_aliases");
+    std::ifstream readfile(std::basic_string(getenv("HOME")) + "/.scrift_aliases");
     
     std::string line, _repl_data;
 
@@ -70,16 +71,15 @@ FAlias::AddAlias(const std::string& name, const std::string& replacement) {
     
     readfile.close();
     
-    std::remove((STR(getenv("HOME")) + "/.scrift_aliases").c_str());
-    
-    fsplusplus::CreateFile(STR(getenv("HOME")) + "/.scrift_aliases", _repl_data);
-    
+    std::remove((std::basic_string(getenv("HOME")) + "/.scrift_aliases").c_str());
+
+    fsplusplus::CreateFile(std::basic_string(getenv("HOME")) + "/.scrift_aliases", _repl_data);
 }
 
 
 void
 FAlias::Init() {
-    if(!fsplusplus::IsExistFile(STR(getenv("HOME")) + "/.scrift_aliases")) {
-        fsplusplus::CreateFile(STR(getenv("HOME")) + "/.scrift_aliases", "hello='echo Hello, Scrift!'\n");
+    if(!std::filesystem::exists(std::basic_string(getenv("HOME")) + "/.scrift_aliases")) {
+        fsplusplus::CreateFile(std::basic_string(getenv("HOME")) + "/.scrift_aliases", "hello='echo Hello, Scrift!'\n");
     }
 }

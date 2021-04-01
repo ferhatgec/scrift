@@ -6,13 +6,12 @@
 # */
 
 #include <string>
-
+#include <regex>
 #include <src/Syntax/Validation.hpp>
 
 SCRIFT_VALIDATION
 FValidation::Validate(const std::string& command) {
-    /* :& */
-    if(command.substr(0, 8) == "https://") {
+    if(std::regex_match(command, std::regex(".*://.*"))) {
         return WEBSITE;
     }
 

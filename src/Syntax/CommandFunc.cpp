@@ -81,7 +81,7 @@ FCommand::echo_printlnf(std::string name) {
 			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), "scrift : This Environment not found. ");
 			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA), "Use:\n");
 			    colorized::PrintWith(colorized::Colorize(BOLD, BLUE), "setname ");
-			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN), name.c_str());
+			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN), name);
 			    colorized::PrintWith(colorized::Colorize(BOLD, CYAN), "\nsetto ");
 			    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_YELLOW), "<variable>");
 		    }

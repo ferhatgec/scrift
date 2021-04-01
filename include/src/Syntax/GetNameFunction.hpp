@@ -18,10 +18,14 @@ public:
 };
 
 
-class FStructure : public FGetUsername {
+class FStructure {
 public:
+    friend class FSettings;
+
     FStructure();
     ~FStructure();
+
     void Terminal(bool incognito);
 };
+
 #endif // GET_NAME_FUNCTION_HPP

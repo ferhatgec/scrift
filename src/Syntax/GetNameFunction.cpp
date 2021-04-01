@@ -6,43 +6,32 @@
 # */
 
 #include <iostream>
-#include <pwd.h>
 #include <src/Syntax/Settings.hpp>
-#include <src/Syntax/CommandFunc.hpp>
 #include <src/Syntax/GetNameFunction.hpp>
-#include <src/Syntax/Tools.hpp>
 
-// Library
+FStructure::FStructure()  = default;
 
-FTools tools;
-FCommand *terminal = new FCommand();
-FSettings *fsettings = new FSettings();
-FStructure::FStructure() = default;
-FGetUsername usr;
-uid_t uid = geteuid();
-struct passwd *password = getpwuid(uid);
-
-FStructure::~FStructure() {
-    delete terminal;
-}
+FStructure::~FStructure() = default;
 
 void
 FGetUsername::InitUsername() {
-    if(password)
-        printlnf(password->pw_name);
+// #if defined(_WIN32) || defined(_WIN64)
+    // std::cout << std::getenv("USERNAME");
+// #else
+    std::cout << std::getenv("USER");
+// #endif
 }
-
 
 void
 FGetUsername::InitHostname() {
-    fchar hostname_buffer[256];
-    gethostname(hostname_buffer, sizeof(hostname_buffer));
-    printlnf("%s", hostname_buffer);
+// #if defined(_WIN32) || defined(_WIN64)
+    // std::cout << std::getenv("COMPUTERNAME");
+// #else
+    std::cout << std::getenv("HOSTNAME");
+// #endif
 }
-
-std::string uname(password->pw_name);
 
 void
 FStructure::Terminal(bool incognito) {
-    fsettings->Customize(incognito);
+    this->Customize(incognito);
 }
