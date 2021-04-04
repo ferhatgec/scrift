@@ -107,7 +107,6 @@ unsigned line = 0;
 */
 
 uid_t fuid = geteuid();
-struct passwd *pass = getpwuid(fuid);
 
 typedef struct CursorPos {
     int x = 0;
@@ -264,7 +263,7 @@ unsigned GetTotalHistoryLine() {
 */
 void
 FMain::SetTitle() {
-	std::cout << "\e]2; " << "Scrift: " << pass->pw_name << "@" << main_->_file_path_cd_function << "\a";
+	std::cout << "\e]2; " << "Scrift: " << std::getenv("USER") << "@" << main_->_file_path_cd_function << "\a";
 }
 
 static void SetTitleAs(std::string _str) {
@@ -293,7 +292,7 @@ void PrintUsername() {
     std::cout << WBMAGENTA
               << "Welcome "
               << WBCYAN
-              << pass->pw_name
+              << std::getenv("USER")
               << WBBLUE
               << " "
               << emojiplusplus::EmojiString(runsyntax->FWelcomeEmoji());

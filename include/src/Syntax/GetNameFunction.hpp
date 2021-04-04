@@ -8,10 +8,13 @@
 #ifndef GET_NAME_FUNCTION_HPP
 #define GET_NAME_FUNCTION_HPP
 
-#include "../Scrift.hpp"
+#include "Settings.hpp"
 
 class FGetUsername {
 public:
+    FGetUsername() = default;
+    ~FGetUsername()= default;
+
     void InitUsername();
 
     void InitHostname();
@@ -19,11 +22,10 @@ public:
 
 
 class FStructure {
+    FSettings customize;
 public:
-    friend class FSettings;
-
-    FStructure();
-    ~FStructure();
+    FStructure() = default;
+    ~FStructure()= default;
 
     void Terminal(bool incognito);
 };

@@ -9,10 +9,6 @@
 #include <src/Syntax/Settings.hpp>
 #include <src/Syntax/GetNameFunction.hpp>
 
-FStructure::FStructure()  = default;
-
-FStructure::~FStructure() = default;
-
 void
 FGetUsername::InitUsername() {
 // #if defined(_WIN32) || defined(_WIN64)
@@ -33,5 +29,5 @@ FGetUsername::InitHostname() {
 
 void
 FStructure::Terminal(bool incognito) {
-    this->Customize(incognito);
+    this->customize.Customize(incognito);
 }
