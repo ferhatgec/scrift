@@ -1321,7 +1321,7 @@ void InputFunction(slocale_t &locale) {
                 previous_command  = main_function->_h_str;
             }
 
-            if(validation->Validate(main_function->_h_str) == WEBSITE) {
+            if(validation->Validate(stringtools::GetFirstArg(main_function->_h_str)) == WEBSITE) {
                 /* TODO: Implement some of the xdg-utils */
                 runfunction->RunFunction("xdg-open " + main_function->_h_str);
 
