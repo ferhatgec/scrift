@@ -1,0 +1,56 @@
+\\ MIT License
+\\
+\\ Copyright (c) 2021 Ferhat Geçdoğan All Rights Reserved.
+\\ Distributed under the terms of the MIT License.
+\\
+\\
+
+required_version is 0.1
+
+set src      as "./src/"
+set bin_path as "/usr/bin/"
+
+set sudo     as "sudo"
+
+set output   as "scrift"
+set standard as std     "c++2a"
+set flags    as link    "stdc++fs"
+
+set apps     as "./Apps/"
+set libs     as "./library/"
+
+set syntax   as "{src}Syntax/"
+
+set files    as "{syntax}Alias.cpp {syntax}ASCIIFunction.cpp {syntax}Branch.cpp {syntax}CommandFunc.cpp {syntax}FileFunction.cpp {syntax}GetNameFunction.cpp {syntax}HelpFunction.cpp {syntax}History.cpp {syntax}Locale.cpp {syntax}Log.cpp {syntax}RunFunction.cpp {syntax}Settings.cpp {syntax}Setup.cpp {syntax}Template.cpp {syntax}Tools.cpp {syntax}Validation.cpp"
+
+set inclibs  as $libs
+set include  as "./include/"
+
+set compiler as "c++"
+
+for signal "start" [
+    use exec "bash init/get_libraries.sh"
+    use exec "sh init/get_fpm.sh"
+    use exec "sh init/install_fpm.sh"
+
+    for argument "install" [
+        use exec   "{sudo} {compiler} {standard} -I{inclibs} -I{include} {files} {src}Scrift.cpp -o {bin_path}lolled"
+        use signal "exit"
+    ]
+
+    for argument "build" [
+        use exec   "{compiler} {standard} -I{inclibs} -I{include} {files} {src}Scrift.cpp -o {output}"
+        use signal "exit"
+    ]
+
+    for argument "uninstall" [
+        set default_shell as env "SHELL"
+
+        if eq $default_shell as "{bin_path}{output}" [
+            println "Warning: Your default shell is {output}"
+            println " : You must to set another shell."
+        ]
+
+        use exec "{sudo} rm -f {bin_path}{output}"
+    ]
+]
