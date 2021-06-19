@@ -13,7 +13,7 @@
 
 class FBranch {
 public:
-	std::string GetGitBranch();
+    std::string GetGitBranch();
 };
 
 #endif // BRANCH_HPP

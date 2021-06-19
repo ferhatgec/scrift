@@ -2,7 +2,7 @@
 
 template command creates a language example. (Hello Language)
 
-# Examples 
+# Examples
 
 ```
 input:

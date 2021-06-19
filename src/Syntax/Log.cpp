@@ -19,7 +19,8 @@
 std::ofstream file;
 std::string filepath_with_path;
 
-FeLog::FeLog()  = default;
+FeLog::FeLog() = default;
+
 FeLog::~FeLog() = default;
 
 void
@@ -38,7 +39,7 @@ std::string
 FeLog::TimeFunction() {
     time_t nowtime = time(nullptr);
     struct tm tstruct{};
-    char    buff[80];
+    char buff[80];
     tstruct = *localtime(&nowtime);
     std::strftime(buff, sizeof(buff), "%Y-%M-%d.%X", &tstruct);
     return buff;
@@ -51,16 +52,16 @@ void FeLog::WriteLog(fstr filepathw) {
     filepath_with_path.append("/.scrift_log");
     std::ofstream file;
     file.open(filepath_with_path, std::ios::out | std::ios::app);
-    if(file.fail())
+    if (file.fail())
         printlnf("ERROR\n");
-    
+
 
     file.exceptions(file.exceptions() | std::ios::failbit | std::ifstream::badbit);
 
     file << filepathw << " ";
     file << TimeFunction() << std::endl;
 
-   // printlnf("Done\n");
+    // printlnf("Done\n");
 }
 
 
@@ -74,7 +75,7 @@ void FeLog::CreateFile() {
     file << "FeLog Started. ";
     file << TimeFunction() << "\n";
     file.close();
-}   
+}
 
 bool
 FeLog::IsExist() {
@@ -85,7 +86,7 @@ FeLog::IsExist() {
 
 void
 FeLog::AllofThem() {
-    if(!IsExist())
+    if (!IsExist())
         CreateFile();
     else {
         printlnf("FeLog file is exists\n");

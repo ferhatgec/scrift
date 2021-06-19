@@ -18,7 +18,7 @@ enum SCRIFT_VALIDATION {
 
 class FValidation {
 public:
-    SCRIFT_VALIDATION Validate(const std::string& command);
+    SCRIFT_VALIDATION Validate(const std::string &command);
 };
 
 #endif // VALIDATION_HPP

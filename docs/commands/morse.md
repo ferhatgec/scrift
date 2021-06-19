@@ -2,7 +2,7 @@
 
 morse command is generates string or morse code to morse code or string and prints.
 
-# Examples 
+# Examples
 
 ```
 input:

@@ -1,10 +1,11 @@
-# Remove File Command 
+# Remove File Command
 
 * rmvfile
 
 This commands is deletes file or folder.
 
 # Example:
+
 ```
 input:
      <username>@<hostname>:~/home/<username> $# rmvfile scrift

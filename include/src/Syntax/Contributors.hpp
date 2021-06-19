@@ -18,10 +18,15 @@
 class FContributors {
 public:
     void ShellContributors();
+
     void FeedbackContributors();
+
     void TestingContributors();
+
     void DonateContributors();
+
     void Sponsors();
+
     void AllOfThem();
 };
 

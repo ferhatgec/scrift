@@ -2,7 +2,7 @@
 
 fetcheya command is shows your system's info.
 
-# Examples 
+# Examples
 
 ```
 input:

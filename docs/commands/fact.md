@@ -2,7 +2,7 @@
 
 fact command is add text in file.
 
-# Examples 
+# Examples
 
 ```
 input:

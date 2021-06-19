@@ -2,7 +2,7 @@
 
 ffind command is finds files and directories.
 
-# Examples 
+# Examples
 
 ```
 input:

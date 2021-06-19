@@ -1,8 +1,9 @@
-# List Dir Command 
+# List Dir Command
 
 ls command is shows directory list.
 
 # Example:
+
 ```
 input:
      <username>@<hostname>:~/home/<username> $# ls
@@ -25,7 +26,9 @@ output:
     File: testshswo
     <username>@<hostname>:~/home/<username> $#
 ```
+
 ## With Environment Value
+
 ```
 input:
      <username>@<hostname>:~/home/<username> $# setname path
@@ -55,8 +58,8 @@ output:
 
 This commands is shows your directory, but only files.
 
-
 # Example:
+
 ```
 input:
      <username>@<hostname>:~/home/<username> $# fls
@@ -70,6 +73,7 @@ output:
 ```
 
 ## With Environment Value
+
 ```
 input:
      <username>@<hostname>:~/home/<username> $# setname path
@@ -84,9 +88,8 @@ output:
 
 # List Directory Command
 
-
 * dls
- 
+
 This commands is shows your directory, but only folders.
 
 ```
@@ -109,6 +112,7 @@ output:
 ```
 
 ## With Environment Value
+
 ```
 input:
      <username>@<hostname>:~/home/<username> $# setname path

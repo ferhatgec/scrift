@@ -1,7 +1,6 @@
-# Random Command 
+# Random Command
 
 random command is creates random integer.
-
 
 # Examples:
 

@@ -1,8 +1,8 @@
 # Create Scrift Project Command
 
-create command is creates <dot>scr files. 
+create command is creates <dot>scr files.
 
-# Examples 
+# Examples
 
 ```
 input:

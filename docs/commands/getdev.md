@@ -2,13 +2,13 @@
 
 getdev command is changes your Scrift permission boolean.
 
-* This command is only for testing. 
+* This command is only for testing.
 
 * getdev command is runs all functions and this is maybe crushs your system.
 
 * ONLY FOR DEVELOPER AND TESTING NOT FOR USER!
 
-# Examples 
+# Examples
 
 ```
 input:

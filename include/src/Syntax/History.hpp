@@ -13,20 +13,19 @@
 class FHistory {
 public:
     FHistory();
+
     ~FHistory();
-   
+
     bool IsExist();
 
     void CreateFile();
 
     void ClearHistory();
+
     void AllofThem();
-    
-    void WriteInHistory(const std::string& element);
+
+    void WriteInHistory(const std::string &element);
 };
-
-
-
 
 
 #endif // HISTORY_HPP

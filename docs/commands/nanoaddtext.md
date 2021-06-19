@@ -2,7 +2,7 @@
 
 nanoaddtext command is add text in file with GNU Nano.
 
-# Examples 
+# Examples
 
 ```
 input:

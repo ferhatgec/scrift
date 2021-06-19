@@ -2,7 +2,7 @@
 
 fdate command shows calendar.
 
-# Examples 
+# Examples
 
 ```
 input:
@@ -20,7 +20,8 @@ output:
     <username>@<hostname>:~/home/<username> $#
     
 ```
-#Parameters
 
-You can use parameters to run FDate with newly added UNIX conversions.
-Run the FDate with -help parameter to see all available commands.
+# Parameters
+
+You can use parameters to run FDate with newly added UNIX conversions. Run the FDate with -help parameter to see all
+available commands.

@@ -1,10 +1,11 @@
-# Fegeya Log Command 
+# Fegeya Log Command
 
 * felog
 
 ## This commands is shows your logs (not logs, this is FeLogs :^))
 
 ## Example:
+
 ```
 input:
      <username>@<hostname>:~/home/<username> $# felog

@@ -1,8 +1,6 @@
-# Randomize String Command 
+# Randomize String Command
 
-rstr command is creates random string.
-This string uses your input number.
-
+rstr command is creates random string. This string uses your input number.
 
 # Examples:
 
@@ -16,6 +14,7 @@ output:
 ```
 
 # Different Example:
+
 ```
 input:
      <username>@<hostname>:~/home/<username> $# rstr 5
@@ -26,6 +25,7 @@ output:
 ```
 
 # Different Last Example:
+
 ```
 input:
      <username>@<hostname>:~/home/<username> $# rstr 128

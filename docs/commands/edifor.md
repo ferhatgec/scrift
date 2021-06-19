@@ -2,7 +2,7 @@
 
 edifor command is simple Scrift-Based Text Editor
 
-# Examples 
+# Examples
 
 ```
 input:
@@ -12,8 +12,7 @@ output:
     <username>@<hostname>:~/home/<username> $#
 ```
 
-
-# Examples 2 
+# Examples 2
 
 ```
 input:

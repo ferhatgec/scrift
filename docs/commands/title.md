@@ -2,7 +2,7 @@
 
 title command is change title of terminal header-bar (or title-bar).
 
-# Examples 
+# Examples
 
 ```
 input:

@@ -1,4 +1,4 @@
-# Forward && Change Dir Command 
+# Forward && Change Dir Command
 
 * fr
 * cd

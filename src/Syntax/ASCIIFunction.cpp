@@ -17,25 +17,24 @@
 
 // Library
 bool FASCIIFunction::InitFile() {
-   return std::filesystem::exists(std::basic_string(getenv("HOME")) + "/" + std::basic_string(scrift_ascii_filename));
+    return std::filesystem::exists(std::basic_string(getenv("HOME")) + "/" + std::basic_string(scrift_ascii_filename));
 }
 
-void 
-FASCIIFunction::GenerateString()  {
+void
+FASCIIFunction::GenerateString() {
     // TODO: Clean-up.
-    if(InitFile()) {
-	   FeLog logfunc;
-	   logfunc.WriteLog("ASCIIFile is exists! Nice - ");
-   }
-   else {
-	   FileFunction::FCreateFileFunction createfilefunc;
-	   createfilefunc.CreateASCIIFileFunction();
-   }
-}  
+    if (InitFile()) {
+        FeLog logfunc;
+        logfunc.WriteLog("ASCIIFile is exists! Nice - ");
+    } else {
+        FileFunction::FCreateFileFunction createfilefunc;
+        createfilefunc.CreateASCIIFileFunction();
+    }
+}
 
-void 
+void
 FASCIIFunction::Allofthem() {
-   FileFunction::FReadFileFunction readfilefunc;
-   GenerateString();
-   readfilefunc.ReadASCIIFunction();    
+    FileFunction::FReadFileFunction readfilefunc;
+    GenerateString();
+    readfilefunc.ReadASCIIFunction();
 }

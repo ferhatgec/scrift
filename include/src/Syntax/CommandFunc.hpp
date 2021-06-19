@@ -23,11 +23,13 @@
 #include <arpa/inet.h>
 
 #include <unistd.h>
+
 #define GetCurrentDir getcwd
 
 class FCommand {
 public:
     FCommand();
+
     ~FCommand();
 
     // FName
@@ -35,13 +37,16 @@ public:
 
     // Directory
     void list_file(boolean, std::string);
+
     void list_direc(boolean, std::string);
 
     static void _generated_hash_string(integer);
+
     static void getIPAddress();
 
     void echo_printlnf(std::string);
-    static void remove_character(char * , char );
+
+    static void remove_character(char *, char);
 
     std::string _file_path_cd_function = getenv("PWD");
 

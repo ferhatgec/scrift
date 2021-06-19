@@ -13,7 +13,8 @@
 class FGetUsername {
 public:
     FGetUsername() = default;
-    ~FGetUsername()= default;
+
+    ~FGetUsername() = default;
 
     void InitUsername();
 
@@ -25,7 +26,8 @@ class FStructure {
     FSettings customize;
 public:
     FStructure() = default;
-    ~FStructure()= default;
+
+    ~FStructure() = default;
 
     void Terminal(bool incognito);
 };

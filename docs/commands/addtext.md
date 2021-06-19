@@ -2,7 +2,7 @@
 
 addtext command is add text in file.
 
-# Examples 
+# Examples
 
 ```
 input:

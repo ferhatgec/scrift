@@ -10,8 +10,8 @@
 #include <src/Syntax/Validation.hpp>
 
 SCRIFT_VALIDATION
-FValidation::Validate(const std::string& command) {
-    if(std::regex_match(command, std::regex(".*://.*"))) {
+FValidation::Validate(const std::string &command) {
+    if (std::regex_match(command, std::regex(".*://.*"))) {
         return WEBSITE;
     }
 

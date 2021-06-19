@@ -2,7 +2,7 @@
 
 welcome command is shows Welcome message
 
-# Examples 
+# Examples
 
 ```
 input:

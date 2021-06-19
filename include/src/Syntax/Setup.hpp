@@ -15,8 +15,9 @@
 
 class FSetup {
 public:
-	void Stage1();
-	void Config(); /* Settings (.scrift_settings) */
+    void Stage1();
+
+    void Config(); /* Settings (.scrift_settings) */
 };
 
 #endif // SETUP_HPP

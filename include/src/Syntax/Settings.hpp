@@ -13,35 +13,47 @@
 
 class FSettings {
 public:
-	/*
-		welcome message, local git branches etc.
-	*/
-	bool GitBranch();
-	bool Setup();
-	bool Date();
+    /*
+        welcome message, local git branches etc.
+    */
+    bool GitBranch();
 
-	/*
-		theme, path etc.
-	*/
-	std::string Path();
-	std::string InputCustomize();
-	std::string Theme();
-	std::string FWelcomeEmoji();
-	std::string Sign(std::string);
+    bool Setup();
 
-	/*
-		color option etc.
-	*/
-	int WelcomeMessage();
-	int BackgroundColor();
-	int ASCIIColor();
-	int color();
-	int random(int, int);
-	int FeLogCleaner();
-	int Clear();
-		
-	/* Customize */
-	void Customize(bool incognito);
+    bool Date();
+
+    /*
+        theme, path etc.
+    */
+    std::string Path();
+
+    std::string InputCustomize();
+
+    std::string Theme();
+
+    std::string FWelcomeEmoji();
+
+    std::string Sign(std::string);
+
+    /*
+        color option etc.
+    */
+    int WelcomeMessage();
+
+    int BackgroundColor();
+
+    int ASCIIColor();
+
+    int color();
+
+    int random(int, int);
+
+    int FeLogCleaner();
+
+    int Clear();
+
+    /* Customize */
+    void Customize(bool incognito);
 };
 
 #endif // SETTINGS_HPP

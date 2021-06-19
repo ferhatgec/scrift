@@ -1,8 +1,8 @@
 # Settings Command
 
-settings command is shows  Your Settings appearance. 
+settings command is shows Your Settings appearance.
 
-# Examples 
+# Examples
 
 ```
 input:

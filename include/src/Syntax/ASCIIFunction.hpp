@@ -16,6 +16,7 @@ public:
     bool InitFile();
 
     void GenerateString();
+
     void Allofthem();
 };
 

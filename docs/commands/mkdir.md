@@ -1,10 +1,11 @@
-# Make Dir Command 
+# Make Dir Command
 
 * mkdir
 
 This commands is creates new directory.
 
 # Example:
+
 ```
 input:
      <username>@<hostname>:~/home/<username> $# mkdir Documents

@@ -1,8 +1,8 @@
 # History Command
 
-history command is shows your Scrift History. 
+history command is shows your Scrift History.
 
-# Examples 
+# Examples
 
 ```
 input:

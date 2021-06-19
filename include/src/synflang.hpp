@@ -48,12 +48,12 @@ template<typename Str>
 
 #undef printlnf
 static integer
-printlnf (Str *format, ...) {
+printlnf(Str *format, ...) {
     vlist arg;
     integer done;
 
     va_start (arg, format);
-    done = vfprintf (stdout, format, arg);
+    done = vfprintf(stdout, format, arg);
     va_end (arg);
     return done;
 }

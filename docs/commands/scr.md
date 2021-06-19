@@ -2,8 +2,7 @@
 
 scr command is goes to /bin/ directory, and runs to your entered compiled object packages.
 
-
-# Examples 
+# Examples
 
 ```
 input:

@@ -2,7 +2,6 @@
 
 castle command is runs Castle Game.
 
-
 ```
 input:
      <username>@<hostname>:~/home/<username> $# castle

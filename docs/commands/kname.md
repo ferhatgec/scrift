@@ -2,7 +2,6 @@
 
 kname command is shows your operating system's kernel name.
 
-
 ```
 input:
      <username>@<hostname>:~/home/<username> $# kname

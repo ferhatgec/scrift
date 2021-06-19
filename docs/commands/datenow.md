@@ -1,12 +1,12 @@
 # Now Command
 
-* now 
+* now
 
 commands is shows time.
 
 NOTE: This command is comes with 0.1.4-beta-3 or higher version.
 
-# Examples 
+# Examples
 
 ```
 input:

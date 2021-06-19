@@ -2,7 +2,6 @@
 
 ctxt command is creates files, this files is end with <dot>txt
 
-
 # Example
 
 ```

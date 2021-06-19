@@ -2,7 +2,7 @@
 
 config command is configures Scrift's settings.
 
-# Examples 
+# Examples
 
 ```
 input:

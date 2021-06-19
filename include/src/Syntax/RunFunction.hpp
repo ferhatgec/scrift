@@ -15,6 +15,7 @@
 class FRunFunction {
 public:
     FRunFunction();
+
     ~FRunFunction();
 
     void RunFunction(std::string command);

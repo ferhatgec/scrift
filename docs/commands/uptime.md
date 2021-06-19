@@ -2,7 +2,7 @@
 
 uptime command is shows uptime.
 
-# Examples 
+# Examples
 
 ```
 input:

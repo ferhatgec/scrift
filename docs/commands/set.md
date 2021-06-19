@@ -8,7 +8,6 @@ setname command is sets Environment's name.
 
 setto command is sets Environment's value.
 
-
 # Example
 
 ```

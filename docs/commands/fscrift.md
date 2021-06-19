@@ -1,8 +1,8 @@
 # FScrift Command
 
-fscrift command is runs <dot>scr files. 
+fscrift command is runs <dot>scr files.
 
-# Examples 
+# Examples
 
 ```
 input:

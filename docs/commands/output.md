@@ -2,7 +2,7 @@
 
 output command is print output of command.
 
-# Examples 
+# Examples
 
 ```
 input:

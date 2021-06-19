@@ -2,7 +2,6 @@
 
 pong command is runs Pong Game.
 
-
 ```
 input:
      <username>@<hostname>:~/home/<username> $# pong

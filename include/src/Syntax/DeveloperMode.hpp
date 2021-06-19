@@ -9,6 +9,7 @@
 #define DEVELOPER_MODE_HPP
 
 #pragma once
+
 #include "Log.hpp"
 #include "../Scrift.hpp"
 #include "GetNameFunction.hpp"

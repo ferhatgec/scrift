@@ -23,7 +23,7 @@
 */
 
 char inputString[1000], *parsedArgs[100];
-char* parsedArgsPiped[MAXLIST];
+char *parsedArgsPiped[MAXLIST];
 
 std::string directory;
 
@@ -32,7 +32,7 @@ FRunFunction::FRunFunction() = default;
 
 FRunFunction::~FRunFunction() = default;
 
-int ParsePipe(char* str, char** strpiped) {
+int ParsePipe(char *str, char **strpiped) {
     int i;
     for (i = 0; i < 2; i++) {
         strpiped[i] = strsep(&str, "|");
@@ -47,7 +47,7 @@ int ParsePipe(char* str, char** strpiped) {
     }
 }
 
-void ParseSpace(char* str, char** parsed) {
+void ParseSpace(char *str, char **parsed) {
     int i;
 
     for (i = 0; i < MAXLIST; i++) {
@@ -60,9 +60,9 @@ void ParseSpace(char* str, char** parsed) {
     }
 }
 
-int ProcessString(char* str, char** parsed, char** parsedpipe) {
+int ProcessString(char *str, char **parsed, char **parsedpipe) {
 
-    char* strpiped[2];
+    char *strpiped[2];
     int piped;
 
     piped = ParsePipe(str, strpiped);
@@ -77,12 +77,12 @@ int ProcessString(char* str, char** parsed, char** parsedpipe) {
     return 1 + piped;
 }
 
-void ExecuteArgs(char** parsed) {
+void ExecuteArgs(char **parsed) {
     // Forking a child
     pid_t pid = fork();
 
     if (pid == -1) {
-   	    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), "scrift : Failed forking child..\n");
+        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), "scrift : Failed forking child..\n");
         return;
     } else if (pid == 0) {
         if (execvp(parsed[0], parsed) < 0) {
@@ -98,13 +98,13 @@ void ExecuteArgs(char** parsed) {
     }
 }
 
-void ExecuteArgsPiped(char** parsed, char** parsedpipe) {
+void ExecuteArgsPiped(char **parsed, char **parsedpipe) {
     // 0 is read end, 1 is write end
     int pipefd[2];
     pid_t p1, p2;
 
     if (pipe(pipefd) < 0) {
-     	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), "scrift : Pipe could not be initialized\n");
+        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), "scrift : Pipe could not be initialized\n");
         return;
     }
     p1 = fork();
@@ -122,8 +122,8 @@ void ExecuteArgsPiped(char** parsed, char** parsedpipe) {
 
         if (execvp(parsed[0], parsed) < 0) {
             colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), "scrift : ");
-		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), parsed[0]);
-		    colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), " : first command not found..\n");
+            colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), parsed[0]);
+            colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), " : first command not found..\n");
             exit(0);
         }
     } else {
@@ -142,9 +142,9 @@ void ExecuteArgsPiped(char** parsed, char** parsedpipe) {
             dup2(pipefd[0], STDIN_FILENO);
             close(pipefd[0]);
             if (execvp(parsedpipe[0], parsedpipe) < 0) {
-		        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), "scrift : ");
-		        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), parsed[0]);
-		        colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), " : second command not found..\n");
+                colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), "scrift : ");
+                colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), parsed[0]);
+                colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), " : second command not found..\n");
                 exit(0);
             }
         } else {

@@ -60,8 +60,8 @@
 
 #define WBWHITE    "\033[1;37m"
 
-inline std::string STR(const char* _ch) {
-	return (std::string)_ch;
+inline std::string STR(const char *_ch) {
+    return (std::string) _ch;
 }
 
 
@@ -69,15 +69,16 @@ class FMain {
     bool is_similar = false;
 public:
     FMain();
+
     ~FMain();
 
     bool CommandMatch(std::string command, std::string token) noexcept;
 
-    void CodeExecution(std::string arg, slocale_t &locale)           ;
+    void CodeExecution(std::string arg, slocale_t &locale);
 
-        /* Dynamic titles. */
+    /* Dynamic titles. */
     void SetTitle();
-    
+
     /* Shell */
     void Shell(slocale_t &locale);
 

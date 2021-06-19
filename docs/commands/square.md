@@ -1,8 +1,8 @@
 # Square Command
 
-square command is gets square of input. 
+square command is gets square of input.
 
-# Examples 
+# Examples
 
 ```
 input:
@@ -16,7 +16,7 @@ output:
 
 sqrt command is gets square root of input.
 
-# Examples 
+# Examples
 
 ```
 input:

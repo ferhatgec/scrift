@@ -5,7 +5,7 @@
 
 This commands is clears your Scrift FeLogs.
 
-# Examples 
+# Examples
 
 ```
 input:

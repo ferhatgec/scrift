@@ -2,7 +2,7 @@
 
 genfrbr command is generates FreeBrain key code with input number.
 
-# Examples 
+# Examples
 
 ```
 input:

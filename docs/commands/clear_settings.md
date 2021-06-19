@@ -1,10 +1,9 @@
 # Clear Settings Command
 
 * clear_settings
-* deletesettings
-This commands is removes <dot>scrift_settings files and retry create <dot>scrift_settings file. 
+* deletesettings This commands is removes <dot>scrift_settings files and retry create <dot>scrift_settings file.
 
-# Examples 
+# Examples
 
 ```
 input:

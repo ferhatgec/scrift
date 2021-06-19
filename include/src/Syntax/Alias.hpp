@@ -13,11 +13,11 @@
 
 class FAlias {
 public:
-	std::string Parse(std::string inputted_command);
-	
-	void AddAlias(const std::string& name, const std::string& replacement);
-	
-	void Init();
+    std::string Parse(std::string inputted_command);
+
+    void AddAlias(const std::string &name, const std::string &replacement);
+
+    void Init();
 };
 
 #endif // ALIAS_HPP

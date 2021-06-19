@@ -2,7 +2,7 @@
 
 readtext command is reads inputted file.
 
-# Examples 
+# Examples
 
 ```
 input:

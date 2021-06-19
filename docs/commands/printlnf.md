@@ -1,7 +1,6 @@
-# Printlnf Command 
+# Printlnf Command
 
 printlnf command is prints your input.
-
 
 # Examples
 
