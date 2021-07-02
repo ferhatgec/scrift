@@ -555,7 +555,8 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
             arg = stringtools::EraseAllSubString(arg,
                                                  keywords.Lsf + " ");
 
-            main_->list_file(true, arg);
+            if(std::filesystem::exists(arg))
+                main_->list_file(true, arg);
         }
 
         return;
@@ -574,7 +575,8 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
             arg = stringtools::EraseAllSubString(arg,
                                                  keywords.Lsd + " ");
 
-            main_->list_direc(true, arg);
+            if(std::filesystem::exists(arg))
+                main_->list_direc(true, arg);
         }
 
         return;
@@ -650,7 +652,8 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
             arg = stringtools::EraseAllSubString(arg,
                                                  keywords.Ls + " ");
 
-            listdirectoryfunction->LSFunction(arg);
+            if(std::filesystem::exists(arg))
+                listdirectoryfunction->LSFunction(arg);
         }
 
         return;

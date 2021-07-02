@@ -34,7 +34,7 @@ for signal "start" [
     use exec "sh init/install_fpm.sh"
 
     for argument "install" [
-        use exec   "{sudo} {compiler} {standard} -I{inclibs} -I{include} {files} {src}Scrift.cpp -o {bin_path}lolled"
+        use exec   "{sudo} {compiler} {standard} -I{inclibs} -I{include} {files} {src}Scrift.cpp -o {bin_path}/{output}"
         use signal "exit"
     ]
 
@@ -46,7 +46,7 @@ for signal "start" [
     for argument "uninstall" [
         set default_shell as env "SHELL"
 
-        if eq $default_shell as "{bin_path}{output}" [
+        if eq $default_shell "{bin_path}{output}" [
             println "Warning: Your default shell is {output}"
             println " : You must to set another shell."
         ]
