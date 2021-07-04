@@ -1320,9 +1320,9 @@ void InputFunction(slocale_t &locale) {
         slashn
 
         /* Parse input */
-        //if(main_function->_h_str.front() == ' ') {
-        main_function->_h_str = stringtools::ltrim(main_function->_h_str);
-        //}
+        if(main_function->_h_str.front() == ' ') {
+            main_function->_h_str = stringtools::ltrim(main_function->_h_str);
+        }
 
         if (main_function->_h_str != "\n") {
             main_function->_h_str.pop_back();
@@ -1348,7 +1348,7 @@ void InputFunction(slocale_t &locale) {
             }
         }
 
-        main_function->_h_str.erase();
+        main_function->_h_str.clear();
         terminalstr->Terminal(incognito);
 
         return;
