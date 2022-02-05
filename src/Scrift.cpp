@@ -459,7 +459,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         }
 
         return;
-    } else if (CommandMatch(command, keywords.Fr + " ")) {
+    } else if (CommandMatch(command, keywords.Fr)) {
         /*  fr
             fr /home
             fr ../../
@@ -587,7 +587,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
 
         listdirectoryfunction->ListObjectFunction();
         return;
-    } else if (CommandMatch(command, keywords.Find)) {
+    } else if(CommandMatch(command, keywords.Find)) {
         /*  ffind
             ffind sr
 
@@ -1245,66 +1245,84 @@ void InputFunction(slocale_t &locale) {
             std::cout << "\b \b" << std::flush;
         }
     } else if (c == 27) {
-        c = getchar();
-        c = getchar();
+            c = getchar();
+            c = getchar();
 
-        if (c == ARROW_UP) {
-            if (line != 0) {
-                line--;
+            if (c == ARROW_UP) {
+                if (line != 0) {
+                    line--;
 
-                for (unsigned i = 0; i < main_function->_h_str.length(); i++) {
-                    std::cout << "\b \b" << std::flush;
+                    for (unsigned i = 0; i < main_function->_h_str.length(); i++) {
+                        std::cout << "\b \b" << std::flush;
+                    }
+
+                    main_function->_h_str = GetSpecificHistoryLine(line);
+
+                    if (fsplusplus::IsExistFile("/bin/" + stringtools::GetFirstArg(main_function->_h_str))) {
+                        std::cout << WBOLD_GREEN_COLOR << main_function->_h_str;
+                    } else {
+                        std::cout << WBOLD_RED_COLOR << main_function->_h_str;
+                    }
+
+                    BLACK_COLOR
                 }
-
-                main_function->_h_str = GetSpecificHistoryLine(line);
-
-                if (fsplusplus::IsExistFile("/bin/" + stringtools::GetFirstArg(main_function->_h_str))) {
-                    std::cout << WBOLD_GREEN_COLOR << main_function->_h_str;
-                } else {
-                    std::cout << WBOLD_RED_COLOR << main_function->_h_str;
-                }
-
-                BLACK_COLOR
             }
-        }
 
-        if (c == ARROW_DOWN) {
-            if (line < GetTotalHistoryLine()) {
-                line++;
+            if (c == ARROW_DOWN) {
+                if (line < GetTotalHistoryLine()) {
+                    line++;
 
-                for (unsigned i = 0; i < main_function->_h_str.length(); i++) {
-                    std::cout << "\b \b" << std::flush;
+                    for (unsigned i = 0; i < main_function->_h_str.length(); i++) {
+                        std::cout << "\b \b" << std::flush;
+                    }
+
+                    main_function->_h_str = GetSpecificHistoryLine(line);
+
+                    if (fsplusplus::IsExistFile("/bin/" + stringtools::GetFirstArg(main_function->_h_str))) {
+                        std::cout << WBOLD_GREEN_COLOR << main_function->_h_str;
+                    } else {
+                        std::cout << WBOLD_RED_COLOR << main_function->_h_str;
+                    }
+
+                    BLACK_COLOR
                 }
-
-                main_function->_h_str = GetSpecificHistoryLine(line);
-
-                if (fsplusplus::IsExistFile("/bin/" + stringtools::GetFirstArg(main_function->_h_str))) {
-                    std::cout << WBOLD_GREEN_COLOR << main_function->_h_str;
-                } else {
-                    std::cout << WBOLD_RED_COLOR << main_function->_h_str;
-                }
-
-                BLACK_COLOR
             }
-        }
 
-        if (c == ARROW_LEFT) {
-            //if(cursorpos.x >= 2) {
-            //    std::cout << "\033[1D";
-            //   cursorpos.x -= 1;
-            //}
-        }
+            if (c == ARROW_LEFT) {
+                //if(cursorpos.x >= 2) {
+                //    std::cout << "\033[1D";
+                //   cursorpos.x -= 1;
+                //}
+            }
 
-        if (c == ARROW_RIGHT) {
-            //std::cout << "\033[1B";
-            //cursorpos.x += 1;
-        }
+            if (c == ARROW_RIGHT) {
+                //std::cout << "\033[1B";
+                //cursorpos.x += 1;
+            }
     } else if (c != 9) {
         main_function->_h_str.push_back(c);
         sign.push_back(c);
         cursorpos.x += 1;
-    }
+    } else if (c == 9) {
+        auto str = GetSpecificHistoryLine(GetTotalHistoryLine() - 1);
 
+        if (main_function->_h_str.length() >= 0 && main_function->_h_str.length() < str.length()) {
+            for(unsigned i = 0; i < main_function->_h_str.length(); i++) {
+                std::cout << "\b \b" << std::flush;
+            }
+
+            if (str.substr(0, main_function->_h_str.length()) == main_function->_h_str)
+                main_function->_h_str = str;
+            else {
+                if (main_function->_h_str.back() != ' ')
+                    main_function->_h_str.append(" ");
+
+                main_function->_h_str.append(str);
+            }
+
+            std::cout << WBWHITE << main_function->_h_str;
+        }
+    }
 
     tcsetattr(0, TCSANOW, &oldtio);
 

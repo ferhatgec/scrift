@@ -34,11 +34,17 @@
 #define SCRIFT_STATUS "beta-1"
 
 // Input Definitions
-#define ARROW_UP    65
-#define ARROW_LEFT  68
-#define ARROW_RIGHT  67
-#define ARROW_DOWN  66
-#define BACKSPACE 127
+enum {
+    ARROW_UP = 65,
+    ARROW_DOWN,
+    ARROW_RIGHT,
+    ARROW_LEFT,
+    BACKSPACE = 127,
+    TAB = 9,
+
+    LIMIT = 512
+};
+
 
 #define WBRED      "\033[1;31m"
 #define WBGREEN    "\033[1;32m"
@@ -60,7 +66,6 @@
 #define WBWHITE    "\033[1;37m"
 
 #define FCHAR char
-#define LIMIT 512
 
 inline std::string STR(const char* _ch) {
     return (std::string) _ch;
