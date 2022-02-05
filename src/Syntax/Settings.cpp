@@ -1,6 +1,6 @@
 /* MIT License
 #
-# Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
+# Copyright (c) 2020-2022 Ferhat Geçdoğan All Rights Reserved.
 # Distributed under the terms of the MIT License.
 #
 # */
@@ -24,10 +24,7 @@
 */
 std::string
 FSettings::Path() {
-    std::string Path;
-    Path.append(getenv("HOME"));
-    Path.append("/");
-    return Path.append(".scrift_settings");
+    return std::string(std::getenv("HOME")) + "/" + ".scrift_settings";
 }
 
 
@@ -43,13 +40,9 @@ FSettings::Path() {
 int
 FSettings::WelcomeMessage() {
     std::string line = fsplusplus::FindStringWithReturn(Path(), "welcome_message");
-    if (strstr(line.c_str(), "no_thanks_all"))
-        return 0;
-    else if (strstr(line.c_str(), "no_thanks"))
-        return 2;
-    else
-        return 1;
 
+    if(line == "no_thanks_all") return 0;
+    else if(line == "no_thanks") return 2;
     return 1;
 }
 
@@ -64,11 +57,7 @@ FSettings::WelcomeMessage() {
 bool
 FSettings::GitBranch() {
     std::string line = fsplusplus::FindStringWithReturn(Path(), "local_git_branch");
-    if (strstr(line.c_str(), "no_thanks"))
-        return false;
-    else
-        return true;
-
+    if(line == "no_thanks") return false;
     return true;
 }
 
@@ -79,12 +68,8 @@ FSettings::GitBranch() {
 bool
 FSettings::Setup() {
     std::string line = fsplusplus::FindStringWithReturn(Path(), "scrift_setup");
-    if (strstr(line.c_str(), "yes"))
-        return true;
-    else
-        return false;
-
-    return true;
+    if(line == "yes") return true;
+    return false;
 }
 
 /*
@@ -94,12 +79,8 @@ FSettings::Setup() {
 bool
 FSettings::Date() {
     std::string line = fsplusplus::FindStringWithReturn(Path(), "date_info");
-    if (strstr(line.c_str(), "yes"))
-        return true;
-    else
-        return false;
-
-    return true;
+    if(line == "yes") return true;
+    return false;
 }
 
 /*
@@ -129,21 +110,21 @@ FSettings::FeLogCleaner() {
 
 int
 FSettings::random(int min_num, int max_num) {
-    srand(time(nullptr));
-    return rand() % (max_num - min_num + 1) + min_num;
+    std::srand(std::time(nullptr));
+    return (std::rand() % (max_num - min_num + 1) + min_num);
 }
 
 int
 FSettings::color() {
-    int x = random(0, 2);
-    if (x == 1)
-        return random(30, 37);
-    else if (x == 2)
-        return random(90, 97);
-    else if (x == 0)
-        return random(30, 37);
+    int x = this->random(0, 2);
+    switch(x) {
+        case 0:
+        case 1:
+            return this->random(30, 37);
 
-    return random(90, 97);
+        default:
+            return this->random(90, 97);
+    }
 }
 
 /*
@@ -154,17 +135,13 @@ FSettings::color() {
 int
 FSettings::ASCIIColor() {
     std::string line = fsplusplus::FindStringWithReturn(Path(), "ascii_art_color");
-    if (strstr(line.c_str(), "no_thanks"))
-        return -1;
-    else if (strstr(line.c_str(), "random"))
-        return color();
-    else if (atoi(stringtools::EraseAllSubString(line, "ascii_art_color ").c_str()) <= 29) {
+    auto val = std::atoi(stringtools::EraseAllSubString(line, "ascii_art_color ").c_str());
+    if(line == "no_thanks") return -1;
+    else if(line == "random") return this->color();
+    else if(val <= 29) {
         colorized::PrintWith(colorized::Colorize(BOLD, RED), "ascii_art_color : Give 30 or higher value.\n");
         return 34;
-    } else
-        return atoi(stringtools::EraseAllSubString(line, "ascii_art_color ").c_str());
-
-    return 34;
+    } return val;
 }
 
 /*
@@ -173,7 +150,7 @@ FSettings::ASCIIColor() {
 int
 FSettings::BackgroundColor() {
     std::string line = fsplusplus::FindStringWithReturn(Path(), "bg_color");
-    return atoi(stringtools::EraseAllSubString(line, "bg_color ").c_str());
+    return std::atoi(stringtools::EraseAllSubString(line, "bg_color ").c_str());
 }
 
 /*
@@ -183,17 +160,9 @@ int
 FSettings::Clear() {
     std::string line = fsplusplus::FindStringWithReturn(Path(), "auto_clear");
     line = stringtools::EraseAllSubString(line, "auto_clear ");
-
-    if (strstr(line.c_str(), "no_thanks"))
-        return 2147483647;
-    else {
-        int val = atoi(line.c_str());
-        if (val >= 2)
-            return val;
-        else
-            return 40;
-    }
-
+    if(line == "no_thanks") return 2147483647;
+    int val = std::atoi(line.c_str());
+    if (val >= 2) return val;
     return 40;
 }
 
@@ -204,15 +173,7 @@ FSettings::Clear() {
 std::string
 FSettings::Theme() {
     std::string line = fsplusplus::FindStringWithReturn(Path(), "scrift_theme");
-    if (strstr(line.c_str(), "default"))
-        return "default";
-    else if (strstr(line.c_str(), "classic"))
-        return "classic";
-    else if (strstr(line.c_str(), "halloween"))
-        return "halloween";
-    else
-        return "default";
-
+    if(line == "default" || line == "classic" || line == "halloween") return line;
     return "default";
 }
 
@@ -223,7 +184,6 @@ std::string
 FSettings::InputCustomize() {
     std::string line = fsplusplus::FindStringWithReturn(Path(), "input_customize");
     line = stringtools::EraseAllSubString(line, "input_customize ");
-
     return stringtools::EraseAllSubString(line, "\n");
 }
 
@@ -258,6 +218,9 @@ FSettings::Customize(bool incognito) {
 
         /* convert to escape sequence */
         _color = "\033[" + color;
+
+        stringtools::ltrim(check);
+        stringtools::rtrim(check);
 
         /* check */
         if (check == "username")

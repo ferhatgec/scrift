@@ -1,13 +1,15 @@
 /* MIT License
 #
-# Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
+# Copyright (c) 2020-2022 Ferhat Geçdoğan All Rights Reserved.
 # Distributed under the terms of the MIT License.
 #
 # */
 
 #include <iostream>
+#include <src/Scrift.hpp>
 #include <src/Syntax/Settings.hpp>
 #include <src/Syntax/GetNameFunction.hpp>
+#include <unistd.h>
 
 void
 FGetUsername::InitUsername() {
@@ -23,7 +25,9 @@ FGetUsername::InitHostname() {
 // #if defined(_WIN32) || defined(_WIN64)
     // std::cout << std::getenv("COMPUTERNAME");
 // #else
-    std::cout << std::getenv("HOSTNAME");
+    FCHAR hostname[LIMIT];
+    gethostname(hostname, LIMIT);
+    std::cout << hostname;
 // #endif
 }
 

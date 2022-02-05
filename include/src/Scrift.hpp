@@ -1,6 +1,6 @@
 /* MIT License
 #
-# Copyright (c) 2020-2021 Ferhat Geçdoğan All Rights Reserved.
+# Copyright (c) 2020-2022 Ferhat Geçdoğan All Rights Reserved.
 # Distributed under the terms of the MIT License.
 #
 # */
@@ -22,7 +22,7 @@
 #include "Syntax/CommandFunc.hpp"
 #include "Syntax/Locale.hpp"
 
-#define COPYRIGHT_YEAR "2020-2021"
+#define COPYRIGHT_YEAR "2020-2022"
 
 #define slashn printlnf("\n");
 
@@ -32,7 +32,6 @@
 
 #define SCRIFT_VERSION "0.1.9"
 #define SCRIFT_STATUS "beta-1"
-
 
 // Input Definitions
 #define ARROW_UP    65
@@ -60,7 +59,10 @@
 
 #define WBWHITE    "\033[1;37m"
 
-inline std::string STR(const char *_ch) {
+#define FCHAR char
+#define LIMIT 512
+
+inline std::string STR(const char* _ch) {
     return (std::string) _ch;
 }
 

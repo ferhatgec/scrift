@@ -1,6 +1,6 @@
 /* MIT License
 #
-# Copyright (c) 2020-2021 Ferhat Geçdoğan All Rights Reserved.
+# Copyright (c) 2020-2022 Ferhat Geçdoğan All Rights Reserved.
 # Distributed under the terms of the MIT License.
 #
 # */
