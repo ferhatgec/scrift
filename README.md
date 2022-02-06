@@ -51,6 +51,8 @@ alt="Fegeya Scrift logo by @ferhatgec" width="60" height="60">
 - Morse Code Generator
 - Input customization
 - Dynamic Titles.
+- TAB-completion
+- 100% Gech Philosophy supported!
 - And more!
 
 ## How to build and run?
@@ -69,33 +71,26 @@ alt="Fegeya Scrift logo by @ferhatgec" width="60" height="60">
 
 ## How to install?
 
-### Install Packages (For tools and games (Edifor, Castle etc.))
+```
+requirements:
 
-```
- $# sudo apt-get install libncurses-dev // Ubuntu, Debian.
-```
+c++17 compliant compiler
+elite or make build system
 
-```
- $# sudo dnf install ncurses-devel // Fedora, CentOS
-```
+then:
+elite Elitefile install
 
-## Run
-
-```
- $# fscrift install // For Scrift
+or:
+sudo make install (root privileges required)
 ```
 
-```
- $# sudo make install // Linux and Unix-like systems.
-```
-
-## Change Shell
+## Change default shell
 
 ```
- $# chsh -s /bin/scrift <username>
+ $# chsh -s /usr/bin/scrift <username>
 ```
 
-Note: You should add ``/bin/scrift`` and ``/usr/bin/scrift`` in ``/etc/shells`` file.
+Note: You may add ``/bin/scrift`` and ``/usr/bin/scrift`` into the ``/etc/shells`` file.
 
 ## Use Edifor for Git (Default Editor)
 
