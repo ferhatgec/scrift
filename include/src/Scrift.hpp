@@ -67,6 +67,10 @@ enum {
 
 #define FCHAR char
 
+#define POP(str) \
+    if(str.back() == '\n') \
+        str.pop_back();
+
 inline std::string STR(const char* _ch) {
     return (std::string) _ch;
 }

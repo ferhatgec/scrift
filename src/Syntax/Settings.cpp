@@ -9,6 +9,7 @@
 #include <pwd.h>
 #include <ctime>
 
+#include <src/Scrift.hpp>
 #include <src/Syntax/Tools.hpp>
 #include <src/Syntax/Branch.hpp>
 #include <src/Syntax/GetNameFunction.hpp>
@@ -39,7 +40,10 @@ FSettings::Path() {
 
 int
 FSettings::WelcomeMessage() {
-    std::string line = fsplusplus::FindStringWithReturn(Path(), "welcome_message");
+    auto val = fsplusplus::FindStringWithReturn(Path(), "welcome_message");
+    std::string line = stringtools::EraseAllSubString(val, "welcome_message ");
+
+    POP(line)
 
     if(line == "no_thanks_all") return 0;
     else if(line == "no_thanks") return 2;
@@ -134,8 +138,12 @@ FSettings::color() {
 */
 int
 FSettings::ASCIIColor() {
-    std::string line = fsplusplus::FindStringWithReturn(Path(), "ascii_art_color");
-    auto val = std::atoi(stringtools::EraseAllSubString(line, "ascii_art_color ").c_str());
+    auto val_str = fsplusplus::FindStringWithReturn(Path(), "ascii_art_color");
+    std::string line = stringtools::EraseAllSubString(val_str, "ascii_art_color ");
+    POP(line)
+
+    auto val = std::atoi(line.c_str());
+
     if(line == "no_thanks") return -1;
     else if(line == "random") return this->color();
     else if(val <= 29) {
