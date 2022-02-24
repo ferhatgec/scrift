@@ -26,8 +26,8 @@
         Path() for Settings
 */
 
-/*constexpr*/ std::string Path() {
-    std::string settings_path(getenv("HOME"));
+std::string Path() {
+    std::string settings_path(std::getenv("HOME"));
     settings_path.append("/.scrift_settings");
 
     return settings_path;

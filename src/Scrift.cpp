@@ -101,6 +101,7 @@ std::unique_ptr<fhomefunction> homefunction(new fhomefunction);
 ScriftKeywords keywords;
 FTemplate temp;
 
+#define SCRIFT_HISTORY_PATH STR(std::getenv("HOME")) + STR("/.scrift_history")
 
 unsigned line = 0;
 
@@ -233,7 +234,7 @@ std::string FMain::Time() {
 
 /* Read specific line from history */
 std::string GetSpecificHistoryLine(unsigned line) {
-    std::ifstream history_file(STR(getenv("HOME")) + STR("/.scrift_history"));
+    std::ifstream history_file(SCRIFT_HISTORY_PATH);
 
     unsigned _line = 0;
 
@@ -252,7 +253,7 @@ std::string GetSpecificHistoryLine(unsigned line) {
 }
 
 unsigned GetTotalHistoryLine() {
-    std::ifstream history_file(STR(getenv("HOME")) + STR("/.scrift_history"));
+    std::ifstream history_file(SCRIFT_HISTORY_PATH);
 
     std::string line;
     unsigned i;
@@ -1305,22 +1306,29 @@ void InputFunction(slocale_t &locale) {
         cursorpos.x += 1;
     } else if (c == 9) {
         auto str = GetSpecificHistoryLine(GetTotalHistoryLine() - 1);
+        auto other_str = fsplusplus::FindStringWithReturn(SCRIFT_HISTORY_PATH, main_function->_h_str);
+        other_str = stringtools::trim(other_str);
 
-        if (main_function->_h_str.length() >= 0 && main_function->_h_str.length() < str.length()) {
-            for(unsigned i = 0; i < main_function->_h_str.length(); i++) {
-                std::cout << "\b \b" << std::flush;
+        if(other_str != "null" && main_function->_h_str.length() >= 0 && main_function->_h_str.length() < other_str.length()) {
+            if(other_str.substr(0, main_function->_h_str.length()) == main_function->_h_str)
+                main_function->_h_str = other_str;
+        } else {
+            if (main_function->_h_str.length() >= 0 && main_function->_h_str.length() < str.length()) {
+                for (unsigned i = 0; i < main_function->_h_str.length(); i++) {
+                    std::cout << "\b \b" << std::flush;
+                }
+
+                if (str.substr(0, main_function->_h_str.length()) == main_function->_h_str)
+                    main_function->_h_str = str;
+                else {
+                    if (main_function->_h_str.back() != ' ')
+                        main_function->_h_str.append(" ");
+
+                    main_function->_h_str.append(str);
+                }
+
+                std::cout << WBWHITE << main_function->_h_str;
             }
-
-            if (str.substr(0, main_function->_h_str.length()) == main_function->_h_str)
-                main_function->_h_str = str;
-            else {
-                if (main_function->_h_str.back() != ' ')
-                    main_function->_h_str.append(" ");
-
-                main_function->_h_str.append(str);
-            }
-
-            std::cout << WBWHITE << main_function->_h_str;
         }
     }
 
