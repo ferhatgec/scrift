@@ -48,7 +48,7 @@ for signal "start" [
 
         if eq $default_shell "{bin_path}{output}" [
             println "Warning: Your default shell is {output}"
-            println " : You must to set another shell."
+            println " : You must set another shell."
         ]
 
         use exec "{sudo} rm -f {bin_path}{output}"

@@ -14,6 +14,8 @@
 #include <unistd.h>
 #include <fstream>
 #include <string>
+#include <string_view>
+#include <queue>
 
 #include "synflang.hpp"
 
@@ -78,6 +80,7 @@ inline std::string STR(const char* _ch) {
 
 class FMain {
     bool is_similar = false;
+
 public:
     FMain();
 
@@ -100,7 +103,19 @@ public:
     std::string str;
     std::string _h_str;
     std::string strfor_h_str;
+    std::queue<std::string> args;
     bool _home{};
+
+    void split_str(std::string data, const std::string_view delim = " ") {
+        std::size_t start_pos = 0, end_pos = data.find(delim);
+
+        while(end_pos != data.npos) {
+            this->args.push(data.substr(start_pos, end_pos - start_pos));
+
+            start_pos = end_pos + delim.size();
+            end_pos = data.find(delim, start_pos);
+        } this->args.push(data.substr(start_pos, end_pos - start_pos));
+    }
 };
 
 #endif // SCRIFT_HPP

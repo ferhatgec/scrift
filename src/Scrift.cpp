@@ -72,6 +72,8 @@ bool incognito = false;
 static struct termios oldtio,
         newtio;
 
+constexpr std::string_view and_delim{"&&"};
+
 /* Classes */
 std::unique_ptr<FMain> main_function(new FMain);
 std::unique_ptr<FCommand> main_(new FCommand);
@@ -132,23 +134,23 @@ std::string VersionGenerator() {
 
 /* For input colorizing */
 void Space(int space, const std::string &sign, unsigned theme) {
-    if (theme == 1) /* Classic (White & Black) theme */
+    if(theme == 1) /* Classic (White & Black) theme */
         colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_WHITE), sign.c_str());
-    else if (theme == 2) { /* Halloween theme */
+    else if(theme == 2) { /* Halloween theme */
         RESETW
-        if (space % 2) printfc({255, 154, 0}, sign);
-        else if (space % 3) printfc({247, 95, 28}, sign);
+        if(space % 2) printfc({255, 154, 0}, sign);
+        else if(space % 3) printfc({247, 95, 28}, sign);
         else printfc({0, 0, 0}, sign);
     } else /* Colorized theme */
-    if (space == 1 || space % 1) colorized::PrintWith(colorized::Colorize(BOLD, RED), sign.c_str());
-    else if (space % 2 || space == 2) colorized::PrintWith(colorized::Colorize(BOLD, MAGENTA), sign.c_str());
-    else if (space % 3 || space == 3) colorized::PrintWith(colorized::Colorize(BOLD, BLUE), sign.c_str());
-    else if (space % 4 || space == 4) colorized::PrintWith(colorized::Colorize(BOLD, YELLOW), sign.c_str());
-    else if (space % 5) colorized::PrintWith(colorized::Colorize(BOLD, GREEN), sign.c_str());
-    else if (space % 6 || space == 6) colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA), sign.c_str());
-    else if (space % 7 || space == 7) colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN), sign.c_str());
-    else if (space % 7 || space == 7) colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), sign.c_str());
-    else if (space == 0)
+    if(space == 1 || space % 1) colorized::PrintWith(colorized::Colorize(BOLD, RED), sign.c_str());
+    else if(space % 2 || space == 2) colorized::PrintWith(colorized::Colorize(BOLD, MAGENTA), sign.c_str());
+    else if(space % 3 || space == 3) colorized::PrintWith(colorized::Colorize(BOLD, BLUE), sign.c_str());
+    else if(space % 4 || space == 4) colorized::PrintWith(colorized::Colorize(BOLD, YELLOW), sign.c_str());
+    else if(space % 5) colorized::PrintWith(colorized::Colorize(BOLD, GREEN), sign.c_str());
+    else if(space % 6 || space == 6) colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA), sign.c_str());
+    else if(space % 7 || space == 7) colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN), sign.c_str());
+    else if(space % 7 || space == 7) colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED), sign.c_str());
+    else if(space == 0)
         std::cout << WBOLD_CYAN_COLOR << sign << WBLACK_COLOR;
 }
 
@@ -215,7 +217,7 @@ int sqrti(int x) {
 
 /* Factorial */
 int factorial(int n) {
-    if (n > 1)
+    if(n > 1)
         return n * factorial(n - 1);
     else
         return 1;
@@ -241,7 +243,7 @@ std::string GetSpecificHistoryLine(unsigned line) {
     std::string data;
 
     while (getline(history_file, data)) {
-        if (line == _line) {
+        if(line == _line) {
             return data;
         }
 
@@ -326,12 +328,12 @@ std::string GetUptime() {
 
     sysinfo(&info);
     uptime = info.uptime;
-    if (uptime / 60 >= 60) {
+    if(uptime / 60 >= 60) {
         uptimeHour = (uptime / 60) / 60;
         uptimeHourWhole = uptimeHour;
         uptimeMinutes = uptimeHour - uptimeHourWhole;
         uptimeMinutesWhole = uptimeMinutes * 60;
-        if (uptimeHour >= 24) {
+        if(uptimeHour >= 24) {
             uptimeDay = uptimeHour / 24;
             uptimeDayWhole = uptimeDay;
             uptimeHour = uptimeDay - uptimeDayWhole;
@@ -352,7 +354,7 @@ std::string GetUptime() {
 }
 
 bool FMain::CommandMatch(std::string command, std::string token) noexcept {
-    if (command == token) {
+    if(command == token) {
         return true;
     }
 
@@ -361,7 +363,7 @@ bool FMain::CommandMatch(std::string command, std::string token) noexcept {
                        return std::tolower(c);
                    });
 
-    if (command == token) {
+    if(command == token) {
         std::cout << WBLWHITE << "Similar command: '" << WBLGREEN << command << WBLWHITE << "'\n";
         this->is_similar = true;
 
@@ -378,7 +380,7 @@ bool FMain::CommandMatch(std::string command, std::string token) noexcept {
 void FMain::CodeExecution(std::string arg, slocale_t &locale) {
     std::string command = stringtools::GetFirstArg(arg);
 
-    if (CommandMatch(command, keywords.Scr)) {
+    if(CommandMatch(command, keywords.Scr)) {
         /*  scr
             scr echo hello
             Use Non-Scrift commands without conflict
@@ -389,14 +391,14 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         runfunction->RunFunction(arg);
 
         return;
-    } else if (CommandMatch(command, keywords.Printlnf)) {
+    } else if(CommandMatch(command, keywords.Printlnf)) {
         /*  printlnf
             printlnf Hello, world!
             printlnf #HOME
 
             Show output. Same as 'echo'
         */
-        if (arg == keywords.Printlnf + " --h\n")
+        if(arg == keywords.Printlnf + " --h\n")
             std::cout << "Usage: printlnf variable\n" <<
                       "printlnf #environment";
         else {
@@ -409,14 +411,14 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         std::cout << "\n";
 
         return;
-    } else if (CommandMatch(command, keywords.Echo)) {
+    } else if(CommandMatch(command, keywords.Echo)) {
         /*  echo
             echo Hello, world!
             echo #HOME
 
             Show output. Same as 'printlnf'
         */
-        if (arg == keywords.Echo + " --h\n")
+        if(arg == keywords.Echo + " --h\n")
             std::cout << "Usage: echo variable\n" <<
                       "echo #environment";
         else {
@@ -429,29 +431,29 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         std::cout << "\n";
 
         return;
-    } else if (CommandMatch(command, keywords.Fpi)) {
+    } else if(CommandMatch(command, keywords.Fpi)) {
         /*
             fpi --i || --install
             fpi --uni || --uninstall
         */
         std::cout << "Fpi is deprecated, use 'fpm' instead.\n";
 
-        if (!fsplusplus::IsExistFile("/bin/fpm")) {
+        if(!fsplusplus::IsExistFile("/bin/fpm")) {
             std::cout << "Oops! Fpm is not to be installed!\n";
         }
 
         return;
-    } else if (CommandMatch(command, keywords.FreeBrainGen)) {
+    } else if(CommandMatch(command, keywords.FreeBrainGen)) {
         /* genfrbr
             genfrbr 3
 
             Generate ASCII code for FreeBrain.
         */
-        if (!CommandMatch(arg, keywords.FreeBrainGen)) {
+        if(!CommandMatch(arg, keywords.FreeBrainGen)) {
             arg = stringtools::EraseAllSubString(arg,
                                                  keywords.FreeBrainGen + " ");
 
-            if (atoi(arg.c_str()) < 1)
+            if(atoi(arg.c_str()) < 1)
                 /* Add negative value generator */
                 std::cout << "~";
             else
@@ -460,7 +462,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         }
 
         return;
-    } else if (CommandMatch(command, keywords.Fr)) {
+    } else if(CommandMatch(command, keywords.Fr)) {
         /*  fr
             fr /home
             fr ../../
@@ -468,9 +470,9 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
 
             Forward dir. Same as 'cd'
         */
-        if (arg == keywords.Fr + " --h\n")
+        if(arg == keywords.Fr + " --h\n")
             std::cout << "Usage: fr path || dir\n";
-        else if (arg == keywords.Fr || arg == keywords.Fr + " #\n") {}
+        else if(arg == keywords.Fr || arg == keywords.Fr + " #\n") {}
         else {
             arg = stringtools::EraseAllSubString(arg,
                                                  keywords.Fr + " ");
@@ -479,7 +481,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         }
 
         return;
-    } else if (CommandMatch(command, keywords.Cd)) {
+    } else if(CommandMatch(command, keywords.Cd)) {
         /*  cd
             cd /home
             cd ../../
@@ -487,9 +489,9 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
 
             Change dir. Same as 'fr'
         */
-        if (arg == keywords.Cd + " --h\n")
+        if(arg == keywords.Cd + " --h\n")
             std::cout << "Usage: cd path || dir\n";
-        else if (arg == keywords.Cd || arg == keywords.Cd + " #\n") {}
+        else if(arg == keywords.Cd || arg == keywords.Cd + " #\n") {}
         else {
             arg = stringtools::EraseAllSubString(arg,
                                                  keywords.Cd + " ");
@@ -499,14 +501,14 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         }
 
         return;
-    } else if (CommandMatch(command, keywords.RunDotSlash)) {
+    } else if(CommandMatch(command, keywords.RunDotSlash)) {
         /*  ./
             ./make.scr
             ./scrift
 
             Command execution
         */
-        if (arg == keywords.RunDotSlash) {
+        if(arg == keywords.RunDotSlash) {
             colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED),
                                  "scrift : ./ : Is a directory.\n");
         } /*else if(strstr(arg.c_str(), ".scr")) {
@@ -518,7 +520,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
             runfunction->RunFunction(arg);
 
         return;
-    } else if (CommandMatch(arg, keywords.Back)) {
+    } else if(CommandMatch(arg, keywords.Back)) {
         /*  back
             Same with fr || cd ..
 
@@ -529,7 +531,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         std::size_t test = path_string.find_last_of("/\\");
         std::string test_string = path_string.substr(0, test);
 
-        if (test_string.empty())
+        if(test_string.empty())
             test_string.append("/");
 
         main_->_file_path_cd_function = test_string;
@@ -541,16 +543,16 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         test_string.erase();
 
         return;
-    } else if (CommandMatch(command, keywords.Lsf)) {
+    } else if(CommandMatch(command, keywords.Lsf)) {
         /*  fls
             fls
             fls src
 
             List only files.
         */
-        if (CommandMatch(arg, keywords.Lsf))
+        if(CommandMatch(arg, keywords.Lsf))
             main_->list_file(true, ".");
-        else if (arg == keywords.Lsf + " --h\n")
+        else if(arg == keywords.Lsf + " --h\n")
             std::cout << "Usage: fls || fls path\n";
         else {
             arg = stringtools::EraseAllSubString(arg,
@@ -561,16 +563,16 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         }
 
         return;
-    } else if (CommandMatch(command, keywords.Lsd)) {
+    } else if(CommandMatch(command, keywords.Lsd)) {
         /*  dls
             dls
             dls src
 
             List only directories.
         */
-        if (CommandMatch(arg, keywords.Lsd))
+        if(CommandMatch(arg, keywords.Lsd))
             main_->list_direc(true, ".");
-        else if (arg == keywords.Lsd + " --h\n")
+        else if(arg == keywords.Lsd + " --h\n")
             std::cout << "Usage: dls || dls path\n";
         else {
             arg = stringtools::EraseAllSubString(arg,
@@ -581,7 +583,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         }
 
         return;
-    } else if (CommandMatch(arg, keywords.LsObject)) {
+    } else if(CommandMatch(arg, keywords.LsObject)) {
         /*  objls
             List /bin/
         */
@@ -594,7 +596,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
 
             Find file & folder on current directory
         */
-        if (!CommandMatch(arg, keywords.Find)) {
+        if(!CommandMatch(arg, keywords.Find)) {
             FFindFileFunction find;
             arg = stringtools::EraseAllSubString(arg, keywords.Find + " ");
 
@@ -602,20 +604,20 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         }
 
         return;
-    } else if (CommandMatch(command, keywords.Output)) {
+    } else if(CommandMatch(command, keywords.Output)) {
         /*  output
             output <command>
 
             Get output of inputted command
         */
-        if (!CommandMatch(arg, keywords.Output)) {
+        if(!CommandMatch(arg, keywords.Output)) {
             ExecutePlusPlus exec;
             arg = stringtools::EraseAllSubString(arg, keywords.Output + " ");
             std::cout << exec.ExecWithOutput(arg);
         }
 
         return;
-    } else if (CommandMatch(arg, keywords.Close) ||
+    } else if(CommandMatch(arg, keywords.Close) ||
                arg == keywords.Exit) {
         /*  close, exit
             Exit.
@@ -623,7 +625,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         arg.erase();
 
         exit(EXIT_SUCCESS);
-    } else if (CommandMatch(arg, keywords.Ls)) {
+    } else if(CommandMatch(arg, keywords.Ls)) {
         /*  ls
             ls
             ls
@@ -634,7 +636,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         listdirectoryfunction->LSFunction(".");
 
         return;
-    } else if (CommandMatch(command, keywords.Ls)) {
+    } else if(CommandMatch(command, keywords.Ls)) {
         /*  ls
             ls
             ls src
@@ -647,7 +649,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
             else
         */
 
-        if (arg == keywords.Ls + " --h\n")
+        if(arg == keywords.Ls + " --h\n")
             std::cout << "Usage: ls || ls path\n";
         else {
             arg = stringtools::EraseAllSubString(arg,
@@ -658,7 +660,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         }
 
         return;
-    } else if (CommandMatch(command, keywords.Scrift)) {
+    } else if(CommandMatch(command, keywords.Scrift)) {
         /*  fscrift
             fscrift make
             fscrift make.scr
@@ -678,13 +680,13 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         std::cout << "Work-in-progress\n";
 
         return;
-    } else if (CommandMatch(command, keywords.MKDir)) {
+    } else if(CommandMatch(command, keywords.MKDir)) {
         /*  mkdir
             mkdir scrift
             Create directory
         */
-        if (!CommandMatch(arg, keywords.MKDir)) {
-            if (arg == keywords.MKDir + " --h\n")
+        if(!CommandMatch(arg, keywords.MKDir)) {
+            if(arg == keywords.MKDir + " --h\n")
                 std::cout << "Usage: mkdir dir\n";
             else {
                 arg = stringtools::EraseAllSubString(arg,
@@ -695,7 +697,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         }
 
         return;
-    } else if (CommandMatch(command, keywords.Resolution)) {
+    } else if(CommandMatch(command, keywords.Resolution)) {
         /* res
            res file.(jpg, png)
 
@@ -707,13 +709,13 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         date_tools->ResolutionSizeInfo(arg);
 
         return;
-    } else if (CommandMatch(command, keywords.ReadText)) {
+    } else if(CommandMatch(command, keywords.ReadText)) {
         /*  readtext
             readtext file
 
             Implementation of 'cat'.
         */
-        if (CommandMatch(arg, keywords.ReadText) ||
+        if(CommandMatch(arg, keywords.ReadText) ||
             arg == keywords.ReadText + " --h\n")
             std::cout << "Usage: readtext file\n";
         else {
@@ -724,13 +726,13 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         }
 
         return;
-    } else if (CommandMatch(command, keywords.SetName)) {
+    } else if(CommandMatch(command, keywords.SetName)) {
         /*  setname
             setname home_path
 
             Set environment name
         */
-        if (CommandMatch(arg, keywords.SetName) ||
+        if(CommandMatch(arg, keywords.SetName) ||
             arg == keywords.SetName + " --h\n")
             std::cout << "Usage: setname environment_name\n";
         else {
@@ -741,13 +743,13 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         }
 
         return;
-    } else if (CommandMatch(command, keywords.SetTo)) {
+    } else if(CommandMatch(command, keywords.SetTo)) {
         /*  setto
             setto /home/ferhatgec/
 
             Set environment value
         */
-        if (CommandMatch(arg, keywords.SetTo) ||
+        if(CommandMatch(arg, keywords.SetTo) ||
             arg == keywords.SetTo + " --h\n")
             std::cout << "Usage: setto environment_value\n";
         else {
@@ -759,15 +761,15 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         }
 
         return;
-    } else if (CommandMatch(command, keywords.Alias)) {
+    } else if(CommandMatch(command, keywords.Alias)) {
         /* alias
            alias a='echo aaa'
 
            Set or change alias
         */
-        if (CommandMatch(arg, keywords.Alias)) {
+        if(CommandMatch(arg, keywords.Alias)) {
             readfilefunction->ReadAliasFunction();
-        } else if (arg == keywords.Alias + " --h") {
+        } else if(arg == keywords.Alias + " --h") {
             std::cout << "Usage: alias name='command'\n";
         } else {
             arg = stringtools::EraseAllSubString(arg, keywords.Alias + " ");
@@ -775,7 +777,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
             std::string name, replacement;
 
             for (unsigned i = 0; arg[i] != '\0'; i++) {
-                if (arg[i] != '=') {
+                if(arg[i] != '=') {
                     name.push_back((char) arg[i]);
                 } else {
                     break;
@@ -789,13 +791,13 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         }
 
         return;
-    } else if (CommandMatch(command, keywords.Random)) {
+    } else if(CommandMatch(command, keywords.Random)) {
         /*  random
             random 15
 
             pseudo random integer generator (rand)
         */
-        if (arg == keywords.Random + " --h\n"
+        if(arg == keywords.Random + " --h\n"
             || arg == keywords.Random)
 
             std::cout << "Usage: random number\n";
@@ -808,32 +810,32 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         }
 
         return;
-    } else if (CommandMatch(arg, keywords.Help)) {
+    } else if(CommandMatch(arg, keywords.Help)) {
         /*  helpss
             List all commands.
         */
         helpstr->HelpFunction(locale);
 
         return;
-    } else if (CommandMatch(arg, keywords.Version)) {
+    } else if(CommandMatch(arg, keywords.Version)) {
         /*  version
             Show Scrift's version.
         */
         PrintVersion();
 
         return;
-    } else if (CommandMatch(arg, keywords.Previous)) {
+    } else if(CommandMatch(arg, keywords.Previous)) {
         /* !!
            Get & execute previous command
         */
-        if (previous_command.empty()) {
+        if(previous_command.empty()) {
             std::cout << previous_command << "\n";
 
             CodeExecution(previous_command, locale);
         }
 
         return;
-    } else if (CommandMatch(arg, keywords.Uptime)) {
+    } else if(CommandMatch(arg, keywords.Uptime)) {
         /*  uptime
             Show uptime
         */
@@ -843,7 +845,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         std::cout << "\n";
 
         return;
-    } else if (CommandMatch(arg, keywords.Clear)) {
+    } else if(CommandMatch(arg, keywords.Clear)) {
         /*  clear
             Clear terminal buffer
         */
@@ -851,7 +853,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         std::cout << "\033c";
 
         return;
-    } else if (CommandMatch(command, keywords.Title)) {
+    } else if(CommandMatch(command, keywords.Title)) {
         /* title
             title Hello, terminal.
 
@@ -862,23 +864,23 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
             Support environments..
         */
 
-        if (arg != keywords.Title) {
+        if(arg != keywords.Title) {
             arg = stringtools::EraseAllSubString(arg,
                                                  keywords.Title + " ");
 
-            if (arg[0] == '#' || arg[0] == '$') {
+            if(arg[0] == '#' || arg[0] == '$') {
                 arg = arg.erase(0, 1);
 
                 const char *env = getenv(arg.c_str());
 
-                if (env != nullptr)
+                if(env != nullptr)
                     arg = STR(env);
             }
 
             SetTitleAs(arg);
         }
         return;
-    } else if (CommandMatch(command, keywords.RemoveFile)) {
+    } else if(CommandMatch(command, keywords.RemoveFile)) {
         /*  rmvfile
             rmvfile Scrift.cpp
         */
@@ -888,7 +890,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         removefile->DeleteFile(arg);
 
         return;
-    } else if (CommandMatch(command, keywords.SquareofNumber)) {
+    } else if(CommandMatch(command, keywords.SquareofNumber)) {
         /*  square
             Calculate square
         */
@@ -901,15 +903,15 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         std::cout << "\n";
 
         return;
-    } else if (CommandMatch(command, keywords.SquareRootofNumber)) {
+    } else if(CommandMatch(command, keywords.SquareRootofNumber)) {
         /*  sqrt
             Calculate square root
         */
         arg = stringtools::EraseAllSubString(arg,
                                              keywords.SquareRootofNumber + " ");
 
-        /* If statement */
-        if (atoi(arg.c_str()) <= -1)
+        /* ifstatement */
+        if(atoi(arg.c_str()) <= -1)
             std::cout << "Hmm.";
         else
             colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA),
@@ -919,21 +921,21 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         std::cout << "\n";
 
         return;
-    } else if (CommandMatch(arg, keywords.Clear_History)) {
+    } else if(CommandMatch(arg, keywords.Clear_History)) {
         /*  rmvhistory
             Erase history file
         */
         history->ClearHistory();
 
         return;
-    } else if (CommandMatch(arg, keywords.History)) {
+    } else if(CommandMatch(arg, keywords.History)) {
         /*  history
             Show history file.
         */
         readfilefunction->ReadHistoryFileFunction();
 
         return;
-    } else if (CommandMatch(arg, keywords.ClearLog)) {
+    } else if(CommandMatch(arg, keywords.ClearLog)) {
         /*  clear_log
             Clear FeLog
         */
@@ -942,17 +944,17 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         std::cout << "Done.\n";
 
         return;
-    } else if (CommandMatch(command, keywords.Factorial)) {
+    } else if(CommandMatch(command, keywords.Factorial)) {
         /*  fact
             fact 4
 
             Calculate factorial
         */
-        if (!CommandMatch(arg, keywords.Factorial)) {
+        if(!CommandMatch(arg, keywords.Factorial)) {
             arg = stringtools::EraseAllSubString(arg,
                                                  keywords.Factorial + " ");
 
-            if (atoi(arg.c_str()) < 0)
+            if(atoi(arg.c_str()) < 0)
                 colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_RED),
                                      "n must be > or = to 0");
             else
@@ -964,7 +966,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         std::cout << "\n";
 
         return;
-    } else if (CommandMatch(arg, keywords.Clear_Settings)) {
+    } else if(CommandMatch(arg, keywords.Clear_Settings)) {
         /*  rmvsettings
             Erase settings file.
         */
@@ -972,14 +974,14 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         clearfile->ClearSettingsFunction();
 
         return;
-    } else if (CommandMatch(arg, keywords.Settings)) {
+    } else if(CommandMatch(arg, keywords.Settings)) {
         /*  settings
             Show settings
         */
         readfilefunction->ReadSettingsFunction();
 
         return;
-    } else if (CommandMatch(command, keywords.LanguageTemplate)) {
+    } else if(CommandMatch(command, keywords.LanguageTemplate)) {
         /*  template test.fls
             Create 'Hello, language' template.
         */
@@ -989,7 +991,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         temp.LangTemplate(arg);
 
         return;
-    } else if (CommandMatch(command, keywords.RandomizeString)) {
+    } else if(CommandMatch(command, keywords.RandomizeString)) {
         /*  rstr
             rstr 12
             Create and print randomize string
@@ -1001,14 +1003,14 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         std::cout << "\n";
 
         return;
-    } else if (CommandMatch(arg, keywords.Home)) {
+    } else if(CommandMatch(arg, keywords.Home)) {
         /*  home
             Change directory as HOME environment
         */
         homefunction->GetHome();
 
         return;
-    } else if (CommandMatch(command, keywords.AddText)) {
+    } else if(CommandMatch(command, keywords.AddText)) {
         /*  addtext
             Append string to file
         */
@@ -1016,13 +1018,13 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
                                              keywords.AddText);
 
         fileaddtextfunction->AppendLine(arg);
-    } else if (CommandMatch(command, keywords.Emoji)) {
+    } else if(CommandMatch(command, keywords.Emoji)) {
         /*  emoji
             emoji :thinking_face:
 
             Print emoji.
         */
-        if (!CommandMatch(arg, keywords.Emoji)) {
+        if(!CommandMatch(arg, keywords.Emoji)) {
             arg = stringtools::EraseAllSubString(arg,
                                                  keywords.Emoji + " ");
 
@@ -1030,7 +1032,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         }
 
         return;
-    } else if (CommandMatch(command, keywords.CreateText)) {
+    } else if(CommandMatch(command, keywords.CreateText)) {
         /*
             TODO: Fix seg. fault.
         */
@@ -1045,21 +1047,21 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         filefunction->CreateFileFunctionInit(arg);
 
         return;
-    } else if (CommandMatch(command, keywords.Incognito)) {
-        if (CommandMatch(arg, keywords.Incognito)) {
+    } else if(CommandMatch(command, keywords.Incognito)) {
+        if(CommandMatch(arg, keywords.Incognito)) {
             incognito = true;
         } else {
             arg = stringtools::EraseAllSubString(arg, keywords.Incognito + " ");
 
-            if (arg == "on") {
+            if(arg == "on") {
                 incognito = true;
-            } else if (arg == "off") {
+            } else if(arg == "off") {
                 incognito = false;
             }
         }
 
         return;
-    } else if (CommandMatch(arg, keywords.FeLog)) {
+    } else if(CommandMatch(arg, keywords.FeLog)) {
         /* felog
             Show FeLog
         */
@@ -1070,28 +1072,28 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
     }  /* else if(CommandMatch(arg, keywords.Create) {
             Use template.
             filefunction->CreateScriftFile(arg);
-        } */ else if (CommandMatch(arg, keywords.KName)) {
+        } */ else if(CommandMatch(arg, keywords.KName)) {
         /*  kname
             Show kernel name
         */
         std::cout << main_->FName() << "\n";
 
         return;
-    } else if (CommandMatch(arg, keywords.Config)) {
+    } else if(CommandMatch(arg, keywords.Config)) {
         /*  config
             Configure .scrift_settings file.
         */
         setup->Config();
 
         return;
-    } else if (CommandMatch(arg, keywords.GitLink)) {
+    } else if(CommandMatch(arg, keywords.GitLink)) {
         /*  gitlink
             GitHub links of similar projects.
         */
         helpstr->GitLink();
 
         return;
-    } else if (CommandMatch(arg, keywords.Username)) {
+    } else if(CommandMatch(arg, keywords.Username)) {
         /*  username
             Show username
         */
@@ -1102,7 +1104,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         BLACK_COLOR
 
         return;
-    } else if (CommandMatch(arg, keywords.Pause)) {
+    } else if(CommandMatch(arg, keywords.Pause)) {
         /*  pause
             Wait for enter key input.
         */
@@ -1110,7 +1112,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         std::cout << "Press enter to continue.";
 
         returni:
-        if (std::cin.get() == '\n') {
+        if(std::cin.get() == '\n') {
             BOLD_GREEN_COLOR
             std::cout << "Access - \n";
             BLACK_COLOR
@@ -1118,14 +1120,14 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
             goto returni;
 
         return;
-    } else if (CommandMatch(arg, keywords.Welcome)) {
+    } else if(CommandMatch(arg, keywords.Welcome)) {
         /*  welcome
             Show welcome function
         */
         helpstr->Welcome();
 
         return;
-    } else if (CommandMatch(arg, keywords.Contr)) {
+    } else if(CommandMatch(arg, keywords.Contr)) {
         /*  contr
             Show contributors
         */
@@ -1134,7 +1136,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         slashn
 
         return;
-    } else if (CommandMatch(arg, keywords.Now)) {
+    } else if(CommandMatch(arg, keywords.Now)) {
         /*  now
             Show current time
         */
@@ -1143,28 +1145,28 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         BLACK_COLOR
 
         return;
-    } else if (CommandMatch(arg, keywords.IP)) {
+    } else if(CommandMatch(arg, keywords.IP)) {
         /*  ip
             Show local IP address
         */
         main_->getIPAddress();
 
         return;
-    } else if (CommandMatch(arg, keywords.Morse)) {
+    } else if(CommandMatch(arg, keywords.Morse)) {
         /*  morse
             String-Morse to Morse-String generator
         */
         EasyMorse::MainMorse();
 
         return;
-    } else if (CommandMatch(arg, keywords.MyASCIIArt)) {
+    } else if(CommandMatch(arg, keywords.MyASCIIArt)) {
         /*  asciiart
             Show ASCII Art
         */
         readfilefunction->ReadASCIIFunction();
 
         return;
-    } else if (CommandMatch(arg, keywords.Uninstall)) {
+    } else if(CommandMatch(arg, keywords.Uninstall)) {
         /*  uninstall
             Remove Scrift from PC
         */
@@ -1174,7 +1176,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         std::cin >> option;
         BLACK_COLOR
 
-        if (option == "y" || option == "Y") {
+        if(option == "y" || option == "Y") {
             system("sudo rm -f /bin/fetcheya");
             colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA), "Fetcheya has been removed.\n");
             system("sudo rm -f /bin/edifor");
@@ -1183,7 +1185,7 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
             colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE),
                                  "Note: Select a shell and restart, because Scrift has been deleted\n");
             colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_GREEN), "Goodbye!\n");
-        } else if (option == "n" || option == "N") {
+        } else if(option == "n" || option == "N") {
             system("sudo rm -f /bin/scrift");
             colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_CYAN),
                                  "Note: Select a shell and restart, because Scrift has been deleted\n");
@@ -1193,12 +1195,12 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
 
         return;
     } else {
-        if (this->is_similar) {
+        if(this->is_similar) {
             this->is_similar = false;
             return;
         }
 
-        if (alias->Parse(arg) != "error") {
+        if(alias->Parse(arg) != "error") {
             arg = alias->Parse(arg);
             CodeExecution(arg, locale);
         } else
@@ -1212,9 +1214,9 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
     Input && Interpreter.
 */
 void InputFunction(slocale_t &locale) {
-    if (!fsplusplus::IsExistFile(STR(getenv("HOME")) + "/.scrift_settings")) setup->Config();
+    if(!fsplusplus::IsExistFile(STR(getenv("HOME")) + "/.scrift_settings")) setup->Config();
 
-    if (scrift_line >= runsyntax->Clear()) {
+    if(scrift_line >= runsyntax->Clear()) {
         std::cout << "\033c";
         terminalstr->Terminal(incognito);
         scrift_line = 0;
@@ -1232,25 +1234,25 @@ void InputFunction(slocale_t &locale) {
     fflush(stdout);
     c = getchar();
 
-    if (c == 32) {
+    if(c == 32) {
         space++;
         cursorpos.x += 1;
         std::cout << " " << std::flush;
 
         main_function->_h_str.append(" ");
-    } else if (c == 127 || c == 8) {
-        if (main_function->_h_str.length() >= 1) {
+    } else if(c == 127 || c == 8) {
+        if(main_function->_h_str.length() >= 1) {
             cursorpos.x -= 1;
             main_function->_h_str.pop_back();
 
             std::cout << "\b \b" << std::flush;
         }
-    } else if (c == 27) {
+    } else if(c == 27) {
             c = getchar();
             c = getchar();
 
-            if (c == ARROW_UP) {
-                if (line != 0) {
+            if(c == ARROW_UP) {
+                if(line != 0) {
                     line--;
 
                     for (unsigned i = 0; i < main_function->_h_str.length(); i++) {
@@ -1259,7 +1261,7 @@ void InputFunction(slocale_t &locale) {
 
                     main_function->_h_str = GetSpecificHistoryLine(line);
 
-                    if (fsplusplus::IsExistFile("/bin/" + stringtools::GetFirstArg(main_function->_h_str))) {
+                    if(fsplusplus::IsExistFile("/bin/" + stringtools::GetFirstArg(main_function->_h_str))) {
                         std::cout << WBOLD_GREEN_COLOR << main_function->_h_str;
                     } else {
                         std::cout << WBOLD_RED_COLOR << main_function->_h_str;
@@ -1269,8 +1271,8 @@ void InputFunction(slocale_t &locale) {
                 }
             }
 
-            if (c == ARROW_DOWN) {
-                if (line < GetTotalHistoryLine()) {
+            if(c == ARROW_DOWN) {
+                if(line < GetTotalHistoryLine()) {
                     line++;
 
                     for (unsigned i = 0; i < main_function->_h_str.length(); i++) {
@@ -1279,7 +1281,7 @@ void InputFunction(slocale_t &locale) {
 
                     main_function->_h_str = GetSpecificHistoryLine(line);
 
-                    if (fsplusplus::IsExistFile("/bin/" + stringtools::GetFirstArg(main_function->_h_str))) {
+                    if(fsplusplus::IsExistFile("/bin/" + stringtools::GetFirstArg(main_function->_h_str))) {
                         std::cout << WBOLD_GREEN_COLOR << main_function->_h_str;
                     } else {
                         std::cout << WBOLD_RED_COLOR << main_function->_h_str;
@@ -1289,22 +1291,22 @@ void InputFunction(slocale_t &locale) {
                 }
             }
 
-            if (c == ARROW_LEFT) {
+            if(c == ARROW_LEFT) {
                 //if(cursorpos.x >= 2) {
                 //    std::cout << "\033[1D";
                 //   cursorpos.x -= 1;
                 //}
             }
 
-            if (c == ARROW_RIGHT) {
+            if(c == ARROW_RIGHT) {
                 //std::cout << "\033[1B";
                 //cursorpos.x += 1;
             }
-    } else if (c != 9) {
+    } else if(c != 9) {
         main_function->_h_str.push_back(c);
         sign.push_back(c);
         cursorpos.x += 1;
-    } else if (c == 9) {
+    } else if(c == 9) {
         auto str = GetSpecificHistoryLine(GetTotalHistoryLine() - 1);
         auto other_str = fsplusplus::FindStringWithReturn(SCRIFT_HISTORY_PATH, main_function->_h_str);
         other_str = stringtools::trim(other_str);
@@ -1313,15 +1315,15 @@ void InputFunction(slocale_t &locale) {
             if(other_str.substr(0, main_function->_h_str.length()) == main_function->_h_str)
                 main_function->_h_str = other_str;
         } else {
-            if (main_function->_h_str.length() >= 0 && main_function->_h_str.length() < str.length()) {
+            if(main_function->_h_str.length() >= 0 && main_function->_h_str.length() < str.length()) {
                 for (unsigned i = 0; i < main_function->_h_str.length(); i++) {
                     std::cout << "\b \b" << std::flush;
                 }
 
-                if (str.substr(0, main_function->_h_str.length()) == main_function->_h_str)
+                if(str.substr(0, main_function->_h_str.length()) == main_function->_h_str)
                     main_function->_h_str = str;
                 else {
-                    if (main_function->_h_str.back() != ' ')
+                    if(main_function->_h_str.back() != ' ')
                         main_function->_h_str.append(" ");
 
                     main_function->_h_str.append(str);
@@ -1337,7 +1339,7 @@ void InputFunction(slocale_t &locale) {
     /* Cursor position */
     cursorpos.x = main_function->_h_str.length();
 
-    if (c == '\n') {
+    if(c == '\n') {
         space = 0;
         ++input_value;
         ++scrift_line;
@@ -1350,27 +1352,53 @@ void InputFunction(slocale_t &locale) {
             main_function->_h_str = stringtools::ltrim(main_function->_h_str);
         }
 
-        if (main_function->_h_str != "\n") {
+        if(main_function->_h_str != "\n") {
             main_function->_h_str.pop_back();
 
-            if (main_function->_h_str != "!!") {
-                previous_command = main_function->_h_str;
+            if(main_function->_h_str == "!!") {
+                main_function->_h_str = previous_command;
             }
 
-            if (validation->Validate(stringtools::GetFirstArg(main_function->_h_str)) == WEBSITE) {
-                /* TODO: Implement some of the xdg-utils */
-                runfunction->RunFunction("xdg-open " + main_function->_h_str);
+            if(main_function->_h_str.find("&&") != main_function->_h_str.npos) {
+                main_function->split_str(main_function->_h_str, "&&");
 
-                BOLD_LIGHT_WHITE_COLOR
-                std::cout << "Hmm, I guess '" + main_function->_h_str + "' was a website.\n";
-                BLACK_COLOR
-            } else {
-                main_function->CodeExecution(main_function->_h_str, locale);
+                do {
+                    std::string val = main_function->args.front(); main_function->args.pop();
 
-                if (!incognito)
+                    if(!val.empty() && (val.front() == ' ' || val.back() == ' '))
+                        val = stringtools::trim(val);
+
+                    if(validation->Validate(stringtools::GetFirstArg(val)) == WEBSITE) {
+                        runfunction->RunFunction("xdg-open " + val);
+
+                        BOLD_LIGHT_WHITE_COLOR
+                        std::cout << "Hmm, I guess '" + val + "' was a website.\n";
+                        BLACK_COLOR
+                    } else {
+                        main_function->CodeExecution(val, locale);
+                    }
+                } while(!main_function->args.empty());
+
+                if(!incognito)
                     history->WriteInHistory(main_function->_h_str + "\n");
 
                 line = GetTotalHistoryLine();
+            } else {
+                if(validation->Validate(stringtools::GetFirstArg(main_function->_h_str)) == WEBSITE) {
+                    /* TODO: Implement some of the xdg-utils */
+                    runfunction->RunFunction("xdg-open " + main_function->_h_str);
+
+                    BOLD_LIGHT_WHITE_COLOR
+                    std::cout << "Hmm, I guess '" + main_function->_h_str + "' was a website.\n";
+                    BLACK_COLOR
+                } else {
+                    main_function->CodeExecution(main_function->_h_str, locale);
+
+                    if(!incognito)
+                        history->WriteInHistory(main_function->_h_str + "\n");
+
+                    line = GetTotalHistoryLine();
+                }
             }
         }
 
@@ -1380,11 +1408,11 @@ void InputFunction(slocale_t &locale) {
         return;
     } else {
         /* Color scheme option (Different with terminal's color.) */
-        if (runsyntax->Theme() == "default")
+        if(runsyntax->Theme() == "default")
             Space(space, sign, 0);
-        else if (runsyntax->Theme() == "classic")
+        else if(runsyntax->Theme() == "classic")
             Space(space, sign, 1);
-        else if (runsyntax->Theme() == "halloween")
+        else if(runsyntax->Theme() == "halloween")
             Space(space, sign, 2);
         else
             Space(space, sign, 0);
@@ -1405,7 +1433,7 @@ int main(integer argc, char **argv) {
     slocale_t locale = set_locale->Set();
 
     /* Happy new year! */
-    if (main_function->Time().substr(4, 6) == "-01-01") {
+    if(main_function->Time().substr(4, 6) == "-01-01") {
         colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_BLUE), "Happy new year!");
         std::cout << " " << emojiplusplus::EmojiString(":balloon:") << " - ";
         colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_YELLOW), "Scrift\n");
@@ -1414,7 +1442,7 @@ int main(integer argc, char **argv) {
     /*
     Copy.
     */
-    if (argc > 1) {
+    if(argc > 1) {
         for (int i = 1; i < argc; i++) {
             std::string arg(argv[i]);
             reg = argv[1];
@@ -1425,22 +1453,22 @@ int main(integer argc, char **argv) {
         logsystem->AllofThem(); /* FeLog start signal. */
 
         /* Customization & Setup instruction. */
-        if (runsyntax->Setup()) {
+        if(runsyntax->Setup()) {
             /* ExecutePlusPlus exec; */
             setup->Config();
         }
 
-        if (runsyntax->Date()) {
+        if(runsyntax->Date()) {
             date_tools->Date();
         }
 
-        if (runsyntax->ASCIIColor() != -1) {
+        if(runsyntax->ASCIIColor() != -1) {
             std::unique_ptr<FASCIIFunction> ascii(new FASCIIFunction);
             ascii->Allofthem();
         }
 
         /* Welcome <username> (emoji) */
-        if (runsyntax->WelcomeMessage() == 1 || runsyntax->WelcomeMessage() == 2) {
+        if(runsyntax->WelcomeMessage() == 1 || runsyntax->WelcomeMessage() == 2) {
             PrintUsername();
         }
 
@@ -1454,13 +1482,13 @@ int main(integer argc, char **argv) {
         alias->Init();
 
         /* Welcome message. */
-        if (runsyntax->WelcomeMessage() == 1) {
+        if(runsyntax->WelcomeMessage() == 1) {
             logsystem->WriteLog("Launching Welcome() function.. - ");
             helpstr->Welcome();
         }
 
         /* Get latest command from .scrift_history */
-        if (line > 1) {
+        if(line > 1) {
             previous_command = GetSpecificHistoryLine(line - 1);
         }
 
@@ -1476,14 +1504,14 @@ int main(integer argc, char **argv) {
         }
     }
 
-    if (reg.substr(0, 2) == "--") {
-        if (reg == "--help" || reg == "--h") { /* Print HelpFunction() */
+    if(reg.substr(0, 2) == "--") {
+        if(reg == "--help" || reg == "--h") { /* Print HelpFunction() */
             BOLD_RED_COLOR
             helpstr->HelpFunction(locale);
             BLACK_COLOR
 
             exit(EXIT_SUCCESS); /* exit */
-        } else if (reg == "--version" || reg == "--v") { /* Print Scrift's Version */
+        } else if(reg == "--version" || reg == "--v") { /* Print Scrift's Version */
             PrintVersion();
             exit(EXIT_SUCCESS); /* exit */
         }
