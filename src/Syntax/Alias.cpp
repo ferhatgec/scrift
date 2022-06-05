@@ -81,6 +81,8 @@ FAlias::AddAlias(const std::string &name, const std::string &replacement) {
 void
 FAlias::Init() {
     if (!std::filesystem::exists(std::basic_string(getenv("HOME")) + "/.scrift_aliases")) {
-        fsplusplus::CreateFile(std::basic_string(getenv("HOME")) + "/.scrift_aliases", "hello='echo Hello, Scrift!'\n");
+        fsplusplus::CreateFile(std::basic_string(getenv("HOME")) + "/.scrift_aliases",
+                               "hello='echo Hello, Scrift!'\n"
+                               "log='felog'\n");
     }
 }

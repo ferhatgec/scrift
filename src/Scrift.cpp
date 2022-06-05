@@ -1467,6 +1467,10 @@ int main(integer argc, char **argv) {
             ascii->Allofthem();
         }
 
+
+        logsystem->WriteLog("Theme: " + runsyntax->Theme());
+
+
         /* Welcome <username> (emoji) */
         if(runsyntax->WelcomeMessage() == 1 || runsyntax->WelcomeMessage() == 2) {
             PrintUsername();

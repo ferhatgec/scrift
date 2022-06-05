@@ -26,10 +26,10 @@ FeLog::~FeLog() = default;
 void
 FeLog::ClearLog() {
     std::string path;
-    path.append(getenv("HOME"));
+    path.append(std::getenv("HOME"));
     path.append("/.scrift_log");
     file.open(path); // append
-    file << "FeLog Cleared.. \n";
+    file << "FeLog cleaned. ";
     file << TimeFunction() << "\n";
     file.close();
 }
@@ -52,16 +52,15 @@ void FeLog::WriteLog(fstr filepathw) {
     filepath_with_path.append("/.scrift_log");
     std::ofstream file;
     file.open(filepath_with_path, std::ios::out | std::ios::app);
+
     if (file.fail())
-        printlnf("ERROR\n");
+        printlnf("Error found at WriteLog function.\n");
 
 
     file.exceptions(file.exceptions() | std::ios::failbit | std::ifstream::badbit);
 
     file << filepathw << " ";
     file << TimeFunction() << std::endl;
-
-    // printlnf("Done\n");
 }
 
 
@@ -72,7 +71,7 @@ void FeLog::CreateFile() {
     path.append("/.scrift_log");
 
     file.open(path, std::ios::app);
-    file << "FeLog Started. ";
+    file << "FeLog started. ";
     file << TimeFunction() << "\n";
     file.close();
 }
@@ -88,8 +87,5 @@ void
 FeLog::AllofThem() {
     if (!IsExist())
         CreateFile();
-    else {
-        printlnf("FeLog file is exists\n");
-        WriteLog("FeLog file is exists! - ");
-    }
+    else this->WriteLog("FeLog file exists!");
 }

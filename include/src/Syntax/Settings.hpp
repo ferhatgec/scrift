@@ -8,8 +8,9 @@
 #ifndef SETTINGS_HPP
 #define SETTINGS_HPP
 
-#include <cstring>
+#include <string>
 #include <iostream>
+#include <src/Syntax/Log.hpp>
 
 class FSettings {
 public:

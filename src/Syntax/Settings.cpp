@@ -181,6 +181,9 @@ FSettings::Clear() {
 std::string
 FSettings::Theme() {
     std::string line = fsplusplus::FindStringWithReturn(Path(), "scrift_theme");
+    stringtools::trim(line);
+    line = stringtools::EraseAllSubString(line, "scrift_theme ");
+
     if(line == "default" || line == "classic" || line == "halloween") return line;
     return "default";
 }

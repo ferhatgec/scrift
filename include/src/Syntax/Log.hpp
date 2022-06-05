@@ -20,13 +20,9 @@ public:
     ~FeLog();
 
     void CreateFile();
-
     void InitFile();
-
     void WriteLog(fstr);
-
     void ClearLog();
-
     void AllofThem();
 
     std::string TimeFunction();
