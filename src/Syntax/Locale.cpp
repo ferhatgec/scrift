@@ -65,6 +65,8 @@ FLocale::Set() {
         locale.cmd_fpm = "Fegeya Paket Yöneticisini çalıştır.\n";
         locale.cmd_previous = "Önceki komutu getir ve yürüt.\n\n";
 
+        locale.cmd_pwd = "Bulunulan dizini yazdır.";
+
         locale.dir_not_exist = " : Bu dizin ortalıkta yok!\n";
     }
 

@@ -51,6 +51,7 @@ std::unique_ptr<FASCIIFunction> ascii(new FASCIIFunction);
 */
 void
 FCDFunction::CDFunctionInit(std::string name, slocale_t &locale) {
+    command->_file_path_cd_function = std::filesystem::current_path().string();
     if (!name.empty()) {
         if (!fmain->_home) {
             std::string temporary_name;

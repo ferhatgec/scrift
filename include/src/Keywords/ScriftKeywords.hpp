@@ -284,6 +284,11 @@ public:
 
     std::string Resolution = "res";
 
+    /* Shows current path */
+    std::string Pwd = "pwd";
+    std::string Path = "path";
+    std::string CurrentPath = "current_path";
+
     /* Whitespace */
     std::string Whitespace = " ";
 };

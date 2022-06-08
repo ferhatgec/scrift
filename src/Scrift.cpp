@@ -1061,6 +1061,14 @@ void FMain::CodeExecution(std::string arg, slocale_t &locale) {
         }
 
         return;
+    } else if(CommandMatch(arg, keywords.Pwd)
+                || CommandMatch(arg, keywords.Path)
+                || CommandMatch(arg, keywords.CurrentPath)) {
+        WHITE_COLOR
+        std::cout << std::filesystem::current_path().string() << '\n';
+        BLACK_COLOR
+
+        return;
     } else if(CommandMatch(arg, keywords.FeLog)) {
         /* felog
             Show FeLog

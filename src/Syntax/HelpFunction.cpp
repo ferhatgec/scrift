@@ -89,7 +89,8 @@ FHelpFunction::HelpFunction(slocale_t &locale) {
     PUT_COMMAND(WBOLD_YELLOW_COLOR, "rmvfile <file, folder>", "Remove file, folder in path\n")
     PUT_COMMAND(WBOLD_YELLOW_COLOR, "setname <name>        ", "Set environment name\n")
     PUT_COMMAND(WBOLD_YELLOW_COLOR, "setto <value>         ", "Set environment value.\n")
-    PUT_COMMAND(WBOLD_YELLOW_COLOR, "back                  ", "Going to back directory\n\n")
+    PUT_COMMAND(WBOLD_YELLOW_COLOR, "back                  ", "Going to back directory\n")
+    PUT_COMMAND(WBOLD_YELLOW_COLOR, "pwd || path           ", locale.cmd_pwd)
 
     BOLD_LIGHT_CYAN_COLOR
     std::cout << "[Generate]\n";
