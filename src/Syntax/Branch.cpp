@@ -6,7 +6,6 @@
 # */
 
 #include <string>
-#include <filesystem>
 
 #include <src/Syntax/Branch.hpp>
 #include <src/Syntax/FileFunction.hpp>
@@ -21,9 +20,9 @@ FBranch::GetGitBranch() {
 
     ExecutePlusPlus exec;
 
-    if (std::filesystem::exists(".git")) {
+    if(!access(".git", R_OK)) { // && std::filesystem::exists(".git")) {
         branch = exec.ExecWithOutput(R"(git branch | grep "^\*" | sed 's/^..//')");
-    } else if (std::filesystem::exists(".hg")) {
+    } else if (!access(".hg", R_OK)) {
         /* It's too slow! */
         branch = exec.ExecWithOutput("hg branch");
     }
