@@ -1,6 +1,6 @@
 /* MIT License
 #
-# Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
+# Copyright (c) 2020-2023 Ferhat Geçdoğan All Rights Reserved.
 # Distributed under the terms of the MIT License.
 #
 # */
@@ -19,7 +19,7 @@
 #include <Colorized.hpp>
 
 /*
-        TODO: Add Stage2, Stage3 for install instruction.
+        TODO: Add Stage2, Stage3 for installation process.
 */
 
 /*
@@ -39,6 +39,39 @@ std::string Path() {
 
 void
 FSetup::Stage1() {
+    const std::string path = STR(std::getenv("HOME")) + "/.";
+
+    if(fsplusplus::IsExistFile(path + "scrift_settings")) {
+        colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_RED),
+                                "Are you sure to reconfig the shell? (y | n) -> ");
+        std::string pass;
+        std::cin >> pass;
+
+        if(pass == "y" || pass == "YES" || pass == "yeah" || pass == "Yes" || pass == "yes_please") {
+            std::ifstream old_stream(path + "scrift_settings");
+
+            if(old_stream) {
+                std::string file_data;
+
+                for(std::string _data; std::getline(old_stream, _data); file_data.append(_data + "\n"))
+                    ;
+
+                std::ofstream stream(path + "old_scrift_settings", std::ios::trunc);
+                stream << file_data;
+                stream.close();
+                colorized::PrintWhReset(colorized::Colorize(BOLD, LIGHT_GREEN),
+                                        "Your old config placed in " + path + "old_scrift_settings\n");
+            } else {
+                colorized::PrintWhReset(colorized::Colorize(BOLD, RED),
+                                        "Your old config couldn't saved\n");
+            }
+
+            old_stream.close();
+        } else {
+            return;
+        }
+    }
+
     /* Setting variables */
     std::string pass, felog_clean_line, welcome_emoji, bg_color,
             ascii_art_color, scrift_theme, input_customize,
@@ -51,7 +84,7 @@ FSetup::Stage1() {
 
     colorized::PrintWhReset(colorized::Colorize(BOLD, MAGENTA), "Welcome!\n");
 
-    if (fsplusplus::IsExistFile("/bin/scrift"))
+    if(fsplusplus::IsExistFile("/bin/scrift"))
         colorized::PrintWith(colorized::Colorize(BOLD, BLUE),
                              "Thank you for choosing Fegeya Scrift!\n");
 
@@ -67,7 +100,7 @@ FSetup::Stage1() {
 
     BOLD_LIGHT_WHITE_COLOR
     std::cin >> pass;
-    if (pass == "n" || pass == "NO" || pass == "no" || pass == "No" || pass == "no_thanks") {
+    if(pass == "n" || pass == "NO" || pass == "no" || pass == "No" || pass == "no_thanks") {
         /* FeLog Cleaner */
         colorized::PrintWith(colorized::Colorize(BOLD, CYAN),
                              "FeLog Cleaner [50, 100, 300] (Default: Once every 100 lines)\n -> ");
@@ -76,7 +109,7 @@ FSetup::Stage1() {
         std::cin >> felog_clean_line;
 
         /* Pass */
-        if (felog_clean_line == "n" || felog_clean_line == "N") felog_clean_line = "100";
+        if(felog_clean_line == "n" || felog_clean_line == "N") felog_clean_line = "100";
 
         /* Welcome Emoji */
         colorized::PrintWith(colorized::Colorize(BOLD, CYAN),
@@ -86,7 +119,7 @@ FSetup::Stage1() {
         std::cin >> welcome_emoji;
 
         /* Pass */
-        if (welcome_emoji == "n" || welcome_emoji == "N") welcome_emoji = ":thinking_face:";
+        if(welcome_emoji == "n" || welcome_emoji == "N") welcome_emoji = ":thinking_face:";
 
         /* Background Color */
         colorized::PrintWith(colorized::Colorize(BOLD, CYAN),
@@ -96,7 +129,7 @@ FSetup::Stage1() {
         std::cin >> bg_color;
 
         /* Pass */
-        if (bg_color == "n" || bg_color == "N") bg_color = "12";
+        if(bg_color == "n" || bg_color == "N") bg_color = "12";
 
         /* ASCII Art Color */
         colorized::PrintWith(colorized::Colorize(BOLD, CYAN),
@@ -106,7 +139,7 @@ FSetup::Stage1() {
         std::cin >> ascii_art_color;
 
         /* Pass */
-        if (ascii_art_color == "n" || ascii_art_color == "N") ascii_art_color = "random";
+        if(ascii_art_color == "n" || ascii_art_color == "N") ascii_art_color = "random";
 
         /* Scrift Theme */
         colorized::PrintWith(colorized::Colorize(BOLD, CYAN),
@@ -116,9 +149,9 @@ FSetup::Stage1() {
         std::cin >> scrift_theme;
 
         /* Pass */
-        if (scrift_theme == "n" || scrift_theme == "N") scrift_theme = "default";
+        if(scrift_theme == "n" || scrift_theme == "N") scrift_theme = "default";
 
-        if (scrift_theme == "🎃") scrift_theme = "halloween";
+        if(scrift_theme == "🎃") scrift_theme = "halloween";
 
         /* Input Customization */
         colorized::PrintWith(colorized::Colorize(BOLD, CYAN),
@@ -128,7 +161,7 @@ FSetup::Stage1() {
         std::cin >> input_customize;
 
         /* Pass */
-        if (input_customize == "n" || input_customize == "N") input_customize = "▶ ";
+        if(input_customize == "n" || input_customize == "N") input_customize = "▶ ";
 
         /* Welcome Message */
         colorized::PrintWith(colorized::Colorize(BOLD, CYAN),
@@ -138,7 +171,7 @@ FSetup::Stage1() {
         std::cin >> welcome_message;
 
         /* Pass */
-        if (welcome_message == "n" || welcome_message == "N") welcome_message = "yes";
+        if(welcome_message == "n" || welcome_message == "N") welcome_message = "yes";
 
         /* Local Git Branch */
         colorized::PrintWith(colorized::Colorize(BOLD, CYAN),
@@ -148,7 +181,7 @@ FSetup::Stage1() {
         std::cin >> local_git_branch;
 
         /* Pass */
-        if (local_git_branch == "n" || local_git_branch == "N") local_git_branch = "yes";
+        if(local_git_branch == "n" || local_git_branch == "N") local_git_branch = "yes";
 
         /* Local Git Branch */
         colorized::PrintWith(colorized::Colorize(BOLD, CYAN),
@@ -158,7 +191,7 @@ FSetup::Stage1() {
         std::cin >> auto_clear;
 
         /* Auto buffer clear */
-        if (auto_clear == "n" || auto_clear == "N") auto_clear = "40";
+        if(auto_clear == "n" || auto_clear == "N") auto_clear = "40";
 
         /* Sign_1 */
         colorized::PrintWith(colorized::Colorize(BOLD, CYAN),
@@ -167,7 +200,7 @@ FSetup::Stage1() {
         BOLD_LIGHT_WHITE_COLOR
         std::cin >> sign_1;
 
-        if (sign_1 == "n" || sign_1 == "N") sign_1 = "@";
+        if(sign_1 == "n" || sign_1 == "N") sign_1 = "@";
 
         /* Sign 2 */
         colorized::PrintWith(colorized::Colorize(BOLD, CYAN),
@@ -176,11 +209,11 @@ FSetup::Stage1() {
         BOLD_LIGHT_WHITE_COLOR
         std::cin >> sign_2;
 
-        if (sign_2 == "n" || sign_2 == "N") sign_2 = ":~";
+        if(sign_2 == "n" || sign_2 == "N") sign_2 = ":~";
 
         /* Check Is Fpm available */
 
-        if (!fsplusplus::IsExistFile("/bin/fpm")) {
+        if(!fsplusplus::IsExistFile("/bin/fpm")) {
             colorized::PrintWith(colorized::Colorize(BOLD, CYAN),
                                  "Do you want to install fpm (Fegeya Package Manager) from source? (Y/n) \n -> ");
 
@@ -189,7 +222,7 @@ FSetup::Stage1() {
             BOLD_LIGHT_WHITE_COLOR
             std::cin >> ch;
 
-            if (ch == 'n' || ch == 'N') std::cout << "Ok!\n";
+            if(ch == 'n' || ch == 'N') std::cout << "Ok!\n";
             else {
                 const std::string old_path = fsplusplus::GetCurrentWorkingDir();
 
@@ -210,7 +243,7 @@ FSetup::Stage1() {
                 /* Cleaning */
                 std::filesystem::remove_all(STR(getenv("HOME")) + "/scrift_fpm/");
 
-                if (fsplusplus::IsExistFile("/bin/fpm")) {
+                if(fsplusplus::IsExistFile("/bin/fpm")) {
                     std::cout << "Fpm installed!\n";
                 }
             }
